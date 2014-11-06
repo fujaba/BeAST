@@ -16,24 +16,29 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class SwitchImpl extends RoutingComponentImpl implements Switch {
+public class SwitchImpl extends RoutingComponentImpl implements Switch
+{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SwitchImpl() {
+	protected SwitchImpl()
+	{
 		super();
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return ModelPackage.Literals.SWITCH;
 	}
-
+	
 } //SwitchImpl

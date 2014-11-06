@@ -30,7 +30,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *
  * @generated
  */
-public class ServerImpl extends MinimalEObjectImpl.Container implements Server {
+public class ServerImpl extends MinimalEObjectImpl.Container implements Server
+{
 	/**
 	 * The default value of the '{@link #getIp() <em>Ip</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -39,8 +40,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String IP_EDEFAULT = null;
-
+	protected static final String	IP_EDEFAULT			= null;
+	
 	/**
 	 * The cached value of the '{@link #getIp() <em>Ip</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -49,8 +50,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server {
 	 * @generated
 	 * @ordered
 	 */
-	protected String ip = IP_EDEFAULT;
-
+	protected String				ip					= IP_EDEFAULT;
+	
 	/**
 	 * The default value of the '{@link #getCpuAmount() <em>Cpu Amount</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -59,8 +60,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int CPU_AMOUNT_EDEFAULT = 0;
-
+	protected static final int		CPU_AMOUNT_EDEFAULT	= 0;
+	
 	/**
 	 * The cached value of the '{@link #getCpuAmount() <em>Cpu Amount</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -69,8 +70,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server {
 	 * @generated
 	 * @ordered
 	 */
-	protected int cpuAmount = CPU_AMOUNT_EDEFAULT;
-
+	protected int					cpuAmount			= CPU_AMOUNT_EDEFAULT;
+	
 	/**
 	 * The default value of the '{@link #getCpuType() <em>Cpu Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -79,8 +80,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String CPU_TYPE_EDEFAULT = null;
-
+	protected static final String	CPU_TYPE_EDEFAULT	= null;
+	
 	/**
 	 * The cached value of the '{@link #getCpuType() <em>Cpu Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -89,8 +90,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server {
 	 * @generated
 	 * @ordered
 	 */
-	protected String cpuType = CPU_TYPE_EDEFAULT;
-
+	protected String				cpuType				= CPU_TYPE_EDEFAULT;
+	
 	/**
 	 * The default value of the '{@link #getRam() <em>Ram</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -99,8 +100,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long RAM_EDEFAULT = 0L;
-
+	protected static final long		RAM_EDEFAULT		= 0L;
+	
 	/**
 	 * The cached value of the '{@link #getRam() <em>Ram</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -109,8 +110,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server {
 	 * @generated
 	 * @ordered
 	 */
-	protected long ram = RAM_EDEFAULT;
-
+	protected long					ram					= RAM_EDEFAULT;
+	
 	/**
 	 * The default value of the '{@link #getDiskSpace() <em>Disk Space</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -119,8 +120,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long DISK_SPACE_EDEFAULT = 0L;
-
+	protected static final long		DISK_SPACE_EDEFAULT	= 0L;
+	
 	/**
 	 * The cached value of the '{@link #getDiskSpace() <em>Disk Space</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -129,8 +130,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server {
 	 * @generated
 	 * @ordered
 	 */
-	protected long diskSpace = DISK_SPACE_EDEFAULT;
-
+	protected long					diskSpace			= DISK_SPACE_EDEFAULT;
+	
 	/**
 	 * The default value of the '{@link #getHost() <em>Host</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -139,8 +140,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String HOST_EDEFAULT = null;
-
+	protected static final String	HOST_EDEFAULT		= null;
+	
 	/**
 	 * The cached value of the '{@link #getHost() <em>Host</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -149,270 +150,332 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server {
 	 * @generated
 	 * @ordered
 	 */
-	protected String host = HOST_EDEFAULT;
-
+	protected String				host				= HOST_EDEFAULT;
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ServerImpl() {
+	protected ServerImpl()
+	{
 		super();
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return ModelPackage.Literals.SERVER;
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getIp() {
+	public String getIp()
+	{
 		return ip;
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIp(String newIp) {
+	public void setIp(String newIp)
+	{
 		String oldIp = ip;
 		ip = newIp;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.SERVER__IP, oldIp, ip));
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getCpuAmount() {
+	public int getCpuAmount()
+	{
 		return cpuAmount;
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCpuAmount(int newCpuAmount) {
+	public void setCpuAmount(int newCpuAmount)
+	{
 		int oldCpuAmount = cpuAmount;
 		cpuAmount = newCpuAmount;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.SERVER__CPU_AMOUNT, oldCpuAmount, cpuAmount));
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCpuType() {
+	public String getCpuType()
+	{
 		return cpuType;
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCpuType(String newCpuType) {
+	public void setCpuType(String newCpuType)
+	{
 		String oldCpuType = cpuType;
 		cpuType = newCpuType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.SERVER__CPU_TYPE, oldCpuType, cpuType));
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getRam() {
+	public long getRam()
+	{
 		return ram;
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRam(long newRam) {
+	public void setRam(long newRam)
+	{
 		long oldRam = ram;
 		ram = newRam;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.SERVER__RAM, oldRam, ram));
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getDiskSpace() {
+	public long getDiskSpace()
+	{
 		return diskSpace;
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDiskSpace(long newDiskSpace) {
+	public void setDiskSpace(long newDiskSpace)
+	{
 		long oldDiskSpace = diskSpace;
 		diskSpace = newDiskSpace;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.SERVER__DISK_SPACE, oldDiskSpace, diskSpace));
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getHost() {
+	public String getHost()
+	{
 		return host;
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHost(String newHost) {
+	public void setHost(String newHost)
+	{
 		String oldHost = host;
 		host = newHost;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.SERVER__HOST, oldHost, host));
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ModelPackage.SERVER__IP:
-				return getIp();
-			case ModelPackage.SERVER__CPU_AMOUNT:
-				return getCpuAmount();
-			case ModelPackage.SERVER__CPU_TYPE:
-				return getCpuType();
-			case ModelPackage.SERVER__RAM:
-				return getRam();
-			case ModelPackage.SERVER__DISK_SPACE:
-				return getDiskSpace();
-			case ModelPackage.SERVER__HOST:
-				return getHost();
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
+		case ModelPackage.SERVER__IP:
+			return getIp();
+		case ModelPackage.SERVER__CPU_AMOUNT:
+			return getCpuAmount();
+		case ModelPackage.SERVER__CPU_TYPE:
+			return getCpuType();
+		case ModelPackage.SERVER__RAM:
+			return getRam();
+		case ModelPackage.SERVER__DISK_SPACE:
+			return getDiskSpace();
+		case ModelPackage.SERVER__HOST:
+			return getHost();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ModelPackage.SERVER__IP:
-				setIp((String)newValue);
-				return;
-			case ModelPackage.SERVER__CPU_AMOUNT:
-				setCpuAmount((Integer)newValue);
-				return;
-			case ModelPackage.SERVER__CPU_TYPE:
-				setCpuType((String)newValue);
-				return;
-			case ModelPackage.SERVER__RAM:
-				setRam((Long)newValue);
-				return;
-			case ModelPackage.SERVER__DISK_SPACE:
-				setDiskSpace((Long)newValue);
-				return;
-			case ModelPackage.SERVER__HOST:
-				setHost((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
+		case ModelPackage.SERVER__IP:
+			setIp((String) newValue);
+			return;
+		case ModelPackage.SERVER__CPU_AMOUNT:
+			setCpuAmount((Integer) newValue);
+			return;
+		case ModelPackage.SERVER__CPU_TYPE:
+			setCpuType((String) newValue);
+			return;
+		case ModelPackage.SERVER__RAM:
+			setRam((Long) newValue);
+			return;
+		case ModelPackage.SERVER__DISK_SPACE:
+			setDiskSpace((Long) newValue);
+			return;
+		case ModelPackage.SERVER__HOST:
+			setHost((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ModelPackage.SERVER__IP:
-				setIp(IP_EDEFAULT);
-				return;
-			case ModelPackage.SERVER__CPU_AMOUNT:
-				setCpuAmount(CPU_AMOUNT_EDEFAULT);
-				return;
-			case ModelPackage.SERVER__CPU_TYPE:
-				setCpuType(CPU_TYPE_EDEFAULT);
-				return;
-			case ModelPackage.SERVER__RAM:
-				setRam(RAM_EDEFAULT);
-				return;
-			case ModelPackage.SERVER__DISK_SPACE:
-				setDiskSpace(DISK_SPACE_EDEFAULT);
-				return;
-			case ModelPackage.SERVER__HOST:
-				setHost(HOST_EDEFAULT);
-				return;
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
+		case ModelPackage.SERVER__IP:
+			setIp(IP_EDEFAULT);
+			return;
+		case ModelPackage.SERVER__CPU_AMOUNT:
+			setCpuAmount(CPU_AMOUNT_EDEFAULT);
+			return;
+		case ModelPackage.SERVER__CPU_TYPE:
+			setCpuType(CPU_TYPE_EDEFAULT);
+			return;
+		case ModelPackage.SERVER__RAM:
+			setRam(RAM_EDEFAULT);
+			return;
+		case ModelPackage.SERVER__DISK_SPACE:
+			setDiskSpace(DISK_SPACE_EDEFAULT);
+			return;
+		case ModelPackage.SERVER__HOST:
+			setHost(HOST_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ModelPackage.SERVER__IP:
-				return IP_EDEFAULT == null ? ip != null : !IP_EDEFAULT.equals(ip);
-			case ModelPackage.SERVER__CPU_AMOUNT:
-				return cpuAmount != CPU_AMOUNT_EDEFAULT;
-			case ModelPackage.SERVER__CPU_TYPE:
-				return CPU_TYPE_EDEFAULT == null ? cpuType != null : !CPU_TYPE_EDEFAULT.equals(cpuType);
-			case ModelPackage.SERVER__RAM:
-				return ram != RAM_EDEFAULT;
-			case ModelPackage.SERVER__DISK_SPACE:
-				return diskSpace != DISK_SPACE_EDEFAULT;
-			case ModelPackage.SERVER__HOST:
-				return HOST_EDEFAULT == null ? host != null : !HOST_EDEFAULT.equals(host);
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
+		case ModelPackage.SERVER__IP:
+			return IP_EDEFAULT == null ? ip != null : !IP_EDEFAULT.equals(ip);
+		case ModelPackage.SERVER__CPU_AMOUNT:
+			return cpuAmount != CPU_AMOUNT_EDEFAULT;
+		case ModelPackage.SERVER__CPU_TYPE:
+			return CPU_TYPE_EDEFAULT == null ? cpuType != null : !CPU_TYPE_EDEFAULT.equals(cpuType);
+		case ModelPackage.SERVER__RAM:
+			return ram != RAM_EDEFAULT;
+		case ModelPackage.SERVER__DISK_SPACE:
+			return diskSpace != DISK_SPACE_EDEFAULT;
+		case ModelPackage.SERVER__HOST:
+			return HOST_EDEFAULT == null ? host != null : !HOST_EDEFAULT.equals(host);
 		}
 		return super.eIsSet(featureID);
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
+	public String toString()
+	{
+		if (eIsProxy())
+			return super.toString();
+		
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (ip: ");
 		result.append(ip);
@@ -429,5 +492,5 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server {
 		result.append(')');
 		return result.toString();
 	}
-
+	
 } //ServerImpl

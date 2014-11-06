@@ -2,7 +2,6 @@
  */
 package model;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Switch</b></em>'.
@@ -13,5 +12,6 @@ package model;
  * @model
  * @generated
  */
-public interface Switch extends RoutingComponent {
+public interface Switch extends RoutingComponent
+{
 } // Switch

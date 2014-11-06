@@ -25,7 +25,8 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Server extends EObject {
+public interface Server extends EObject
+{
 	/**
 	 * Returns the value of the '<em><b>Ip</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -41,7 +42,9 @@ public interface Server extends EObject {
 	 * @generated
 	 */
 	String getIp();
-
+	
+	
+	
 	/**
 	 * Sets the value of the '{@link model.Server#getIp <em>Ip</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -51,7 +54,9 @@ public interface Server extends EObject {
 	 * @generated
 	 */
 	void setIp(String value);
-
+	
+	
+	
 	/**
 	 * Returns the value of the '<em><b>Cpu Amount</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -67,7 +72,9 @@ public interface Server extends EObject {
 	 * @generated
 	 */
 	int getCpuAmount();
-
+	
+	
+	
 	/**
 	 * Sets the value of the '{@link model.Server#getCpuAmount <em>Cpu Amount</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -77,7 +84,9 @@ public interface Server extends EObject {
 	 * @generated
 	 */
 	void setCpuAmount(int value);
-
+	
+	
+	
 	/**
 	 * Returns the value of the '<em><b>Cpu Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -93,7 +102,9 @@ public interface Server extends EObject {
 	 * @generated
 	 */
 	String getCpuType();
-
+	
+	
+	
 	/**
 	 * Sets the value of the '{@link model.Server#getCpuType <em>Cpu Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -103,7 +114,9 @@ public interface Server extends EObject {
 	 * @generated
 	 */
 	void setCpuType(String value);
-
+	
+	
+	
 	/**
 	 * Returns the value of the '<em><b>Ram</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -119,7 +132,9 @@ public interface Server extends EObject {
 	 * @generated
 	 */
 	long getRam();
-
+	
+	
+	
 	/**
 	 * Sets the value of the '{@link model.Server#getRam <em>Ram</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -129,7 +144,9 @@ public interface Server extends EObject {
 	 * @generated
 	 */
 	void setRam(long value);
-
+	
+	
+	
 	/**
 	 * Returns the value of the '<em><b>Disk Space</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -145,7 +162,9 @@ public interface Server extends EObject {
 	 * @generated
 	 */
 	long getDiskSpace();
-
+	
+	
+	
 	/**
 	 * Sets the value of the '{@link model.Server#getDiskSpace <em>Disk Space</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -155,7 +174,9 @@ public interface Server extends EObject {
 	 * @generated
 	 */
 	void setDiskSpace(long value);
-
+	
+	
+	
 	/**
 	 * Returns the value of the '<em><b>Host</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -171,7 +192,9 @@ public interface Server extends EObject {
 	 * @generated
 	 */
 	String getHost();
-
+	
+	
+	
 	/**
 	 * Sets the value of the '{@link model.Server#getHost <em>Host</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -181,5 +204,5 @@ public interface Server extends EObject {
 	 * @generated
 	 */
 	void setHost(String value);
-
+	
 } // Server
