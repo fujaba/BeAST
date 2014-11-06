@@ -15,10 +15,10 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
-import de.uks.beast.editor.features.AddServerFeature;
-import de.uks.beast.editor.features.CreateServerFeature;
 import de.uks.beast.editor.features.DirectEditServerFeature;
 import de.uks.beast.editor.features.LayoutDomainObjectFeature;
+import de.uks.beast.editor.features.add.AddServerFeature;
+import de.uks.beast.editor.features.create.CreateServerFeature;
 
 public class EditorFeatureProvider extends DefaultFeatureProvider
 {

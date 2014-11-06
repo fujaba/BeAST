@@ -1,14 +1,14 @@
-package de.uks.beast.editor.features;
+package de.uks.beast.editor.features.add;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.impl.AbstractAddFeature;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 
-public class AddSwitchFeature extends AbstractAddFeature
+public class AddRoutingComponentFeature extends AbstractAddFeature
 {
 	
-	public AddSwitchFeature(IFeatureProvider fp)
+	public AddRoutingComponentFeature(IFeatureProvider fp)
 	{
 		super(fp);
 		// TODO Auto-generated constructor stub
