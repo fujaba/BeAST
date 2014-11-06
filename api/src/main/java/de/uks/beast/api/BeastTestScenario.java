@@ -10,6 +10,9 @@ import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import de.uks.beast.api.model.Hardware;
+import de.uks.beast.api.parser.XMLParser;
+
 public abstract class BeastTestScenario {
 	
 	private static Logger logger = LogManager.getLogger(BeastTestScenario.class); 
@@ -82,6 +85,8 @@ public abstract class BeastTestScenario {
 				logger.error("Could not find any .srvconfig file");
 				throw new RuntimeException("Could not find any .srvconfig file");
 			}
+			
+			Hardware hwconf = XMLParser.parseHardwareConfig(srvconfig);
 			
 			logger.info("Executing environment ...");
 		}
