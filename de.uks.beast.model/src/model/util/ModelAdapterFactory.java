@@ -64,7 +64,7 @@ public class ModelAdapterFactory extends AdapterFactoryImpl
 		}
 		if (object instanceof EObject)
 		{
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -75,61 +75,44 @@ public class ModelAdapterFactory extends AdapterFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelSwitch<Adapter>	modelSwitch	= new ModelSwitch<Adapter>() {
-													@Override
-													public Adapter caseServer(Server object)
-													{
-														return createServerAdapter();
-													}
-													
-													
-													
-													@Override
-													public Adapter caseRack(Rack object)
-													{
-														return createRackAdapter();
-													}
-													
-													
-													
-													@Override
-													public Adapter caseNetwork(Network object)
-													{
-														return createNetworkAdapter();
-													}
-													
-													
-													
-													@Override
-													public Adapter caseSwitch(Switch object)
-													{
-														return createSwitchAdapter();
-													}
-													
-													
-													
-													@Override
-													public Adapter caseRoutingComponent(RoutingComponent object)
-													{
-														return createRoutingComponentAdapter();
-													}
-													
-													
-													
-													@Override
-													public Adapter caseRouter(Router object)
-													{
-														return createRouterAdapter();
-													}
-													
-													
-													
-													@Override
-													public Adapter defaultCase(EObject object)
-													{
-														return createEObjectAdapter();
-													}
-												};
+	protected ModelSwitch<Adapter>	modelSwitch	= new ModelSwitch<Adapter>()
+		{
+			@Override
+			public Adapter caseServer(Server object)
+			{
+				return createServerAdapter();
+			}
+			@Override
+			public Adapter caseRack(Rack object)
+			{
+				return createRackAdapter();
+			}
+			@Override
+			public Adapter caseNetwork(Network object)
+			{
+				return createNetworkAdapter();
+			}
+			@Override
+			public Adapter caseSwitch(Switch object)
+			{
+				return createSwitchAdapter();
+			}
+			@Override
+			public Adapter caseRoutingComponent(RoutingComponent object)
+			{
+				return createRoutingComponentAdapter();
+			}
+			@Override
+			public Adapter caseRouter(Router object)
+			{
+				return createRouterAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object)
+			{
+				return createEObjectAdapter();
+			}
+		};
 	
 	
 	
@@ -144,7 +127,7 @@ public class ModelAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public Adapter createAdapter(Notifier target)
 	{
-		return modelSwitch.doSwitch((EObject) target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 	
 	

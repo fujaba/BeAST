@@ -168,13 +168,22 @@ public interface ModelPackage extends EPackage
 	int				RACK__ROUTER						= 1;
 	
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RACK__ID = 2;
+
+	/**
 	 * The number of structural features of the '<em>Rack</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int				RACK_FEATURE_COUNT					= 2;
+	int				RACK_FEATURE_COUNT					= 3;
 	
 	/**
 	 * The number of operations of the '<em>Rack</em>' class.
@@ -554,6 +563,19 @@ public interface ModelPackage extends EPackage
 	
 	
 	/**
+	 * Returns the meta object for the attribute '{@link model.Rack#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see model.Rack#getId()
+	 * @see #getRack()
+	 * @generated
+	 */
+	EAttribute getRack_Id();
+
+
+
+	/**
 	 * Returns the meta object for class '{@link model.Network <em>Network</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -813,6 +835,14 @@ public interface ModelPackage extends EPackage
 		 */
 		EReference	RACK__ROUTER				= eINSTANCE.getRack_Router();
 		
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RACK__ID = eINSTANCE.getRack_Id();
+
 		/**
 		 * The meta object literal for the '{@link model.impl.NetworkImpl <em>Network</em>}' class.
 		 * <!-- begin-user-doc -->

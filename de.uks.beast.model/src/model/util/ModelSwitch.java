@@ -78,60 +78,51 @@ public class ModelSwitch<T> extends Switch<T>
 	{
 		switch (classifierID)
 		{
-		case ModelPackage.SERVER:
-		{
-			Server server = (Server) theEObject;
-			T result = caseServer(server);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ModelPackage.RACK:
-		{
-			Rack rack = (Rack) theEObject;
-			T result = caseRack(rack);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ModelPackage.NETWORK:
-		{
-			Network network = (Network) theEObject;
-			T result = caseNetwork(network);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ModelPackage.SWITCH:
-		{
-			model.Switch switch_ = (model.Switch) theEObject;
-			T result = caseSwitch(switch_);
-			if (result == null)
-				result = caseRoutingComponent(switch_);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ModelPackage.ROUTING_COMPONENT:
-		{
-			RoutingComponent routingComponent = (RoutingComponent) theEObject;
-			T result = caseRoutingComponent(routingComponent);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ModelPackage.ROUTER:
-		{
-			Router router = (Router) theEObject;
-			T result = caseRouter(router);
-			if (result == null)
-				result = caseRoutingComponent(router);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+			case ModelPackage.SERVER:
+			{
+				Server server = (Server)theEObject;
+				T result = caseServer(server);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModelPackage.RACK:
+			{
+				Rack rack = (Rack)theEObject;
+				T result = caseRack(rack);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModelPackage.NETWORK:
+			{
+				Network network = (Network)theEObject;
+				T result = caseNetwork(network);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModelPackage.SWITCH:
+			{
+				model.Switch switch_ = (model.Switch)theEObject;
+				T result = caseSwitch(switch_);
+				if (result == null) result = caseRoutingComponent(switch_);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModelPackage.ROUTING_COMPONENT:
+			{
+				RoutingComponent routingComponent = (RoutingComponent)theEObject;
+				T result = caseRoutingComponent(routingComponent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModelPackage.ROUTER:
+			{
+				Router router = (Router)theEObject;
+				T result = caseRouter(router);
+				if (result == null) result = caseRoutingComponent(router);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			default: return defaultCase(theEObject);
 		}
 	}
 	

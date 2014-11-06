@@ -351,18 +351,18 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	{
 		switch (featureID)
 		{
-		case ModelPackage.SERVER__IP:
-			return getIp();
-		case ModelPackage.SERVER__CPU_AMOUNT:
-			return getCpuAmount();
-		case ModelPackage.SERVER__CPU_TYPE:
-			return getCpuType();
-		case ModelPackage.SERVER__RAM:
-			return getRam();
-		case ModelPackage.SERVER__DISK_SPACE:
-			return getDiskSpace();
-		case ModelPackage.SERVER__HOST:
-			return getHost();
+			case ModelPackage.SERVER__IP:
+				return getIp();
+			case ModelPackage.SERVER__CPU_AMOUNT:
+				return getCpuAmount();
+			case ModelPackage.SERVER__CPU_TYPE:
+				return getCpuType();
+			case ModelPackage.SERVER__RAM:
+				return getRam();
+			case ModelPackage.SERVER__DISK_SPACE:
+				return getDiskSpace();
+			case ModelPackage.SERVER__HOST:
+				return getHost();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -379,24 +379,24 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	{
 		switch (featureID)
 		{
-		case ModelPackage.SERVER__IP:
-			setIp((String) newValue);
-			return;
-		case ModelPackage.SERVER__CPU_AMOUNT:
-			setCpuAmount((Integer) newValue);
-			return;
-		case ModelPackage.SERVER__CPU_TYPE:
-			setCpuType((String) newValue);
-			return;
-		case ModelPackage.SERVER__RAM:
-			setRam((Long) newValue);
-			return;
-		case ModelPackage.SERVER__DISK_SPACE:
-			setDiskSpace((Long) newValue);
-			return;
-		case ModelPackage.SERVER__HOST:
-			setHost((String) newValue);
-			return;
+			case ModelPackage.SERVER__IP:
+				setIp((String)newValue);
+				return;
+			case ModelPackage.SERVER__CPU_AMOUNT:
+				setCpuAmount((Integer)newValue);
+				return;
+			case ModelPackage.SERVER__CPU_TYPE:
+				setCpuType((String)newValue);
+				return;
+			case ModelPackage.SERVER__RAM:
+				setRam((Long)newValue);
+				return;
+			case ModelPackage.SERVER__DISK_SPACE:
+				setDiskSpace((Long)newValue);
+				return;
+			case ModelPackage.SERVER__HOST:
+				setHost((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -413,24 +413,24 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	{
 		switch (featureID)
 		{
-		case ModelPackage.SERVER__IP:
-			setIp(IP_EDEFAULT);
-			return;
-		case ModelPackage.SERVER__CPU_AMOUNT:
-			setCpuAmount(CPU_AMOUNT_EDEFAULT);
-			return;
-		case ModelPackage.SERVER__CPU_TYPE:
-			setCpuType(CPU_TYPE_EDEFAULT);
-			return;
-		case ModelPackage.SERVER__RAM:
-			setRam(RAM_EDEFAULT);
-			return;
-		case ModelPackage.SERVER__DISK_SPACE:
-			setDiskSpace(DISK_SPACE_EDEFAULT);
-			return;
-		case ModelPackage.SERVER__HOST:
-			setHost(HOST_EDEFAULT);
-			return;
+			case ModelPackage.SERVER__IP:
+				setIp(IP_EDEFAULT);
+				return;
+			case ModelPackage.SERVER__CPU_AMOUNT:
+				setCpuAmount(CPU_AMOUNT_EDEFAULT);
+				return;
+			case ModelPackage.SERVER__CPU_TYPE:
+				setCpuType(CPU_TYPE_EDEFAULT);
+				return;
+			case ModelPackage.SERVER__RAM:
+				setRam(RAM_EDEFAULT);
+				return;
+			case ModelPackage.SERVER__DISK_SPACE:
+				setDiskSpace(DISK_SPACE_EDEFAULT);
+				return;
+			case ModelPackage.SERVER__HOST:
+				setHost(HOST_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -447,18 +447,18 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	{
 		switch (featureID)
 		{
-		case ModelPackage.SERVER__IP:
-			return IP_EDEFAULT == null ? ip != null : !IP_EDEFAULT.equals(ip);
-		case ModelPackage.SERVER__CPU_AMOUNT:
-			return cpuAmount != CPU_AMOUNT_EDEFAULT;
-		case ModelPackage.SERVER__CPU_TYPE:
-			return CPU_TYPE_EDEFAULT == null ? cpuType != null : !CPU_TYPE_EDEFAULT.equals(cpuType);
-		case ModelPackage.SERVER__RAM:
-			return ram != RAM_EDEFAULT;
-		case ModelPackage.SERVER__DISK_SPACE:
-			return diskSpace != DISK_SPACE_EDEFAULT;
-		case ModelPackage.SERVER__HOST:
-			return HOST_EDEFAULT == null ? host != null : !HOST_EDEFAULT.equals(host);
+			case ModelPackage.SERVER__IP:
+				return IP_EDEFAULT == null ? ip != null : !IP_EDEFAULT.equals(ip);
+			case ModelPackage.SERVER__CPU_AMOUNT:
+				return cpuAmount != CPU_AMOUNT_EDEFAULT;
+			case ModelPackage.SERVER__CPU_TYPE:
+				return CPU_TYPE_EDEFAULT == null ? cpuType != null : !CPU_TYPE_EDEFAULT.equals(cpuType);
+			case ModelPackage.SERVER__RAM:
+				return ram != RAM_EDEFAULT;
+			case ModelPackage.SERVER__DISK_SPACE:
+				return diskSpace != DISK_SPACE_EDEFAULT;
+			case ModelPackage.SERVER__HOST:
+				return HOST_EDEFAULT == null ? host != null : !HOST_EDEFAULT.equals(host);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -473,9 +473,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	@Override
 	public String toString()
 	{
-		if (eIsProxy())
-			return super.toString();
-		
+		if (eIsProxy()) return super.toString();
+
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (ip: ");
 		result.append(ip);

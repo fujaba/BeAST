@@ -172,13 +172,12 @@ public class RoutingComponentImpl extends MinimalEObjectImpl.Container implement
 	{
 		if (network != null && network.eIsProxy())
 		{
-			InternalEObject oldNetwork = (InternalEObject) network;
-			network = (Network) eResolveProxy(oldNetwork);
+			InternalEObject oldNetwork = (InternalEObject)network;
+			network = (Network)eResolveProxy(oldNetwork);
 			if (network != oldNetwork)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.ROUTING_COMPONENT__NETWORK,
-							oldNetwork, network));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.ROUTING_COMPONENT__NETWORK, oldNetwork, network));
 			}
 		}
 		return network;
@@ -209,12 +208,8 @@ public class RoutingComponentImpl extends MinimalEObjectImpl.Container implement
 		network = newNetwork;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					ModelPackage.ROUTING_COMPONENT__NETWORK, oldNetwork, newNetwork);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.ROUTING_COMPONENT__NETWORK, oldNetwork, newNetwork);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -232,12 +227,11 @@ public class RoutingComponentImpl extends MinimalEObjectImpl.Container implement
 		{
 			NotificationChain msgs = null;
 			if (network != null)
-				msgs = ((InternalEObject) network).eInverseRemove(this, ModelPackage.NETWORK__ROUTER, Network.class, msgs);
+				msgs = ((InternalEObject)network).eInverseRemove(this, ModelPackage.NETWORK__ROUTER, Network.class, msgs);
 			if (newNetwork != null)
-				msgs = ((InternalEObject) newNetwork).eInverseAdd(this, ModelPackage.NETWORK__ROUTER, Network.class, msgs);
+				msgs = ((InternalEObject)newNetwork).eInverseAdd(this, ModelPackage.NETWORK__ROUTER, Network.class, msgs);
 			msgs = basicSetNetwork(newNetwork, msgs);
-			if (msgs != null)
-				msgs.dispatch();
+			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.ROUTING_COMPONENT__NETWORK, newNetwork, newNetwork));
@@ -255,10 +249,10 @@ public class RoutingComponentImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case ModelPackage.ROUTING_COMPONENT__NETWORK:
-			if (network != null)
-				msgs = ((InternalEObject) network).eInverseRemove(this, ModelPackage.NETWORK__ROUTER, Network.class, msgs);
-			return basicSetNetwork((Network) otherEnd, msgs);
+			case ModelPackage.ROUTING_COMPONENT__NETWORK:
+				if (network != null)
+					msgs = ((InternalEObject)network).eInverseRemove(this, ModelPackage.NETWORK__ROUTER, Network.class, msgs);
+				return basicSetNetwork((Network)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -275,8 +269,8 @@ public class RoutingComponentImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case ModelPackage.ROUTING_COMPONENT__NETWORK:
-			return basicSetNetwork(null, msgs);
+			case ModelPackage.ROUTING_COMPONENT__NETWORK:
+				return basicSetNetwork(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -293,14 +287,13 @@ public class RoutingComponentImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case ModelPackage.ROUTING_COMPONENT__IP:
-			return getIp();
-		case ModelPackage.ROUTING_COMPONENT__GATEWAY:
-			return getGateway();
-		case ModelPackage.ROUTING_COMPONENT__NETWORK:
-			if (resolve)
-				return getNetwork();
-			return basicGetNetwork();
+			case ModelPackage.ROUTING_COMPONENT__IP:
+				return getIp();
+			case ModelPackage.ROUTING_COMPONENT__GATEWAY:
+				return getGateway();
+			case ModelPackage.ROUTING_COMPONENT__NETWORK:
+				if (resolve) return getNetwork();
+				return basicGetNetwork();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -317,15 +310,15 @@ public class RoutingComponentImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case ModelPackage.ROUTING_COMPONENT__IP:
-			setIp((String) newValue);
-			return;
-		case ModelPackage.ROUTING_COMPONENT__GATEWAY:
-			setGateway((String) newValue);
-			return;
-		case ModelPackage.ROUTING_COMPONENT__NETWORK:
-			setNetwork((Network) newValue);
-			return;
+			case ModelPackage.ROUTING_COMPONENT__IP:
+				setIp((String)newValue);
+				return;
+			case ModelPackage.ROUTING_COMPONENT__GATEWAY:
+				setGateway((String)newValue);
+				return;
+			case ModelPackage.ROUTING_COMPONENT__NETWORK:
+				setNetwork((Network)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -342,15 +335,15 @@ public class RoutingComponentImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case ModelPackage.ROUTING_COMPONENT__IP:
-			setIp(IP_EDEFAULT);
-			return;
-		case ModelPackage.ROUTING_COMPONENT__GATEWAY:
-			setGateway(GATEWAY_EDEFAULT);
-			return;
-		case ModelPackage.ROUTING_COMPONENT__NETWORK:
-			setNetwork((Network) null);
-			return;
+			case ModelPackage.ROUTING_COMPONENT__IP:
+				setIp(IP_EDEFAULT);
+				return;
+			case ModelPackage.ROUTING_COMPONENT__GATEWAY:
+				setGateway(GATEWAY_EDEFAULT);
+				return;
+			case ModelPackage.ROUTING_COMPONENT__NETWORK:
+				setNetwork((Network)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -367,12 +360,12 @@ public class RoutingComponentImpl extends MinimalEObjectImpl.Container implement
 	{
 		switch (featureID)
 		{
-		case ModelPackage.ROUTING_COMPONENT__IP:
-			return IP_EDEFAULT == null ? ip != null : !IP_EDEFAULT.equals(ip);
-		case ModelPackage.ROUTING_COMPONENT__GATEWAY:
-			return GATEWAY_EDEFAULT == null ? gateway != null : !GATEWAY_EDEFAULT.equals(gateway);
-		case ModelPackage.ROUTING_COMPONENT__NETWORK:
-			return network != null;
+			case ModelPackage.ROUTING_COMPONENT__IP:
+				return IP_EDEFAULT == null ? ip != null : !IP_EDEFAULT.equals(ip);
+			case ModelPackage.ROUTING_COMPONENT__GATEWAY:
+				return GATEWAY_EDEFAULT == null ? gateway != null : !GATEWAY_EDEFAULT.equals(gateway);
+			case ModelPackage.ROUTING_COMPONENT__NETWORK:
+				return network != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -387,9 +380,8 @@ public class RoutingComponentImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public String toString()
 	{
-		if (eIsProxy())
-			return super.toString();
-		
+		if (eIsProxy()) return super.toString();
+
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (ip: ");
 		result.append(ip);

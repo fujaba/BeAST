@@ -268,8 +268,8 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	{
 		if (router != null && router.eIsProxy())
 		{
-			InternalEObject oldRouter = (InternalEObject) router;
-			router = (RoutingComponent) eResolveProxy(oldRouter);
+			InternalEObject oldRouter = (InternalEObject)router;
+			router = (RoutingComponent)eResolveProxy(oldRouter);
 			if (router != oldRouter)
 			{
 				if (eNotificationRequired())
@@ -304,12 +304,8 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 		router = newRouter;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.NETWORK__ROUTER,
-					oldRouter, newRouter);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.NETWORK__ROUTER, oldRouter, newRouter);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -327,14 +323,11 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 		{
 			NotificationChain msgs = null;
 			if (router != null)
-				msgs = ((InternalEObject) router).eInverseRemove(this, ModelPackage.ROUTING_COMPONENT__NETWORK,
-						RoutingComponent.class, msgs);
+				msgs = ((InternalEObject)router).eInverseRemove(this, ModelPackage.ROUTING_COMPONENT__NETWORK, RoutingComponent.class, msgs);
 			if (newRouter != null)
-				msgs = ((InternalEObject) newRouter).eInverseAdd(this, ModelPackage.ROUTING_COMPONENT__NETWORK,
-						RoutingComponent.class, msgs);
+				msgs = ((InternalEObject)newRouter).eInverseAdd(this, ModelPackage.ROUTING_COMPONENT__NETWORK, RoutingComponent.class, msgs);
 			msgs = basicSetRouter(newRouter, msgs);
-			if (msgs != null)
-				msgs.dispatch();
+			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.NETWORK__ROUTER, newRouter, newRouter));
@@ -352,11 +345,10 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	{
 		switch (featureID)
 		{
-		case ModelPackage.NETWORK__ROUTER:
-			if (router != null)
-				msgs = ((InternalEObject) router).eInverseRemove(this, ModelPackage.ROUTING_COMPONENT__NETWORK,
-						RoutingComponent.class, msgs);
-			return basicSetRouter((RoutingComponent) otherEnd, msgs);
+			case ModelPackage.NETWORK__ROUTER:
+				if (router != null)
+					msgs = ((InternalEObject)router).eInverseRemove(this, ModelPackage.ROUTING_COMPONENT__NETWORK, RoutingComponent.class, msgs);
+				return basicSetRouter((RoutingComponent)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -373,8 +365,8 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	{
 		switch (featureID)
 		{
-		case ModelPackage.NETWORK__ROUTER:
-			return basicSetRouter(null, msgs);
+			case ModelPackage.NETWORK__ROUTER:
+				return basicSetRouter(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -391,18 +383,17 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	{
 		switch (featureID)
 		{
-		case ModelPackage.NETWORK__RANGE:
-			return getRange();
-		case ModelPackage.NETWORK__SUBNETMASK:
-			return getSubnetmask();
-		case ModelPackage.NETWORK__GATEWAY:
-			return getGateway();
-		case ModelPackage.NETWORK__DNS:
-			return getDns();
-		case ModelPackage.NETWORK__ROUTER:
-			if (resolve)
-				return getRouter();
-			return basicGetRouter();
+			case ModelPackage.NETWORK__RANGE:
+				return getRange();
+			case ModelPackage.NETWORK__SUBNETMASK:
+				return getSubnetmask();
+			case ModelPackage.NETWORK__GATEWAY:
+				return getGateway();
+			case ModelPackage.NETWORK__DNS:
+				return getDns();
+			case ModelPackage.NETWORK__ROUTER:
+				if (resolve) return getRouter();
+				return basicGetRouter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -419,21 +410,21 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	{
 		switch (featureID)
 		{
-		case ModelPackage.NETWORK__RANGE:
-			setRange((String) newValue);
-			return;
-		case ModelPackage.NETWORK__SUBNETMASK:
-			setSubnetmask((String) newValue);
-			return;
-		case ModelPackage.NETWORK__GATEWAY:
-			setGateway((String) newValue);
-			return;
-		case ModelPackage.NETWORK__DNS:
-			setDns((String) newValue);
-			return;
-		case ModelPackage.NETWORK__ROUTER:
-			setRouter((RoutingComponent) newValue);
-			return;
+			case ModelPackage.NETWORK__RANGE:
+				setRange((String)newValue);
+				return;
+			case ModelPackage.NETWORK__SUBNETMASK:
+				setSubnetmask((String)newValue);
+				return;
+			case ModelPackage.NETWORK__GATEWAY:
+				setGateway((String)newValue);
+				return;
+			case ModelPackage.NETWORK__DNS:
+				setDns((String)newValue);
+				return;
+			case ModelPackage.NETWORK__ROUTER:
+				setRouter((RoutingComponent)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -450,21 +441,21 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	{
 		switch (featureID)
 		{
-		case ModelPackage.NETWORK__RANGE:
-			setRange(RANGE_EDEFAULT);
-			return;
-		case ModelPackage.NETWORK__SUBNETMASK:
-			setSubnetmask(SUBNETMASK_EDEFAULT);
-			return;
-		case ModelPackage.NETWORK__GATEWAY:
-			setGateway(GATEWAY_EDEFAULT);
-			return;
-		case ModelPackage.NETWORK__DNS:
-			setDns(DNS_EDEFAULT);
-			return;
-		case ModelPackage.NETWORK__ROUTER:
-			setRouter((RoutingComponent) null);
-			return;
+			case ModelPackage.NETWORK__RANGE:
+				setRange(RANGE_EDEFAULT);
+				return;
+			case ModelPackage.NETWORK__SUBNETMASK:
+				setSubnetmask(SUBNETMASK_EDEFAULT);
+				return;
+			case ModelPackage.NETWORK__GATEWAY:
+				setGateway(GATEWAY_EDEFAULT);
+				return;
+			case ModelPackage.NETWORK__DNS:
+				setDns(DNS_EDEFAULT);
+				return;
+			case ModelPackage.NETWORK__ROUTER:
+				setRouter((RoutingComponent)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -481,16 +472,16 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	{
 		switch (featureID)
 		{
-		case ModelPackage.NETWORK__RANGE:
-			return RANGE_EDEFAULT == null ? range != null : !RANGE_EDEFAULT.equals(range);
-		case ModelPackage.NETWORK__SUBNETMASK:
-			return SUBNETMASK_EDEFAULT == null ? subnetmask != null : !SUBNETMASK_EDEFAULT.equals(subnetmask);
-		case ModelPackage.NETWORK__GATEWAY:
-			return GATEWAY_EDEFAULT == null ? gateway != null : !GATEWAY_EDEFAULT.equals(gateway);
-		case ModelPackage.NETWORK__DNS:
-			return DNS_EDEFAULT == null ? dns != null : !DNS_EDEFAULT.equals(dns);
-		case ModelPackage.NETWORK__ROUTER:
-			return router != null;
+			case ModelPackage.NETWORK__RANGE:
+				return RANGE_EDEFAULT == null ? range != null : !RANGE_EDEFAULT.equals(range);
+			case ModelPackage.NETWORK__SUBNETMASK:
+				return SUBNETMASK_EDEFAULT == null ? subnetmask != null : !SUBNETMASK_EDEFAULT.equals(subnetmask);
+			case ModelPackage.NETWORK__GATEWAY:
+				return GATEWAY_EDEFAULT == null ? gateway != null : !GATEWAY_EDEFAULT.equals(gateway);
+			case ModelPackage.NETWORK__DNS:
+				return DNS_EDEFAULT == null ? dns != null : !DNS_EDEFAULT.equals(dns);
+			case ModelPackage.NETWORK__ROUTER:
+				return router != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -505,9 +496,8 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	@Override
 	public String toString()
 	{
-		if (eIsProxy())
-			return super.toString();
-		
+		if (eIsProxy()) return super.toString();
+
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (range: ");
 		result.append(range);

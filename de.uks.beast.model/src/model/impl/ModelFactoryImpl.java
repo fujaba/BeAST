@@ -30,7 +30,7 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 	{
 		try
 		{
-			ModelFactory theModelFactory = (ModelFactory) EPackage.Registry.INSTANCE.getEFactory(ModelPackage.eNS_URI);
+			ModelFactory theModelFactory = (ModelFactory)EPackage.Registry.INSTANCE.getEFactory(ModelPackage.eNS_URI);
 			if (theModelFactory != null)
 			{
 				return theModelFactory;
@@ -68,20 +68,14 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 	{
 		switch (eClass.getClassifierID())
 		{
-		case ModelPackage.SERVER:
-			return createServer();
-		case ModelPackage.RACK:
-			return createRack();
-		case ModelPackage.NETWORK:
-			return createNetwork();
-		case ModelPackage.SWITCH:
-			return createSwitch();
-		case ModelPackage.ROUTING_COMPONENT:
-			return createRoutingComponent();
-		case ModelPackage.ROUTER:
-			return createRouter();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			case ModelPackage.SERVER: return createServer();
+			case ModelPackage.RACK: return createRack();
+			case ModelPackage.NETWORK: return createNetwork();
+			case ModelPackage.SWITCH: return createSwitch();
+			case ModelPackage.ROUTING_COMPONENT: return createRoutingComponent();
+			case ModelPackage.ROUTER: return createRouter();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 	
@@ -172,7 +166,7 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 	 */
 	public ModelPackage getModelPackage()
 	{
-		return (ModelPackage) getEPackage();
+		return (ModelPackage)getEPackage();
 	}
 	
 	
