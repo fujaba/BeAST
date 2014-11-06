@@ -20,50 +20,69 @@ import de.uks.beast.editor.features.CreateServerFeature;
 import de.uks.beast.editor.features.DirectEditServerFeature;
 import de.uks.beast.editor.features.LayoutDomainObjectFeature;
 
-
-public class EditorFeatureProvider extends DefaultFeatureProvider {
-
-	public EditorFeatureProvider(IDiagramTypeProvider dtp) {
+public class EditorFeatureProvider extends DefaultFeatureProvider
+{
+	
+	public EditorFeatureProvider(IDiagramTypeProvider dtp)
+	{
 		super(dtp);
 	}
-
-	@Override
-	public ICreateFeature[] getCreateFeatures() {
-		return new ICreateFeature[] {new CreateServerFeature(this, "Server", "Server representing hardware")};
-	}
+	
+	
 	
 	@Override
-	public ICreateConnectionFeature[] getCreateConnectionFeatures() {
+	public ICreateFeature[] getCreateFeatures()
+	{
+		return new ICreateFeature[] { new CreateServerFeature(this, "Server", "Server representing hardware") };
+	}
+	
+	
+	
+	@Override
+	public ICreateConnectionFeature[] getCreateConnectionFeatures()
+	{
 		return new ICreateConnectionFeature[] {};
 	}
 	
+	
+	
 	@Override
-	public IAddFeature getAddFeature(IAddContext context) {
-
-		if (context.getNewObject() instanceof Server) {
+	public IAddFeature getAddFeature(IAddContext context)
+	{
+		
+		if (context.getNewObject() instanceof Server)
+		{
 			return new AddServerFeature(this);
 		}
 		
 		return super.getAddFeature(context);
 	}
 	
-	@Override
-	public ILayoutFeature getLayoutFeature(ILayoutContext context) {
-		if (context.getPictogramElement() instanceof ContainerShape) {
-			return  new LayoutDomainObjectFeature(this);
-		}
 	
+	
+	@Override
+	public ILayoutFeature getLayoutFeature(ILayoutContext context)
+	{
+		if (context.getPictogramElement() instanceof ContainerShape)
+		{
+			return new LayoutDomainObjectFeature(this);
+		}
+		
 		return super.getLayoutFeature(context);
 	}
 	
+	
+	
 	@Override
-	public IDirectEditingFeature getDirectEditingFeature(IDirectEditingContext context) {
-	    PictogramElement pe = context.getPictogramElement();
-	    Object bo = getBusinessObjectForPictogramElement(pe);
-	    if (bo instanceof Server) {
-	        return new DirectEditServerFeature(this);
-	    }
-	    return super.getDirectEditingFeature(context);
-	} 
+	public IDirectEditingFeature getDirectEditingFeature(IDirectEditingContext context)
+	{
+		PictogramElement pe = context.getPictogramElement();
+		Object bo = getBusinessObjectForPictogramElement(pe);
+		if (bo instanceof Server)
+		{
+			return new DirectEditServerFeature(this);
+		}
+		return super.getDirectEditingFeature(context);
+	}
 	
 }

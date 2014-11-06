@@ -8,19 +8,27 @@ import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 
-public class CreateServerFeature extends AbstractCreateFeature {
-
-	public CreateServerFeature(IFeatureProvider fp, String name, String description) {
+public class CreateServerFeature extends AbstractCreateFeature
+{
+	
+	public CreateServerFeature(IFeatureProvider fp, String name, String description)
+	{
 		super(fp, name, description);
 	}
-
+	
+	
+	
 	@Override
-	public boolean canCreate(ICreateContext context) {
+	public boolean canCreate(ICreateContext context)
+	{
 		return context.getTargetContainer() instanceof Diagram;
 	}
-
+	
+	
+	
 	@Override
-	public Object[] create(ICreateContext context) {
+	public Object[] create(ICreateContext context)
+	{
 		Server server = ModelFactory.eINSTANCE.createServer();
 		getDiagram().eResource().getContents().add(server);
 		server.setHost("Server");
@@ -28,5 +36,5 @@ public class CreateServerFeature extends AbstractCreateFeature {
 		getFeatureProvider().getDirectEditingInfo().setActive(true);
 		return new Object[] { server };
 	}
-
+	
 }

@@ -13,34 +13,45 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 
-
-public class LayoutDomainObjectFeature extends AbstractLayoutFeature implements
-		ILayoutFeature {
-
-	public LayoutDomainObjectFeature(IFeatureProvider fp) {
+public class LayoutDomainObjectFeature extends AbstractLayoutFeature implements ILayoutFeature
+{
+	
+	public LayoutDomainObjectFeature(IFeatureProvider fp)
+	{
 		super(fp);
 	}
-
+	
+	
+	
 	@Override
-	public boolean canLayout(ILayoutContext context) {
+	public boolean canLayout(ILayoutContext context)
+	{
 		// TODO: check for right domain object instances below
 		return context.getPictogramElement() instanceof ContainerShape /* && getBusinessObjectForPictogramElement(context.getPictogramElement()) instanceof <DomainObject> */;
 	}
-
+	
+	
+	
 	@Override
-	public boolean layout(ILayoutContext context) {
+	public boolean layout(ILayoutContext context)
+	{
 		PictogramElement pictogramElement = context.getPictogramElement();
-		if (pictogramElement instanceof ContainerShape) {
+		if (pictogramElement instanceof ContainerShape)
+		{
 			ContainerShape containerShape = (ContainerShape) pictogramElement;
 			GraphicsAlgorithm outerGraphicsAlgorithm = containerShape.getGraphicsAlgorithm();
-			if (outerGraphicsAlgorithm instanceof RoundedRectangle) {
+			if (outerGraphicsAlgorithm instanceof RoundedRectangle)
+			{
 				RoundedRectangle roundedRectangle = (RoundedRectangle) outerGraphicsAlgorithm;
 				EList<Shape> children = containerShape.getChildren();
-				if (children.size() > 0) {
+				if (children.size() > 0)
+				{
 					Shape shape = children.get(0);
 					GraphicsAlgorithm graphicsAlgorithm = shape.getGraphicsAlgorithm();
-					if (graphicsAlgorithm instanceof Text) {
-						Graphiti.getGaLayoutService().setLocationAndSize(graphicsAlgorithm, 0, 0, roundedRectangle.getWidth(), roundedRectangle.getHeight());
+					if (graphicsAlgorithm instanceof Text)
+					{
+						Graphiti.getGaLayoutService().setLocationAndSize(graphicsAlgorithm, 0, 0, roundedRectangle.getWidth(),
+								roundedRectangle.getHeight());
 						return true;
 					}
 				}
