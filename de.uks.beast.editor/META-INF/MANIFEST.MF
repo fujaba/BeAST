@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Editor
+Bundle-SymbolicName: de.uks.beast.editor;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: de.uks.beast.editor.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.graphiti,
+ org.eclipse.graphiti.ui,
+ de.uks.beast.model;bundle-version="0.1.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy

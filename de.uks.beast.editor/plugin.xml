@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.graphiti.ui.diagramTypes">
+      <diagramType
+            name="Editor Diagram Type"
+            type="srvconfig"
+            id="de.uks.beast.editor.editorDiagramType">
+      </diagramType>
+   </extension>
+   <extension
+         point="org.eclipse.graphiti.ui.diagramTypeProviders">
+      <diagramTypeProvider
+            name="Editor Diagram Type Provider"
+            class="de.uks.beast.editor.diagram.EditorDiagramTypeProvider"
+            id="de.uks.beast.editor.editorDiagramTypeProvider">
+         <diagramType
+               id="de.uks.beast.editor.editorDiagramType">
+         </diagramType>
+      </diagramTypeProvider>
+   </extension>
+
+</plugin>
