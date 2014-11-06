@@ -2,9 +2,14 @@ package de.uks.beast.api.model;
 
 public class Server {
 
+	private String host;
 	private int cpu;
 	private long ram;
 	private int diskSpace;
+	
+	public String getHost() {
+		return host;
+	}
 	
 	public int getCpu() {
 		return cpu;
@@ -16,6 +21,10 @@ public class Server {
 	
 	public int getDiskSpace() {
 		return diskSpace;
+	}
+	
+	public void setHost(String host) {
+		this.host = host;
 	}
 	
 	public void setCpu(int cpu) {
