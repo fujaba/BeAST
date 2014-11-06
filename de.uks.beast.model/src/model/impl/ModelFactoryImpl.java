@@ -18,124 +18,165 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
+public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
+{
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ModelFactory init() {
-		try {
-			ModelFactory theModelFactory = (ModelFactory)EPackage.Registry.INSTANCE.getEFactory(ModelPackage.eNS_URI);
-			if (theModelFactory != null) {
+	public static ModelFactory init()
+	{
+		try
+		{
+			ModelFactory theModelFactory = (ModelFactory) EPackage.Registry.INSTANCE.getEFactory(ModelPackage.eNS_URI);
+			if (theModelFactory != null)
+			{
 				return theModelFactory;
 			}
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new ModelFactoryImpl();
 	}
-
+	
+	
+	
 	/**
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelFactoryImpl() {
+	public ModelFactoryImpl()
+	{
 		super();
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case ModelPackage.SERVER: return createServer();
-			case ModelPackage.RACK: return createRack();
-			case ModelPackage.NETWORK: return createNetwork();
-			case ModelPackage.SWITCH: return createSwitch();
-			case ModelPackage.ROUTING_COMPONENT: return createRoutingComponent();
-			case ModelPackage.ROUTER: return createRouter();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+	public EObject create(EClass eClass)
+	{
+		switch (eClass.getClassifierID())
+		{
+		case ModelPackage.SERVER:
+			return createServer();
+		case ModelPackage.RACK:
+			return createRack();
+		case ModelPackage.NETWORK:
+			return createNetwork();
+		case ModelPackage.SWITCH:
+			return createSwitch();
+		case ModelPackage.ROUTING_COMPONENT:
+			return createRoutingComponent();
+		case ModelPackage.ROUTER:
+			return createRouter();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Server createServer() {
+	public Server createServer()
+	{
 		ServerImpl server = new ServerImpl();
 		return server;
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Rack createRack() {
+	public Rack createRack()
+	{
 		RackImpl rack = new RackImpl();
 		return rack;
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Network createNetwork() {
+	public Network createNetwork()
+	{
 		NetworkImpl network = new NetworkImpl();
 		return network;
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Switch createSwitch() {
+	public Switch createSwitch()
+	{
 		SwitchImpl switch_ = new SwitchImpl();
 		return switch_;
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RoutingComponent createRoutingComponent() {
+	public RoutingComponent createRoutingComponent()
+	{
 		RoutingComponentImpl routingComponent = new RoutingComponentImpl();
 		return routingComponent;
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Router createRouter() {
+	public Router createRouter()
+	{
 		RouterImpl router = new RouterImpl();
 		return router;
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelPackage getModelPackage() {
-		return (ModelPackage)getEPackage();
+	public ModelPackage getModelPackage()
+	{
+		return (ModelPackage) getEPackage();
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -143,8 +184,9 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * @generated
 	 */
 	@Deprecated
-	public static ModelPackage getPackage() {
+	public static ModelPackage getPackage()
+	{
 		return ModelPackage.eINSTANCE;
 	}
-
+	
 } //ModelFactoryImpl

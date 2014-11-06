@@ -12,15 +12,18 @@ import org.eclipse.emf.ecore.EFactory;
  * @see model.ModelPackage
  * @generated
  */
-public interface ModelFactory extends EFactory {
+public interface ModelFactory extends EFactory
+{
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ModelFactory eINSTANCE = model.impl.ModelFactoryImpl.init();
-
+	ModelFactory	eINSTANCE	= model.impl.ModelFactoryImpl.init();
+	
+	
+	
 	/**
 	 * Returns a new object of class '<em>Server</em>'.
 	 * <!-- begin-user-doc -->
@@ -29,7 +32,9 @@ public interface ModelFactory extends EFactory {
 	 * @generated
 	 */
 	Server createServer();
-
+	
+	
+	
 	/**
 	 * Returns a new object of class '<em>Rack</em>'.
 	 * <!-- begin-user-doc -->
@@ -38,7 +43,9 @@ public interface ModelFactory extends EFactory {
 	 * @generated
 	 */
 	Rack createRack();
-
+	
+	
+	
 	/**
 	 * Returns a new object of class '<em>Network</em>'.
 	 * <!-- begin-user-doc -->
@@ -47,7 +54,9 @@ public interface ModelFactory extends EFactory {
 	 * @generated
 	 */
 	Network createNetwork();
-
+	
+	
+	
 	/**
 	 * Returns a new object of class '<em>Switch</em>'.
 	 * <!-- begin-user-doc -->
@@ -56,7 +65,9 @@ public interface ModelFactory extends EFactory {
 	 * @generated
 	 */
 	Switch createSwitch();
-
+	
+	
+	
 	/**
 	 * Returns a new object of class '<em>Routing Component</em>'.
 	 * <!-- begin-user-doc -->
@@ -65,7 +76,9 @@ public interface ModelFactory extends EFactory {
 	 * @generated
 	 */
 	RoutingComponent createRoutingComponent();
-
+	
+	
+	
 	/**
 	 * Returns a new object of class '<em>Router</em>'.
 	 * <!-- begin-user-doc -->
@@ -74,7 +87,9 @@ public interface ModelFactory extends EFactory {
 	 * @generated
 	 */
 	Router createRouter();
-
+	
+	
+	
 	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
@@ -83,5 +98,5 @@ public interface ModelFactory extends EFactory {
 	 * @generated
 	 */
 	ModelPackage getModelPackage();
-
+	
 } //ModelFactory

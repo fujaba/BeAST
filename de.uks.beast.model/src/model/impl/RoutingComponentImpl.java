@@ -30,7 +30,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *
  * @generated
  */
-public class RoutingComponentImpl extends MinimalEObjectImpl.Container implements RoutingComponent {
+public class RoutingComponentImpl extends MinimalEObjectImpl.Container implements RoutingComponent
+{
 	/**
 	 * The default value of the '{@link #getIp() <em>Ip</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -39,8 +40,8 @@ public class RoutingComponentImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String IP_EDEFAULT = null;
-
+	protected static final String	IP_EDEFAULT			= null;
+	
 	/**
 	 * The cached value of the '{@link #getIp() <em>Ip</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -49,8 +50,8 @@ public class RoutingComponentImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected String ip = IP_EDEFAULT;
-
+	protected String				ip					= IP_EDEFAULT;
+	
 	/**
 	 * The default value of the '{@link #getGateway() <em>Gateway</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -59,8 +60,8 @@ public class RoutingComponentImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String GATEWAY_EDEFAULT = null;
-
+	protected static final String	GATEWAY_EDEFAULT	= null;
+	
 	/**
 	 * The cached value of the '{@link #getGateway() <em>Gateway</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -69,8 +70,8 @@ public class RoutingComponentImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected String gateway = GATEWAY_EDEFAULT;
-
+	protected String				gateway				= GATEWAY_EDEFAULT;
+	
 	/**
 	 * The cached value of the '{@link #getNetwork() <em>Network</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -79,247 +80,316 @@ public class RoutingComponentImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected Network network;
-
+	protected Network				network;
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RoutingComponentImpl() {
+	protected RoutingComponentImpl()
+	{
 		super();
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return ModelPackage.Literals.ROUTING_COMPONENT;
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getIp() {
+	public String getIp()
+	{
 		return ip;
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIp(String newIp) {
+	public void setIp(String newIp)
+	{
 		String oldIp = ip;
 		ip = newIp;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.ROUTING_COMPONENT__IP, oldIp, ip));
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getGateway() {
+	public String getGateway()
+	{
 		return gateway;
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGateway(String newGateway) {
+	public void setGateway(String newGateway)
+	{
 		String oldGateway = gateway;
 		gateway = newGateway;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.ROUTING_COMPONENT__GATEWAY, oldGateway, gateway));
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Network getNetwork() {
-		if (network != null && network.eIsProxy()) {
-			InternalEObject oldNetwork = (InternalEObject)network;
-			network = (Network)eResolveProxy(oldNetwork);
-			if (network != oldNetwork) {
+	public Network getNetwork()
+	{
+		if (network != null && network.eIsProxy())
+		{
+			InternalEObject oldNetwork = (InternalEObject) network;
+			network = (Network) eResolveProxy(oldNetwork);
+			if (network != oldNetwork)
+			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.ROUTING_COMPONENT__NETWORK, oldNetwork, network));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.ROUTING_COMPONENT__NETWORK,
+							oldNetwork, network));
 			}
 		}
 		return network;
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Network basicGetNetwork() {
+	public Network basicGetNetwork()
+	{
 		return network;
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetNetwork(Network newNetwork, NotificationChain msgs) {
+	public NotificationChain basicSetNetwork(Network newNetwork, NotificationChain msgs)
+	{
 		Network oldNetwork = network;
 		network = newNetwork;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.ROUTING_COMPONENT__NETWORK, oldNetwork, newNetwork);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					ModelPackage.ROUTING_COMPONENT__NETWORK, oldNetwork, newNetwork);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNetwork(Network newNetwork) {
-		if (newNetwork != network) {
+	public void setNetwork(Network newNetwork)
+	{
+		if (newNetwork != network)
+		{
 			NotificationChain msgs = null;
 			if (network != null)
-				msgs = ((InternalEObject)network).eInverseRemove(this, ModelPackage.NETWORK__ROUTER, Network.class, msgs);
+				msgs = ((InternalEObject) network).eInverseRemove(this, ModelPackage.NETWORK__ROUTER, Network.class, msgs);
 			if (newNetwork != null)
-				msgs = ((InternalEObject)newNetwork).eInverseAdd(this, ModelPackage.NETWORK__ROUTER, Network.class, msgs);
+				msgs = ((InternalEObject) newNetwork).eInverseAdd(this, ModelPackage.NETWORK__ROUTER, Network.class, msgs);
 			msgs = basicSetNetwork(newNetwork, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null)
+				msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.ROUTING_COMPONENT__NETWORK, newNetwork, newNetwork));
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ModelPackage.ROUTING_COMPONENT__NETWORK:
-				if (network != null)
-					msgs = ((InternalEObject)network).eInverseRemove(this, ModelPackage.NETWORK__ROUTER, Network.class, msgs);
-				return basicSetNetwork((Network)otherEnd, msgs);
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+		case ModelPackage.ROUTING_COMPONENT__NETWORK:
+			if (network != null)
+				msgs = ((InternalEObject) network).eInverseRemove(this, ModelPackage.NETWORK__ROUTER, Network.class, msgs);
+			return basicSetNetwork((Network) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ModelPackage.ROUTING_COMPONENT__NETWORK:
-				return basicSetNetwork(null, msgs);
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+		case ModelPackage.ROUTING_COMPONENT__NETWORK:
+			return basicSetNetwork(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ModelPackage.ROUTING_COMPONENT__IP:
-				return getIp();
-			case ModelPackage.ROUTING_COMPONENT__GATEWAY:
-				return getGateway();
-			case ModelPackage.ROUTING_COMPONENT__NETWORK:
-				if (resolve) return getNetwork();
-				return basicGetNetwork();
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
+		case ModelPackage.ROUTING_COMPONENT__IP:
+			return getIp();
+		case ModelPackage.ROUTING_COMPONENT__GATEWAY:
+			return getGateway();
+		case ModelPackage.ROUTING_COMPONENT__NETWORK:
+			if (resolve)
+				return getNetwork();
+			return basicGetNetwork();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ModelPackage.ROUTING_COMPONENT__IP:
-				setIp((String)newValue);
-				return;
-			case ModelPackage.ROUTING_COMPONENT__GATEWAY:
-				setGateway((String)newValue);
-				return;
-			case ModelPackage.ROUTING_COMPONENT__NETWORK:
-				setNetwork((Network)newValue);
-				return;
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
+		case ModelPackage.ROUTING_COMPONENT__IP:
+			setIp((String) newValue);
+			return;
+		case ModelPackage.ROUTING_COMPONENT__GATEWAY:
+			setGateway((String) newValue);
+			return;
+		case ModelPackage.ROUTING_COMPONENT__NETWORK:
+			setNetwork((Network) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ModelPackage.ROUTING_COMPONENT__IP:
-				setIp(IP_EDEFAULT);
-				return;
-			case ModelPackage.ROUTING_COMPONENT__GATEWAY:
-				setGateway(GATEWAY_EDEFAULT);
-				return;
-			case ModelPackage.ROUTING_COMPONENT__NETWORK:
-				setNetwork((Network)null);
-				return;
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
+		case ModelPackage.ROUTING_COMPONENT__IP:
+			setIp(IP_EDEFAULT);
+			return;
+		case ModelPackage.ROUTING_COMPONENT__GATEWAY:
+			setGateway(GATEWAY_EDEFAULT);
+			return;
+		case ModelPackage.ROUTING_COMPONENT__NETWORK:
+			setNetwork((Network) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ModelPackage.ROUTING_COMPONENT__IP:
-				return IP_EDEFAULT == null ? ip != null : !IP_EDEFAULT.equals(ip);
-			case ModelPackage.ROUTING_COMPONENT__GATEWAY:
-				return GATEWAY_EDEFAULT == null ? gateway != null : !GATEWAY_EDEFAULT.equals(gateway);
-			case ModelPackage.ROUTING_COMPONENT__NETWORK:
-				return network != null;
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
+		case ModelPackage.ROUTING_COMPONENT__IP:
+			return IP_EDEFAULT == null ? ip != null : !IP_EDEFAULT.equals(ip);
+		case ModelPackage.ROUTING_COMPONENT__GATEWAY:
+			return GATEWAY_EDEFAULT == null ? gateway != null : !GATEWAY_EDEFAULT.equals(gateway);
+		case ModelPackage.ROUTING_COMPONENT__NETWORK:
+			return network != null;
 		}
 		return super.eIsSet(featureID);
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
+	public String toString()
+	{
+		if (eIsProxy())
+			return super.toString();
+		
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (ip: ");
 		result.append(ip);
@@ -328,5 +398,5 @@ public class RoutingComponentImpl extends MinimalEObjectImpl.Container implement
 		result.append(')');
 		return result.toString();
 	}
-
+	
 } //RoutingComponentImpl

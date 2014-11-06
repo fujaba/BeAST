@@ -22,7 +22,8 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface RoutingComponent extends EObject {
+public interface RoutingComponent extends EObject
+{
 	/**
 	 * Returns the value of the '<em><b>Ip</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -38,7 +39,9 @@ public interface RoutingComponent extends EObject {
 	 * @generated
 	 */
 	String getIp();
-
+	
+	
+	
 	/**
 	 * Sets the value of the '{@link model.RoutingComponent#getIp <em>Ip</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -48,7 +51,9 @@ public interface RoutingComponent extends EObject {
 	 * @generated
 	 */
 	void setIp(String value);
-
+	
+	
+	
 	/**
 	 * Returns the value of the '<em><b>Gateway</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -64,7 +69,9 @@ public interface RoutingComponent extends EObject {
 	 * @generated
 	 */
 	String getGateway();
-
+	
+	
+	
 	/**
 	 * Sets the value of the '{@link model.RoutingComponent#getGateway <em>Gateway</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -74,7 +81,9 @@ public interface RoutingComponent extends EObject {
 	 * @generated
 	 */
 	void setGateway(String value);
-
+	
+	
+	
 	/**
 	 * Returns the value of the '<em><b>Network</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link model.Network#getRouter <em>Router</em>}'.
@@ -92,7 +101,9 @@ public interface RoutingComponent extends EObject {
 	 * @generated
 	 */
 	Network getNetwork();
-
+	
+	
+	
 	/**
 	 * Sets the value of the '{@link model.RoutingComponent#getNetwork <em>Network</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -102,5 +113,5 @@ public interface RoutingComponent extends EObject {
 	 * @generated
 	 */
 	void setNetwork(Network value);
-
+	
 } // RoutingComponent

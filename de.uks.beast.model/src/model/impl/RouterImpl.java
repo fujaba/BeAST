@@ -16,24 +16,29 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class RouterImpl extends RoutingComponentImpl implements Router {
+public class RouterImpl extends RoutingComponentImpl implements Router
+{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RouterImpl() {
+	protected RouterImpl()
+	{
 		super();
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return ModelPackage.Literals.ROUTER;
 	}
-
+	
 } //RouterImpl

@@ -23,7 +23,8 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Rack extends EObject {
+public interface Rack extends EObject
+{
 	/**
 	 * Returns the value of the '<em><b>Server</b></em>' containment reference list.
 	 * The list contents are of type {@link model.Server}.
@@ -39,7 +40,9 @@ public interface Rack extends EObject {
 	 * @generated
 	 */
 	EList<Server> getServer();
-
+	
+	
+	
 	/**
 	 * Returns the value of the '<em><b>Router</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -55,7 +58,9 @@ public interface Rack extends EObject {
 	 * @generated
 	 */
 	RoutingComponent getRouter();
-
+	
+	
+	
 	/**
 	 * Sets the value of the '{@link model.Rack#getRouter <em>Router</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -65,5 +70,5 @@ public interface Rack extends EObject {
 	 * @generated
 	 */
 	void setRouter(RoutingComponent value);
-
+	
 } // Rack

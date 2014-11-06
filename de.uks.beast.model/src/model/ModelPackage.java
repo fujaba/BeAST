@@ -23,39 +23,40 @@ import org.eclipse.emf.ecore.EReference;
  * @model kind="package"
  * @generated
  */
-public interface ModelPackage extends EPackage {
+public interface ModelPackage extends EPackage
+{
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "model";
-
+	String			eNAME								= "model";
+	
 	/**
 	 * The package namespace URI.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.example.org/model";
-
+	String			eNS_URI								= "http://www.example.org/model";
+	
 	/**
 	 * The package namespace name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "model";
-
+	String			eNS_PREFIX							= "model";
+	
 	/**
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ModelPackage eINSTANCE = model.impl.ModelPackageImpl.init();
-
+	ModelPackage	eINSTANCE							= model.impl.ModelPackageImpl.init();
+	
 	/**
 	 * The meta object id for the '{@link model.impl.ServerImpl <em>Server</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -64,8 +65,8 @@ public interface ModelPackage extends EPackage {
 	 * @see model.impl.ModelPackageImpl#getServer()
 	 * @generated
 	 */
-	int SERVER = 0;
-
+	int				SERVER								= 0;
+	
 	/**
 	 * The feature id for the '<em><b>Ip</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -73,8 +74,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER__IP = 0;
-
+	int				SERVER__IP							= 0;
+	
 	/**
 	 * The feature id for the '<em><b>Cpu Amount</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -82,8 +83,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER__CPU_AMOUNT = 1;
-
+	int				SERVER__CPU_AMOUNT					= 1;
+	
 	/**
 	 * The feature id for the '<em><b>Cpu Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -91,8 +92,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER__CPU_TYPE = 2;
-
+	int				SERVER__CPU_TYPE					= 2;
+	
 	/**
 	 * The feature id for the '<em><b>Ram</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -100,8 +101,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER__RAM = 3;
-
+	int				SERVER__RAM							= 3;
+	
 	/**
 	 * The feature id for the '<em><b>Disk Space</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -109,8 +110,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER__DISK_SPACE = 4;
-
+	int				SERVER__DISK_SPACE					= 4;
+	
 	/**
 	 * The feature id for the '<em><b>Host</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -118,8 +119,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER__HOST = 5;
-
+	int				SERVER__HOST						= 5;
+	
 	/**
 	 * The number of structural features of the '<em>Server</em>' class.
 	 * <!-- begin-user-doc -->
@@ -127,8 +128,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_FEATURE_COUNT = 6;
-
+	int				SERVER_FEATURE_COUNT				= 6;
+	
 	/**
 	 * The number of operations of the '<em>Server</em>' class.
 	 * <!-- begin-user-doc -->
@@ -136,8 +137,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_OPERATION_COUNT = 0;
-
+	int				SERVER_OPERATION_COUNT				= 0;
+	
 	/**
 	 * The meta object id for the '{@link model.impl.RackImpl <em>Rack</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -146,8 +147,8 @@ public interface ModelPackage extends EPackage {
 	 * @see model.impl.ModelPackageImpl#getRack()
 	 * @generated
 	 */
-	int RACK = 1;
-
+	int				RACK								= 1;
+	
 	/**
 	 * The feature id for the '<em><b>Server</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -155,8 +156,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RACK__SERVER = 0;
-
+	int				RACK__SERVER						= 0;
+	
 	/**
 	 * The feature id for the '<em><b>Router</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -164,8 +165,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RACK__ROUTER = 1;
-
+	int				RACK__ROUTER						= 1;
+	
 	/**
 	 * The number of structural features of the '<em>Rack</em>' class.
 	 * <!-- begin-user-doc -->
@@ -173,8 +174,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RACK_FEATURE_COUNT = 2;
-
+	int				RACK_FEATURE_COUNT					= 2;
+	
 	/**
 	 * The number of operations of the '<em>Rack</em>' class.
 	 * <!-- begin-user-doc -->
@@ -182,8 +183,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RACK_OPERATION_COUNT = 0;
-
+	int				RACK_OPERATION_COUNT				= 0;
+	
 	/**
 	 * The meta object id for the '{@link model.impl.NetworkImpl <em>Network</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -192,8 +193,8 @@ public interface ModelPackage extends EPackage {
 	 * @see model.impl.ModelPackageImpl#getNetwork()
 	 * @generated
 	 */
-	int NETWORK = 2;
-
+	int				NETWORK								= 2;
+	
 	/**
 	 * The feature id for the '<em><b>Range</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -201,8 +202,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NETWORK__RANGE = 0;
-
+	int				NETWORK__RANGE						= 0;
+	
 	/**
 	 * The feature id for the '<em><b>Subnetmask</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -210,8 +211,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NETWORK__SUBNETMASK = 1;
-
+	int				NETWORK__SUBNETMASK					= 1;
+	
 	/**
 	 * The feature id for the '<em><b>Gateway</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -219,8 +220,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NETWORK__GATEWAY = 2;
-
+	int				NETWORK__GATEWAY					= 2;
+	
 	/**
 	 * The feature id for the '<em><b>Dns</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -228,8 +229,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NETWORK__DNS = 3;
-
+	int				NETWORK__DNS						= 3;
+	
 	/**
 	 * The feature id for the '<em><b>Router</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -237,8 +238,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NETWORK__ROUTER = 4;
-
+	int				NETWORK__ROUTER						= 4;
+	
 	/**
 	 * The number of structural features of the '<em>Network</em>' class.
 	 * <!-- begin-user-doc -->
@@ -246,8 +247,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NETWORK_FEATURE_COUNT = 5;
-
+	int				NETWORK_FEATURE_COUNT				= 5;
+	
 	/**
 	 * The number of operations of the '<em>Network</em>' class.
 	 * <!-- begin-user-doc -->
@@ -255,8 +256,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NETWORK_OPERATION_COUNT = 0;
-
+	int				NETWORK_OPERATION_COUNT				= 0;
+	
 	/**
 	 * The meta object id for the '{@link model.impl.RoutingComponentImpl <em>Routing Component</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -265,8 +266,8 @@ public interface ModelPackage extends EPackage {
 	 * @see model.impl.ModelPackageImpl#getRoutingComponent()
 	 * @generated
 	 */
-	int ROUTING_COMPONENT = 4;
-
+	int				ROUTING_COMPONENT					= 4;
+	
 	/**
 	 * The feature id for the '<em><b>Ip</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -274,8 +275,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROUTING_COMPONENT__IP = 0;
-
+	int				ROUTING_COMPONENT__IP				= 0;
+	
 	/**
 	 * The feature id for the '<em><b>Gateway</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -283,8 +284,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROUTING_COMPONENT__GATEWAY = 1;
-
+	int				ROUTING_COMPONENT__GATEWAY			= 1;
+	
 	/**
 	 * The feature id for the '<em><b>Network</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -292,8 +293,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROUTING_COMPONENT__NETWORK = 2;
-
+	int				ROUTING_COMPONENT__NETWORK			= 2;
+	
 	/**
 	 * The number of structural features of the '<em>Routing Component</em>' class.
 	 * <!-- begin-user-doc -->
@@ -301,8 +302,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROUTING_COMPONENT_FEATURE_COUNT = 3;
-
+	int				ROUTING_COMPONENT_FEATURE_COUNT		= 3;
+	
 	/**
 	 * The number of operations of the '<em>Routing Component</em>' class.
 	 * <!-- begin-user-doc -->
@@ -310,8 +311,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROUTING_COMPONENT_OPERATION_COUNT = 0;
-
+	int				ROUTING_COMPONENT_OPERATION_COUNT	= 0;
+	
 	/**
 	 * The meta object id for the '{@link model.impl.SwitchImpl <em>Switch</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -320,8 +321,8 @@ public interface ModelPackage extends EPackage {
 	 * @see model.impl.ModelPackageImpl#getSwitch()
 	 * @generated
 	 */
-	int SWITCH = 3;
-
+	int				SWITCH								= 3;
+	
 	/**
 	 * The feature id for the '<em><b>Ip</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -329,8 +330,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SWITCH__IP = ROUTING_COMPONENT__IP;
-
+	int				SWITCH__IP							= ROUTING_COMPONENT__IP;
+	
 	/**
 	 * The feature id for the '<em><b>Gateway</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -338,8 +339,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SWITCH__GATEWAY = ROUTING_COMPONENT__GATEWAY;
-
+	int				SWITCH__GATEWAY						= ROUTING_COMPONENT__GATEWAY;
+	
 	/**
 	 * The feature id for the '<em><b>Network</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -347,8 +348,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SWITCH__NETWORK = ROUTING_COMPONENT__NETWORK;
-
+	int				SWITCH__NETWORK						= ROUTING_COMPONENT__NETWORK;
+	
 	/**
 	 * The number of structural features of the '<em>Switch</em>' class.
 	 * <!-- begin-user-doc -->
@@ -356,8 +357,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SWITCH_FEATURE_COUNT = ROUTING_COMPONENT_FEATURE_COUNT + 0;
-
+	int				SWITCH_FEATURE_COUNT				= ROUTING_COMPONENT_FEATURE_COUNT + 0;
+	
 	/**
 	 * The number of operations of the '<em>Switch</em>' class.
 	 * <!-- begin-user-doc -->
@@ -365,8 +366,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SWITCH_OPERATION_COUNT = ROUTING_COMPONENT_OPERATION_COUNT + 0;
-
+	int				SWITCH_OPERATION_COUNT				= ROUTING_COMPONENT_OPERATION_COUNT + 0;
+	
 	/**
 	 * The meta object id for the '{@link model.impl.RouterImpl <em>Router</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -375,8 +376,8 @@ public interface ModelPackage extends EPackage {
 	 * @see model.impl.ModelPackageImpl#getRouter()
 	 * @generated
 	 */
-	int ROUTER = 5;
-
+	int				ROUTER								= 5;
+	
 	/**
 	 * The feature id for the '<em><b>Ip</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -384,8 +385,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROUTER__IP = ROUTING_COMPONENT__IP;
-
+	int				ROUTER__IP							= ROUTING_COMPONENT__IP;
+	
 	/**
 	 * The feature id for the '<em><b>Gateway</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -393,8 +394,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROUTER__GATEWAY = ROUTING_COMPONENT__GATEWAY;
-
+	int				ROUTER__GATEWAY						= ROUTING_COMPONENT__GATEWAY;
+	
 	/**
 	 * The feature id for the '<em><b>Network</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -402,8 +403,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROUTER__NETWORK = ROUTING_COMPONENT__NETWORK;
-
+	int				ROUTER__NETWORK						= ROUTING_COMPONENT__NETWORK;
+	
 	/**
 	 * The number of structural features of the '<em>Router</em>' class.
 	 * <!-- begin-user-doc -->
@@ -411,8 +412,8 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROUTER_FEATURE_COUNT = ROUTING_COMPONENT_FEATURE_COUNT + 0;
-
+	int				ROUTER_FEATURE_COUNT				= ROUTING_COMPONENT_FEATURE_COUNT + 0;
+	
 	/**
 	 * The number of operations of the '<em>Router</em>' class.
 	 * <!-- begin-user-doc -->
@@ -420,9 +421,10 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROUTER_OPERATION_COUNT = ROUTING_COMPONENT_OPERATION_COUNT + 0;
-
-
+	int				ROUTER_OPERATION_COUNT				= ROUTING_COMPONENT_OPERATION_COUNT + 0;
+	
+	
+	
 	/**
 	 * Returns the meta object for class '{@link model.Server <em>Server</em>}'.
 	 * <!-- begin-user-doc -->
@@ -432,7 +434,9 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getServer();
-
+	
+	
+	
 	/**
 	 * Returns the meta object for the attribute '{@link model.Server#getIp <em>Ip</em>}'.
 	 * <!-- begin-user-doc -->
@@ -443,7 +447,9 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getServer_Ip();
-
+	
+	
+	
 	/**
 	 * Returns the meta object for the attribute '{@link model.Server#getCpuAmount <em>Cpu Amount</em>}'.
 	 * <!-- begin-user-doc -->
@@ -454,7 +460,9 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getServer_CpuAmount();
-
+	
+	
+	
 	/**
 	 * Returns the meta object for the attribute '{@link model.Server#getCpuType <em>Cpu Type</em>}'.
 	 * <!-- begin-user-doc -->
@@ -465,7 +473,9 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getServer_CpuType();
-
+	
+	
+	
 	/**
 	 * Returns the meta object for the attribute '{@link model.Server#getRam <em>Ram</em>}'.
 	 * <!-- begin-user-doc -->
@@ -476,7 +486,9 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getServer_Ram();
-
+	
+	
+	
 	/**
 	 * Returns the meta object for the attribute '{@link model.Server#getDiskSpace <em>Disk Space</em>}'.
 	 * <!-- begin-user-doc -->
@@ -487,7 +499,9 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getServer_DiskSpace();
-
+	
+	
+	
 	/**
 	 * Returns the meta object for the attribute '{@link model.Server#getHost <em>Host</em>}'.
 	 * <!-- begin-user-doc -->
@@ -498,7 +512,9 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getServer_Host();
-
+	
+	
+	
 	/**
 	 * Returns the meta object for class '{@link model.Rack <em>Rack</em>}'.
 	 * <!-- begin-user-doc -->
@@ -508,7 +524,9 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getRack();
-
+	
+	
+	
 	/**
 	 * Returns the meta object for the containment reference list '{@link model.Rack#getServer <em>Server</em>}'.
 	 * <!-- begin-user-doc -->
@@ -519,7 +537,9 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRack_Server();
-
+	
+	
+	
 	/**
 	 * Returns the meta object for the reference '{@link model.Rack#getRouter <em>Router</em>}'.
 	 * <!-- begin-user-doc -->
@@ -530,7 +550,9 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRack_Router();
-
+	
+	
+	
 	/**
 	 * Returns the meta object for class '{@link model.Network <em>Network</em>}'.
 	 * <!-- begin-user-doc -->
@@ -540,7 +562,9 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getNetwork();
-
+	
+	
+	
 	/**
 	 * Returns the meta object for the attribute '{@link model.Network#getRange <em>Range</em>}'.
 	 * <!-- begin-user-doc -->
@@ -551,7 +575,9 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getNetwork_Range();
-
+	
+	
+	
 	/**
 	 * Returns the meta object for the attribute '{@link model.Network#getSubnetmask <em>Subnetmask</em>}'.
 	 * <!-- begin-user-doc -->
@@ -562,7 +588,9 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getNetwork_Subnetmask();
-
+	
+	
+	
 	/**
 	 * Returns the meta object for the attribute '{@link model.Network#getGateway <em>Gateway</em>}'.
 	 * <!-- begin-user-doc -->
@@ -573,7 +601,9 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getNetwork_Gateway();
-
+	
+	
+	
 	/**
 	 * Returns the meta object for the attribute '{@link model.Network#getDns <em>Dns</em>}'.
 	 * <!-- begin-user-doc -->
@@ -584,7 +614,9 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getNetwork_Dns();
-
+	
+	
+	
 	/**
 	 * Returns the meta object for the reference '{@link model.Network#getRouter <em>Router</em>}'.
 	 * <!-- begin-user-doc -->
@@ -595,7 +627,9 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getNetwork_Router();
-
+	
+	
+	
 	/**
 	 * Returns the meta object for class '{@link model.Switch <em>Switch</em>}'.
 	 * <!-- begin-user-doc -->
@@ -605,7 +639,9 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getSwitch();
-
+	
+	
+	
 	/**
 	 * Returns the meta object for class '{@link model.RoutingComponent <em>Routing Component</em>}'.
 	 * <!-- begin-user-doc -->
@@ -615,7 +651,9 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getRoutingComponent();
-
+	
+	
+	
 	/**
 	 * Returns the meta object for the attribute '{@link model.RoutingComponent#getIp <em>Ip</em>}'.
 	 * <!-- begin-user-doc -->
@@ -626,7 +664,9 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getRoutingComponent_Ip();
-
+	
+	
+	
 	/**
 	 * Returns the meta object for the attribute '{@link model.RoutingComponent#getGateway <em>Gateway</em>}'.
 	 * <!-- begin-user-doc -->
@@ -637,7 +677,9 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getRoutingComponent_Gateway();
-
+	
+	
+	
 	/**
 	 * Returns the meta object for the reference '{@link model.RoutingComponent#getNetwork <em>Network</em>}'.
 	 * <!-- begin-user-doc -->
@@ -648,7 +690,9 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRoutingComponent_Network();
-
+	
+	
+	
 	/**
 	 * Returns the meta object for class '{@link model.Router <em>Router</em>}'.
 	 * <!-- begin-user-doc -->
@@ -658,7 +702,9 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getRouter();
-
+	
+	
+	
 	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
@@ -667,7 +713,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	ModelFactory getModelFactory();
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * Defines literals for the meta objects that represent
@@ -681,7 +727,8 @@ public interface ModelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	interface Literals {
+	interface Literals
+	{
 		/**
 		 * The meta object literal for the '{@link model.impl.ServerImpl <em>Server</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -690,56 +737,56 @@ public interface ModelPackage extends EPackage {
 		 * @see model.impl.ModelPackageImpl#getServer()
 		 * @generated
 		 */
-		EClass SERVER = eINSTANCE.getServer();
-
+		EClass		SERVER						= eINSTANCE.getServer();
+		
 		/**
 		 * The meta object literal for the '<em><b>Ip</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SERVER__IP = eINSTANCE.getServer_Ip();
-
+		EAttribute	SERVER__IP					= eINSTANCE.getServer_Ip();
+		
 		/**
 		 * The meta object literal for the '<em><b>Cpu Amount</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SERVER__CPU_AMOUNT = eINSTANCE.getServer_CpuAmount();
-
+		EAttribute	SERVER__CPU_AMOUNT			= eINSTANCE.getServer_CpuAmount();
+		
 		/**
 		 * The meta object literal for the '<em><b>Cpu Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SERVER__CPU_TYPE = eINSTANCE.getServer_CpuType();
-
+		EAttribute	SERVER__CPU_TYPE			= eINSTANCE.getServer_CpuType();
+		
 		/**
 		 * The meta object literal for the '<em><b>Ram</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SERVER__RAM = eINSTANCE.getServer_Ram();
-
+		EAttribute	SERVER__RAM					= eINSTANCE.getServer_Ram();
+		
 		/**
 		 * The meta object literal for the '<em><b>Disk Space</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SERVER__DISK_SPACE = eINSTANCE.getServer_DiskSpace();
-
+		EAttribute	SERVER__DISK_SPACE			= eINSTANCE.getServer_DiskSpace();
+		
 		/**
 		 * The meta object literal for the '<em><b>Host</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SERVER__HOST = eINSTANCE.getServer_Host();
-
+		EAttribute	SERVER__HOST				= eINSTANCE.getServer_Host();
+		
 		/**
 		 * The meta object literal for the '{@link model.impl.RackImpl <em>Rack</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -748,24 +795,24 @@ public interface ModelPackage extends EPackage {
 		 * @see model.impl.ModelPackageImpl#getRack()
 		 * @generated
 		 */
-		EClass RACK = eINSTANCE.getRack();
-
+		EClass		RACK						= eINSTANCE.getRack();
+		
 		/**
 		 * The meta object literal for the '<em><b>Server</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference RACK__SERVER = eINSTANCE.getRack_Server();
-
+		EReference	RACK__SERVER				= eINSTANCE.getRack_Server();
+		
 		/**
 		 * The meta object literal for the '<em><b>Router</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference RACK__ROUTER = eINSTANCE.getRack_Router();
-
+		EReference	RACK__ROUTER				= eINSTANCE.getRack_Router();
+		
 		/**
 		 * The meta object literal for the '{@link model.impl.NetworkImpl <em>Network</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -774,48 +821,48 @@ public interface ModelPackage extends EPackage {
 		 * @see model.impl.ModelPackageImpl#getNetwork()
 		 * @generated
 		 */
-		EClass NETWORK = eINSTANCE.getNetwork();
-
+		EClass		NETWORK						= eINSTANCE.getNetwork();
+		
 		/**
 		 * The meta object literal for the '<em><b>Range</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NETWORK__RANGE = eINSTANCE.getNetwork_Range();
-
+		EAttribute	NETWORK__RANGE				= eINSTANCE.getNetwork_Range();
+		
 		/**
 		 * The meta object literal for the '<em><b>Subnetmask</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NETWORK__SUBNETMASK = eINSTANCE.getNetwork_Subnetmask();
-
+		EAttribute	NETWORK__SUBNETMASK			= eINSTANCE.getNetwork_Subnetmask();
+		
 		/**
 		 * The meta object literal for the '<em><b>Gateway</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NETWORK__GATEWAY = eINSTANCE.getNetwork_Gateway();
-
+		EAttribute	NETWORK__GATEWAY			= eINSTANCE.getNetwork_Gateway();
+		
 		/**
 		 * The meta object literal for the '<em><b>Dns</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NETWORK__DNS = eINSTANCE.getNetwork_Dns();
-
+		EAttribute	NETWORK__DNS				= eINSTANCE.getNetwork_Dns();
+		
 		/**
 		 * The meta object literal for the '<em><b>Router</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NETWORK__ROUTER = eINSTANCE.getNetwork_Router();
-
+		EReference	NETWORK__ROUTER				= eINSTANCE.getNetwork_Router();
+		
 		/**
 		 * The meta object literal for the '{@link model.impl.SwitchImpl <em>Switch</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -824,8 +871,8 @@ public interface ModelPackage extends EPackage {
 		 * @see model.impl.ModelPackageImpl#getSwitch()
 		 * @generated
 		 */
-		EClass SWITCH = eINSTANCE.getSwitch();
-
+		EClass		SWITCH						= eINSTANCE.getSwitch();
+		
 		/**
 		 * The meta object literal for the '{@link model.impl.RoutingComponentImpl <em>Routing Component</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -834,32 +881,32 @@ public interface ModelPackage extends EPackage {
 		 * @see model.impl.ModelPackageImpl#getRoutingComponent()
 		 * @generated
 		 */
-		EClass ROUTING_COMPONENT = eINSTANCE.getRoutingComponent();
-
+		EClass		ROUTING_COMPONENT			= eINSTANCE.getRoutingComponent();
+		
 		/**
 		 * The meta object literal for the '<em><b>Ip</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ROUTING_COMPONENT__IP = eINSTANCE.getRoutingComponent_Ip();
-
+		EAttribute	ROUTING_COMPONENT__IP		= eINSTANCE.getRoutingComponent_Ip();
+		
 		/**
 		 * The meta object literal for the '<em><b>Gateway</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ROUTING_COMPONENT__GATEWAY = eINSTANCE.getRoutingComponent_Gateway();
-
+		EAttribute	ROUTING_COMPONENT__GATEWAY	= eINSTANCE.getRoutingComponent_Gateway();
+		
 		/**
 		 * The meta object literal for the '<em><b>Network</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ROUTING_COMPONENT__NETWORK = eINSTANCE.getRoutingComponent_Network();
-
+		EReference	ROUTING_COMPONENT__NETWORK	= eINSTANCE.getRoutingComponent_Network();
+		
 		/**
 		 * The meta object literal for the '{@link model.impl.RouterImpl <em>Router</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -868,8 +915,8 @@ public interface ModelPackage extends EPackage {
 		 * @see model.impl.ModelPackageImpl#getRouter()
 		 * @generated
 		 */
-		EClass ROUTER = eINSTANCE.getRouter();
-
+		EClass		ROUTER						= eINSTANCE.getRouter();
+		
 	}
-
+	
 } //ModelPackage

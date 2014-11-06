@@ -24,7 +24,8 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Network extends EObject {
+public interface Network extends EObject
+{
 	/**
 	 * Returns the value of the '<em><b>Range</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -40,7 +41,9 @@ public interface Network extends EObject {
 	 * @generated
 	 */
 	String getRange();
-
+	
+	
+	
 	/**
 	 * Sets the value of the '{@link model.Network#getRange <em>Range</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -50,7 +53,9 @@ public interface Network extends EObject {
 	 * @generated
 	 */
 	void setRange(String value);
-
+	
+	
+	
 	/**
 	 * Returns the value of the '<em><b>Subnetmask</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -66,7 +71,9 @@ public interface Network extends EObject {
 	 * @generated
 	 */
 	String getSubnetmask();
-
+	
+	
+	
 	/**
 	 * Sets the value of the '{@link model.Network#getSubnetmask <em>Subnetmask</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -76,7 +83,9 @@ public interface Network extends EObject {
 	 * @generated
 	 */
 	void setSubnetmask(String value);
-
+	
+	
+	
 	/**
 	 * Returns the value of the '<em><b>Gateway</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -92,7 +101,9 @@ public interface Network extends EObject {
 	 * @generated
 	 */
 	String getGateway();
-
+	
+	
+	
 	/**
 	 * Sets the value of the '{@link model.Network#getGateway <em>Gateway</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -102,7 +113,9 @@ public interface Network extends EObject {
 	 * @generated
 	 */
 	void setGateway(String value);
-
+	
+	
+	
 	/**
 	 * Returns the value of the '<em><b>Dns</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -118,7 +131,9 @@ public interface Network extends EObject {
 	 * @generated
 	 */
 	String getDns();
-
+	
+	
+	
 	/**
 	 * Sets the value of the '{@link model.Network#getDns <em>Dns</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -128,7 +143,9 @@ public interface Network extends EObject {
 	 * @generated
 	 */
 	void setDns(String value);
-
+	
+	
+	
 	/**
 	 * Returns the value of the '<em><b>Router</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link model.RoutingComponent#getNetwork <em>Network</em>}'.
@@ -146,7 +163,9 @@ public interface Network extends EObject {
 	 * @generated
 	 */
 	RoutingComponent getRouter();
-
+	
+	
+	
 	/**
 	 * Sets the value of the '{@link model.Network#getRouter <em>Router</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -156,5 +175,5 @@ public interface Network extends EObject {
 	 * @generated
 	 */
 	void setRouter(RoutingComponent value);
-
+	
 } // Network
