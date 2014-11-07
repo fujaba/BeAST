@@ -31,7 +31,7 @@ public class AddServerFeature extends AbstractAddShapeFeature
 	
 	
 	
-	public AddServerFeature(IFeatureProvider fp)
+	public AddServerFeature(final IFeatureProvider fp)
 	{
 		super(fp);
 	}
@@ -39,7 +39,7 @@ public class AddServerFeature extends AbstractAddShapeFeature
 	
 	
 	@Override
-	public boolean canAdd(IAddContext context)
+	public boolean canAdd(final IAddContext context)
 	{
 		if (context.getNewObject() instanceof Server)
 		{
@@ -54,19 +54,19 @@ public class AddServerFeature extends AbstractAddShapeFeature
 	
 	
 	@Override
-	public PictogramElement add(IAddContext context)
+	public PictogramElement add(final IAddContext context)
 	{
-		Server server = (Server) context.getNewObject();
-		Diagram targetDiagram = (Diagram) context.getTargetContainer();
+		final Server server = (Server) context.getNewObject();
+		final Diagram targetDiagram = (Diagram) context.getTargetContainer();
 		
 		// CONTAINER SHAPE WITH ROUNDED RECTANGLE
-		IPeCreateService peCreateService = Graphiti.getPeCreateService();
-		ContainerShape containerShape = peCreateService.createContainerShape(targetDiagram, true);
+		final IPeCreateService peCreateService = Graphiti.getPeCreateService();
+		final ContainerShape containerShape = peCreateService.createContainerShape(targetDiagram, true);
 		
 		// define a default size for the shape
-		int width = 100;
-		int height = 50;
-		IGaService gaService = Graphiti.getGaService();
+		final int width = 100;
+		final int height = 50;
+		final IGaService gaService = Graphiti.getGaService();
 		RoundedRectangle roundedRectangle; // need to access it later
 		
 		{
@@ -91,10 +91,10 @@ public class AddServerFeature extends AbstractAddShapeFeature
 		// SHAPE WITH LINE
 		{
 			// create shape for line
-			Shape shape = peCreateService.createShape(containerShape, false);
+			final Shape shape = peCreateService.createShape(containerShape, false);
 			
 			// create and set graphics algorithm
-			Polyline polyline = gaService.createPolyline(shape, new int[] { 0, 20, width, 20 });
+			final Polyline polyline = gaService.createPolyline(shape, new int[] { 0, 20, width, 20 });
 			polyline.setForeground(manageColor(E_CLASS_FOREGROUND));
 			polyline.setLineWidth(2);
 		}
@@ -102,10 +102,10 @@ public class AddServerFeature extends AbstractAddShapeFeature
 		// SHAPE WITH TEXT
 		{
 			// create shape for text
-			Shape shape = peCreateService.createShape(containerShape, false);
+			final Shape shape = peCreateService.createShape(containerShape, false);
 			
 			// create and set text graphics algorithm
-			Text text = gaService.createText(shape, server.getHost());
+			final Text text = gaService.createText(shape, server.getType());
 			text.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
 			text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 			// vertical alignment has as default value "center"
@@ -115,7 +115,7 @@ public class AddServerFeature extends AbstractAddShapeFeature
 			// create link and wire it
 			link(shape, server);
 			
-			IDirectEditingInfo directEditingInfo = getFeatureProvider().getDirectEditingInfo();
+			final IDirectEditingInfo directEditingInfo = getFeatureProvider().getDirectEditingInfo();
 			directEditingInfo.setMainPictogramElement(containerShape);
 			directEditingInfo.setPictogramElement(shape);
 			directEditingInfo.setGraphicsAlgorithm(text);
