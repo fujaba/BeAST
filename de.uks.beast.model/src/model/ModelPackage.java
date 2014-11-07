@@ -122,13 +122,22 @@ public interface ModelPackage extends EPackage
 	int				SERVER__HOST						= 5;
 	
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER__TYPE = 6;
+
+	/**
 	 * The number of structural features of the '<em>Server</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int				SERVER_FEATURE_COUNT				= 6;
+	int				SERVER_FEATURE_COUNT				= 7;
 	
 	/**
 	 * The number of operations of the '<em>Server</em>' class.
@@ -177,13 +186,22 @@ public interface ModelPackage extends EPackage
 	int RACK__ID = 2;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RACK__TYPE = 3;
+
+	/**
 	 * The number of structural features of the '<em>Rack</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int				RACK_FEATURE_COUNT					= 3;
+	int				RACK_FEATURE_COUNT					= 4;
 	
 	/**
 	 * The number of operations of the '<em>Rack</em>' class.
@@ -250,13 +268,22 @@ public interface ModelPackage extends EPackage
 	int				NETWORK__ROUTER						= 4;
 	
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NETWORK__TYPE = 5;
+
+	/**
 	 * The number of structural features of the '<em>Network</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int				NETWORK_FEATURE_COUNT				= 5;
+	int				NETWORK_FEATURE_COUNT				= 6;
 	
 	/**
 	 * The number of operations of the '<em>Network</em>' class.
@@ -305,13 +332,22 @@ public interface ModelPackage extends EPackage
 	int				ROUTING_COMPONENT__NETWORK			= 2;
 	
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROUTING_COMPONENT__TYPE = 3;
+
+	/**
 	 * The number of structural features of the '<em>Routing Component</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int				ROUTING_COMPONENT_FEATURE_COUNT		= 3;
+	int				ROUTING_COMPONENT_FEATURE_COUNT		= 4;
 	
 	/**
 	 * The number of operations of the '<em>Routing Component</em>' class.
@@ -359,6 +395,15 @@ public interface ModelPackage extends EPackage
 	 */
 	int				SWITCH__NETWORK						= ROUTING_COMPONENT__NETWORK;
 	
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWITCH__TYPE = ROUTING_COMPONENT__TYPE;
+
 	/**
 	 * The number of structural features of the '<em>Switch</em>' class.
 	 * <!-- begin-user-doc -->
@@ -414,6 +459,15 @@ public interface ModelPackage extends EPackage
 	 */
 	int				ROUTER__NETWORK						= ROUTING_COMPONENT__NETWORK;
 	
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROUTER__TYPE = ROUTING_COMPONENT__TYPE;
+
 	/**
 	 * The number of structural features of the '<em>Router</em>' class.
 	 * <!-- begin-user-doc -->
@@ -525,6 +579,19 @@ public interface ModelPackage extends EPackage
 	
 	
 	/**
+	 * Returns the meta object for the attribute '{@link model.Server#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see model.Server#getType()
+	 * @see #getServer()
+	 * @generated
+	 */
+	EAttribute getServer_Type();
+
+
+
+	/**
 	 * Returns the meta object for class '{@link model.Rack <em>Rack</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -572,6 +639,19 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getRack_Id();
+
+
+
+	/**
+	 * Returns the meta object for the attribute '{@link model.Rack#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see model.Rack#getType()
+	 * @see #getRack()
+	 * @generated
+	 */
+	EAttribute getRack_Type();
 
 
 
@@ -653,6 +733,19 @@ public interface ModelPackage extends EPackage
 	
 	
 	/**
+	 * Returns the meta object for the attribute '{@link model.Network#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see model.Network#getType()
+	 * @see #getNetwork()
+	 * @generated
+	 */
+	EAttribute getNetwork_Type();
+
+
+
+	/**
 	 * Returns the meta object for class '{@link model.Switch <em>Switch</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -715,6 +808,19 @@ public interface ModelPackage extends EPackage
 	
 	
 	
+	/**
+	 * Returns the meta object for the attribute '{@link model.RoutingComponent#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see model.RoutingComponent#getType()
+	 * @see #getRoutingComponent()
+	 * @generated
+	 */
+	EAttribute getRoutingComponent_Type();
+
+
+
 	/**
 	 * Returns the meta object for class '{@link model.Router <em>Router</em>}'.
 	 * <!-- begin-user-doc -->
@@ -810,6 +916,14 @@ public interface ModelPackage extends EPackage
 		EAttribute	SERVER__HOST				= eINSTANCE.getServer_Host();
 		
 		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVER__TYPE = eINSTANCE.getServer_Type();
+
+		/**
 		 * The meta object literal for the '{@link model.impl.RackImpl <em>Rack</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -842,6 +956,14 @@ public interface ModelPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute RACK__ID = eINSTANCE.getRack_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RACK__TYPE = eINSTANCE.getRack_Type();
 
 		/**
 		 * The meta object literal for the '{@link model.impl.NetworkImpl <em>Network</em>}' class.
@@ -894,6 +1016,14 @@ public interface ModelPackage extends EPackage
 		EReference	NETWORK__ROUTER				= eINSTANCE.getNetwork_Router();
 		
 		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NETWORK__TYPE = eINSTANCE.getNetwork_Type();
+
+		/**
 		 * The meta object literal for the '{@link model.impl.SwitchImpl <em>Switch</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -937,6 +1067,14 @@ public interface ModelPackage extends EPackage
 		 */
 		EReference	ROUTING_COMPONENT__NETWORK	= eINSTANCE.getRoutingComponent_Network();
 		
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROUTING_COMPONENT__TYPE = eINSTANCE.getRoutingComponent_Type();
+
 		/**
 		 * The meta object literal for the '{@link model.impl.RouterImpl <em>Router</em>}' class.
 		 * <!-- begin-user-doc -->

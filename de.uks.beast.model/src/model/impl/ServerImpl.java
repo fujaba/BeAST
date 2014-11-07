@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link model.impl.ServerImpl#getRam <em>Ram</em>}</li>
  *   <li>{@link model.impl.ServerImpl#getDiskSpace <em>Disk Space</em>}</li>
  *   <li>{@link model.impl.ServerImpl#getHost <em>Host</em>}</li>
+ *   <li>{@link model.impl.ServerImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -154,6 +155,28 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	
 	
 	
+	/**
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected String type = TYPE_EDEFAULT;
+
+
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -346,6 +369,33 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getType()
+	{
+		return type;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setType(String newType)
+	{
+		String oldType = type;
+		type = newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.SERVER__TYPE, oldType, type));
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
@@ -363,6 +413,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 				return getDiskSpace();
 			case ModelPackage.SERVER__HOST:
 				return getHost();
+			case ModelPackage.SERVER__TYPE:
+				return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -396,6 +448,9 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 				return;
 			case ModelPackage.SERVER__HOST:
 				setHost((String)newValue);
+				return;
+			case ModelPackage.SERVER__TYPE:
+				setType((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -431,6 +486,9 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 			case ModelPackage.SERVER__HOST:
 				setHost(HOST_EDEFAULT);
 				return;
+			case ModelPackage.SERVER__TYPE:
+				setType(TYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -459,6 +517,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 				return diskSpace != DISK_SPACE_EDEFAULT;
 			case ModelPackage.SERVER__HOST:
 				return HOST_EDEFAULT == null ? host != null : !HOST_EDEFAULT.equals(host);
+			case ModelPackage.SERVER__TYPE:
+				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -488,6 +548,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 		result.append(diskSpace);
 		result.append(", host: ");
 		result.append(host);
+		result.append(", type: ");
+		result.append(type);
 		result.append(')');
 		return result.toString();
 	}

@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link model.Network#getGateway <em>Gateway</em>}</li>
  *   <li>{@link model.Network#getDns <em>Dns</em>}</li>
  *   <li>{@link model.Network#getRouter <em>Router</em>}</li>
+ *   <li>{@link model.Network#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -175,5 +176,35 @@ public interface Network extends EObject
 	 * @generated
 	 */
 	void setRouter(RoutingComponent value);
+
+
+
+	/**
+	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type</em>' attribute.
+	 * @see #setType(String)
+	 * @see model.ModelPackage#getNetwork_Type()
+	 * @model
+	 * @generated
+	 */
+	String getType();
+
+
+
+	/**
+	 * Sets the value of the '{@link model.Network#getType <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type</em>' attribute.
+	 * @see #getType()
+	 * @generated
+	 */
+	void setType(String value);
 	
 } // Network

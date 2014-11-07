@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link model.impl.NetworkImpl#getGateway <em>Gateway</em>}</li>
  *   <li>{@link model.impl.NetworkImpl#getDns <em>Dns</em>}</li>
  *   <li>{@link model.impl.NetworkImpl#getRouter <em>Router</em>}</li>
+ *   <li>{@link model.impl.NetworkImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -126,6 +127,28 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	
 	
 	
+	/**
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected String type = TYPE_EDEFAULT;
+
+
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -340,6 +363,33 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getType()
+	{
+		return type;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setType(String newType)
+	{
+		String oldType = type;
+		type = newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.NETWORK__TYPE, oldType, type));
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -394,6 +444,8 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 			case ModelPackage.NETWORK__ROUTER:
 				if (resolve) return getRouter();
 				return basicGetRouter();
+			case ModelPackage.NETWORK__TYPE:
+				return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -424,6 +476,9 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 				return;
 			case ModelPackage.NETWORK__ROUTER:
 				setRouter((RoutingComponent)newValue);
+				return;
+			case ModelPackage.NETWORK__TYPE:
+				setType((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -456,6 +511,9 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 			case ModelPackage.NETWORK__ROUTER:
 				setRouter((RoutingComponent)null);
 				return;
+			case ModelPackage.NETWORK__TYPE:
+				setType(TYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -482,6 +540,8 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 				return DNS_EDEFAULT == null ? dns != null : !DNS_EDEFAULT.equals(dns);
 			case ModelPackage.NETWORK__ROUTER:
 				return router != null;
+			case ModelPackage.NETWORK__TYPE:
+				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -507,6 +567,8 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 		result.append(gateway);
 		result.append(", dns: ");
 		result.append(dns);
+		result.append(", type: ");
+		result.append(type);
 		result.append(')');
 		return result.toString();
 	}

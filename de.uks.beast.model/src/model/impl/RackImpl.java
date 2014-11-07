@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link model.impl.RackImpl#getServer <em>Server</em>}</li>
  *   <li>{@link model.impl.RackImpl#getRouter <em>Router</em>}</li>
  *   <li>{@link model.impl.RackImpl#getId <em>Id</em>}</li>
+ *   <li>{@link model.impl.RackImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -81,6 +82,28 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	 * @ordered
 	 */
 	protected int id = ID_EDEFAULT;
+
+
+
+	/**
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected String type = TYPE_EDEFAULT;
 
 
 
@@ -206,6 +229,33 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getType()
+	{
+		return type;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setType(String newType)
+	{
+		String oldType = type;
+		type = newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.RACK__TYPE, oldType, type));
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -236,6 +286,8 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 				return basicGetRouter();
 			case ModelPackage.RACK__ID:
 				return getId();
+			case ModelPackage.RACK__TYPE:
+				return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -263,6 +315,9 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 			case ModelPackage.RACK__ID:
 				setId((Integer)newValue);
 				return;
+			case ModelPackage.RACK__TYPE:
+				setType((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -288,6 +343,9 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 			case ModelPackage.RACK__ID:
 				setId(ID_EDEFAULT);
 				return;
+			case ModelPackage.RACK__TYPE:
+				setType(TYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -310,6 +368,8 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 				return router != null;
 			case ModelPackage.RACK__ID:
 				return id != ID_EDEFAULT;
+			case ModelPackage.RACK__TYPE:
+				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -329,6 +389,8 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (id: ");
 		result.append(id);
+		result.append(", type: ");
+		result.append(type);
 		result.append(')');
 		return result.toString();
 	}

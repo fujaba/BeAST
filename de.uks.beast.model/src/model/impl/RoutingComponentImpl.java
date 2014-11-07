@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link model.impl.RoutingComponentImpl#getIp <em>Ip</em>}</li>
  *   <li>{@link model.impl.RoutingComponentImpl#getGateway <em>Gateway</em>}</li>
  *   <li>{@link model.impl.RoutingComponentImpl#getNetwork <em>Network</em>}</li>
+ *   <li>{@link model.impl.RoutingComponentImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -84,6 +85,28 @@ public class RoutingComponentImpl extends MinimalEObjectImpl.Container implement
 	
 	
 	
+	/**
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected String type = TYPE_EDEFAULT;
+
+
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -244,6 +267,33 @@ public class RoutingComponentImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getType()
+	{
+		return type;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setType(String newType)
+	{
+		String oldType = type;
+		type = newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.ROUTING_COMPONENT__TYPE, oldType, type));
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -294,6 +344,8 @@ public class RoutingComponentImpl extends MinimalEObjectImpl.Container implement
 			case ModelPackage.ROUTING_COMPONENT__NETWORK:
 				if (resolve) return getNetwork();
 				return basicGetNetwork();
+			case ModelPackage.ROUTING_COMPONENT__TYPE:
+				return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -318,6 +370,9 @@ public class RoutingComponentImpl extends MinimalEObjectImpl.Container implement
 				return;
 			case ModelPackage.ROUTING_COMPONENT__NETWORK:
 				setNetwork((Network)newValue);
+				return;
+			case ModelPackage.ROUTING_COMPONENT__TYPE:
+				setType((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -344,6 +399,9 @@ public class RoutingComponentImpl extends MinimalEObjectImpl.Container implement
 			case ModelPackage.ROUTING_COMPONENT__NETWORK:
 				setNetwork((Network)null);
 				return;
+			case ModelPackage.ROUTING_COMPONENT__TYPE:
+				setType(TYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -366,6 +424,8 @@ public class RoutingComponentImpl extends MinimalEObjectImpl.Container implement
 				return GATEWAY_EDEFAULT == null ? gateway != null : !GATEWAY_EDEFAULT.equals(gateway);
 			case ModelPackage.ROUTING_COMPONENT__NETWORK:
 				return network != null;
+			case ModelPackage.ROUTING_COMPONENT__TYPE:
+				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -387,6 +447,8 @@ public class RoutingComponentImpl extends MinimalEObjectImpl.Container implement
 		result.append(ip);
 		result.append(", gateway: ");
 		result.append(gateway);
+		result.append(", type: ");
+		result.append(type);
 		result.append(')');
 		return result.toString();
 	}
