@@ -1,6 +1,8 @@
 package de.uks.beast.editor.diagram;
 
+import model.Network;
 import model.Rack;
+import model.Router;
 import model.RoutingComponent;
 import model.Server;
 import model.Switch;
@@ -20,14 +22,18 @@ import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
 import de.uks.beast.editor.features.DirectEditServerFeature;
 import de.uks.beast.editor.features.LayoutDomainObjectFeature;
+import de.uks.beast.editor.features.add.AddNetworkComponentFeature;
 import de.uks.beast.editor.features.add.AddRackFeature;
+import de.uks.beast.editor.features.add.AddRouterFeature;
 import de.uks.beast.editor.features.add.AddRoutingComponentFeature;
 import de.uks.beast.editor.features.add.AddServerFeature;
 import de.uks.beast.editor.features.add.AddSwitchFeature;
+import de.uks.beast.editor.features.create.CreateNetworkComponentFeature;
 import de.uks.beast.editor.features.create.CreateRackFeature;
 import de.uks.beast.editor.features.create.CreateRoutingComponentFeature;
 import de.uks.beast.editor.features.create.CreateServerFeature;
 import de.uks.beast.editor.features.create.CreateSwitchFeature;
+import de.uks.beast.editor.features.create.CreaterRouterFeature;
 
 public class EditorFeatureProvider extends DefaultFeatureProvider
 {
@@ -45,7 +51,9 @@ public class EditorFeatureProvider extends DefaultFeatureProvider
 		final ICreateFeature[] features = { new CreateServerFeature(this, "Server", "Server representing hardware"),
 				new CreateRackFeature(this, "Rack", "Rack has many Server"),
 				new CreateRoutingComponentFeature(this, "RoutingComponent", "this is a routing component"),
-				new CreateSwitchFeature(this, "Switch", "This is s switch") };
+				new CreateSwitchFeature(this, "Switch", "This is a switch"),
+				new CreateNetworkComponentFeature(this, "Network", "This is a network"),
+				new CreaterRouterFeature(this, "Router", "This is a router") };
 		
 		return features;
 	}
@@ -79,6 +87,14 @@ public class EditorFeatureProvider extends DefaultFeatureProvider
 		else if (context.getNewObject() instanceof Switch)
 		{
 			return new AddSwitchFeature(this);
+		}
+		else if (context.getNewObject() instanceof Network)
+		{
+			return new AddNetworkComponentFeature(this);
+		}
+		else if (context.getNewObject() instanceof Router)
+		{
+			return new AddRouterFeature(this);
 		}
 		
 		return super.getAddFeature(context);

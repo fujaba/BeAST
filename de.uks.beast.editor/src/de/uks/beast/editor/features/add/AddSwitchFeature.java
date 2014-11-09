@@ -1,5 +1,6 @@
 package de.uks.beast.editor.features.add;
 
+import model.Rack;
 import model.Switch;
 
 import org.eclipse.graphiti.features.IDirectEditingInfo;
