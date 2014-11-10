@@ -5,19 +5,25 @@ import org.openstack4j.api.OSClient;
 import org.openstack4j.model.compute.Flavor;
 import org.openstack4j.openstack.OSFactory;
 
+import de.uks.beast.model.Hardware;
+import de.uks.beast.server.BeastService;
+
 public class OpenstackEnvironment implements BeastEnvironment {
 
 	private OSClient os;
+	private BeastService service;
 
-	public OpenstackEnvironment() {
-		OSFactory.builder()
-				.endpoint("http://127.0.0.1:5000/v2.0")
-				.credentials("admin", "sample")
-				.tenantName("example-domain")
-				.authenticate();
+	public OpenstackEnvironment(BeastService service) {
+		this.service = service;
+		
+		this.os = OSFactory.builder()
+			.endpoint(service.get("keystone"))
+			.credentials(service.get("admin"), service.get("password"))
+			.tenantName(service.get("tenant"))
+			.authenticate();
 	}
 
-	public void createHardwareDefiniton() {
+	public void createHardwareDefiniton(Hardware hwconf) {
 		Flavor flavor = Builders.flavor()
 				.name("Large Resources Template")
 				.ram(4096)
@@ -27,9 +33,11 @@ public class OpenstackEnvironment implements BeastEnvironment {
 				.build();
 
 		flavor = os.compute().flavors().create(flavor);
+		
+		System.out.println(service);
 	}
 
-	public void startVirutalMachine() {
+	public void startVirtualMachine() {
 
 	}
 
