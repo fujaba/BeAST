@@ -8,7 +8,7 @@ public class Server implements Serializable {
 
 	private String host;
 	private int cpu;
-	private long ram;
+	private int ram;
 	private int diskSpace;
 	
 	public String getHost() {
@@ -19,7 +19,7 @@ public class Server implements Serializable {
 		return cpu;
 	}
 	
-	public long getRam() {
+	public int getRam() {
 		return ram;
 	}
 	
@@ -35,7 +35,7 @@ public class Server implements Serializable {
 		this.cpu = cpu;
 	}
 	
-	public void setRam(long ram) {
+	public void setRam(int ram) {
 		this.ram = ram;
 	}
 	
@@ -43,9 +43,14 @@ public class Server implements Serializable {
 		this.diskSpace = diskSpace;
 	}
 	
+	
+	public String getFlavor() {
+		return "c" + cpu + "r" + ram + "d" + diskSpace;
+	}
+	
 	@Override
 	public String toString() {
-		return "c" + cpu + "r" + ram + "d" + diskSpace;
+		return "Host:" + host + ", CPU: " + cpu + ", RAM: " + ram + "Disk: " + diskSpace;
 	}
 	
 }
