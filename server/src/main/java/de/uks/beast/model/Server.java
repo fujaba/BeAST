@@ -42,4 +42,10 @@ public class Server implements Serializable {
 	public void setDiskSpace(int diskSpace) {
 		this.diskSpace = diskSpace;
 	}
+	
+	@Override
+	public String toString() {
+		return "c" + cpu + "r" + ram + "d" + diskSpace;
+	}
+	
 }
