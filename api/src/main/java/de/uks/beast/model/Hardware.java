@@ -1,8 +1,11 @@
-package de.uks.beast.api.model;
+package de.uks.beast.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Hardware {
+public class Hardware implements Serializable {
+
+	private static final long serialVersionUID = 4032538762740451821L;
 
 	private ArrayList<Server> servers;
 	

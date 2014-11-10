@@ -10,8 +10,9 @@ import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import de.uks.beast.api.model.Hardware;
-import de.uks.beast.api.parser.XMLParser;
+import de.uks.beast.api.akka.AkkaRemoteController;
+import de.uks.beast.api.util.XMLParser;
+import de.uks.beast.model.Hardware;
 
 public abstract class BeastTestScenario {
 	
@@ -86,9 +87,19 @@ public abstract class BeastTestScenario {
 				throw new RuntimeException("Could not find any .srvconfig file");
 			}
 			
+			logger.info("Parsing hardware configuration");
+			
 			Hardware hwconf = XMLParser.parseHardwareConfig(srvconfig);
 			
-			logger.info("Executing environment ...");
+			logger.info("Connecting to akka remote server ...");
+			
+			AkkaRemoteController akkaControllerActor = new AkkaRemoteController(
+					"akka.tcp://AkkaServer@" + host + ":" + port + "/user/ServerActor"
+			);
+			
+			akkaControllerActor.send(hwconf);
+			
+			logger.info("Configuration sent successfully. Executing environment ...");
 		}
 	}
 	

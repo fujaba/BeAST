@@ -1,4 +1,4 @@
-package de.uks.beast.api.parser;
+package de.uks.beast.api.util;
 
 import java.io.File;
 import java.util.Iterator;
@@ -10,13 +10,12 @@ import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-import de.uks.beast.api.BeastTestScenario;
-import de.uks.beast.api.model.Hardware;
-import de.uks.beast.api.model.Server;
+import de.uks.beast.model.Hardware;
+import de.uks.beast.model.Server;
 
 public class XMLParser {
 	
-	private static Logger logger = LogManager.getLogger(BeastTestScenario.class); 
+	private static Logger logger = LogManager.getLogger(XMLParser.class); 
 
 	/**
 	 * Extracts the model information out of the .diagram file
@@ -38,19 +37,21 @@ public class XMLParser {
         
 		Element root = document.getRootElement();
 		
-		for (@SuppressWarnings("rawtypes")
-		Iterator i = root.elementIterator(); i.hasNext();) {
+		for (@SuppressWarnings("rawtypes") Iterator i = root.elementIterator(); i.hasNext();) {
 			Element element = (Element) i.next();
 			if (element.asXML().startsWith("<model:")) {
 				if (element.getName().equals("Server")) {
 					Server server = new Server();
 					server.setHost(element.attributeValue("host"));
 					server.setCpu(Integer.parseInt(element.attributeValue("cpu")));
+					server.setRam(Long.parseLong(element.attributeValue("ram")));
+					server.setDiskSpace(Integer.parseInt(element.attributeValue("diskSpace")));
+					hwconf.addToServer(server);
 				}
 			}
 		}
 
-		return null;
+		return hwconf;
 	}
 
 }
