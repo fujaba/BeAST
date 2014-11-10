@@ -11,6 +11,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import de.uks.beast.api.akka.AkkaRemoteController;
+import de.uks.beast.api.util.LoggingUtil;
 import de.uks.beast.api.util.XMLParser;
 import de.uks.beast.model.Hardware;
 
@@ -19,12 +20,12 @@ public abstract class BeastTestScenario {
 	private static Logger logger = LogManager.getLogger(BeastTestScenario.class); 
 
 	private BeastTestCollection tests;
-	private String host;
-	private int port = -1;
+	private TestEnvironment environment;
 	private String srvconfig;
 
 	public BeastTestScenario() {
 		this.tests = new BeastTestCollection();
+		this.environment = new TestEnvironment();
 	}
 
 	public static void launch(String[] args) {
@@ -56,8 +57,8 @@ public abstract class BeastTestScenario {
 				
 				// Setup of the test scenario
 				BeastTestScenario scenario = appClass.newInstance();
-				scenario.withTests();
-				scenario.setTestEnvironment();
+				scenario.withTests(scenario.tests);
+				scenario.setTestEnvironment(scenario.environment);
 				
 				// Execution of test scenario
 				scenario.executeEnvironment();
@@ -75,16 +76,20 @@ public abstract class BeastTestScenario {
 	}
 
 	private void executeEnvironment() {
-		if (host == null && port == -1) {
-			throw new RuntimeException("Could not determine host/port to" +
-							" contact supervisor service. Set explicitly via useEnvironment method.");
+		if (environment.getHost() == null && 
+				environment.getPort() == -1) {
+			LoggingUtil.fatal("Could not determine host/port to" +
+							" contact supervisor service. Set explicitly via useEnvironment method.", logger);
 		} else {
 			
-			searchConfigFile();
-			
-			if (srvconfig == null) {
-				logger.error("Could not find any .srvconfig file");
-				throw new RuntimeException("Could not find any .srvconfig file");
+			if (environment.getDiagramPath() == null) {
+				searchConfigFile();
+				
+				if (srvconfig == null) {
+					LoggingUtil.fatal("Could not find any .srvconfig file", logger);
+				}
+			} else {
+				srvconfig = environment.getDiagramPath();
 			}
 			
 			logger.info("Parsing hardware configuration");
@@ -94,7 +99,8 @@ public abstract class BeastTestScenario {
 			logger.info("Connecting to akka remote server ...");
 			
 			AkkaRemoteController akkaControllerActor = new AkkaRemoteController(
-					"akka.tcp://AkkaServer@" + host + ":" + port + "/user/ServerActor"
+					"akka.tcp://AkkaServer@" + environment.getHost() + ":" 
+					+ environment.getPort() + "/user/ServerActor"
 			);
 			
 			akkaControllerActor.send(hwconf);
@@ -130,35 +136,8 @@ public abstract class BeastTestScenario {
 		}
 		
 	}
-
-	/**
-	 * Specifies the system on which the test scenario is executed
-	 * 
-	 * @param host 	The IP of the host which is running the supervisor
-	 * 				service
-	 * @param port	The port on which the supervisor service is 
-	 * 				listening for requests
-	 */
-	protected void useEnvironment(String host, int port) {
-		this.host = host;
-		this.port = port;
-	}
 	
-	/**
-	 * Specifies the .srvconfig file which is used for this test scenario.
-	 * If not specified, the classpath is searched for a .srvconfig file.
-	 * 
-	 * @param srvconfig	Absoulte path to the .srvconfig file.
-	 */
-	protected void useEnvironment(String srvconfig) {
-		this.srvconfig = srvconfig;
-	}
-	
-	protected abstract void setTestEnvironment();
-	protected abstract void withTests();
-
-	public BeastTestCollection getTests() {
-		return tests;
-	}
+	protected abstract void setTestEnvironment(TestEnvironment environment);
+	protected abstract void withTests(BeastTestCollection tests);
 
 }

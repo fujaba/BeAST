@@ -14,11 +14,21 @@ public class ReceiveActor extends UntypedActor {
 	
 	@Override
 	public void onReceive(Object obj) throws Exception {
-		if (obj instanceof Hardware) {
-			service.getEnvironment().createHardwareDefiniton((Hardware) obj);
-		} else {
-			unhandled(obj);
+		if (!service.getEnvironment().isAuthenticated()) {
+			service.getEnvironment().authenticate();
 		}
+		
+		if (service.getEnvironment().isAuthenticated()) {
+			if (obj instanceof Hardware) {
+				service.getEnvironment().createHardwareDefiniton((Hardware) obj);
+			} else {
+				unhandled(obj);
+			}
+		} else {
+			// handle unauthenticated failures
+			
+		}
+		
 	}
 
 }

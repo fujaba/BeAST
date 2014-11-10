@@ -1,6 +1,7 @@
 package de.uks.beast.api.util;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Iterator;
 
 import org.apache.log4j.LogManager;
@@ -24,6 +25,12 @@ public class XMLParser {
 	 */
 	public static Hardware parseHardwareConfig(String srvconfig) {
 		File configFile = new File(srvconfig);
+		
+		if (!configFile.exists()) {
+			LoggingUtil.fatal(new FileNotFoundException(srvconfig), 
+					"Specified config file does not exist. Exiting", logger);
+		}
+		
 		Hardware hwconf = new Hardware();
 		
 		SAXReader reader = new SAXReader();
@@ -44,7 +51,7 @@ public class XMLParser {
 					Server server = new Server();
 					server.setHost(element.attributeValue("host"));
 					server.setCpu(Integer.parseInt(element.attributeValue("cpu")));
-					server.setRam(Long.parseLong(element.attributeValue("ram")));
+					server.setRam(Integer.parseInt(element.attributeValue("ram")));
 					server.setDiskSpace(Integer.parseInt(element.attributeValue("diskSpace")));
 					hwconf.addToServer(server);
 				}

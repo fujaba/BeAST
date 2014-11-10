@@ -1,4 +1,4 @@
-package de.uks.beast.server.util;
+package de.uks.beast.api.util;
 
 import org.apache.log4j.Logger;
 

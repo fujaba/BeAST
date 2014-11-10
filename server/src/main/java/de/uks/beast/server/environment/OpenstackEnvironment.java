@@ -12,7 +12,6 @@ import org.openstack4j.openstack.OSFactory;
 import de.uks.beast.model.Hardware;
 import de.uks.beast.model.Server;
 import de.uks.beast.server.BeastService;
-import de.uks.beast.server.util.LoggingUtil;
 
 public class OpenstackEnvironment implements BeastEnvironment {
 
@@ -23,7 +22,10 @@ public class OpenstackEnvironment implements BeastEnvironment {
 
 	public OpenstackEnvironment(BeastService service) {
 		this.service = service;
-		
+	}
+	
+	@Override
+	public boolean authenticate() {
 		try {
 			this.os = OSFactory.builder()
 					.endpoint(service.get("keystone"))
@@ -32,10 +34,13 @@ public class OpenstackEnvironment implements BeastEnvironment {
 					.authenticate();
 		} catch (Exception e) {
 			if (e.getMessage().equals("java.net.ConnectException: Connection refused")) {
-				LoggingUtil.fatal(e, "Could not connect to keystone authentication service. Exiting.", logger);
+//				LoggingUtil.fatal(e, "Could not connect to keystone authentication service. Exiting.", logger);
+				logger.error("Could not connect to keystone", e);
 			}
+			return false;
 		}
 		
+		return true;
 	}
 
 	public void createHardwareDefiniton(Hardware hwconf) {
@@ -65,6 +70,11 @@ public class OpenstackEnvironment implements BeastEnvironment {
 
 	public void startVirtualMachine() {
 
+	}
+
+	@Override
+	public boolean isAuthenticated() {
+		return os != null;
 	}
 
 }
