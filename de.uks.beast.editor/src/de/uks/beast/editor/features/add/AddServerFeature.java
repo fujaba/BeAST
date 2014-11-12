@@ -69,57 +69,59 @@ public class AddServerFeature extends AbstractAddShapeFeature
 		final IGaService gaService = Graphiti.getGaService();
 		RoundedRectangle roundedRectangle; // need to access it later
 		
+		// create and set graphics algorithm
+		roundedRectangle = gaService.createRoundedRectangle(containerShape, 5, 5);
+		roundedRectangle.setForeground(manageColor(E_CLASS_FOREGROUND));
+		roundedRectangle.setBackground(manageColor(E_CLASS_BACKGROUND));
+		roundedRectangle.setLineWidth(2);
+		gaService.setLocationAndSize(roundedRectangle, context.getX(), context.getY(), width, height);
+		
+		// if added Class has no resource we add it to the resource
+		// of the diagram
+		// in a real scenario the business model would have its own resource
+		if (server.eResource() == null)
 		{
-			// create and set graphics algorithm
-			roundedRectangle = gaService.createRoundedRectangle(containerShape, 5, 5);
-			roundedRectangle.setForeground(manageColor(E_CLASS_FOREGROUND));
-			roundedRectangle.setBackground(manageColor(E_CLASS_BACKGROUND));
-			roundedRectangle.setLineWidth(2);
-			gaService.setLocationAndSize(roundedRectangle, context.getX(), context.getY(), width, height);
-			
-			// if added Class has no resource we add it to the resource
-			// of the diagram
-			// in a real scenario the business model would have its own resource
-			if (server.eResource() == null)
-			{
-				getDiagram().eResource().getContents().add(server);
-			}
-			// create link and wire it
-			link(containerShape, server);
+			getDiagram().eResource().getContents().add(server);
 		}
+		// create link and wire it
+		link(containerShape, server);
 		
 		// SHAPE WITH LINE
-		{
-			// create shape for line
-			final Shape shape = peCreateService.createShape(containerShape, false);
-			
-			// create and set graphics algorithm
-			final Polyline polyline = gaService.createPolyline(shape, new int[] { 0, 20, width, 20 });
-			polyline.setForeground(manageColor(E_CLASS_FOREGROUND));
-			polyline.setLineWidth(2);
-		}
+		
+		// create shape for line
+		final Shape lineShape = peCreateService.createShape(containerShape, false);
+		
+		// create and set graphics algorithm
+		final Polyline polyline = gaService.createPolyline(lineShape, new int[] { 0, 20, width, 20 });
+		polyline.setForeground(manageColor(E_CLASS_FOREGROUND));
+		polyline.setLineWidth(2);
 		
 		// SHAPE WITH TEXT
-		{
-			// create shape for text
-			final Shape shape = peCreateService.createShape(containerShape, false);
-			
-			// create and set text graphics algorithm
-			final Text text = gaService.createText(shape, server.getType());
-			text.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
-			text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
-			// vertical alignment has as default value "center"
-			text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
-			gaService.setLocationAndSize(text, 0, 0, width, 20);
-			
-			// create link and wire it
-			link(shape, server);
-			
-			final IDirectEditingInfo directEditingInfo = getFeatureProvider().getDirectEditingInfo();
-			directEditingInfo.setMainPictogramElement(containerShape);
-			directEditingInfo.setPictogramElement(shape);
-			directEditingInfo.setGraphicsAlgorithm(text);
-		}
+		
+		// create shape for text
+		final Shape textShape = peCreateService.createShape(containerShape, false);
+		
+		// create and set text graphics algorithm
+		final Text text = gaService.createText(textShape, server.getType());
+		text.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
+		text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
+		// vertical alignment has as default value "center"
+		text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
+		gaService.setLocationAndSize(text, 0, 0, width, 20);
+		
+		// create link and wire it
+		link(textShape, server);
+		
+		final IDirectEditingInfo directEditingInfo = getFeatureProvider().getDirectEditingInfo();
+		directEditingInfo.setMainPictogramElement(containerShape);
+		directEditingInfo.setPictogramElement(textShape);
+		directEditingInfo.setGraphicsAlgorithm(text);
+		
+		// add a chopbox anchor to the shape 
+		peCreateService.createChopboxAnchor(containerShape);
+		
+		// call the layout feature
+		layoutPictogramElement(containerShape);
 		
 		return containerShape;
 	}

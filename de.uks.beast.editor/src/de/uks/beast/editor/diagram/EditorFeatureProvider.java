@@ -7,6 +7,7 @@ import model.RoutingComponent;
 import model.Server;
 import model.Switch;
 
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.ICreateConnectionFeature;
@@ -24,12 +25,14 @@ import de.uks.beast.editor.features.DirectEditServerFeature;
 import de.uks.beast.editor.features.LayoutDomainObjectFeature;
 import de.uks.beast.editor.features.add.AddNetworkComponentFeature;
 import de.uks.beast.editor.features.add.AddRackFeature;
+import de.uks.beast.editor.features.add.AddReferanceFeature;
 import de.uks.beast.editor.features.add.AddRouterFeature;
 import de.uks.beast.editor.features.add.AddRoutingComponentFeature;
 import de.uks.beast.editor.features.add.AddServerFeature;
 import de.uks.beast.editor.features.add.AddSwitchFeature;
 import de.uks.beast.editor.features.create.CreateNetworkComponentFeature;
 import de.uks.beast.editor.features.create.CreateRackFeature;
+import de.uks.beast.editor.features.create.CreateReferanceFeature;
 import de.uks.beast.editor.features.create.CreateRoutingComponentFeature;
 import de.uks.beast.editor.features.create.CreateServerFeature;
 import de.uks.beast.editor.features.create.CreateSwitchFeature;
@@ -63,7 +66,7 @@ public class EditorFeatureProvider extends DefaultFeatureProvider
 	@Override
 	public ICreateConnectionFeature[] getCreateConnectionFeatures()
 	{
-		return new ICreateConnectionFeature[] {};
+		return new ICreateConnectionFeature[] { new CreateReferanceFeature(this) };
 	}
 	
 	
@@ -71,7 +74,7 @@ public class EditorFeatureProvider extends DefaultFeatureProvider
 	@Override
 	public IAddFeature getAddFeature(final IAddContext context)
 	{
-		
+		//features
 		if (context.getNewObject() instanceof Server)
 		{
 			return new AddServerFeature(this);
@@ -95,6 +98,13 @@ public class EditorFeatureProvider extends DefaultFeatureProvider
 		else if (context.getNewObject() instanceof Router)
 		{
 			return new AddRouterFeature(this);
+		}
+		
+		//TODO: implement correctly!!!!!!!!!
+		//connections
+		else if (context.getNewObject() instanceof EReference)
+		{
+			return new AddReferanceFeature(this);
 		}
 		
 		return super.getAddFeature(context);
