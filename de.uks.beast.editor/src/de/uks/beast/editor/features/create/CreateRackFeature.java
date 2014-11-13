@@ -2,11 +2,11 @@ package de.uks.beast.editor.features.create;
 
 import model.ModelFactory;
 import model.Rack;
+import model.Room;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
-import org.eclipse.graphiti.mm.pictograms.Diagram;
 
 public class CreateRackFeature extends AbstractCreateFeature
 {
@@ -21,7 +21,7 @@ public class CreateRackFeature extends AbstractCreateFeature
 	@Override
 	public boolean canCreate(final ICreateContext context)
 	{
-		return context.getTargetContainer() instanceof Diagram;
+		return getBusinessObjectForPictogramElement(context.getTargetContainer()) instanceof Room;
 	}
 	
 	
@@ -30,7 +30,8 @@ public class CreateRackFeature extends AbstractCreateFeature
 	public Object[] create(final ICreateContext context)
 	{
 		final Rack rack = ModelFactory.eINSTANCE.createRack();
-		getDiagram().eResource().getContents().add(rack);
+		final Room room = (Room) getBusinessObjectForPictogramElement(context.getTargetContainer());
+		room.getRacks().add(rack);
 		rack.setType("Rack");;
 		addGraphicalRepresentation(context, rack);
 		getFeatureProvider().getDirectEditingInfo().setActive(true);

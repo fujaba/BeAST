@@ -553,13 +553,22 @@ public interface ModelPackage extends EPackage
 	int ROOM__RACKS = 1;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOM__TYPE = 2;
+
+	/**
 	 * The number of structural features of the '<em>Room</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROOM_FEATURE_COUNT = 2;
+	int ROOM_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Room</em>' class.
@@ -982,6 +991,19 @@ public interface ModelPackage extends EPackage
 
 
 	/**
+	 * Returns the meta object for the attribute '{@link model.Room#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see model.Room#getType()
+	 * @see #getRoom()
+	 * @generated
+	 */
+	EAttribute getRoom_Type();
+
+
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1274,6 +1296,14 @@ public interface ModelPackage extends EPackage
 		 * @generated
 		 */
 		EReference ROOM__RACKS = eINSTANCE.getRoom_Racks();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROOM__TYPE = eINSTANCE.getRoom_Type();
 		
 	}
 	

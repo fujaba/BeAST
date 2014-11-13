@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link model.impl.RoomImpl#getName <em>Name</em>}</li>
  *   <li>{@link model.impl.RoomImpl#getRacks <em>Racks</em>}</li>
+ *   <li>{@link model.impl.RoomImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -67,6 +68,26 @@ public class RoomImpl extends MinimalEObjectImpl.Container implements Room
 	 * @ordered
 	 */
 	protected EList<Rack> racks;
+
+	/**
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected String type = TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -131,6 +152,29 @@ public class RoomImpl extends MinimalEObjectImpl.Container implements Room
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getType()
+	{
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setType(String newType)
+	{
+		String oldType = type;
+		type = newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.ROOM__TYPE, oldType, type));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -156,6 +200,8 @@ public class RoomImpl extends MinimalEObjectImpl.Container implements Room
 				return getName();
 			case ModelPackage.ROOM__RACKS:
 				return getRacks();
+			case ModelPackage.ROOM__TYPE:
+				return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -178,6 +224,9 @@ public class RoomImpl extends MinimalEObjectImpl.Container implements Room
 				getRacks().clear();
 				getRacks().addAll((Collection<? extends Rack>)newValue);
 				return;
+			case ModelPackage.ROOM__TYPE:
+				setType((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -198,6 +247,9 @@ public class RoomImpl extends MinimalEObjectImpl.Container implements Room
 			case ModelPackage.ROOM__RACKS:
 				getRacks().clear();
 				return;
+			case ModelPackage.ROOM__TYPE:
+				setType(TYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -216,6 +268,8 @@ public class RoomImpl extends MinimalEObjectImpl.Container implements Room
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ModelPackage.ROOM__RACKS:
 				return racks != null && !racks.isEmpty();
+			case ModelPackage.ROOM__TYPE:
+				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -233,6 +287,8 @@ public class RoomImpl extends MinimalEObjectImpl.Container implements Room
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
 		result.append(name);
+		result.append(", type: ");
+		result.append(type);
 		result.append(')');
 		return result.toString();
 	}
