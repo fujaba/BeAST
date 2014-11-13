@@ -1,5 +1,6 @@
 package de.uks.beast.editor.features.add;
 
+import model.Rack;
 import model.Server;
 
 import org.eclipse.graphiti.features.IDirectEditingInfo;
@@ -43,7 +44,7 @@ public class AddServerFeature extends AbstractAddShapeFeature
 	{
 		if (context.getNewObject() instanceof Server)
 		{
-			if (context.getTargetContainer() instanceof Diagram)
+			if (getBusinessObjectForPictogramElement(context.getTargetContainer()) instanceof Rack)
 			{
 				return true;
 			}
@@ -57,7 +58,7 @@ public class AddServerFeature extends AbstractAddShapeFeature
 	public PictogramElement add(final IAddContext context)
 	{
 		final Server server = (Server) context.getNewObject();
-		final Diagram targetDiagram = (Diagram) context.getTargetContainer();
+		final ContainerShape targetDiagram = (ContainerShape) context.getTargetContainer();
 		
 		// CONTAINER SHAPE WITH ROUNDED RECTANGLE
 		final IPeCreateService peCreateService = Graphiti.getPeCreateService();

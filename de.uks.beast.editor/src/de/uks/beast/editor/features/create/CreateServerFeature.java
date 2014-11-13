@@ -1,6 +1,7 @@
 package de.uks.beast.editor.features.create;
 
 import model.ModelFactory;
+import model.Rack;
 import model.Server;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -21,7 +22,7 @@ public class CreateServerFeature extends AbstractCreateFeature
 	@Override
 	public boolean canCreate(final ICreateContext context)
 	{
-		return context.getTargetContainer() instanceof Diagram;
+		return getBusinessObjectForPictogramElement(context.getTargetContainer()) instanceof Rack;
 	}
 	
 	
@@ -30,7 +31,9 @@ public class CreateServerFeature extends AbstractCreateFeature
 	public Object[] create(final ICreateContext context)
 	{
 		final Server server = ModelFactory.eINSTANCE.createServer();
-		getDiagram().eResource().getContents().add(server);
+		//getDiagram().eResource().getContents().add(server);
+		final Rack rack = (Rack) getBusinessObjectForPictogramElement(context.getTargetContainer());
+		rack.getServer().add(server);
 		server.setType("Server");;
 		addGraphicalRepresentation(context, server);
 		getFeatureProvider().getDirectEditingInfo().setActive(true);
