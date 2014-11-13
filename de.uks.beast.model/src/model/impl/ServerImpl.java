@@ -2,15 +2,22 @@
  */
 package model.impl;
 
+import java.util.Collection;
 import model.ModelPackage;
+import model.RoutingComponent;
 import model.Server;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,6 +33,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link model.impl.ServerImpl#getDiskSpace <em>Disk Space</em>}</li>
  *   <li>{@link model.impl.ServerImpl#getHost <em>Host</em>}</li>
  *   <li>{@link model.impl.ServerImpl#getType <em>Type</em>}</li>
+ *   <li>{@link model.impl.ServerImpl#getRoutingComponents <em>Routing Components</em>}</li>
  * </ul>
  * </p>
  *
@@ -174,6 +182,18 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	 * @ordered
 	 */
 	protected String type = TYPE_EDEFAULT;
+
+
+
+	/**
+	 * The cached value of the '{@link #getRoutingComponents() <em>Routing Components</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRoutingComponents()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<RoutingComponent> routingComponents;
 
 
 
@@ -396,6 +416,59 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<RoutingComponent> getRoutingComponents()
+	{
+		if (routingComponents == null)
+		{
+			routingComponents = new EObjectWithInverseResolvingEList.ManyInverse<RoutingComponent>(RoutingComponent.class, this, ModelPackage.SERVER__ROUTING_COMPONENTS, ModelPackage.ROUTING_COMPONENT__SERVER);
+		}
+		return routingComponents;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case ModelPackage.SERVER__ROUTING_COMPONENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRoutingComponents()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case ModelPackage.SERVER__ROUTING_COMPONENTS:
+				return ((InternalEList<?>)getRoutingComponents()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
@@ -415,6 +488,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 				return getHost();
 			case ModelPackage.SERVER__TYPE:
 				return getType();
+			case ModelPackage.SERVER__ROUTING_COMPONENTS:
+				return getRoutingComponents();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -426,6 +501,7 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -451,6 +527,10 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 				return;
 			case ModelPackage.SERVER__TYPE:
 				setType((String)newValue);
+				return;
+			case ModelPackage.SERVER__ROUTING_COMPONENTS:
+				getRoutingComponents().clear();
+				getRoutingComponents().addAll((Collection<? extends RoutingComponent>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -489,6 +569,9 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 			case ModelPackage.SERVER__TYPE:
 				setType(TYPE_EDEFAULT);
 				return;
+			case ModelPackage.SERVER__ROUTING_COMPONENTS:
+				getRoutingComponents().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -519,6 +602,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 				return HOST_EDEFAULT == null ? host != null : !HOST_EDEFAULT.equals(host);
 			case ModelPackage.SERVER__TYPE:
 				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+			case ModelPackage.SERVER__ROUTING_COMPONENTS:
+				return routingComponents != null && !routingComponents.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

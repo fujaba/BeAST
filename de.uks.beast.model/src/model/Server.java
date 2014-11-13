@@ -2,6 +2,7 @@
  */
 package model;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -19,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link model.Server#getDiskSpace <em>Disk Space</em>}</li>
  *   <li>{@link model.Server#getHost <em>Host</em>}</li>
  *   <li>{@link model.Server#getType <em>Type</em>}</li>
+ *   <li>{@link model.Server#getRoutingComponents <em>Routing Components</em>}</li>
  * </ul>
  * </p>
  *
@@ -235,5 +237,25 @@ public interface Server extends EObject
 	 * @generated
 	 */
 	void setType(String value);
+
+
+
+	/**
+	 * Returns the value of the '<em><b>Routing Components</b></em>' reference list.
+	 * The list contents are of type {@link model.RoutingComponent}.
+	 * It is bidirectional and its opposite is '{@link model.RoutingComponent#getServer <em>Server</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Routing Components</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Routing Components</em>' reference list.
+	 * @see model.ModelPackage#getServer_RoutingComponents()
+	 * @see model.RoutingComponent#getServer
+	 * @model opposite="server"
+	 * @generated
+	 */
+	EList<RoutingComponent> getRoutingComponents();
 	
 } // Server

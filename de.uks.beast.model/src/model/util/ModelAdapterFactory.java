@@ -108,6 +108,11 @@ public class ModelAdapterFactory extends AdapterFactoryImpl
 				return createRouterAdapter();
 			}
 			@Override
+			public Adapter caseRoom(Room object)
+			{
+				return createRoomAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object)
 			{
 				return createEObjectAdapter();
@@ -234,6 +239,23 @@ public class ModelAdapterFactory extends AdapterFactoryImpl
 	
 	
 	
+	/**
+	 * Creates a new adapter for an object of class '{@link model.Room <em>Room</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see model.Room
+	 * @generated
+	 */
+	public Adapter createRoomAdapter()
+	{
+		return null;
+	}
+
+
+
 	/**
 	 * Creates a new adapter for the default case.
 	 * <!-- begin-user-doc -->

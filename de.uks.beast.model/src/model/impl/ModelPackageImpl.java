@@ -6,6 +6,7 @@ import model.ModelFactory;
 import model.ModelPackage;
 import model.Network;
 import model.Rack;
+import model.Room;
 import model.Router;
 import model.RoutingComponent;
 import model.Server;
@@ -70,6 +71,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	
 	
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass roomEClass = null;
+
+
+
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
@@ -238,6 +248,18 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getServer_RoutingComponents()
+	{
+		return (EReference)serverEClass.getEStructuralFeatures().get(7);
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getRack()
 	{
 		return rackEClass;
@@ -264,7 +286,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 */
 	public EReference getRack_Router()
 	{
-		return (EReference)rackEClass.getEStructuralFeatures().get(1);
+		return (EReference)rackEClass.getEStructuralFeatures().get(3);
 	}
 	
 	
@@ -276,7 +298,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 */
 	public EAttribute getRack_Id()
 	{
-		return (EAttribute)rackEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)rackEClass.getEStructuralFeatures().get(1);
 	}
 
 
@@ -288,7 +310,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 */
 	public EAttribute getRack_Type()
 	{
-		return (EAttribute)rackEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)rackEClass.getEStructuralFeatures().get(2);
 	}
 
 
@@ -454,6 +476,18 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getRoutingComponent_Server()
+	{
+		return (EReference)routingComponentEClass.getEStructuralFeatures().get(4);
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getRouter()
 	{
 		return routerEClass;
@@ -461,6 +495,42 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	
 	
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRoom()
+	{
+		return roomEClass;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRoom_Name()
+	{
+		return (EAttribute)roomEClass.getEStructuralFeatures().get(0);
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRoom_Racks()
+	{
+		return (EReference)roomEClass.getEStructuralFeatures().get(1);
+	}
+
+
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -501,12 +571,13 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		createEAttribute(serverEClass, SERVER__DISK_SPACE);
 		createEAttribute(serverEClass, SERVER__HOST);
 		createEAttribute(serverEClass, SERVER__TYPE);
+		createEReference(serverEClass, SERVER__ROUTING_COMPONENTS);
 
 		rackEClass = createEClass(RACK);
 		createEReference(rackEClass, RACK__SERVER);
-		createEReference(rackEClass, RACK__ROUTER);
 		createEAttribute(rackEClass, RACK__ID);
 		createEAttribute(rackEClass, RACK__TYPE);
+		createEReference(rackEClass, RACK__ROUTER);
 
 		networkEClass = createEClass(NETWORK);
 		createEAttribute(networkEClass, NETWORK__RANGE);
@@ -523,8 +594,13 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		createEAttribute(routingComponentEClass, ROUTING_COMPONENT__GATEWAY);
 		createEReference(routingComponentEClass, ROUTING_COMPONENT__NETWORK);
 		createEAttribute(routingComponentEClass, ROUTING_COMPONENT__TYPE);
+		createEReference(routingComponentEClass, ROUTING_COMPONENT__SERVER);
 
 		routerEClass = createEClass(ROUTER);
+
+		roomEClass = createEClass(ROOM);
+		createEAttribute(roomEClass, ROOM__NAME);
+		createEReference(roomEClass, ROOM__RACKS);
 	}
 	
 	/**
@@ -570,12 +646,13 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		initEAttribute(getServer_DiskSpace(), ecorePackage.getELong(), "diskSpace", null, 0, 1, Server.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getServer_Host(), ecorePackage.getEString(), "host", null, 0, 1, Server.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getServer_Type(), ecorePackage.getEString(), "type", null, 0, 1, Server.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getServer_RoutingComponents(), this.getRoutingComponent(), this.getRoutingComponent_Server(), "routingComponents", null, 0, -1, Server.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(rackEClass, Rack.class, "Rack", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRack_Server(), this.getServer(), null, "server", null, 0, -1, Rack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRack_Router(), this.getRoutingComponent(), null, "router", null, 0, 1, Rack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRack_Id(), ecorePackage.getEInt(), "id", null, 0, 1, Rack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRack_Type(), ecorePackage.getEString(), "type", null, 0, 1, Rack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRack_Router(), this.getRoutingComponent(), null, "router", null, 0, -1, Rack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(networkEClass, Network.class, "Network", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNetwork_Range(), ecorePackage.getEString(), "range", null, 0, 1, Network.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -592,8 +669,13 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		initEAttribute(getRoutingComponent_Gateway(), ecorePackage.getEString(), "gateway", null, 0, 1, RoutingComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRoutingComponent_Network(), this.getNetwork(), this.getNetwork_Router(), "network", null, 0, 1, RoutingComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRoutingComponent_Type(), ecorePackage.getEString(), "type", null, 0, 1, RoutingComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRoutingComponent_Server(), this.getServer(), this.getServer_RoutingComponents(), "server", null, 0, -1, RoutingComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(routerEClass, Router.class, "Router", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(roomEClass, Room.class, "Room", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getRoom_Name(), ecorePackage.getEString(), "name", null, 0, 1, Room.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRoom_Racks(), this.getRack(), null, "racks", null, 0, -1, Room.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

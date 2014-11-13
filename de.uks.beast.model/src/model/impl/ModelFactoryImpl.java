@@ -74,6 +74,7 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 			case ModelPackage.SWITCH: return createSwitch();
 			case ModelPackage.ROUTING_COMPONENT: return createRoutingComponent();
 			case ModelPackage.ROUTER: return createRouter();
+			case ModelPackage.ROOM: return createRoom();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -159,6 +160,19 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 	
 	
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Room createRoom()
+	{
+		RoomImpl room = new RoomImpl();
+		return room;
+	}
+
+
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
