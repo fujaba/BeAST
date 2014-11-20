@@ -14,19 +14,19 @@ public class ReceiveActor extends UntypedActor {
 	
 	@Override
 	public void onReceive(Object obj) throws Exception {
-		if (!service.getEnvironment().isAuthenticated()) {
-			service.getEnvironment().authenticate();
-		}
-		
-		if (service.getEnvironment().isAuthenticated()) {
-			if (obj instanceof Hardware) {
+		if (obj instanceof Hardware) {
+			if (!service.getEnvironment().isAuthenticated()) {
+				service.getEnvironment().authenticate();
+			}
+
+			if (!service.getEnvironment().isAuthenticated()) {
 				service.getEnvironment().createHardwareDefiniton((Hardware) obj);
+				service.getEnvironment().startVirtualMachine();
 			} else {
-				unhandled(obj);
+				// handle unauthenticated failures
 			}
 		} else {
-			// handle unauthenticated failures
-			
+			unhandled(obj);
 		}
 		
 	}
