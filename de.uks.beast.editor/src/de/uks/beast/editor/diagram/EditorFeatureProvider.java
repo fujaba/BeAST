@@ -22,12 +22,12 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
+import de.uks.beast.editor.features.DirectEditServerFeature;
 import de.uks.beast.editor.features.LayoutDomainObjectFeature;
 import de.uks.beast.editor.features.add.AddConnectionFeature;
 import de.uks.beast.editor.features.add.AddNetworkComponentFeature;
 import de.uks.beast.editor.features.add.AddRackFeature;
 import de.uks.beast.editor.features.add.AddRoomFeature;
-
 import de.uks.beast.editor.features.add.AddRouterFeature;
 import de.uks.beast.editor.features.add.AddRoutingComponentFeature;
 import de.uks.beast.editor.features.add.AddServerFeature;
@@ -36,7 +36,6 @@ import de.uks.beast.editor.features.create.CreateConnectionFeature;
 import de.uks.beast.editor.features.create.CreateNetworkComponentFeature;
 import de.uks.beast.editor.features.create.CreateRackFeature;
 import de.uks.beast.editor.features.create.CreateRoomFeature;
-
 import de.uks.beast.editor.features.create.CreateRoutingComponentFeature;
 import de.uks.beast.editor.features.create.CreateServerFeature;
 import de.uks.beast.editor.features.create.CreateSwitchFeature;
@@ -104,14 +103,12 @@ public class EditorFeatureProvider extends DefaultFeatureProvider
 		{
 			return new AddRouterFeature(this);
 		}
-
-		else if (context instanceof IAddConnectionContext)
+		else if (context.getNewObject() instanceof Room)
 		{
 			return new AddRoomFeature(this);
 		}
 		else if (context instanceof IAddConnectionContext)
 		{
-
 			return new AddConnectionFeature(this);
 		}
 		
