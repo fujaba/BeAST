@@ -19,10 +19,8 @@ import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.context.IDirectEditingContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
-import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
-import de.uks.beast.editor.features.DirectEditServerFeature;
 import de.uks.beast.editor.features.LayoutDomainObjectFeature;
 import de.uks.beast.editor.features.add.AddConnectionFeature;
 import de.uks.beast.editor.features.add.AddNetworkComponentFeature;
@@ -133,8 +131,8 @@ public class EditorFeatureProvider extends DefaultFeatureProvider
 	@Override
 	public IDirectEditingFeature getDirectEditingFeature(final IDirectEditingContext context)
 	{
-		final PictogramElement pe = context.getPictogramElement();
-		final Object object = getBusinessObjectForPictogramElement(pe);
+		//final PictogramElement pe = context.getPictogramElement();
+		//final Object object = getBusinessObjectForPictogramElement(pe);
 //		if (object instanceof Server)
 //		{
 //			return new DirectEditServerFeature(this);
