@@ -131,13 +131,22 @@ public interface ModelPackage extends EPackage
 	int SERVER__TYPE = 6;
 
 	/**
+	 * The feature id for the '<em><b>Routing Components</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER__ROUTING_COMPONENTS = 7;
+
+	/**
 	 * The number of structural features of the '<em>Server</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int				SERVER_FEATURE_COUNT				= 7;
+	int				SERVER_FEATURE_COUNT				= 8;
 	
 	/**
 	 * The number of operations of the '<em>Server</em>' class.
@@ -168,22 +177,13 @@ public interface ModelPackage extends EPackage
 	int				RACK__SERVER						= 0;
 	
 	/**
-	 * The feature id for the '<em><b>Router</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int				RACK__ROUTER						= 1;
-	
-	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RACK__ID = 2;
+	int RACK__ID = 1;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -192,7 +192,16 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RACK__TYPE = 3;
+	int RACK__TYPE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Router</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int				RACK__ROUTER						= 3;
 
 	/**
 	 * The number of structural features of the '<em>Rack</em>' class.
@@ -341,13 +350,22 @@ public interface ModelPackage extends EPackage
 	int ROUTING_COMPONENT__TYPE = 3;
 
 	/**
+	 * The feature id for the '<em><b>Server</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROUTING_COMPONENT__SERVER = 4;
+
+	/**
 	 * The number of structural features of the '<em>Routing Component</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int				ROUTING_COMPONENT_FEATURE_COUNT		= 4;
+	int				ROUTING_COMPONENT_FEATURE_COUNT		= 5;
 	
 	/**
 	 * The number of operations of the '<em>Routing Component</em>' class.
@@ -403,6 +421,15 @@ public interface ModelPackage extends EPackage
 	 * @ordered
 	 */
 	int SWITCH__TYPE = ROUTING_COMPONENT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Server</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWITCH__SERVER = ROUTING_COMPONENT__SERVER;
 
 	/**
 	 * The number of structural features of the '<em>Switch</em>' class.
@@ -469,6 +496,15 @@ public interface ModelPackage extends EPackage
 	int ROUTER__TYPE = ROUTING_COMPONENT__TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Server</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROUTER__SERVER = ROUTING_COMPONENT__SERVER;
+
+	/**
 	 * The number of structural features of the '<em>Router</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -488,6 +524,63 @@ public interface ModelPackage extends EPackage
 	
 	
 	
+	/**
+	 * The meta object id for the '{@link model.impl.RoomImpl <em>Room</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see model.impl.RoomImpl
+	 * @see model.impl.ModelPackageImpl#getRoom()
+	 * @generated
+	 */
+	int ROOM = 6;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOM__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Racks</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOM__RACKS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOM__TYPE = 2;
+
+	/**
+	 * The number of structural features of the '<em>Room</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOM_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Room</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOM_OPERATION_COUNT = 0;
+
+
+
 	/**
 	 * Returns the meta object for class '{@link model.Server <em>Server</em>}'.
 	 * <!-- begin-user-doc -->
@@ -592,6 +685,19 @@ public interface ModelPackage extends EPackage
 
 
 	/**
+	 * Returns the meta object for the reference list '{@link model.Server#getRoutingComponents <em>Routing Components</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Routing Components</em>'.
+	 * @see model.Server#getRoutingComponents()
+	 * @see #getServer()
+	 * @generated
+	 */
+	EReference getServer_RoutingComponents();
+
+
+
+	/**
 	 * Returns the meta object for class '{@link model.Rack <em>Rack</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -617,10 +723,10 @@ public interface ModelPackage extends EPackage
 	
 	
 	/**
-	 * Returns the meta object for the reference '{@link model.Rack#getRouter <em>Router</em>}'.
+	 * Returns the meta object for the containment reference list '{@link model.Rack#getRouter <em>Router</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Router</em>'.
+	 * @return the meta object for the containment reference list '<em>Router</em>'.
 	 * @see model.Rack#getRouter()
 	 * @see #getRack()
 	 * @generated
@@ -822,6 +928,19 @@ public interface ModelPackage extends EPackage
 
 
 	/**
+	 * Returns the meta object for the reference list '{@link model.RoutingComponent#getServer <em>Server</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Server</em>'.
+	 * @see model.RoutingComponent#getServer()
+	 * @see #getRoutingComponent()
+	 * @generated
+	 */
+	EReference getRoutingComponent_Server();
+
+
+
+	/**
 	 * Returns the meta object for class '{@link model.Router <em>Router</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -833,6 +952,57 @@ public interface ModelPackage extends EPackage
 	
 	
 	
+	/**
+	 * Returns the meta object for class '{@link model.Room <em>Room</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Room</em>'.
+	 * @see model.Room
+	 * @generated
+	 */
+	EClass getRoom();
+
+
+
+	/**
+	 * Returns the meta object for the attribute '{@link model.Room#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see model.Room#getName()
+	 * @see #getRoom()
+	 * @generated
+	 */
+	EAttribute getRoom_Name();
+
+
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link model.Room#getRacks <em>Racks</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Racks</em>'.
+	 * @see model.Room#getRacks()
+	 * @see #getRoom()
+	 * @generated
+	 */
+	EReference getRoom_Racks();
+
+
+
+	/**
+	 * Returns the meta object for the attribute '{@link model.Room#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see model.Room#getType()
+	 * @see #getRoom()
+	 * @generated
+	 */
+	EAttribute getRoom_Type();
+
+
+
 	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
@@ -924,6 +1094,14 @@ public interface ModelPackage extends EPackage
 		EAttribute SERVER__TYPE = eINSTANCE.getServer_Type();
 
 		/**
+		 * The meta object literal for the '<em><b>Routing Components</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVER__ROUTING_COMPONENTS = eINSTANCE.getServer_RoutingComponents();
+
+		/**
 		 * The meta object literal for the '{@link model.impl.RackImpl <em>Rack</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -942,7 +1120,7 @@ public interface ModelPackage extends EPackage
 		EReference	RACK__SERVER				= eINSTANCE.getRack_Server();
 		
 		/**
-		 * The meta object literal for the '<em><b>Router</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Router</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1076,6 +1254,14 @@ public interface ModelPackage extends EPackage
 		EAttribute ROUTING_COMPONENT__TYPE = eINSTANCE.getRoutingComponent_Type();
 
 		/**
+		 * The meta object literal for the '<em><b>Server</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ROUTING_COMPONENT__SERVER = eINSTANCE.getRoutingComponent_Server();
+
+		/**
 		 * The meta object literal for the '{@link model.impl.RouterImpl <em>Router</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1084,6 +1270,40 @@ public interface ModelPackage extends EPackage
 		 * @generated
 		 */
 		EClass		ROUTER						= eINSTANCE.getRouter();
+
+		/**
+		 * The meta object literal for the '{@link model.impl.RoomImpl <em>Room</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see model.impl.RoomImpl
+		 * @see model.impl.ModelPackageImpl#getRoom()
+		 * @generated
+		 */
+		EClass ROOM = eINSTANCE.getRoom();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROOM__NAME = eINSTANCE.getRoom_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Racks</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ROOM__RACKS = eINSTANCE.getRoom_Racks();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROOM__TYPE = eINSTANCE.getRoom_Type();
 		
 	}
 	

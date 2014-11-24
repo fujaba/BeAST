@@ -15,9 +15,9 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link model.Rack#getServer <em>Server</em>}</li>
- *   <li>{@link model.Rack#getRouter <em>Router</em>}</li>
  *   <li>{@link model.Rack#getId <em>Id</em>}</li>
  *   <li>{@link model.Rack#getType <em>Type</em>}</li>
+ *   <li>{@link model.Rack#getRouter <em>Router</em>}</li>
  * </ul>
  * </p>
  *
@@ -46,35 +46,23 @@ public interface Rack extends EObject
 	
 	
 	/**
-	 * Returns the value of the '<em><b>Router</b></em>' reference.
+	 * Returns the value of the '<em><b>Router</b></em>' containment reference list.
+	 * The list contents are of type {@link model.RoutingComponent}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Router</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Router</em>' reference.
-	 * @see #setRouter(RoutingComponent)
+	 * @return the value of the '<em>Router</em>' containment reference list.
 	 * @see model.ModelPackage#getRack_Router()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
-	RoutingComponent getRouter();
+	EList<RoutingComponent> getRouter();
 	
 	
 	
-	/**
-	 * Sets the value of the '{@link model.Rack#getRouter <em>Router</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Router</em>' reference.
-	 * @see #getRouter()
-	 * @generated
-	 */
-	void setRouter(RoutingComponent value);
-
-
-
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->

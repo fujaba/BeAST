@@ -31,9 +31,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link model.impl.RackImpl#getServer <em>Server</em>}</li>
- *   <li>{@link model.impl.RackImpl#getRouter <em>Router</em>}</li>
  *   <li>{@link model.impl.RackImpl#getId <em>Id</em>}</li>
  *   <li>{@link model.impl.RackImpl#getType <em>Type</em>}</li>
+ *   <li>{@link model.impl.RackImpl#getRouter <em>Router</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,18 +50,6 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	 * @ordered
 	 */
 	protected EList<Server>		server;
-	
-	/**
-	 * The cached value of the '{@link #getRouter() <em>Router</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRouter()
-	 * @generated
-	 * @ordered
-	 */
-	protected RoutingComponent	router;
-	
-	
 	
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -104,6 +92,16 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	 * @ordered
 	 */
 	protected String type = TYPE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getRouter() <em>Router</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRouter()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<RoutingComponent>	router;
 
 
 
@@ -153,46 +151,13 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RoutingComponent getRouter()
+	public EList<RoutingComponent> getRouter()
 	{
-		if (router != null && router.eIsProxy())
+		if (router == null)
 		{
-			InternalEObject oldRouter = (InternalEObject)router;
-			router = (RoutingComponent)eResolveProxy(oldRouter);
-			if (router != oldRouter)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.RACK__ROUTER, oldRouter, router));
-			}
+			router = new EObjectContainmentEList<RoutingComponent>(RoutingComponent.class, this, ModelPackage.RACK__ROUTER);
 		}
 		return router;
-	}
-	
-	
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RoutingComponent basicGetRouter()
-	{
-		return router;
-	}
-	
-	
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setRouter(RoutingComponent newRouter)
-	{
-		RoutingComponent oldRouter = router;
-		router = newRouter;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.RACK__ROUTER, oldRouter, router));
 	}
 	
 	
@@ -263,6 +228,8 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 		{
 			case ModelPackage.RACK__SERVER:
 				return ((InternalEList<?>)getServer()).basicRemove(otherEnd, msgs);
+			case ModelPackage.RACK__ROUTER:
+				return ((InternalEList<?>)getRouter()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -281,13 +248,12 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 		{
 			case ModelPackage.RACK__SERVER:
 				return getServer();
-			case ModelPackage.RACK__ROUTER:
-				if (resolve) return getRouter();
-				return basicGetRouter();
 			case ModelPackage.RACK__ID:
 				return getId();
 			case ModelPackage.RACK__TYPE:
 				return getType();
+			case ModelPackage.RACK__ROUTER:
+				return getRouter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -309,14 +275,15 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 				getServer().clear();
 				getServer().addAll((Collection<? extends Server>)newValue);
 				return;
-			case ModelPackage.RACK__ROUTER:
-				setRouter((RoutingComponent)newValue);
-				return;
 			case ModelPackage.RACK__ID:
 				setId((Integer)newValue);
 				return;
 			case ModelPackage.RACK__TYPE:
 				setType((String)newValue);
+				return;
+			case ModelPackage.RACK__ROUTER:
+				getRouter().clear();
+				getRouter().addAll((Collection<? extends RoutingComponent>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -337,14 +304,14 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 			case ModelPackage.RACK__SERVER:
 				getServer().clear();
 				return;
-			case ModelPackage.RACK__ROUTER:
-				setRouter((RoutingComponent)null);
-				return;
 			case ModelPackage.RACK__ID:
 				setId(ID_EDEFAULT);
 				return;
 			case ModelPackage.RACK__TYPE:
 				setType(TYPE_EDEFAULT);
+				return;
+			case ModelPackage.RACK__ROUTER:
+				getRouter().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -364,12 +331,12 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 		{
 			case ModelPackage.RACK__SERVER:
 				return server != null && !server.isEmpty();
-			case ModelPackage.RACK__ROUTER:
-				return router != null;
 			case ModelPackage.RACK__ID:
 				return id != ID_EDEFAULT;
 			case ModelPackage.RACK__TYPE:
 				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+			case ModelPackage.RACK__ROUTER:
+				return router != null && !router.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
