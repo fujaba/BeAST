@@ -1,11 +1,14 @@
 package de.uks.beast.server.akka;
 
+import java.util.ArrayList;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import akka.actor.UntypedActor;
 import de.uks.beast.model.Hardware;
 import de.uks.beast.server.BeastService;
+import de.uks.beast.server.environment.model.Configuration;
 
 public class ReceiveActor extends UntypedActor {
 
@@ -26,8 +29,8 @@ public class ReceiveActor extends UntypedActor {
 
 			if (service.getEnvironment().isAuthenticated()) {
 				logger.info("Received new hardware configuration");
-				service.getEnvironment().createHardwareDefiniton((Hardware) obj);
-				service.getEnvironment().startVirtualMachine();
+				ArrayList<? extends Configuration> configs = service.getEnvironment().createHardwareDefiniton((Hardware) obj);
+				service.getEnvironment().startVirtualMachine(configs);
 			} else {
 				// handle unauthenticated failures
 			}
