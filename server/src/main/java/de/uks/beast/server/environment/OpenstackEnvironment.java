@@ -26,6 +26,7 @@ public class OpenstackEnvironment implements BeastEnvironment {
 	
 	@Override
 	public boolean authenticate() {
+		logger.info("Authentication against keystone ...");
 		try {
 			this.os = OSFactory.builder()
 					.endpoint(service.get("keystone"))
@@ -34,38 +35,39 @@ public class OpenstackEnvironment implements BeastEnvironment {
 					.authenticate();
 		} catch (Exception e) {
 			if (e.getMessage().equals("java.net.ConnectException: Connection refused")) {
-//				LoggingUtil.fatal(e, "Could not connect to keystone authentication service. Exiting.", logger);
 				logger.error("Could not connect to keystone", e);
 			}
 			return false;
 		}
 		
+		logger.info("Authenthication successfull");
 		return true;
 	}
 
 	public void createHardwareDefiniton(Hardware hwconf) {
-		List<? extends Flavor> list = os.compute().flavors().list();
-		
 		for (Server server : hwconf.getServers()) {
+			List<? extends Flavor> list = os.compute().flavors().list();
+			
 			boolean flavorExists = false;
 			for (Flavor flavor : list) {
-				if (flavor.getName().equals(server.getFlavor())) {
+				if (flavor.getName().equals("b1." + server.getFlavor())) {
 					flavorExists = true;
 				}
 			}
 			if (!flavorExists) {
 				Flavor f = Builders.flavor()
-						.name(server.getFlavor())
+						.name("b1." + server.getFlavor())
 						.ram(server.getRam())
 						.vcpus(server.getCpu())
 						.disk(server.getDiskSpace())
-						.rxtxFactor(1.2f)
+						.rxtxFactor(1.0f)
 						.build();
 				os.compute().flavors().create(f);
+				logger.info("Created new Flavor with name b1." + server.getFlavor()
+						+ " (" + f.getId() + ")");
 			}
 		}
 		
-		System.out.println(service);
 	}
 
 	public void startVirtualMachine() {

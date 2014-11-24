@@ -29,6 +29,7 @@ public class BeastService implements Daemon {
 	
 	private void startService() {
 		this.props = new Properties();
+		
 		InputStream in = BeastService.class.getResourceAsStream("/config.properties");
 		
 		try {
@@ -40,7 +41,7 @@ public class BeastService implements Daemon {
 		setEnvironments();
 		this.environment = environments.get(get("environment"));
 		
-		AkkaServer server = new AkkaServer(this, Integer.parseInt(get("port")));
+		AkkaServer server = new AkkaServer(this, get("publicip"), Integer.parseInt(get("port")));
 		server.start();
 	}
 
