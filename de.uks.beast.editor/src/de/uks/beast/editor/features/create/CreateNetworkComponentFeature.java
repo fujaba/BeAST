@@ -14,7 +14,6 @@ public class CreateNetworkComponentFeature extends AbstractCreateFeature
 	public CreateNetworkComponentFeature(final IFeatureProvider fp, final String name, final String description)
 	{
 		super(fp, name, description);
-		// TODO Auto-generated constructor stub
 	}
 	
 	
