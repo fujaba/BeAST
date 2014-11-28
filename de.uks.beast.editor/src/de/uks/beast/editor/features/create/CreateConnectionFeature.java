@@ -1,7 +1,5 @@
 package de.uks.beast.editor.features.create;
 
-import java.util.Iterator;
-
 import model.Network;
 import model.RoutingComponent;
 import model.Server;
@@ -31,12 +29,12 @@ public class CreateConnectionFeature extends AbstractCreateConnectionFeature {
 
 		if (source instanceof Server && target instanceof RoutingComponent) {
 			return true;
-		} else if (target instanceof Server
-				&& source instanceof RoutingComponent) {
+		} else if (target instanceof Server && source instanceof RoutingComponent) {
+				
 			return true;
-		} else if (source instanceof Server && target instanceof Network) {
+		} else if (source instanceof RoutingComponent && target instanceof Network) {
 			return true;
-		} else if (target instanceof Server && source instanceof Network) {
+		} else if (target instanceof RoutingComponent && source instanceof Network) {
 			return true;
 		}
 
@@ -85,7 +83,8 @@ public class CreateConnectionFeature extends AbstractCreateConnectionFeature {
 	public boolean canStartConnection(final ICreateConnectionContext context) {
 		final Object source = getBusinessObjectForPictogramElement(context
 				.getSourcePictogramElement());
-		if (source instanceof Server || source instanceof RoutingComponent || source instanceof Network) {
+		if (source instanceof Server || source instanceof RoutingComponent || source instanceof Network) 
+		{
 			return true;
 		}
 
