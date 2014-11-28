@@ -9,14 +9,15 @@ public class AkkaUtil {
 				"} " + "\n" + 
 				"remote {"  + "\n" + 
 					"netty.tcp { "  + "\n" + 
-						"hostname = \"127.0.0.1\" " + "\n" + 
+						"hostname = \"<IP>\" " + "\n" + 
 						"port = <PORT> " + "\n" + 
 					"} "  + "\n" + 
 				"} " + "\n" + 
 			"} " + "\n";
 	
-	public static String remoteConfig(int port) {
-		return AKKA_REMOTE_CFG.replace("<PORT>", "" + port);
+	public static String remoteConfig(String ip, int port) {
+		return AKKA_REMOTE_CFG.replace("<IP>", ip)
+							  .replace("<PORT>", "" + port);
 	}
 	
 }

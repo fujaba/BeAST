@@ -15,9 +15,9 @@ public class AkkaServer {
 	private Config cfg;
 	private BeastService service;
 	
-	public AkkaServer(BeastService service, int port) {
+	public AkkaServer(BeastService service, String ip, int port) {
 		this.service = service;
-		this.cfg = ConfigFactory.parseString(AkkaUtil.remoteConfig(port));
+		this.cfg = ConfigFactory.parseString(AkkaUtil.remoteConfig(ip, port));
 	}
 	
 	public ActorSystem getActorSystem() {
