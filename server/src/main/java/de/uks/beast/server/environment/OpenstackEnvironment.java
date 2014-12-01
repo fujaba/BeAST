@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import de.uks.beast.model.Network;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openstack4j.api.Builders;
@@ -50,7 +51,8 @@ public class OpenstackEnvironment implements BeastEnvironment {
 
 	public ArrayList<? extends Configuration> createHardwareDefiniton(Hardware hwconf) {
 		ArrayList<CustomFlavor> flavors = new ArrayList<CustomFlavor>();
-		
+
+		// Collect all server definitions, to create their instances
 		for (de.uks.beast.model.Server server : hwconf.getServers()) {
 			List<? extends Flavor> list = os.compute().flavors().list();
 			
@@ -90,6 +92,30 @@ public class OpenstackEnvironment implements BeastEnvironment {
 		
 		return flavors;
 	}
+
+
+	//
+	// Create Network
+	public ArrayList<Network> createNetwork(String networkId) {
+		return new ArrayList<Network>();
+	}
+
+	//
+	// Get Network by ID
+	public org.openstack4j.model.network.Network getNetworkById(String networkId) {
+		return os.networking().network().get(networkId);
+	}
+
+	//
+	// Delete Network
+	public boolean deleteNetwork(String networkId) {
+		boolean status = false;
+		if(networkId != null && !networkId.isEmpty()) {
+			os.networking().network().delete(networkId);
+		}
+		return status;
+	}
+
 
 	@Override
 	public void startVirtualMachine(ArrayList<? extends Configuration> configs) {

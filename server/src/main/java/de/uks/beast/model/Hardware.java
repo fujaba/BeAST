@@ -7,12 +7,19 @@ public class Hardware implements Serializable {
 
 	private static final long serialVersionUID = 4032538762740451821L;
 
+	private ArrayList<Network> networks;
+
 	private ArrayList<Server> servers;
 	
 	public Hardware() {
 		this.servers = new ArrayList<Server>();
 	}
-	
+
+
+	//
+	// Accessors
+
+	// VM Instances
 	public ArrayList<Server> getServers() {
 		return servers;
 	}
@@ -26,5 +33,9 @@ public class Hardware implements Serializable {
 			this.servers.add(server);
 		}
 	}
-	
+
+	// Networking
+	public ArrayList<Network> getNetworks() {
+		return networks;
+	}
 }
