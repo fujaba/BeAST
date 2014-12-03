@@ -1,8 +1,6 @@
 package de.uks.beast.server.environment;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 
 import org.apache.log4j.LogManager;
@@ -65,9 +63,10 @@ public class OpenstackEnvironment implements BeastEnvironment {
 	 */
 	public List<? extends Configuration> createHardwareDefiniton(Hardware hwconf) {
 
+		//
 		// Creating Flavors
 		List<CustomFlavor> flavors = new ArrayList<>();
-//		final List<? extends Flavor> list = os.compute().flavors().list();
+		List<? extends Network> networks;
 
 		for (de.uks.beast.model.Server server : hwconf.getServers()) {
 
@@ -107,9 +106,7 @@ public class OpenstackEnvironment implements BeastEnvironment {
 
 		//
 		// Creating Networks
-		for (de.uks.beast.model.Network networks : hwconf.getNetworks()) {
-
-		}
+		networks = createNetworkFromConf(hwconf.getNetworks());
 
 		// TODO this method returns only flavors... should return the whole HW setup.
 		return flavors;
@@ -118,26 +115,29 @@ public class OpenstackEnvironment implements BeastEnvironment {
 
 	//
 	// Create Network
-	private List<? extends Network> createNetwork(de.uks.beast.model.Network networkconf) {
+	private List<? extends Network> createNetworkFromConf(List<de.uks.beast.model.Network> networkConfList) {
 
-		List<? extends Network> networks = os.networking().network().list();
+		List<? extends Network> existingNetworksList = os.networking().network().list();
+		Map<String, Network> existingNetworkMap = new HashMap<>();
 
-		for (Network n : networks) {
-			if (n.getName().equals(networkconf.getNetworkName())) {
-				logger.info("The network with provided name (" + networkconf.getNetworkName() + ") already exists.");
-				return networks;
+		for (Network n : existingNetworksList) {
+			existingNetworkMap.put(n.getName(), n);
+		}
+
+		for (de.uks.beast.model.Network n : networkConfList) {
+			if (existingNetworkMap.containsKey(n.getNetworkName())) {
+				logger.info("The network with provided name (" + n.getNetworkName() + ") already exists. Skipping.");
+			} else {
+				// creating actual network
+				// Assert: network with provided 'networkName' doesn't exist.
+				final String tenantId = os.identity().tenants().getByName(service.get("tenantName")).getId();
+				final Network network = os.networking().network().create(
+						Builders.network().name(n.getNetworkName()).tenantId(tenantId).build());
+				existingNetworkMap.put(network.getName(), network);
 			}
 		}
 
-		// Assert: network with provided 'networkName' doesn't exist.
-		final String tenantId = os.identity().tenants().getByName(service.get("tenantName")).getId();
-
-		final Network network = os.networking().network().create(
-				Builders.network().name(networkconf.getNetworkName()).tenantId(tenantId).build());
-
-//		networks.addAll(network);
-
-		return networks;
+		return new ArrayList<>(existingNetworkMap.values());
 	}
 
 	//
