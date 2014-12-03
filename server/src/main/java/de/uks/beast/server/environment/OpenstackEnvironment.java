@@ -65,17 +65,17 @@ public class OpenstackEnvironment implements BeastEnvironment {
 	 */
 	public List<? extends Configuration> createHardwareDefiniton(Hardware hwconf) {
 
+		// Creating Flavors
 		List<CustomFlavor> flavors = new ArrayList<>();
+//		final List<? extends Flavor> list = os.compute().flavors().list();
 
-		// Collect all server definitions, to create their instances
 		for (de.uks.beast.model.Server server : hwconf.getServers()) {
-			List<? extends Flavor> list = os.compute().flavors().list();
-			
+
 			//get ID
 			String flavorID = "";
 			
 			boolean flavorExists = false;
-			for (Flavor flavor : list) {
+			for (Flavor flavor : os.compute().flavors().list()) {
 				if (flavor.getName().equals("b1." + server.getFlavor())) {
 					flavorExists = true;
 					flavorID = flavor.getId();
@@ -104,20 +104,27 @@ public class OpenstackEnvironment implements BeastEnvironment {
 			}
 			flavors.add(new CustomFlavor(flavorID, server));
 		}
-		
+
+		//
+		// Creating Networks
+		for (de.uks.beast.model.Network networks : hwconf.getNetworks()) {
+
+		}
+
+		// TODO this method returns only flavors... should return the whole HW setup.
 		return flavors;
 	}
 
 
 	//
 	// Create Network
-	private List<? extends Network> createNetwork(String networkName) {
+	private List<? extends Network> createNetwork(de.uks.beast.model.Network networkconf) {
 
 		List<? extends Network> networks = os.networking().network().list();
 
 		for (Network n : networks) {
-			if (n.getName().equals(networkName)) {
-				logger.info("The network with provided name (" + networkName + ") already exists.");
+			if (n.getName().equals(networkconf.getNetworkName())) {
+				logger.info("The network with provided name (" + networkconf.getNetworkName() + ") already exists.");
 				return networks;
 			}
 		}
@@ -126,9 +133,9 @@ public class OpenstackEnvironment implements BeastEnvironment {
 		final String tenantId = os.identity().tenants().getByName(service.get("tenantName")).getId();
 
 		final Network network = os.networking().network().create(
-				Builders.network().name(networkName).tenantId(tenantId).build());
+				Builders.network().name(networkconf.getNetworkName()).tenantId(tenantId).build());
 
-		networks.addAll(network);
+//		networks.addAll(network);
 
 		return networks;
 	}

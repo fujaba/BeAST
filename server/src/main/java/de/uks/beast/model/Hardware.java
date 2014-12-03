@@ -2,24 +2,25 @@ package de.uks.beast.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Hardware implements Serializable {
 
 	private static final long serialVersionUID = 4032538762740451821L;
 
-	private ArrayList<Network> networks;
-
 	private ArrayList<Server> servers;
-	
+
+	private List<Network> networks;
+
 	public Hardware() {
-		this.servers = new ArrayList<Server>();
+		this.servers = new ArrayList<>();
+		this.networks = new ArrayList<>();
 	}
 
 
 	//
 	// Accessors
 
-	// VM Instances
 	public ArrayList<Server> getServers() {
 		return servers;
 	}
@@ -35,7 +36,7 @@ public class Hardware implements Serializable {
 	}
 
 	// Networking
-	public ArrayList<Network> getNetworks() {
+	public List<Network> getNetworks() {
 		return networks;
 	}
 }
