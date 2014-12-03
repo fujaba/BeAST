@@ -11,6 +11,7 @@ public class Network {
     // Network
     private String networkName;
     private String networkId;
+    private boolean adminStateUp;
 
     //
     // Subnet
@@ -27,6 +28,9 @@ public class Network {
     // Port
     private String portName;
     private String portId;
+
+    //
+    // Router
 
 
     //
@@ -48,15 +52,11 @@ public class Network {
         return networkName;
     }
 
-    public void setNetworkName(String networkName) {
-        this.networkName = networkName;
-    }
-
     public String getNetworkId() {
         return networkId;
     }
 
-    public void setNetworkId(String networkId) {
-        this.networkId = networkId;
+    public void setNetworkName(String networkName) {
+        this.networkName = networkName;
     }
 }

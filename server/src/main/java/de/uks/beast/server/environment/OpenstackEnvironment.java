@@ -11,6 +11,7 @@ import org.openstack4j.api.Builders;
 import org.openstack4j.api.OSClient;
 import org.openstack4j.model.compute.Flavor;
 import org.openstack4j.model.compute.ServerCreate;
+import org.openstack4j.model.identity.Tenant;
 import org.openstack4j.openstack.OSFactory;
 
 import de.uks.beast.model.Hardware;
@@ -24,11 +25,19 @@ public class OpenstackEnvironment implements BeastEnvironment {
 	
 	private OSClient os;
 	private BeastService service;
+	private Tenant tenant;
 
 	public OpenstackEnvironment(BeastService service) {
 		this.service = service;
 	}
-	
+
+
+	/**
+	 * Authenticate
+	 * Authorized OSClient allows you to invoke Compute, Identity, Neutron operations.
+	 * Version 2 Authentication.
+	 * @return
+	 */
 	@Override
 	public boolean authenticate() {
 		logger.info("Authentication against keystone ...");
@@ -36,7 +45,7 @@ public class OpenstackEnvironment implements BeastEnvironment {
 			this.os = OSFactory.builder()
 					.endpoint(service.get("keystone"))
 					.credentials(service.get("admin"), service.get("password"))
-					.tenantName(service.get("tenant"))
+					.tenantName(service.get("tenantName"))
 					.authenticate();
 		} catch (Exception e) {
 			if (e.getMessage().equals("java.net.ConnectException: Connection refused")) {
@@ -49,6 +58,11 @@ public class OpenstackEnvironment implements BeastEnvironment {
 		return true;
 	}
 
+	/**
+	 * Setup the hardware
+	 * @param hwconf
+	 * @return
+	 */
 	public ArrayList<? extends Configuration> createHardwareDefiniton(Hardware hwconf) {
 		ArrayList<CustomFlavor> flavors = new ArrayList<CustomFlavor>();
 
@@ -96,7 +110,24 @@ public class OpenstackEnvironment implements BeastEnvironment {
 
 	//
 	// Create Network
-	public ArrayList<Network> createNetwork(String networkId) {
+	public List<Network> createNetwork(String networkName) {
+
+		List<? extends org.openstack4j.model.network.Network> networks = os.networking().network().list();
+
+		for (org.openstack4j.model.network.Network n : networks) {
+			if (n.getName().equals(networkName)) {
+				logger.info("The network with this name (" + networkName + ") already exists.");
+				break;
+			}
+		}
+
+		final String tenantId = os.identity().tenants().getByName(service.get("tenantName")).getId();
+
+		org.openstack4j.model.network.Network network = os.networking().network()
+				.create(Builders.network().name(networkName).tenantId(tenantId).build());
+
+//		networks.add(network);
+
 		return new ArrayList<Network>();
 	}
 
@@ -116,15 +147,23 @@ public class OpenstackEnvironment implements BeastEnvironment {
 		return status;
 	}
 
+	//
+	// Check Network Existence
+	private void networkIsAlreadyCreated(String networkName) {
+		// TODO shoud return tt/ff wether the network with the 'networkName' already created.
+	}
+
 
 	@Override
 	public void startVirtualMachine(ArrayList<? extends Configuration> configs) {
 		for (Configuration configuration : configs) {
 			CustomFlavor cf = (CustomFlavor) configuration;
 			ServerCreate sc = Builders.server()
-					.name(cf.getHost()).flavor(cf.getId())
+					.name(cf.getHost())
+					.flavor(cf.getId())
 					.image(service.get("ubuntu-image"))
-					.networks(new ArrayList<String>(Arrays.asList(service.get("network-id")))).build();
+					.networks(new ArrayList<String>(Arrays.asList(service.get("network-id"))))
+					.build();
 			os.compute().servers().boot(sc);
 			logger.info("Starting VM with hostname " + cf.getHost() + " and flavor " + cf.getId() + " ...");
 		}
