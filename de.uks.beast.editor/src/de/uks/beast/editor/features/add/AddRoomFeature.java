@@ -40,6 +40,8 @@ public class AddRoomFeature extends AbstractAddShapeFeature
 	@Override
 	public boolean canAdd(IAddContext context)
 	{
+		System.out.println("########## " + getDiagram().getDiagramTypeId());
+		
 		if (context.getNewObject() instanceof Room)
 		{
 			if (context.getTargetContainer() instanceof Diagram)

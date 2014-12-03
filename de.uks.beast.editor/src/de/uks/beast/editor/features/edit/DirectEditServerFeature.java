@@ -1,4 +1,4 @@
-package de.uks.beast.editor.features;
+package de.uks.beast.editor.features.edit;
 
 import model.Server;
 

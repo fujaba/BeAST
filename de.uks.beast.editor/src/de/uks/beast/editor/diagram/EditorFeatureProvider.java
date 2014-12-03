@@ -22,7 +22,6 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
-import de.uks.beast.editor.features.DirectEditServerFeature;
 import de.uks.beast.editor.features.LayoutDomainObjectFeature;
 import de.uks.beast.editor.features.add.AddConnectionFeature;
 import de.uks.beast.editor.features.add.AddNetworkComponentFeature;
@@ -40,6 +39,7 @@ import de.uks.beast.editor.features.create.CreateRoutingComponentFeature;
 import de.uks.beast.editor.features.create.CreateServerFeature;
 import de.uks.beast.editor.features.create.CreateSwitchFeature;
 import de.uks.beast.editor.features.create.CreaterRouterFeature;
+import de.uks.beast.editor.features.edit.DirectEditServerFeature;
 
 public class EditorFeatureProvider extends DefaultFeatureProvider
 {
