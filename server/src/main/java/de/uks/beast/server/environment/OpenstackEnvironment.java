@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import de.uks.beast.model.Network;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openstack4j.api.Builders;
 import org.openstack4j.api.OSClient;
 import org.openstack4j.model.compute.Flavor;
 import org.openstack4j.model.compute.ServerCreate;
-import org.openstack4j.model.identity.Tenant;
+import org.openstack4j.model.network.Network;
 import org.openstack4j.openstack.OSFactory;
 
 import de.uks.beast.model.Hardware;
@@ -25,7 +25,6 @@ public class OpenstackEnvironment implements BeastEnvironment {
 	
 	private OSClient os;
 	private BeastService service;
-	private Tenant tenant;
 
 	public OpenstackEnvironment(BeastService service) {
 		this.service = service;
@@ -58,13 +57,15 @@ public class OpenstackEnvironment implements BeastEnvironment {
 		return true;
 	}
 
+
 	/**
 	 * Setup the hardware
 	 * @param hwconf
 	 * @return
 	 */
-	public ArrayList<? extends Configuration> createHardwareDefiniton(Hardware hwconf) {
-		ArrayList<CustomFlavor> flavors = new ArrayList<CustomFlavor>();
+	public List<? extends Configuration> createHardwareDefiniton(Hardware hwconf) {
+
+		List<CustomFlavor> flavors = new ArrayList<>();
 
 		// Collect all server definitions, to create their instances
 		for (de.uks.beast.model.Server server : hwconf.getServers()) {
@@ -110,30 +111,31 @@ public class OpenstackEnvironment implements BeastEnvironment {
 
 	//
 	// Create Network
-	public List<Network> createNetwork(String networkName) {
+	private List<? extends Network> createNetwork(String networkName) {
 
-		List<? extends org.openstack4j.model.network.Network> networks = os.networking().network().list();
+		List<? extends Network> networks = os.networking().network().list();
 
-		for (org.openstack4j.model.network.Network n : networks) {
+		for (Network n : networks) {
 			if (n.getName().equals(networkName)) {
-				logger.info("The network with this name (" + networkName + ") already exists.");
-				break;
+				logger.info("The network with provided name (" + networkName + ") already exists.");
+				return networks;
 			}
 		}
 
+		// Assert: network with provided 'networkName' doesn't exist.
 		final String tenantId = os.identity().tenants().getByName(service.get("tenantName")).getId();
 
-		org.openstack4j.model.network.Network network = os.networking().network()
-				.create(Builders.network().name(networkName).tenantId(tenantId).build());
+		final Network network = os.networking().network().create(
+				Builders.network().name(networkName).tenantId(tenantId).build());
 
-//		networks.add(network);
+		networks.addAll(network);
 
-		return new ArrayList<Network>();
+		return networks;
 	}
 
 	//
 	// Get Network by ID
-	public org.openstack4j.model.network.Network getNetworkById(String networkId) {
+	public Network getNetworkById(String networkId) {
 		return os.networking().network().get(networkId);
 	}
 
@@ -155,7 +157,7 @@ public class OpenstackEnvironment implements BeastEnvironment {
 
 
 	@Override
-	public void startVirtualMachine(ArrayList<? extends Configuration> configs) {
+	public void startVirtualMachine(List<? extends Configuration> configs) {
 		for (Configuration configuration : configs) {
 			CustomFlavor cf = (CustomFlavor) configuration;
 			ServerCreate sc = Builders.server()
