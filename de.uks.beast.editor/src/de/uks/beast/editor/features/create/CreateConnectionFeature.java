@@ -1,5 +1,6 @@
 package de.uks.beast.editor.features.create;
 
+import model.Network;
 import model.RoutingComponent;
 import model.Server;
 
@@ -32,11 +33,20 @@ public class CreateConnectionFeature extends AbstractCreateConnectionFeature
 		{
 			return true;
 		}
-		
-		if (target instanceof Server && source instanceof RoutingComponent)
+		else if (target instanceof Server && source instanceof RoutingComponent)
+		{
+			
+			return true;
+		}
+		else if (source instanceof RoutingComponent && target instanceof Network)
 		{
 			return true;
 		}
+		else if (target instanceof RoutingComponent && source instanceof Network)
+		{
+			return true;
+		}
+		
 		return false;
 	}
 	
@@ -55,13 +65,21 @@ public class CreateConnectionFeature extends AbstractCreateConnectionFeature
 			final AddConnectionContext addContext = new AddConnectionContext(context.getSourceAnchor(), context.getTargetAnchor());
 			addContext.setNewObject(null);
 			
-			if (source instanceof Server)
+			if (source instanceof Server && target instanceof RoutingComponent)
 			{
 				((Server) source).getRoutingComponents().add((RoutingComponent) target);
 			}
-			else if (source instanceof RoutingComponent)
+			else if (source instanceof RoutingComponent && target instanceof Server)
 			{
 				((RoutingComponent) source).getServer().add((Server) target);
+			}
+			else if (source instanceof RoutingComponent && target instanceof Network)
+			{
+				((RoutingComponent) source).setNetwork((Network) target);
+			}
+			else if (source instanceof Network && target instanceof RoutingComponent)
+			{
+				((Network) source).setRouter((RoutingComponent) target);
 			}
 			
 			newConnection = (Connection) getFeatureProvider().addIfPossible(addContext);
@@ -76,7 +94,7 @@ public class CreateConnectionFeature extends AbstractCreateConnectionFeature
 	public boolean canStartConnection(final ICreateConnectionContext context)
 	{
 		final Object source = getBusinessObjectForPictogramElement(context.getSourcePictogramElement());
-		if (source instanceof Server || source instanceof RoutingComponent)
+		if (source instanceof Server || source instanceof RoutingComponent || source instanceof Network)
 		{
 			return true;
 		}

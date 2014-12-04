@@ -33,7 +33,7 @@ public class CreateServerFeature extends AbstractCreateFeature
 		//getDiagram().eResource().getContents().add(server);
 		final Rack rack = (Rack) getBusinessObjectForPictogramElement(context.getTargetContainer());
 		rack.getServer().add(server);
-		server.setType("Server");;
+		server.setType("Server");
 		addGraphicalRepresentation(context, server);
 		getFeatureProvider().getDirectEditingInfo().setActive(true);
 		

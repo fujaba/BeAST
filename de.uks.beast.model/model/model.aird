@@ -73,7 +73,7 @@
               <styles xmi:type="notation:FilteringStyle" xmi:id="_IzpDs161EeS-SYGUQKm2qA"/>
             </children>
             <styles xmi:type="notation:ShapeStyle" xmi:id="_IzocoV61EeS-SYGUQKm2qA" fontName="Ubuntu" fontHeight="8"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Izocol61EeS-SYGUQKm2qA" x="770" y="220" width="152" height="100"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Izocol61EeS-SYGUQKm2qA" x="735" y="220" width="152" height="100"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_S7kV8F61EeS-SYGUQKm2qA" type="2003" element="_S7ak8F61EeS-SYGUQKm2qA">
             <children xmi:type="notation:Node" xmi:id="_S7k9AF61EeS-SYGUQKm2qA" type="5007"/>
@@ -82,7 +82,7 @@
               <styles xmi:type="notation:FilteringStyle" xmi:id="_S7k9A161EeS-SYGUQKm2qA"/>
             </children>
             <styles xmi:type="notation:ShapeStyle" xmi:id="_S7kV8V61EeS-SYGUQKm2qA" fontName="Ubuntu" fontHeight="8"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_S7kV8l61EeS-SYGUQKm2qA" x="405" y="520" width="120" height="55"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_S7kV8l61EeS-SYGUQKm2qA" x="395" y="410" width="120" height="55"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_aLkY0F61EeS-SYGUQKm2qA" type="2003" element="_aLW9cF61EeS-SYGUQKm2qA">
             <children xmi:type="notation:Node" xmi:id="_aLk_4F61EeS-SYGUQKm2qA" type="5007"/>
@@ -100,7 +100,7 @@
               <styles xmi:type="notation:FilteringStyle" xmi:id="_aLk_4161EeS-SYGUQKm2qA"/>
             </children>
             <styles xmi:type="notation:ShapeStyle" xmi:id="_aLkY0V61EeS-SYGUQKm2qA" fontName="Ubuntu" fontHeight="8"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_aLkY0l61EeS-SYGUQKm2qA" x="460" y="335" width="175" height="100"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_aLkY0l61EeS-SYGUQKm2qA" x="445" y="265" width="175" height="100"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_noTDsF61EeS-SYGUQKm2qA" type="2003" element="_noG2cF61EeS-SYGUQKm2qA">
             <children xmi:type="notation:Node" xmi:id="_noTqwF61EeS-SYGUQKm2qA" type="5007"/>
@@ -109,7 +109,7 @@
               <styles xmi:type="notation:FilteringStyle" xmi:id="_noTqw161EeS-SYGUQKm2qA"/>
             </children>
             <styles xmi:type="notation:ShapeStyle" xmi:id="_noTDsV61EeS-SYGUQKm2qA" fontName="Ubuntu" fontHeight="8"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_noTDsl61EeS-SYGUQKm2qA" x="560" y="516" width="120" height="51"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_noTDsl61EeS-SYGUQKm2qA" x="555" y="410" width="120" height="51"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_sO-YoGtSEeSIyPsQdbNXbQ" type="2003" element="_sOLHYGtSEeSIyPsQdbNXbQ">
             <children xmi:type="notation:Node" xmi:id="_sPGUcGtSEeSIyPsQdbNXbQ" type="5007"/>
@@ -662,7 +662,7 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
         </ownedElements>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_gBxSkGtrEeS4AcYc6d35Yg" name="type : EString" tooltipText="&#xA;ERROR : The required feature 'eAttributeType' of 'org.eclipse.emf.ecore.impl.EAttributeImpl@596cbc79{platform:/resource/de.uks.beast.model/model/model.ecore#//Room/newAttribute}' must be set&#xA;ERROR : The typed element must have a type">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_gBxSkGtrEeS4AcYc6d35Yg" name="type : EString" tooltipText="">
           <target xmi:type="ecore:EAttribute" href="model.ecore#//Room/type"/>
           <semanticElements xmi:type="ecore:EAttribute" href="model.ecore#//Room/type"/>
           <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_hnkLsGtrEeS4AcYc6d35Yg" labelAlignment="LEFT">

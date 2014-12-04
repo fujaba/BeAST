@@ -33,7 +33,6 @@ public class AddNetworkComponentFeature extends AbstractAddFeature
 	public AddNetworkComponentFeature(final IFeatureProvider fp)
 	{
 		super(fp);
-		// TODO Auto-generated constructor stub
 	}
 	
 	

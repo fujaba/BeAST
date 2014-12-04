@@ -1,25 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-
-   <extension
+	<extension
          point="org.eclipse.graphiti.ui.diagramTypes">
-      <diagramType
-            name="Editor Diagram Type"
-            type="srvconfig"
-            id="de.uks.beast.editor.editorDiagramType">
-      </diagramType>
-   </extension>
-   <extension
+		<diagramType name="Editor Diagram Type" type="srvconfig" id="de.uks.beast.editor.editorDiagramType">
+		</diagramType>
+	</extension>
+	<extension
          point="org.eclipse.graphiti.ui.diagramTypeProviders">
-      <diagramTypeProvider
-            name="Editor Diagram Type Provider"
-            class="de.uks.beast.editor.diagram.EditorDiagramTypeProvider"
-            id="de.uks.beast.editor.editorDiagramTypeProvider">
-         <diagramType
+		<diagramTypeProvider name="Editor Diagram Type Provider" class="de.uks.beast.editor.diagram.EditorDiagramTypeProvider"
+			id="de.uks.beast.editor.editorDiagramTypeProvider">
+			<diagramType
                id="de.uks.beast.editor.editorDiagramType">
-         </diagramType>
-      </diagramTypeProvider>
-   </extension>
-
+			</diagramType>
+		</diagramTypeProvider>
+	</extension>
+	
+	
+	<extension 
+		point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+		<propertyContributor contributorId="srvconfig.PropertyContributor">
+			<propertyCategory category="Graphiti">
+			</propertyCategory>
+		</propertyContributor>
+	</extension>
+	
+	<extension
+      point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+		<propertyTabs
+          contributorId="srvconfig.PropertyContributor">
+			<propertyTab category="Graphiti" id="graphiti.main.tab" label="Main">
+			</propertyTab>
+		</propertyTabs>
+	</extension>
+	
+	<extension 
+		point="org.eclipse.ui.views.properties.tabbed.propertySections">
+		<propertySections
+          contributorId="srvconfig.PropertyContributor">
+			<propertySection class="de.uks.beast.editor.properties.ServerPropertySection"
+				filter="de.uks.beast.editor.properties.PropertyFilter"
+				id="graphiti.main.tab.emfclass" tab="graphiti.main.tab">
+			</propertySection>
+		</propertySections>
+	</extension>
 </plugin>
