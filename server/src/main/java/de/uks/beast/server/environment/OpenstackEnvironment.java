@@ -1,8 +1,9 @@
 package de.uks.beast.server.environment;
 
-import java.util.*;
-
-
+import de.uks.beast.model.Hardware;
+import de.uks.beast.server.BeastService;
+import de.uks.beast.server.environment.model.Configuration;
+import de.uks.beast.server.environment.model.CustomFlavor;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openstack4j.api.Builders;
@@ -12,17 +13,14 @@ import org.openstack4j.model.compute.ServerCreate;
 import org.openstack4j.model.network.Network;
 import org.openstack4j.openstack.OSFactory;
 
-import de.uks.beast.model.Hardware;
-import de.uks.beast.server.BeastService;
-import de.uks.beast.server.environment.model.Configuration;
-import de.uks.beast.server.environment.model.CustomFlavor;
+import java.util.*;
 
 public class OpenstackEnvironment implements BeastEnvironment {
 
-	private static Logger logger = LogManager.getLogger(OpenstackEnvironment.class); 
+	private static final Logger logger = LogManager.getLogger(OpenstackEnvironment.class);
 	
 	private OSClient os;
-	private BeastService service;
+	private final BeastService service;
 
 	public OpenstackEnvironment(BeastService service) {
 		this.service = service;
@@ -152,6 +150,7 @@ public class OpenstackEnvironment implements BeastEnvironment {
 		boolean status = false;
 		if(networkId != null && !networkId.isEmpty()) {
 			os.networking().network().delete(networkId);
+			status = true;
 		}
 		return status;
 	}
@@ -171,7 +170,7 @@ public class OpenstackEnvironment implements BeastEnvironment {
 					.name(cf.getHost())
 					.flavor(cf.getId())
 					.image(service.get("ubuntu-image"))
-					.networks(new ArrayList<String>(Arrays.asList(service.get("network-id"))))
+					.networks(new ArrayList<>(Arrays.asList(service.get("network-id"))))
 					.build();
 			os.compute().servers().boot(sc);
 			logger.info("Starting VM with hostname " + cf.getHost() + " and flavor " + cf.getId() + " ...");
