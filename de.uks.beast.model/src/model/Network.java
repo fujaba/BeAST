@@ -2,6 +2,7 @@
  */
 package model;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -12,12 +13,14 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link model.Network#getRange <em>Range</em>}</li>
+ *   <li>{@link model.Network#getIp <em>Ip</em>}</li>
  *   <li>{@link model.Network#getSubnetmask <em>Subnetmask</em>}</li>
  *   <li>{@link model.Network#getGateway <em>Gateway</em>}</li>
  *   <li>{@link model.Network#getDns <em>Dns</em>}</li>
  *   <li>{@link model.Network#getRouter <em>Router</em>}</li>
- *   <li>{@link model.Network#getType <em>Type</em>}</li>
+ *   <li>{@link model.Network#getId <em>Id</em>}</li>
+ *   <li>{@link model.Network#getName <em>Name</em>}</li>
+ *   <li>{@link model.Network#getServer <em>Server</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,35 +31,35 @@ import org.eclipse.emf.ecore.EObject;
 public interface Network extends EObject
 {
 	/**
-	 * Returns the value of the '<em><b>Range</b></em>' attribute.
+	 * Returns the value of the '<em><b>Ip</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Range</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Ip</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Range</em>' attribute.
-	 * @see #setRange(String)
-	 * @see model.ModelPackage#getNetwork_Range()
+	 * @return the value of the '<em>Ip</em>' attribute.
+	 * @see #setIp(String)
+	 * @see model.ModelPackage#getNetwork_Ip()
 	 * @model
 	 * @generated
 	 */
-	String getRange();
-	
-	
-	
+	String getIp();
+
+
+
 	/**
-	 * Sets the value of the '{@link model.Network#getRange <em>Range</em>}' attribute.
+	 * Sets the value of the '{@link model.Network#getIp <em>Ip</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Range</em>' attribute.
-	 * @see #getRange()
+	 * @param value the new value of the '<em>Ip</em>' attribute.
+	 * @see #getIp()
 	 * @generated
 	 */
-	void setRange(String value);
-	
-	
-	
+	void setIp(String value);
+
+
+
 	/**
 	 * Returns the value of the '<em><b>Subnetmask</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -148,63 +151,101 @@ public interface Network extends EObject
 	
 	
 	/**
-	 * Returns the value of the '<em><b>Router</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link model.RoutingComponent#getNetwork <em>Network</em>}'.
+	 * Returns the value of the '<em><b>Server</b></em>' reference list.
+	 * The list contents are of type {@link model.Server}.
+	 * It is bidirectional and its opposite is '{@link model.Server#getNetwork <em>Network</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Router</em>' reference isn't clear,
+	 * If the meaning of the '<em>Server</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Router</em>' reference.
-	 * @see #setRouter(RoutingComponent)
-	 * @see model.ModelPackage#getNetwork_Router()
-	 * @see model.RoutingComponent#getNetwork
+	 * @return the value of the '<em>Server</em>' reference list.
+	 * @see model.ModelPackage#getNetwork_Server()
+	 * @see model.Server#getNetwork
 	 * @model opposite="network"
 	 * @generated
 	 */
-	RoutingComponent getRouter();
-	
-	
-	
-	/**
-	 * Sets the value of the '{@link model.Network#getRouter <em>Router</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Router</em>' reference.
-	 * @see #getRouter()
-	 * @generated
-	 */
-	void setRouter(RoutingComponent value);
+	EList<Server> getServer();
 
 
 
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * Returns the value of the '<em><b>Router</b></em>' reference list.
+	 * The list contents are of type {@link model.Router}.
+	 * It is bidirectional and its opposite is '{@link model.Router#getNetwork <em>Network</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Router</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' attribute.
-	 * @see #setType(String)
-	 * @see model.ModelPackage#getNetwork_Type()
-	 * @model
+	 * @return the value of the '<em>Router</em>' reference list.
+	 * @see model.ModelPackage#getNetwork_Router()
+	 * @see model.Router#getNetwork
+	 * @model opposite="network" required="true"
 	 * @generated
 	 */
-	String getType();
+	EList<Router> getRouter();
 
 
 
 	/**
-	 * Sets the value of the '{@link model.Network#getType <em>Type</em>}' attribute.
+	 * Returns the value of the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' attribute.
-	 * @see #getType()
+	 * @return the value of the '<em>Id</em>' attribute.
+	 * @see #setId(String)
+	 * @see model.ModelPackage#getNetwork_Id()
+	 * @model
 	 * @generated
 	 */
-	void setType(String value);
+	String getId();
+
+
+
+	/**
+	 * Sets the value of the '{@link model.Network#getId <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Id</em>' attribute.
+	 * @see #getId()
+	 * @generated
+	 */
+	void setId(String value);
+
+
+
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see model.ModelPackage#getNetwork_Name()
+	 * @model
+	 * @generated
+	 */
+	String getName();
+
+
+
+	/**
+	 * Sets the value of the '{@link model.Network#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
 	
 } // Network

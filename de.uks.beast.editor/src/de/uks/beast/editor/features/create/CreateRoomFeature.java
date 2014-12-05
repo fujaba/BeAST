@@ -31,7 +31,6 @@ public class CreateRoomFeature extends AbstractCreateFeature
 	{
 		final Room room = ModelFactory.eINSTANCE.createRoom();
 		getDiagram().eResource().getContents().add(room);
-		room.setType("Room");;
 		addGraphicalRepresentation(context, room);
 		getFeatureProvider().getDirectEditingInfo().setActive(true);
 		

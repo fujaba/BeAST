@@ -39,8 +39,7 @@ public class ModelAdapterFactory extends AdapterFactoryImpl
 	 */
 	public ModelAdapterFactory()
 	{
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = ModelPackage.eINSTANCE;
 		}
 	}
@@ -58,12 +57,10 @@ public class ModelAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage)
-		{
+		if (object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject)
-		{
+		if (object instanceof EObject) {
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -75,46 +72,29 @@ public class ModelAdapterFactory extends AdapterFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelSwitch<Adapter>	modelSwitch	= new ModelSwitch<Adapter>()
-		{
+	protected ModelSwitch<Adapter>	modelSwitch	= new ModelSwitch<Adapter>() {
 			@Override
-			public Adapter caseServer(Server object)
-			{
+			public Adapter caseServer(Server object) {
 				return createServerAdapter();
 			}
 			@Override
-			public Adapter caseRack(Rack object)
-			{
+			public Adapter caseRack(Rack object) {
 				return createRackAdapter();
 			}
 			@Override
-			public Adapter caseNetwork(Network object)
-			{
+			public Adapter caseNetwork(Network object) {
 				return createNetworkAdapter();
 			}
 			@Override
-			public Adapter caseSwitch(Switch object)
-			{
-				return createSwitchAdapter();
-			}
-			@Override
-			public Adapter caseRoutingComponent(RoutingComponent object)
-			{
-				return createRoutingComponentAdapter();
-			}
-			@Override
-			public Adapter caseRouter(Router object)
-			{
-				return createRouterAdapter();
-			}
-			@Override
-			public Adapter caseRoom(Room object)
-			{
+			public Adapter caseRoom(Room object) {
 				return createRoomAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object)
-			{
+			public Adapter caseRouter(Router object) {
+				return createRouterAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};
@@ -182,40 +162,6 @@ public class ModelAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createNetworkAdapter()
-	{
-		return null;
-	}
-	
-	
-	
-	/**
-	 * Creates a new adapter for an object of class '{@link model.Switch <em>Switch</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see model.Switch
-	 * @generated
-	 */
-	public Adapter createSwitchAdapter()
-	{
-		return null;
-	}
-	
-	
-	
-	/**
-	 * Creates a new adapter for an object of class '{@link model.RoutingComponent <em>Routing Component</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see model.RoutingComponent
-	 * @generated
-	 */
-	public Adapter createRoutingComponentAdapter()
 	{
 		return null;
 	}

@@ -32,7 +32,6 @@ public class CreateRackFeature extends AbstractCreateFeature
 		final Rack rack = ModelFactory.eINSTANCE.createRack();
 		final Room room = (Room) getBusinessObjectForPictogramElement(context.getTargetContainer());
 		room.getRacks().add(rack);
-		rack.setType("Rack");;
 		addGraphicalRepresentation(context, rack);
 		getFeatureProvider().getDirectEditingInfo().setActive(true);
 		

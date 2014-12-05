@@ -58,28 +58,6 @@ public interface ModelFactory extends EFactory
 	
 	
 	/**
-	 * Returns a new object of class '<em>Switch</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Switch</em>'.
-	 * @generated
-	 */
-	Switch createSwitch();
-	
-	
-	
-	/**
-	 * Returns a new object of class '<em>Routing Component</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Routing Component</em>'.
-	 * @generated
-	 */
-	RoutingComponent createRoutingComponent();
-	
-	
-	
-	/**
 	 * Returns a new object of class '<em>Router</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

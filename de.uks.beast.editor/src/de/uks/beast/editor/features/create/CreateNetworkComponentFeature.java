@@ -31,7 +31,6 @@ public class CreateNetworkComponentFeature extends AbstractCreateFeature
 	{
 		final Network network = ModelFactory.eINSTANCE.createNetwork();
 		getDiagram().eResource().getContents().add(network);
-		network.setType("Network");;
 		addGraphicalRepresentation(context, network);
 		getFeatureProvider().getDirectEditingInfo().setActive(true);
 		

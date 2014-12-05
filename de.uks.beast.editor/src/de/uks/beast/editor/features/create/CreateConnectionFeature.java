@@ -1,6 +1,7 @@
 package de.uks.beast.editor.features.create;
 
 import model.Network;
+import model.Router;
 import model.RoutingComponent;
 import model.Server;
 
@@ -29,21 +30,23 @@ public class CreateConnectionFeature extends AbstractCreateConnectionFeature
 		final Object source = getBusinessObjectForPictogramElement(context.getSourcePictogramElement());
 		final Object target = getBusinessObjectForPictogramElement(context.getTargetPictogramElement());
 		
-		if (source instanceof Server && target instanceof RoutingComponent)
+		if (source instanceof Server && target instanceof Network)
 		{
 			return true;
 		}
-		else if (target instanceof Server && source instanceof RoutingComponent)
+		else if (target instanceof Server && source instanceof Network)
 		{
 			
 			return true;
 		}
-		else if (source instanceof RoutingComponent && target instanceof Network)
+		else if (source instanceof Network && target instanceof Router)
 		{
+			
 			return true;
 		}
-		else if (target instanceof RoutingComponent && source instanceof Network)
+		else if (target instanceof Network && source instanceof Router)
 		{
+			
 			return true;
 		}
 		
@@ -65,21 +68,21 @@ public class CreateConnectionFeature extends AbstractCreateConnectionFeature
 			final AddConnectionContext addContext = new AddConnectionContext(context.getSourceAnchor(), context.getTargetAnchor());
 			addContext.setNewObject(null);
 			
-			if (source instanceof Server && target instanceof RoutingComponent)
+			if (source instanceof Server && target instanceof Network)
 			{
-				((Server) source).getRoutingComponents().add((RoutingComponent) target);
+				((Server) source).setNetwork((Network) target);
 			}
-			else if (source instanceof RoutingComponent && target instanceof Server)
+			else if (source instanceof Network && target instanceof Server)
 			{
-				((RoutingComponent) source).getServer().add((Server) target);
+				((Network) source).getServer().add((Server) target);
 			}
-			else if (source instanceof RoutingComponent && target instanceof Network)
+			else if (source instanceof Network && target instanceof Router)
 			{
-				((RoutingComponent) source).setNetwork((Network) target);
+				((Network) source).getRouter().add((Router) target);
 			}
-			else if (source instanceof Network && target instanceof RoutingComponent)
+			else if (source instanceof Router && target instanceof Network)
 			{
-				((Network) source).setRouter((RoutingComponent) target);
+				((Router) source).getNetwork().add((Network) target);
 			}
 			
 			newConnection = (Connection) getFeatureProvider().addIfPossible(addContext);
@@ -94,7 +97,7 @@ public class CreateConnectionFeature extends AbstractCreateConnectionFeature
 	public boolean canStartConnection(final ICreateConnectionContext context)
 	{
 		final Object source = getBusinessObjectForPictogramElement(context.getSourcePictogramElement());
-		if (source instanceof Server || source instanceof RoutingComponent || source instanceof Network)
+		if (source instanceof Server || source instanceof Router || source instanceof Network)
 		{
 			return true;
 		}

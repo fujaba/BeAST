@@ -2,7 +2,6 @@
  */
 package model;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -19,8 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link model.Server#getRam <em>Ram</em>}</li>
  *   <li>{@link model.Server#getDiskSpace <em>Disk Space</em>}</li>
  *   <li>{@link model.Server#getHost <em>Host</em>}</li>
- *   <li>{@link model.Server#getType <em>Type</em>}</li>
- *   <li>{@link model.Server#getRoutingComponents <em>Routing Components</em>}</li>
+ *   <li>{@link model.Server#getNetwork <em>Network</em>}</li>
  * </ul>
  * </p>
  *
@@ -211,51 +209,33 @@ public interface Server extends EObject
 
 
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * Returns the value of the '<em><b>Network</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link model.Network#getServer <em>Server</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Network</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' attribute.
-	 * @see #setType(String)
-	 * @see model.ModelPackage#getServer_Type()
-	 * @model
-	 * @generated
-	 */
-	String getType();
-
-
-
-	/**
-	 * Sets the value of the '{@link model.Server#getType <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' attribute.
-	 * @see #getType()
-	 * @generated
-	 */
-	void setType(String value);
-
-
-
-	/**
-	 * Returns the value of the '<em><b>Routing Components</b></em>' reference list.
-	 * The list contents are of type {@link model.RoutingComponent}.
-	 * It is bidirectional and its opposite is '{@link model.RoutingComponent#getServer <em>Server</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Routing Components</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Routing Components</em>' reference list.
-	 * @see model.ModelPackage#getServer_RoutingComponents()
-	 * @see model.RoutingComponent#getServer
+	 * @return the value of the '<em>Network</em>' reference.
+	 * @see #setNetwork(Network)
+	 * @see model.ModelPackage#getServer_Network()
+	 * @see model.Network#getServer
 	 * @model opposite="server"
 	 * @generated
 	 */
-	EList<RoutingComponent> getRoutingComponents();
+	Network getNetwork();
+
+
+
+	/**
+	 * Sets the value of the '{@link model.Server#getNetwork <em>Network</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Network</em>' reference.
+	 * @see #getNetwork()
+	 * @generated
+	 */
+	void setNetwork(Network value);
 	
 } // Server

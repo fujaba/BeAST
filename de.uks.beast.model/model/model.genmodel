@@ -1,9 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
-    modelDirectory="/de.uks.beast.model/src" modelPluginID="de.uks.beast.model"
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.uks.beast.model/src" modelPluginID="de.uks.beast.model"
     modelName="Model" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
   <foreignModel>model.ecore</foreignModel>
-  <genPackages prefix="Model" disposableProviderFactory="true" ecorePackage="model.ecore#/"/>
+  <genPackages prefix="Model" disposableProviderFactory="true" ecorePackage="model.ecore#/">
+    <genClasses ecoreClass="model.ecore#//Server">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Server/ip"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Server/cpuAmount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Server/cpuType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Server/ram"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Server/diskSpace"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Server/host"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Server/network"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Rack">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Rack/server"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Rack/id"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Network">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Network/ip"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Network/subnetmask"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Network/gateway"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Network/dns"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Network/router"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Network/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Network/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Network/server"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Room">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Room/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Room/racks"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Router">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Router/network"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Router/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Router/ip"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Router/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Router/externalGateway"/>
+    </genClasses>
+  </genPackages>
 </genmodel:GenModel>

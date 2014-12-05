@@ -3,23 +3,16 @@
 package model.impl;
 
 import java.util.Collection;
-
 import model.ModelPackage;
 import model.Rack;
-import model.RoutingComponent;
 import model.Server;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -32,8 +25,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link model.impl.RackImpl#getServer <em>Server</em>}</li>
  *   <li>{@link model.impl.RackImpl#getId <em>Id</em>}</li>
- *   <li>{@link model.impl.RackImpl#getType <em>Type</em>}</li>
- *   <li>{@link model.impl.RackImpl#getRouter <em>Router</em>}</li>
  * </ul>
  * </p>
  *
@@ -74,38 +65,6 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 
 
 	/**
-	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String TYPE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected String type = TYPE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getRouter() <em>Router</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRouter()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<RoutingComponent>	router;
-
-
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -137,27 +96,10 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	 */
 	public EList<Server> getServer()
 	{
-		if (server == null)
-		{
+		if (server == null) {
 			server = new EObjectContainmentEList<Server>(Server.class, this, ModelPackage.RACK__SERVER);
 		}
 		return server;
-	}
-	
-	
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<RoutingComponent> getRouter()
-	{
-		if (router == null)
-		{
-			router = new EObjectContainmentEList<RoutingComponent>(RoutingComponent.class, this, ModelPackage.RACK__ROUTER);
-		}
-		return router;
 	}
 	
 	
@@ -194,42 +136,12 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getType()
-	{
-		return type;
-	}
-
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setType(String newType)
-	{
-		String oldType = type;
-		type = newType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.RACK__TYPE, oldType, type));
-	}
-
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.RACK__SERVER:
 				return ((InternalEList<?>)getServer()).basicRemove(otherEnd, msgs);
-			case ModelPackage.RACK__ROUTER:
-				return ((InternalEList<?>)getRouter()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -244,16 +156,11 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.RACK__SERVER:
 				return getServer();
 			case ModelPackage.RACK__ID:
 				return getId();
-			case ModelPackage.RACK__TYPE:
-				return getType();
-			case ModelPackage.RACK__ROUTER:
-				return getRouter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -269,21 +176,13 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.RACK__SERVER:
 				getServer().clear();
 				getServer().addAll((Collection<? extends Server>)newValue);
 				return;
 			case ModelPackage.RACK__ID:
 				setId((Integer)newValue);
-				return;
-			case ModelPackage.RACK__TYPE:
-				setType((String)newValue);
-				return;
-			case ModelPackage.RACK__ROUTER:
-				getRouter().clear();
-				getRouter().addAll((Collection<? extends RoutingComponent>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -299,19 +198,12 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.RACK__SERVER:
 				getServer().clear();
 				return;
 			case ModelPackage.RACK__ID:
 				setId(ID_EDEFAULT);
-				return;
-			case ModelPackage.RACK__TYPE:
-				setType(TYPE_EDEFAULT);
-				return;
-			case ModelPackage.RACK__ROUTER:
-				getRouter().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -327,16 +219,11 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.RACK__SERVER:
 				return server != null && !server.isEmpty();
 			case ModelPackage.RACK__ID:
 				return id != ID_EDEFAULT;
-			case ModelPackage.RACK__TYPE:
-				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
-			case ModelPackage.RACK__ROUTER:
-				return router != null && !router.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -356,8 +243,6 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (id: ");
 		result.append(id);
-		result.append(", type: ");
-		result.append(type);
 		result.append(')');
 		return result.toString();
 	}

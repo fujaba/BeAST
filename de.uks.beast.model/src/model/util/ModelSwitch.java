@@ -42,8 +42,7 @@ public class ModelSwitch<T> extends Switch<T>
 	 */
 	public ModelSwitch()
 	{
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = ModelPackage.eINSTANCE;
 		}
 	}
@@ -76,56 +75,34 @@ public class ModelSwitch<T> extends Switch<T>
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID)
-		{
-			case ModelPackage.SERVER:
-			{
+		switch (classifierID) {
+			case ModelPackage.SERVER: {
 				Server server = (Server)theEObject;
 				T result = caseServer(server);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ModelPackage.RACK:
-			{
+			case ModelPackage.RACK: {
 				Rack rack = (Rack)theEObject;
 				T result = caseRack(rack);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ModelPackage.NETWORK:
-			{
+			case ModelPackage.NETWORK: {
 				Network network = (Network)theEObject;
 				T result = caseNetwork(network);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ModelPackage.SWITCH:
-			{
-				model.Switch switch_ = (model.Switch)theEObject;
-				T result = caseSwitch(switch_);
-				if (result == null) result = caseRoutingComponent(switch_);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ModelPackage.ROUTING_COMPONENT:
-			{
-				RoutingComponent routingComponent = (RoutingComponent)theEObject;
-				T result = caseRoutingComponent(routingComponent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ModelPackage.ROUTER:
-			{
-				Router router = (Router)theEObject;
-				T result = caseRouter(router);
-				if (result == null) result = caseRoutingComponent(router);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ModelPackage.ROOM:
-			{
+			case ModelPackage.ROOM: {
 				Room room = (Room)theEObject;
 				T result = caseRoom(room);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModelPackage.ROUTER: {
+				Router router = (Router)theEObject;
+				T result = caseRouter(router);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -183,42 +160,6 @@ public class ModelSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseNetwork(Network object)
-	{
-		return null;
-	}
-	
-	
-	
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Switch</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Switch</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSwitch(model.Switch object)
-	{
-		return null;
-	}
-	
-	
-	
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Routing Component</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Routing Component</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRoutingComponent(RoutingComponent object)
 	{
 		return null;
 	}
