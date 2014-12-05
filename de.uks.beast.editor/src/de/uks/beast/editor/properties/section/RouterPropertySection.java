@@ -1,6 +1,6 @@
 package de.uks.beast.editor.properties.section;
 
-import model.Network;
+import model.Router;
 
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
@@ -15,15 +15,10 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
+public class RouterPropertySection extends GFPropertySection implements ITabbedPropertyConstants {
 
-
-public class NetworkPropertySection extends GFPropertySection implements
-		ITabbedPropertyConstants {
-	
 	private Text	ipTextFld;
-	private Text	subnetTextFld;
-	private Text	gatewayTextFld;
-	private Text	dnsTextFld;
+	private Text	externalGatewayTextFld;
 	private Text	idTextFld;
 	private Text	nameTextFld;
 	
@@ -51,50 +46,20 @@ public class NetworkPropertySection extends GFPropertySection implements
 		data.top = new FormAttachment(ipTextFld, 0, SWT.CENTER);
 		valueLabel.setLayoutData(data);
 		
-		//Property_cpuAmount
-		subnetTextFld = factory.createText(composite, "");
-		data = new FormData();
-		data.left = new FormAttachment(0, STANDARD_LABEL_WIDTH);
-		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, VSPACE + 25);
-		subnetTextFld.setLayoutData(data);
-		
-		final CLabel valueLabe2 = factory.createCLabel(composite, "CPU Amount:");
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(subnetTextFld, valueLabe2.getText().length());
-		data.top = new FormAttachment(subnetTextFld, 0, SWT.CENTER);
-		valueLabe2.setLayoutData(data);
-		
 		//Property_cpuType
-		gatewayTextFld = factory.createText(composite, "");
+		externalGatewayTextFld = factory.createText(composite, "");
 		data = new FormData();
 		data.left = new FormAttachment(0, STANDARD_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, VSPACE + 50);
-		gatewayTextFld.setLayoutData(data);
+		externalGatewayTextFld.setLayoutData(data);
 		
 		final CLabel valueLabe3 = factory.createCLabel(composite, "CPU Type:");
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(gatewayTextFld, valueLabe3.getText().length());
-		data.top = new FormAttachment(gatewayTextFld, 0, SWT.CENTER);
+		data.right = new FormAttachment(externalGatewayTextFld, valueLabe3.getText().length());
+		data.top = new FormAttachment(externalGatewayTextFld, 0, SWT.CENTER);
 		valueLabe3.setLayoutData(data);
-		
-		//Property_ram
-		dnsTextFld = factory.createText(composite, "");
-		data = new FormData();
-		data.left = new FormAttachment(0, STANDARD_LABEL_WIDTH);
-		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, VSPACE + 75);
-		dnsTextFld.setLayoutData(data);
-		
-		final CLabel valueLabe4 = factory.createCLabel(composite, "RAM:");
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(dnsTextFld, valueLabe4.getText().length());
-		data.top = new FormAttachment(dnsTextFld, 0, SWT.CENTER);
-		valueLabe4.setLayoutData(data);
 		
 		//Property_diskSpace
 		idTextFld = factory.createText(composite, "");
@@ -135,14 +100,13 @@ public class NetworkPropertySection extends GFPropertySection implements
 		final PictogramElement pe = getSelectedPictogramElement();
 		if (pe != null)
 		{
-			final Network network = (Network) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
+			final Router router = (Router) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
 			// the filter assured, that it is a EClass
-			if (network == null)
+			if (router == null)
 			{
 				return;
 			}
 			
 		}
 	}
-
 }
