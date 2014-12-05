@@ -1,4 +1,4 @@
-package de.uks.beast.editor.properties;
+package de.uks.beast.editor.properties.filter;
 
 import model.Server;
 
