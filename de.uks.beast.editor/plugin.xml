@@ -17,6 +17,7 @@
 	</extension>
 	
 	
+	
 	<extension 
 		point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
 		<propertyContributor contributorId="srvconfig.PropertyContributor">
@@ -25,22 +26,62 @@
 		</propertyContributor>
 	</extension>
 	
+	
+	
 	<extension
       point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
 		<propertyTabs
           contributorId="srvconfig.PropertyContributor">
-			<propertyTab category="Graphiti" id="graphiti.main.tab" label="Main">
+			<propertyTab category="Graphiti" id="graphiti.main.tab.server" label="Config">
 			</propertyTab>
 		</propertyTabs>
 	</extension>
+	<extension
+      point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+		<propertyTabs
+          contributorId="srvconfig.PropertyContributor">
+			<propertyTab category="Graphiti" id="graphiti.main.tab.network" label="Config">
+			</propertyTab>
+		</propertyTabs>
+	</extension>
+	<extension
+      point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+		<propertyTabs
+          contributorId="srvconfig.PropertyContributor">
+			<propertyTab category="Graphiti" id="graphiti.main.tab.router" label="Config">
+			</propertyTab>
+		</propertyTabs>
+	</extension>
+	
+	
 	
 	<extension 
 		point="org.eclipse.ui.views.properties.tabbed.propertySections">
 		<propertySections
           contributorId="srvconfig.PropertyContributor">
-			<propertySection class="de.uks.beast.editor.properties.ServerPropertySection"
-				filter="de.uks.beast.editor.properties.PropertyFilter"
-				id="graphiti.main.tab.emfclass" tab="graphiti.main.tab">
+			<propertySection class="de.uks.beast.editor.properties.section.ServerPropertySection"
+				filter="de.uks.beast.editor.properties.filter.ServerPropertyFilter"
+				id="graphiti.main.tab.emfclass" tab="graphiti.main.tab.server">
+			</propertySection>
+		</propertySections>
+	</extension>
+	<extension 
+		point="org.eclipse.ui.views.properties.tabbed.propertySections">
+		<propertySections
+          contributorId="srvconfig.PropertyContributor">
+			<propertySection class="de.uks.beast.editor.properties.section.RouterPropertySection"
+				filter="de.uks.beast.editor.properties.filter.RouterPropertyFilter"
+				id="graphiti.main.tab.emfclass" tab="graphiti.main.tab.router">
+			</propertySection>
+		</propertySections>
+	</extension>
+	<extension 
+		point="org.eclipse.ui.views.properties.tabbed.propertySections">
+		<propertySections
+          contributorId="srvconfig.PropertyContributor">
+			<propertySection class="de.uks.beast.editor.properties.section.NetworkPropertySection"
+				filter="de.uks.beast.editor.properties.filter.NetworkPropertyFilter"
+				id="graphiti.main.tab.emfclass" tab="graphiti.main.tab.network">
 			</propertySection>
 		</propertySections>
 	</extension>

@@ -54,7 +54,7 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		data.top = new FormAttachment(0, VSPACE + 50);
 		externalGatewayTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe3 = factory.createCLabel(composite, "CPU Type:");
+		final CLabel valueLabe3 = factory.createCLabel(composite, "External Gateway:");
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(externalGatewayTextFld, valueLabe3.getText().length());
@@ -69,7 +69,7 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		data.top = new FormAttachment(0, VSPACE + 100);
 		idTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe5 = factory.createCLabel(composite, "DiskSpace:");
+		final CLabel valueLabe5 = factory.createCLabel(composite, "ID:");
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(idTextFld, valueLabe5.getText().length());
@@ -84,7 +84,7 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		data.top = new FormAttachment(0, VSPACE + 125);
 		nameTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe6 = factory.createCLabel(composite, "Host:");
+		final CLabel valueLabe6 = factory.createCLabel(composite, "Name:");
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(nameTextFld, valueLabe6.getText().length());

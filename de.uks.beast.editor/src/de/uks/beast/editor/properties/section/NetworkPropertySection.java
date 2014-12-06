@@ -59,7 +59,7 @@ public class NetworkPropertySection extends GFPropertySection implements
 		data.top = new FormAttachment(0, VSPACE + 25);
 		subnetTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe2 = factory.createCLabel(composite, "CPU Amount:");
+		final CLabel valueLabe2 = factory.createCLabel(composite, "Subnet:");
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(subnetTextFld, valueLabe2.getText().length());
@@ -74,7 +74,7 @@ public class NetworkPropertySection extends GFPropertySection implements
 		data.top = new FormAttachment(0, VSPACE + 50);
 		gatewayTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe3 = factory.createCLabel(composite, "CPU Type:");
+		final CLabel valueLabe3 = factory.createCLabel(composite, "Gateway:");
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(gatewayTextFld, valueLabe3.getText().length());
@@ -89,7 +89,7 @@ public class NetworkPropertySection extends GFPropertySection implements
 		data.top = new FormAttachment(0, VSPACE + 75);
 		dnsTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe4 = factory.createCLabel(composite, "RAM:");
+		final CLabel valueLabe4 = factory.createCLabel(composite, "DNS:");
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(dnsTextFld, valueLabe4.getText().length());
@@ -104,7 +104,7 @@ public class NetworkPropertySection extends GFPropertySection implements
 		data.top = new FormAttachment(0, VSPACE + 100);
 		idTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe5 = factory.createCLabel(composite, "DiskSpace:");
+		final CLabel valueLabe5 = factory.createCLabel(composite, "ID:");
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(idTextFld, valueLabe5.getText().length());
@@ -119,7 +119,7 @@ public class NetworkPropertySection extends GFPropertySection implements
 		data.top = new FormAttachment(0, VSPACE + 125);
 		nameTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe6 = factory.createCLabel(composite, "Host:");
+		final CLabel valueLabe6 = factory.createCLabel(composite, "Name:");
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(nameTextFld, valueLabe6.getText().length());

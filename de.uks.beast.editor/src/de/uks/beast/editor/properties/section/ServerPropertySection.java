@@ -7,6 +7,8 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.widgets.Composite;
@@ -29,6 +31,7 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 	@Override
 	public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage)
 	{
+		final Server server = getInstance();
 		super.createControls(parent, tabbedPropertySheetPage);
 		
 		final TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
@@ -42,6 +45,16 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, VSPACE);
 		ipTextFld.setLayoutData(data);
+		ipTextFld.addModifyListener(new ModifyListener() {
+			
+			@Override
+			public void modifyText(ModifyEvent arg0) {
+				if(!ipTextFld.getText().isEmpty()) {
+					System.out.println("########## text input: " + arg0);
+				}
+				
+			}
+		});
 		
 		final CLabel valueLabel = factory.createCLabel(composite, "IP:");
 		data = new FormData();
@@ -126,6 +139,19 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		valueLabe6.setLayoutData(data);
 	}
 	
+	
+	
+	
+	private Server getInstance() {
+		final PictogramElement pe = getSelectedPictogramElement();
+		if (pe != null)
+		{
+			final Server server = (Server) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
+			return server;
+			
+		}
+		return null;
+	}
 	
 	
 	@Override
