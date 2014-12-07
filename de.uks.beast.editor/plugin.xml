@@ -21,7 +21,21 @@
 	<extension 
 		point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
 		<propertyContributor contributorId="srvconfig.PropertyContributor">
-			<propertyCategory category="Graphiti">
+			<propertyCategory category="Server">
+			</propertyCategory>
+		</propertyContributor>
+	</extension>
+	<extension 
+		point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+		<propertyContributor contributorId="srvconfig.PropertyContributor">
+			<propertyCategory category="Network">
+			</propertyCategory>
+		</propertyContributor>
+	</extension>
+	<extension 
+		point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+		<propertyContributor contributorId="srvconfig.PropertyContributor">
+			<propertyCategory category="Router">
 			</propertyCategory>
 		</propertyContributor>
 	</extension>
@@ -32,7 +46,7 @@
       point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
 		<propertyTabs
           contributorId="srvconfig.PropertyContributor">
-			<propertyTab category="Graphiti" id="graphiti.main.tab.server" label="Config">
+			<propertyTab category="Server" id="graphiti.main.tab.server" label="Config">
 			</propertyTab>
 		</propertyTabs>
 	</extension>
@@ -40,7 +54,7 @@
       point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
 		<propertyTabs
           contributorId="srvconfig.PropertyContributor">
-			<propertyTab category="Graphiti" id="graphiti.main.tab.network" label="Config">
+			<propertyTab category="Network" id="graphiti.main.tab.network" label="Config">
 			</propertyTab>
 		</propertyTabs>
 	</extension>
@@ -48,7 +62,7 @@
       point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
 		<propertyTabs
           contributorId="srvconfig.PropertyContributor">
-			<propertyTab category="Graphiti" id="graphiti.main.tab.router" label="Config">
+			<propertyTab category="Router" id="graphiti.main.tab.router" label="Config">
 			</propertyTab>
 		</propertyTabs>
 	</extension>
@@ -61,7 +75,7 @@
           contributorId="srvconfig.PropertyContributor">
 			<propertySection class="de.uks.beast.editor.properties.section.ServerPropertySection"
 				filter="de.uks.beast.editor.properties.filter.ServerPropertyFilter"
-				id="graphiti.main.tab.emfclass" tab="graphiti.main.tab.server">
+				id="graphiti.main.tab.server" tab="graphiti.main.tab.server">
 			</propertySection>
 		</propertySections>
 	</extension>
@@ -71,7 +85,7 @@
           contributorId="srvconfig.PropertyContributor">
 			<propertySection class="de.uks.beast.editor.properties.section.RouterPropertySection"
 				filter="de.uks.beast.editor.properties.filter.RouterPropertyFilter"
-				id="graphiti.main.tab.emfclass" tab="graphiti.main.tab.router">
+				id="graphiti.main.tab.router" tab="graphiti.main.tab.router">
 			</propertySection>
 		</propertySections>
 	</extension>
@@ -81,8 +95,10 @@
           contributorId="srvconfig.PropertyContributor">
 			<propertySection class="de.uks.beast.editor.properties.section.NetworkPropertySection"
 				filter="de.uks.beast.editor.properties.filter.NetworkPropertyFilter"
-				id="graphiti.main.tab.emfclass" tab="graphiti.main.tab.network">
+				id="graphiti.main.tab.network" tab="graphiti.main.tab.network">
 			</propertySection>
 		</propertySections>
 	</extension>
+ 
+	
 </plugin>
