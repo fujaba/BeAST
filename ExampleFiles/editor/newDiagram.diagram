@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:al="http://eclipse.org/graphiti/mm/algorithms" xmlns:model="http://www.example.org/model" xmlns:pi="http://eclipse.org/graphiti/mm/pictograms">
+  <pi:Diagram visible="true" gridUnit="10" diagramTypeId="srvconfig" name="newDiagram" snapToGrid="true" pictogramLinks="/0/@children.0/@link /0/@children.0/@children.1/@link /0/@children.0/@children.2/@link /0/@children.0/@children.2/@children.1/@link /0/@children.0/@children.2/@children.2/@link /0/@children.0/@children.2/@children.2/@children.1/@link /0/@children.0/@children.2/@children.3/@link /0/@children.0/@children.2/@children.3/@children.1/@link /0/@children.1/@link /0/@children.1/@children.1/@link /0/@children.2/@link /0/@children.2/@children.1/@link /0/@children.3/@link /0/@children.3/@children.1/@link /0/@children.4/@link /0/@children.4/@children.1/@link /0/@children.4/@children.2/@link /0/@children.4/@children.2/@children.1/@link /0/@children.4/@children.2/@children.2/@link /0/@children.4/@children.2/@children.2/@children.1/@link /0/@children.4/@children.2/@children.3/@link /0/@children.4/@children.2/@children.3/@children.1/@link" version="0.11.0">
+    <graphicsAlgorithm xsi:type="al:Rectangle" background="/0/@colors.1" foreground="/0/@colors.0" lineWidth="1" transparency="0.0" width="1000" height="1000"/>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.3" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="281" height="311" x="10" y="10" cornerHeight="5" cornerWidth="5"/>
+      <link businessObjects="/1"/>
+      <anchors xsi:type="pi:ChopboxAnchor"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="2" filled="false" transparency="0.0">
+          <points y="20"/>
+          <points x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="100" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Serverroom"/>
+        <link businessObjects="/1"/>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.3" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="201" height="211" x="20" y="30" cornerHeight="5" cornerWidth="5"/>
+        <link businessObjects="/1/@racks.0"/>
+        <anchors xsi:type="pi:ChopboxAnchor"/>
+        <children visible="true">
+          <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="2" filled="false" transparency="0.0">
+            <points y="20"/>
+            <points x="100" y="20"/>
+          </graphicsAlgorithm>
+        </children>
+        <children visible="true">
+          <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="100" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Serverrack"/>
+          <link businessObjects="/1/@racks.0"/>
+        </children>
+        <children xsi:type="pi:ContainerShape" visible="true" active="true">
+          <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.3" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="100" height="50" x="40" y="40" cornerHeight="5" cornerWidth="5"/>
+          <link businessObjects="/1/@racks.0/@server.0"/>
+          <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.0"/>
+          <children visible="true">
+            <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="2" filled="false" transparency="0.0">
+              <points y="20"/>
+              <points x="100" y="20"/>
+            </graphicsAlgorithm>
+          </children>
+          <children visible="true">
+            <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="100" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Server"/>
+            <link businessObjects="/1/@racks.0/@server.0"/>
+          </children>
+        </children>
+        <children xsi:type="pi:ContainerShape" visible="true" active="true">
+          <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.3" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="100" height="50" x="60" y="120" cornerHeight="5" cornerWidth="5"/>
+          <link businessObjects="/1/@racks.0/@server.1"/>
+          <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.1"/>
+          <children visible="true">
+            <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="2" filled="false" transparency="0.0">
+              <points y="20"/>
+              <points x="100" y="20"/>
+            </graphicsAlgorithm>
+          </children>
+          <children visible="true">
+            <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="100" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Server"/>
+            <link businessObjects="/1/@racks.0/@server.1"/>
+          </children>
+        </children>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.3" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="100" height="50" x="300" y="31" cornerHeight="5" cornerWidth="5"/>
+      <link businessObjects="/2"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.2" incomingConnections="/0/@connections.0 /0/@connections.1"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="2" filled="false" transparency="0.0">
+          <points y="20"/>
+          <points x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="100" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Network"/>
+        <link businessObjects="/2"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.3" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="100" height="50" x="300" y="120" cornerHeight="5" cornerWidth="5"/>
+      <link businessObjects="/3"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.3" incomingConnections="/0/@connections.2"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="2" filled="false" transparency="0.0">
+          <points y="20"/>
+          <points x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="100" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Router"/>
+        <link businessObjects="/3"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.3" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="100" height="50" x="300" y="210" cornerHeight="5" cornerWidth="5"/>
+      <link businessObjects="/4"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.3 /0/@connections.4 /0/@connections.5"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="2" filled="false" transparency="0.0">
+          <points y="20"/>
+          <points x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="100" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Network"/>
+        <link businessObjects="/4"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.3" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="231" height="301" x="460" y="20" cornerHeight="5" cornerWidth="5"/>
+      <link businessObjects="/5"/>
+      <anchors xsi:type="pi:ChopboxAnchor"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="2" filled="false" transparency="0.0">
+          <points y="20"/>
+          <points x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="100" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Serverroom"/>
+        <link businessObjects="/5"/>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.3" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="201" height="211" x="20" y="30" cornerHeight="5" cornerWidth="5"/>
+        <link businessObjects="/5/@racks.0"/>
+        <anchors xsi:type="pi:ChopboxAnchor"/>
+        <children visible="true">
+          <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="2" filled="false" transparency="0.0">
+            <points y="20"/>
+            <points x="100" y="20"/>
+          </graphicsAlgorithm>
+        </children>
+        <children visible="true">
+          <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="100" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Serverrack"/>
+          <link businessObjects="/5/@racks.0"/>
+        </children>
+        <children xsi:type="pi:ContainerShape" visible="true" active="true">
+          <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.3" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="100" height="50" x="40" y="40" cornerHeight="5" cornerWidth="5"/>
+          <link businessObjects="/5/@racks.0/@server.0"/>
+          <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.4"/>
+          <children visible="true">
+            <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="2" filled="false" transparency="0.0">
+              <points y="20"/>
+              <points x="100" y="20"/>
+            </graphicsAlgorithm>
+          </children>
+          <children visible="true">
+            <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="100" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Server"/>
+            <link businessObjects="/5/@racks.0/@server.0"/>
+          </children>
+        </children>
+        <children xsi:type="pi:ContainerShape" visible="true" active="true">
+          <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.3" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="100" height="50" x="40" y="120" cornerHeight="5" cornerWidth="5"/>
+          <link businessObjects="/5/@racks.0/@server.1"/>
+          <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.5"/>
+          <children visible="true">
+            <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="2" filled="false" transparency="0.0">
+              <points y="20"/>
+              <points x="100" y="20"/>
+            </graphicsAlgorithm>
+          </children>
+          <children visible="true">
+            <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="100" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Server"/>
+            <link businessObjects="/5/@racks.0/@server.1"/>
+          </children>
+        </children>
+      </children>
+    </children>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.0/@children.2/@children.2/@anchors.0" end="/0/@children.1/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="2" filled="false" transparency="0.0"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.0/@children.2/@children.3/@anchors.0" end="/0/@children.1/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="2" filled="false" transparency="0.0"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.1/@anchors.0" end="/0/@children.2/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="2" filled="false" transparency="0.0"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.2/@anchors.0" end="/0/@children.3/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="2" filled="false" transparency="0.0"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.4/@children.2/@children.2/@anchors.0" end="/0/@children.3/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="2" filled="false" transparency="0.0"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.4/@children.2/@children.3/@anchors.0" end="/0/@children.3/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="2" filled="false" transparency="0.0"/>
+    </connections>
+    <colors red="227" green="238" blue="249"/>
+    <colors red="255" green="255" blue="255"/>
+    <colors red="98" green="131" blue="167"/>
+    <colors red="187" green="218" blue="247"/>
+    <colors/>
+    <fonts name="Arial" size="8" bold="true"/>
+  </pi:Diagram>
+  <model:Room>
+    <racks>
+      <server ip="11" cpuAmount="11" cpuType="11" ram="11" diskSpace="11" host="11" network="/2"/>
+      <server ip="22" cpuAmount="22" cpuType="22" ram="22" diskSpace="22" host="22" network="/2"/>
+    </racks>
+  </model:Room>
+  <model:Network ip="33" subnetmask="33" gateway="33" dns="33" router="/3" id="33" name="33" server="/1/@racks.0/@server.0 /1/@racks.0/@server.1"/>
+  <model:Router network="/2 /4" id="44" ip="44" name="44" externalGateway="44"/>
+  <model:Network ip="55" subnetmask="55" gateway="55" dns="55" router="/3" id="55" name="55" server="/5/@racks.0/@server.0 /5/@racks.0/@server.1"/>
+  <model:Room>
+    <racks>
+      <server ip="66" cpuAmount="66" cpuType="66" ram="66" diskSpace="66" host="66" network="/4"/>
+      <server ip="77" cpuAmount="77" cpuType="77" ram="77" diskSpace="77" host="77" network="/4"/>
+    </racks>
+  </model:Room>
+</xmi:XMI>
