@@ -125,6 +125,7 @@ public class NetworkPropertySection extends GFPropertySection implements
 		data.right = new FormAttachment(nameTextFld, valueLabe6.getText().length());
 		data.top = new FormAttachment(nameTextFld, 0, SWT.CENTER);
 		valueLabe6.setLayoutData(data);
+		
 	}
 	
 	
