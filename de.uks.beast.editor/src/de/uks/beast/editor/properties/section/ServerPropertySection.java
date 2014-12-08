@@ -234,6 +234,7 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.top = new FormAttachment(hostTextFld, 0, SWT.CENTER);
 		valueLabe6.setLayoutData(data);
 		
+		
 	}
 	
 	
