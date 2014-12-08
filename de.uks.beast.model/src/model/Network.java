@@ -32,6 +32,7 @@ public interface Network extends EObject
 {
 	/**
 	 * Returns the value of the '<em><b>Ip</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Ip</em>' attribute isn't clear,
@@ -41,7 +42,7 @@ public interface Network extends EObject
 	 * @return the value of the '<em>Ip</em>' attribute.
 	 * @see #setIp(String)
 	 * @see model.ModelPackage#getNetwork_Ip()
-	 * @model
+	 * @model default="0"
 	 * @generated
 	 */
 	String getIp();
@@ -62,6 +63,7 @@ public interface Network extends EObject
 
 	/**
 	 * Returns the value of the '<em><b>Subnetmask</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Subnetmask</em>' attribute isn't clear,
@@ -71,7 +73,7 @@ public interface Network extends EObject
 	 * @return the value of the '<em>Subnetmask</em>' attribute.
 	 * @see #setSubnetmask(String)
 	 * @see model.ModelPackage#getNetwork_Subnetmask()
-	 * @model
+	 * @model default="0"
 	 * @generated
 	 */
 	String getSubnetmask();
@@ -92,6 +94,7 @@ public interface Network extends EObject
 	
 	/**
 	 * Returns the value of the '<em><b>Gateway</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Gateway</em>' attribute isn't clear,
@@ -101,7 +104,7 @@ public interface Network extends EObject
 	 * @return the value of the '<em>Gateway</em>' attribute.
 	 * @see #setGateway(String)
 	 * @see model.ModelPackage#getNetwork_Gateway()
-	 * @model
+	 * @model default="0"
 	 * @generated
 	 */
 	String getGateway();
@@ -122,6 +125,7 @@ public interface Network extends EObject
 	
 	/**
 	 * Returns the value of the '<em><b>Dns</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Dns</em>' attribute isn't clear,
@@ -131,7 +135,7 @@ public interface Network extends EObject
 	 * @return the value of the '<em>Dns</em>' attribute.
 	 * @see #setDns(String)
 	 * @see model.ModelPackage#getNetwork_Dns()
-	 * @model
+	 * @model default="0"
 	 * @generated
 	 */
 	String getDns();
@@ -192,6 +196,7 @@ public interface Network extends EObject
 
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
@@ -201,7 +206,7 @@ public interface Network extends EObject
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
 	 * @see model.ModelPackage#getNetwork_Id()
-	 * @model
+	 * @model default="0"
 	 * @generated
 	 */
 	String getId();
@@ -222,6 +227,7 @@ public interface Network extends EObject
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
@@ -231,7 +237,7 @@ public interface Network extends EObject
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see model.ModelPackage#getNetwork_Name()
-	 * @model
+	 * @model default="0"
 	 * @generated
 	 */
 	String getName();

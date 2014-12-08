@@ -41,7 +41,7 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String	IP_EDEFAULT			= null;
+	protected static final String	IP_EDEFAULT			= "0";
 	
 	/**
 	 * The cached value of the '{@link #getIp() <em>Ip</em>}' attribute.
@@ -81,7 +81,7 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String	CPU_TYPE_EDEFAULT	= null;
+	protected static final String	CPU_TYPE_EDEFAULT	= "0";
 	
 	/**
 	 * The cached value of the '{@link #getCpuType() <em>Cpu Type</em>}' attribute.
@@ -141,7 +141,7 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String	HOST_EDEFAULT		= null;
+	protected static final String	HOST_EDEFAULT		= "0";
 	
 	/**
 	 * The cached value of the '{@link #getHost() <em>Host</em>}' attribute.
@@ -360,10 +360,12 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	 * @generated
 	 */
 	public Network getNetwork() {
-		if (network != null && network.eIsProxy()) {
+		if (network != null && network.eIsProxy())
+		{
 			InternalEObject oldNetwork = (InternalEObject)network;
 			network = (Network)eResolveProxy(oldNetwork);
-			if (network != oldNetwork) {
+			if (network != oldNetwork)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.SERVER__NETWORK, oldNetwork, network));
 			}
@@ -392,7 +394,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	public NotificationChain basicSetNetwork(Network newNetwork, NotificationChain msgs) {
 		Network oldNetwork = network;
 		network = newNetwork;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.SERVER__NETWORK, oldNetwork, newNetwork);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -407,7 +410,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	 * @generated
 	 */
 	public void setNetwork(Network newNetwork) {
-		if (newNetwork != network) {
+		if (newNetwork != network)
+		{
 			NotificationChain msgs = null;
 			if (network != null)
 				msgs = ((InternalEObject)network).eInverseRemove(this, ModelPackage.NETWORK__SERVER, Network.class, msgs);
@@ -429,7 +433,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.SERVER__NETWORK:
 				if (network != null)
 					msgs = ((InternalEObject)network).eInverseRemove(this, ModelPackage.NETWORK__SERVER, Network.class, msgs);
@@ -447,7 +452,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.SERVER__NETWORK:
 				return basicSetNetwork(null, msgs);
 		}
@@ -464,7 +470,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.SERVER__IP:
 				return getIp();
 			case ModelPackage.SERVER__CPU_AMOUNT:
@@ -495,7 +502,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.SERVER__IP:
 				setIp((String)newValue);
 				return;
@@ -531,7 +539,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.SERVER__IP:
 				setIp(IP_EDEFAULT);
 				return;
@@ -567,7 +576,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.SERVER__IP:
 				return IP_EDEFAULT == null ? ip != null : !IP_EDEFAULT.equals(ip);
 			case ModelPackage.SERVER__CPU_AMOUNT:

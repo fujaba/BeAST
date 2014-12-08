@@ -10,10 +10,11 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
@@ -28,13 +29,14 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 	private Text						ramTextFld;
 	private Text						diskSpaceTextFld;
 	private Text						hostTextFld;
+	private Button						submitBtn;
 	private Server						server;
 	private TransactionalEditingDomain	domain;
 	
 	
 	
 	@Override
-	public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage)
+	public void createControls(final Composite parent, final TabbedPropertySheetPage tabbedPropertySheetPage)
 	{
 		super.createControls(parent, tabbedPropertySheetPage);
 		
@@ -49,23 +51,6 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, VSPACE);
 		ipTextFld.setLayoutData(data);
-		ipTextFld.addModifyListener(new ModifyListener() {
-			@Override
-			public void modifyText(ModifyEvent arg0)
-			{
-				if (!ipTextFld.getText().isEmpty())
-				{
-					domain.getCommandStack().execute(new RecordingCommand(domain) {
-						public void doExecute()
-						{
-							server.setIp(ipTextFld.getText());
-							System.out.println("server hash: " + server.hashCode() + " -> ip: " + server.getIp());
-						}
-					});
-				}
-				
-			}
-		});
 		
 		final CLabel valueLabel = factory.createCLabel(composite, "IP:");
 		data = new FormData();
@@ -81,23 +66,6 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, VSPACE + 25);
 		cpuAmountTextFld.setLayoutData(data);
-		cpuAmountTextFld.addModifyListener(new ModifyListener() {
-			@Override
-			public void modifyText(ModifyEvent arg0)
-			{
-				if (!cpuAmountTextFld.getText().isEmpty())
-				{
-					domain.getCommandStack().execute(new RecordingCommand(domain) {
-						public void doExecute()
-						{
-							server.setCpuAmount(Integer.parseInt(cpuAmountTextFld.getText()));
-							System.out.println("server hash: " + server.hashCode() + " -> cpu amount: " + server.getCpuAmount());
-						}
-					});
-				}
-				
-			}
-		});
 		
 		final CLabel valueLabe2 = factory.createCLabel(composite, "CPU Amount:");
 		data = new FormData();
@@ -113,23 +81,6 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, VSPACE + 50);
 		cpuTypeTextFld.setLayoutData(data);
-		cpuTypeTextFld.addModifyListener(new ModifyListener() {
-			@Override
-			public void modifyText(ModifyEvent arg0)
-			{
-				if (!cpuTypeTextFld.getText().isEmpty())
-				{
-					domain.getCommandStack().execute(new RecordingCommand(domain) {
-						public void doExecute()
-						{
-							server.setCpuType(cpuTypeTextFld.getText());
-							System.out.println("server hash: " + server.hashCode() + " -> cpu Type: " + server.getCpuType());
-						}
-					});
-				}
-				
-			}
-		});
 		
 		final CLabel valueLabe3 = factory.createCLabel(composite, "CPU Type:");
 		data = new FormData();
@@ -145,23 +96,6 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, VSPACE + 75);
 		ramTextFld.setLayoutData(data);
-		ramTextFld.addModifyListener(new ModifyListener() {
-			@Override
-			public void modifyText(ModifyEvent arg0)
-			{
-				if (!ramTextFld.getText().isEmpty())
-				{
-					domain.getCommandStack().execute(new RecordingCommand(domain) {
-						public void doExecute()
-						{
-							server.setRam(Long.parseLong(ramTextFld.getText()));
-							System.out.println("server hash: " + server.hashCode() + " -> ram: " + server.getRam());
-						}
-					});
-				}
-				
-			}
-		});
 		
 		final CLabel valueLabe4 = factory.createCLabel(composite, "RAM:");
 		data = new FormData();
@@ -177,23 +111,6 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, VSPACE + 100);
 		diskSpaceTextFld.setLayoutData(data);
-		diskSpaceTextFld.addModifyListener(new ModifyListener() {
-			@Override
-			public void modifyText(ModifyEvent arg0)
-			{
-				if (!diskSpaceTextFld.getText().isEmpty())
-				{
-					domain.getCommandStack().execute(new RecordingCommand(domain) {
-						public void doExecute()
-						{
-							server.setDiskSpace(Long.parseLong(diskSpaceTextFld.getText()));
-							System.out.println("server hash: " + server.hashCode() + " -> diskspace: " + server.getDiskSpace());
-						}
-					});
-				}
-				
-			}
-		});
 		
 		final CLabel valueLabe5 = factory.createCLabel(composite, "DiskSpace:");
 		data = new FormData();
@@ -209,23 +126,6 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, VSPACE + 125);
 		hostTextFld.setLayoutData(data);
-		hostTextFld.addModifyListener(new ModifyListener() {
-			@Override
-			public void modifyText(ModifyEvent arg0)
-			{
-				if (!hostTextFld.getText().isEmpty())
-				{
-					domain.getCommandStack().execute(new RecordingCommand(domain) {
-						public void doExecute()
-						{
-							server.setHost(hostTextFld.getText());
-							System.out.println("server hash: " + server.hashCode() + " -> host: " + server.getHost());
-						}
-					});
-				}
-				
-			}
-		});
 		
 		final CLabel valueLabe6 = factory.createCLabel(composite, "Host:");
 		data = new FormData();
@@ -234,6 +134,60 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.top = new FormAttachment(hostTextFld, 0, SWT.CENTER);
 		valueLabe6.setLayoutData(data);
 		
+		//Property_submit
+		submitBtn = factory.createButton(composite, "submit", 0);
+		data = new FormData();
+		data.left = new FormAttachment(0, 20);
+		data.right = new FormAttachment(20, 0);
+		data.top = new FormAttachment(0, VSPACE + 150);
+		submitBtn.setLayoutData(data);
+		submitBtn.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					public void doExecute()
+					{
+						server.setIp(ipTextFld.getText());
+						server.setCpuAmount(Integer.parseInt(cpuAmountTextFld.getText()));
+						server.setCpuType(cpuTypeTextFld.getText());
+						server.setRam(Long.parseLong(ramTextFld.getText()));
+						server.setDiskSpace(Long.parseLong(diskSpaceTextFld.getText()));
+						server.setHost(hostTextFld.getText());
+						
+						System.out.println("server hash: " + server.hashCode() + " -> ip: " + server.getIp());
+						System.out.println("server hash: " + server.hashCode() + " -> cpu amount: " + server.getCpuAmount());
+						System.out.println("server hash: " + server.hashCode() + " -> cpu Type: " + server.getCpuType());
+						System.out.println("server hash: " + server.hashCode() + " -> ram: " + server.getRam());
+						System.out.println("server hash: " + server.hashCode() + " -> diskspace: " + server.getDiskSpace());
+						System.out.println("server hash: " + server.hashCode() + " -> host: " + server.getHost());
+					}
+				});
+				
+			}
+			
+			
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0)
+			{
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	}
+	
+	
+	
+	private void setPreDefinedValuesToSheet()
+	{
+		ipTextFld.setText("" + server.getIp());
+		cpuAmountTextFld.setText("" + server.getCpuAmount());
+		cpuTypeTextFld.setText("" + server.getCpuType());
+		ramTextFld.setText("" + server.getRam());
+		diskSpaceTextFld.setText("" + server.getDiskSpace());
+		hostTextFld.setText("" + server.getHost());
 	}
 	
 	
@@ -246,6 +200,7 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		{
 			server = (Server) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
 			domain = TransactionUtil.getEditingDomain(server);
+			setPreDefinedValuesToSheet();
 			
 			if (server == null)
 			{

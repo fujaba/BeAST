@@ -48,6 +48,7 @@ public interface Router extends EObject
 
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
@@ -57,7 +58,7 @@ public interface Router extends EObject
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
 	 * @see model.ModelPackage#getRouter_Id()
-	 * @model
+	 * @model default="0"
 	 * @generated
 	 */
 	String getId();
@@ -74,6 +75,7 @@ public interface Router extends EObject
 
 	/**
 	 * Returns the value of the '<em><b>Ip</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Ip</em>' attribute isn't clear,
@@ -83,7 +85,7 @@ public interface Router extends EObject
 	 * @return the value of the '<em>Ip</em>' attribute.
 	 * @see #setIp(String)
 	 * @see model.ModelPackage#getRouter_Ip()
-	 * @model
+	 * @model default="0"
 	 * @generated
 	 */
 	String getIp();
@@ -100,6 +102,7 @@ public interface Router extends EObject
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
@@ -109,7 +112,7 @@ public interface Router extends EObject
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see model.ModelPackage#getRouter_Name()
-	 * @model
+	 * @model default="0"
 	 * @generated
 	 */
 	String getName();
@@ -126,6 +129,7 @@ public interface Router extends EObject
 
 	/**
 	 * Returns the value of the '<em><b>External Gateway</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>External Gateway</em>' attribute isn't clear,
@@ -135,7 +139,7 @@ public interface Router extends EObject
 	 * @return the value of the '<em>External Gateway</em>' attribute.
 	 * @see #setExternalGateway(String)
 	 * @see model.ModelPackage#getRouter_ExternalGateway()
-	 * @model
+	 * @model default="0"
 	 * @generated
 	 */
 	String getExternalGateway();

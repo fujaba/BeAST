@@ -30,6 +30,7 @@ public interface Server extends EObject
 {
 	/**
 	 * Returns the value of the '<em><b>Ip</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Ip</em>' attribute isn't clear,
@@ -39,7 +40,7 @@ public interface Server extends EObject
 	 * @return the value of the '<em>Ip</em>' attribute.
 	 * @see #setIp(String)
 	 * @see model.ModelPackage#getServer_Ip()
-	 * @model
+	 * @model default="0"
 	 * @generated
 	 */
 	String getIp();
@@ -90,6 +91,7 @@ public interface Server extends EObject
 	
 	/**
 	 * Returns the value of the '<em><b>Cpu Type</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Cpu Type</em>' attribute isn't clear,
@@ -99,7 +101,7 @@ public interface Server extends EObject
 	 * @return the value of the '<em>Cpu Type</em>' attribute.
 	 * @see #setCpuType(String)
 	 * @see model.ModelPackage#getServer_CpuType()
-	 * @model
+	 * @model default="0"
 	 * @generated
 	 */
 	String getCpuType();
@@ -180,6 +182,7 @@ public interface Server extends EObject
 	
 	/**
 	 * Returns the value of the '<em><b>Host</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Host</em>' attribute isn't clear,
@@ -189,7 +192,7 @@ public interface Server extends EObject
 	 * @return the value of the '<em>Host</em>' attribute.
 	 * @see #setHost(String)
 	 * @see model.ModelPackage#getServer_Host()
-	 * @model
+	 * @model default="0"
 	 * @generated
 	 */
 	String getHost();

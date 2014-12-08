@@ -10,10 +10,11 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
@@ -29,6 +30,7 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 	private Text						dnsTextFld;
 	private Text						idTextFld;
 	private Text						nameTextFld;
+	private Button						submitBtn;
 	private Network						network;
 	private TransactionalEditingDomain	domain;
 	
@@ -50,23 +52,6 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, VSPACE);
 		ipTextFld.setLayoutData(data);
-		ipTextFld.addModifyListener(new ModifyListener() {
-			@Override
-			public void modifyText(ModifyEvent arg0)
-			{
-				if (!ipTextFld.getText().isEmpty())
-				{
-					domain.getCommandStack().execute(new RecordingCommand(domain) {
-						public void doExecute()
-						{
-							network.setIp(ipTextFld.getText());
-							System.out.println("network hash: " + network.hashCode() + " -> ip: " + network.getIp());
-						}
-					});
-				}
-				
-			}
-		});
 		
 		final CLabel valueLabel = factory.createCLabel(composite, "IP:");
 		data = new FormData();
@@ -82,23 +67,6 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, VSPACE + 25);
 		subnetTextFld.setLayoutData(data);
-		subnetTextFld.addModifyListener(new ModifyListener() {
-			@Override
-			public void modifyText(ModifyEvent arg0)
-			{
-				if (!subnetTextFld.getText().isEmpty())
-				{
-					domain.getCommandStack().execute(new RecordingCommand(domain) {
-						public void doExecute()
-						{
-							network.setSubnetmask(subnetTextFld.getText());
-							System.out.println("network hash: " + network.hashCode() + " -> subnet: " + network.getSubnetmask());
-						}
-					});
-				}
-				
-			}
-		});
 		
 		final CLabel valueLabe2 = factory.createCLabel(composite, "Subnet:");
 		data = new FormData();
@@ -114,23 +82,6 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, VSPACE + 50);
 		gatewayTextFld.setLayoutData(data);
-		gatewayTextFld.addModifyListener(new ModifyListener() {
-			@Override
-			public void modifyText(ModifyEvent arg0)
-			{
-				if (!gatewayTextFld.getText().isEmpty())
-				{
-					domain.getCommandStack().execute(new RecordingCommand(domain) {
-						public void doExecute()
-						{
-							network.setGateway(gatewayTextFld.getText());
-							System.out.println("network hash: " + network.hashCode() + " -> gateway: " + network.getGateway());
-						}
-					});
-				}
-				
-			}
-		});
 		
 		final CLabel valueLabe3 = factory.createCLabel(composite, "Gateway:");
 		data = new FormData();
@@ -146,23 +97,6 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, VSPACE + 75);
 		dnsTextFld.setLayoutData(data);
-		dnsTextFld.addModifyListener(new ModifyListener() {
-			@Override
-			public void modifyText(ModifyEvent arg0)
-			{
-				if (!dnsTextFld.getText().isEmpty())
-				{
-					domain.getCommandStack().execute(new RecordingCommand(domain) {
-						public void doExecute()
-						{
-							network.setDns(dnsTextFld.getText());
-							System.out.println("network hash: " + network.hashCode() + " -> dns: " + network.getDns());
-						}
-					});
-				}
-				
-			}
-		});
 		
 		final CLabel valueLabe4 = factory.createCLabel(composite, "DNS:");
 		data = new FormData();
@@ -178,23 +112,6 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, VSPACE + 100);
 		idTextFld.setLayoutData(data);
-		idTextFld.addModifyListener(new ModifyListener() {
-			@Override
-			public void modifyText(ModifyEvent arg0)
-			{
-				if (!idTextFld.getText().isEmpty())
-				{
-					domain.getCommandStack().execute(new RecordingCommand(domain) {
-						public void doExecute()
-						{
-							network.setId(idTextFld.getText());
-							System.out.println("network hash: " + network.hashCode() + " -> id: " + network.getId());
-						}
-					});
-				}
-				
-			}
-		});
 		
 		final CLabel valueLabe5 = factory.createCLabel(composite, "ID:");
 		data = new FormData();
@@ -210,23 +127,6 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, VSPACE + 125);
 		nameTextFld.setLayoutData(data);
-		nameTextFld.addModifyListener(new ModifyListener() {
-			@Override
-			public void modifyText(ModifyEvent arg0)
-			{
-				if (!nameTextFld.getText().isEmpty())
-				{
-					domain.getCommandStack().execute(new RecordingCommand(domain) {
-						public void doExecute()
-						{
-							network.setName(nameTextFld.getText());
-							System.out.println("network hash: " + network.hashCode() + " -> name: " + network.getName());
-						}
-					});
-				}
-				
-			}
-		});
 		
 		final CLabel valueLabe6 = factory.createCLabel(composite, "Name:");
 		data = new FormData();
@@ -235,6 +135,60 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		data.top = new FormAttachment(nameTextFld, 0, SWT.CENTER);
 		valueLabe6.setLayoutData(data);
 		
+		//Property_submit
+		submitBtn = factory.createButton(composite, "submit", 0);
+		data = new FormData();
+		data.left = new FormAttachment(0, 20);
+		data.right = new FormAttachment(20, 0);
+		data.top = new FormAttachment(0, VSPACE + 150);
+		submitBtn.setLayoutData(data);
+		submitBtn.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					public void doExecute()
+					{
+						network.setIp(ipTextFld.getText());
+						network.setSubnetmask(subnetTextFld.getText());
+						network.setGateway(gatewayTextFld.getText());
+						network.setDns(dnsTextFld.getText());
+						network.setId(idTextFld.getText());
+						network.setName(nameTextFld.getText());
+						
+						System.out.println("network hash: " + network.hashCode() + " -> ip: " + network.getIp());
+						System.out.println("network hash: " + network.hashCode() + " -> subnet: " + network.getSubnetmask());
+						System.out.println("network hash: " + network.hashCode() + " -> gateway: " + network.getGateway());
+						System.out.println("network hash: " + network.hashCode() + " -> dns: " + network.getDns());
+						System.out.println("network hash: " + network.hashCode() + " -> id: " + network.getId());
+						System.out.println("network hash: " + network.hashCode() + " -> name: " + network.getName());
+					}
+				});
+				
+			}
+			
+			
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0)
+			{
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	}
+	
+	
+	
+	private void setPreDefinedValuesToSheet()
+	{
+		ipTextFld.setText(network.getIp());
+		subnetTextFld.setText("" + network.getSubnetmask());
+		gatewayTextFld.setText(network.getGateway());
+		dnsTextFld.setText("" + network.getDns());
+		idTextFld.setText("" + network.getId());
+		nameTextFld.setText(network.getName());
 	}
 	
 	
@@ -247,6 +201,8 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		{
 			network = (Network) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
 			domain = TransactionUtil.getEditingDomain(network);
+			setPreDefinedValuesToSheet();
+			
 			if (network == null)
 			{
 				return;
