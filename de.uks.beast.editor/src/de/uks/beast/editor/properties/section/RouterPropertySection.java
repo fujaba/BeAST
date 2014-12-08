@@ -2,11 +2,16 @@ package de.uks.beast.editor.properties.section;
 
 import model.Router;
 
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.widgets.Composite;
@@ -15,12 +20,17 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
-public class RouterPropertySection extends GFPropertySection implements ITabbedPropertyConstants {
-
-	private Text	ipTextFld;
-	private Text	externalGatewayTextFld;
-	private Text	idTextFld;
-	private Text	nameTextFld;
+public class RouterPropertySection extends GFPropertySection implements ITabbedPropertyConstants
+{
+	
+	private Text						ipTextFld;
+	private Text						externalGatewayTextFld;
+	private Text						idTextFld;
+	private Text						nameTextFld;
+	private Router						router;
+	private TransactionalEditingDomain	domain;
+	
+	
 	
 	@Override
 	public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage)
@@ -38,6 +48,23 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, VSPACE);
 		ipTextFld.setLayoutData(data);
+		ipTextFld.addModifyListener(new ModifyListener() {
+			@Override
+			public void modifyText(ModifyEvent arg0)
+			{
+				if (!ipTextFld.getText().isEmpty())
+				{
+					domain.getCommandStack().execute(new RecordingCommand(domain) {
+						public void doExecute()
+						{
+							router.setIp(ipTextFld.getText());
+							System.out.println("router hash: " + router.hashCode() + " -> ip: " + router.getIp());
+						}
+					});
+				}
+				
+			}
+		});
 		
 		final CLabel valueLabel = factory.createCLabel(composite, "IP:");
 		data = new FormData();
@@ -51,8 +78,26 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		data = new FormData();
 		data.left = new FormAttachment(0, STANDARD_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, VSPACE + 50);
+		data.top = new FormAttachment(0, VSPACE + 25);
 		externalGatewayTextFld.setLayoutData(data);
+		externalGatewayTextFld.addModifyListener(new ModifyListener() {
+			@Override
+			public void modifyText(ModifyEvent arg0)
+			{
+				if (!externalGatewayTextFld.getText().isEmpty())
+				{
+					domain.getCommandStack().execute(new RecordingCommand(domain) {
+						public void doExecute()
+						{
+							router.setExternalGateway(externalGatewayTextFld.getText());
+							System.out.println("router hash: " + router.hashCode() + " -> external Gateway: "
+									+ router.getExternalGateway());
+						}
+					});
+				}
+				
+			}
+		});
 		
 		final CLabel valueLabe3 = factory.createCLabel(composite, "External Gateway:");
 		data = new FormData();
@@ -66,8 +111,25 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		data = new FormData();
 		data.left = new FormAttachment(0, STANDARD_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, VSPACE + 100);
+		data.top = new FormAttachment(0, VSPACE + 50);
 		idTextFld.setLayoutData(data);
+		idTextFld.addModifyListener(new ModifyListener() {
+			@Override
+			public void modifyText(ModifyEvent arg0)
+			{
+				if (!idTextFld.getText().isEmpty())
+				{
+					domain.getCommandStack().execute(new RecordingCommand(domain) {
+						public void doExecute()
+						{
+							router.setId(idTextFld.getText());
+							System.out.println("router hash: " + router.hashCode() + " -> id: " + router.getId());
+						}
+					});
+				}
+				
+			}
+		});
 		
 		final CLabel valueLabe5 = factory.createCLabel(composite, "ID:");
 		data = new FormData();
@@ -81,8 +143,25 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		data = new FormData();
 		data.left = new FormAttachment(0, STANDARD_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, VSPACE + 125);
+		data.top = new FormAttachment(0, VSPACE + 75);
 		nameTextFld.setLayoutData(data);
+		nameTextFld.addModifyListener(new ModifyListener() {
+			@Override
+			public void modifyText(ModifyEvent arg0)
+			{
+				if (!nameTextFld.getText().isEmpty())
+				{
+					domain.getCommandStack().execute(new RecordingCommand(domain) {
+						public void doExecute()
+						{
+							router.setName(nameTextFld.getText());
+							System.out.println("router hash: " + router.hashCode() + " -> name: " + router.getName());
+						}
+					});
+				}
+				
+			}
+		});
 		
 		final CLabel valueLabe6 = factory.createCLabel(composite, "Name:");
 		data = new FormData();
@@ -100,8 +179,8 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		final PictogramElement pe = getSelectedPictogramElement();
 		if (pe != null)
 		{
-			final Router router = (Router) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
-			// the filter assured, that it is a EClass
+			router = (Router) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
+			domain = TransactionUtil.getEditingDomain(router);
 			if (router == null)
 			{
 				return;

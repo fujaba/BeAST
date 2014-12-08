@@ -234,7 +234,6 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.top = new FormAttachment(hostTextFld, 0, SWT.CENTER);
 		valueLabe6.setLayoutData(data);
 		
-		
 	}
 	
 	
@@ -246,9 +245,6 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		if (pe != null)
 		{
 			server = (Server) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
-			System.out.println(server.hashCode());
-			System.out.println(ipTextFld.hashCode());
-			
 			domain = TransactionUtil.getEditingDomain(server);
 			
 			if (server == null)
