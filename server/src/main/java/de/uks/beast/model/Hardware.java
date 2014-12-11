@@ -8,7 +8,7 @@ public class Hardware implements Serializable {
 
 	private static final long serialVersionUID = 4032538762740451821L;
 
-	private ArrayList<Server> servers;
+	private List<Server> servers;
 	private List<Network> networks;
 
 	public Hardware() {
@@ -38,6 +38,11 @@ public class Hardware implements Serializable {
 	public List<Network> getNetworks() {
 		return networks;
 	}
+
+	public void setNetworks(List<Network> networks) {
+		this.networks = networks;
+	}
+
 	public void addToNetworks(Network network) {
 		this.networks.add(network);
 	}

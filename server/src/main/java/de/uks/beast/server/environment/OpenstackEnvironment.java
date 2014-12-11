@@ -70,8 +70,8 @@ public class OpenstackEnvironment implements BeastEnvironment {
 
 			//get ID
 			String flavorID = "";
-			
 			boolean flavorExists = false;
+
 			for (Flavor flavor : os.compute().flavors().list()) {
 				if (flavor.getName().equals("b1." + server.getFlavor())) {
 					flavorExists = true;
@@ -118,13 +118,14 @@ public class OpenstackEnvironment implements BeastEnvironment {
 		List<? extends Network> existingNetworksList = os.networking().network().list();
 		Map<String, Network> existingNetworkMap = new HashMap<>();
 
+		// list to map
 		for (Network n : existingNetworksList) {
 			existingNetworkMap.put(n.getName(), n);
 		}
 
 		for (de.uks.beast.model.Network n : networkConfList) {
 			if (existingNetworkMap.containsKey(n.getNetworkName())) {
-				logger.info("The network with provided name (" + n.getNetworkName() + ") already exists. Skipping.");
+				logger.info("The network with provided name (" + n.getNetworkName() + ") already exists. Ignored.");
 			} else {
 				// creating actual network
 				// Assert: network with provided 'networkName' doesn't exist.
