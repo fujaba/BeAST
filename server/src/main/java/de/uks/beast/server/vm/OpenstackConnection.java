@@ -82,7 +82,6 @@ public class OpenstackConnection {
 			} catch (URISyntaxException e) {
 				e.printStackTrace();
 			}
-			logger.info(filelocation);
 			logger.info("Deploying beast service on VM ...");
 
 			//create tmp dir
@@ -134,8 +133,10 @@ public class OpenstackConnection {
 	}
 
 	public void executeService(String kafkabroker, String topic) {
-		logger.info("Starting beast service on VM with args[0] = " + kafkabroker +
-				", args[1] = " + topic);
+		logger.info("Starting beast service on VM with broker = " + kafkabroker +
+				" and topic = " + topic);
+		
+		//test
 		try {
 			Channel c = session.openChannel("exec");
 		    ChannelExec ce = (ChannelExec) c;

@@ -1,19 +1,25 @@
 package de.uks.beast.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by valentyn on 27/11/14.
  */
-public class Network {
+public class Network implements Serializable {
 
+	private static final long serialVersionUID = 6167309346414855709L;
+	
+	private List<Server> servers;
 	private String name;
 	private String ip;
 	private String subnetmask;
 	private String gateway;
 
-    private List<Server> servers;
+    public Network() {
+    	this.servers = new ArrayList<Server>();
+    }
 
     public String getName() {
 		return name;

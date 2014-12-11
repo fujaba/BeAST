@@ -24,6 +24,7 @@ public class XMLParser {
 	 * @param srvconfig Absolute path to .diagram file
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	public static Hardware parseHardwareConfig(String srvconfig) {
 		File configFile = new File(srvconfig);
 		
@@ -47,7 +48,7 @@ public class XMLParser {
 		
 		
 		Network currentNetwork = null;
-		for (@SuppressWarnings("rawtypes") Iterator i = root.elementIterator(); i.hasNext();) {
+		for (Iterator i = root.elementIterator(); i.hasNext();) {
 			Element element = (Element) i.next();
 			if (element.asXML().startsWith("<model:")) {
 				if (element.getName().equals("Network")) {
@@ -55,18 +56,21 @@ public class XMLParser {
 					network.setName(element.attributeValue("name"));
 					network.setIp(element.attributeValue("ip"));
 					network.setSubnetmask(element.attributeValue("subnetmask"));
-					network.setGateway(element.attributeValue("host"));
-					currentNetwork = network;
-					
+					network.setGateway(element.attributeValue("gateway"));
 					hwconf.addToNetworks(network);
-				} else if (element.getName().equals("Server")) {
-					Server server = new Server();
-					server.setHost(element.attributeValue("host"));
-					server.setCpu(Integer.parseInt(element.attributeValue("cpu")));
-					server.setRam(Integer.parseInt(element.attributeValue("ram")));
-					server.setDiskSpace(Integer.parseInt(element.attributeValue("diskSpace")));
-					server.setNetwork(currentNetwork);
-				}
+					
+					for (Object o : element.elements()) {
+						Element child = (Element) o;
+						Server server = new Server();
+						server.setHost(child.attributeValue("host"));
+						server.setCpu(Integer.parseInt(child.attributeValue("cpu")));
+						server.setRam(Integer.parseInt(child.attributeValue("ram")));
+						server.setDiskSpace(Integer.parseInt(child.attributeValue("diskSpace")));
+						server.setNetwork(currentNetwork);
+						network.addToServer(server);
+					}
+					
+				} 
 			}
 		}
 		

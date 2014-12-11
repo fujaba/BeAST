@@ -75,7 +75,7 @@
 						</manifestEntries>
 					</archive>
 					<outputDirectory>/${user.home}/beast-build/</outputDirectory>
-					<finalName>beastserver-${project.version}</finalName>
+					<finalName>beastserver</finalName>
 				</configuration>
 			</plugin>
 			<plugin>

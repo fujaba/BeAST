@@ -1,5 +1,7 @@
 package de.uks.beast.server.environment;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,8 +16,13 @@ import org.openstack4j.model.compute.Keypair;
 import org.openstack4j.model.compute.Server;
 import org.openstack4j.model.compute.Server.Status;
 import org.openstack4j.model.compute.ServerCreate;
+import org.openstack4j.model.identity.Tenant;
+import org.openstack4j.model.network.AttachInterfaceType;
+import org.openstack4j.model.network.IPVersionType;
 import org.openstack4j.model.network.NetFloatingIP;
 import org.openstack4j.model.network.Network;
+import org.openstack4j.model.network.Router;
+import org.openstack4j.model.network.Subnet;
 import org.openstack4j.openstack.OSFactory;
 
 import de.uks.beast.model.Hardware;
@@ -198,9 +205,47 @@ public class OpenstackEnvironment implements BeastEnvironment {
 		}
 		
 		if (openstacknetwork == null) {
-			String tenantId = os.identity().tenants().getByName(service.get("tenantName")).getId();
+
+			String tenantId = "";
+			for (Tenant tenant : os.identity().tenants().list()) {
+				if (tenant.getName().equals(service.get("tenantName"))) {
+					tenantId = tenant.getId();
+				}
+			}
+					
 			openstacknetwork = os.networking().network().create(
-					Builders.network().name(network.getName()).tenantId(tenantId).build());
+					Builders.network()
+						.name(network.getName())
+						.tenantId(tenantId)
+						.adminStateUp(true)
+						.build());
+			
+			try {
+				Subnet subnet = os.networking().subnet().create(
+						Builders.subnet()
+							.name(network.getName() + "-subnet")
+							.tenantId(tenantId)
+							.gateway(network.getGateway())
+							.networkId(openstacknetwork.getId())
+							.addPool("192.168.2.2", "192.168.2.254")
+							.ipVersion(IPVersionType.V4)
+							.cidr(network.getIp() + "/" + 
+									convertNetmaskToCIDR(InetAddress.getByName(network.getSubnetmask())))
+							.enableDHCP(true)
+							.build());
+				
+				Router router = os.networking().router().create(
+						Builders.router()
+							.name(network.getName() + "-router")
+							.adminStateUp(true)
+							.externalGateway(service.get("external-net"))
+							.build());
+				
+				os.networking().router().attachInterface(router.getId(), AttachInterfaceType.SUBNET, subnet.getId());
+			} catch (UnknownHostException e) {
+				e.printStackTrace();
+			}
+			
 		}
 		
 		return openstacknetwork;
@@ -214,5 +259,36 @@ public class OpenstackEnvironment implements BeastEnvironment {
 		}
 		return null;
 	}
+	
+	public static void main(String[] args) {
+		try {
+			System.out.println(convertNetmaskToCIDR(InetAddress.getByName("255.255.255.0")));
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static int convertNetmaskToCIDR(InetAddress netmask){
+        byte[] netmaskBytes = netmask.getAddress();
+        int cidr = 0;
+        boolean zero = false;
+        for(byte b : netmaskBytes){
+            int mask = 0x80;
+
+            for(int i = 0; i < 8; i++){
+                int result = b & mask;
+                if(result == 0){
+                    zero = true;
+                }else if(zero){
+                    throw new IllegalArgumentException("Invalid netmask.");
+                } else {
+                    cidr++;
+                }
+                mask >>>= 1;
+            }
+        }
+        return cidr;
+    }
 
 }
