@@ -159,7 +159,7 @@ public class OpenstackEnvironment implements BeastEnvironment {
 	//
 	// Check Network Existence
 	private void networkIsAlreadyCreated(String networkName) {
-		// TODO shoud return tt/ff wether the network with the 'networkName' already created.
+		// TODO should return tt/ff whether the network with the 'networkName' already created.
 	}
 
 
