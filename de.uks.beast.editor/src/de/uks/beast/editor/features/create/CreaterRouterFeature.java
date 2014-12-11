@@ -32,7 +32,6 @@ public class CreaterRouterFeature extends AbstractCreateFeature
 	{
 		final Router router = ModelFactory.eINSTANCE.createRouter();
 		getDiagram().eResource().getContents().add(router);
-		router.setType("Router");;
 		addGraphicalRepresentation(context, router);
 		getFeatureProvider().getDirectEditingInfo().setActive(true);
 		

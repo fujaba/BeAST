@@ -71,10 +71,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 			case ModelPackage.SERVER: return createServer();
 			case ModelPackage.RACK: return createRack();
 			case ModelPackage.NETWORK: return createNetwork();
-			case ModelPackage.SWITCH: return createSwitch();
-			case ModelPackage.ROUTING_COMPONENT: return createRoutingComponent();
-			case ModelPackage.ROUTER: return createRouter();
 			case ModelPackage.ROOM: return createRoom();
+			case ModelPackage.ROUTER: return createRouter();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -117,32 +115,6 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 	{
 		NetworkImpl network = new NetworkImpl();
 		return network;
-	}
-	
-	
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Switch createSwitch()
-	{
-		SwitchImpl switch_ = new SwitchImpl();
-		return switch_;
-	}
-	
-	
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RoutingComponent createRoutingComponent()
-	{
-		RoutingComponentImpl routingComponent = new RoutingComponentImpl();
-		return routingComponent;
 	}
 	
 	

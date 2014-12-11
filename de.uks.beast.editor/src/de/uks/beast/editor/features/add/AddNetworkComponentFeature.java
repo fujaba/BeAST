@@ -28,6 +28,8 @@ public class AddNetworkComponentFeature extends AbstractAddFeature
 	
 	private static final IColorConstant	E_CLASS_BACKGROUND		= new ColorConstant(187, 218, 247);
 	
+	private static final String TYP = "Network";
+	
 	
 	
 	public AddNetworkComponentFeature(final IFeatureProvider fp)
@@ -102,7 +104,7 @@ public class AddNetworkComponentFeature extends AbstractAddFeature
 		final Shape textShape = peCreateService.createShape(containerShape, false);
 		
 		// create and set text graphics algorithm
-		final Text text = gaService.createText(textShape, network.getType());
+		final Text text = gaService.createText(textShape, TYP);
 		text.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
 		text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 		// vertical alignment has as default value "center"
