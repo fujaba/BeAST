@@ -14,10 +14,6 @@ public class Hardware implements Serializable {
 		this.networks = new ArrayList<>();
 	}
 
-	//
-	// Accessors
-
-	//
 	public List<Network> getNetworks() {
 		return networks;
 	}

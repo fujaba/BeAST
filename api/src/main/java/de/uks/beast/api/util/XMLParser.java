@@ -12,6 +12,7 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import de.uks.beast.model.Hardware;
+import de.uks.beast.model.Network;
 import de.uks.beast.model.Server;
 
 public class XMLParser {
@@ -44,20 +45,31 @@ public class XMLParser {
         
 		Element root = document.getRootElement();
 		
+		
+		Network currentNetwork = null;
 		for (@SuppressWarnings("rawtypes") Iterator i = root.elementIterator(); i.hasNext();) {
 			Element element = (Element) i.next();
 			if (element.asXML().startsWith("<model:")) {
-				if (element.getName().equals("Server")) {
+				if (element.getName().equals("Network")) {
+					Network network = new Network();
+					network.setName(element.attributeValue("name"));
+					network.setIp(element.attributeValue("ip"));
+					network.setSubnetmask(element.attributeValue("subnetmask"));
+					network.setGateway(element.attributeValue("host"));
+					currentNetwork = network;
+					
+					hwconf.addToNetworks(network);
+				} else if (element.getName().equals("Server")) {
 					Server server = new Server();
 					server.setHost(element.attributeValue("host"));
 					server.setCpu(Integer.parseInt(element.attributeValue("cpu")));
 					server.setRam(Integer.parseInt(element.attributeValue("ram")));
 					server.setDiskSpace(Integer.parseInt(element.attributeValue("diskSpace")));
-					hwconf.addToServer(server);
+					server.setNetwork(currentNetwork);
 				}
 			}
 		}
-
+		
 		return hwconf;
 	}
 

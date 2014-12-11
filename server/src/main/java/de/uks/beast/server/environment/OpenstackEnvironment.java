@@ -1,19 +1,30 @@
 package de.uks.beast.server.environment;
 
-import de.uks.beast.model.Hardware;
-import de.uks.beast.server.BeastService;
-import de.uks.beast.server.environment.model.Configuration;
-import de.uks.beast.server.environment.model.OpenstackFlavor;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openstack4j.api.Builders;
 import org.openstack4j.api.OSClient;
 import org.openstack4j.model.compute.Flavor;
+import org.openstack4j.model.compute.FloatingIP;
+import org.openstack4j.model.compute.Keypair;
+import org.openstack4j.model.compute.Server;
+import org.openstack4j.model.compute.Server.Status;
 import org.openstack4j.model.compute.ServerCreate;
+import org.openstack4j.model.network.NetFloatingIP;
 import org.openstack4j.model.network.Network;
 import org.openstack4j.openstack.OSFactory;
 
-import java.util.*;
+import de.uks.beast.model.Hardware;
+import de.uks.beast.server.BeastService;
+import de.uks.beast.server.environment.model.Configuration;
+import de.uks.beast.server.environment.model.ConnectionInfo;
+import de.uks.beast.server.environment.model.OpenstackConnectionInfo;
+import de.uks.beast.server.environment.model.OpenstackConfiguration;
+import de.uks.beast.server.vm.OpenstackConnection;
 
 public class OpenstackEnvironment implements BeastEnvironment {
 
@@ -55,132 +66,153 @@ public class OpenstackEnvironment implements BeastEnvironment {
 
 
 	/**
-	 * Setup the hardware
+	 * Setup the virtual networks and servers
 	 * @param hwconf
 	 * @return
 	 */
 	public List<? extends Configuration> createHardwareDefiniton(Hardware hwconf) {
+		List<OpenstackConfiguration> configs = new ArrayList<OpenstackConfiguration>();
 
-		//
-		// Creating Flavors
-		List<OpenstackFlavor> flavors = new ArrayList<>();
-		List<? extends Network> networks;
-
-		for (de.uks.beast.model.Server server : hwconf.getServers()) {
-
-			//get ID
-			String flavorID = "";
-			boolean flavorExists = false;
-
-			for (Flavor flavor : os.compute().flavors().list()) {
-				if (flavor.getName().equals("b1." + server.getFlavor())) {
-					flavorExists = true;
-					flavorID = flavor.getId();
-					logger.info("Using flavor with name b1." + server.getFlavor() + " (" + flavorID + ")");
-				}
-			}
+		for (de.uks.beast.model.Network network : hwconf.getNetworks()) {
 			
-			if (!flavorExists) {
-				Flavor f = Builders.flavor()
-						.name("b1." + server.getFlavor())
-						.ram(server.getRam())
-						.vcpus(server.getCpu())
-						.disk(server.getDiskSpace())
-						.rxtxFactor(1.0f)
-						.build();
-				os.compute().flavors().create(f);
-				
+			Network openstacknetwork = getOrCreateNetwork(network);
+			
+			for (de.uks.beast.model.Server server : network.getServers()) {
+				String flavorID = "";
+				boolean flavorExists = false;
+
 				for (Flavor flavor : os.compute().flavors().list()) {
 					if (flavor.getName().equals("b1." + server.getFlavor())) {
+						flavorExists = true;
 						flavorID = flavor.getId();
+						logger.info("Using flavor with name b1." + server.getFlavor() + " (" + flavorID + ")");
 					}
 				}
 				
-				logger.info("Created new Flavor with name b1." + server.getFlavor()
-						+ " (" + flavorID + ")");
+				if (!flavorExists) {
+					Flavor f = Builders.flavor()
+							.name("b1." + server.getFlavor())
+							.ram(server.getRam())
+							.vcpus(server.getCpu())
+							.disk(server.getDiskSpace())
+							.rxtxFactor(1.0f)
+							.build();
+					os.compute().flavors().create(f);
+					
+					for (Flavor flavor : os.compute().flavors().list()) {
+						if (flavor.getName().equals("b1." + server.getFlavor())) {
+							flavorID = flavor.getId();
+						}
+					}
+					
+					logger.info("Created new Flavor with name b1." + server.getFlavor()
+							+ " (" + flavorID + ")");
+				}
+				configs.add(new OpenstackConfiguration(openstacknetwork.getId(), flavorID, server));
 			}
-			flavors.add(new OpenstackFlavor(flavorID, server));
+			
 		}
-
-		//
-		// Creating Networks
-		networks = createNetworkFromConf(hwconf.getNetworks());
-
-		// TODO this method returns only flavors... should return the whole HW setup.
-		return flavors;
+		
+		return configs;
 	}
-
-
-	//
-	// Create Network
-	private List<? extends Network> createNetworkFromConf(List<de.uks.beast.model.Network> networkConfList) {
-
-		List<? extends Network> existingNetworksList = os.networking().network().list();
-		Map<String, Network> existingNetworkMap = new HashMap<>();
-
-		// list to map
-		for (Network n : existingNetworksList) {
-			existingNetworkMap.put(n.getName(), n);
-		}
-
-		for (de.uks.beast.model.Network n : networkConfList) {
-			if (existingNetworkMap.containsKey(n.getNetworkName())) {
-				logger.info("The network with provided name (" + n.getNetworkName() + ") already exists. Ignored.");
-			} else {
-				// creating actual network
-				// Assert: network with provided 'networkName' doesn't exist.
-				final String tenantId = os.identity().tenants().getByName(service.get("tenantName")).getId();
-				final Network network = os.networking().network().create(
-						Builders.network().name(n.getNetworkName()).tenantId(tenantId).build());
-				existingNetworkMap.put(network.getName(), network);
-			}
-		}
-
-		return new ArrayList<>(existingNetworkMap.values());
-	}
-
-	//
-	// Get Network by ID
-	public Network getNetworkById(String networkId) {
-		return os.networking().network().get(networkId);
-	}
-
-	//
-	// Delete Network
-	public boolean deleteNetwork(String networkId) {
-		boolean status = false;
-		if(networkId != null && !networkId.isEmpty()) {
-			os.networking().network().delete(networkId);
-			status = true;
-		}
-		return status;
-	}
-
-	//
-	// Check Network Existence
-	private void networkIsAlreadyCreated(String networkName) {
-		// TODO should return tt/ff whether the network with the 'networkName' already created.
-	}
-
 
 	@Override
-	public void startVirtualMachine(List<? extends Configuration> configs) {
+	public ArrayList<? extends ConnectionInfo> startVirtualMachine(List<? extends Configuration> configs) {
+		ArrayList<OpenstackConnectionInfo> cons = new ArrayList<OpenstackConnectionInfo>();
+		
+		logger.info("Creating keypair for VM(s) ...");
+		
+		os.compute().keypairs().delete("beast-keypair");
+		Keypair kp = os.compute().keypairs().create("beast-keypair", null);
+		
 		for (Configuration configuration : configs) {
-			OpenstackFlavor cf = (OpenstackFlavor) configuration;
+			OpenstackConfiguration cf = (OpenstackConfiguration) configuration;
 			ServerCreate sc = Builders.server()
 					.name(cf.getHost())
 					.flavor(cf.getId())
 					.image(service.get("ubuntu-image"))
-					.networks(new ArrayList<>(Arrays.asList(service.get("network-id"))))
-					.build();
-			os.compute().servers().boot(sc);
+					.keypairName("beast-keypair")
+					.networks(new ArrayList<String>(Arrays.asList(cf.getNetwork()))).build();
+			
+			Server server = os.compute().servers().boot(sc);
+			
 			logger.info("Starting VM with hostname " + cf.getHost() + " and flavor " + cf.getId() + " ...");
+			
+			logger.info("Waiting for VM to become active ...");
+			
+			while (!os.compute().servers().get(server.getId()).getStatus().equals(Status.ACTIVE)) {
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+
+			FloatingIP ip = getFloatingIP();
+			NetFloatingIP netFloatingIP = os.networking().floatingip().get(ip.getId());
+			os.compute().floatingIps().addFloatingIP(server, netFloatingIP.getFloatingIpAddress());
+
+			logger.info("Added floating IP " + netFloatingIP.getFloatingIpAddress() + " to " + cf.getHost());
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			cons.add(new OpenstackConnectionInfo(netFloatingIP.getFloatingIpAddress(), kp.getPrivateKey()));
+		}
+		
+		return cons;
+	}
+	
+	@Override
+	public void establishConnection(String kafkabroker, String topic, List<? extends ConnectionInfo> cons) {
+		for (ConnectionInfo connectionInfo : cons) {
+			OpenstackConnection con = new OpenstackConnection((OpenstackConnectionInfo) connectionInfo);
+			con.authenticate();
+			con.copyCrawlerService();
+			con.executeService(kafkabroker, topic);
+			con.disconnect();
 		}
 	}
 
 	@Override
 	public boolean isAuthenticated() {
 		return os != null;
+	}
+	
+	
+	/*
+	 * helper methods
+	 */
+	
+	private Network getOrCreateNetwork(de.uks.beast.model.Network network) {
+		List<? extends Network> existing = os.networking().network().list();
+		
+		Network openstacknetwork = null;
+		for (Network n : existing) {
+			if (n.getName().equals(network.getName())) {
+				openstacknetwork = n;
+			}
+		}
+		
+		if (openstacknetwork == null) {
+			String tenantId = os.identity().tenants().getByName(service.get("tenantName")).getId();
+			openstacknetwork = os.networking().network().create(
+					Builders.network().name(network.getName()).tenantId(tenantId).build());
+		}
+		
+		return openstacknetwork;
+	}
+	
+	private FloatingIP getFloatingIP() {
+		for (FloatingIP ip : os.compute().floatingIps().list()) {
+			if (ip.getFixedIpAddress() == null) {
+				return ip;
+			}
+		}
+		return null;
 	}
 
 }

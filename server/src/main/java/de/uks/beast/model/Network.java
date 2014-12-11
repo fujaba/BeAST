@@ -8,59 +8,28 @@ import java.util.List;
  */
 public class Network {
 
-    //
-    // Network
-    private String networkName;
-    private String networkId;
-    private boolean adminStateUp;
-
-    //
-    // Subnet
-    /**
-     * You do not have to specify a subnet when you create a network,
-     * but if you do not, any attached instance receives an Error status.
-     */
-    private String subnetName;
-    private String subnetId;
-    private String subnetIp;
-    private String tenantId;
-
-    //
-    // Port
-    private String portName;
-    private String portId;
-
-    //
-    // Router
+	private String name;
+	private String ip;
+	private String subnetmask;
+	private String gateway;
 
     private List<Server> servers;
 
-    //
-    // TODO create network
-
-    //
-    // TODO create subnet
-
-    //
-    // TODO create a router
-
-    //
-    // TODO delete network
-
-
-    //
-    // Accessors
-    public String getNetworkName() {
-        return networkName;
-    }
-
-    public String getNetworkId() {
-        return networkId;
-    }
-
-    public void setNetworkName(String networkName) {
-        this.networkName = networkName;
-    }
+    public String getName() {
+		return name;
+	}
+    
+    public String getIp() {
+		return ip;
+	}
+    
+    public String getSubnetmask() {
+		return subnetmask;
+	}
+    
+    public String getGateway() {
+		return gateway;
+	}
 
     public List<Server> getServers() {
         return servers;
@@ -75,4 +44,21 @@ public class Network {
             this.servers.add(server);
         }
     }
+    
+    public void setName(String name) {
+		this.name = name;
+	}
+    
+    public void setIp(String ip) {
+		this.ip = ip;
+	}
+    
+    public void setSubnetmask(String subnetmask) {
+		this.subnetmask = subnetmask;
+	}
+    
+    public void setGateway(String gateway) {
+		this.gateway = gateway;
+	}
+   
 }
