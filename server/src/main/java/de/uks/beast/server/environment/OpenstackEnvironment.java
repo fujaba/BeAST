@@ -3,7 +3,7 @@ package de.uks.beast.server.environment;
 import de.uks.beast.model.Hardware;
 import de.uks.beast.server.BeastService;
 import de.uks.beast.server.environment.model.Configuration;
-import de.uks.beast.server.environment.model.CustomFlavor;
+import de.uks.beast.server.environment.model.OpenstackFlavor;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openstack4j.api.Builders;
@@ -63,7 +63,7 @@ public class OpenstackEnvironment implements BeastEnvironment {
 
 		//
 		// Creating Flavors
-		List<CustomFlavor> flavors = new ArrayList<>();
+		List<OpenstackFlavor> flavors = new ArrayList<>();
 		List<? extends Network> networks;
 
 		for (de.uks.beast.model.Server server : hwconf.getServers()) {
@@ -99,7 +99,7 @@ public class OpenstackEnvironment implements BeastEnvironment {
 				logger.info("Created new Flavor with name b1." + server.getFlavor()
 						+ " (" + flavorID + ")");
 			}
-			flavors.add(new CustomFlavor(flavorID, server));
+			flavors.add(new OpenstackFlavor(flavorID, server));
 		}
 
 		//
@@ -166,7 +166,7 @@ public class OpenstackEnvironment implements BeastEnvironment {
 	@Override
 	public void startVirtualMachine(List<? extends Configuration> configs) {
 		for (Configuration configuration : configs) {
-			CustomFlavor cf = (CustomFlavor) configuration;
+			OpenstackFlavor cf = (OpenstackFlavor) configuration;
 			ServerCreate sc = Builders.server()
 					.name(cf.getHost())
 					.flavor(cf.getId())

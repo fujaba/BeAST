@@ -6,11 +6,20 @@ public class Server implements Serializable {
 
 	private static final long serialVersionUID = -5998846672406657793L;
 
+	private Network network;
 	private String host;
 	private int cpu;
 	private int ram;
 	private int diskSpace;
-	
+
+	public Network getNetwork() {
+		return network;
+	}
+
+	public void setNetwork(Network network) {
+		this.network = network;
+	}
+
 	public String getHost() {
 		return host;
 	}

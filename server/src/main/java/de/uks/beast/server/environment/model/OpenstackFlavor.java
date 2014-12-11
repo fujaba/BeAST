@@ -2,7 +2,7 @@ package de.uks.beast.server.environment.model;
 
 import de.uks.beast.model.Server;
 
-public class CustomFlavor extends Configuration {
+public class OpenstackFlavor {
 
 	private String id;
 	private String host;
@@ -10,7 +10,7 @@ public class CustomFlavor extends Configuration {
 	private int ram;
 	private int diskSpace;
 	
-	public CustomFlavor(String flavorID, Server server) {
+	public OpenstackFlavor(String flavorID, Server server) {
 		this.id = flavorID;
 		this.host = server.getHost();
 		this.cpu = server.getCpu();
