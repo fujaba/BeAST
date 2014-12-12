@@ -113,14 +113,14 @@ public interface ModelPackage extends EPackage
 	int				SERVER__DISK_SPACE					= 4;
 	
 	/**
-	 * The feature id for the '<em><b>Host</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int				SERVER__HOST						= 5;
-	
+	int SERVER__NAME = 5;
+
 	/**
 	 * The feature id for the '<em><b>Network</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -493,18 +493,18 @@ public interface ModelPackage extends EPackage
 	
 	
 	/**
-	 * Returns the meta object for the attribute '{@link model.Server#getHost <em>Host</em>}'.
+	 * Returns the meta object for the attribute '{@link model.Server#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Host</em>'.
-	 * @see model.Server#getHost()
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see model.Server#getName()
 	 * @see #getServer()
 	 * @generated
 	 */
-	EAttribute getServer_Host();
-	
-	
-	
+	EAttribute getServer_Name();
+
+
+
 	/**
 	 * Returns the meta object for the reference '{@link model.Server#getNetwork <em>Network</em>}'.
 	 * <!-- begin-user-doc -->
@@ -862,13 +862,13 @@ public interface ModelPackage extends EPackage
 		EAttribute	SERVER__DISK_SPACE			= eINSTANCE.getServer_DiskSpace();
 		
 		/**
-		 * The meta object literal for the '<em><b>Host</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute	SERVER__HOST				= eINSTANCE.getServer_Host();
-		
+		EAttribute SERVER__NAME = eINSTANCE.getServer_Name();
+
 		/**
 		 * The meta object literal for the '<em><b>Network</b></em>' reference feature.
 		 * <!-- begin-user-doc -->

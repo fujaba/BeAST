@@ -154,14 +154,14 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 						server.setCpuType(cpuTypeTextFld.getText());
 						server.setRam(Long.parseLong(ramTextFld.getText()));
 						server.setDiskSpace(Long.parseLong(diskSpaceTextFld.getText()));
-						server.setHost(hostTextFld.getText());
+						server.setName(hostTextFld.getText());
 						
 						System.out.println("server hash: " + server.hashCode() + " -> ip: " + server.getIp());
 						System.out.println("server hash: " + server.hashCode() + " -> cpu amount: " + server.getCpuAmount());
 						System.out.println("server hash: " + server.hashCode() + " -> cpu Type: " + server.getCpuType());
 						System.out.println("server hash: " + server.hashCode() + " -> ram: " + server.getRam());
 						System.out.println("server hash: " + server.hashCode() + " -> diskspace: " + server.getDiskSpace());
-						System.out.println("server hash: " + server.hashCode() + " -> host: " + server.getHost());
+						System.out.println("server hash: " + server.hashCode() + " -> host: " + server.getName());
 					}
 				});
 				
@@ -187,7 +187,7 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		cpuTypeTextFld.setText("" + server.getCpuType());
 		ramTextFld.setText("" + server.getRam());
 		diskSpaceTextFld.setText("" + server.getDiskSpace());
-		hostTextFld.setText("" + server.getHost());
+		hostTextFld.setText("" + server.getName());
 	}
 	
 	

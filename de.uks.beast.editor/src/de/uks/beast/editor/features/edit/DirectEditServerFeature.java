@@ -47,7 +47,7 @@ public class DirectEditServerFeature extends AbstractDirectEditingFeature
 	{
 		PictogramElement pe = context.getPictogramElement();
 		Server server = (Server) getBusinessObjectForPictogramElement(pe);
-		return server.getHost();
+		return server.getName();
 	}
 	
 	
@@ -71,7 +71,7 @@ public class DirectEditServerFeature extends AbstractDirectEditingFeature
 	{
 		PictogramElement pe = context.getPictogramElement();
 		Server server = (Server) getBusinessObjectForPictogramElement(pe);
-		server.setHost(value);
+		server.setName(value);
 		updatePictogramElement(((Shape) pe).getContainer());
 	}
 	

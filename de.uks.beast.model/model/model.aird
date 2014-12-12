@@ -301,9 +301,9 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
         </ownedElements>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_iEd1cF66EeS-SYGUQKm2qA" name="host : EString = 0" tooltipText="">
-          <target xmi:type="ecore:EAttribute" href="model.ecore#//Server/host"/>
-          <semanticElements xmi:type="ecore:EAttribute" href="model.ecore#//Server/host"/>
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_iEd1cF66EeS-SYGUQKm2qA" name="name : EString = 0" tooltipText="">
+          <target xmi:type="ecore:EAttribute" href="model.ecore#//Server/name"/>
+          <semanticElements xmi:type="ecore:EAttribute" href="model.ecore#//Server/name"/>
           <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_lTf9QF66EeS-SYGUQKm2qA" labelAlignment="LEFT">
             <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_lTf9QV66EeS-SYGUQKm2qA"/>
             <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>

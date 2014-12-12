@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link model.impl.ServerImpl#getCpuType <em>Cpu Type</em>}</li>
  *   <li>{@link model.impl.ServerImpl#getRam <em>Ram</em>}</li>
  *   <li>{@link model.impl.ServerImpl#getDiskSpace <em>Disk Space</em>}</li>
- *   <li>{@link model.impl.ServerImpl#getHost <em>Host</em>}</li>
+ *   <li>{@link model.impl.ServerImpl#getName <em>Name</em>}</li>
  *   <li>{@link model.impl.ServerImpl#getNetwork <em>Network</em>}</li>
  * </ul>
  * </p>
@@ -134,27 +134,25 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	protected long					diskSpace			= DISK_SPACE_EDEFAULT;
 	
 	/**
-	 * The default value of the '{@link #getHost() <em>Host</em>}' attribute.
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getHost()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String	HOST_EDEFAULT		= "0";
-	
+	protected static final String NAME_EDEFAULT = "0";
+
 	/**
-	 * The cached value of the '{@link #getHost() <em>Host</em>}' attribute.
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getHost()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected String				host				= HOST_EDEFAULT;
-	
-	
-	
+	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getNetwork() <em>Network</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -332,28 +330,28 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getHost()
+	public String getName()
 	{
-		return host;
+		return name;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHost(String newHost)
+	public void setName(String newName)
 	{
-		String oldHost = host;
-		host = newHost;
+		String oldName = name;
+		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.SERVER__HOST, oldHost, host));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.SERVER__NAME, oldName, name));
 	}
-	
-	
-	
+
+
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -482,8 +480,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 				return getRam();
 			case ModelPackage.SERVER__DISK_SPACE:
 				return getDiskSpace();
-			case ModelPackage.SERVER__HOST:
-				return getHost();
+			case ModelPackage.SERVER__NAME:
+				return getName();
 			case ModelPackage.SERVER__NETWORK:
 				if (resolve) return getNetwork();
 				return basicGetNetwork();
@@ -519,8 +517,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 			case ModelPackage.SERVER__DISK_SPACE:
 				setDiskSpace((Long)newValue);
 				return;
-			case ModelPackage.SERVER__HOST:
-				setHost((String)newValue);
+			case ModelPackage.SERVER__NAME:
+				setName((String)newValue);
 				return;
 			case ModelPackage.SERVER__NETWORK:
 				setNetwork((Network)newValue);
@@ -556,8 +554,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 			case ModelPackage.SERVER__DISK_SPACE:
 				setDiskSpace(DISK_SPACE_EDEFAULT);
 				return;
-			case ModelPackage.SERVER__HOST:
-				setHost(HOST_EDEFAULT);
+			case ModelPackage.SERVER__NAME:
+				setName(NAME_EDEFAULT);
 				return;
 			case ModelPackage.SERVER__NETWORK:
 				setNetwork((Network)null);
@@ -588,8 +586,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 				return ram != RAM_EDEFAULT;
 			case ModelPackage.SERVER__DISK_SPACE:
 				return diskSpace != DISK_SPACE_EDEFAULT;
-			case ModelPackage.SERVER__HOST:
-				return HOST_EDEFAULT == null ? host != null : !HOST_EDEFAULT.equals(host);
+			case ModelPackage.SERVER__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ModelPackage.SERVER__NETWORK:
 				return network != null;
 		}
@@ -619,8 +617,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 		result.append(ram);
 		result.append(", diskSpace: ");
 		result.append(diskSpace);
-		result.append(", host: ");
-		result.append(host);
+		result.append(", name: ");
+		result.append(name);
 		result.append(')');
 		return result.toString();
 	}
