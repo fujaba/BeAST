@@ -28,11 +28,10 @@ public class AddRoomFeature extends AbstractAddShapeFeature
 	
 	private static final IColorConstant	E_CLASS_BACKGROUND		= new ColorConstant(187, 218, 247);
 	
-	private static final String TYP = "Serverroom";
 	
 	
 	
-	public AddRoomFeature(IFeatureProvider fp)
+	public AddRoomFeature(final IFeatureProvider fp)
 	{
 		super(fp);
 	}
@@ -40,10 +39,8 @@ public class AddRoomFeature extends AbstractAddShapeFeature
 	
 	
 	@Override
-	public boolean canAdd(IAddContext context)
-	{
-		System.out.println("########## " + getDiagram().getDiagramTypeId());
-		
+	public boolean canAdd(final IAddContext context)
+	{		
 		if (context.getNewObject() instanceof Room)
 		{
 			if (context.getTargetContainer() instanceof Diagram)
@@ -58,7 +55,7 @@ public class AddRoomFeature extends AbstractAddShapeFeature
 	
 	
 	@Override
-	public PictogramElement add(IAddContext context)
+	public PictogramElement add(final IAddContext context)
 	{
 		final Room room = (Room) context.getNewObject();
 		final Diagram targetDiagram = (Diagram) context.getTargetContainer();
@@ -105,7 +102,7 @@ public class AddRoomFeature extends AbstractAddShapeFeature
 		final Shape textShape = peCreateService.createShape(containerShape, false);
 		
 		// create and set text graphics algorithm
-		final Text text = gaService.createText(textShape, TYP);
+		final Text text = gaService.createText(textShape, room.getName());
 		text.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
 		text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 		// vertical alignment has as default value "center"

@@ -11,7 +11,7 @@ import org.eclipse.graphiti.mm.pictograms.Diagram;
 public class CreateRoomFeature extends AbstractCreateFeature
 {
 	
-	public CreateRoomFeature(IFeatureProvider fp, String name, String description)
+	public CreateRoomFeature(final IFeatureProvider fp, final String name, final String description)
 	{
 		super(fp, name, description);
 	}
@@ -19,7 +19,7 @@ public class CreateRoomFeature extends AbstractCreateFeature
 	
 	
 	@Override
-	public boolean canCreate(ICreateContext context)
+	public boolean canCreate(final ICreateContext context)
 	{
 		return context.getTargetContainer() instanceof Diagram;
 	}
@@ -27,13 +27,13 @@ public class CreateRoomFeature extends AbstractCreateFeature
 	
 	
 	@Override
-	public Object[] create(ICreateContext context)
+	public Object[] create(final ICreateContext context)
 	{
-		final Room room = ModelFactory.eINSTANCE.createRoom();
-		getDiagram().eResource().getContents().add(room);
-		addGraphicalRepresentation(context, room);
-		getFeatureProvider().getDirectEditingInfo().setActive(true);
-		
-		return new Object[] { room };
+	    final Room room = ModelFactory.eINSTANCE.createRoom();
+	    getDiagram().eResource().getContents().add(room);	 
+	    addGraphicalRepresentation(context, room);	 
+	    getFeatureProvider().getDirectEditingInfo().setActive(true);
+	 
+	    return new Object[] { room };
 	}
 }

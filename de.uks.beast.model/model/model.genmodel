@@ -18,6 +18,7 @@
     <genClasses ecoreClass="model.ecore#//Rack">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Rack/server"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Rack/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Rack/name"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//Network">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Network/ip"/>

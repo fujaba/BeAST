@@ -2,7 +2,6 @@ package de.uks.beast.editor.features.create;
 
 import model.Network;
 import model.Router;
-import model.RoutingComponent;
 import model.Server;
 
 import org.eclipse.graphiti.features.IFeatureProvider;

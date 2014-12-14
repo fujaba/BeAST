@@ -28,7 +28,6 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 	private Text						cpuTypeTextFld;
 	private Text						ramTextFld;
 	private Text						diskSpaceTextFld;
-	private Text						hostTextFld;
 	private Button						submitBtn;
 	private Server						server;
 	private TransactionalEditingDomain	domain;
@@ -119,27 +118,13 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.top = new FormAttachment(diskSpaceTextFld, 0, SWT.CENTER);
 		valueLabe5.setLayoutData(data);
 		
-		// Property_host
-		hostTextFld = factory.createText(composite, "");
-		data = new FormData();
-		data.left = new FormAttachment(0, STANDARD_LABEL_WIDTH);
-		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, VSPACE + 125);
-		hostTextFld.setLayoutData(data);
-		
-		final CLabel valueLabe6 = factory.createCLabel(composite, "Host:");
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(hostTextFld, valueLabe6.getText().length());
-		data.top = new FormAttachment(hostTextFld, 0, SWT.CENTER);
-		valueLabe6.setLayoutData(data);
 		
 		//Property_submit
 		submitBtn = factory.createButton(composite, "submit", 0);
 		data = new FormData();
 		data.left = new FormAttachment(0, 20);
 		data.right = new FormAttachment(20, 0);
-		data.top = new FormAttachment(0, VSPACE + 150);
+		data.top = new FormAttachment(0, VSPACE + 125);
 		submitBtn.setLayoutData(data);
 		submitBtn.addSelectionListener(new SelectionListener() {
 			
@@ -154,7 +139,6 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 						server.setCpuType(cpuTypeTextFld.getText());
 						server.setRam(Long.parseLong(ramTextFld.getText()));
 						server.setDiskSpace(Long.parseLong(diskSpaceTextFld.getText()));
-						server.setName(hostTextFld.getText());
 						
 						System.out.println("server hash: " + server.hashCode() + " -> ip: " + server.getIp());
 						System.out.println("server hash: " + server.hashCode() + " -> cpu amount: " + server.getCpuAmount());
@@ -187,7 +171,6 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		cpuTypeTextFld.setText("" + server.getCpuType());
 		ramTextFld.setText("" + server.getRam());
 		diskSpaceTextFld.setText("" + server.getDiskSpace());
-		hostTextFld.setText("" + server.getName());
 	}
 	
 	

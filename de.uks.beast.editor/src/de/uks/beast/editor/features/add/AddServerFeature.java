@@ -29,7 +29,6 @@ public class AddServerFeature extends AbstractAddShapeFeature
 	
 	private static final IColorConstant	E_CLASS_BACKGROUND		= new ColorConstant(187, 218, 247);
 	
-	private static final String TYP = "Server";
 	
 	
 	
@@ -104,7 +103,7 @@ public class AddServerFeature extends AbstractAddShapeFeature
 		final Shape textShape = peCreateService.createShape(containerShape, false);
 		
 		// create and set text graphics algorithm
-		final Text text = gaService.createText(textShape, TYP);
+		final Text text = gaService.createText(textShape, server.getName());
 		text.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
 		text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 		// vertical alignment has as default value "center"

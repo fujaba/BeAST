@@ -1,8 +1,6 @@
 package de.uks.beast.editor.properties.filter;
 
 import model.Network;
-import model.Router;
-import model.Server;
 
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;

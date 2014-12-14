@@ -27,7 +27,6 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 	private Text						ipTextFld;
 	private Text						externalGatewayTextFld;
 	private Text						idTextFld;
-	private Text						nameTextFld;
 	private Button						submitBtn;
 	private Router						router;
 	private TransactionalEditingDomain	domain;
@@ -35,7 +34,7 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 	
 	
 	@Override
-	public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage)
+	public void createControls(final Composite parent, final TabbedPropertySheetPage tabbedPropertySheetPage)
 	{
 		super.createControls(parent, tabbedPropertySheetPage);
 		
@@ -87,28 +86,14 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		data.right = new FormAttachment(idTextFld, valueLabe5.getText().length());
 		data.top = new FormAttachment(idTextFld, 0, SWT.CENTER);
 		valueLabe5.setLayoutData(data);
-		
-		//Property_host
-		nameTextFld = factory.createText(composite, "");
-		data = new FormData();
-		data.left = new FormAttachment(0, STANDARD_LABEL_WIDTH);
-		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, VSPACE + 75);
-		nameTextFld.setLayoutData(data);
-		
-		final CLabel valueLabe6 = factory.createCLabel(composite, "Name:");
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(nameTextFld, valueLabe6.getText().length());
-		data.top = new FormAttachment(nameTextFld, 0, SWT.CENTER);
-		valueLabe6.setLayoutData(data);
+
 		
 		//Property_submit
 		submitBtn = factory.createButton(composite, "submit", 0);
 		data = new FormData();
 		data.left = new FormAttachment(0, 20);
 		data.right = new FormAttachment(20, 0);
-		data.top = new FormAttachment(0, VSPACE + 100);
+		data.top = new FormAttachment(0, VSPACE + 75);
 		submitBtn.setLayoutData(data);
 		submitBtn.addSelectionListener(new SelectionListener() {
 			
@@ -121,7 +106,6 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 						router.setIp(ipTextFld.getText());
 						router.setExternalGateway(externalGatewayTextFld.getText());
 						router.setId(idTextFld.getText());
-						router.setName(nameTextFld.getText());
 						
 						System.out.println("router hash: " + router.hashCode() + " -> ip: " + router.getIp());
 						System.out.println("router hash: " + router.hashCode() + " -> external gateway: "
@@ -151,7 +135,6 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		ipTextFld.setText(router.getIp());
 		externalGatewayTextFld.setText("" + router.getExternalGateway());
 		idTextFld.setText(router.getId());
-		nameTextFld.setText("" + router.getName());
 	}
 	
 	
@@ -160,6 +143,7 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 	public void refresh()
 	{
 		final PictogramElement pe = getSelectedPictogramElement();
+		
 		if (pe != null)
 		{
 			router = (Router) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
