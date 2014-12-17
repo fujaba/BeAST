@@ -176,7 +176,7 @@ public class OpenstackEnvironment implements BeastEnvironment {
 	@Override
 	public void establishConnection(String kafkabroker, String topic, List<? extends ConnectionInfo> cons) {
 		for (ConnectionInfo connectionInfo : cons) {
-			OpenstackConnection con = new OpenstackConnection((OpenstackConnectionInfo) connectionInfo);
+			OpenstackConnection con = new OpenstackConnection(service, (OpenstackConnectionInfo) connectionInfo);
 			con.authenticate();
 			con.copyCrawlerService();
 			con.executeService(kafkabroker, topic);

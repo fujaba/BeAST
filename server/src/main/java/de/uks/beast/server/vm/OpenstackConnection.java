@@ -3,6 +3,8 @@ package de.uks.beast.server.vm;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.net.URISyntaxException;
 
 import org.apache.log4j.LogManager;
@@ -16,19 +18,24 @@ import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import com.jcraft.jsch.SftpException;
 
+import de.uks.beast.server.BeastService;
 import de.uks.beast.server.environment.model.OpenstackConnectionInfo;
 
 public class OpenstackConnection {
 	
 	private static final String NO_ROUTE_TO_HOST = "java.net.NoRouteToHostException: No route to host";
 	private static final String CONNECTION_REFUSED = "java.net.ConnectException: Connection refused";
+	private static final String ADD_HOST = "awk '/127.0.0.1/ { print; print \"P_HOST\"; next }1' /etc/hosts > /tmp/hosts && "
+			+ "sudo mv /tmp/hosts /etc/hosts";
 
 	private static Logger logger = LogManager.getLogger(OpenstackConnection.class);
 
 	private OpenstackConnectionInfo connectionInfo;
 	private Session session;
+	private BeastService service;
 
-	public OpenstackConnection(OpenstackConnectionInfo connectionInfo) {
+	public OpenstackConnection(BeastService service, OpenstackConnectionInfo connectionInfo) {
+		this.service = service;
 		this.connectionInfo = connectionInfo;
 	}
 
@@ -97,7 +104,7 @@ public class OpenstackConnection {
 			cs.connect();
 			cs.put(filelocation + "/util/bservice.jar", "/tmp/beast/util/bservice.jar");
 			cs.put(filelocation + "/util/install_java.sh", "/tmp/beast/util/install_java.sh");
-			copyFolder(filelocation + "/util/libs", "/tmp/beast/util/libs");
+			copyFolder(filelocation + "/util/libs", "/tmp/beast/util");
 			ce.disconnect();
 		} catch (JSchException | SftpException e) {
 			logger.error("Unexpected Exception", e);
@@ -106,54 +113,94 @@ public class OpenstackConnection {
 	
 	private void copyFolder(String src, String dest) {
 		try {
+		    Channel c = session.openChannel("sftp");
+			ChannelSftp cs = (ChannelSftp) c;
+			cs.connect();
+			
+			recursiveCopy(cs, new File(src), dest);
+		} catch (JSchException e) {
+			logger.error("Unexpected Exception", e);
+		}
+	}
+	
+	private void recursiveCopy(ChannelSftp cs, File file, String curDest) {
+		try {
+			if (file.isDirectory()) {
+				String dest = curDest + "/" + file.getName();
+				mkdir(dest);
+				
+				Thread.sleep(200);
+				
+				for (File f : file.listFiles()) {
+					recursiveCopy(cs, f, dest);
+				}
+			} else {
+				cs.put(file.getAbsolutePath(), curDest + "/" + file.getName());
+			}
+		} catch (SftpException | InterruptedException e) {
+			logger.error("Unexpected Exception", e);
+		}
+	}
+
+	public void executeService(String kafkabroker, String topic) {
+		try {
+			//edit /etc/hosts
+			String hostname = service.get("kafkahosts");
+			
+			Channel c = session.openChannel("exec");
+		    ChannelExec edit_host = (ChannelExec) c;
+		    edit_host.setCommand(ADD_HOST.replace("P_HOST", hostname.replace(":", "\t")));
+		    edit_host.setErrStream(System.err);
+		    edit_host.connect();
+		    edit_host.disconnect();
+			
+			//install java
+			c = session.openChannel("exec");
+		    ChannelExec install_java = (ChannelExec) c;
+		    install_java.setCommand("sudo sh /tmp/beast/util/install_java.sh");
+		    install_java.setErrStream(System.err);
+		    install_java.connect();
+		    BufferedReader install_java_reader = new BufferedReader(new InputStreamReader(install_java.getInputStream()));
+		    String line1;
+		    while ((line1 = install_java_reader.readLine()) != null) {
+		    	logger.debug("[Java Installer] - " + line1);
+		    }
+		    install_java.disconnect();
+		    
+		    //start service
+		    logger.info("Starting beast service on VM with broker = " + kafkabroker +
+					" and topic = " + topic);
+			Channel channel = session.openChannel("shell");
+			OutputStream ops = channel.getOutputStream();
+			PrintStream ps = new PrintStream(ops, true);
+
+			channel.connect();
+
+			ps.println("nohup java -classpath /tmp/beast/util/bservice.jar:/tmp/beast/util/libs/*" +
+		    		" -Djava.library.path=/tmp/beast/util/libs/native" +
+		    		" de.uks.beast.vmservice.VMService " + kafkabroker + " " + topic + " &");
+			ps.close();
+
+			// wait till executed
+			Thread.sleep(2000);
+
+			channel.disconnect();
+
+		    logger.info("disconnected");
+		} catch (Exception e) {
+			logger.error("Unexpected Exception", e);
+		}
+	}
+
+	private void mkdir(String dest) {
+		try {
 			Channel c = session.openChannel("exec");
 		    ChannelExec ce = (ChannelExec) c;
 		    ce.setCommand("mkdir -p " + dest);
 		    ce.setErrStream(System.err);
 		    ce.connect();
 		    ce.disconnect();
-		    
-		    c = session.openChannel("sftp");
-			ChannelSftp cs = (ChannelSftp) c;
-			cs.connect();
-			
-			File root = new File(src);
-			for (File file : root.listFiles()) {
-				recursiveCopy(cs, file);
-			}
-		    
-		    
 		} catch (JSchException e) {
-			logger.error("Unexpected Exception", e);
-		}
-	}
-	
-	private void recursiveCopy(ChannelSftp cs, File file) {
-//		cs.put(file, dest);
-	}
-
-	public void executeService(String kafkabroker, String topic) {
-		logger.info("Starting beast service on VM with broker = " + kafkabroker +
-				" and topic = " + topic);
-		
-		//test
-		try {
-			Channel c = session.openChannel("exec");
-		    ChannelExec ce = (ChannelExec) c;
-	
-		    ce.setCommand("ls /tmp/beast/util/");
-		    ce.setErrStream(System.err);
-	
-		    ce.connect();
-	
-		    BufferedReader reader = new BufferedReader(new InputStreamReader(ce.getInputStream()));
-		    String line;
-		    while ((line = reader.readLine()) != null) {
-		      System.out.println(line);
-		    }
-	
-		    ce.disconnect();
-		} catch (Exception e) {
 			logger.error("Unexpected Exception", e);
 		}
 	}
