@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link model.Server#getCpuType <em>Cpu Type</em>}</li>
  *   <li>{@link model.Server#getRam <em>Ram</em>}</li>
  *   <li>{@link model.Server#getDiskSpace <em>Disk Space</em>}</li>
- *   <li>{@link model.Server#getHost <em>Host</em>}</li>
+ *   <li>{@link model.Server#getName <em>Name</em>}</li>
  *   <li>{@link model.Server#getNetwork <em>Network</em>}</li>
  * </ul>
  * </p>
@@ -181,33 +181,33 @@ public interface Server extends EObject
 	
 	
 	/**
-	 * Returns the value of the '<em><b>Host</b></em>' attribute.
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Host</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Host</em>' attribute.
-	 * @see #setHost(String)
-	 * @see model.ModelPackage#getServer_Host()
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see model.ModelPackage#getServer_Name()
 	 * @model default="0"
 	 * @generated
 	 */
-	String getHost();
-	
-	
-	
+	String getName();
+
+
+
 	/**
-	 * Sets the value of the '{@link model.Server#getHost <em>Host</em>}' attribute.
+	 * Sets the value of the '{@link model.Server#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Host</em>' attribute.
-	 * @see #getHost()
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
 	 * @generated
 	 */
-	void setHost(String value);
+	void setName(String value);
 
 
 

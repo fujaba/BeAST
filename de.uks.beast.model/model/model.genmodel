@@ -12,12 +12,13 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Server/cpuType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Server/ram"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Server/diskSpace"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Server/host"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Server/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Server/network"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//Rack">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Rack/server"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Rack/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Rack/name"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//Network">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Network/ip"/>

@@ -15,7 +15,8 @@ import org.eclipse.graphiti.util.IColorConstant;
 
 public class AddConnectionFeature extends AbstractAddFeature
 {
-	private static final IColorConstant	E_REFERENCE_FOREGROUND	= new ColorConstant(98, 131, 167);
+	//private static final IColorConstant	E_REFERENCE_FOREGROUND	= new ColorConstant(98, 131, 167);
+	private static final IColorConstant	E_REFERENCE_FOREGROUND	= new ColorConstant(255, 0, 0);
 	
 	
 	

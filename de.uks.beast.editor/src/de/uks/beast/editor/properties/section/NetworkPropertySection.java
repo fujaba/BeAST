@@ -29,7 +29,6 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 	private Text						gatewayTextFld;
 	private Text						dnsTextFld;
 	private Text						idTextFld;
-	private Text						nameTextFld;
 	private Button						submitBtn;
 	private Network						network;
 	private TransactionalEditingDomain	domain;
@@ -37,7 +36,7 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 	
 	
 	@Override
-	public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage)
+	public void createControls(final Composite parent, final TabbedPropertySheetPage tabbedPropertySheetPage)
 	{
 		super.createControls(parent, tabbedPropertySheetPage);
 		
@@ -120,27 +119,13 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		data.top = new FormAttachment(idTextFld, 0, SWT.CENTER);
 		valueLabe5.setLayoutData(data);
 		
-		//Property_host
-		nameTextFld = factory.createText(composite, "");
-		data = new FormData();
-		data.left = new FormAttachment(0, STANDARD_LABEL_WIDTH);
-		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, VSPACE + 125);
-		nameTextFld.setLayoutData(data);
-		
-		final CLabel valueLabe6 = factory.createCLabel(composite, "Name:");
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(nameTextFld, valueLabe6.getText().length());
-		data.top = new FormAttachment(nameTextFld, 0, SWT.CENTER);
-		valueLabe6.setLayoutData(data);
 		
 		//Property_submit
 		submitBtn = factory.createButton(composite, "submit", 0);
 		data = new FormData();
 		data.left = new FormAttachment(0, 20);
 		data.right = new FormAttachment(20, 0);
-		data.top = new FormAttachment(0, VSPACE + 150);
+		data.top = new FormAttachment(0, VSPACE + 125);
 		submitBtn.setLayoutData(data);
 		submitBtn.addSelectionListener(new SelectionListener() {
 			
@@ -155,7 +140,6 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 						network.setGateway(gatewayTextFld.getText());
 						network.setDns(dnsTextFld.getText());
 						network.setId(idTextFld.getText());
-						network.setName(nameTextFld.getText());
 						
 						System.out.println("network hash: " + network.hashCode() + " -> ip: " + network.getIp());
 						System.out.println("network hash: " + network.hashCode() + " -> subnet: " + network.getSubnetmask());
@@ -188,7 +172,6 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		gatewayTextFld.setText(network.getGateway());
 		dnsTextFld.setText("" + network.getDns());
 		idTextFld.setText("" + network.getId());
-		nameTextFld.setText(network.getName());
 	}
 	
 	
@@ -197,6 +180,7 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 	public void refresh()
 	{
 		final PictogramElement pe = getSelectedPictogramElement();
+		
 		if (pe != null)
 		{
 			network = (Network) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);

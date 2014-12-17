@@ -21,21 +21,7 @@
 	<extension 
 		point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
 		<propertyContributor contributorId="srvconfig.PropertyContributor">
-			<propertyCategory category="Server">
-			</propertyCategory>
-		</propertyContributor>
-	</extension>
-	<extension 
-		point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
-		<propertyContributor contributorId="srvconfig.PropertyContributor">
-			<propertyCategory category="Network">
-			</propertyCategory>
-		</propertyContributor>
-	</extension>
-	<extension 
-		point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
-		<propertyContributor contributorId="srvconfig.PropertyContributor">
-			<propertyCategory category="Router">
+			<propertyCategory category="Configuration">
 			</propertyCategory>
 		</propertyContributor>
 	</extension>
@@ -46,7 +32,7 @@
       point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
 		<propertyTabs
           contributorId="srvconfig.PropertyContributor">
-			<propertyTab category="Server" id="graphiti.main.tab.server" label="Config">
+			<propertyTab category="Configuration" id="graphiti.main.tab.server" label="Config">
 			</propertyTab>
 		</propertyTabs>
 	</extension>
@@ -54,7 +40,7 @@
       point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
 		<propertyTabs
           contributorId="srvconfig.PropertyContributor">
-			<propertyTab category="Network" id="graphiti.main.tab.network" label="Config">
+			<propertyTab category="Configuration" id="graphiti.main.tab.network" label="Config">
 			</propertyTab>
 		</propertyTabs>
 	</extension>
@@ -62,7 +48,7 @@
       point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
 		<propertyTabs
           contributorId="srvconfig.PropertyContributor">
-			<propertyTab category="Router" id="graphiti.main.tab.router" label="Config">
+			<propertyTab category="Configuration" id="graphiti.main.tab.router" label="Config">
 			</propertyTab>
 		</propertyTabs>
 	</extension>

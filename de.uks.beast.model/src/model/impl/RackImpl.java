@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link model.impl.RackImpl#getServer <em>Server</em>}</li>
  *   <li>{@link model.impl.RackImpl#getId <em>Id</em>}</li>
+ *   <li>{@link model.impl.RackImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -65,6 +66,28 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 
 
 	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = "0";
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
+
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -96,8 +119,7 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	 */
 	public EList<Server> getServer()
 	{
-		if (server == null)
-		{
+		if (server == null) {
 			server = new EObjectContainmentEList<Server>(Server.class, this, ModelPackage.RACK__SERVER);
 		}
 		return server;
@@ -137,11 +159,35 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getName() {
+		return name;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.RACK__NAME, oldName, name));
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.RACK__SERVER:
 				return ((InternalEList<?>)getServer()).basicRemove(otherEnd, msgs);
 		}
@@ -158,12 +204,13 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.RACK__SERVER:
 				return getServer();
 			case ModelPackage.RACK__ID:
 				return getId();
+			case ModelPackage.RACK__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -179,14 +226,16 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.RACK__SERVER:
 				getServer().clear();
 				getServer().addAll((Collection<? extends Server>)newValue);
 				return;
 			case ModelPackage.RACK__ID:
 				setId((Integer)newValue);
+				return;
+			case ModelPackage.RACK__NAME:
+				setName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -202,13 +251,15 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.RACK__SERVER:
 				getServer().clear();
 				return;
 			case ModelPackage.RACK__ID:
 				setId(ID_EDEFAULT);
+				return;
+			case ModelPackage.RACK__NAME:
+				setName(NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -224,12 +275,13 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.RACK__SERVER:
 				return server != null && !server.isEmpty();
 			case ModelPackage.RACK__ID:
 				return id != ID_EDEFAULT;
+			case ModelPackage.RACK__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -249,6 +301,8 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (id: ");
 		result.append(id);
+		result.append(", name: ");
+		result.append(name);
 		result.append(')');
 		return result.toString();
 	}

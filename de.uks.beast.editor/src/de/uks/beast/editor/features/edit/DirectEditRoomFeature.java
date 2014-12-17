@@ -1,6 +1,6 @@
 package de.uks.beast.editor.features.edit;
 
-import model.Server;
+import model.Room;
 
 import org.eclipse.graphiti.features.IDirectEditingFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -11,23 +11,17 @@ import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
-public class DirectEditServerFeature extends AbstractDirectEditingFeature implements IDirectEditingFeature
-{
-	
-	public DirectEditServerFeature(final IFeatureProvider fp)
-	{
+public class DirectEditRoomFeature extends AbstractDirectEditingFeature
+		implements IDirectEditingFeature {
+
+	public DirectEditRoomFeature(final IFeatureProvider fp) {
 		super(fp);
 	}
-	
-	
-	
+
 	@Override
-	public int getEditingType()
-	{
+	public int getEditingType() {
 		return TYPE_TEXT;
 	}
-	
-	
 	
 	@Override
 	public boolean canDirectEdit(final IDirectEditingContext context)
@@ -36,25 +30,21 @@ public class DirectEditServerFeature extends AbstractDirectEditingFeature implem
 		final Object bo = getBusinessObjectForPictogramElement(pe);
 		final GraphicsAlgorithm ga = context.getGraphicsAlgorithm();
 		
-		if (bo instanceof Server && ga instanceof Text)
+		if (bo instanceof Room && ga instanceof Text)
 		{
 			return true;
 		}
 		
 		return false;
 	}
-	
-	
-	
-	public String getInitialValue(final IDirectEditingContext context)
-	{
+
+	@Override
+	public String getInitialValue(final IDirectEditingContext context) {
 		final PictogramElement pe = context.getPictogramElement();
-		final Server server = (Server) getBusinessObjectForPictogramElement(pe);
+		final Room room = (Room) getBusinessObjectForPictogramElement(pe);
 		
-		return server.getName();
+		return room.getName();
 	}
-	
-	
 	
 	@Override
 	public String checkValueValid(final String value, final IDirectEditingContext context)
@@ -77,9 +67,9 @@ public class DirectEditServerFeature extends AbstractDirectEditingFeature implem
 	public void setValue(final String value, final IDirectEditingContext context)
 	{
 		final PictogramElement pe = context.getPictogramElement();
-		final Server server = (Server) getBusinessObjectForPictogramElement(pe);
-		server.setName(value);
+		final Room room = (Room) getBusinessObjectForPictogramElement(pe);
+		room.setName(value);
 		updatePictogramElement(((Shape) pe).getContainer());
 	}
-	
+
 }
