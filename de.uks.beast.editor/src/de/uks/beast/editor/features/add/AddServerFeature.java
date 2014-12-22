@@ -7,6 +7,7 @@ import org.eclipse.graphiti.features.IDirectEditingInfo;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.impl.AbstractAddShapeFeature;
+import org.eclipse.graphiti.mm.GraphicsAlgorithmContainer;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
 import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
 import org.eclipse.graphiti.mm.algorithms.Text;
@@ -20,6 +21,8 @@ import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 
+import de.uks.beast.editor.features.util.ServerPictogramIdentifier;
+
 public class AddServerFeature extends AbstractAddShapeFeature
 {
 	
@@ -29,6 +32,12 @@ public class AddServerFeature extends AbstractAddShapeFeature
 	
 	private static final IColorConstant	E_CLASS_BACKGROUND		= new ColorConstant(187, 218, 247);
 	
+	private static final String			ID_NAME					= "name";
+	private static final String			ID_IP					= "ip";
+	private static final String			ID_CPU_AMOUNT			= "cpuamount";
+	private static final String			ID_CPU_TYPE				= "cputype";
+	private static final String			ID_RAM					= "ram";
+	private static final String			ID_DISKSPACE			= "diskspace";
 	
 	
 	
@@ -68,10 +77,9 @@ public class AddServerFeature extends AbstractAddShapeFeature
 		final int width = 100;
 		final int height = 50;
 		final IGaService gaService = Graphiti.getGaService();
-		RoundedRectangle roundedRectangle; // need to access it later
 		
 		// create and set graphics algorithm
-		roundedRectangle = gaService.createRoundedRectangle(containerShape, 5, 5);
+		final RoundedRectangle roundedRectangle = gaService.createRoundedRectangle(containerShape, 5, 5);
 		roundedRectangle.setForeground(manageColor(E_CLASS_FOREGROUND));
 		roundedRectangle.setBackground(manageColor(E_CLASS_BACKGROUND));
 		roundedRectangle.setLineWidth(2);
@@ -88,43 +96,111 @@ public class AddServerFeature extends AbstractAddShapeFeature
 		link(containerShape, server);
 		
 		// SHAPE WITH LINE
-		
 		// create shape for line
-		final Shape lineShape = peCreateService.createShape(containerShape, false);
+		final Shape lineShape = createShapeFor(peCreateService, containerShape);
 		
 		// create and set graphics algorithm
 		final Polyline polyline = gaService.createPolyline(lineShape, new int[] { 0, 20, width, 20 });
 		polyline.setForeground(manageColor(E_CLASS_FOREGROUND));
 		polyline.setLineWidth(2);
 		
-		// SHAPE WITH TEXT
-		
+		// SHAPE FOR PROPERTY NAME
 		// create shape for text
-		final Shape textShape = peCreateService.createShape(containerShape, false);
-		
+		final Shape nameTextShape = createShapeFor(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text text = gaService.createText(textShape, server.getName());
-		text.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
-		text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
-		// vertical alignment has as default value "center"
-		text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
-		gaService.setLocationAndSize(text, 0, 0, width, 20);
+		final Text nameText = createTextShape(gaService, nameTextShape, 0, 0, width, 20, server.getName(), ID_NAME);
+		ServerPictogramIdentifier.addToMap(ID_NAME, nameText);
 		
 		// create link and wire it
-		link(textShape, server);
+		link(nameTextShape, server);
+		
+		// SHAPE FOR PROPERTY IP
+		// create shape for text
+		final Shape ipTextShape = createShapeFor(peCreateService, containerShape);
+		// create and set text graphics algorithm
+		final Text ipText = createTextShape(gaService, ipTextShape, 0,20, width, 20, server.getIp(), ID_IP);
+		ServerPictogramIdentifier.addToMap(ID_IP, ipText);
+		
+		// create link and wire it
+		link(ipTextShape, server);
+		
+		//SHAPE FOR PROPERTY CPU_AMOUNT
+		// create shape for text
+		final Shape cpuAmountTextShape = createShapeFor(peCreateService, containerShape);
+		// create and set text graphics algorithm
+		final Text cpuAmountText = createTextShape(gaService, cpuAmountTextShape, 0, 30, width, 20,
+				String.valueOf(server.getCpuAmount()), ID_CPU_AMOUNT);
+		ServerPictogramIdentifier.addToMap(ID_CPU_AMOUNT, cpuAmountText);
+		
+		// create link and wire it
+		link(cpuAmountTextShape, server);
+		
+		//SHAPE FOR PROPERTY CPU_TYPE
+		// create shape for text
+		final Shape cpuTypeTextShape = createShapeFor(peCreateService, containerShape);
+		// create and set text graphics algorithm
+		final Text cpuTypeText = createTextShape(gaService, cpuTypeTextShape, 0, 40, width, 20, server.getCpuType(), ID_CPU_TYPE);
+		ServerPictogramIdentifier.addToMap(ID_CPU_TYPE, cpuTypeText);
+		
+		// create link and wire it
+		link(cpuTypeTextShape, server);
+		
+		//SHAPE FOR PROPERTY RAM
+		// create shape for text
+		final Shape ramTextShape = createShapeFor(peCreateService, containerShape);
+		// create and set text graphics algorithm
+		final Text ramText = createTextShape(gaService, ramTextShape, 0, 50, width, 20, String.valueOf(server.getRam()), ID_RAM);
+		ServerPictogramIdentifier.addToMap(ID_RAM, ramText);
+		
+		// create link and wire it
+		link(ramTextShape, server);
+		
+		//SHAPE FOR PROPERTY DISK_SPACE
+		// create shape for text
+		final Shape diskSpaceTextShape = createShapeFor(peCreateService, containerShape);
+		// create and set text graphics algorithm
+		final Text diskSpaceText = createTextShape(gaService, diskSpaceTextShape, 0, 60, width, 20,
+				String.valueOf(server.getDiskSpace()), ID_DISKSPACE);
+		ServerPictogramIdentifier.addToMap(ID_DISKSPACE, diskSpaceText);
+		
+		// create link and wire it
+		link(diskSpaceTextShape, server);
 		
 		final IDirectEditingInfo directEditingInfo = getFeatureProvider().getDirectEditingInfo();
 		directEditingInfo.setMainPictogramElement(containerShape);
-		directEditingInfo.setPictogramElement(textShape);
-		directEditingInfo.setGraphicsAlgorithm(text);
+		directEditingInfo.setPictogramElement(nameTextShape);
+		directEditingInfo.setGraphicsAlgorithm(nameText);
 		
-		// add a chopbox anchor to the shape 
+		// add a chopbox anchor to the shape
 		peCreateService.createChopboxAnchor(containerShape);
 		
 		// call the layout feature
 		layoutPictogramElement(containerShape);
 		
 		return containerShape;
+	}
+	
+	
+	
+	private Shape createShapeFor(final IPeCreateService peCreateService, final ContainerShape containerShape)
+	{
+		return peCreateService.createShape(containerShape, false);
+	}
+	
+	
+	
+	private Text createTextShape(final IGaService gaService, final GraphicsAlgorithmContainer gaContainer, final int x,
+			final int y, final int width, final int height, final String content, final String identifier)
+	{
+		
+		final Text text = gaService.createText(gaContainer, content);
+		text.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
+		text.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
+		// vertical alignment has as default value "center"
+		text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
+		gaService.setLocationAndSize(text, x, y, width, height);
+		
+		return text;
 	}
 	
 }

@@ -10,4 +10,5 @@ public class EditorDiagramTypeProvider extends AbstractDiagramTypeProvider
 		super();
 		setFeatureProvider(new EditorFeatureProvider(this));
 	}
+	
 }
