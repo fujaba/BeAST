@@ -12,10 +12,28 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
-import de.uks.beast.editor.features.util.ServerPictogramIdentifier;
+import de.uks.beast.editor.features.util.manager.ServerPictogramManager;
+import static de.uks.beast.editor.features.util.message.Message.*;
 
 public class UpdateServerObjectFeature extends AbstractUpdateFeature
 {
+	// retrieve values from pictogram model
+	private String	pictogramName		= null;
+	private String	pictogramIp			= null;
+	private String	pictogramCpuAmount	= null;
+	private String	pictogramCpuType	= null;
+	private String	pictogramRam		= null;
+	private String	pictogramDiskSpace	= null;
+	
+	// retrieve values from business model
+	private String	businessName		= null;
+	private String	businessIp			= null;
+	private String	businessCpuAmount	= null;
+	private String	businessCpuType		= null;
+	private String	businessRam			= null;
+	private String	businessDiskSpace	= null;
+	
+	
 	
 	public UpdateServerObjectFeature(final IFeatureProvider fp)
 	{
@@ -35,16 +53,10 @@ public class UpdateServerObjectFeature extends AbstractUpdateFeature
 	
 	
 	
+	//TODO: NPE when you open an existing editor view because shapeList is empty then
 	@Override
 	public IReason updateNeeded(final IUpdateContext context)
 	{
-		// retrieve values from pictogram model
-		String pictogramName = null;
-		String pictogramIp = null;
-		String pictogramCpuAmount = null;
-		String pictogramCpuType = null;
-		String pictogramRam = null;
-		String pictogramDiskSpace = null;
 		final PictogramElement pictogramElement = context.getPictogramElement();
 		
 		if (pictogramElement instanceof ContainerShape)
@@ -57,41 +69,33 @@ public class UpdateServerObjectFeature extends AbstractUpdateFeature
 				{
 					final Text text = (Text) shape.getGraphicsAlgorithm();
 					
-					if (ServerPictogramIdentifier.get("name").equals(text))
+					if (ServerPictogramManager.get(NAME).equals(text))
 					{
 						pictogramName = text.getValue();
 					}
-					else if (ServerPictogramIdentifier.get("ip").equals(text))
+					else if (ServerPictogramManager.get(IP).equals(text))
 					{
 						pictogramIp = text.getValue();
 					}
-					else if (ServerPictogramIdentifier.get("cpuamount").equals(text))
+					else if (ServerPictogramManager.get(CPU_AMOUNT).equals(text))
 					{
 						pictogramCpuAmount = text.getValue();
 					}
-					else if (ServerPictogramIdentifier.get("cputype").equals(text))
+					else if (ServerPictogramManager.get(CPU_TYPE).equals(text))
 					{
 						pictogramCpuType = text.getValue();
 					}
-					else if (ServerPictogramIdentifier.get("ram").equals(text))
+					else if (ServerPictogramManager.get(RAM).equals(text))
 					{
 						pictogramRam = text.getValue();
 					}
-					else if (ServerPictogramIdentifier.get("diskspace").equals(text))
+					else if (ServerPictogramManager.get(DISKSPACE).equals(text))
 					{
 						pictogramDiskSpace = text.getValue();
 					}
 				}
 			}
 		}
-		
-		// retrieve values from business model
-		String businessName = null;
-		String businessIp = null;
-		String businessCpuAmount = null;
-		String businessCpuType = null;
-		String businessRam = null;
-		String businessDiskSpace = null;
 		
 		final Object bo = getBusinessObjectForPictogramElement(pictogramElement);
 		
@@ -107,43 +111,29 @@ public class UpdateServerObjectFeature extends AbstractUpdateFeature
 			
 		}
 		
-		// update needed, if values are different
-		final boolean updateNameNeeded = ((pictogramName == null && businessName != null) || (pictogramName != null && !pictogramName
-				.equals(businessName)));
-		final boolean updateIpNeeded = ((pictogramIp == null && businessIp != null) || (pictogramIp != null && !pictogramIp
-				.equals(businessIp)));
-		final boolean updateCpuAmountNeeded = ((pictogramCpuAmount == null && businessCpuAmount != null) || (pictogramCpuAmount != null && !pictogramCpuAmount
-				.equals(businessCpuAmount)));
-		final boolean updateCpuTypeNeeded = ((pictogramCpuType == null && businessCpuType != null) || (pictogramCpuType != null && !pictogramCpuType
-				.equals(businessCpuType)));
-		final boolean updateRamNeeded = ((pictogramRam == null && businessRam != null) || (pictogramRam != null && !pictogramRam
-				.equals(businessRam)));
-		final boolean updateDiskSpaceNeeded = ((pictogramDiskSpace == null && businessDiskSpace != null) || (pictogramDiskSpace != null && !pictogramDiskSpace
-				.equals(businessDiskSpace)));
-		
-		if (updateNameNeeded)
+		if (ServerPictogramManager.updateNeeded(pictogramName, businessName))
 		{
-			return Reason.createTrueReason("Name is out of date!");
+			return Reason.createTrueReason(NAME_TRUE_REASON.text());
 		}
-		else if (updateIpNeeded)
+		else if (ServerPictogramManager.updateNeeded(pictogramIp, businessIp))
 		{
-			return Reason.createTrueReason("IP is out of date!");
+			return Reason.createTrueReason(IP_TRUE_REASON.text());
 		}
-		else if (updateCpuAmountNeeded)
+		else if (ServerPictogramManager.updateNeeded(pictogramCpuAmount, businessCpuAmount))
 		{
-			return Reason.createTrueReason("CPU amount is out of date!");
+			return Reason.createTrueReason(CPU_AMOUNT_TRUE_REASON.text());
 		}
-		else if (updateCpuTypeNeeded)
+		else if (ServerPictogramManager.updateNeeded(pictogramCpuType, businessCpuType))
 		{
-			return Reason.createTrueReason("CPU type is out of date!");
+			return Reason.createTrueReason(CPU_TYPE_TRUE_REASON.text());
 		}
-		else if (updateRamNeeded)
+		else if (ServerPictogramManager.updateNeeded(pictogramRam, businessRam))
 		{
-			return Reason.createTrueReason("RAM is out of date!");
+			return Reason.createTrueReason(RAM_TRUE_REASON.text());
 		}
-		else if (updateDiskSpaceNeeded)
+		else if (ServerPictogramManager.updateNeeded(pictogramDiskSpace, businessDiskSpace))
 		{
-			return Reason.createTrueReason("Disk space is out of date!");
+			return Reason.createTrueReason(DISKSPACE_TRUE_REASON.text());
 		}
 		else
 		{
@@ -156,13 +146,6 @@ public class UpdateServerObjectFeature extends AbstractUpdateFeature
 	@Override
 	public boolean update(final IUpdateContext context)
 	{
-		// retrieve values from business model
-		String businessName = null;
-		String businessIp = null;
-		String businessCpuAmount = null;
-		String businessCpuType = null;
-		String businessRam = null;
-		String businessDiskSpace = null;
 		
 		final PictogramElement pictogramElement = context.getPictogramElement();
 		final Object bo = getBusinessObjectForPictogramElement(pictogramElement);
@@ -189,27 +172,27 @@ public class UpdateServerObjectFeature extends AbstractUpdateFeature
 				{
 					final Text text = (Text) shape.getGraphicsAlgorithm();
 					
-					if (ServerPictogramIdentifier.get("name").equals(text))
+					if (ServerPictogramManager.get(NAME).equals(text))
 					{
 						text.setValue(businessName);
 					}
-					else if (ServerPictogramIdentifier.get("ip").equals(text))
+					else if (ServerPictogramManager.get(IP).equals(text))
 					{
 						text.setValue(businessIp);
 					}
-					else if (ServerPictogramIdentifier.get("cpuamount").equals(text))
+					else if (ServerPictogramManager.get(CPU_AMOUNT).equals(text))
 					{
 						text.setValue(businessCpuAmount);
 					}
-					else if (ServerPictogramIdentifier.get("cputype").equals(text))
+					else if (ServerPictogramManager.get(CPU_TYPE).equals(text))
 					{
 						text.setValue(businessCpuType);
 					}
-					else if (ServerPictogramIdentifier.get("ram").equals(text))
+					else if (ServerPictogramManager.get(RAM).equals(text))
 					{
 						text.setValue(businessRam);
 					}
-					else if (ServerPictogramIdentifier.get("diskspace").equals(text))
+					else if (ServerPictogramManager.get(DISKSPACE).equals(text))
 					{
 						text.setValue(businessDiskSpace);
 					}

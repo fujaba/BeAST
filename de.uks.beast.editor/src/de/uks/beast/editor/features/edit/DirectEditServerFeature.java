@@ -11,7 +11,8 @@ import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
-import de.uks.beast.editor.features.util.ServerPictogramIdentifier;
+import de.uks.beast.editor.features.util.manager.ServerPictogramManager;
+import static de.uks.beast.editor.features.util.message.Message.*;
 
 public class DirectEditServerFeature extends AbstractDirectEditingFeature implements IDirectEditingFeature
 {
@@ -38,9 +39,9 @@ public class DirectEditServerFeature extends AbstractDirectEditingFeature implem
 		final Object bo = getBusinessObjectForPictogramElement(pe);
 		final GraphicsAlgorithm ga = context.getGraphicsAlgorithm();
 		
-		if (bo instanceof Server && ga instanceof Text && ServerPictogramIdentifier.get("name").equals((Text) ga))
+		if (bo instanceof Server && ga instanceof Text && ServerPictogramManager.get(NAME).equals((Text) ga))
 		{
-			return true;	
+			return true;
 		}
 		
 		return false;
@@ -63,15 +64,15 @@ public class DirectEditServerFeature extends AbstractDirectEditingFeature implem
 	{
 		if (value.length() < 1)
 		{
-			return "Please enter any text as class name.";
+			return EMPTY_NAME_WARNING.text();
 		}
 		if (value.contains(" "))
 		{
-			return "Spaces are not allowed in class names.";
+			return WRONG_SYMBOL_WARNING.text();
 		}
 		if (value.contains("\n"))
 		{
-			return "Line breakes are not allowed in class names.";
+			return LINE_BREAK_WARNING.text();
 		}
 		
 		return null;

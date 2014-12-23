@@ -30,7 +30,6 @@ public class AddRoomFeature extends AbstractAddShapeFeature
 	
 	
 	
-	
 	public AddRoomFeature(final IFeatureProvider fp)
 	{
 		super(fp);
@@ -40,7 +39,7 @@ public class AddRoomFeature extends AbstractAddShapeFeature
 	
 	@Override
 	public boolean canAdd(final IAddContext context)
-	{		
+	{
 		if (context.getNewObject() instanceof Room)
 		{
 			if (context.getTargetContainer() instanceof Diagram)

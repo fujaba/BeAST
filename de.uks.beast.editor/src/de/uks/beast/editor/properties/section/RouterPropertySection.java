@@ -21,6 +21,8 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
+import static de.uks.beast.editor.features.util.message.Message.*;
+
 public class RouterPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {
 	
@@ -50,7 +52,7 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		data.top = new FormAttachment(0, VSPACE);
 		ipTextFld.setLayoutData(data);
 		
-		final CLabel valueLabel = factory.createCLabel(composite, "IP:");
+		final CLabel valueLabel = factory.createCLabel(composite, IP_LABEL.text());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(ipTextFld, valueLabel.getText().length());
@@ -65,7 +67,7 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		data.top = new FormAttachment(0, VSPACE + 25);
 		externalGatewayTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe3 = factory.createCLabel(composite, "External Gateway:");
+		final CLabel valueLabe3 = factory.createCLabel(composite, EXTERNAL_GATEWAY_LABEL.text());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(externalGatewayTextFld, valueLabe3.getText().length());
@@ -80,16 +82,15 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		data.top = new FormAttachment(0, VSPACE + 50);
 		idTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe5 = factory.createCLabel(composite, "ID:");
+		final CLabel valueLabe5 = factory.createCLabel(composite, ID_LABEL.text());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(idTextFld, valueLabe5.getText().length());
 		data.top = new FormAttachment(idTextFld, 0, SWT.CENTER);
 		valueLabe5.setLayoutData(data);
-
 		
 		//Property_submit
-		submitBtn = factory.createButton(composite, "submit", 0);
+		submitBtn = factory.createButton(composite, SUBMIT.text(), 0);
 		data = new FormData();
 		data.left = new FormAttachment(0, 20);
 		data.right = new FormAttachment(20, 0);

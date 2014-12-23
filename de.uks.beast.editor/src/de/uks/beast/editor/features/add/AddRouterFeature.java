@@ -6,6 +6,7 @@ import org.eclipse.graphiti.features.IDirectEditingInfo;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.impl.AbstractAddFeature;
+import org.eclipse.graphiti.mm.GraphicsAlgorithmContainer;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
 import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
 import org.eclipse.graphiti.mm.algorithms.Text;
@@ -20,14 +21,16 @@ import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 
-public class AddRouterFeature extends AbstractAddFeature
+import de.uks.beast.editor.features.util.manager.RouterPictogramManager;
+import static de.uks.beast.editor.features.util.message.Message.*;
+
+public class AddRouterFeature extends AbstractAddFeature implements AbstractShapeManager
 {
 	private static final IColorConstant	E_CLASS_TEXT_FOREGROUND	= IColorConstant.BLACK;
 	
 	private static final IColorConstant	E_CLASS_FOREGROUND		= new ColorConstant(98, 131, 167);
 	
 	private static final IColorConstant	E_CLASS_BACKGROUND		= new ColorConstant(187, 218, 247);
-	
 	
 	
 	
@@ -97,26 +100,50 @@ public class AddRouterFeature extends AbstractAddFeature
 		polyline.setForeground(manageColor(E_CLASS_FOREGROUND));
 		polyline.setLineWidth(2);
 		
-		// SHAPE WITH TEXT
-		
+		// SHAPE FOR PROPERTY NAME
 		// create shape for text
-		final Shape textShape = peCreateService.createShape(containerShape, false);
-		
+		final Shape nameTextShape = createShapeFor(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text text = gaService.createText(textShape, router.getName());
-		text.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
-		text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
-		// vertical alignment has as default value "center"
-		text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
-		gaService.setLocationAndSize(text, 0, 0, width, 20);
+		final Text nameText = createTextShape(gaService, nameTextShape, 0, 0, width, 20, router.getName());
+		RouterPictogramManager.addToMap(NAME, nameText);
 		
 		// create link and wire it
-		link(textShape, router);
+		link(nameTextShape, router);
+		
+		// SHAPE FOR PROPERTY IP
+		// create shape for text
+		final Shape ipTextShape = createShapeFor(peCreateService, containerShape);
+		// create and set text graphics algorithm
+		final Text ipText = createTextShape(gaService, ipTextShape, 0, 20, width, 20, router.getIp());
+		RouterPictogramManager.addToMap(IP, ipText);
+		
+		// create link and wire it
+		link(ipTextShape, router);
+		
+		//SHAPE FOR PROPERTY ID
+		// create shape for text
+		final Shape idTextShape = createShapeFor(peCreateService, containerShape);
+		// create and set text graphics algorithm
+		final Text idText = createTextShape(gaService, idTextShape, 0, 30, width, 20, router.getId());
+		RouterPictogramManager.addToMap(ID, idText);
+		
+		// create link and wire it
+		link(idTextShape, router);
+		
+		//SHAPE FOR PROPERTY EXTERNAL_GATEWAY
+		// create shape for text
+		final Shape extGatewayTextShape = createShapeFor(peCreateService, containerShape);
+		// create and set text graphics algorithm
+		final Text extGatewayText = createTextShape(gaService, extGatewayTextShape, 0, 40, width, 20, router.getExternalGateway());
+		RouterPictogramManager.addToMap(EXTERNAL_GATEWAY, extGatewayText);
+		
+		// create link and wire it
+		link(extGatewayTextShape, router);
 		
 		final IDirectEditingInfo directEditingInfo = getFeatureProvider().getDirectEditingInfo();
 		directEditingInfo.setMainPictogramElement(containerShape);
-		directEditingInfo.setPictogramElement(textShape);
-		directEditingInfo.setGraphicsAlgorithm(text);
+		directEditingInfo.setPictogramElement(nameTextShape);
+		directEditingInfo.setGraphicsAlgorithm(nameText);
 		
 		// add a chopbox anchor to the shape 
 		peCreateService.createChopboxAnchor(containerShape);
@@ -125,6 +152,30 @@ public class AddRouterFeature extends AbstractAddFeature
 		layoutPictogramElement(containerShape);
 		
 		return containerShape;
+	}
+	
+	
+	
+	@Override
+	public Shape createShapeFor(final IPeCreateService peCreateService, final ContainerShape containerShape)
+	{
+		return peCreateService.createShape(containerShape, false);
+	}
+	
+	
+	
+	@Override
+	public Text createTextShape(final IGaService gaService, final GraphicsAlgorithmContainer gaContainer, final int x,
+			final int y, final int width, final int height, final String content)
+	{
+		final Text text = gaService.createText(gaContainer, content);
+		text.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
+		text.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
+		// vertical alignment has as default value "center"
+		text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
+		gaService.setLocationAndSize(text, x, y, width, height);
+		
+		return text;
 	}
 	
 }

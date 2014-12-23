@@ -11,17 +11,25 @@ import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
-public class DirectEditRouterFeature extends AbstractDirectEditingFeature
-		implements IDirectEditingFeature {
+import static de.uks.beast.editor.features.util.message.Message.*;
 
-	public DirectEditRouterFeature(final IFeatureProvider fp) {
+public class DirectEditRouterFeature extends AbstractDirectEditingFeature implements IDirectEditingFeature
+{
+	
+	public DirectEditRouterFeature(final IFeatureProvider fp)
+	{
 		super(fp);
 	}
-
+	
+	
+	
 	@Override
-	public int getEditingType() {
+	public int getEditingType()
+	{
 		return TYPE_TEXT;
 	}
+	
+	
 	
 	@Override
 	public boolean canDirectEdit(final IDirectEditingContext context)
@@ -37,26 +45,34 @@ public class DirectEditRouterFeature extends AbstractDirectEditingFeature
 		
 		return false;
 	}
-
+	
+	
+	
 	@Override
-	public String getInitialValue(final IDirectEditingContext context) {
+	public String getInitialValue(final IDirectEditingContext context)
+	{
 		final PictogramElement pe = context.getPictogramElement();
 		final Router router = (Router) getBusinessObjectForPictogramElement(pe);
 		
 		return router.getName();
 	}
 	
+	
+	
 	@Override
 	public String checkValueValid(final String value, final IDirectEditingContext context)
 	{
-		if (value.length() < 1) {
-			return "Please enter any text as class name.";
+		if (value.length() < 1)
+		{
+			return EMPTY_NAME_WARNING.text();
 		}
-		if (value.contains(" ")) {
-			return "Spaces are not allowed in class names.";
+		if (value.contains(" "))
+		{
+			return WRONG_SYMBOL_WARNING.text();
 		}
-		if (value.contains("\n")) {
-			return "Line breakes are not allowed in class names.";
+		if (value.contains("\n"))
+		{
+			return LINE_BREAK_WARNING.text();
 		}
 		
 		return null;
@@ -71,5 +87,5 @@ public class DirectEditRouterFeature extends AbstractDirectEditingFeature
 		router.setName(value);
 		updatePictogramElement(((Shape) pe).getContainer());
 	}
-
+	
 }

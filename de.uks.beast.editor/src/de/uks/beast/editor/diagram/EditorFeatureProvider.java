@@ -50,6 +50,8 @@ import de.uks.beast.editor.features.update.UpdateRoomObjectFeature;
 import de.uks.beast.editor.features.update.UpdateRouterObjectFeature;
 import de.uks.beast.editor.features.update.UpdateServerObjectFeature;
 
+import static de.uks.beast.editor.features.util.message.Message.*;
+
 public class EditorFeatureProvider extends DefaultFeatureProvider
 {
 	
@@ -63,11 +65,11 @@ public class EditorFeatureProvider extends DefaultFeatureProvider
 	@Override
 	public ICreateFeature[] getCreateFeatures()
 	{
-		final ICreateFeature[] features = { new CreateServerFeature(this, "Server", "Server representing hardware"),
-				new CreateRackFeature(this, "Serverrack", "Rack has many Server"),
-				new CreateNetworkComponentFeature(this, "Network", "This is a network"),
-				new CreateRoomFeature(this, "Serverroom", "This is a Serverroom"),
-				new CreaterRouterFeature(this, "Router", "This is a router") };
+		final ICreateFeature[] features = { new CreateServerFeature(this, SERVER.text(), SERVER.description()),
+				new CreateRackFeature(this, SERVER_RACK.text(), SERVER_RACK.description()),
+				new CreateNetworkComponentFeature(this, NETWORK.text(), NETWORK.description()),
+				new CreateRoomFeature(this, SERVER_ROOM.text(), SERVER_ROOM.description()),
+				new CreaterRouterFeature(this, ROUTER.text(), ROUTER.description()) };
 		
 		return features;
 	}
@@ -77,7 +79,7 @@ public class EditorFeatureProvider extends DefaultFeatureProvider
 	@Override
 	public ICreateConnectionFeature[] getCreateConnectionFeatures()
 	{
-		return new ICreateConnectionFeature[] { new CreateConnectionFeature(this, "Connection", "Create connection") };
+		return new ICreateConnectionFeature[] { new CreateConnectionFeature(this, CONNECTION.text(), CONNECTION.description()) };
 	}
 	
 	
@@ -120,25 +122,30 @@ public class EditorFeatureProvider extends DefaultFeatureProvider
 	public ILayoutFeature getLayoutFeature(final ILayoutContext context)
 	{
 		final PictogramElement pictogramElement = context.getPictogramElement();
-	    final Object bo = getBusinessObjectForPictogramElement(pictogramElement);
-	    
-	    if (bo instanceof Server) {
-	        return new LayoutServerObjectFeature(this);
-	    }
-	    else if(bo instanceof Rack) {
-	    	return new LayoutRackObjectFeature(this);
-	    }
-	    else if (bo instanceof Room) {
+		final Object bo = getBusinessObjectForPictogramElement(pictogramElement);
+		
+		if (bo instanceof Server)
+		{
+			return new LayoutServerObjectFeature(this);
+		}
+		else if (bo instanceof Rack)
+		{
+			return new LayoutRackObjectFeature(this);
+		}
+		else if (bo instanceof Room)
+		{
 			return new LayoutRoomObjectFeature(this);
 		}
-	    else if (bo instanceof Network) {
+		else if (bo instanceof Network)
+		{
 			return new LayoutNetworkObjectFeature(this);
 		}
-	    else if (bo instanceof Router) {
+		else if (bo instanceof Router)
+		{
 			return new LayoutRouterObjectFeature(this);
 		}
-	    
-	    return super.getLayoutFeature(context);
+		
+		return super.getLayoutFeature(context);
 	}
 	
 	
@@ -173,30 +180,39 @@ public class EditorFeatureProvider extends DefaultFeatureProvider
 		return super.getDirectEditingFeature(context);
 	}
 	
+	
+	
 	@Override
-	public IUpdateFeature getUpdateFeature(final IUpdateContext context) {
-	   final PictogramElement pictogramElement = context.getPictogramElement();
-	   
-	   if (pictogramElement  instanceof ContainerShape) {
-	       final Object bo = getBusinessObjectForPictogramElement(pictogramElement);
-	       
-	       if (bo instanceof Room) {
-	           return new UpdateRoomObjectFeature(this);
-	       }
-	       else if (bo instanceof Rack) {
-	    	   return new UpdateRackObjectFeature(this);
-	       }
-	       else if (bo instanceof Server) {
-	    	   return new UpdateServerObjectFeature(this);
-	       }
-	       else if (bo instanceof Network) {
-	    	   return new UpdateNetworkObjectFeature(this);
-	       }
-	       else if (bo instanceof Router) {
-	    	   return new UpdateRouterObjectFeature(this);
-	       }
-	   }
-	   return super.getUpdateFeature(context);
-	 } 
+	public IUpdateFeature getUpdateFeature(final IUpdateContext context)
+	{
+		final PictogramElement pictogramElement = context.getPictogramElement();
+		
+		if (pictogramElement instanceof ContainerShape)
+		{
+			final Object bo = getBusinessObjectForPictogramElement(pictogramElement);
+			
+			if (bo instanceof Room)
+			{
+				return new UpdateRoomObjectFeature(this);
+			}
+			else if (bo instanceof Rack)
+			{
+				return new UpdateRackObjectFeature(this);
+			}
+			else if (bo instanceof Server)
+			{
+				return new UpdateServerObjectFeature(this);
+			}
+			else if (bo instanceof Network)
+			{
+				return new UpdateNetworkObjectFeature(this);
+			}
+			else if (bo instanceof Router)
+			{
+				return new UpdateRouterObjectFeature(this);
+			}
+		}
+		return super.getUpdateFeature(context);
+	}
 	
 }

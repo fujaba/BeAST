@@ -13,11 +13,12 @@ public class NetworkPropertyFilter extends AbstractPropertySectionFilter
 	protected boolean accept(final PictogramElement pictogramElement)
 	{
 		final Object object = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pictogramElement);
+		
 		if (object instanceof Network)
 		{
 			return true;
 		}
 		return false;
 	}
-
+	
 }

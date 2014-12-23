@@ -19,9 +19,11 @@ import org.eclipse.graphiti.services.IGaService;
 
 public class LayoutServerObjectFeature extends AbstractLayoutFeature
 {
-	private static final int MIN_HEIGHT = 30;
-	 
-    private static final int MIN_WIDTH = 50;
+	private static final int	MIN_HEIGHT	= 30;
+	
+	private static final int	MIN_WIDTH	= 50;
+	
+	
 	
 	public LayoutServerObjectFeature(final IFeatureProvider fp)
 	{
@@ -34,16 +36,16 @@ public class LayoutServerObjectFeature extends AbstractLayoutFeature
 	public boolean canLayout(final ILayoutContext context)
 	{
 		// return true, if pictogram element is linked to an EClass
-	       final PictogramElement pe = context.getPictogramElement();
-	       
-	       if (!(pe instanceof ContainerShape)) {
-	           return false;
-	       }
-	       
-	       final EList<EObject> businessObjects = pe.getLink().getBusinessObjects();
-	       
-	       return businessObjects.size() == 1 
-	              && businessObjects.get(0) instanceof Server;
+		final PictogramElement pe = context.getPictogramElement();
+		
+		if (!(pe instanceof ContainerShape))
+		{
+			return false;
+		}
+		
+		final EList<EObject> businessObjects = pe.getLink().getBusinessObjects();
+		
+		return businessObjects.size() == 1 && businessObjects.get(0) instanceof Server;
 	}
 	
 	
@@ -52,45 +54,48 @@ public class LayoutServerObjectFeature extends AbstractLayoutFeature
 	public boolean layout(final ILayoutContext context)
 	{
 		boolean anythingChanged = false;
-        final ContainerShape containerShape =
-            (ContainerShape) context.getPictogramElement();
-        final GraphicsAlgorithm containerGa = containerShape.getGraphicsAlgorithm();
- 
-        // height
-        if (containerGa.getHeight() < MIN_HEIGHT) {
-            containerGa.setHeight(MIN_HEIGHT);
-            anythingChanged = true;
-        }
- 
-        // width
-        if (containerGa.getWidth() < MIN_WIDTH) {
-            containerGa.setWidth(MIN_WIDTH);
-            anythingChanged = true;
-        }
- 
-        final int containerWidth = containerGa.getWidth();
-        
-        for (final Shape shape : containerShape.getChildren()){
-            final GraphicsAlgorithm graphicsAlgorithm = shape.getGraphicsAlgorithm();
-            final IGaService gaService = Graphiti.getGaService();
-            final IDimension size = 
-                 gaService.calculateSize(graphicsAlgorithm);
-            if (containerWidth != size.getWidth()) {
-                if (graphicsAlgorithm  instanceof Polyline) {
-                    final Polyline polyline = (Polyline) graphicsAlgorithm;
-                    final Point secondPoint = polyline.getPoints().get(1);
-                    final Point newSecondPoint =
-                        gaService.createPoint(containerWidth, secondPoint.getY()); 
-                    polyline.getPoints().set(1, newSecondPoint);
-                    anythingChanged = true;
-                } else {
-                    gaService.setWidth(graphicsAlgorithm,
-                        containerWidth);
-                    anythingChanged = true;
-                }
-            }
-        }
-        return anythingChanged;
-    }
+		final ContainerShape containerShape = (ContainerShape) context.getPictogramElement();
+		final GraphicsAlgorithm containerGa = containerShape.getGraphicsAlgorithm();
+		
+		// height
+		if (containerGa.getHeight() < MIN_HEIGHT)
+		{
+			containerGa.setHeight(MIN_HEIGHT);
+			anythingChanged = true;
+		}
+		
+		// width
+		if (containerGa.getWidth() < MIN_WIDTH)
+		{
+			containerGa.setWidth(MIN_WIDTH);
+			anythingChanged = true;
+		}
+		
+		final int containerWidth = containerGa.getWidth();
+		
+		for (final Shape shape : containerShape.getChildren())
+		{
+			final GraphicsAlgorithm graphicsAlgorithm = shape.getGraphicsAlgorithm();
+			final IGaService gaService = Graphiti.getGaService();
+			final IDimension size = gaService.calculateSize(graphicsAlgorithm);
+			if (containerWidth != size.getWidth())
+			{
+				if (graphicsAlgorithm instanceof Polyline)
+				{
+					final Polyline polyline = (Polyline) graphicsAlgorithm;
+					final Point secondPoint = polyline.getPoints().get(1);
+					final Point newSecondPoint = gaService.createPoint(containerWidth, secondPoint.getY());
+					polyline.getPoints().set(1, newSecondPoint);
+					anythingChanged = true;
+				}
+				else
+				{
+					gaService.setWidth(graphicsAlgorithm, containerWidth);
+					anythingChanged = true;
+				}
+			}
+		}
+		return anythingChanged;
+	}
 	
 }

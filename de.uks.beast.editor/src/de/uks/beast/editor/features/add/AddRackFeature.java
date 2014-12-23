@@ -30,7 +30,6 @@ public class AddRackFeature extends AbstractAddFeature
 	
 	
 	
-	
 	public AddRackFeature(final IFeatureProvider fp)
 	{
 		super(fp);

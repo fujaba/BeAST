@@ -13,6 +13,7 @@ public class ServerPropertyFilter extends AbstractPropertySectionFilter
 	protected boolean accept(final PictogramElement pictogramElement)
 	{
 		final Object object = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pictogramElement);
+		
 		if (object instanceof Server)
 		{
 			return true;

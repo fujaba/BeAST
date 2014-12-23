@@ -6,6 +6,7 @@ import org.eclipse.graphiti.features.IDirectEditingInfo;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.impl.AbstractAddFeature;
+import org.eclipse.graphiti.mm.GraphicsAlgorithmContainer;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
 import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
 import org.eclipse.graphiti.mm.algorithms.Text;
@@ -20,14 +21,16 @@ import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 
-public class AddNetworkComponentFeature extends AbstractAddFeature
+import de.uks.beast.editor.features.util.manager.NetworkPictogramManager;
+import static de.uks.beast.editor.features.util.message.Message.*;
+
+public class AddNetworkComponentFeature extends AbstractAddFeature implements AbstractShapeManager
 {
 	private static final IColorConstant	E_CLASS_TEXT_FOREGROUND	= IColorConstant.BLACK;
 	
 	private static final IColorConstant	E_CLASS_FOREGROUND		= new ColorConstant(98, 131, 167);
 	
 	private static final IColorConstant	E_CLASS_BACKGROUND		= new ColorConstant(187, 218, 247);
-	
 	
 	
 	
@@ -97,26 +100,70 @@ public class AddNetworkComponentFeature extends AbstractAddFeature
 		polyline.setForeground(manageColor(E_CLASS_FOREGROUND));
 		polyline.setLineWidth(2);
 		
-		// SHAPE WITH TEXT
-		
+		// SHAPE FOR PROPERTY NAME
 		// create shape for text
-		final Shape textShape = peCreateService.createShape(containerShape, false);
-		
+		final Shape nameTextShape = createShapeFor(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text text = gaService.createText(textShape, network.getName());
-		text.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
-		text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
-		// vertical alignment has as default value "center"
-		text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
-		gaService.setLocationAndSize(text, 0, 0, width, 20);
+		final Text nameText = createTextShape(gaService, nameTextShape, 0, 0, width, 20, network.getName());
+		NetworkPictogramManager.addToMap(NAME, nameText);
 		
 		// create link and wire it
-		link(textShape, network);
+		link(nameTextShape, network);
+		
+		// SHAPE FOR PROPERTY IP
+		// create shape for text
+		final Shape ipTextShape = createShapeFor(peCreateService, containerShape);
+		// create and set text graphics algorithm
+		final Text ipText = createTextShape(gaService, ipTextShape, 0, 20, width, 20, network.getIp());
+		NetworkPictogramManager.addToMap(IP, ipText);
+		
+		// create link and wire it
+		link(ipTextShape, network);
+		
+		//SHAPE FOR PROPERTY ID
+		// create shape for text
+		final Shape idTextShape = createShapeFor(peCreateService, containerShape);
+		// create and set text graphics algorithm
+		final Text idText = createTextShape(gaService, idTextShape, 0, 30, width, 20, network.getId());
+		NetworkPictogramManager.addToMap(ID, idText);
+		
+		// create link and wire it
+		link(idTextShape, network);
+		
+		//SHAPE FOR PROPERTY SUBNET_MASK
+		// create shape for text
+		final Shape subnetMaskTextShape = createShapeFor(peCreateService, containerShape);
+		// create and set text graphics algorithm
+		final Text subnetMaskText = createTextShape(gaService, subnetMaskTextShape, 0, 40, width, 20, network.getSubnetmask());
+		NetworkPictogramManager.addToMap(SUBNET_MASK, subnetMaskText);
+		
+		// create link and wire it
+		link(subnetMaskTextShape, network);
+		
+		//SHAPE FOR PROPERTY GATEWAY
+		// create shape for text
+		final Shape gatewayTextShape = createShapeFor(peCreateService, containerShape);
+		// create and set text graphics algorithm
+		final Text gatewayText = createTextShape(gaService, gatewayTextShape, 0, 50, width, 20, network.getGateway());
+		NetworkPictogramManager.addToMap(GATEWAY, gatewayText);
+		
+		// create link and wire it
+		link(gatewayTextShape, network);
+		
+		//SHAPE FOR PROPERTY DNS
+		// create shape for text
+		final Shape dnsTextShape = createShapeFor(peCreateService, containerShape);
+		// create and set text graphics algorithm
+		final Text dnsText = createTextShape(gaService, dnsTextShape, 0, 60, width, 20, network.getDns());
+		NetworkPictogramManager.addToMap(DNS, dnsText);
+		
+		// create link and wire it
+		link(dnsTextShape, network);
 		
 		final IDirectEditingInfo directEditingInfo = getFeatureProvider().getDirectEditingInfo();
 		directEditingInfo.setMainPictogramElement(containerShape);
-		directEditingInfo.setPictogramElement(textShape);
-		directEditingInfo.setGraphicsAlgorithm(text);
+		directEditingInfo.setPictogramElement(nameTextShape);
+		directEditingInfo.setGraphicsAlgorithm(nameText);
 		
 		// add a chopbox anchor to the shape 
 		peCreateService.createChopboxAnchor(containerShape);
@@ -125,6 +172,30 @@ public class AddNetworkComponentFeature extends AbstractAddFeature
 		layoutPictogramElement(containerShape);
 		
 		return containerShape;
+	}
+	
+	
+	
+	@Override
+	public Shape createShapeFor(IPeCreateService peCreateService, ContainerShape containerShape)
+	{
+		return peCreateService.createShape(containerShape, false);
+	}
+	
+	
+	
+	@Override
+	public Text createTextShape(IGaService gaService, GraphicsAlgorithmContainer gaContainer, int x, int y, int width,
+			int height, String content)
+	{
+		final Text text = gaService.createText(gaContainer, content);
+		text.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
+		text.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
+		// vertical alignment has as default value "center"
+		text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
+		gaService.setLocationAndSize(text, x, y, width, height);
+		
+		return text;
 	}
 	
 }

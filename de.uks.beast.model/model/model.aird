@@ -341,7 +341,7 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
         </ownedElements>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_gA5I0IPVEeSKX7Wavnbucg" name="name : EString = 0" tooltipText="&#xA;ERROR : The required feature 'eAttributeType' of 'org.eclipse.emf.ecore.impl.EAttributeImpl@1bb85bd{platform:/resource/de.uks.beast.model/model/model.ecore#//Rack/newAttribute}' must be set&#xA;ERROR : The typed element must have a type">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_gA5I0IPVEeSKX7Wavnbucg" name="name : EString = 0" tooltipText="">
           <target xmi:type="ecore:EAttribute" href="model.ecore#//Rack/name"/>
           <semanticElements xmi:type="ecore:EAttribute" href="model.ecore#//Rack/name"/>
           <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_h1-bIIPVEeSKX7Wavnbucg" labelAlignment="LEFT">
