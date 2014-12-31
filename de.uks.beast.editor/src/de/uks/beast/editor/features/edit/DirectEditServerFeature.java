@@ -11,7 +11,7 @@ import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
-import de.uks.beast.editor.features.util.manager.ServerPictogramManager;
+import de.uks.beast.editor.features.util.manager.PropertyUtil;
 import static de.uks.beast.editor.features.util.message.Message.*;
 
 public class DirectEditServerFeature extends AbstractDirectEditingFeature implements IDirectEditingFeature
@@ -39,7 +39,8 @@ public class DirectEditServerFeature extends AbstractDirectEditingFeature implem
 		final Object bo = getBusinessObjectForPictogramElement(pe);
 		final GraphicsAlgorithm ga = context.getGraphicsAlgorithm();
 		
-		if (bo instanceof Server && ga instanceof Text && ServerPictogramManager.get(NAME).equals((Text) ga))
+		//ServerPictogramManager.get(NAME).equals((Text) ga)
+		if (bo instanceof Server && ga instanceof Text && PropertyUtil.isAttributeShape(pe, NAME))
 		{
 			return true;
 		}

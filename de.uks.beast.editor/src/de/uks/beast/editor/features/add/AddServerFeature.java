@@ -21,7 +21,7 @@ import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 
-import de.uks.beast.editor.features.util.manager.ServerPictogramManager;
+import de.uks.beast.editor.features.util.manager.PropertyUtil;
 import static de.uks.beast.editor.features.util.message.Message.*;
 
 public class AddServerFeature extends AbstractAddShapeFeature implements AbstractShapeManager
@@ -103,7 +103,7 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		final Shape nameTextShape = createShapeFor(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		final Text nameText = createTextShape(gaService, nameTextShape, 0, 0, width, 20, server.getName());
-		ServerPictogramManager.addToMap(NAME, nameText);
+		PropertyUtil.setAttributeShape(nameTextShape, NAME);
 		
 		// create link and wire it
 		link(nameTextShape, server);
@@ -112,8 +112,8 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		// create shape for text
 		final Shape ipTextShape = createShapeFor(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text ipText = createTextShape(gaService, ipTextShape, 0, 20, width, 20, server.getIp());
-		ServerPictogramManager.addToMap(IP, ipText);
+		createTextShape(gaService, ipTextShape, 0, 20, width, 20, server.getIp());
+		PropertyUtil.setAttributeShape(ipTextShape, IP);
 		
 		// create link and wire it
 		link(ipTextShape, server);
@@ -122,9 +122,8 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		// create shape for text
 		final Shape cpuAmountTextShape = createShapeFor(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text cpuAmountText = createTextShape(gaService, cpuAmountTextShape, 0, 30, width, 20,
-				String.valueOf(server.getCpuAmount()));
-		ServerPictogramManager.addToMap(CPU_AMOUNT, cpuAmountText);
+		createTextShape(gaService, cpuAmountTextShape, 0, 30, width, 20, String.valueOf(server.getCpuAmount()));
+		PropertyUtil.setAttributeShape(cpuAmountTextShape, CPU_AMOUNT);
 		
 		// create link and wire it
 		link(cpuAmountTextShape, server);
@@ -133,8 +132,8 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		// create shape for text
 		final Shape cpuTypeTextShape = createShapeFor(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text cpuTypeText = createTextShape(gaService, cpuTypeTextShape, 0, 40, width, 20, server.getCpuType());
-		ServerPictogramManager.addToMap(CPU_TYPE, cpuTypeText);
+		createTextShape(gaService, cpuTypeTextShape, 0, 40, width, 20, server.getCpuType());
+		PropertyUtil.setAttributeShape(cpuTypeTextShape, CPU_TYPE);
 		
 		// create link and wire it
 		link(cpuTypeTextShape, server);
@@ -143,8 +142,8 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		// create shape for text
 		final Shape ramTextShape = createShapeFor(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text ramText = createTextShape(gaService, ramTextShape, 0, 50, width, 20, String.valueOf(server.getRam()));
-		ServerPictogramManager.addToMap(RAM, ramText);
+		createTextShape(gaService, ramTextShape, 0, 50, width, 20, String.valueOf(server.getRam()));
+		PropertyUtil.setAttributeShape(ramTextShape, RAM);
 		
 		// create link and wire it
 		link(ramTextShape, server);
@@ -153,9 +152,8 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		// create shape for text
 		final Shape diskSpaceTextShape = createShapeFor(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text diskSpaceText = createTextShape(gaService, diskSpaceTextShape, 0, 60, width, 20,
-				String.valueOf(server.getDiskSpace()));
-		ServerPictogramManager.addToMap(DISKSPACE, diskSpaceText);
+		createTextShape(gaService, diskSpaceTextShape, 0, 60, width, 20, String.valueOf(server.getDiskSpace()));
+		PropertyUtil.setAttributeShape(diskSpaceTextShape, DISKSPACE);
 		
 		// create link and wire it
 		link(diskSpaceTextShape, server);
@@ -177,7 +175,7 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 	
 	
 	@Override
-	public Shape createShapeFor(IPeCreateService peCreateService, ContainerShape containerShape)
+	public Shape createShapeFor(final IPeCreateService peCreateService, final ContainerShape containerShape)
 	{
 		return peCreateService.createShape(containerShape, false);
 	}
@@ -185,8 +183,8 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 	
 	
 	@Override
-	public Text createTextShape(IGaService gaService, GraphicsAlgorithmContainer gaContainer, int x, int y, int width,
-			int height, String content)
+	public Text createTextShape(final IGaService gaService, final GraphicsAlgorithmContainer gaContainer, final int x,
+			final int y, final int width, final int height, final String content)
 	{
 		final Text text = gaService.createText(gaContainer, content);
 		text.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));

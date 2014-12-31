@@ -12,7 +12,7 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
-import de.uks.beast.editor.features.util.manager.ServerPictogramManager;
+import de.uks.beast.editor.features.util.manager.PropertyUtil;
 import static de.uks.beast.editor.features.util.message.Message.*;
 
 public class UpdateServerObjectFeature extends AbstractUpdateFeature
@@ -68,31 +68,40 @@ public class UpdateServerObjectFeature extends AbstractUpdateFeature
 				if (shape.getGraphicsAlgorithm() instanceof Text)
 				{
 					final Text text = (Text) shape.getGraphicsAlgorithm();
+//					System.out.println("value: " + text.getValue() + " oder hash: " + text.hashCode() + " oder toString: "
+//							+ text.toString() + " oder: " + text);
 					
-					if (ServerPictogramManager.get(NAME).equals(text))
+					if (PropertyUtil.isAttributeShape(shape, NAME))
 					{
+						System.out.println("name textfield");
 						pictogramName = text.getValue();
 					}
-					else if (ServerPictogramManager.get(IP).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, IP))
 					{
+						System.out.println("ip textfield");
 						pictogramIp = text.getValue();
 					}
-					else if (ServerPictogramManager.get(CPU_AMOUNT).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, CPU_AMOUNT))
 					{
+						System.out.println("cpu amount textfield");
 						pictogramCpuAmount = text.getValue();
 					}
-					else if (ServerPictogramManager.get(CPU_TYPE).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, CPU_TYPE))
 					{
+						System.out.println("cpu type textfield");
 						pictogramCpuType = text.getValue();
 					}
-					else if (ServerPictogramManager.get(RAM).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, RAM))
 					{
+						System.out.println("ram textfield");
 						pictogramRam = text.getValue();
 					}
-					else if (ServerPictogramManager.get(DISKSPACE).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, DISKSPACE))
 					{
+						System.out.println("diskspace textfield");
 						pictogramDiskSpace = text.getValue();
 					}
+					
 				}
 			}
 		}
@@ -111,27 +120,27 @@ public class UpdateServerObjectFeature extends AbstractUpdateFeature
 			
 		}
 		
-		if (ServerPictogramManager.updateNeeded(pictogramName, businessName))
+		if (PropertyUtil.updateNeeded(pictogramName, businessName))
 		{
 			return Reason.createTrueReason(NAME_TRUE_REASON.text());
 		}
-		else if (ServerPictogramManager.updateNeeded(pictogramIp, businessIp))
+		else if (PropertyUtil.updateNeeded(pictogramIp, businessIp))
 		{
 			return Reason.createTrueReason(IP_TRUE_REASON.text());
 		}
-		else if (ServerPictogramManager.updateNeeded(pictogramCpuAmount, businessCpuAmount))
+		else if (PropertyUtil.updateNeeded(pictogramCpuAmount, businessCpuAmount))
 		{
 			return Reason.createTrueReason(CPU_AMOUNT_TRUE_REASON.text());
 		}
-		else if (ServerPictogramManager.updateNeeded(pictogramCpuType, businessCpuType))
+		else if (PropertyUtil.updateNeeded(pictogramCpuType, businessCpuType))
 		{
 			return Reason.createTrueReason(CPU_TYPE_TRUE_REASON.text());
 		}
-		else if (ServerPictogramManager.updateNeeded(pictogramRam, businessRam))
+		else if (PropertyUtil.updateNeeded(pictogramRam, businessRam))
 		{
 			return Reason.createTrueReason(RAM_TRUE_REASON.text());
 		}
-		else if (ServerPictogramManager.updateNeeded(pictogramDiskSpace, businessDiskSpace))
+		else if (PropertyUtil.updateNeeded(pictogramDiskSpace, businessDiskSpace))
 		{
 			return Reason.createTrueReason(DISKSPACE_TRUE_REASON.text());
 		}
@@ -172,27 +181,27 @@ public class UpdateServerObjectFeature extends AbstractUpdateFeature
 				{
 					final Text text = (Text) shape.getGraphicsAlgorithm();
 					
-					if (ServerPictogramManager.get(NAME).equals(text))
+					if (PropertyUtil.isAttributeShape(shape, NAME))
 					{
 						text.setValue(businessName);
 					}
-					else if (ServerPictogramManager.get(IP).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, IP))
 					{
 						text.setValue(businessIp);
 					}
-					else if (ServerPictogramManager.get(CPU_AMOUNT).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, CPU_AMOUNT))
 					{
 						text.setValue(businessCpuAmount);
 					}
-					else if (ServerPictogramManager.get(CPU_TYPE).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, CPU_TYPE))
 					{
 						text.setValue(businessCpuType);
 					}
-					else if (ServerPictogramManager.get(RAM).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, RAM))
 					{
 						text.setValue(businessRam);
 					}
-					else if (ServerPictogramManager.get(DISKSPACE).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, DISKSPACE))
 					{
 						text.setValue(businessDiskSpace);
 					}

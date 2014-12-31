@@ -4,8 +4,6 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-import static de.uks.beast.editor.features.util.message.Message.*;
-
 /**
  * The activator class controls the plug-in life cycle
  */
