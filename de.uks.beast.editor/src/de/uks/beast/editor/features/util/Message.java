@@ -1,4 +1,4 @@
-package de.uks.beast.editor.features.util.message;
+package de.uks.beast.editor.features.util;
 
 public enum Message
 {

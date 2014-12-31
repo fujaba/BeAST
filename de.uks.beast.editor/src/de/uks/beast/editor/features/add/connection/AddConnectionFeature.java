@@ -1,4 +1,4 @@
-package de.uks.beast.editor.features.add;
+package de.uks.beast.editor.features.add.connection;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddConnectionContext;

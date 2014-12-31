@@ -1,9 +1,7 @@
-package de.uks.beast.editor.features.util.manager;
+package de.uks.beast.editor.features.util;
 
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
-
-import de.uks.beast.editor.features.util.message.Message;
 
 public class PropertyUtil
 {
@@ -18,6 +16,20 @@ public class PropertyUtil
 	public static boolean isAttributeShape(final PictogramElement pe, final Message message)
 	{
 		return message.text().equals(Graphiti.getPeService().getPropertyValue(pe, message.text()));
+	}
+	
+	
+	
+	public static final void setObjectShape(final PictogramElement pe, final Message message)
+	{
+		setAttributeShape(pe, message);
+	}
+	
+	
+	
+	public static boolean isObjectShape(final PictogramElement pe, final Message message)
+	{
+		return isAttributeShape(pe, message);
 	}
 	
 	

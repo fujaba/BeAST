@@ -1,5 +1,17 @@
 package de.uks.beast.editor.features.update;
 
+import static de.uks.beast.editor.features.util.Message.DNS;
+import static de.uks.beast.editor.features.util.Message.DNS_TRUE_REASON;
+import static de.uks.beast.editor.features.util.Message.GATEWAY;
+import static de.uks.beast.editor.features.util.Message.GATEWAY_TRUE_REASON;
+import static de.uks.beast.editor.features.util.Message.ID;
+import static de.uks.beast.editor.features.util.Message.ID_TRUE_REASON;
+import static de.uks.beast.editor.features.util.Message.IP;
+import static de.uks.beast.editor.features.util.Message.IP_TRUE_REASON;
+import static de.uks.beast.editor.features.util.Message.NAME;
+import static de.uks.beast.editor.features.util.Message.NAME_TRUE_REASON;
+import static de.uks.beast.editor.features.util.Message.SUBNET_MASK;
+import static de.uks.beast.editor.features.util.Message.SUBNET_MASK_TRUE_REASON;
 import model.Network;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -12,8 +24,7 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
-import de.uks.beast.editor.features.util.manager.NetworkPictogramManager;
-import static de.uks.beast.editor.features.util.message.Message.*;
+import de.uks.beast.editor.features.util.PropertyUtil;
 
 public class UpdateNetworkObjectFeature extends AbstractUpdateFeature
 {
@@ -67,27 +78,28 @@ public class UpdateNetworkObjectFeature extends AbstractUpdateFeature
 				if (shape.getGraphicsAlgorithm() instanceof Text)
 				{
 					final Text text = (Text) shape.getGraphicsAlgorithm();
-					if (NetworkPictogramManager.get(NAME).equals(text))
+					
+					if (PropertyUtil.isAttributeShape(shape, NAME))
 					{
 						pictogramName = text.getValue();
 					}
-					else if (NetworkPictogramManager.get(IP).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, IP))
 					{
 						pictogramIp = text.getValue();
 					}
-					else if (NetworkPictogramManager.get(ID).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, ID))
 					{
 						pictogramId = text.getValue();
 					}
-					else if (NetworkPictogramManager.get(DNS).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, DNS))
 					{
 						pictogramDns = text.getValue();
 					}
-					else if (NetworkPictogramManager.get(GATEWAY).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, GATEWAY))
 					{
 						pictogramGateway = text.getValue();
 					}
-					else if (NetworkPictogramManager.get(SUBNET_MASK).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, SUBNET_MASK))
 					{
 						pictogramSubnetMask = text.getValue();
 					}
@@ -108,27 +120,27 @@ public class UpdateNetworkObjectFeature extends AbstractUpdateFeature
 			businessSubnetMask = network.getSubnetmask();
 		}
 		
-		if (NetworkPictogramManager.updateNeeded(pictogramName, businessName))
+		if (PropertyUtil.updateNeeded(pictogramName, businessName))
 		{
 			return Reason.createTrueReason(NAME_TRUE_REASON.text());
 		}
-		else if (NetworkPictogramManager.updateNeeded(pictogramIp, businessIp))
+		else if (PropertyUtil.updateNeeded(pictogramIp, businessIp))
 		{
 			return Reason.createTrueReason(IP_TRUE_REASON.text());
 		}
-		else if (NetworkPictogramManager.updateNeeded(pictogramId, businessId))
+		else if (PropertyUtil.updateNeeded(pictogramId, businessId))
 		{
 			return Reason.createTrueReason(ID_TRUE_REASON.text());
 		}
-		else if (NetworkPictogramManager.updateNeeded(pictogramDns, businessDns))
+		else if (PropertyUtil.updateNeeded(pictogramDns, businessDns))
 		{
 			return Reason.createTrueReason(DNS_TRUE_REASON.text());
 		}
-		else if (NetworkPictogramManager.updateNeeded(pictogramGateway, businessGateway))
+		else if (PropertyUtil.updateNeeded(pictogramGateway, businessGateway))
 		{
 			return Reason.createTrueReason(GATEWAY_TRUE_REASON.text());
 		}
-		else if (NetworkPictogramManager.updateNeeded(pictogramSubnetMask, businessSubnetMask))
+		else if (PropertyUtil.updateNeeded(pictogramSubnetMask, businessSubnetMask))
 		{
 			return Reason.createTrueReason(SUBNET_MASK_TRUE_REASON.text());
 		}
@@ -167,27 +179,27 @@ public class UpdateNetworkObjectFeature extends AbstractUpdateFeature
 				if (shape.getGraphicsAlgorithm() instanceof Text)
 				{
 					final Text text = (Text) shape.getGraphicsAlgorithm();
-					if (NetworkPictogramManager.get(NAME).equals(text))
+					if (PropertyUtil.isAttributeShape(shape, NAME))
 					{
 						text.setValue(businessName);
 					}
-					else if (NetworkPictogramManager.get(IP).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, IP))
 					{
 						text.setValue(businessIp);
 					}
-					else if (NetworkPictogramManager.get(ID).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, ID))
 					{
 						text.setValue(businessId);
 					}
-					else if (NetworkPictogramManager.get(DNS).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, DNS))
 					{
 						text.setValue(businessDns);
 					}
-					else if (NetworkPictogramManager.get(GATEWAY).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, GATEWAY))
 					{
 						text.setValue(businessGateway);
 					}
-					else if (NetworkPictogramManager.get(SUBNET_MASK).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, SUBNET_MASK))
 					{
 						text.setValue(businessSubnetMask);
 					}

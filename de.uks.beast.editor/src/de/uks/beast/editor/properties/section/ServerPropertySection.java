@@ -21,7 +21,7 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
-import static de.uks.beast.editor.features.util.message.Message.*;
+import static de.uks.beast.editor.features.util.Message.*;
 
 public class ServerPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {

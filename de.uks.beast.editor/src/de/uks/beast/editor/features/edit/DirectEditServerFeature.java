@@ -11,8 +11,8 @@ import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
-import de.uks.beast.editor.features.util.manager.PropertyUtil;
-import static de.uks.beast.editor.features.util.message.Message.*;
+import de.uks.beast.editor.features.util.PropertyUtil;
+import static de.uks.beast.editor.features.util.Message.*;
 
 public class DirectEditServerFeature extends AbstractDirectEditingFeature implements IDirectEditingFeature
 {

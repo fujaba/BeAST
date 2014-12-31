@@ -12,22 +12,25 @@ import org.eclipse.graphiti.features.ICreateConnectionFeature;
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IDirectEditingFeature;
 import org.eclipse.graphiti.features.ILayoutFeature;
+import org.eclipse.graphiti.features.IReconnectionFeature;
 import org.eclipse.graphiti.features.IUpdateFeature;
 import org.eclipse.graphiti.features.context.IAddConnectionContext;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.context.IDirectEditingContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
+import org.eclipse.graphiti.features.context.IReconnectionContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
-import de.uks.beast.editor.features.add.AddConnectionFeature;
-import de.uks.beast.editor.features.add.AddNetworkComponentFeature;
+import de.uks.beast.editor.features.add.AddNetworkFeature;
 import de.uks.beast.editor.features.add.AddRackFeature;
 import de.uks.beast.editor.features.add.AddRoomFeature;
 import de.uks.beast.editor.features.add.AddRouterFeature;
 import de.uks.beast.editor.features.add.AddServerFeature;
+import de.uks.beast.editor.features.add.connection.AddConnectionFeature;
+import de.uks.beast.editor.features.add.connection.ReconnectionFeature;
 import de.uks.beast.editor.features.create.CreateConnectionFeature;
 import de.uks.beast.editor.features.create.CreateNetworkComponentFeature;
 import de.uks.beast.editor.features.create.CreateRackFeature;
@@ -49,8 +52,7 @@ import de.uks.beast.editor.features.update.UpdateRackObjectFeature;
 import de.uks.beast.editor.features.update.UpdateRoomObjectFeature;
 import de.uks.beast.editor.features.update.UpdateRouterObjectFeature;
 import de.uks.beast.editor.features.update.UpdateServerObjectFeature;
-
-import static de.uks.beast.editor.features.util.message.Message.*;
+import static de.uks.beast.editor.features.util.Message.*;
 
 public class EditorFeatureProvider extends DefaultFeatureProvider
 {
@@ -85,6 +87,14 @@ public class EditorFeatureProvider extends DefaultFeatureProvider
 	
 	
 	@Override
+	public IReconnectionFeature getReconnectionFeature(final IReconnectionContext context)
+	{
+		return new ReconnectionFeature(this);
+	}
+	
+	
+	
+	@Override
 	public IAddFeature getAddFeature(final IAddContext context)
 	{
 		//features
@@ -98,7 +108,7 @@ public class EditorFeatureProvider extends DefaultFeatureProvider
 		}
 		else if (context.getNewObject() instanceof Network)
 		{
-			return new AddNetworkComponentFeature(this);
+			return new AddNetworkFeature(this);
 		}
 		else if (context.getNewObject() instanceof Router)
 		{

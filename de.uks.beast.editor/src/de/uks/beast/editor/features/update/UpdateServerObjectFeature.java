@@ -12,8 +12,8 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
-import de.uks.beast.editor.features.util.manager.PropertyUtil;
-import static de.uks.beast.editor.features.util.message.Message.*;
+import de.uks.beast.editor.features.util.PropertyUtil;
+import static de.uks.beast.editor.features.util.Message.*;
 
 public class UpdateServerObjectFeature extends AbstractUpdateFeature
 {
@@ -68,8 +68,6 @@ public class UpdateServerObjectFeature extends AbstractUpdateFeature
 				if (shape.getGraphicsAlgorithm() instanceof Text)
 				{
 					final Text text = (Text) shape.getGraphicsAlgorithm();
-//					System.out.println("value: " + text.getValue() + " oder hash: " + text.hashCode() + " oder toString: "
-//							+ text.toString() + " oder: " + text);
 					
 					if (PropertyUtil.isAttributeShape(shape, NAME))
 					{

@@ -21,8 +21,8 @@ import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 
-import de.uks.beast.editor.features.util.manager.RouterPictogramManager;
-import static de.uks.beast.editor.features.util.message.Message.*;
+import de.uks.beast.editor.features.util.PropertyUtil;
+import static de.uks.beast.editor.features.util.Message.*;
 
 public class AddRouterFeature extends AbstractAddFeature implements AbstractShapeManager
 {
@@ -66,6 +66,7 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		// CONTAINER SHAPE WITH ROUNDED RECTANGLE
 		final IPeCreateService peCreateService = Graphiti.getPeCreateService();
 		final ContainerShape containerShape = peCreateService.createContainerShape(targetDiagram, true);
+		PropertyUtil.setObjectShape(containerShape, ROUTER);
 		
 		// define a default size for the shape
 		final int width = 100;
@@ -105,7 +106,7 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		final Shape nameTextShape = createShapeFor(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		final Text nameText = createTextShape(gaService, nameTextShape, 0, 0, width, 20, router.getName());
-		RouterPictogramManager.addToMap(NAME, nameText);
+		PropertyUtil.setAttributeShape(nameTextShape, NAME);
 		
 		// create link and wire it
 		link(nameTextShape, router);
@@ -114,8 +115,8 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		// create shape for text
 		final Shape ipTextShape = createShapeFor(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text ipText = createTextShape(gaService, ipTextShape, 0, 20, width, 20, router.getIp());
-		RouterPictogramManager.addToMap(IP, ipText);
+		createTextShape(gaService, ipTextShape, 0, 20, width, 20, router.getIp());
+		PropertyUtil.setAttributeShape(ipTextShape, IP);
 		
 		// create link and wire it
 		link(ipTextShape, router);
@@ -124,8 +125,8 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		// create shape for text
 		final Shape idTextShape = createShapeFor(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text idText = createTextShape(gaService, idTextShape, 0, 30, width, 20, router.getId());
-		RouterPictogramManager.addToMap(ID, idText);
+		createTextShape(gaService, idTextShape, 0, 30, width, 20, router.getId());
+		PropertyUtil.setAttributeShape(idTextShape, ID);
 		
 		// create link and wire it
 		link(idTextShape, router);
@@ -134,8 +135,8 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		// create shape for text
 		final Shape extGatewayTextShape = createShapeFor(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text extGatewayText = createTextShape(gaService, extGatewayTextShape, 0, 40, width, 20, router.getExternalGateway());
-		RouterPictogramManager.addToMap(EXTERNAL_GATEWAY, extGatewayText);
+		createTextShape(gaService, extGatewayTextShape, 0, 40, width, 20, router.getExternalGateway());
+		PropertyUtil.setAttributeShape(extGatewayTextShape, EXTERNAL_GATEWAY);
 		
 		// create link and wire it
 		link(extGatewayTextShape, router);

@@ -21,8 +21,8 @@ import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 
-import de.uks.beast.editor.features.util.manager.PropertyUtil;
-import static de.uks.beast.editor.features.util.message.Message.*;
+import de.uks.beast.editor.features.util.PropertyUtil;
+import static de.uks.beast.editor.features.util.Message.*;
 
 public class AddServerFeature extends AbstractAddShapeFeature implements AbstractShapeManager
 {
@@ -66,6 +66,7 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		// CONTAINER SHAPE WITH ROUNDED RECTANGLE
 		final IPeCreateService peCreateService = Graphiti.getPeCreateService();
 		final ContainerShape containerShape = peCreateService.createContainerShape(targetDiagram, true);
+		PropertyUtil.setObjectShape(containerShape, SERVER);
 		
 		// define a default size for the shape
 		final int width = 100;

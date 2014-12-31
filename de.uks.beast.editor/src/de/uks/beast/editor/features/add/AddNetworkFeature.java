@@ -21,10 +21,10 @@ import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 
-import de.uks.beast.editor.features.util.manager.NetworkPictogramManager;
-import static de.uks.beast.editor.features.util.message.Message.*;
+import de.uks.beast.editor.features.util.PropertyUtil;
+import static de.uks.beast.editor.features.util.Message.*;
 
-public class AddNetworkComponentFeature extends AbstractAddFeature implements AbstractShapeManager
+public class AddNetworkFeature extends AbstractAddFeature implements AbstractShapeManager
 {
 	private static final IColorConstant	E_CLASS_TEXT_FOREGROUND	= IColorConstant.BLACK;
 	
@@ -34,7 +34,7 @@ public class AddNetworkComponentFeature extends AbstractAddFeature implements Ab
 	
 	
 	
-	public AddNetworkComponentFeature(final IFeatureProvider fp)
+	public AddNetworkFeature(final IFeatureProvider fp)
 	{
 		super(fp);
 	}
@@ -66,6 +66,7 @@ public class AddNetworkComponentFeature extends AbstractAddFeature implements Ab
 		// CONTAINER SHAPE WITH ROUNDED RECTANGLE
 		final IPeCreateService peCreateService = Graphiti.getPeCreateService();
 		final ContainerShape containerShape = peCreateService.createContainerShape(targetDiagram, true);
+		PropertyUtil.setObjectShape(containerShape, NETWORK);
 		
 		// define a default size for the shape
 		final int width = 100;
@@ -105,7 +106,7 @@ public class AddNetworkComponentFeature extends AbstractAddFeature implements Ab
 		final Shape nameTextShape = createShapeFor(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		final Text nameText = createTextShape(gaService, nameTextShape, 0, 0, width, 20, network.getName());
-		NetworkPictogramManager.addToMap(NAME, nameText);
+		PropertyUtil.setAttributeShape(nameTextShape, NAME);
 		
 		// create link and wire it
 		link(nameTextShape, network);
@@ -114,8 +115,8 @@ public class AddNetworkComponentFeature extends AbstractAddFeature implements Ab
 		// create shape for text
 		final Shape ipTextShape = createShapeFor(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text ipText = createTextShape(gaService, ipTextShape, 0, 20, width, 20, network.getIp());
-		NetworkPictogramManager.addToMap(IP, ipText);
+		createTextShape(gaService, ipTextShape, 0, 20, width, 20, network.getIp());
+		PropertyUtil.setAttributeShape(ipTextShape, IP);
 		
 		// create link and wire it
 		link(ipTextShape, network);
@@ -124,8 +125,8 @@ public class AddNetworkComponentFeature extends AbstractAddFeature implements Ab
 		// create shape for text
 		final Shape idTextShape = createShapeFor(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text idText = createTextShape(gaService, idTextShape, 0, 30, width, 20, network.getId());
-		NetworkPictogramManager.addToMap(ID, idText);
+		createTextShape(gaService, idTextShape, 0, 30, width, 20, network.getId());
+		PropertyUtil.setAttributeShape(idTextShape, ID);
 		
 		// create link and wire it
 		link(idTextShape, network);
@@ -134,8 +135,8 @@ public class AddNetworkComponentFeature extends AbstractAddFeature implements Ab
 		// create shape for text
 		final Shape subnetMaskTextShape = createShapeFor(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text subnetMaskText = createTextShape(gaService, subnetMaskTextShape, 0, 40, width, 20, network.getSubnetmask());
-		NetworkPictogramManager.addToMap(SUBNET_MASK, subnetMaskText);
+		createTextShape(gaService, subnetMaskTextShape, 0, 40, width, 20, network.getSubnetmask());
+		PropertyUtil.setAttributeShape(subnetMaskTextShape, SUBNET_MASK);
 		
 		// create link and wire it
 		link(subnetMaskTextShape, network);
@@ -144,8 +145,8 @@ public class AddNetworkComponentFeature extends AbstractAddFeature implements Ab
 		// create shape for text
 		final Shape gatewayTextShape = createShapeFor(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text gatewayText = createTextShape(gaService, gatewayTextShape, 0, 50, width, 20, network.getGateway());
-		NetworkPictogramManager.addToMap(GATEWAY, gatewayText);
+		createTextShape(gaService, gatewayTextShape, 0, 50, width, 20, network.getGateway());
+		PropertyUtil.setAttributeShape(gatewayTextShape, GATEWAY);
 		
 		// create link and wire it
 		link(gatewayTextShape, network);
@@ -154,8 +155,8 @@ public class AddNetworkComponentFeature extends AbstractAddFeature implements Ab
 		// create shape for text
 		final Shape dnsTextShape = createShapeFor(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text dnsText = createTextShape(gaService, dnsTextShape, 0, 60, width, 20, network.getDns());
-		NetworkPictogramManager.addToMap(DNS, dnsText);
+		createTextShape(gaService, dnsTextShape, 0, 60, width, 20, network.getDns());
+		PropertyUtil.setAttributeShape(dnsTextShape, DNS);
 		
 		// create link and wire it
 		link(dnsTextShape, network);

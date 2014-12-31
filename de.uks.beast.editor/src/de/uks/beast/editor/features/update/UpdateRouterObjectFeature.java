@@ -1,13 +1,5 @@
 package de.uks.beast.editor.features.update;
 
-import static de.uks.beast.editor.features.util.message.Message.EXTERNAL_GATEWAY;
-import static de.uks.beast.editor.features.util.message.Message.EXT_GATEWAY_TRUE_REASON;
-import static de.uks.beast.editor.features.util.message.Message.ID;
-import static de.uks.beast.editor.features.util.message.Message.ID_TRUE_REASON;
-import static de.uks.beast.editor.features.util.message.Message.IP;
-import static de.uks.beast.editor.features.util.message.Message.IP_TRUE_REASON;
-import static de.uks.beast.editor.features.util.message.Message.NAME;
-import static de.uks.beast.editor.features.util.message.Message.NAME_TRUE_REASON;
 import model.Router;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -21,7 +13,8 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
-import de.uks.beast.editor.features.util.manager.RouterPictogramManager;
+import de.uks.beast.editor.features.util.PropertyUtil;
+import static de.uks.beast.editor.features.util.Message.*;
 
 public class UpdateRouterObjectFeature extends AbstractUpdateFeature implements IUpdateFeature
 {
@@ -72,19 +65,19 @@ public class UpdateRouterObjectFeature extends AbstractUpdateFeature implements 
 				{
 					final Text text = (Text) shape.getGraphicsAlgorithm();
 					
-					if (RouterPictogramManager.get(NAME).equals(text))
+					if (PropertyUtil.isAttributeShape(shape, NAME))
 					{
 						pictogramName = text.getValue();
 					}
-					else if (RouterPictogramManager.get(IP).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, IP))
 					{
 						pictogramIp = text.getValue();
 					}
-					else if (RouterPictogramManager.get(ID).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, ID))
 					{
 						pictogramId = text.getValue();
 					}
-					else if (RouterPictogramManager.get(EXTERNAL_GATEWAY).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, EXTERNAL_GATEWAY))
 					{
 						pictogramExtGateway = text.getValue();
 					}
@@ -104,19 +97,19 @@ public class UpdateRouterObjectFeature extends AbstractUpdateFeature implements 
 			businessExtGateway = router.getExternalGateway();
 		}
 		
-		if (RouterPictogramManager.updateNeeded(pictogramName, businessName))
+		if (PropertyUtil.updateNeeded(pictogramName, businessName))
 		{
 			return Reason.createTrueReason(NAME_TRUE_REASON.text());
 		}
-		else if (RouterPictogramManager.updateNeeded(pictogramIp, businessIp))
+		else if (PropertyUtil.updateNeeded(pictogramIp, businessIp))
 		{
 			return Reason.createTrueReason(IP_TRUE_REASON.text());
 		}
-		else if (RouterPictogramManager.updateNeeded(pictogramId, businessId))
+		else if (PropertyUtil.updateNeeded(pictogramId, businessId))
 		{
 			return Reason.createTrueReason(ID_TRUE_REASON.text());
 		}
-		else if (RouterPictogramManager.updateNeeded(pictogramExtGateway, businessExtGateway))
+		else if (PropertyUtil.updateNeeded(pictogramExtGateway, businessExtGateway))
 		{
 			return Reason.createTrueReason(EXT_GATEWAY_TRUE_REASON.text());
 		}
@@ -154,19 +147,19 @@ public class UpdateRouterObjectFeature extends AbstractUpdateFeature implements 
 				{
 					final Text text = (Text) shape.getGraphicsAlgorithm();
 					
-					if (RouterPictogramManager.get(NAME).equals(text))
+					if (PropertyUtil.isAttributeShape(shape, NAME))
 					{
 						text.setValue(businessName);
 					}
-					else if (RouterPictogramManager.get(IP).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, IP))
 					{
 						text.setValue(businessIp);
 					}
-					else if (RouterPictogramManager.get(ID).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, ID))
 					{
 						text.setValue(businessId);
 					}
-					else if (RouterPictogramManager.get(EXTERNAL_GATEWAY).equals(text))
+					else if (PropertyUtil.isAttributeShape(shape, EXTERNAL_GATEWAY))
 					{
 						text.setValue(businessExtGateway);
 					}
