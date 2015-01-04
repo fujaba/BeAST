@@ -92,7 +92,7 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		
 		// SHAPE WITH LINE
 		// create shape for line
-		final Shape lineShape = createShapeFor(peCreateService, containerShape);
+		final Shape lineShape = createShape(peCreateService, containerShape);
 		
 		// create and set graphics algorithm
 		final Polyline polyline = gaService.createPolyline(lineShape, new int[] { 0, 20, width, 20 });
@@ -101,7 +101,7 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		
 		// SHAPE FOR PROPERTY NAME
 		// create shape for text
-		final Shape nameTextShape = createShapeFor(peCreateService, containerShape);
+		final Shape nameTextShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		final Text nameText = createTextShape(gaService, nameTextShape, 0, 0, width, 20, server.getName());
 		PropertyUtil.setAttributeShape(nameTextShape, NAME);
@@ -111,7 +111,7 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		
 		// SHAPE FOR PROPERTY IP
 		// create shape for text
-		final Shape ipTextShape = createShapeFor(peCreateService, containerShape);
+		final Shape ipTextShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		createTextShape(gaService, ipTextShape, 0, 20, width, 20, server.getIp());
 		PropertyUtil.setAttributeShape(ipTextShape, IP);
@@ -121,7 +121,7 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		
 		//SHAPE FOR PROPERTY CPU_AMOUNT
 		// create shape for text
-		final Shape cpuAmountTextShape = createShapeFor(peCreateService, containerShape);
+		final Shape cpuAmountTextShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		createTextShape(gaService, cpuAmountTextShape, 0, 30, width, 20, String.valueOf(server.getCpuAmount()));
 		PropertyUtil.setAttributeShape(cpuAmountTextShape, CPU_AMOUNT);
@@ -131,7 +131,7 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		
 		//SHAPE FOR PROPERTY CPU_TYPE
 		// create shape for text
-		final Shape cpuTypeTextShape = createShapeFor(peCreateService, containerShape);
+		final Shape cpuTypeTextShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		createTextShape(gaService, cpuTypeTextShape, 0, 40, width, 20, server.getCpuType());
 		PropertyUtil.setAttributeShape(cpuTypeTextShape, CPU_TYPE);
@@ -141,7 +141,7 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		
 		//SHAPE FOR PROPERTY RAM
 		// create shape for text
-		final Shape ramTextShape = createShapeFor(peCreateService, containerShape);
+		final Shape ramTextShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		createTextShape(gaService, ramTextShape, 0, 50, width, 20, String.valueOf(server.getRam()));
 		PropertyUtil.setAttributeShape(ramTextShape, RAM);
@@ -151,7 +151,7 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		
 		//SHAPE FOR PROPERTY DISK_SPACE
 		// create shape for text
-		final Shape diskSpaceTextShape = createShapeFor(peCreateService, containerShape);
+		final Shape diskSpaceTextShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		createTextShape(gaService, diskSpaceTextShape, 0, 60, width, 20, String.valueOf(server.getDiskSpace()));
 		PropertyUtil.setAttributeShape(diskSpaceTextShape, DISKSPACE);
@@ -176,7 +176,7 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 	
 	
 	@Override
-	public Shape createShapeFor(final IPeCreateService peCreateService, final ContainerShape containerShape)
+	public Shape createShape(final IPeCreateService peCreateService, final ContainerShape containerShape)
 	{
 		return peCreateService.createShape(containerShape, false);
 	}

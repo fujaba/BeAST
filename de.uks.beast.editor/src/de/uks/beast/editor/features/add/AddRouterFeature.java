@@ -103,7 +103,7 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		
 		// SHAPE FOR PROPERTY NAME
 		// create shape for text
-		final Shape nameTextShape = createShapeFor(peCreateService, containerShape);
+		final Shape nameTextShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		final Text nameText = createTextShape(gaService, nameTextShape, 0, 0, width, 20, router.getName());
 		PropertyUtil.setAttributeShape(nameTextShape, NAME);
@@ -113,7 +113,7 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		
 		// SHAPE FOR PROPERTY IP
 		// create shape for text
-		final Shape ipTextShape = createShapeFor(peCreateService, containerShape);
+		final Shape ipTextShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		createTextShape(gaService, ipTextShape, 0, 20, width, 20, router.getIp());
 		PropertyUtil.setAttributeShape(ipTextShape, IP);
@@ -123,7 +123,7 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		
 		//SHAPE FOR PROPERTY ID
 		// create shape for text
-		final Shape idTextShape = createShapeFor(peCreateService, containerShape);
+		final Shape idTextShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		createTextShape(gaService, idTextShape, 0, 30, width, 20, router.getId());
 		PropertyUtil.setAttributeShape(idTextShape, ID);
@@ -133,7 +133,7 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		
 		//SHAPE FOR PROPERTY EXTERNAL_GATEWAY
 		// create shape for text
-		final Shape extGatewayTextShape = createShapeFor(peCreateService, containerShape);
+		final Shape extGatewayTextShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		createTextShape(gaService, extGatewayTextShape, 0, 40, width, 20, router.getExternalGateway());
 		PropertyUtil.setAttributeShape(extGatewayTextShape, EXTERNAL_GATEWAY);
@@ -158,7 +158,7 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 	
 	
 	@Override
-	public Shape createShapeFor(final IPeCreateService peCreateService, final ContainerShape containerShape)
+	public Shape createShape(final IPeCreateService peCreateService, final ContainerShape containerShape)
 	{
 		return peCreateService.createShape(containerShape, false);
 	}

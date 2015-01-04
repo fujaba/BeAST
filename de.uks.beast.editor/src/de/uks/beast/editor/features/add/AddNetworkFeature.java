@@ -103,7 +103,7 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		
 		// SHAPE FOR PROPERTY NAME
 		// create shape for text
-		final Shape nameTextShape = createShapeFor(peCreateService, containerShape);
+		final Shape nameTextShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		final Text nameText = createTextShape(gaService, nameTextShape, 0, 0, width, 20, network.getName());
 		PropertyUtil.setAttributeShape(nameTextShape, NAME);
@@ -113,7 +113,7 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		
 		// SHAPE FOR PROPERTY IP
 		// create shape for text
-		final Shape ipTextShape = createShapeFor(peCreateService, containerShape);
+		final Shape ipTextShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		createTextShape(gaService, ipTextShape, 0, 20, width, 20, network.getIp());
 		PropertyUtil.setAttributeShape(ipTextShape, IP);
@@ -123,7 +123,7 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		
 		//SHAPE FOR PROPERTY ID
 		// create shape for text
-		final Shape idTextShape = createShapeFor(peCreateService, containerShape);
+		final Shape idTextShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		createTextShape(gaService, idTextShape, 0, 30, width, 20, network.getId());
 		PropertyUtil.setAttributeShape(idTextShape, ID);
@@ -133,7 +133,7 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		
 		//SHAPE FOR PROPERTY SUBNET_MASK
 		// create shape for text
-		final Shape subnetMaskTextShape = createShapeFor(peCreateService, containerShape);
+		final Shape subnetMaskTextShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		createTextShape(gaService, subnetMaskTextShape, 0, 40, width, 20, network.getSubnetmask());
 		PropertyUtil.setAttributeShape(subnetMaskTextShape, SUBNET_MASK);
@@ -143,7 +143,7 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		
 		//SHAPE FOR PROPERTY GATEWAY
 		// create shape for text
-		final Shape gatewayTextShape = createShapeFor(peCreateService, containerShape);
+		final Shape gatewayTextShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		createTextShape(gaService, gatewayTextShape, 0, 50, width, 20, network.getGateway());
 		PropertyUtil.setAttributeShape(gatewayTextShape, GATEWAY);
@@ -153,7 +153,7 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		
 		//SHAPE FOR PROPERTY DNS
 		// create shape for text
-		final Shape dnsTextShape = createShapeFor(peCreateService, containerShape);
+		final Shape dnsTextShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		createTextShape(gaService, dnsTextShape, 0, 60, width, 20, network.getDns());
 		PropertyUtil.setAttributeShape(dnsTextShape, DNS);
@@ -178,7 +178,7 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 	
 	
 	@Override
-	public Shape createShapeFor(IPeCreateService peCreateService, ContainerShape containerShape)
+	public Shape createShape(IPeCreateService peCreateService, ContainerShape containerShape)
 	{
 		return peCreateService.createShape(containerShape, false);
 	}

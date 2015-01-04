@@ -9,7 +9,7 @@ import org.eclipse.graphiti.services.IPeCreateService;
 
 public interface AbstractShapeManager
 {
-	public Shape createShapeFor(final IPeCreateService peCreateService, final ContainerShape containerShape);
+	public Shape createShape(final IPeCreateService peCreateService, final ContainerShape containerShape);
 	
 	
 	

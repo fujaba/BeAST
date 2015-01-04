@@ -71,32 +71,26 @@ public class UpdateServerObjectFeature extends AbstractUpdateFeature
 					
 					if (PropertyUtil.isAttributeShape(shape, NAME))
 					{
-						System.out.println("name textfield");
 						pictogramName = text.getValue();
 					}
 					else if (PropertyUtil.isAttributeShape(shape, IP))
 					{
-						System.out.println("ip textfield");
 						pictogramIp = text.getValue();
 					}
 					else if (PropertyUtil.isAttributeShape(shape, CPU_AMOUNT))
 					{
-						System.out.println("cpu amount textfield");
 						pictogramCpuAmount = text.getValue();
 					}
 					else if (PropertyUtil.isAttributeShape(shape, CPU_TYPE))
 					{
-						System.out.println("cpu type textfield");
 						pictogramCpuType = text.getValue();
 					}
 					else if (PropertyUtil.isAttributeShape(shape, RAM))
 					{
-						System.out.println("ram textfield");
 						pictogramRam = text.getValue();
 					}
 					else if (PropertyUtil.isAttributeShape(shape, DISKSPACE))
 					{
-						System.out.println("diskspace textfield");
 						pictogramDiskSpace = text.getValue();
 					}
 					
