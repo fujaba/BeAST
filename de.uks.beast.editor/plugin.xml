@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+
+	<extension point="org.eclipse.ui.popupMenus"> 
+	    <objectContribution
+	      adaptable="true"
+	      id="de.uks.beast.editor.popup"
+	      nameFilter="*.beastmodel"
+	      objectClass="org.eclipse.core.resources.IFile">
+	      <action
+	         id="de.uks.beast.editor.beastAction" 
+	         label="Execute BeAST test..."
+	         menubarPath="additions"
+	         class="de.uks.beast.editor.action.BeASTAction"> 
+	      </action>
+	    </objectContribution>
+	</extension>
+
 	<extension
          point="org.eclipse.graphiti.ui.diagramTypes">
 		<diagramType name="Editor Diagram Type" type="srvconfig" id="de.uks.beast.editor.editorDiagramType">
@@ -16,7 +32,22 @@
 		</diagramTypeProvider>
 	</extension>
 	
-	
+	  <extension
+         point="org.eclipse.ui.newWizards">
+         <category
+	   id = "de.uks"
+	   parentCategory="org.eclipse.ui.Examples"
+	   name="BeAST">
+	</category>
+ 	<wizard
+	   id = "de.uks.beast.editor.wizard.NewBeASTDiagramWizard"
+      	   name = "New BeAST Diagram"
+	   class="de.uks.beast.editor.wizard.NewBeASTDiagramWizard"
+	   category="de.uks">
+    	   <description>New BeAST Diagram</description>
+	   <selection class="org.eclipse.core.resources.IResource"/>
+	</wizard>
+   </extension>
 	
 	<extension 
 		point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
