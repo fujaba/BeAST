@@ -35,17 +35,14 @@ public class CreateConnectionFeature extends AbstractCreateConnectionFeature
 		}
 		else if (target instanceof Server && source instanceof Network)
 		{
-			
 			return true;
 		}
 		else if (source instanceof Network && target instanceof Router)
 		{
-			
 			return true;
 		}
 		else if (target instanceof Network && source instanceof Router)
 		{
-			
 			return true;
 		}
 		

@@ -1,4 +1,4 @@
-package de.uks.beast.editor.diagram;
+package de.uks.beast.editor.provider;
 
 import org.eclipse.graphiti.dt.AbstractDiagramTypeProvider;
 

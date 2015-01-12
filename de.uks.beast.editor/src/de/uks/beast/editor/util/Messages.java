@@ -1,10 +1,24 @@
-package de.uks.beast.editor.features.util;
+package de.uks.beast.editor.util;
 
-public enum Message
+public enum Messages
 {
 	//@formatter:off
 	// Main
 	PLUGIN_ID					("de.uks.beast.editor",		""),
+	DIAGRAM_TYPEID				("hardwareComposition", 	""),
+	
+	
+	//Wizard
+	WIZARD_PAGE_NAME			("wizardPage",							""),
+	WIZARD_TITLE				("Hardware Composition Editor File",	""),
+	WIZARD_DESCRIPTION			("",									"This wizard creates a new file with *.diagram extension that can be opened by a multi-page editor."),
+	BROWSE_BUTTON_TEXT			("Browse...",							""),
+	FILE_LABEL					("File name:",							""),
+	CONTAINER_LABEL				("Container:",							""),
+	FILE_ENDING					(".diagram", 							""),
+	FILE_TYPE					("diagram", 							""),
+	DEFAULT_FILENAME			("new_file",							""),	
+	
 	
 	// True reasons
 	NAME_TRUE_REASON			("Name is out of date!", 				""),
@@ -19,6 +33,7 @@ public enum Message
 	GATEWAY_TRUE_REASON			("Gateway is out of date!", 			""),
 	SUBNET_MASK_TRUE_REASON		("Subnet mask is out of date!", 		""),
 	
+	
 	// keys
 	NAME						("name",			""),
 	IP							("ip", 				""),
@@ -32,6 +47,7 @@ public enum Message
 	GATEWAY						("gateway", 		""),
 	DNS							("dns", 			""),
 	
+	
 	//Editor objects
 	SERVER_ROOM					("Server room",		"This is a Serverroom"),
 	SERVER_RACK					("Server rack",		"Rack has many Server"),
@@ -39,6 +55,7 @@ public enum Message
 	NETWORK						("Network", 		"This is a network"),
 	ROUTER						("Router", 			"This is a router"),
 	CONNECTION					("Connection",		"This is a connection between two objects"),
+	
 	
 	//Properties
 	IP_LABEL					("IP: ", 				""),
@@ -53,6 +70,7 @@ public enum Message
 	DNS_LABEL					("DNS: ", 				""),
 	SUBMIT						("submit",				""),
 	
+	
 	// warnings
 	EMPTY_NAME_WARNING			("Please enter any text as class name!",	 		""),
 	WRONG_SYMBOL_WARNING		("Spaces are not allowed in class names!", 			""),
@@ -63,7 +81,7 @@ public enum Message
 	
 	
 	
-	private Message(final String text, final String description)
+	private Messages(final String text, final String description)
 	{
 		this.text = text;
 		this.description = description;

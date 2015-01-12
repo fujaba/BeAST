@@ -19,12 +19,12 @@
 
 	<extension
          point="org.eclipse.graphiti.ui.diagramTypes">
-		<diagramType name="Editor Diagram Type" type="srvconfig" id="de.uks.beast.editor.editorDiagramType">
+		<diagramType name="Editor Diagram Type" type="hardwareComposition" id="de.uks.beast.editor.editorDiagramType">
 		</diagramType>
 	</extension>
 	<extension
          point="org.eclipse.graphiti.ui.diagramTypeProviders">
-		<diagramTypeProvider name="Editor Diagram Type Provider" class="de.uks.beast.editor.diagram.EditorDiagramTypeProvider"
+		<diagramTypeProvider name="Editor Diagram Type Provider" class="de.uks.beast.editor.provider.EditorDiagramTypeProvider"
 			id="de.uks.beast.editor.editorDiagramTypeProvider">
 			<diagramType
                id="de.uks.beast.editor.editorDiagramType">
@@ -116,6 +116,20 @@
 			</propertySection>
 		</propertySections>
 	</extension>
+ <extension
+       point="org.eclipse.ui.newWizards">
+    <category
+          id="de.uks.beast.editor"
+          name="Hardware Composition Diagram">
+    </category>
+    <wizard
+          category="de.uks.beast.editor"
+          class="de.uks.beast.editor.wizards.HCDWizard"
+          icon="icons/sample.gif"
+          id="de.uks.beast.editor.wizards.HCDWizard"
+          name="HCD Diagram file">
+    </wizard>
+ </extension>
  
 	
 </plugin>

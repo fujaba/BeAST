@@ -1,17 +1,17 @@
 package de.uks.beast.editor.features.update;
 
-import static de.uks.beast.editor.features.util.Message.DNS;
-import static de.uks.beast.editor.features.util.Message.DNS_TRUE_REASON;
-import static de.uks.beast.editor.features.util.Message.GATEWAY;
-import static de.uks.beast.editor.features.util.Message.GATEWAY_TRUE_REASON;
-import static de.uks.beast.editor.features.util.Message.ID;
-import static de.uks.beast.editor.features.util.Message.ID_TRUE_REASON;
-import static de.uks.beast.editor.features.util.Message.IP;
-import static de.uks.beast.editor.features.util.Message.IP_TRUE_REASON;
-import static de.uks.beast.editor.features.util.Message.NAME;
-import static de.uks.beast.editor.features.util.Message.NAME_TRUE_REASON;
-import static de.uks.beast.editor.features.util.Message.SUBNET_MASK;
-import static de.uks.beast.editor.features.util.Message.SUBNET_MASK_TRUE_REASON;
+import static de.uks.beast.editor.util.Messages.DNS;
+import static de.uks.beast.editor.util.Messages.DNS_TRUE_REASON;
+import static de.uks.beast.editor.util.Messages.GATEWAY;
+import static de.uks.beast.editor.util.Messages.GATEWAY_TRUE_REASON;
+import static de.uks.beast.editor.util.Messages.ID;
+import static de.uks.beast.editor.util.Messages.ID_TRUE_REASON;
+import static de.uks.beast.editor.util.Messages.IP;
+import static de.uks.beast.editor.util.Messages.IP_TRUE_REASON;
+import static de.uks.beast.editor.util.Messages.NAME;
+import static de.uks.beast.editor.util.Messages.NAME_TRUE_REASON;
+import static de.uks.beast.editor.util.Messages.SUBNET_MASK;
+import static de.uks.beast.editor.util.Messages.SUBNET_MASK_TRUE_REASON;
 import model.Network;
 
 import org.eclipse.graphiti.features.IFeatureProvider;

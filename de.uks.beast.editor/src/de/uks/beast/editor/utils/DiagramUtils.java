@@ -23,7 +23,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
 import de.uks.beast.editor.Activator;
-import de.uks.beast.editor.diagram.EditorDiagramTypeProvider;
+import de.uks.beast.editor.provider.EditorDiagramTypeProvider;
 
 public class DiagramUtils {
 

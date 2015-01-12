@@ -4,17 +4,18 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
+import de.uks.beast.editor.util.Messages;
+
 /**
  * The activator class controls the plug-in life cycle
  */
 public class Activator extends AbstractUIPlugin
 {
 	
-	// The plug-in ID
-	public static final String	PLUGIN_ID	= "de.uks.beast.editor";	//$NON-NLS-1$
-																		
+	public static final String PLUGIN_ID = "de.uks.beast.editor";
+			
 	// The shared instance
-	private static Activator	plugin;
+	private static Activator plugin;
 	
 	
 	
@@ -26,12 +27,11 @@ public class Activator extends AbstractUIPlugin
 	}
 	
 	
-	
 	/*
 	 * (non-Javadoc)
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
 	 */
-	public void start(BundleContext context) throws Exception
+	public void start(final BundleContext context) throws Exception
 	{
 		super.start(context);
 		plugin = this;
@@ -43,7 +43,7 @@ public class Activator extends AbstractUIPlugin
 	 * (non-Javadoc)
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
-	public void stop(BundleContext context) throws Exception
+	public void stop(final BundleContext context) throws Exception
 	{
 		plugin = null;
 		super.stop(context);
@@ -70,8 +70,8 @@ public class Activator extends AbstractUIPlugin
 	 * @param path the path
 	 * @return the image descriptor
 	 */
-	public static ImageDescriptor getImageDescriptor(String path)
+	public static ImageDescriptor getImageDescriptor(final String path)
 	{
-		return imageDescriptorFromPlugin(PLUGIN_ID, path);
+		return imageDescriptorFromPlugin(Messages.PLUGIN_ID.text(), path);
 	}
 }
