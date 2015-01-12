@@ -1,4 +1,4 @@
-package de.uks.beast.editor.diagram;
+package de.uks.beast.editor.provider;
 
 import model.Network;
 import model.Rack;
@@ -52,7 +52,7 @@ import de.uks.beast.editor.features.update.UpdateRackObjectFeature;
 import de.uks.beast.editor.features.update.UpdateRoomObjectFeature;
 import de.uks.beast.editor.features.update.UpdateRouterObjectFeature;
 import de.uks.beast.editor.features.update.UpdateServerObjectFeature;
-import static de.uks.beast.editor.features.util.Message.*;
+import static de.uks.beast.editor.util.Messages.*;
 
 public class EditorFeatureProvider extends DefaultFeatureProvider
 {
