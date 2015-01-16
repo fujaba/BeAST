@@ -32,22 +32,6 @@
 		</diagramTypeProvider>
 	</extension>
 	
-	  <extension
-         point="org.eclipse.ui.newWizards">
-         <category
-	   id = "de.uks"
-	   parentCategory="org.eclipse.ui.Examples"
-	   name="BeAST">
-	</category>
- 	<wizard
-	   id = "de.uks.beast.editor.wizard.NewBeASTDiagramWizard"
-      	   name = "New BeAST Diagram"
-	   class="de.uks.beast.editor.wizard.NewBeASTDiagramWizard"
-	   category="de.uks">
-    	   <description>New BeAST Diagram</description>
-	   <selection class="org.eclipse.core.resources.IResource"/>
-	</wizard>
-   </extension>
 	
 	<extension 
 		point="org.eclipse.ui.views.properties.tabbed.propertyContributor">

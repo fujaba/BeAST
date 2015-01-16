@@ -1,4 +1,4 @@
-package de.uks.beast.editor.utils;
+package de.uks.beast.editor.util;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -22,48 +22,55 @@ import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
-import de.uks.beast.editor.Activator;
 import de.uks.beast.editor.provider.EditorDiagramTypeProvider;
 
-public class DiagramUtils {
-
-	public static final String SELECT_DIAGRAM_TITEL = "Select Diagram";
-	private static final String BEAST_DIAGRAM_TYPEID = "BeASTEditor";
-
-	public static Diagram newDiagram(IProject project, String name){
-		String editorExtension = "diagram"; //$NON-NLS-1$
+public class DiagramUtils
+{
+	
+	public static final String	SELECT_DIAGRAM_TITEL	= "Select Diagram";
+	private static final String	BEAST_DIAGRAM_TYPEID	= "BeASTEditor";
+	
+	
+	
+	public static Diagram newDiagram(final IProject project, String name)
+	{
+		final String editorExtension = "diagram"; //$NON-NLS-1$
 		
-		if(name.endsWith("."+editorExtension)){
-			name = name.substring(0, name.length()-("."+editorExtension).length());
+		if (name.endsWith("." + editorExtension))
+		{
+			name = name.substring(0, name.length() - ("." + editorExtension).length());
 		}
 		
-		if (project == null || !project.isAccessible()) {
-			String error = "project == null || !project.isAccessible()"; //$NON-NLS-1$
-			IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, error);
+		if (project == null || !project.isAccessible())
+		{
+			final String error = "project == null || !project.isAccessible()"; //$NON-NLS-1$
+			final IStatus status = new Status(IStatus.ERROR, Messages.PLUGIN_ID.text(), error);
 			//ErrorDialog.openError(getShell(), "project == null || !project.isAccessible()", null, status); //$NON-NLS-1$
 			return null;
 		}
-
+		
 		final Diagram diagram = Graphiti.getPeCreateService().createDiagram(BEAST_DIAGRAM_TYPEID, name, true);
 		
-		IFolder diagramFolder = project.getFolder("src/diagrams/"); //$NON-NLS-1$
-
-		String diagramTypeProviderId = GraphitiUi.getExtensionManager().getDiagramTypeProviderId(BEAST_DIAGRAM_TYPEID);
-		String namingConventionID = diagramTypeProviderId + ".editor"; //$NON-NLS-1$
-		IEditorDescriptor specificEditor = PlatformUI.getWorkbench().getEditorRegistry().findEditor(namingConventionID);
-
-		final URI diagramURI  = URI.createPlatformResourceURI(diagramFolder.getFile( name + ".diagram").getFullPath().toString(),true);
-		final URI modelURI =  URI.createPlatformResourceURI( diagramFolder.getFile( name + ".beastmodel").getFullPath().toString(),true);
+		final IFolder diagramFolder = project.getFolder("src/diagrams/"); //$NON-NLS-1$
+		
+		final String diagramTypeProviderId = GraphitiUi.getExtensionManager().getDiagramTypeProviderId(BEAST_DIAGRAM_TYPEID);
+		final String namingConventionID = diagramTypeProviderId + ".editor"; //$NON-NLS-1$
+		final IEditorDescriptor specificEditor = PlatformUI.getWorkbench().getEditorRegistry().findEditor(namingConventionID);
+		
+		final URI diagramURI = URI.createPlatformResourceURI(diagramFolder.getFile(name + ".diagram").getFullPath().toString(),
+				true);
+		final URI modelURI = URI.createPlatformResourceURI(diagramFolder.getFile(name + ".beastmodel").getFullPath().toString(),
+				true);
 		
 //		final MDBDADiagram mdbdaDiagram = ModelFactory.eINSTANCE.createMDBDADiagram();
 		FileService.createEmfFileForDiagram(diagramURI, diagram);
-		ResourceSet resourceSet = diagram.eResource().getResourceSet();
-
-		Resource diagramResource = resourceSet.getResource(diagramURI,true);						
+		final ResourceSet resourceSet = diagram.eResource().getResourceSet();
+		
+		final Resource diagramResource = resourceSet.getResource(diagramURI, true);
 		diagramResource.setTrackingModification(true);
 		diagramResource.getContents().add(diagram);
 		
-		Resource modelResource = resourceSet.createResource(modelURI);
+		final Resource modelResource = resourceSet.createResource(modelURI);
 		modelResource.setTrackingModification(true);
 //		modelResource.getContents().add(mdbdaDiagram);
 		
@@ -79,30 +86,38 @@ public class DiagramUtils {
 //		addContext.setNewObject(wf);
 //		addContext.setLocation(10, 10);
 //		addContext.setTargetContainer(diagram);
-
-		EditorDiagramTypeProvider typeProvider = new  EditorDiagramTypeProvider();
+		
+		final EditorDiagramTypeProvider typeProvider = new EditorDiagramTypeProvider();
 		typeProvider.resourceReloaded(diagram);
 		
-		try {
+		try
+		{
 			modelResource.save(Collections.<Resource, Map<?, ?>> emptyMap());
 			diagramResource.save(Collections.<Resource, Map<?, ?>> emptyMap());
-		} catch (IOException e) {
+		}
+		catch (final IOException e)
+		{
 			e.printStackTrace();
 		}
 		
-		String providerId = GraphitiUi.getExtensionManager().getDiagramTypeProviderId(diagram.getDiagramTypeId());
-		DiagramEditorInput editorInput = new DiagramEditorInput(EcoreUtil.getURI(diagram), providerId);
+		final String providerId = GraphitiUi.getExtensionManager().getDiagramTypeProviderId(diagram.getDiagramTypeId());
+		final DiagramEditorInput editorInput = new DiagramEditorInput(EcoreUtil.getURI(diagram), providerId);
 		
-		try {
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(editorInput, DiagramEditor.DIAGRAM_EDITOR_ID);
-		} catch (PartInitException e) {
+		try
+		{
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+					.openEditor(editorInput, DiagramEditor.DIAGRAM_EDITOR_ID);
+		}
+		catch (final PartInitException e)
+		{
 			e.printStackTrace();
-			String error = e.getLocalizedMessage();
-			IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, error, e);
+			final String error = e.getLocalizedMessage();
+			final IStatus status = new Status(IStatus.ERROR, Messages.PLUGIN_ID.text(), error, e);
+			
 			return null;
 		}
 		
 		return diagram;
 	}
-
+	
 }
