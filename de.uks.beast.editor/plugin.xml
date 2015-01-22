@@ -46,7 +46,7 @@
 	<extension
       point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
 		<propertyTabs
-          contributorId="hardwarehardwareComposithardwareComposition.PropertyContributorion.PropertyContributorComposition.PropertyContributor">
+          contributorId="hardwareComposition.PropertyContributor">
 			<propertyTab category="Configuration" id="graphiti.main.tab.server" label="Config">
 			</propertyTab>
 		</propertyTabs>
