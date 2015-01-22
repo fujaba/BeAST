@@ -2,6 +2,8 @@ package de.uks.beast.editor.properties.section;
 
 import model.Network;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
@@ -25,7 +27,7 @@ import static de.uks.beast.editor.util.Messages.*;
 
 public class NetworkPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {
-	
+	private static final Logger LOG = LogManager.getLogger(NetworkPropertySection.class); 
 	private Text						ipTextFld;
 	private Text						subnetTextFld;
 	private Text						gatewayTextFld;
@@ -142,12 +144,12 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 						network.setDns(dnsTextFld.getText());
 						network.setId(idTextFld.getText());
 						
-						System.out.println("network hash: " + network.hashCode() + " -> ip: " + network.getIp());
-						System.out.println("network hash: " + network.hashCode() + " -> subnet: " + network.getSubnetmask());
-						System.out.println("network hash: " + network.hashCode() + " -> gateway: " + network.getGateway());
-						System.out.println("network hash: " + network.hashCode() + " -> dns: " + network.getDns());
-						System.out.println("network hash: " + network.hashCode() + " -> id: " + network.getId());
-						System.out.println("network hash: " + network.hashCode() + " -> name: " + network.getName());
+						LOG.debug("network hash: " + network.hashCode() + " -> ip: " + network.getIp());
+						LOG.debug("network hash: " + network.hashCode() + " -> subnet: " + network.getSubnetmask());
+						LOG.debug("network hash: " + network.hashCode() + " -> gateway: " + network.getGateway());
+						LOG.debug("network hash: " + network.hashCode() + " -> dns: " + network.getDns());
+						LOG.debug("network hash: " + network.hashCode() + " -> id: " + network.getId());
+						LOG.debug("network hash: " + network.hashCode() + " -> name: " + network.getName());
 					}
 				});
 				

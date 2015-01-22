@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IStatus;
@@ -26,7 +28,7 @@ import de.uks.beast.editor.provider.EditorDiagramTypeProvider;
 
 public class DiagramUtils
 {
-	
+	private static final Logger	LOG						= LogManager.getLogger(DiagramUtils.class);
 	public static final String	SELECT_DIAGRAM_TITEL	= "Select Diagram";
 	private static final String	BEAST_DIAGRAM_TYPEID	= "BeASTEditor";
 	
@@ -97,6 +99,7 @@ public class DiagramUtils
 		}
 		catch (final IOException e)
 		{
+			LOG.error("Could not save modelResource or diagramResource!");
 			e.printStackTrace();
 		}
 		
@@ -110,6 +113,7 @@ public class DiagramUtils
 		}
 		catch (final PartInitException e)
 		{
+			LOG.error("Could not open active editor!");
 			e.printStackTrace();
 			final String error = e.getLocalizedMessage();
 			final IStatus status = new Status(IStatus.ERROR, Messages.PLUGIN_ID.text(), error, e);

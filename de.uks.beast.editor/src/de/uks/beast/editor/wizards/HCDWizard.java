@@ -1,5 +1,7 @@
 package de.uks.beast.editor.wizards;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -41,8 +43,9 @@ import de.uks.beast.editor.util.Messages;
 
 public class HCDWizard extends Wizard implements INewWizard
 {
-	private HCDWizardPage	page;
-	private ISelection		selection;
+	private static final Logger	LOG	= LogManager.getLogger(HCDWizard.class);
+	private HCDWizardPage		page;
+	private ISelection			selection;
 	
 	
 	
@@ -87,6 +90,7 @@ public class HCDWizard extends Wizard implements INewWizard
 				}
 				catch (final CoreException e)
 				{
+					LOG.error("Cannot handle doFinish() on HCDWizard!");
 					throw new InvocationTargetException(e);
 				}
 				finally
@@ -101,6 +105,7 @@ public class HCDWizard extends Wizard implements INewWizard
 		}
 		catch (final InterruptedException e)
 		{
+			LOG.error("Cannot handle run() method!");
 			return false;
 		}
 		catch (final InvocationTargetException e)
@@ -133,6 +138,7 @@ public class HCDWizard extends Wizard implements INewWizard
 		}
 		catch (final IOException e)
 		{
+			LOG.error("Cannot save diagramResource!");
 			e.printStackTrace();
 		}
 	}
@@ -172,6 +178,7 @@ public class HCDWizard extends Wizard implements INewWizard
 				}
 				catch (final PartInitException e)
 				{
+					LOG.error("Cannot open editor!");
 				}
 			}
 		});

@@ -2,6 +2,8 @@ package de.uks.beast.editor.properties.section;
 
 import model.Server;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
@@ -25,6 +27,7 @@ import static de.uks.beast.editor.util.Messages.*;
 
 public class ServerPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {
+	private static final Logger			LOG	= LogManager.getLogger(ServerPropertySection.class);
 	private Text						ipTextFld;
 	private Text						cpuAmountTextFld;
 	private Text						cpuTypeTextFld;
@@ -141,12 +144,12 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 						server.setRam(Long.parseLong(ramTextFld.getText()));
 						server.setDiskSpace(Long.parseLong(diskSpaceTextFld.getText()));
 						
-						System.out.println("server hash: " + server.hashCode() + " -> ip: " + server.getIp());
-						System.out.println("server hash: " + server.hashCode() + " -> cpu amount: " + server.getCpuAmount());
-						System.out.println("server hash: " + server.hashCode() + " -> cpu Type: " + server.getCpuType());
-						System.out.println("server hash: " + server.hashCode() + " -> ram: " + server.getRam());
-						System.out.println("server hash: " + server.hashCode() + " -> diskspace: " + server.getDiskSpace());
-						System.out.println("server hash: " + server.hashCode() + " -> host: " + server.getName());
+						LOG.debug("server hash: " + server.hashCode() + " -> ip: " + server.getIp());
+						LOG.debug("server hash: " + server.hashCode() + " -> cpu amount: " + server.getCpuAmount());
+						LOG.debug("server hash: " + server.hashCode() + " -> cpu Type: " + server.getCpuType());
+						LOG.debug("server hash: " + server.hashCode() + " -> ram: " + server.getRam());
+						LOG.debug("server hash: " + server.hashCode() + " -> diskspace: " + server.getDiskSpace());
+						LOG.debug("server hash: " + server.hashCode() + " -> host: " + server.getName());
 					}
 				});
 				

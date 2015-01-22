@@ -3,23 +3,17 @@ package de.uks.beast.api.util;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.Iterator;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
 import de.uks.beast.model.Hardware;
 import de.uks.beast.model.Network;
-import de.uks.beast.model.Server;
 
 public class XMLParser {
 	

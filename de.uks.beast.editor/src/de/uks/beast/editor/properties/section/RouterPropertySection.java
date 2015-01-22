@@ -2,6 +2,8 @@ package de.uks.beast.editor.properties.section;
 
 import model.Router;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
@@ -25,7 +27,7 @@ import static de.uks.beast.editor.util.Messages.*;
 
 public class RouterPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {
-	
+	private static final Logger			LOG	= LogManager.getLogger(RouterPropertySection.class);
 	private Text						ipTextFld;
 	private Text						externalGatewayTextFld;
 	private Text						idTextFld;
@@ -108,11 +110,10 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 						router.setExternalGateway(externalGatewayTextFld.getText());
 						router.setId(idTextFld.getText());
 						
-						System.out.println("router hash: " + router.hashCode() + " -> ip: " + router.getIp());
-						System.out.println("router hash: " + router.hashCode() + " -> external gateway: "
-								+ router.getExternalGateway());
-						System.out.println("router hash: " + router.hashCode() + " -> id: " + router.getId());
-						System.out.println("router hash: " + router.hashCode() + " -> name: " + router.getName());
+						LOG.debug("router hash: " + router.hashCode() + " -> ip: " + router.getIp());
+						LOG.debug("router hash: " + router.hashCode() + " -> external gateway: " + router.getExternalGateway());
+						LOG.debug("router hash: " + router.hashCode() + " -> id: " + router.getId());
+						LOG.debug("router hash: " + router.hashCode() + " -> name: " + router.getName());
 					}
 				});
 				
