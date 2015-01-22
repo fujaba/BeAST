@@ -19,42 +19,19 @@
 
 	<extension
          point="org.eclipse.graphiti.ui.diagramTypes">
-		<diagramType 
-			name="BeAST Diagram Editor Type" 
-			type="BeASTEditor" 
-			id="de.uks.beast.editor.BeASTDiagram">
+		<diagramType name="Editor Diagram Type" type="hardwareComposition" id="de.uks.beast.editor.editorDiagramType">
 		</diagramType>
 	</extension>
 	<extension
          point="org.eclipse.graphiti.ui.diagramTypeProviders">
-		<diagramTypeProvider 
-			name="BeAST Diagram Editor Diagram Type Provider" 
-			class="de.uks.beast.editor.provider.EditorDiagramTypeProvider"
-			id="de.uks.beast.editor.provider.EditorDiagramTypeProvider">
+		<diagramTypeProvider name="Editor Diagram Type Provider" class="de.uks.beast.editor.provider.EditorDiagramTypeProvider"
+			id="de.uks.beast.editor.editorDiagramTypeProvider">
 			<diagramType
-               id="de.uks.beast.editor.BeASTDiagram">
+               id="de.uks.beast.editor.editorDiagramType">
 			</diagramType>
 		</diagramTypeProvider>
 	</extension>
 	
-	  <extension
-         point="org.eclipse.ui.newWizards">
-         <category
-	   id = "de.uks"
-	   parentCategory="org.eclipse.ui.Examples"
-	   name="BeAST">
-	</category>
-	
- 	<wizard
-	   id = "de.uks.beast.editor.wizard.NewBeASTDiagramWizard"
-       name = "New BeAST Diagram"
-	   class="de.uks.beast.editor.wizard.NewBeASTDiagramWizard"
-	   category="de.uks">
-       <description>New BeAST Diagram</description>
-	   <selection class="org.eclipse.core.resources.IResource"/>
-	</wizard>
-	
-   </extension>
 	
 	<extension 
 		point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
@@ -63,6 +40,8 @@
 			</propertyCategory>
 		</propertyContributor>
 	</extension>
+	
+	
 	
 	<extension
       point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
@@ -88,6 +67,8 @@
 			</propertyTab>
 		</propertyTabs>
 	</extension>
+	
+	
 	
 	<extension 
 		point="org.eclipse.ui.views.properties.tabbed.propertySections">

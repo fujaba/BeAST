@@ -12,10 +12,8 @@ import de.uks.beast.editor.util.Messages;
 public class Activator extends AbstractUIPlugin
 {
 	
-	public static final String PLUGIN_ID = "de.uks.beast.editor";
-			
 	// The shared instance
-	private static Activator plugin;
+	private static Activator	plugin;
 	
 	
 	
@@ -25,6 +23,7 @@ public class Activator extends AbstractUIPlugin
 	public Activator()
 	{
 	}
+	
 	
 	
 	/*
