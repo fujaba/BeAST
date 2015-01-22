@@ -35,7 +35,7 @@
 	
 	<extension 
 		point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
-		<propertyContributor contributorId="srvconfig.PropertyContributor">
+		<propertyContributor contributorId="hardwareComposition.PropertyContributor">
 			<propertyCategory category="Configuration">
 			</propertyCategory>
 		</propertyContributor>
@@ -46,7 +46,7 @@
 	<extension
       point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
 		<propertyTabs
-          contributorId="srvconfig.PropertyContributor">
+          contributorId="hardwareComposition.PropertyContributor">
 			<propertyTab category="Configuration" id="graphiti.main.tab.server" label="Config">
 			</propertyTab>
 		</propertyTabs>
@@ -54,7 +54,7 @@
 	<extension
       point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
 		<propertyTabs
-          contributorId="srvconfig.PropertyContributor">
+          contributorId="hardwareComposition.PropertyContributor">
 			<propertyTab category="Configuration" id="graphiti.main.tab.network" label="Config">
 			</propertyTab>
 		</propertyTabs>
@@ -62,7 +62,7 @@
 	<extension
       point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
 		<propertyTabs
-          contributorId="srvconfig.PropertyContributor">
+          contributorId="hardwareComposition.PropertyContributor">
 			<propertyTab category="Configuration" id="graphiti.main.tab.router" label="Config">
 			</propertyTab>
 		</propertyTabs>
@@ -73,7 +73,7 @@
 	<extension 
 		point="org.eclipse.ui.views.properties.tabbed.propertySections">
 		<propertySections
-          contributorId="srvconfig.PropertyContributor">
+          contributorId="hardwareComposition.PropertyContributor">
 			<propertySection class="de.uks.beast.editor.properties.section.ServerPropertySection"
 				filter="de.uks.beast.editor.properties.filter.ServerPropertyFilter"
 				id="graphiti.main.tab.server" tab="graphiti.main.tab.server">
@@ -83,7 +83,7 @@
 	<extension 
 		point="org.eclipse.ui.views.properties.tabbed.propertySections">
 		<propertySections
-          contributorId="srvconfig.PropertyContributor">
+          contributorId="hardwareComposition.PropertyContributor">
 			<propertySection class="de.uks.beast.editor.properties.section.RouterPropertySection"
 				filter="de.uks.beast.editor.properties.filter.RouterPropertyFilter"
 				id="graphiti.main.tab.router" tab="graphiti.main.tab.router">
@@ -93,7 +93,7 @@
 	<extension 
 		point="org.eclipse.ui.views.properties.tabbed.propertySections">
 		<propertySections
-          contributorId="srvconfig.PropertyContributor">
+          contributorId="hardwareComposition.PropertyContributor">
 			<propertySection class="de.uks.beast.editor.properties.section.NetworkPropertySection"
 				filter="de.uks.beast.editor.properties.filter.NetworkPropertyFilter"
 				id="graphiti.main.tab.network" tab="graphiti.main.tab.network">
