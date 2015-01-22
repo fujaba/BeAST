@@ -13,7 +13,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.graphiti.examples.common.FileService;
+import org.eclipse.graphiti.features.context.impl.AddContext;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
+import org.eclipse.graphiti.mm.pictograms.PictogramsFactory;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.editor.DiagramEditor;
 import org.eclipse.graphiti.ui.editor.DiagramEditorInput;
@@ -67,7 +69,7 @@ public class DiagramUtils {
 		modelResource.setTrackingModification(true);
 //		modelResource.getContents().add(mdbdaDiagram);
 		
-//		diagram.setLink(PictogramsFactory.eINSTANCE.createPictogramLink());
+		diagram.setLink(PictogramsFactory.eINSTANCE.createPictogramLink());
 //		diagram.getLink().getBusinessObjects().add(mdbdaDiagram);
 		
 //		Workflow wf = ModelFactory.eINSTANCE.createWorkflow();
@@ -75,10 +77,10 @@ public class DiagramUtils {
 //		mdbdaDiagram.setName(name);
 //		mdbdaDiagram.setVersion(Calendar.getInstance().getTimeInMillis()+"");
 		
-//		AddContext addContext = new AddContext();
+		AddContext addContext = new AddContext();
 //		addContext.setNewObject(wf);
-//		addContext.setLocation(10, 10);
-//		addContext.setTargetContainer(diagram);
+		addContext.setLocation(10, 10);
+		addContext.setTargetContainer(diagram);
 
 		EditorDiagramTypeProvider typeProvider = new  EditorDiagramTypeProvider();
 		typeProvider.resourceReloaded(diagram);
