@@ -6,7 +6,7 @@
 	    <objectContribution
 	      adaptable="true"
 	      id="de.uks.beast.editor.popup"
-	      nameFilter="*.beastmodel"
+	      nameFilter="*.diagram"
 	      objectClass="org.eclipse.core.resources.IFile">
 	      <action
 	         id="de.uks.beast.editor.beastAction" 
@@ -46,7 +46,7 @@
 	<extension
       point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
 		<propertyTabs
-          contributorId="hardwareComposition.PropertyContributor">
+          contributorId="hardwarehardwareComposithardwareComposition.PropertyContributorion.PropertyContributorComposition.PropertyContributor">
 			<propertyTab category="Configuration" id="graphiti.main.tab.server" label="Config">
 			</propertyTab>
 		</propertyTabs>
@@ -54,7 +54,7 @@
 	<extension
       point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
 		<propertyTabs
-          contributorId="hardwareComposithardwareComposition.PropertyContributorion.PropertyContributor">
+          contributorId="hardwareComposition.PropertyContributor">
 			<propertyTab category="Configuration" id="graphiti.main.tab.network" label="Config">
 			</propertyTab>
 		</propertyTabs>
