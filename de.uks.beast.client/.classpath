@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="lib" path="libs/akka-actor_2.10-2.3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/akka-remote_2.10-2.3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/commons-io-2.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/config-1.2.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/dom4j-1.6.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/log4j-1.2.17.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/netty-3.8.0.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/protobuf-java-2.5.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/scala-library-2.10.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/uncommons-maths-1.2.2a.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
