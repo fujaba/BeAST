@@ -70,7 +70,7 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		
 		// define a default size for the shape
 		final int width = 100;
-		final int height = 50;
+		final int height = 80;
 		final IGaService gaService = Graphiti.getGaService();
 		
 		// create and set graphics algorithm
@@ -78,7 +78,7 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		roundedRectangle.setForeground(manageColor(E_CLASS_FOREGROUND));
 		roundedRectangle.setBackground(manageColor(E_CLASS_BACKGROUND));
 		roundedRectangle.setLineWidth(2);
-		gaService.setLocationAndSize(roundedRectangle, context.getX(), context.getY(), width, height);
+		gaService.setLocationAndSize(roundedRectangle, context.getX(), context.getY(), width*2, height);
 		
 		// if added Class has no resource we add it to the resource
 		// of the diagram
@@ -103,17 +103,24 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		// create shape for text
 		final Shape nameTextShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text nameText = createTextShape(gaService, nameTextShape, 0, 0, width, 20, server.getName());
+		final Text nameText = createTextShape(gaService, nameTextShape, 5, 0, width, 20, server.getName());
 		PropertyUtil.setAttributeShape(nameTextShape, NAME);
 		
 		// create link and wire it
 		link(nameTextShape, server);
+		
+		// SHAPE FOR RESOURCE STATS
+		final Shape statsShape = createShape(peCreateService, containerShape);
+		final Text statsText = createTextShape(gaService, statsShape, -5, 0, width, 20, "[CPU:_% | RAM:_%]");
+		statsText.setHorizontalAlignment(Orientation.ALIGNMENT_RIGHT);
+		//
 		
 		// SHAPE FOR PROPERTY IP
 		// create shape for text
 		final Shape ipTextShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		createTextShape(gaService, ipTextShape, 0, 20, width, 20, server.getIp());
+		System.out.println(">>>" + server.getIp());
 		PropertyUtil.setAttributeShape(ipTextShape, IP);
 		
 		// create link and wire it
