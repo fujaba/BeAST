@@ -120,7 +120,6 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		final Shape ipTextShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		createTextShape(gaService, ipTextShape, 0, 20, width, 20, server.getIp());
-		System.out.println(">>>" + server.getIp());
 		PropertyUtil.setAttributeShape(ipTextShape, IP);
 		
 		// create link and wire it
