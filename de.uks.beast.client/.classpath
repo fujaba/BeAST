@@ -13,5 +13,6 @@
 	<classpathentry exported="true" kind="lib" path="libs/protobuf-java-2.5.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/scala-library-2.10.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/uncommons-maths-1.2.2a.jar"/>
+	<classpathentry kind="lib" path="libs/kafka_2.10-0.8.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
