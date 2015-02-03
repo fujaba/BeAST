@@ -7,7 +7,7 @@ import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 
-public interface AbstractShapeManager
+public interface AbstractShapeFactory
 {
 	public Shape createShape(final IPeCreateService peCreateService, final ContainerShape containerShape);
 	

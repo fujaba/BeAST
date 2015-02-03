@@ -1,8 +1,11 @@
 package de.uks.beast.editor.features.edit;
 
+import static de.uks.beast.editor.util.Messages.EMPTY_NAME_WARNING;
+import static de.uks.beast.editor.util.Messages.LINE_BREAK_WARNING;
+import static de.uks.beast.editor.util.Messages.NAME;
+import static de.uks.beast.editor.util.Messages.WRONG_SYMBOL_WARNING;
 import model.Server;
 
-import org.eclipse.graphiti.features.IDirectEditingFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IDirectEditingContext;
 import org.eclipse.graphiti.features.impl.AbstractDirectEditingFeature;
@@ -12,9 +15,8 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
 import de.uks.beast.editor.features.util.PropertyUtil;
-import static de.uks.beast.editor.util.Messages.*;
 
-public class DirectEditServerFeature extends AbstractDirectEditingFeature implements IDirectEditingFeature
+public class DirectEditServerFeature extends AbstractDirectEditingFeature
 {
 	
 	public DirectEditServerFeature(final IFeatureProvider fp)
@@ -36,11 +38,11 @@ public class DirectEditServerFeature extends AbstractDirectEditingFeature implem
 	public boolean canDirectEdit(final IDirectEditingContext context)
 	{
 		final PictogramElement pe = context.getPictogramElement();
-		final Object bo = getBusinessObjectForPictogramElement(pe);
+		final Object object = getBusinessObjectForPictogramElement(pe);
 		final GraphicsAlgorithm ga = context.getGraphicsAlgorithm();
 		
 		//ServerPictogramManager.get(NAME).equals((Text) ga)
-		if (bo instanceof Server && ga instanceof Text && PropertyUtil.isAttributeShape(pe, NAME))
+		if (object instanceof Server && ga instanceof Text && PropertyUtil.isAttributeShape(pe, NAME))
 		{
 			return true;
 		}

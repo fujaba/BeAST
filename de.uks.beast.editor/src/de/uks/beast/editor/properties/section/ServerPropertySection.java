@@ -1,13 +1,24 @@
 package de.uks.beast.editor.properties.section;
 
+import static de.uks.beast.editor.util.Messages.CPU_AMOUNT_LABEL;
+import static de.uks.beast.editor.util.Messages.CPU_TYPE_LABEL;
+import static de.uks.beast.editor.util.Messages.DISKSPACE_LABEL;
+import static de.uks.beast.editor.util.Messages.IP_LABEL;
+import static de.uks.beast.editor.util.Messages.RAM_LABEL;
+import static de.uks.beast.editor.util.Messages.RAM_STAT;
+import static de.uks.beast.editor.util.Messages.SUBMIT;
+import model.Rack;
+import model.Room;
 import model.Server;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
 import org.eclipse.swt.SWT;
@@ -23,7 +34,7 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
-import static de.uks.beast.editor.util.Messages.*;
+import de.uks.beast.editor.features.util.PropertyUtil;
 
 public class ServerPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {
@@ -164,6 +175,66 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 				
 			}
 		});
+		
+		//TODO: just for testing
+		final Button testBtn = factory.createButton(composite, "TEST", 0);
+		data = new FormData();
+		data.left = new FormAttachment(0, 20);
+		data.right = new FormAttachment(20, 0);
+		data.top = new FormAttachment(0, VSPACE + 150);
+		testBtn.setLayoutData(data);
+		testBtn.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				for (Shape shape : getDiagram().getChildren())
+				{
+					
+					final EObject[] objects = Graphiti.getLinkService().getAllBusinessObjectsForLinkedPictogramElement(shape);
+					
+					if (objects[0] instanceof Room)
+					{
+						for (EObject e : objects[0].eContents())
+						{
+							if (e instanceof Rack)
+							{
+								for (EObject ee : e.eContents())
+								{
+									if (ee instanceof Server)
+									{
+										for (PictogramElement pe : Graphiti.getLinkService().getPictogramElements(getDiagram(),
+												ee))
+										{
+											if (PropertyUtil.isAttributeShape(pe, RAM_STAT))
+											{
+												final org.eclipse.graphiti.mm.algorithms.Text text = (org.eclipse.graphiti.mm.algorithms.Text) pe
+														.getGraphicsAlgorithm();
+												final Thread t1 = new Thread(new TestStats(text));
+												if (!t1.isAlive())
+												{
+													t1.start();
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				
+			}
+			
+			
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0)
+			{
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
 	
 	
@@ -195,5 +266,46 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 			}
 			
 		}
+	}
+	
+	private final class TestStats implements Runnable
+	{
+		private final org.eclipse.graphiti.mm.algorithms.Text	text;
+		
+		
+		
+		private TestStats(final org.eclipse.graphiti.mm.algorithms.Text text)
+		{
+			this.text = text;
+		}
+		
+		
+		
+		@Override
+		public void run()
+		{
+			while (true)
+			{
+				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					public void doExecute()
+					{
+						int randomNumber = (int) ((Math.random() * 100) + 1);
+						text.setValue(String.valueOf(randomNumber));
+					}
+				});
+				
+				try
+				{
+					Thread.sleep(1000);
+				}
+				catch (InterruptedException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		}
+		
 	}
 }

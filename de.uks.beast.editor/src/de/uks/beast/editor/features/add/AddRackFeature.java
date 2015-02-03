@@ -7,6 +7,7 @@ import org.eclipse.graphiti.features.IDirectEditingInfo;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.impl.AbstractAddFeature;
+import org.eclipse.graphiti.mm.GraphicsAlgorithmContainer;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
 import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
 import org.eclipse.graphiti.mm.algorithms.Text;
@@ -20,7 +21,7 @@ import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 
-public class AddRackFeature extends AbstractAddFeature
+public class AddRackFeature extends AbstractAddFeature implements AbstractShapeFactory
 {
 	private static final IColorConstant	E_CLASS_TEXT_FOREGROUND	= IColorConstant.BLACK;
 	
@@ -89,7 +90,7 @@ public class AddRackFeature extends AbstractAddFeature
 		// SHAPE WITH LINE
 		
 		// create shape for line
-		final Shape lineShape = peCreateService.createShape(containerShape, false);
+		final Shape lineShape = createShape(peCreateService, containerShape);
 		
 		// create and set graphics algorithm
 		final Polyline polyline = gaService.createPolyline(lineShape, new int[] { 0, 20, width, 20 });
@@ -99,15 +100,10 @@ public class AddRackFeature extends AbstractAddFeature
 		// SHAPE WITH TEXT
 		
 		// create shape for text
-		final Shape textShape = peCreateService.createShape(containerShape, false);
+		final Shape textShape = createShape(peCreateService, containerShape);
 		
 		// create and set text graphics algorithm
-		final Text text = gaService.createText(textShape, rack.getName());
-		text.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
-		text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
-		// vertical alignment has as default value "center"
-		text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
-		gaService.setLocationAndSize(text, 0, 0, width, 20);
+		final Text text = createTextShape(gaService, textShape, 0, 0, width, 20, rack.getName());
 		
 		// create link and wire it
 		link(textShape, rack);
@@ -124,6 +120,30 @@ public class AddRackFeature extends AbstractAddFeature
 		layoutPictogramElement(containerShape);
 		
 		return containerShape;
+	}
+	
+	
+	
+	@Override
+	public Shape createShape(IPeCreateService peCreateService, ContainerShape containerShape)
+	{
+		return peCreateService.createShape(containerShape, false);
+	}
+	
+	
+	
+	@Override
+	public Text createTextShape(IGaService gaService, GraphicsAlgorithmContainer gaContainer, int x, int y, int width,
+			int height, String content)
+	{
+		final Text text = gaService.createText(gaContainer, content);
+		text.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
+		text.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
+		// vertical alignment has as default value "center"
+		text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
+		gaService.setLocationAndSize(text, x, y, width, height);
+		
+		return text; 
 	}
 	
 }

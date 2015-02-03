@@ -46,6 +46,8 @@ public enum Messages
 	SUBNET_MASK					("subnetmask", 		""),
 	GATEWAY						("gateway", 		""),
 	DNS							("dns", 			""),
+	CPU_STAT					("cpuStat",			""),
+	RAM_STAT					("ramStat",			""),
 	
 	
 	//Editor objects
@@ -57,12 +59,12 @@ public enum Messages
 	CONNECTION					("Connection",		"This is a connection between two objects"),
 	
 	
-	//Properties
+	//Properties/ Labels
 	IP_LABEL					("IP: ", 				""),
 	CPU_AMOUNT_LABEL			("CPU amount: ", 		""),
 	CPU_TYPE_LABEL				("CPU type: ", 			""),
-	RAM_LABEL					("RAM: ", 				""),
-	DISKSPACE_LABEL				("Disk space: ", 		""),
+	RAM_LABEL					("RAM [mb]: ", 			""),
+	DISKSPACE_LABEL				("Disk space [mb]: ", 	""),
 	ID_LABEL					("ID: ", 				""),
 	EXTERNAL_GATEWAY_LABEL		("External gateway: ", 	""),
 	SUBNET_MASK_LABEL			("Subnet mask: ", 		""),

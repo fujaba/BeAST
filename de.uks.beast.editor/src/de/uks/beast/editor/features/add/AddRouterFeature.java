@@ -24,7 +24,7 @@ import org.eclipse.graphiti.util.IColorConstant;
 import de.uks.beast.editor.features.util.PropertyUtil;
 import static de.uks.beast.editor.util.Messages.*;
 
-public class AddRouterFeature extends AbstractAddFeature implements AbstractShapeManager
+public class AddRouterFeature extends AbstractAddFeature implements AbstractShapeFactory
 {
 	private static final IColorConstant	E_CLASS_TEXT_FOREGROUND	= IColorConstant.BLACK;
 	

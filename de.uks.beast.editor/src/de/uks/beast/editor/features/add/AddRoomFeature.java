@@ -6,6 +6,7 @@ import org.eclipse.graphiti.features.IDirectEditingInfo;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.impl.AbstractAddShapeFeature;
+import org.eclipse.graphiti.mm.GraphicsAlgorithmContainer;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
 import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
 import org.eclipse.graphiti.mm.algorithms.Text;
@@ -20,7 +21,7 @@ import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 
-public class AddRoomFeature extends AbstractAddShapeFeature
+public class AddRoomFeature extends AbstractAddShapeFeature implements AbstractShapeFactory
 {
 	private static final IColorConstant	E_CLASS_TEXT_FOREGROUND	= IColorConstant.BLACK;
 	
@@ -98,15 +99,10 @@ public class AddRoomFeature extends AbstractAddShapeFeature
 		// SHAPE WITH TEXT
 		
 		// create shape for text
-		final Shape textShape = peCreateService.createShape(containerShape, false);
+		final Shape textShape = createShape(peCreateService, containerShape);
 		
 		// create and set text graphics algorithm
-		final Text text = gaService.createText(textShape, room.getName());
-		text.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
-		text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
-		// vertical alignment has as default value "center"
-		text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
-		gaService.setLocationAndSize(text, 0, 0, width, 20);
+		final Text text = createTextShape(gaService, textShape, 0, 0, width, 20, room.getName());
 		
 		// create link and wire it
 		link(textShape, room);
@@ -123,6 +119,30 @@ public class AddRoomFeature extends AbstractAddShapeFeature
 		layoutPictogramElement(containerShape);
 		
 		return containerShape;
+	}
+	
+	
+	
+	@Override
+	public Shape createShape(IPeCreateService peCreateService, ContainerShape containerShape)
+	{
+		return peCreateService.createShape(containerShape, false);
+	}
+	
+	
+	
+	@Override
+	public Text createTextShape(IGaService gaService, GraphicsAlgorithmContainer gaContainer, int x, int y, int width,
+			int height, String content)
+	{
+		final Text text = gaService.createText(gaContainer, content);
+		text.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
+		text.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
+		// vertical alignment has as default value "center"
+		text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
+		gaService.setLocationAndSize(text, x, y, width, height);
+		
+		return text;
 	}
 	
 }
