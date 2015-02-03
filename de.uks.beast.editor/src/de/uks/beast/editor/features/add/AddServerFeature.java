@@ -1,6 +1,6 @@
 package de.uks.beast.editor.features.add;
 
-import static de.uks.beast.editor.util.Messages.*;
+import static de.uks.beast.editor.util.Constants.*;
 import model.Rack;
 import model.Server;
 
@@ -119,17 +119,17 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		PropertyUtil.setAttributeShape(ramStatTextShape, RAM_STAT);
 		
 		// create link and wire it
-		link(ramStatTextShape, server);
+		//link(ramStatTextShape, server);
 		
 		// SHAPE FOR RESOURCE STAT CPU
 		final Shape cpuStatTextShape = createShape(peCreateService, containerShape);
 		final Text cpuStatText = createTextShape(gaService, cpuStatTextShape, ramStatText.getX() - 20, 0, 1, HEIGHT_PROPERTY,
-				"100");
+				"80");
 		cpuStatText.setHorizontalAlignment(Orientation.ALIGNMENT_RIGHT);
 		PropertyUtil.setAttributeShape(cpuStatTextShape, CPU_STAT);
 		
 		// create link and wire it
-		link(cpuStatTextShape, server);
+		//link(cpuStatTextShape, server);
 		
 		final Shape statsLabelShape = createShape(peCreateService, containerShape);
 		final Text statsLabelText = createTextShape(gaService, statsLabelShape, cpuStatText.getX() - 18, 0, 10, HEIGHT_LABEL,

@@ -52,7 +52,7 @@ import de.uks.beast.editor.features.update.UpdateRackObjectFeature;
 import de.uks.beast.editor.features.update.UpdateRoomObjectFeature;
 import de.uks.beast.editor.features.update.UpdateRouterObjectFeature;
 import de.uks.beast.editor.features.update.UpdateServerObjectFeature;
-import static de.uks.beast.editor.util.Messages.*;
+import static de.uks.beast.editor.util.Constants.*;
 
 public class EditorFeatureProvider extends DefaultFeatureProvider
 {

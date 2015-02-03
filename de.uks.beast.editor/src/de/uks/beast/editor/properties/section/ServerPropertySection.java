@@ -1,12 +1,12 @@
 package de.uks.beast.editor.properties.section;
 
-import static de.uks.beast.editor.util.Messages.CPU_AMOUNT_LABEL;
-import static de.uks.beast.editor.util.Messages.CPU_TYPE_LABEL;
-import static de.uks.beast.editor.util.Messages.DISKSPACE_LABEL;
-import static de.uks.beast.editor.util.Messages.IP_LABEL;
-import static de.uks.beast.editor.util.Messages.RAM_LABEL;
-import static de.uks.beast.editor.util.Messages.RAM_STAT;
-import static de.uks.beast.editor.util.Messages.SUBMIT;
+import static de.uks.beast.editor.util.Constants.CPU_AMOUNT_LABEL;
+import static de.uks.beast.editor.util.Constants.CPU_TYPE_LABEL;
+import static de.uks.beast.editor.util.Constants.DISKSPACE_LABEL;
+import static de.uks.beast.editor.util.Constants.IP_LABEL;
+import static de.uks.beast.editor.util.Constants.RAM_LABEL;
+import static de.uks.beast.editor.util.Constants.RAM_STAT;
+import static de.uks.beast.editor.util.Constants.SUBMIT;
 import model.Rack;
 import model.Room;
 import model.Server;
@@ -215,6 +215,7 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 												{
 													t1.start();
 												}
+												
 											}
 										}
 									}

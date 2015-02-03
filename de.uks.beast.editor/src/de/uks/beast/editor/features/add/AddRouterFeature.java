@@ -22,7 +22,7 @@ import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 
 import de.uks.beast.editor.features.util.PropertyUtil;
-import static de.uks.beast.editor.util.Messages.*;
+import static de.uks.beast.editor.util.Constants.*;
 
 public class AddRouterFeature extends AbstractAddFeature implements AbstractShapeFactory
 {

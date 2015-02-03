@@ -12,7 +12,7 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
-import static de.uks.beast.editor.util.Messages.*;
+import static de.uks.beast.editor.util.Constants.*;
 
 public class UpdateRoomObjectFeature extends AbstractUpdateFeature
 {

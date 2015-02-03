@@ -13,7 +13,7 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
 import de.uks.beast.editor.features.util.PropertyUtil;
-import static de.uks.beast.editor.util.Messages.*;
+import static de.uks.beast.editor.util.Constants.*;
 
 public class UpdateServerObjectFeature extends AbstractUpdateFeature
 {
@@ -93,16 +93,23 @@ public class UpdateServerObjectFeature extends AbstractUpdateFeature
 					{
 						pictogramDiskSpace = text.getValue();
 					}
-					
+					else if (PropertyUtil.isAttributeShape(shape, RAM_STAT))
+					{
+						continue;
+					}
+					else if (PropertyUtil.isAttributeShape(shape, CPU_STAT))
+					{
+						continue;
+					}
 				}
 			}
 		}
 		
-		final Object bo = getBusinessObjectForPictogramElement(pictogramElement);
+		final Object object = getBusinessObjectForPictogramElement(pictogramElement);
 		
-		if (bo instanceof Server)
+		if (object instanceof Server)
 		{
-			final Server server = (Server) bo;
+			final Server server = (Server) object;
 			businessName = server.getName();
 			businessIp = server.getIp();
 			businessCpuAmount = String.valueOf(server.getCpuAmount());
@@ -149,11 +156,11 @@ public class UpdateServerObjectFeature extends AbstractUpdateFeature
 	{
 		
 		final PictogramElement pictogramElement = context.getPictogramElement();
-		final Object bo = getBusinessObjectForPictogramElement(pictogramElement);
+		final Object object = getBusinessObjectForPictogramElement(pictogramElement);
 		
-		if (bo instanceof Server)
+		if (object instanceof Server)
 		{
-			final Server server = (Server) bo;
+			final Server server = (Server) object;
 			businessName = server.getName();
 			businessIp = server.getIp();
 			businessCpuAmount = String.valueOf(server.getCpuAmount());
@@ -196,6 +203,14 @@ public class UpdateServerObjectFeature extends AbstractUpdateFeature
 					else if (PropertyUtil.isAttributeShape(shape, DISKSPACE))
 					{
 						text.setValue(businessDiskSpace);
+					}
+					else if (PropertyUtil.isAttributeShape(shape, RAM_STAT))
+					{
+						continue;
+					}
+					else if (PropertyUtil.isAttributeShape(shape, CPU_STAT))
+					{
+						continue;
 					}
 				}
 			}

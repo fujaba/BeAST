@@ -1,6 +1,6 @@
 package de.uks.beast.editor.util;
 
-public enum Messages
+public enum Constants
 {
 	//@formatter:off
 	// Main
@@ -83,7 +83,7 @@ public enum Messages
 	
 	
 	
-	private Messages(final String text, final String description)
+	private Constants(final String text, final String description)
 	{
 		this.text = text;
 		this.description = description;

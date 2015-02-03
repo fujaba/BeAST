@@ -1,9 +1,9 @@
 package de.uks.beast.editor.features.edit;
 
-import static de.uks.beast.editor.util.Messages.EMPTY_NAME_WARNING;
-import static de.uks.beast.editor.util.Messages.LINE_BREAK_WARNING;
-import static de.uks.beast.editor.util.Messages.NAME;
-import static de.uks.beast.editor.util.Messages.WRONG_SYMBOL_WARNING;
+import static de.uks.beast.editor.util.Constants.EMPTY_NAME_WARNING;
+import static de.uks.beast.editor.util.Constants.LINE_BREAK_WARNING;
+import static de.uks.beast.editor.util.Constants.NAME;
+import static de.uks.beast.editor.util.Constants.WRONG_SYMBOL_WARNING;
 import model.Server;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
