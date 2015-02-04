@@ -1,21 +1,14 @@
 package de.uks.beast.editor.provider;
 
+import static de.uks.beast.editor.util.Constants.SERVICES;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
-import org.eclipse.graphiti.features.ICreateConnectionFeature;
-import org.eclipse.graphiti.features.ICreateFeature;
-import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.palette.IPaletteCompartmentEntry;
-import org.eclipse.graphiti.palette.impl.ConnectionCreationToolEntry;
-import org.eclipse.graphiti.palette.impl.ObjectCreationToolEntry;
 import org.eclipse.graphiti.palette.impl.PaletteCompartmentEntry;
-import org.eclipse.graphiti.palette.impl.StackEntry;
 import org.eclipse.graphiti.tb.DefaultToolBehaviorProvider;
-
-import de.uks.beast.editor.util.Constants.*;
-import static de.uks.beast.editor.util.Constants.*;
 
 public class EditorToolBehaviorProvider extends DefaultToolBehaviorProvider {
 
@@ -25,13 +18,14 @@ public class EditorToolBehaviorProvider extends DefaultToolBehaviorProvider {
 
 	@Override
 	public IPaletteCompartmentEntry[] getPalette() {
-		List<IPaletteCompartmentEntry> ret = new ArrayList<IPaletteCompartmentEntry>();
+		final List<IPaletteCompartmentEntry> ret = new ArrayList<IPaletteCompartmentEntry>();
 
 		// add compartments from super class
-		IPaletteCompartmentEntry[] superCompartments = super.getPalette();
+		final IPaletteCompartmentEntry[] superCompartments = super.getPalette();
 		for (int i = 0; i < superCompartments.length; i++) {
 			ret.add(superCompartments[i]);
 		}
+		
 
 		// add new compartment at the end of the existing compartments
 		PaletteCompartmentEntry compartmentEntry = new PaletteCompartmentEntry(
