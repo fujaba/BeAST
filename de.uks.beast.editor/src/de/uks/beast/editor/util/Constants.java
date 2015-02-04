@@ -59,6 +59,10 @@ public enum Constants
 	CONNECTION					("Connection",		"This is a connection between two objects"),
 	
 	
+	// Service Palette
+	SERVICES					("Services",		"This Palette provides Juju services"),
+	
+	
 	//Properties/ Labels
 	IP_LABEL					("IP: ", 				""),
 	CPU_AMOUNT_LABEL			("CPU amount: ", 		""),
