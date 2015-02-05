@@ -10,28 +10,32 @@ import org.eclipse.graphiti.palette.IPaletteCompartmentEntry;
 import org.eclipse.graphiti.palette.impl.PaletteCompartmentEntry;
 import org.eclipse.graphiti.tb.DefaultToolBehaviorProvider;
 
-public class EditorToolBehaviorProvider extends DefaultToolBehaviorProvider {
-
-	public EditorToolBehaviorProvider(IDiagramTypeProvider diagramTypeProvider) {
+public class EditorToolBehaviorProvider extends DefaultToolBehaviorProvider
+{
+	
+	public EditorToolBehaviorProvider(IDiagramTypeProvider diagramTypeProvider)
+	{
 		super(diagramTypeProvider);
 	}
-
+	
+	
+	
 	@Override
-	public IPaletteCompartmentEntry[] getPalette() {
+	public IPaletteCompartmentEntry[] getPalette()
+	{
 		final List<IPaletteCompartmentEntry> ret = new ArrayList<IPaletteCompartmentEntry>();
-
+		
 		// add compartments from super class
 		final IPaletteCompartmentEntry[] superCompartments = super.getPalette();
-		for (int i = 0; i < superCompartments.length; i++) {
+		for (int i = 0; i < superCompartments.length; i++)
+		{
 			ret.add(superCompartments[i]);
 		}
 		
-
 		// add new compartment at the end of the existing compartments
-		PaletteCompartmentEntry compartmentEntry = new PaletteCompartmentEntry(
-				SERVICES.text(), null);
+		PaletteCompartmentEntry compartmentEntry = new PaletteCompartmentEntry(SERVICES.text(), null);
 		ret.add(compartmentEntry);
-
+		
 		/* // Example code
 		// add new stack entry to new compartment
 		StackEntry stackEntry = new StackEntry("EObject", "EObject", null);
@@ -58,9 +62,9 @@ public class EditorToolBehaviorProvider extends DefaultToolBehaviorProvider {
 			stackEntry.addCreationToolEntry(connectionCreationToolEntry);
 		}
 		*/
-
+		
 		return ret.toArray(new IPaletteCompartmentEntry[ret.size()]);
-
+		
 	}
-
+	
 }

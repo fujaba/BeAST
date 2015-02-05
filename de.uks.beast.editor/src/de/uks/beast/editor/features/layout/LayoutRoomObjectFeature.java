@@ -21,9 +21,9 @@ import org.eclipse.graphiti.services.IGaService;
 public class LayoutRoomObjectFeature extends AbstractLayoutFeature
 {
 	
-	private static final int	MIN_HEIGHT	= 30;
+	private static final int	MIN_HEIGHT	= 300;
 	
-	private static final int	MIN_WIDTH	= 50;
+	private static final int	MIN_WIDTH	= 400;
 	
 	
 	

@@ -32,6 +32,20 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 	
 	private static final IColorConstant	E_CLASS_BACKGROUND		= new ColorConstant(187, 218, 247);
 	
+	private static final int			WIDTH_PROPERTY			= 50;
+	
+	private static final int			WIDTH_LABEL				= 120;
+	
+	private static final int			HEIGHT_PROPERTY			= 20;
+	
+	private static final int			HEIGHT_LABEL			= 20;
+	
+	private static final int			Y_PARTING_LINE			= 20;
+	
+	private static final int			X0_PARTING_LINE			= 0;
+	
+	private static final int			X_PROPERTY				= 5;
+	
 	
 	
 	public AddRouterFeature(final IFeatureProvider fp)
@@ -68,18 +82,14 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		final ContainerShape containerShape = peCreateService.createContainerShape(targetDiagram, true);
 		PropertyUtil.setObjectShape(containerShape, ROUTER);
 		
-		// define a default size for the shape
-		final int width = 100;
-		final int height = 50;
 		final IGaService gaService = Graphiti.getGaService();
-		RoundedRectangle roundedRectangle; // need to access it later
 		
 		// create and set graphics algorithm
-		roundedRectangle = gaService.createRoundedRectangle(containerShape, 5, 5);
+		final RoundedRectangle roundedRectangle = gaService.createRoundedRectangle(containerShape, 5, 5);
 		roundedRectangle.setForeground(manageColor(E_CLASS_FOREGROUND));
 		roundedRectangle.setBackground(manageColor(E_CLASS_BACKGROUND));
 		roundedRectangle.setLineWidth(2);
-		gaService.setLocationAndSize(roundedRectangle, context.getX(), context.getY(), width, height);
+		gaService.setLocationAndSize(roundedRectangle, context.getX(), context.getY(), context.getWidth(), context.getHeight());
 		
 		// if added Class has no resource we add it to the resource
 		// of the diagram
@@ -94,10 +104,11 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		// SHAPE WITH LINE
 		
 		// create shape for line
-		final Shape lineShape = peCreateService.createShape(containerShape, false);
+		final Shape lineShape = createShape(peCreateService, containerShape);
 		
 		// create and set graphics algorithm
-		final Polyline polyline = gaService.createPolyline(lineShape, new int[] { 0, 20, width, 20 });
+		final Polyline polyline = gaService.createPolyline(lineShape,
+				new int[] { X0_PARTING_LINE, Y_PARTING_LINE, context.getWidth(), Y_PARTING_LINE });
 		polyline.setForeground(manageColor(E_CLASS_FOREGROUND));
 		polyline.setLineWidth(2);
 		
@@ -105,7 +116,9 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		// create shape for text
 		final Shape nameTextShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text nameText = createTextShape(gaService, nameTextShape, 0, 0, width, 20, router.getName());
+		final Text nameText = createTextShape(gaService, nameTextShape, X_PROPERTY, 0, WIDTH_PROPERTY, HEIGHT_PROPERTY,
+				router.getName());
+		nameText.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 		PropertyUtil.setAttributeShape(nameTextShape, NAME);
 		
 		// create link and wire it
@@ -114,8 +127,11 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		// SHAPE FOR PROPERTY IP
 		// create shape for text
 		final Shape ipTextShape = createShape(peCreateService, containerShape);
+		final Shape ipLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		createTextShape(gaService, ipTextShape, 0, 20, width, 20, router.getIp());
+		final Text ipLabelText = createTextShape(gaService, ipLabelShape, X_PROPERTY, 20, WIDTH_LABEL, HEIGHT_LABEL,
+				IP_LABEL.text());
+		createTextShape(gaService, ipTextShape, ipLabelText.getWidth(), 20, WIDTH_PROPERTY, HEIGHT_PROPERTY, router.getIp());
 		PropertyUtil.setAttributeShape(ipTextShape, IP);
 		
 		// create link and wire it
@@ -124,8 +140,11 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		//SHAPE FOR PROPERTY ID
 		// create shape for text
 		final Shape idTextShape = createShape(peCreateService, containerShape);
+		final Shape idLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		createTextShape(gaService, idTextShape, 0, 30, width, 20, router.getId());
+		final Text idLabelText = createTextShape(gaService, idLabelShape, X_PROPERTY, 30, WIDTH_LABEL, HEIGHT_LABEL,
+				ID_LABEL.text());
+		createTextShape(gaService, idTextShape, idLabelText.getWidth(), 30, WIDTH_PROPERTY, HEIGHT_PROPERTY, router.getId());
 		PropertyUtil.setAttributeShape(idTextShape, ID);
 		
 		// create link and wire it
@@ -134,8 +153,12 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		//SHAPE FOR PROPERTY EXTERNAL_GATEWAY
 		// create shape for text
 		final Shape extGatewayTextShape = createShape(peCreateService, containerShape);
+		final Shape extGatewayLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		createTextShape(gaService, extGatewayTextShape, 0, 40, width, 20, router.getExternalGateway());
+		final Text extGatewayLabelText = createTextShape(gaService, extGatewayLabelShape, X_PROPERTY, 40, WIDTH_LABEL,
+				HEIGHT_LABEL, EXTERNAL_GATEWAY_LABEL.text());
+		createTextShape(gaService, extGatewayTextShape, extGatewayLabelText.getWidth(), 40, WIDTH_PROPERTY, HEIGHT_PROPERTY,
+				router.getExternalGateway());
 		PropertyUtil.setAttributeShape(extGatewayTextShape, EXTERNAL_GATEWAY);
 		
 		// create link and wire it

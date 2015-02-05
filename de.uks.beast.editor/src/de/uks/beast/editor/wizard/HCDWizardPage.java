@@ -1,4 +1,4 @@
-package de.uks.beast.editor.wizards;
+package de.uks.beast.editor.wizard;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IResource;

@@ -29,6 +29,16 @@ public class AddRackFeature extends AbstractAddFeature implements AbstractShapeF
 	
 	private static final IColorConstant	E_CLASS_BACKGROUND		= new ColorConstant(187, 218, 247);
 	
+	private static final int			WIDTH_PROPERTY			= 50;
+	
+	private static final int			HEIGHT_PROPERTY			= 20;
+	
+	private static final int			Y_PARTING_LINE			= 20;
+	
+	private static final int			X0_PARTING_LINE			= 0;
+	
+	private static final int			X_PROPERTY				= 5;
+	
 	
 	
 	public AddRackFeature(final IFeatureProvider fp)
@@ -64,18 +74,14 @@ public class AddRackFeature extends AbstractAddFeature implements AbstractShapeF
 		final IPeCreateService peCreateService = Graphiti.getPeCreateService();
 		final ContainerShape containerShape = peCreateService.createContainerShape(targetDiagram, true);
 		
-		// define a default size for the shape
-		final int width = 100;
-		final int height = 50;
 		final IGaService gaService = Graphiti.getGaService();
-		RoundedRectangle roundedRectangle; // need to access it later
 		
 		// create and set graphics algorithm
-		roundedRectangle = gaService.createRoundedRectangle(containerShape, 5, 5);
+		final RoundedRectangle roundedRectangle = gaService.createRoundedRectangle(containerShape, 5, 5);
 		roundedRectangle.setForeground(manageColor(E_CLASS_FOREGROUND));
 		roundedRectangle.setBackground(manageColor(E_CLASS_BACKGROUND));
 		roundedRectangle.setLineWidth(2);
-		gaService.setLocationAndSize(roundedRectangle, context.getX(), context.getY(), width, height);
+		gaService.setLocationAndSize(roundedRectangle, context.getX(), context.getY(), context.getWidth(), context.getHeight());
 		
 		// if added Class has no resource we add it to the resource
 		// of the diagram
@@ -87,26 +93,25 @@ public class AddRackFeature extends AbstractAddFeature implements AbstractShapeF
 		// create link and wire it
 		link(containerShape, rack);
 		
-		// SHAPE WITH LINE
-		
-		// create shape for line
-		final Shape lineShape = createShape(peCreateService, containerShape);
-		
-		// create and set graphics algorithm
-		final Polyline polyline = gaService.createPolyline(lineShape, new int[] { 0, 20, width, 20 });
-		polyline.setForeground(manageColor(E_CLASS_FOREGROUND));
-		polyline.setLineWidth(2);
-		
 		// SHAPE WITH TEXT
-		
 		// create shape for text
 		final Shape textShape = createShape(peCreateService, containerShape);
 		
 		// create and set text graphics algorithm
-		final Text text = createTextShape(gaService, textShape, 0, 0, width, 20, rack.getName());
+		final Text text = createTextShape(gaService, textShape, X_PROPERTY, 0, WIDTH_PROPERTY, HEIGHT_PROPERTY, rack.getName());
 		
 		// create link and wire it
 		link(textShape, rack);
+		
+		// SHAPE WITH LINE
+		// create shape for line
+		final Shape lineShape = createShape(peCreateService, containerShape);
+		
+		// create and set graphics algorithm
+		final Polyline polyline = gaService.createPolyline(lineShape, new int[] { X0_PARTING_LINE, Y_PARTING_LINE,
+				WIDTH_PROPERTY, Y_PARTING_LINE });
+		polyline.setForeground(manageColor(E_CLASS_FOREGROUND));
+		polyline.setLineWidth(2);
 		
 		final IDirectEditingInfo directEditingInfo = getFeatureProvider().getDirectEditingInfo();
 		directEditingInfo.setMainPictogramElement(containerShape);
@@ -125,7 +130,7 @@ public class AddRackFeature extends AbstractAddFeature implements AbstractShapeF
 	
 	
 	@Override
-	public Shape createShape(IPeCreateService peCreateService, ContainerShape containerShape)
+	public Shape createShape(final IPeCreateService peCreateService, final ContainerShape containerShape)
 	{
 		return peCreateService.createShape(containerShape, false);
 	}
@@ -133,17 +138,17 @@ public class AddRackFeature extends AbstractAddFeature implements AbstractShapeF
 	
 	
 	@Override
-	public Text createTextShape(IGaService gaService, GraphicsAlgorithmContainer gaContainer, int x, int y, int width,
-			int height, String content)
+	public Text createTextShape(final IGaService gaService, final GraphicsAlgorithmContainer gaContainer, final int x,
+			final int y, final int width, final int height, final String content)
 	{
 		final Text text = gaService.createText(gaContainer, content);
 		text.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
-		text.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
+		text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 		// vertical alignment has as default value "center"
 		text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
 		gaService.setLocationAndSize(text, x, y, width, height);
 		
-		return text; 
+		return text;
 	}
 	
 }

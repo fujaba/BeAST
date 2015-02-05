@@ -6,7 +6,9 @@ import org.eclipse.graphiti.tb.IToolBehaviorProvider;
 public class EditorDiagramTypeProvider extends AbstractDiagramTypeProvider
 {
 	
-	private IToolBehaviorProvider[] toolBehaviorProviders;
+	private IToolBehaviorProvider[]	toolBehaviorProviders;
+	
+	
 	
 	public EditorDiagramTypeProvider()
 	{
@@ -14,13 +16,16 @@ public class EditorDiagramTypeProvider extends AbstractDiagramTypeProvider
 		setFeatureProvider(new EditorFeatureProvider(this));
 	}
 	
+	
+	
 	@Override
-	public IToolBehaviorProvider[] getAvailableToolBehaviorProviders() {
-        if (toolBehaviorProviders == null) {
-            toolBehaviorProviders =
-                new IToolBehaviorProvider[] { new EditorToolBehaviorProvider(this) };
-        }
-        return toolBehaviorProviders;
-    }
+	public IToolBehaviorProvider[] getAvailableToolBehaviorProviders()
+	{
+		if (toolBehaviorProviders == null)
+		{
+			toolBehaviorProviders = new IToolBehaviorProvider[] { new EditorToolBehaviorProvider(this) };
+		}
+		return toolBehaviorProviders;
+	}
 	
 }

@@ -108,9 +108,9 @@
     </category>
     <wizard
           category="de.uks.beast.editor"
-          class="de.uks.beast.editor.wizards.HCDWizard"
+          class="de.uks.beast.editor.wizard.HCDWizard"
           icon="icons/sample.gif"
-          id="de.uks.beast.editor.wizards.HCDWizard"
+          id="de.uks.beast.editor.wizard.HCDWizard"
           name="HCD Diagram file">
     </wizard>
  </extension>
