@@ -2,6 +2,8 @@
  */
 package model.impl;
 
+import model.HadoopMaster;
+import model.HadoopSlave;
 import model.ModelFactory;
 import model.ModelPackage;
 import model.Network;
@@ -9,6 +11,7 @@ import model.Rack;
 import model.Room;
 import model.Router;
 import model.Server;
+import model.Service;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -53,6 +56,27 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	
 	
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass serviceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass hadoopMasterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass hadoopSlaveEClass = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -220,6 +244,18 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 */
 	public EReference getServer_Network() {
 		return (EReference)serverEClass.getEStructuralFeatures().get(6);
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getServer_Service()
+	{
+		return (EReference)serverEClass.getEStructuralFeatures().get(7);
 	}
 
 
@@ -446,6 +482,42 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getService()
+	{
+		return serviceEClass;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getHadoopMaster()
+	{
+		return hadoopMasterEClass;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getHadoopSlave()
+	{
+		return hadoopSlaveEClass;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getRoom()
 	{
 		return roomEClass;
@@ -517,6 +589,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		createEAttribute(serverEClass, SERVER__DISK_SPACE);
 		createEAttribute(serverEClass, SERVER__NAME);
 		createEReference(serverEClass, SERVER__NETWORK);
+		createEReference(serverEClass, SERVER__SERVICE);
 
 		rackEClass = createEClass(RACK);
 		createEReference(rackEClass, RACK__SERVER);
@@ -543,6 +616,12 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		createEAttribute(routerEClass, ROUTER__IP);
 		createEAttribute(routerEClass, ROUTER__NAME);
 		createEAttribute(routerEClass, ROUTER__EXTERNAL_GATEWAY);
+
+		serviceEClass = createEClass(SERVICE);
+
+		hadoopMasterEClass = createEClass(HADOOP_MASTER);
+
+		hadoopSlaveEClass = createEClass(HADOOP_SLAVE);
 	}
 	
 	/**
@@ -576,6 +655,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		hadoopMasterEClass.getESuperTypes().add(this.getService());
+		hadoopSlaveEClass.getESuperTypes().add(this.getService());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(serverEClass, Server.class, "Server", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -586,6 +667,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		initEAttribute(getServer_DiskSpace(), ecorePackage.getELong(), "diskSpace", null, 0, 1, Server.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getServer_Name(), ecorePackage.getEString(), "name", "0", 0, 1, Server.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getServer_Network(), this.getNetwork(), this.getNetwork_Server(), "network", null, 0, 1, Server.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getServer_Service(), this.getService(), null, "service", null, 0, 1, Server.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(rackEClass, Rack.class, "Rack", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRack_Server(), this.getServer(), null, "server", null, 0, -1, Rack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -612,6 +694,12 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		initEAttribute(getRouter_Ip(), ecorePackage.getEString(), "ip", "0", 0, 1, Router.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRouter_Name(), ecorePackage.getEString(), "name", "0", 0, 1, Router.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRouter_ExternalGateway(), ecorePackage.getEString(), "externalGateway", "0", 0, 1, Router.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(serviceEClass, Service.class, "Service", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(hadoopMasterEClass, HadoopMaster.class, "HadoopMaster", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(hadoopSlaveEClass, HadoopSlave.class, "HadoopSlave", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

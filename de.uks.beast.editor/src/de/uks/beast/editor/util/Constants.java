@@ -60,7 +60,7 @@ public enum Constants
 	
 	
 	// Service Palette
-	SERVICES					("Services",		"This Palette provides Juju services"),
+	SERVICE_HADOOP					("Service: Hadoop",		"This Palette provides Juju services"),
 	
 	
 	//Properties/ Labels

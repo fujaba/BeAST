@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link model.Server#getDiskSpace <em>Disk Space</em>}</li>
  *   <li>{@link model.Server#getName <em>Name</em>}</li>
  *   <li>{@link model.Server#getNetwork <em>Network</em>}</li>
+ *   <li>{@link model.Server#getService <em>Service</em>}</li>
  * </ul>
  * </p>
  *
@@ -240,5 +241,35 @@ public interface Server extends EObject
 	 * @generated
 	 */
 	void setNetwork(Network value);
+
+
+
+	/**
+	 * Returns the value of the '<em><b>Service</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Service</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Service</em>' containment reference.
+	 * @see #setService(Service)
+	 * @see model.ModelPackage#getServer_Service()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Service getService();
+
+
+
+	/**
+	 * Sets the value of the '{@link model.Server#getService <em>Service</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Service</em>' containment reference.
+	 * @see #getService()
+	 * @generated
+	 */
+	void setService(Service value);
 	
 } // Server

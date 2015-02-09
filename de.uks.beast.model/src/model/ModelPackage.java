@@ -131,13 +131,22 @@ public interface ModelPackage extends EPackage
 	int SERVER__NETWORK = 6;
 
 	/**
+	 * The feature id for the '<em><b>Service</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER__SERVICE = 7;
+
+	/**
 	 * The number of structural features of the '<em>Server</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int				SERVER_FEATURE_COUNT				= 7;
+	int				SERVER_FEATURE_COUNT				= 8;
 	
 	/**
 	 * The number of operations of the '<em>Server</em>' class.
@@ -425,6 +434,92 @@ public interface ModelPackage extends EPackage
 
 
 	/**
+	 * The meta object id for the '{@link model.impl.ServiceImpl <em>Service</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see model.impl.ServiceImpl
+	 * @see model.impl.ModelPackageImpl#getService()
+	 * @generated
+	 */
+	int SERVICE = 5;
+
+	/**
+	 * The number of structural features of the '<em>Service</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Service</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link model.impl.HadoopMasterImpl <em>Hadoop Master</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see model.impl.HadoopMasterImpl
+	 * @see model.impl.ModelPackageImpl#getHadoopMaster()
+	 * @generated
+	 */
+	int HADOOP_MASTER = 6;
+
+	/**
+	 * The number of structural features of the '<em>Hadoop Master</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HADOOP_MASTER_FEATURE_COUNT = SERVICE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Hadoop Master</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HADOOP_MASTER_OPERATION_COUNT = SERVICE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link model.impl.HadoopSlaveImpl <em>Hadoop Slave</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see model.impl.HadoopSlaveImpl
+	 * @see model.impl.ModelPackageImpl#getHadoopSlave()
+	 * @generated
+	 */
+	int HADOOP_SLAVE = 7;
+
+	/**
+	 * The number of structural features of the '<em>Hadoop Slave</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HADOOP_SLAVE_FEATURE_COUNT = SERVICE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Hadoop Slave</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HADOOP_SLAVE_OPERATION_COUNT = SERVICE_OPERATION_COUNT + 0;
+
+
+
+	/**
 	 * Returns the meta object for class '{@link model.Server <em>Server</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -524,6 +619,19 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 */
 	EReference getServer_Network();
+
+
+
+	/**
+	 * Returns the meta object for the containment reference '{@link model.Server#getService <em>Service</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Service</em>'.
+	 * @see model.Server#getService()
+	 * @see #getServer()
+	 * @generated
+	 */
+	EReference getServer_Service();
 
 
 
@@ -772,6 +880,42 @@ public interface ModelPackage extends EPackage
 
 
 	/**
+	 * Returns the meta object for class '{@link model.Service <em>Service</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Service</em>'.
+	 * @see model.Service
+	 * @generated
+	 */
+	EClass getService();
+
+
+
+	/**
+	 * Returns the meta object for class '{@link model.HadoopMaster <em>Hadoop Master</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Hadoop Master</em>'.
+	 * @see model.HadoopMaster
+	 * @generated
+	 */
+	EClass getHadoopMaster();
+
+
+
+	/**
+	 * Returns the meta object for class '{@link model.HadoopSlave <em>Hadoop Slave</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Hadoop Slave</em>'.
+	 * @see model.HadoopSlave
+	 * @generated
+	 */
+	EClass getHadoopSlave();
+
+
+
+	/**
 	 * Returns the meta object for class '{@link model.Room <em>Room</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -898,6 +1042,14 @@ public interface ModelPackage extends EPackage
 		 * @generated
 		 */
 		EReference SERVER__NETWORK = eINSTANCE.getServer_Network();
+
+		/**
+		 * The meta object literal for the '<em><b>Service</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVER__SERVICE = eINSTANCE.getServer_Service();
 
 		/**
 		 * The meta object literal for the '{@link model.impl.RackImpl <em>Rack</em>}' class.
@@ -1056,6 +1208,36 @@ public interface ModelPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute ROUTER__EXTERNAL_GATEWAY = eINSTANCE.getRouter_ExternalGateway();
+
+		/**
+		 * The meta object literal for the '{@link model.impl.ServiceImpl <em>Service</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see model.impl.ServiceImpl
+		 * @see model.impl.ModelPackageImpl#getService()
+		 * @generated
+		 */
+		EClass SERVICE = eINSTANCE.getService();
+
+		/**
+		 * The meta object literal for the '{@link model.impl.HadoopMasterImpl <em>Hadoop Master</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see model.impl.HadoopMasterImpl
+		 * @see model.impl.ModelPackageImpl#getHadoopMaster()
+		 * @generated
+		 */
+		EClass HADOOP_MASTER = eINSTANCE.getHadoopMaster();
+
+		/**
+		 * The meta object literal for the '{@link model.impl.HadoopSlaveImpl <em>Hadoop Slave</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see model.impl.HadoopSlaveImpl
+		 * @see model.impl.ModelPackageImpl#getHadoopSlave()
+		 * @generated
+		 */
+		EClass HADOOP_SLAVE = eINSTANCE.getHadoopSlave();
 
 		/**
 		 * The meta object literal for the '{@link model.impl.RoomImpl <em>Room</em>}' class.

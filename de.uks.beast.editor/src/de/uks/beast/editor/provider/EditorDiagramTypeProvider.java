@@ -3,10 +3,12 @@ package de.uks.beast.editor.provider;
 import org.eclipse.graphiti.dt.AbstractDiagramTypeProvider;
 import org.eclipse.graphiti.tb.IToolBehaviorProvider;
 
+import de.uks.beast.editor.services.hadoop.provider.HadoopFeatureProvider;
+
 public class EditorDiagramTypeProvider extends AbstractDiagramTypeProvider
 {
 	
-	private IToolBehaviorProvider[]	toolBehaviorProviders;
+	private IToolBehaviorProvider[]	serviceFeatureProviders;
 	
 	
 	
@@ -21,11 +23,12 @@ public class EditorDiagramTypeProvider extends AbstractDiagramTypeProvider
 	@Override
 	public IToolBehaviorProvider[] getAvailableToolBehaviorProviders()
 	{
-		if (toolBehaviorProviders == null)
+		if (serviceFeatureProviders == null)
 		{
-			toolBehaviorProviders = new IToolBehaviorProvider[] { new EditorToolBehaviorProvider(this) };
+			serviceFeatureProviders = new IToolBehaviorProvider[] { new HadoopFeatureProvider(this) };
 		}
-		return toolBehaviorProviders;
+		
+		return serviceFeatureProviders;
 	}
 	
 }

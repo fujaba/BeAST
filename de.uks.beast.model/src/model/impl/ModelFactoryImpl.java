@@ -28,13 +28,16 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 	 */
 	public static ModelFactory init()
 	{
-		try {
+		try
+		{
 			ModelFactory theModelFactory = (ModelFactory)EPackage.Registry.INSTANCE.getEFactory(ModelPackage.eNS_URI);
-			if (theModelFactory != null) {
+			if (theModelFactory != null)
+			{
 				return theModelFactory;
 			}
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new ModelFactoryImpl();
@@ -63,12 +66,15 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID()) {
+		switch (eClass.getClassifierID())
+		{
 			case ModelPackage.SERVER: return createServer();
 			case ModelPackage.RACK: return createRack();
 			case ModelPackage.NETWORK: return createNetwork();
 			case ModelPackage.ROOM: return createRoom();
 			case ModelPackage.ROUTER: return createRouter();
+			case ModelPackage.HADOOP_MASTER: return createHadoopMaster();
+			case ModelPackage.HADOOP_SLAVE: return createHadoopSlave();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -128,6 +134,32 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 	
 	
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public HadoopMaster createHadoopMaster()
+	{
+		HadoopMasterImpl hadoopMaster = new HadoopMasterImpl();
+		return hadoopMaster;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public HadoopSlave createHadoopSlave()
+	{
+		HadoopSlaveImpl hadoopSlave = new HadoopSlaveImpl();
+		return hadoopSlave;
+	}
+
+
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

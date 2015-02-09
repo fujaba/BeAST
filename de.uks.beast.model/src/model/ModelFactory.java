@@ -69,6 +69,28 @@ public interface ModelFactory extends EFactory
 	
 	
 	/**
+	 * Returns a new object of class '<em>Hadoop Master</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Hadoop Master</em>'.
+	 * @generated
+	 */
+	HadoopMaster createHadoopMaster();
+
+
+
+	/**
+	 * Returns a new object of class '<em>Hadoop Slave</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Hadoop Slave</em>'.
+	 * @generated
+	 */
+	HadoopSlave createHadoopSlave();
+
+
+
+	/**
 	 * Returns a new object of class '<em>Room</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

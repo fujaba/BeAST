@@ -30,7 +30,6 @@ public class CreateServerFeature extends AbstractCreateFeature
 	public Object[] create(final ICreateContext context)
 	{
 		final Server server = ModelFactory.eINSTANCE.createServer();
-		//getDiagram().eResource().getContents().add(server);
 		final Rack rack = (Rack) getBusinessObjectForPictogramElement(context.getTargetContainer());
 		rack.getServer().add(server);
 		addGraphicalRepresentation(context, server);

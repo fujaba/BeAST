@@ -13,6 +13,8 @@
         defaultValueLiteral="0"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="network" eType="#//Network"
         eOpposite="#//Network/server"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="service" eType="#//Service"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Rack">
     <eStructuralFeatures xsi:type="ecore:EReference" name="server" upperBound="-1"
@@ -57,4 +59,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="externalGateway" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="0"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Service" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="HadoopMaster" eSuperTypes="#//Service"/>
+  <eClassifiers xsi:type="ecore:EClass" name="HadoopSlave" eSuperTypes="#//Service"/>
 </ecore:EPackage>
