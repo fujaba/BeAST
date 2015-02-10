@@ -15,7 +15,7 @@ import org.eclipse.graphiti.util.IColorConstant;
 
 public class AddConnectionFeature extends AbstractAddFeature
 {
-	private static final IColorConstant	E_REFERENCE_FOREGROUND	= new ColorConstant(255, 0, 0);
+	private static final IColorConstant	LINE_COLOR_OBJECT_CONNECTION	= new ColorConstant(255, 0, 0);
 	
 	
 	
@@ -29,8 +29,6 @@ public class AddConnectionFeature extends AbstractAddFeature
 	@Override
 	public boolean canAdd(final IAddContext context)
 	{
-		// return true if given business object is an EReference
-		// note, that the context must be an instance of IAddConnectionContext
 		if (context instanceof IAddConnectionContext)
 		{
 			return true;
@@ -43,6 +41,7 @@ public class AddConnectionFeature extends AbstractAddFeature
 	@Override
 	public PictogramElement add(final IAddContext context)
 	{
+		
 		final IAddConnectionContext addConContext = (IAddConnectionContext) context;
 		final IPeCreateService peCreateService = Graphiti.getPeCreateService();
 		
@@ -54,7 +53,7 @@ public class AddConnectionFeature extends AbstractAddFeature
 		final IGaService gaService = Graphiti.getGaService();
 		final Polyline polyline = gaService.createPolyline(connection);
 		polyline.setLineWidth(2);
-		polyline.setForeground(manageColor(E_REFERENCE_FOREGROUND));
+		polyline.setForeground(manageColor(LINE_COLOR_OBJECT_CONNECTION));
 		
 		return connection;
 	}

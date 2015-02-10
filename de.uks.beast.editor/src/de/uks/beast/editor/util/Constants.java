@@ -57,6 +57,7 @@ public enum Constants
 	NETWORK						("Network", 		"This is a network"),
 	ROUTER						("Router", 			"This is a router"),
 	CONNECTION					("Connection",		"This is a connection between two objects"),
+	HADOOP_CONNECTION			("HadoopConnection",""),
 	
 	
 	// Service Palette

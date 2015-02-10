@@ -506,9 +506,33 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getHadoopMaster_Slave()
+	{
+		return (EReference)hadoopMasterEClass.getEStructuralFeatures().get(0);
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getHadoopSlave()
 	{
 		return hadoopSlaveEClass;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getHadoopSlave_Master()
+	{
+		return (EReference)hadoopSlaveEClass.getEStructuralFeatures().get(0);
 	}
 
 
@@ -620,8 +644,10 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		serviceEClass = createEClass(SERVICE);
 
 		hadoopMasterEClass = createEClass(HADOOP_MASTER);
+		createEReference(hadoopMasterEClass, HADOOP_MASTER__SLAVE);
 
 		hadoopSlaveEClass = createEClass(HADOOP_SLAVE);
+		createEReference(hadoopSlaveEClass, HADOOP_SLAVE__MASTER);
 	}
 	
 	/**
@@ -698,8 +724,10 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		initEClass(serviceEClass, Service.class, "Service", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(hadoopMasterEClass, HadoopMaster.class, "HadoopMaster", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getHadoopMaster_Slave(), this.getHadoopSlave(), this.getHadoopSlave_Master(), "slave", null, 0, -1, HadoopMaster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(hadoopSlaveEClass, HadoopSlave.class, "HadoopSlave", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getHadoopSlave_Master(), this.getHadoopMaster(), this.getHadoopMaster_Slave(), "master", null, 0, 1, HadoopSlave.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

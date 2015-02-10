@@ -1,5 +1,11 @@
 package de.uks.beast.editor.provider;
 
+import static de.uks.beast.editor.util.Constants.CONNECTION;
+import static de.uks.beast.editor.util.Constants.NETWORK;
+import static de.uks.beast.editor.util.Constants.ROUTER;
+import static de.uks.beast.editor.util.Constants.SERVER;
+import static de.uks.beast.editor.util.Constants.SERVER_RACK;
+import static de.uks.beast.editor.util.Constants.SERVER_ROOM;
 import model.HadoopMaster;
 import model.HadoopSlave;
 import model.Network;
@@ -56,7 +62,6 @@ import de.uks.beast.editor.features.update.UpdateRouterObjectFeature;
 import de.uks.beast.editor.features.update.UpdateServerObjectFeature;
 import de.uks.beast.editor.services.hadoop.add.AddHadoopMasterFeature;
 import de.uks.beast.editor.services.hadoop.add.AddHadoopSlaveFeature;
-import static de.uks.beast.editor.util.Constants.*;
 
 public class EditorFeatureProvider extends DefaultFeatureProvider
 {
@@ -123,6 +128,7 @@ public class EditorFeatureProvider extends DefaultFeatureProvider
 			return new AddRoomFeature(this);
 		}
 		
+		//TODO: Unterscheidung zwischen AddConnectionFeature und AddHadoopConnectionFeature
 		//connections
 		else if (context instanceof IAddConnectionContext)
 		{

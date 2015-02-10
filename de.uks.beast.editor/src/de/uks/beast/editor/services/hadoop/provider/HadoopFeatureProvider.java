@@ -6,13 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
+import org.eclipse.graphiti.features.ICreateConnectionFeature;
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.palette.IPaletteCompartmentEntry;
+import org.eclipse.graphiti.palette.impl.ConnectionCreationToolEntry;
 import org.eclipse.graphiti.palette.impl.ObjectCreationToolEntry;
 import org.eclipse.graphiti.palette.impl.PaletteCompartmentEntry;
 import org.eclipse.graphiti.tb.DefaultToolBehaviorProvider;
 
+import de.uks.beast.editor.services.hadoop.create.CreateHadoopConnection;
 import de.uks.beast.editor.services.hadoop.create.CreateHadoopMasterFeature;
 import de.uks.beast.editor.services.hadoop.create.CreateHadoopSlaveFeature;
 
@@ -57,15 +60,16 @@ public class HadoopFeatureProvider extends DefaultToolBehaviorProvider
 		}
 		
 		// add all create-connection-features to the new stack-entry
-//		final ICreateConnectionFeature[] createConnectionFeatures = { new CreateHadoopConnection(featureProvider,
-//				"HadoopConnection", "") };
-//		
-//		for (final ICreateConnectionFeature cf : createConnectionFeatures)
-//		{
-//			final ConnectionCreationToolEntry connectionCreationToolEntry = new ConnectionCreationToolEntry(cf.getCreateName(),
-//					cf.getCreateDescription(), cf.getCreateImageId(), cf.getCreateLargeImageId());
-//			connectionCreationToolEntry.addCreateConnectionFeature(cf);
-//		}
+		final ICreateConnectionFeature[] createConnectionFeatures = { new CreateHadoopConnection(featureProvider,
+				"HadoopConnection", "") };
+		
+		for (final ICreateConnectionFeature cf : createConnectionFeatures)
+		{
+			final ConnectionCreationToolEntry connectionCreationToolEntry = new ConnectionCreationToolEntry(cf.getCreateName(),
+					cf.getCreateDescription(), cf.getCreateImageId(), cf.getCreateLargeImageId());
+			connectionCreationToolEntry.addCreateConnectionFeature(cf);
+			compartmentEntry.addToolEntry(connectionCreationToolEntry);
+		}
 		
 		return ret.toArray(new IPaletteCompartmentEntry[ret.size()]);
 		
