@@ -15,7 +15,7 @@ import kafka.message.MessageAndMetadata;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-public class KafkaListener {
+public class KafkaListener extends Thread {
 
 	private static Logger logger = LogManager.getLogger(KafkaListener.class);
 	
@@ -29,10 +29,15 @@ public class KafkaListener {
 		Properties props = new Properties();
 		props.put("zookeeper.connect", zookeeper);
 		props.put("group.id", groupID);
-		props.put("serializer.class", "com.ottogroup.bi.splittest.channel.EventSerializer");
+		props.put("serializer.class", "de.uks.beast.api.kafka.MessageSerializer");
 		props.put("zk.sessiontimeout.ms", "400");
 		props.put("zk.synctime.ms", "200");
 		this.consumer = Consumer.createJavaConsumerConnector(new ConsumerConfig(props));
+	}
+	
+	@Override
+	public void run() {
+		pollChannel();
 	}
 
 	public void pollChannel() {
@@ -43,8 +48,10 @@ public class KafkaListener {
 		KafkaStream<byte[], byte[]> stream = consumerMap.get(topic).get(0);
 		ConsumerIterator<byte[], byte[]> it = stream.iterator();
 		while (it.hasNext()) {
-			readMessage(it);
+			System.out.println(readMessage(it));
 		}
+		
+		logger.info("should not happen");
 	}
 
 	private String readMessage(ConsumerIterator<byte[], byte[]> it) {

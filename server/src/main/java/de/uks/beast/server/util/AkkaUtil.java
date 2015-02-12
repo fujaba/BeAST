@@ -7,9 +7,10 @@ public class AkkaUtil {
 				"actor { " + "\n" + 
 					"provider = \"akka.remote.RemoteActorRefProvider\" " + "\n" +  
 				"} " + "\n" + 
-				"remote {"  + "\n" + 
-					"netty.tcp { "  + "\n" + 
-						"hostname = \"<IP>\" " + "\n" + 
+				"remote {"  + "\n" +
+					"transport = \"akka.remote.netty.NettyTransport\" " + "\n" + 
+					"netty { " + "\n" + 
+						"hostname = <IP> " + "\n" + 
 						"port = <PORT> " + "\n" + 
 					"} "  + "\n" + 
 				"} " + "\n" + 

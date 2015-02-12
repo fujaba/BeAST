@@ -14,6 +14,7 @@ import org.xml.sax.XMLReader;
 
 import de.uks.beast.model.Hardware;
 import de.uks.beast.model.Network;
+import de.uks.beast.model.Server;
 
 public class XMLParser {
 	
@@ -29,7 +30,6 @@ public class XMLParser {
 	 * @param srvconfig Absolute path to .diagram file
 	 * @return
 	 */
-	@SuppressWarnings("rawtypes")
 	public static Hardware parseHardwareConfig(File configFile) {
 		Hardware hwconf = new Hardware();
 		
@@ -77,6 +77,17 @@ public class XMLParser {
 //			}
 //		}
 		
+		Network network = new Network();
+		network.setName("test-net");
+		
+		Server server = new Server();
+		server.setCpu(1);
+		server.setDiskSpace(100);
+		server.setRam(1024);
+		server.setHost("test-vm");
+		server.setNetwork(network);
+		
+		hwconf.addToNetworks(network);
 		return hwconf;
 	}
 
