@@ -11,10 +11,13 @@ import de.uks.beast.vmservice.service.model.HasKey;
 @SuppressWarnings("rawtypes")
 public class MessageSerializer implements Encoder<HasKey> {
 
-	public MessageSerializer(VerifiableProperties props) {}
+	private ObjectMapper objectMapper;
+
+	public MessageSerializer(VerifiableProperties props) {
+		this.objectMapper = new ObjectMapper();
+	}
 	
 	public byte[] toBytes(HasKey msg) {
-		ObjectMapper objectMapper = new ObjectMapper();
         try {
             return objectMapper.writeValueAsString(msg).getBytes();
         } catch (JsonProcessingException e) {

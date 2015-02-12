@@ -6,6 +6,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.uks.beast.api,
  de.uks.beast.api.akka,
+ de.uks.beast.api.kafka,
  de.uks.beast.api.util,
  de.uks.beast.model
 Bundle-ActivationPolicy: lazy
@@ -19,4 +20,5 @@ Bundle-ClassPath: libs/akka-actor_2.10-2.3.2.jar,
  libs/protobuf-java-2.5.0.jar,
  libs/scala-library-2.10.1.jar,
  libs/uncommons-maths-1.2.2a.jar,
- .
+ .,
+ libs/kafka_2.10-0.8.1.jar

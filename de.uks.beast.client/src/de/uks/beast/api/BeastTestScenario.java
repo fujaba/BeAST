@@ -16,28 +16,23 @@ public class BeastTestScenario {
 	private BeastTestCollection tests;
 	private TestEnvironment environment;
 	private String srvconfig;
+	private String infos;
 
 	public BeastTestScenario() {
 		this.tests = new BeastTestCollection();
-		this.environment = new TestEnvironment(null, -1, null);
+		this.environment = new TestEnvironment(null, -1);
 	}
 
+	public void executeEnvironment(String filepath) {
+		executeEnvironment(new File(filepath));
+	}
+	
 	public void executeEnvironment(File modelFile) {
 		if (environment.getHost() == null && 
 				environment.getPort() == -1) {
 			logger.fatal("Could not determine host/port to" +
 							" contact supervisor service. Set explicitly via useEnvironment method.");
 		} else {
-			
-			if (environment.getDiagramPath() == null) {
-				
-				if (srvconfig == null && modelFile == null) {
-					logger.fatal("Could not find any .srvconfig file");
-				}
-			} else {
-				srvconfig = environment.getDiagramPath();
-			}
-			
 			logger.info("Parsing hardware configuration");
 			
 			Hardware hwconf = null;
@@ -57,12 +52,30 @@ public class BeastTestScenario {
 			
 			akkaControllerActor.send(hwconf);
 			
+			while (akkaControllerActor.getInfo() == null) {
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			this.infos = akkaControllerActor.getInfo();
+			
 			logger.info("Configuration sent successfully. Executing environment ...");
 		}
 	}
 
 	public void setEnvironment(TestEnvironment environment) {
 		this.environment = environment;
+	}
+	
+	public BeastTestCollection getTests() {
+		return tests;
+	}
+	
+	public String getInfos() {
+		return infos;
 	}
 	
 }

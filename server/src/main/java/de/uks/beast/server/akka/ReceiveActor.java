@@ -37,6 +37,12 @@ public class ReceiveActor extends UntypedActor {
 			}
 
 			if (service.getEnvironment().isAuthenticated()) {
+				//send metadata to client
+				String topic = UUID.randomUUID().toString();
+				String zookeeperCon = "141.51.169.20:4415";
+				
+				getSender().tell(topic + " " + zookeeperCon, getSelf());
+				
 				// Create hardware definition
 				List<? extends Configuration> configs = service.getEnvironment().createHardwareDefiniton((Hardware) obj);
 				
@@ -44,7 +50,7 @@ public class ReceiveActor extends UntypedActor {
 				List<? extends ConnectionInfo> cons = service.getEnvironment().startVirtualMachine(configs);
 				
 				// create new Kafka topic
-				String topic = UUID.randomUUID().toString();
+				
 				ZkClient zkClient = new ZkClient(service.get("zookeeper"), 10000, 10000, ZKStringSerializer$.MODULE$);
 				AdminUtils.createTopic(zkClient, topic, 1, 1, new Properties());
 				
