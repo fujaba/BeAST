@@ -1,5 +1,6 @@
 package de.uks.beast.editor;
 
+import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -14,8 +15,7 @@ public class Activator extends AbstractUIPlugin
 	
 	// The shared instance
 	private static Activator	plugin;
-	
-	
+	public static Diagram diagram;
 	
 	/**
 	 * The constructor

@@ -152,8 +152,8 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 						server.setIp(ipTextFld.getText());
 						server.setCpuAmount(Integer.parseInt(cpuAmountTextFld.getText()));
 						server.setCpuType(cpuTypeTextFld.getText());
-						server.setRam(Long.parseLong(ramTextFld.getText()));
-						server.setDiskSpace(Long.parseLong(diskSpaceTextFld.getText()));
+						server.setRam(Integer.parseInt(ramTextFld.getText()));
+						server.setDiskSpace(Integer.parseInt(diskSpaceTextFld.getText()));
 						
 						LOG.debug("server hash: " + server.hashCode() + " -> ip: " + server.getIp());
 						LOG.debug("server hash: " + server.hashCode() + " -> cpu amount: " + server.getCpuAmount());

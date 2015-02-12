@@ -387,7 +387,7 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
         </ownedElements>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_5N6sAF60EeS-SYGUQKm2qA" name="ram : ELong = 0" tooltipText="">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_5N6sAF60EeS-SYGUQKm2qA" name="ram : EInt = 0" tooltipText="">
           <target xmi:type="ecore:EAttribute" href="model.ecore#//Server/ram"/>
           <semanticElements xmi:type="ecore:EAttribute" href="model.ecore#//Server/ram"/>
           <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_7Xg1wF60EeS-SYGUQKm2qA" labelAlignment="LEFT">
@@ -398,7 +398,7 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
         </ownedElements>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_8QPNgF60EeS-SYGUQKm2qA" name="diskSpace : ELong = 0" tooltipText="">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_8QPNgF60EeS-SYGUQKm2qA" name="diskSpace : EInt = 0" tooltipText="">
           <target xmi:type="ecore:EAttribute" href="model.ecore#//Server/diskSpace"/>
           <semanticElements xmi:type="ecore:EAttribute" href="model.ecore#//Server/diskSpace"/>
           <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_B2g5gF61EeS-SYGUQKm2qA" labelAlignment="LEFT">

@@ -39,8 +39,7 @@ public class ModelAdapterFactory extends AdapterFactoryImpl
 	 */
 	public ModelAdapterFactory()
 	{
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = ModelPackage.eINSTANCE;
 		}
 	}
@@ -58,12 +57,10 @@ public class ModelAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage)
-		{
+		if (object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject)
-		{
+		if (object instanceof EObject) {
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -75,51 +72,41 @@ public class ModelAdapterFactory extends AdapterFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelSwitch<Adapter>	modelSwitch	= new ModelSwitch<Adapter>()
-		{
+	protected ModelSwitch<Adapter>	modelSwitch	= new ModelSwitch<Adapter>() {
 			@Override
-			public Adapter caseServer(Server object)
-			{
+			public Adapter caseServer(Server object) {
 				return createServerAdapter();
 			}
 			@Override
-			public Adapter caseRack(Rack object)
-			{
+			public Adapter caseRack(Rack object) {
 				return createRackAdapter();
 			}
 			@Override
-			public Adapter caseNetwork(Network object)
-			{
+			public Adapter caseNetwork(Network object) {
 				return createNetworkAdapter();
 			}
 			@Override
-			public Adapter caseRoom(Room object)
-			{
+			public Adapter caseRoom(Room object) {
 				return createRoomAdapter();
 			}
 			@Override
-			public Adapter caseRouter(Router object)
-			{
+			public Adapter caseRouter(Router object) {
 				return createRouterAdapter();
 			}
 			@Override
-			public Adapter caseService(Service object)
-			{
+			public Adapter caseService(Service object) {
 				return createServiceAdapter();
 			}
 			@Override
-			public Adapter caseHadoopMaster(HadoopMaster object)
-			{
+			public Adapter caseHadoopMaster(HadoopMaster object) {
 				return createHadoopMasterAdapter();
 			}
 			@Override
-			public Adapter caseHadoopSlave(HadoopSlave object)
-			{
+			public Adapter caseHadoopSlave(HadoopSlave object) {
 				return createHadoopSlaveAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object)
-			{
+			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};

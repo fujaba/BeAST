@@ -318,8 +318,7 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	 * @generated
 	 */
 	public EList<Server> getServer() {
-		if (server == null)
-		{
+		if (server == null) {
 			server = new EObjectWithInverseResolvingEList<Server>(Server.class, this, ModelPackage.NETWORK__SERVER, ModelPackage.SERVER__NETWORK);
 		}
 		return server;
@@ -333,8 +332,7 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	 * @generated
 	 */
 	public EList<Router> getRouter() {
-		if (router == null)
-		{
+		if (router == null) {
 			router = new EObjectWithInverseResolvingEList.ManyInverse<Router>(Router.class, this, ModelPackage.NETWORK__ROUTER, ModelPackage.ROUTER__NETWORK);
 		}
 		return router;
@@ -401,8 +399,7 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.NETWORK__ROUTER:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRouter()).basicAdd(otherEnd, msgs);
 			case ModelPackage.NETWORK__SERVER:
@@ -421,8 +418,7 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.NETWORK__ROUTER:
 				return ((InternalEList<?>)getRouter()).basicRemove(otherEnd, msgs);
 			case ModelPackage.NETWORK__SERVER:
@@ -441,8 +437,7 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.NETWORK__IP:
 				return getIp();
 			case ModelPackage.NETWORK__SUBNETMASK:
@@ -474,8 +469,7 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.NETWORK__IP:
 				setIp((String)newValue);
 				return;
@@ -516,8 +510,7 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.NETWORK__IP:
 				setIp(IP_EDEFAULT);
 				return;
@@ -556,8 +549,7 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.NETWORK__IP:
 				return IP_EDEFAULT == null ? ip != null : !IP_EDEFAULT.equals(ip);
 			case ModelPackage.NETWORK__SUBNETMASK:

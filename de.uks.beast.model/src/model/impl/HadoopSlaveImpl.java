@@ -64,12 +64,10 @@ public class HadoopSlaveImpl extends ServiceImpl implements HadoopSlave
 	 */
 	public HadoopMaster getMaster()
 	{
-		if (master != null && master.eIsProxy())
-		{
+		if (master != null && master.eIsProxy()) {
 			InternalEObject oldMaster = (InternalEObject)master;
 			master = (HadoopMaster)eResolveProxy(oldMaster);
-			if (master != oldMaster)
-			{
+			if (master != oldMaster) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.HADOOP_SLAVE__MASTER, oldMaster, master));
 			}
@@ -96,8 +94,7 @@ public class HadoopSlaveImpl extends ServiceImpl implements HadoopSlave
 	{
 		HadoopMaster oldMaster = master;
 		master = newMaster;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__MASTER, oldMaster, newMaster);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -111,8 +108,7 @@ public class HadoopSlaveImpl extends ServiceImpl implements HadoopSlave
 	 */
 	public void setMaster(HadoopMaster newMaster)
 	{
-		if (newMaster != master)
-		{
+		if (newMaster != master) {
 			NotificationChain msgs = null;
 			if (master != null)
 				msgs = ((InternalEObject)master).eInverseRemove(this, ModelPackage.HADOOP_MASTER__SLAVE, HadoopMaster.class, msgs);
@@ -133,8 +129,7 @@ public class HadoopSlaveImpl extends ServiceImpl implements HadoopSlave
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.HADOOP_SLAVE__MASTER:
 				if (master != null)
 					msgs = ((InternalEObject)master).eInverseRemove(this, ModelPackage.HADOOP_MASTER__SLAVE, HadoopMaster.class, msgs);
@@ -151,8 +146,7 @@ public class HadoopSlaveImpl extends ServiceImpl implements HadoopSlave
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.HADOOP_SLAVE__MASTER:
 				return basicSetMaster(null, msgs);
 		}
@@ -167,8 +161,7 @@ public class HadoopSlaveImpl extends ServiceImpl implements HadoopSlave
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.HADOOP_SLAVE__MASTER:
 				if (resolve) return getMaster();
 				return basicGetMaster();
@@ -184,8 +177,7 @@ public class HadoopSlaveImpl extends ServiceImpl implements HadoopSlave
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.HADOOP_SLAVE__MASTER:
 				setMaster((HadoopMaster)newValue);
 				return;
@@ -201,8 +193,7 @@ public class HadoopSlaveImpl extends ServiceImpl implements HadoopSlave
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.HADOOP_SLAVE__MASTER:
 				setMaster((HadoopMaster)null);
 				return;
@@ -218,8 +209,7 @@ public class HadoopSlaveImpl extends ServiceImpl implements HadoopSlave
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.HADOOP_SLAVE__MASTER:
 				return master != null;
 		}

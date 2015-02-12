@@ -141,6 +141,7 @@ public class HCDWizard extends Wizard implements INewWizard
 			LOG.error("Cannot save diagramResource!");
 			e.printStackTrace();
 		}
+		
 	}
 	
 	

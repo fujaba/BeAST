@@ -130,12 +130,12 @@ public interface Server extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Ram</em>' attribute.
-	 * @see #setRam(long)
+	 * @see #setRam(int)
 	 * @see model.ModelPackage#getServer_Ram()
 	 * @model
 	 * @generated
 	 */
-	long getRam();
+	int getRam();
 	
 	
 	
@@ -147,10 +147,10 @@ public interface Server extends EObject
 	 * @see #getRam()
 	 * @generated
 	 */
-	void setRam(long value);
-	
-	
-	
+	void setRam(int value);
+
+
+
 	/**
 	 * Returns the value of the '<em><b>Disk Space</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -160,12 +160,12 @@ public interface Server extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Disk Space</em>' attribute.
-	 * @see #setDiskSpace(long)
+	 * @see #setDiskSpace(int)
 	 * @see model.ModelPackage#getServer_DiskSpace()
 	 * @model
 	 * @generated
 	 */
-	long getDiskSpace();
+	int getDiskSpace();
 	
 	
 	
@@ -177,10 +177,10 @@ public interface Server extends EObject
 	 * @see #getDiskSpace()
 	 * @generated
 	 */
-	void setDiskSpace(long value);
-	
-	
-	
+	void setDiskSpace(int value);
+
+
+
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * The default value is <code>"0"</code>.

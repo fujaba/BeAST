@@ -54,8 +54,6 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		super(fp);
 	}
 	
-	
-	
 	@Override
 	public boolean canAdd(final IAddContext context)
 	{
