@@ -11,6 +11,7 @@ import org.eclipse.graphiti.mm.GraphicsAlgorithmContainer;
 import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
+import org.eclipse.graphiti.mm.pictograms.ChopboxAnchor;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
@@ -102,7 +103,8 @@ public class AddHadoopSlaveFeature extends AbstractAddShapeFeature implements Ab
 		link(nameTextShape, hadoopSlave);
 		
 		// add a chopbox anchor to the shape 
-		peCreateService.createChopboxAnchor(containerShape);
+		final ChopboxAnchor anchor = peCreateService.createChopboxAnchor(containerShape);
+		link(anchor, containerShape);
 		
 		// call the layout feature
 		layoutPictogramElement(containerShape);

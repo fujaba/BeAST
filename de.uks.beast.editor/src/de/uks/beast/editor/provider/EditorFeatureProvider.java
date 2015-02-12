@@ -28,6 +28,7 @@ import org.eclipse.graphiti.features.context.IDirectEditingContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.context.IReconnectionContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
+import org.eclipse.graphiti.mm.pictograms.ChopboxAnchor;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
@@ -60,6 +61,7 @@ import de.uks.beast.editor.features.update.UpdateRackObjectFeature;
 import de.uks.beast.editor.features.update.UpdateRoomObjectFeature;
 import de.uks.beast.editor.features.update.UpdateRouterObjectFeature;
 import de.uks.beast.editor.features.update.UpdateServerObjectFeature;
+import de.uks.beast.editor.services.hadoop.add.AddHadoopConnection;
 import de.uks.beast.editor.services.hadoop.add.AddHadoopMasterFeature;
 import de.uks.beast.editor.services.hadoop.add.AddHadoopSlaveFeature;
 
@@ -128,11 +130,21 @@ public class EditorFeatureProvider extends DefaultFeatureProvider
 			return new AddRoomFeature(this);
 		}
 		
-		//TODO: Unterscheidung zwischen AddConnectionFeature und AddHadoopConnectionFeature
 		//connections
 		else if (context instanceof IAddConnectionContext)
 		{
-			return new AddConnectionFeature(this);
+			final IAddConnectionContext cc = (IAddConnectionContext) context;
+			
+			if ((getBusinessObjectForPictogramElement(cc.getSourceAnchor().getParent()) instanceof HadoopMaster)
+					&& (getBusinessObjectForPictogramElement(cc.getTargetAnchor().getParent()) instanceof HadoopSlave))
+			{
+				
+				return new AddHadoopConnection(this);
+			}
+			else
+			{
+				return new AddConnectionFeature(this);
+			}
 		}
 		
 		//services
