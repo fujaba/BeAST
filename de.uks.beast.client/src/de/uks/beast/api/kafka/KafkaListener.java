@@ -48,7 +48,7 @@ public class KafkaListener extends Thread {
 		KafkaStream<byte[], byte[]> stream = consumerMap.get(topic).get(0);
 		ConsumerIterator<byte[], byte[]> it = stream.iterator();
 		while (it.hasNext()) {
-			System.out.println(readMessage(it));
+			logger.debug("kafka polling: " + readMessage(it));
 		}
 		
 		logger.info("should not happen");

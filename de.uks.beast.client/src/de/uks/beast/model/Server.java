@@ -12,7 +12,7 @@ public class Server implements Serializable {
 	private int ram;
 	private int diskSpace;
 
-	public Network getNetwork() {
+	public Network myGetNetwork() {
 		return network;
 	}
 
@@ -52,14 +52,13 @@ public class Server implements Serializable {
 		this.diskSpace = diskSpace;
 	}
 	
-	
-	public String getFlavor() {
-		return "c" + cpu + "r" + ram + "d" + diskSpace;
+	public String buildFlavor() {
+		return "b1.c" + cpu + "r" + ram + "d" + diskSpace;
 	}
 	
 	@Override
 	public String toString() {
-		return "Host:" + host + ", CPU: " + cpu + ", RAM: " + ram + "Disk: " + diskSpace;
+		return "Host:" + host + ", CPU: " + cpu + ", RAM: " + ram + ", Disk: " + diskSpace;
 	}
 	
 }

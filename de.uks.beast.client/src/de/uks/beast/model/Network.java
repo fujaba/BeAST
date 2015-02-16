@@ -16,6 +16,7 @@ public class Network implements Serializable {
 	private String ip;
 	private String subnetmask;
 	private String gateway;
+	private String dns;
 
     public Network() {
     	this.servers = new ArrayList<Server>();
@@ -41,6 +42,10 @@ public class Network implements Serializable {
         return servers;
     }
 
+    public String getDns() {
+		return dns;
+	}
+    
     public void setServers(ArrayList<Server> servers) {
         this.servers = servers;
     }
@@ -65,6 +70,10 @@ public class Network implements Serializable {
     
     public void setGateway(String gateway) {
 		this.gateway = gateway;
+	}
+    
+    public void setDns(String dns) {
+		this.dns = dns;
 	}
    
 }

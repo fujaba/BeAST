@@ -89,16 +89,16 @@ public class OpenstackEnvironment implements BeastEnvironment {
 				boolean flavorExists = false;
 
 				for (Flavor flavor : os.compute().flavors().list()) {
-					if (flavor.getName().equals("b1." + server.getFlavor())) {
+					if (flavor.getName().equals(server.buildFlavor())) {
 						flavorExists = true;
 						flavorID = flavor.getId();
-						logger.info("Using flavor with name b1." + server.getFlavor() + " (" + flavorID + ")");
+						logger.info("Using flavor with name " + server.buildFlavor() + " (" + flavorID + ")");
 					}
 				}
 				
 				if (!flavorExists) {
 					Flavor f = Builders.flavor()
-							.name("b1." + server.getFlavor())
+							.name(server.buildFlavor())
 							.ram(server.getRam())
 							.vcpus(server.getCpu())
 							.disk(server.getDiskSpace())
@@ -107,12 +107,12 @@ public class OpenstackEnvironment implements BeastEnvironment {
 					os.compute().flavors().create(f);
 					
 					for (Flavor flavor : os.compute().flavors().list()) {
-						if (flavor.getName().equals("b1." + server.getFlavor())) {
+						if (flavor.getName().equals(server.buildFlavor())) {
 							flavorID = flavor.getId();
 						}
 					}
 					
-					logger.info("Created new Flavor with name b1." + server.getFlavor()
+					logger.info("Created new Flavor with name " + server.buildFlavor()
 							+ " (" + flavorID + ")");
 				}
 				configs.add(new OpenstackConfiguration(openstacknetwork.getId(), flavorID, server));
@@ -228,6 +228,7 @@ public class OpenstackEnvironment implements BeastEnvironment {
 							.gateway(network.getGateway())
 							.networkId(openstacknetwork.getId())
 							.addPool("192.168.2.2", "192.168.2.254")
+							.addDNSNameServer(network.getDns())
 							.ipVersion(IPVersionType.V4)
 							.cidr(network.getIp() + "/" + 
 									convertNetmaskToCIDR(InetAddress.getByName(network.getSubnetmask())))
