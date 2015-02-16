@@ -10,9 +10,7 @@ Export-Package: de.uks.beast.api,
  de.uks.beast.api.util,
  de.uks.beast.model
 Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: libs/akka-actor_2.10-2.3.9.jar,
- libs/akka-remote_2.10-2.3.9.jar,
- libs/commons-io-2.4.jar,
+Bundle-ClassPath: libs/commons-io-2.4.jar,
  libs/config-1.2.0.jar,
  libs/dom4j-1.6.1.jar,
  libs/log4j-1.2.17.jar,
@@ -30,4 +28,6 @@ Bundle-ClassPath: libs/akka-actor_2.10-2.3.9.jar,
  libs/zookeeper-3.3.4.jar,
  libs/metrics-core-2.2.0.jar,
  libs/slf4j-api-1.7.2.jar,
- libs/slf4j-log4j12-1.7.6.jar
+ libs/slf4j-log4j12-1.7.6.jar,
+ libs/akka-actor_2.10-2.3.9.jar,
+ libs/akka-remote_2.10-2.3.9.jar
