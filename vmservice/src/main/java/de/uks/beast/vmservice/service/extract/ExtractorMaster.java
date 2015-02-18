@@ -11,8 +11,7 @@ public class ExtractorMaster {
 	public ExtractorMaster(String host, KeyListener listener) {
 		this.services = new ArrayList<ExtractorService>();
 		
-		this.services.add(new NOOPTestService(host).withListener(listener));
-//		this.services.add(new MemoryService(host).withListener(listener));
+		this.services.add(new MemoryService(host).withListener(listener));
 //		this.services.add(new CPUService(host).withListener(listener));
 	}
 

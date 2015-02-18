@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
 
+import kafka.admin.AdminUtils;
+import kafka.utils.ZKStringSerializer$;
+
 import org.I0Itec.zkclient.ZkClient;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -16,8 +19,7 @@ import de.uks.beast.model.Hardware;
 import de.uks.beast.server.BeastService;
 import de.uks.beast.server.environment.model.Configuration;
 import de.uks.beast.server.environment.model.ConnectionInfo;
-import kafka.admin.AdminUtils;
-import kafka.utils.ZKStringSerializer$;
+import de.uks.beast.server.kafka.KafkaRemoteLogger;
 
 public class ReceiveActor extends UntypedActor {
 
@@ -58,15 +60,19 @@ public class ReceiveActor extends UntypedActor {
 			
 			getSender().tell(topic + " " + zookeeperCon, getSelf());
 			
+			// create new Kafka topic
+			ZkClient zkClient = new ZkClient(service.get("zookeeper"), 10000, 10000, ZKStringSerializer$.MODULE$);
+			AdminUtils.createTopic(zkClient, topic, 1, 1, new Properties());
+			
+			//create kafka writer
+			KafkaRemoteLogger remoteLogger = new KafkaRemoteLogger(service.get("kafkabroker"), topic);
+			service.setRemoteLogger(remoteLogger);
+			
 			// Create hardware definition
 			List<? extends Configuration> configs = service.getEnvironment().createHardwareDefiniton(hw);
 			
 			// start the VM(s)
 			List<? extends ConnectionInfo> cons = service.getEnvironment().startVirtualMachine(configs);
-			
-			// create new Kafka topic
-			ZkClient zkClient = new ZkClient(service.get("zookeeper"), 10000, 10000, ZKStringSerializer$.MODULE$);
-			AdminUtils.createTopic(zkClient, topic, 1, 1, new Properties());
 			
 			//zkClient.deleteRecursive(ZkUtils.getTopicPath("myTopic"));
 			

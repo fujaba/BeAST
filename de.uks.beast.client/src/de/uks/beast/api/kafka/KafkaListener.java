@@ -17,6 +17,8 @@ import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import de.uks.beast.model.InstanceInformation;
+
 public class KafkaListener extends Thread {
 
 	private static Logger logger = LogManager.getLogger(KafkaListener.class);

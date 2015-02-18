@@ -1,4 +1,4 @@
-package de.uks.beast.api.kafka;
+package de.uks.beast.model;
 
 import java.io.Serializable;
 

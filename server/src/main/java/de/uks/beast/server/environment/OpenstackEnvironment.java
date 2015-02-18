@@ -31,14 +31,16 @@ import de.uks.beast.server.environment.model.Configuration;
 import de.uks.beast.server.environment.model.ConnectionInfo;
 import de.uks.beast.server.environment.model.OpenstackConnectionInfo;
 import de.uks.beast.server.environment.model.OpenstackConfiguration;
+import de.uks.beast.server.kafka.KafkaRemoteLogger;
 import de.uks.beast.server.vm.OpenstackConnection;
 
-public class OpenstackEnvironment implements BeastEnvironment {
+public class OpenstackEnvironment extends BeastEnvironment {
 
 	private static final Logger logger = LogManager.getLogger(OpenstackEnvironment.class);
 	
 	private OSClient os;
 	private final BeastService service;
+	private KafkaRemoteLogger remoteLogger;
 
 	public OpenstackEnvironment(BeastService service) {
 		this.service = service;
@@ -57,7 +59,7 @@ public class OpenstackEnvironment implements BeastEnvironment {
 		try {
 			this.os = OSFactory.builder()
 					.endpoint(service.get("keystone"))
-					.credentials(service.get("admin"), service.get("password"))
+					.credentials(service.get("user"), service.get("password"))
 					.tenantName(service.get("tenantName"))
 					.authenticate();
 		} catch (Exception e) {
@@ -144,6 +146,7 @@ public class OpenstackEnvironment implements BeastEnvironment {
 			Server server = os.compute().servers().boot(sc);
 			
 			logger.info("Starting VM with hostname " + cf.getHost() + " and flavor " + cf.getId() + " ...");
+			remoteLogger.info("Starting VM with hostname " + cf.getHost() + "...");
 			
 			logger.info("Waiting for VM to become active ...");
 			
@@ -160,6 +163,7 @@ public class OpenstackEnvironment implements BeastEnvironment {
 			os.compute().floatingIps().addFloatingIP(server, netFloatingIP.getFloatingIpAddress());
 
 			logger.info("Added floating IP " + netFloatingIP.getFloatingIpAddress() + " to " + cf.getHost());
+			remoteLogger.info("Added floating IP " + netFloatingIP.getFloatingIpAddress() + " to " + cf.getHost());
 			
 			try {
 				Thread.sleep(1000);

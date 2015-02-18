@@ -20,6 +20,7 @@ import com.jcraft.jsch.SftpException;
 
 import de.uks.beast.server.BeastService;
 import de.uks.beast.server.environment.model.OpenstackConnectionInfo;
+import de.uks.beast.server.kafka.KafkaRemoteLogger;
 
 public class OpenstackConnection {
 	
@@ -33,10 +34,12 @@ public class OpenstackConnection {
 	private OpenstackConnectionInfo connectionInfo;
 	private Session session;
 	private BeastService service;
+	private KafkaRemoteLogger remoteLogger;
 
 	public OpenstackConnection(BeastService service, OpenstackConnectionInfo connectionInfo) {
 		this.service = service;
 		this.connectionInfo = connectionInfo;
+		this.remoteLogger = service.getEnvironment().getRemoteLogger();
 	}
 
 	public void authenticate() {
@@ -64,6 +67,7 @@ public class OpenstackConnection {
 					}
 					if (session.isConnected()) {
 						logger.info("[SSH] Connected to VM");
+						remoteLogger.info("Connected to " + connectionInfo.getHostName());
 						break;
 					}
 				}
@@ -90,6 +94,7 @@ public class OpenstackConnection {
 				e.printStackTrace();
 			}
 			logger.info("Deploying beast service on VM ...");
+			remoteLogger.info("Deploying BeAST service to " + connectionInfo.getHostName());
 
 			//create tmp dir
 			Channel c = session.openChannel("exec");
@@ -186,7 +191,8 @@ public class OpenstackConnection {
 
 			channel.disconnect();
 
-		    logger.info("disconnected");
+		    logger.info("Finished with " + connectionInfo.getHostName());
+		    remoteLogger.info(connectionInfo.getHostName() + " is alive.");
 		} catch (Exception e) {
 			logger.error("Unexpected Exception", e);
 		}

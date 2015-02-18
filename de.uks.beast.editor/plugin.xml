@@ -115,5 +115,29 @@
     </wizard>
  </extension>
  
-	
+ <!-- <extension point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="de.uks.beast.editor.action.ExitHandler"
+            id="de.uks.beast.editor.action.terminate"
+            name="Terminate">
+      </command>
+   </extension>
+ 
+ <extension point="org.eclipse.ui.menus">
+	<menuContribution allPopups="false" locationURI="toolbar:org.eclipse.ui.console.ConsoleView">
+		<toolbar
+               id="org.eclipse.run.ui.launchActionSet">
+         </toolbar>
+		<command 
+			commandId="de.uks.beast.editor.action.terminate"
+            icon="platform:/plugin/de.uks.beast.editor/icons/sample.gif"
+            label="%Terminate"
+            style="push">
+            <visibleWhen
+                  checkEnabled="false">
+            </visibleWhen>
+        </command>
+    </menuContribution>
+ </extension> -->
+ 
 </plugin>

@@ -25,4 +25,15 @@ public class Hardware implements Serializable {
 	public void addToNetworks(Network network) {
 		this.networks.add(network);
 	}
+
+	public Server serverFromHostName(String host) {
+		for (Network network : networks) {
+			for (Server server : network.getServers()) {
+				if (server.getHost().equals(host)) {
+					return server;
+				}
+			}
+		}
+		return null;
+	}
 }
