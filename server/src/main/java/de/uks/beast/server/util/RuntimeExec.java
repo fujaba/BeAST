@@ -13,18 +13,16 @@ public class RuntimeExec {
         final BufferedReader is = new BufferedReader(new InputStreamReader(process.getInputStream()));
         
         String line;
-        System.out.println("----");
-
         while ((line = is.readLine()) != null) {
+            // TODO: logger
             System.out.println(line);
         }
-        System.out.println("====");
 
         System.out.flush();
         try {
             process.waitFor(); // wait for process to complete
         } catch (InterruptedException e) {
-            System.err.println(e); // "Can't Happen"
+            System.err.println(e); // Can't Happen
             return;
         }
         System.err.println("Process done, exit status was " + process.exitValue());

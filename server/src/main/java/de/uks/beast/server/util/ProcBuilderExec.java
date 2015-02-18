@@ -15,16 +15,17 @@ public class ProcBuilderExec {
             final Map<String, String> env = pb.environment();
             final Process process = pb.start();
             
-            InputStream is = process.getInputStream();
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            final InputStream is = process.getInputStream();
+            final BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            
             String line;
-            System.out.println("----");
             
             while ((line = br.readLine()) != null) {
+                // TODO: logger
                 System.out.println(line);
             }
 
-            //Wait to get exit value
+            // Wait to get exit value
             try {
                 int exitValue = process.waitFor();
                 System.out.println("\n\nExit Value is " + exitValue);
@@ -32,9 +33,9 @@ public class ProcBuilderExec {
                 System.err.println("Error.");
             }
 
-            System.out.println("====");
-
-        } catch (Exception e) {System.out.println("exception");}
+        } catch (Exception e) {
+            System.out.println("Exception in ProcBuilderExec");
+        }
     }
 
 }
