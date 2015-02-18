@@ -15,16 +15,22 @@ import kafka.message.MessageAndMetadata;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class KafkaListener extends Thread {
 
 	private static Logger logger = LogManager.getLogger(KafkaListener.class);
 	
+	private ObjectMapper mapper;
+	private KeyListener listener;
 	private ConsumerConnector consumer;
 	private String topic;
 
-	public KafkaListener(String zookeeper, String topic) {
-		String groupID = "de.uks.beast";
+	public KafkaListener(KeyListener listener, String zookeeper, String topic) {
+		this.mapper = new ObjectMapper();
+		this.listener = listener;
 		this.topic = topic;
+		String groupID = "de.uks.beast";
 		
 		Properties props = new Properties();
 		props.put("zookeeper.connect", zookeeper);
@@ -48,16 +54,16 @@ public class KafkaListener extends Thread {
 		KafkaStream<byte[], byte[]> stream = consumerMap.get(topic).get(0);
 		ConsumerIterator<byte[], byte[]> it = stream.iterator();
 		while (it.hasNext()) {
-			logger.debug("kafka polling: " + readMessage(it));
+			listener.onNewKey(readMessage(it));
 		}
 		
 		logger.info("should not happen");
 	}
 
-	private String readMessage(ConsumerIterator<byte[], byte[]> it) {
+	private InstanceInformation readMessage(ConsumerIterator<byte[], byte[]> it) {
 		MessageAndMetadata<byte[], byte[]> next = it.next();
 		try {
-			return new String(next.message(), "UTF-8");
+			return mapper.readValue(next.message(), InstanceInformation.class);
 		} catch (Exception e) {
 			logger.error("Could not parse event", e);
 			System.exit(0);

@@ -6,19 +6,20 @@ import java.util.TimerTask;
 import org.hyperic.sigar.Sigar;
 
 import de.uks.beast.vmservice.service.kafka.KeyListener;
-import de.uks.beast.vmservice.service.model.HasKey;
+import de.uks.beast.vmservice.service.model.InstanceInformation;
 
-@SuppressWarnings("rawtypes")
 public abstract class ExtractorService extends TimerTask {
 
 	protected ArrayList<KeyListener> listeners = new ArrayList<KeyListener>();
 	
 	protected Sigar sigar;
-	protected ArrayList<HasKey> keys;
+	protected String host;
+	protected ArrayList<InstanceInformation> keys;
 	
-	public ExtractorService() {
+	public ExtractorService(String host) {
 		this.sigar = new Sigar();
-		this.keys = new ArrayList<HasKey>();
+		this.host = host;
+		this.keys = new ArrayList<InstanceInformation>();
 	}
 	
 	public abstract void extract();
@@ -42,7 +43,7 @@ public abstract class ExtractorService extends TimerTask {
         listeners.add(listener);
     }
 	
-	public ArrayList<HasKey> getKeys() {
+	public ArrayList<InstanceInformation> getKeys() {
 		return keys;
 	}
 	

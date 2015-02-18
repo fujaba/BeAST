@@ -19,6 +19,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import de.uks.beast.api.BeastTestScenario;
 import de.uks.beast.api.TestEnvironment;
 import de.uks.beast.api.kafka.KafkaListener;
+import de.uks.beast.editor.action.update.DiagramUpdateMaster;
 import de.uks.beast.editor.provider.EditorDiagramTypeProvider;
 import de.uks.beast.model.Hardware;
 import de.uks.beast.model.Network;
@@ -76,7 +77,8 @@ public class BeASTAction implements IObjectActionDelegate
 		
 		String[] metadata = kafkaInfos.split(" ");
 		
-		KafkaListener listener = new KafkaListener(metadata[1].trim(), metadata[0].trim());
+		DiagramUpdateMaster updateMaster = new DiagramUpdateMaster(diagram);
+		KafkaListener listener = new KafkaListener(updateMaster, metadata[1].trim(), metadata[0].trim());
 		listener.start();
 	}
 	

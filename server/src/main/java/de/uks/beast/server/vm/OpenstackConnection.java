@@ -178,7 +178,7 @@ public class OpenstackConnection {
 
 			ps.println("nohup java -classpath /tmp/beast/util/bservice.jar:/tmp/beast/util/libs/*" +
 		    		" -Djava.library.path=/tmp/beast/util/libs/native" +
-		    		" de.uks.beast.vmservice.VMService " + kafkabroker + " " + topic + " &");
+		    		" de.uks.beast.vmservice.VMService " + connectionInfo.getHostName() + " " + kafkabroker + " " + topic + " &");
 			ps.close();
 
 			// wait till executed

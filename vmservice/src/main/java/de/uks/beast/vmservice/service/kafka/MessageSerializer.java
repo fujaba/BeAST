@@ -6,10 +6,9 @@ import kafka.utils.VerifiableProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.uks.beast.vmservice.service.model.HasKey;
+import de.uks.beast.vmservice.service.model.InstanceInformation;
 
-@SuppressWarnings("rawtypes")
-public class MessageSerializer implements Encoder<HasKey> {
+public class MessageSerializer implements Encoder<InstanceInformation> {
 
 	private ObjectMapper objectMapper;
 
@@ -17,7 +16,7 @@ public class MessageSerializer implements Encoder<HasKey> {
 		this.objectMapper = new ObjectMapper();
 	}
 	
-	public byte[] toBytes(HasKey msg) {
+	public byte[] toBytes(InstanceInformation msg) {
         try {
             return objectMapper.writeValueAsString(msg).getBytes();
         } catch (JsonProcessingException e) {

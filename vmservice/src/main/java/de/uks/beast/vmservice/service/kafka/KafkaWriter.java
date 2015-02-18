@@ -6,12 +6,11 @@ import java.util.Properties;
 import kafka.javaapi.producer.Producer;
 import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;
-import de.uks.beast.vmservice.service.model.HasKey;
+import de.uks.beast.vmservice.service.model.InstanceInformation;
 
-@SuppressWarnings("rawtypes")
 public class KafkaWriter implements KeyListener {
 
-	private Producer<String, HasKey> producer;
+	private Producer<String, InstanceInformation> producer;
 	private String topic;
 
 	public KafkaWriter(String broker, String topic) {
@@ -24,12 +23,12 @@ public class KafkaWriter implements KeyListener {
 		props.put("request.required.acks", "1");
 		 
 		ProducerConfig config = new ProducerConfig(props);
-		producer = new Producer<String, HasKey>(config);
+		producer = new Producer<String, InstanceInformation>(config);
 	}
 
-	public void onNewKeys(ArrayList<HasKey> keys) {
-		for (HasKey key : keys) {
-			producer.send(new KeyedMessage<String, HasKey>(topic, key));
+	public void onNewKeys(ArrayList<InstanceInformation> keys) {
+		for (InstanceInformation key : keys) {
+			producer.send(new KeyedMessage<String, InstanceInformation>(topic, key));
 		}
 	}
 

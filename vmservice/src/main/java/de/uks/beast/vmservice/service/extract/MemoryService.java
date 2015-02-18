@@ -3,9 +3,13 @@ package de.uks.beast.vmservice.service.extract;
 import org.hyperic.sigar.Mem;
 import org.hyperic.sigar.SigarException;
 
-import de.uks.beast.vmservice.service.model.StringLongPair;
+import de.uks.beast.vmservice.service.model.InstanceInformation;
 
 public class MemoryService extends ExtractorService {
+
+	public MemoryService(String host) {
+		super(host);
+	}
 
 	@Override
 	public void extract() {
@@ -13,10 +17,10 @@ public class MemoryService extends ExtractorService {
 		
 		try {
 			Mem mem = sigar.getMem();
-			keys.add(new StringLongPair("Total", mem.getTotal()));
-			keys.add(new StringLongPair("Ram", mem.getRam()));
-			keys.add(new StringLongPair("Free", mem.getActualFree()));
-			keys.add(new StringLongPair("Used", mem.getActualUsed()));
+			keys.add(new InstanceInformation(host, "mem-total", "" + mem.getTotal()));
+			keys.add(new InstanceInformation(host, "mem-ram", "" + mem.getRam()));
+			keys.add(new InstanceInformation(host, "mem-free", "" + mem.getActualFree()));
+			keys.add(new InstanceInformation(host, "mem-used", "" + mem.getActualUsed()));
 		} catch (SigarException e) {
 			e.printStackTrace();
 		}

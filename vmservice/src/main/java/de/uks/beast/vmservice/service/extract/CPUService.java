@@ -8,6 +8,10 @@ import org.hyperic.sigar.SigarLoader;
 
 public class CPUService extends ExtractorService {
 
+	public CPUService(String host) {
+		super(host);
+	}
+
 	@Override
 	public void extract() {
 		try {

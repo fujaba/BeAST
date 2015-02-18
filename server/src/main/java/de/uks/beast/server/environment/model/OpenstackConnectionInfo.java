@@ -6,10 +6,12 @@ import java.io.IOException;
 
 public class OpenstackConnectionInfo extends ConnectionInfo {
 
+	private String host;
 	private String ip;
 	private File privateKeyFile;
 
-	public OpenstackConnectionInfo(String floatingIpAddress, String privateKey) {
+	public OpenstackConnectionInfo(String host, String floatingIpAddress, String privateKey) {
+		this.host = host;
 		this.ip = floatingIpAddress;
 		
 		try {
@@ -34,6 +36,10 @@ public class OpenstackConnectionInfo extends ConnectionInfo {
 	
 	public File getPrivateKeyFile() {
 		return privateKeyFile;
+	}
+
+	public String getHostName() {
+		return host;
 	}
 
 }

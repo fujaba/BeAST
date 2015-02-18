@@ -21,7 +21,7 @@ public class VMService {
 		logger.info("Started VM service");
 		Timer timer = new Timer();
 		
-		ExtractorMaster em = new ExtractorMaster(new KafkaWriter(args[0], args[1]));
+		ExtractorMaster em = new ExtractorMaster(args[0], new KafkaWriter(args[1], args[2]));
 		
 		for (ExtractorService service : em.getServices()) {
 			timer.schedule(service, 0, 2000);

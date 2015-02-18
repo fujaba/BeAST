@@ -167,7 +167,7 @@ public class OpenstackEnvironment implements BeastEnvironment {
 				e.printStackTrace();
 			}
 			
-			cons.add(new OpenstackConnectionInfo(netFloatingIP.getFloatingIpAddress(), kp.getPrivateKey()));
+			cons.add(new OpenstackConnectionInfo(cf.getHost(), netFloatingIP.getFloatingIpAddress(), kp.getPrivateKey()));
 		}
 		
 		return cons;
