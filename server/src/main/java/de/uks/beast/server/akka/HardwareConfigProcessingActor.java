@@ -21,14 +21,14 @@ import de.uks.beast.server.environment.model.Configuration;
 import de.uks.beast.server.environment.model.ConnectionInfo;
 import de.uks.beast.server.kafka.KafkaRemoteLogger;
 
-public class ReceiveActor extends UntypedActor {
+public class HardwareConfigProcessingActor extends UntypedActor {
 
-	private static Logger logger = LogManager.getLogger(ReceiveActor.class);
+	private static Logger logger = LogManager.getLogger(HardwareConfigProcessingActor.class);
 
 	private BeastService service;
 	private ObjectMapper objectMapper;
 
-	public ReceiveActor(BeastService service) {
+	public HardwareConfigProcessingActor(BeastService service) {
 		this.service = service;
 		this.objectMapper = new ObjectMapper();
 	}
@@ -54,10 +54,15 @@ public class ReceiveActor extends UntypedActor {
 		}
 
 		if (service.getEnvironment().isAuthenticated()) {
-			//send metadata to client
+			//generate a topic id
 			String topic = UUID.randomUUID().toString();
-			String zookeeperCon = "141.51.169.20:4415";
+			String zookeeperCon = service.get("zookeeper-portforward");
 			
+			if (zookeeperCon == null) {
+				zookeeperCon = service.get("zookeeper");
+			}
+			
+			//send metadata to client
 			getSender().tell(topic + " " + zookeeperCon, getSelf());
 			
 			// create new Kafka topic

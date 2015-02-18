@@ -20,7 +20,6 @@ public class MessageSerializer implements Encoder<InstanceInformation> {
         try {
             return objectMapper.writeValueAsString(msg).getBytes();
         } catch (JsonProcessingException e) {
-            //TODO
         }
         return "".getBytes();
 	}

@@ -1,8 +1,10 @@
 package de.uks.beast.server;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.InetAddress;
+import java.net.URISyntaxException;
 import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Properties;
@@ -29,10 +31,18 @@ public class BeastService {
 	private void startService() {
 		this.props = new Properties();
 		
-		InputStream in = BeastService.class.getResourceAsStream("/config.properties");
+		String pathToConf = "";
 		
 		try {
-			this.props.load(in);
+			String full = new File(BeastService.class.getProtectionDomain().getCodeSource()
+					.getLocation().toURI().getPath()).getAbsolutePath();
+			pathToConf = full.substring(0, full.lastIndexOf("/")) + "/conf/config.properties";
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			this.props.load(new FileInputStream(new File(pathToConf)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

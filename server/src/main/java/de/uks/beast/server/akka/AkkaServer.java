@@ -26,7 +26,7 @@ public class AkkaServer {
 
 	public void start() {
 		this.actorSystem = ActorSystem.create("AkkaServer", cfg);
-		actorSystem.actorOf(Props.create(ReceiveActor.class, service), "ServerActor");
+		actorSystem.actorOf(Props.create(HardwareConfigProcessingActor.class, service), "ServerActor");
 	}
 	
 }

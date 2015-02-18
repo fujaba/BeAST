@@ -229,7 +229,7 @@ public class OpenstackEnvironment extends BeastEnvironment {
 							.tenantId(tenantId)
 							.gateway(network.getGateway())
 							.networkId(openstacknetwork.getId())
-							.addPool("192.168.2.2", "192.168.2.254")
+							.addPool(getStartOfPool(network.getIp()), getEndOfPool(network.getIp()))
 							.addDNSNameServer(network.getDns())
 							.ipVersion(IPVersionType.V4)
 							.cidr(network.getIp() + "/" + 
@@ -254,6 +254,15 @@ public class OpenstackEnvironment extends BeastEnvironment {
 		return openstacknetwork;
 	}
 	
+	private static String getStartOfPool(String ip) {
+		return ip.substring(0, ip.lastIndexOf(".")) + ".2";
+	}
+	
+	private static String getEndOfPool(String ip) {
+		return ip.substring(0, ip.lastIndexOf(".")) + ".254";
+	}
+
+
 	private FloatingIP getFloatingIP() {
 		for (FloatingIP ip : os.compute().floatingIps().list()) {
 			if (ip.getFixedIpAddress() == null) {
