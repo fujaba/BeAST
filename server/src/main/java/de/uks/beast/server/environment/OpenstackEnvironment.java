@@ -29,9 +29,8 @@ import de.uks.beast.model.Hardware;
 import de.uks.beast.server.BeastService;
 import de.uks.beast.server.environment.model.Configuration;
 import de.uks.beast.server.environment.model.ConnectionInfo;
-import de.uks.beast.server.environment.model.OpenstackConnectionInfo;
 import de.uks.beast.server.environment.model.OpenstackConfiguration;
-import de.uks.beast.server.kafka.KafkaRemoteLogger;
+import de.uks.beast.server.environment.model.OpenstackConnectionInfo;
 import de.uks.beast.server.vm.OpenstackConnection;
 
 public class OpenstackEnvironment extends BeastEnvironment {
@@ -40,7 +39,6 @@ public class OpenstackEnvironment extends BeastEnvironment {
 	
 	private OSClient os;
 	private final BeastService service;
-	private KafkaRemoteLogger remoteLogger;
 
 	public OpenstackEnvironment(BeastService service) {
 		this.service = service;
@@ -163,7 +161,7 @@ public class OpenstackEnvironment extends BeastEnvironment {
 			os.compute().floatingIps().addFloatingIP(server, netFloatingIP.getFloatingIpAddress());
 
 			logger.info("Added floating IP " + netFloatingIP.getFloatingIpAddress() + " to " + cf.getHost());
-			remoteLogger.info("Added floating IP " + netFloatingIP.getFloatingIpAddress() + " to " + cf.getHost());
+			remoteLogger.info(cf.getHost() + " got public IP address: " + netFloatingIP.getFloatingIpAddress());
 			
 			try {
 				Thread.sleep(1000);
@@ -263,15 +261,6 @@ public class OpenstackEnvironment extends BeastEnvironment {
 			}
 		}
 		return null;
-	}
-	
-	public static void main(String[] args) {
-		try {
-			System.out.println(convertNetmaskToCIDR(InetAddress.getByName("255.255.255.0")));
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	public static int convertNetmaskToCIDR(InetAddress netmask){

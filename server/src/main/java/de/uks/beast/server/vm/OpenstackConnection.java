@@ -33,11 +33,9 @@ public class OpenstackConnection {
 
 	private OpenstackConnectionInfo connectionInfo;
 	private Session session;
-	private BeastService service;
 	private KafkaRemoteLogger remoteLogger;
 
 	public OpenstackConnection(BeastService service, OpenstackConnectionInfo connectionInfo) {
-		this.service = service;
 		this.connectionInfo = connectionInfo;
 		this.remoteLogger = service.getEnvironment().getRemoteLogger();
 	}
@@ -94,7 +92,7 @@ public class OpenstackConnection {
 				e.printStackTrace();
 			}
 			logger.info("Deploying beast service on VM ...");
-			remoteLogger.info("Deploying BeAST service to " + connectionInfo.getHostName());
+			remoteLogger.info("Deploying BeAST service on instance " + connectionInfo.getHostName());
 
 			//create tmp dir
 			Channel c = session.openChannel("exec");
@@ -150,7 +148,8 @@ public class OpenstackConnection {
 	public void executeService(String kafkabroker, String topic) {
 		try {
 			//edit /etc/hosts
-			String hostname = service.get("kafkahosts");
+			String hostname = getHostname(kafkabroker);
+			kafkabroker = kafkabroker.substring(kafkabroker.indexOf("/") + 1);
 			
 			Channel c = session.openChannel("exec");
 		    ChannelExec edit_host = (ChannelExec) c;
@@ -196,6 +195,12 @@ public class OpenstackConnection {
 		} catch (Exception e) {
 			logger.error("Unexpected Exception", e);
 		}
+	}
+	
+	private String getHostname(String kafkabroker) {
+		String host = kafkabroker.substring(0, kafkabroker.indexOf("/"));
+		String ip = kafkabroker.substring(kafkabroker.indexOf("/") + 1, kafkabroker.indexOf(":"));
+		return ip + ":" + host;
 	}
 
 	private void mkdir(String dest) {

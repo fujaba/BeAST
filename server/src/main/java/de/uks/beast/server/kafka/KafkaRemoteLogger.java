@@ -19,7 +19,7 @@ public class KafkaRemoteLogger {
 		
 		Properties props = new Properties();
 		 
-		props.put("metadata.broker.list", broker);
+		props.put("metadata.broker.list", broker.substring(broker.indexOf("/") + 1));
 		props.put("serializer.class", "de.uks.beast.server.kafka.MessageSerializer");
 		props.put("request.required.acks", "1");
 		 
