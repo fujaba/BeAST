@@ -8,7 +8,7 @@ public class RuntimeExec {
 
     final static Runtime r = Runtime.getRuntime();
 
-    public static void run(String command) throws IOException {
+    public static int run(String command) throws IOException {
         final Process process = r.exec(command);
         final BufferedReader is = new BufferedReader(new InputStreamReader(process.getInputStream()));
         
@@ -23,8 +23,9 @@ public class RuntimeExec {
             process.waitFor(); // wait for process to complete
         } catch (InterruptedException e) {
             System.err.println(e); // Can't Happen
-            return;
+            return -1;
         }
         System.err.println("Process done, exit status was " + process.exitValue());
+        return process.exitValue();
     }
 }
