@@ -188,41 +188,45 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				for (Shape shape : getDiagram().getChildren())
+				for (final Shape shape : getDiagram().getChildren())
 				{
-					
-					final EObject[] objects = Graphiti.getLinkService().getAllBusinessObjectsForLinkedPictogramElement(shape);
-					
-					if (objects[0] instanceof Room)
+					if (Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(shape) instanceof Room)
 					{
-						for (EObject e : objects[0].eContents())
-						{
-							if (e instanceof Rack)
-							{
-								for (EObject ee : e.eContents())
-								{
-									if (ee instanceof Server)
-									{
-										for (PictogramElement pe : Graphiti.getLinkService().getPictogramElements(getDiagram(),
-												ee))
-										{
-											if (PropertyUtil.isAttributeShape(pe, RAM_STAT))
-											{
-												final org.eclipse.graphiti.mm.algorithms.Text text = (org.eclipse.graphiti.mm.algorithms.Text) pe
-														.getGraphicsAlgorithm();
-												final Thread t1 = new Thread(new TestStats(text));
-												if (!t1.isAlive())
-												{
-													t1.start();
-												}
-												
-											}
-										}
-									}
-								}
-							}
-						}
+						shape.
+						
 					}
+//					final EObject[] objects = Graphiti.getLinkService().getAllBusinessObjectsForLinkedPictogramElement(shape);
+//					
+//					if (objects[0] instanceof Room)
+//					{
+//						for (EObject e : objects[0].eContents())
+//						{
+//							if (e instanceof Rack)
+//							{
+//								for (EObject ee : e.eContents())
+//								{
+//									if (ee instanceof Server)
+//									{
+//										for (PictogramElement pe : Graphiti.getLinkService().getPictogramElements(getDiagram(),
+//												ee))
+//										{
+//											if (PropertyUtil.isAttributeShape(pe, RAM_STAT))
+//											{
+//												final org.eclipse.graphiti.mm.algorithms.Text text = (org.eclipse.graphiti.mm.algorithms.Text) pe
+//														.getGraphicsAlgorithm();
+////												final Thread t1 = new Thread(new TestStats(text));
+////												if (!t1.isAlive())
+////												{
+////													t1.start();
+////												}
+//												
+//											}
+//										}
+//									}
+//								}
+//							}
+//						}
+//					}
 				}
 				
 			}
