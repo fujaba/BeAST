@@ -10,22 +10,22 @@ import java.util.HashMap;
 import java.util.Properties;
 
 import de.uks.beast.server.akka.AkkaServer;
-import de.uks.beast.server.environment.BeastEnvironment;
+import de.uks.beast.server.environment.CloudEnvironment;
 import de.uks.beast.server.environment.OpenstackEnvironment;
 import de.uks.beast.server.kafka.KafkaRemoteLogger;
 
 public class BeastService {
 
 	private Properties props;
-	private BeastEnvironment environment;
-	private HashMap<String, BeastEnvironment> environments;
+	private CloudEnvironment environment;
+	private HashMap<String, CloudEnvironment> environments;
 	
 	public static void main(String[] args) {
 		new BeastService().startService();
 	}
 	
 	public BeastService() {
-		this.environments = new HashMap<String, BeastEnvironment>();
+		this.environments = new HashMap<String, CloudEnvironment>();
 	}
 	
 	private void startService() {
@@ -70,7 +70,7 @@ public class BeastService {
 		return props.getProperty(key);
 	}
 	
-	public BeastEnvironment getEnvironment() {
+	public CloudEnvironment getEnvironment() {
 		return environment;
 	}
 
