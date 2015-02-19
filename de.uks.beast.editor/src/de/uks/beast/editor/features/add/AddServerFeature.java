@@ -1,6 +1,6 @@
 package de.uks.beast.editor.features.add;
 
-import static de.uks.beast.editor.util.Constants.*;
+import static de.uks.beast.editor.util.StringConstants.*;
 import model.Rack;
 import model.Server;
 

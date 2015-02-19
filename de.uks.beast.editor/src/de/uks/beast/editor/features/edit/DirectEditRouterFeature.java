@@ -11,7 +11,7 @@ import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
-import static de.uks.beast.editor.util.Constants.*;
+import static de.uks.beast.editor.util.StringConstants.*;
 
 public class DirectEditRouterFeature extends AbstractDirectEditingFeature implements IDirectEditingFeature
 {

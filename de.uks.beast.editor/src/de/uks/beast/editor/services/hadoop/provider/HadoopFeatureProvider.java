@@ -1,6 +1,6 @@
 package de.uks.beast.editor.services.hadoop.provider;
 
-import static de.uks.beast.editor.util.Constants.*;
+import static de.uks.beast.editor.util.StringConstants.*;
 
 import java.util.ArrayList;
 import java.util.List;

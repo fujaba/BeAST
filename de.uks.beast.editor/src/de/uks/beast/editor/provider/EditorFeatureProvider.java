@@ -1,11 +1,11 @@
 package de.uks.beast.editor.provider;
 
-import static de.uks.beast.editor.util.Constants.CONNECTION;
-import static de.uks.beast.editor.util.Constants.NETWORK;
-import static de.uks.beast.editor.util.Constants.ROUTER;
-import static de.uks.beast.editor.util.Constants.SERVER;
-import static de.uks.beast.editor.util.Constants.SERVER_RACK;
-import static de.uks.beast.editor.util.Constants.SERVER_ROOM;
+import static de.uks.beast.editor.util.StringConstants.CONNECTION;
+import static de.uks.beast.editor.util.StringConstants.NETWORK;
+import static de.uks.beast.editor.util.StringConstants.ROUTER;
+import static de.uks.beast.editor.util.StringConstants.SERVER;
+import static de.uks.beast.editor.util.StringConstants.SERVER_RACK;
+import static de.uks.beast.editor.util.StringConstants.SERVER_ROOM;
 import model.HadoopMaster;
 import model.HadoopSlave;
 import model.Network;

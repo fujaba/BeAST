@@ -1,6 +1,6 @@
 package de.uks.beast.editor.util;
 
-public enum Constants
+public enum StringConstants
 {
 	//@formatter:off
 	// Main
@@ -86,12 +86,12 @@ public enum Constants
 	LINE_BREAK_WARNING			("Line breakes are not allowed in class names!", 	""),
 	
 	//images
-	HADOOP_MASTER_IMAGE_PATH	("icons/hadoop_master.png",		"de.uks.beast.editor.hadoop_master"),
-	HADOOP_SLAVE_IMAGE_PATH		("icons/hadoop_slave.png",		"de.uks.beast.editor.hadoop_slave"),
-	MYSQL_IMAGE_PATH			("",""),
-	CASSANDRA_IMAGE_PATH		("",""),
-	MONGO_DB_IMAGE_PATH			("",""),
-	
+	HADOOP_MASTER_IMAGE		("icons/hadoop_master.png",		"de.uks.beast.editor.hadoop_master"),
+	HADOOP_SLAVE_IMAGE		("icons/hadoop_slave.png",		"de.uks.beast.editor.hadoop_slave"),
+	MYSQL_IMAGE				("icons/mysql.png",				"de.uks.beast.editor.mysql"),
+	MONGO_DB_IMAGE			("icons/mongo_db_png",			"de.uks.beast.editor.mongo_db"),
+	WORDPRESS_IMAGE			("icons/wordpress.png",			"de.uks.beast.editor.wordpress"),
+	CASSANDRA_IMAGE			("icons/cassandra.png",			"de.uks.beast.editor.cassandra")		
 	;//@formatter:on
 	
 	private final String	text;
@@ -99,7 +99,7 @@ public enum Constants
 	
 	
 	
-	private Constants(final String text, final String description)
+	private StringConstants(final String text, final String description)
 	{
 		this.text = text;
 		this.description = description;

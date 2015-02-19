@@ -5,7 +5,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-import de.uks.beast.editor.util.Constants;
+import de.uks.beast.editor.util.StringConstants;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -71,6 +71,6 @@ public class Activator extends AbstractUIPlugin
 	 */
 	public static ImageDescriptor getImageDescriptor(final String path)
 	{
-		return imageDescriptorFromPlugin(Constants.PLUGIN_ID.text(), path);
+		return imageDescriptorFromPlugin(StringConstants.PLUGIN_ID.text(), path);
 	}
 }

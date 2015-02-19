@@ -14,7 +14,7 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 
-import de.uks.beast.editor.util.Constants;
+import de.uks.beast.editor.util.StringConstants;
 
 public class AddHadoopSlaveFeature extends AbstractAddShapeFeature
 {
@@ -54,7 +54,7 @@ public class AddHadoopSlaveFeature extends AbstractAddShapeFeature
 		
 		final IGaService gaService = Graphiti.getGaService();
 		
-		final Image image = gaService.createImage(containerShape, Constants.HADOOP_SLAVE_IMAGE_PATH.getImageID());
+		final Image image = gaService.createImage(containerShape, StringConstants.HADOOP_SLAVE_IMAGE.getImageID());
 		gaService.setLocationAndSize(image, context.getX(), context.getY(), context.getWidth(), context.getHeight());
 		
 		// if added Class has no resource we add it to the resource

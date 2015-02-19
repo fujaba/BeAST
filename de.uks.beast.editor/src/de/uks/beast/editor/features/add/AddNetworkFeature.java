@@ -1,17 +1,17 @@
 package de.uks.beast.editor.features.add;
 
-import static de.uks.beast.editor.util.Constants.DNS;
-import static de.uks.beast.editor.util.Constants.DNS_LABEL;
-import static de.uks.beast.editor.util.Constants.GATEWAY;
-import static de.uks.beast.editor.util.Constants.GATEWAY_LABEL;
-import static de.uks.beast.editor.util.Constants.ID;
-import static de.uks.beast.editor.util.Constants.ID_LABEL;
-import static de.uks.beast.editor.util.Constants.IP;
-import static de.uks.beast.editor.util.Constants.IP_LABEL;
-import static de.uks.beast.editor.util.Constants.NAME;
-import static de.uks.beast.editor.util.Constants.NETWORK;
-import static de.uks.beast.editor.util.Constants.SUBNET_MASK;
-import static de.uks.beast.editor.util.Constants.SUBNET_MASK_LABEL;
+import static de.uks.beast.editor.util.StringConstants.DNS;
+import static de.uks.beast.editor.util.StringConstants.DNS_LABEL;
+import static de.uks.beast.editor.util.StringConstants.GATEWAY;
+import static de.uks.beast.editor.util.StringConstants.GATEWAY_LABEL;
+import static de.uks.beast.editor.util.StringConstants.ID;
+import static de.uks.beast.editor.util.StringConstants.ID_LABEL;
+import static de.uks.beast.editor.util.StringConstants.IP;
+import static de.uks.beast.editor.util.StringConstants.IP_LABEL;
+import static de.uks.beast.editor.util.StringConstants.NAME;
+import static de.uks.beast.editor.util.StringConstants.NETWORK;
+import static de.uks.beast.editor.util.StringConstants.SUBNET_MASK;
+import static de.uks.beast.editor.util.StringConstants.SUBNET_MASK_LABEL;
 import model.Network;
 
 import org.eclipse.graphiti.features.IDirectEditingInfo;
