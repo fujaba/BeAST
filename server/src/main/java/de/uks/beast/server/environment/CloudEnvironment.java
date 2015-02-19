@@ -7,9 +7,13 @@ import de.uks.beast.model.Hardware;
 import de.uks.beast.server.environment.model.Configuration;
 import de.uks.beast.server.environment.model.ConnectionInfo;
 import de.uks.beast.server.kafka.KafkaRemoteLogger;
+import de.uks.beast.server.service.ServiceEnvironment;
 
-public abstract class BeastEnvironment {
+public abstract class CloudEnvironment {
 
+	/** User specified environment for service orchestration */
+	protected ServiceEnvironment serviceEnvironment;
+	
 	/** remote logger; writes log information to kafka */
 	protected KafkaRemoteLogger remoteLogger;
 	
