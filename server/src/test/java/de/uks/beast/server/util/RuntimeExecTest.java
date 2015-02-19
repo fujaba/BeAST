@@ -11,28 +11,26 @@ import static org.junit.Assert.*;
 public class RuntimeExecTest {
     
     public static final int PROCESS_EXIT_STATUS_OK = 0;
+    public static final int PROCESS_EXIT_STATUS_NOT_OK = -1;
     
     public RuntimeExecTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
+    @BeforeClass public static void setUpClass() {
     }
     
-    @AfterClass
-    public static void tearDownClass() {
+    @AfterClass public static void tearDownClass() {
     }
     
-    @Before
-    public void setUp() {
+    @Before public void setUp() {
     }
     
-    @After
-    public void tearDown() {
+    @After public void tearDown() {
     }
 
     /**
      * Test of run method, of class RuntimeExec.
+     * @throws java.io.IOException
      */
     @Test public void testRun() throws IOException {
         System.out.println("run");
