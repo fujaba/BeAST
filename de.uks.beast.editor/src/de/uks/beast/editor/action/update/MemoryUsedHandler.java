@@ -10,6 +10,7 @@ import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
+import org.eclipse.graphiti.services.impl.GaServiceImpl;
 
 import de.uks.beast.editor.features.util.PropertyUtil;
 import de.uks.beast.model.Hardware;
@@ -32,6 +33,10 @@ public class MemoryUsedHandler extends DiagramUpdateHandler
 		final Server server = model.serverFromHostName(info.getHost());
 		System.out.println("Update shape from server " + server.getHost() + ";" + " RAM: " + Long.parseLong(info.getValue())
 				/ (server.getRam() * 1000000) + "%");
+		
+		//TODO @Moritz: add code from ServerPropertySection here and handle RAM/CPU handling
+		
+		//Graphiti.getLinkService().getPictogramElements(diagram, server);
 		
 		for (final Shape shape : diagram.getChildren())
 		{
