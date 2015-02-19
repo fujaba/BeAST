@@ -1,5 +1,9 @@
 package de.uks.beast.server.service;
 
-public class ServiceEnvironment {
+import java.util.List;
 
+public interface ServiceEnvironment {
+
+	public void startService(String serviceName, List<String> constraints);
+	
 }

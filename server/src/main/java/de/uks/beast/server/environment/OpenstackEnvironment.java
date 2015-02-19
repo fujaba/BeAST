@@ -3,7 +3,6 @@ package de.uks.beast.server.environment;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.LogManager;
@@ -11,15 +10,9 @@ import org.apache.log4j.Logger;
 import org.openstack4j.api.Builders;
 import org.openstack4j.api.OSClient;
 import org.openstack4j.model.compute.Flavor;
-import org.openstack4j.model.compute.FloatingIP;
-import org.openstack4j.model.compute.Keypair;
-import org.openstack4j.model.compute.Server;
-import org.openstack4j.model.compute.Server.Status;
-import org.openstack4j.model.compute.ServerCreate;
 import org.openstack4j.model.identity.Tenant;
 import org.openstack4j.model.network.AttachInterfaceType;
 import org.openstack4j.model.network.IPVersionType;
-import org.openstack4j.model.network.NetFloatingIP;
 import org.openstack4j.model.network.Network;
 import org.openstack4j.model.network.Router;
 import org.openstack4j.model.network.Subnet;
@@ -267,16 +260,6 @@ public class OpenstackEnvironment extends CloudEnvironment {
 	
 	private static String getEndOfPool(String ip) {
 		return ip.substring(0, ip.lastIndexOf(".")) + ".254";
-	}
-
-
-	private FloatingIP getFloatingIP() {
-		for (FloatingIP ip : os.compute().floatingIps().list()) {
-			if (ip.getFixedIpAddress() == null) {
-				return ip;
-			}
-		}
-		return null;
 	}
 	
 	public static int convertNetmaskToCIDR(InetAddress netmask){

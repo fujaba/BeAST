@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
-import java.util.Map;
 
 public class ProcBuilderExec {
 
@@ -12,7 +11,6 @@ public class ProcBuilderExec {
 
         try {
             final ProcessBuilder pb = new ProcessBuilder(command);
-            final Map<String, String> env = pb.environment();
             final Process process = pb.start();
             
             final InputStream is = process.getInputStream();
