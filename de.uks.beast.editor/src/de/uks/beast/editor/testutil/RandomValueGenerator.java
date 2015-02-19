@@ -6,7 +6,7 @@ public class RandomValueGenerator {
 
 	private final static Random random = new Random();
 
-	private int generateIntFromNullTo(int max) {
+	public static int generateIntFromNullTo(int max) {
 		return randInt(0, max);
 	}
 
@@ -15,10 +15,9 @@ public class RandomValueGenerator {
 		return randomNum;
 	}
 
-	public static void main(String[] args) {
-		RandomValueGenerator rvg = new RandomValueGenerator();
-		for (int i = 0; i < 10; i++) {
-			System.out.println(rvg.generateIntFromNullTo(100));
-		}
-	}
+//	public static void main(String[] args) {
+//		for (int i = 0; i < 10; i++) {
+//			System.out.println(RandomValueGenerator.generateIntFromNullTo(100));
+//		}
+//	}
 }
