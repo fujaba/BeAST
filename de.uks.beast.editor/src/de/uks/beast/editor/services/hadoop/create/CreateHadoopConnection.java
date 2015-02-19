@@ -54,11 +54,11 @@ public class CreateHadoopConnection extends AbstractCreateConnectionFeature
 			
 			if (source instanceof HadoopMaster && target instanceof HadoopSlave)
 			{
-				((HadoopMaster) source).getSlave().add(((HadoopSlave) target));
+				((HadoopMaster) source).getHadoopSlave().add(((HadoopSlave) target));
 			}
 			else if (source instanceof HadoopSlave && target instanceof HadoopMaster)
 			{
-				((HadoopSlave) source).setMaster(((HadoopMaster) target));
+				((HadoopSlave) source).setHadoopMaster(((HadoopMaster) target));
 			}
 			
 			newConnection = (Connection) getFeatureProvider().addIfPossible(addContext);

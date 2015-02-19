@@ -472,13 +472,13 @@ public interface ModelPackage extends EPackage
 	int HADOOP_MASTER = 6;
 
 	/**
-	 * The feature id for the '<em><b>Slave</b></em>' reference list.
+	 * The feature id for the '<em><b>Hadoop Slave</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HADOOP_MASTER__SLAVE = SERVICE_FEATURE_COUNT + 0;
+	int HADOOP_MASTER__HADOOP_SLAVE = SERVICE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Hadoop Master</em>' class.
@@ -509,13 +509,13 @@ public interface ModelPackage extends EPackage
 	int HADOOP_SLAVE = 7;
 
 	/**
-	 * The feature id for the '<em><b>Master</b></em>' reference.
+	 * The feature id for the '<em><b>Hadoop Master</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HADOOP_SLAVE__MASTER = SERVICE_FEATURE_COUNT + 0;
+	int HADOOP_SLAVE__HADOOP_MASTER = SERVICE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Hadoop Slave</em>' class.
@@ -922,15 +922,15 @@ public interface ModelPackage extends EPackage
 
 
 	/**
-	 * Returns the meta object for the reference list '{@link model.HadoopMaster#getSlave <em>Slave</em>}'.
+	 * Returns the meta object for the reference list '{@link model.HadoopMaster#getHadoopSlave <em>Hadoop Slave</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Slave</em>'.
-	 * @see model.HadoopMaster#getSlave()
+	 * @return the meta object for the reference list '<em>Hadoop Slave</em>'.
+	 * @see model.HadoopMaster#getHadoopSlave()
 	 * @see #getHadoopMaster()
 	 * @generated
 	 */
-	EReference getHadoopMaster_Slave();
+	EReference getHadoopMaster_HadoopSlave();
 
 
 
@@ -947,15 +947,15 @@ public interface ModelPackage extends EPackage
 
 
 	/**
-	 * Returns the meta object for the reference '{@link model.HadoopSlave#getMaster <em>Master</em>}'.
+	 * Returns the meta object for the reference '{@link model.HadoopSlave#getHadoopMaster <em>Hadoop Master</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Master</em>'.
-	 * @see model.HadoopSlave#getMaster()
+	 * @return the meta object for the reference '<em>Hadoop Master</em>'.
+	 * @see model.HadoopSlave#getHadoopMaster()
 	 * @see #getHadoopSlave()
 	 * @generated
 	 */
-	EReference getHadoopSlave_Master();
+	EReference getHadoopSlave_HadoopMaster();
 
 
 
@@ -1274,12 +1274,12 @@ public interface ModelPackage extends EPackage
 		EClass HADOOP_MASTER = eINSTANCE.getHadoopMaster();
 
 		/**
-		 * The meta object literal for the '<em><b>Slave</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Hadoop Slave</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference HADOOP_MASTER__SLAVE = eINSTANCE.getHadoopMaster_Slave();
+		EReference HADOOP_MASTER__HADOOP_SLAVE = eINSTANCE.getHadoopMaster_HadoopSlave();
 
 		/**
 		 * The meta object literal for the '{@link model.impl.HadoopSlaveImpl <em>Hadoop Slave</em>}' class.
@@ -1292,12 +1292,12 @@ public interface ModelPackage extends EPackage
 		EClass HADOOP_SLAVE = eINSTANCE.getHadoopSlave();
 
 		/**
-		 * The meta object literal for the '<em><b>Master</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Hadoop Master</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference HADOOP_SLAVE__MASTER = eINSTANCE.getHadoopSlave_Master();
+		EReference HADOOP_SLAVE__HADOOP_MASTER = eINSTANCE.getHadoopSlave_HadoopMaster();
 
 		/**
 		 * The meta object literal for the '{@link model.impl.RoomImpl <em>Room</em>}' class.

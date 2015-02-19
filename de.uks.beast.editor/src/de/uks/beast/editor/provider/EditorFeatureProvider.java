@@ -40,7 +40,7 @@ import de.uks.beast.editor.features.add.AddServerFeature;
 import de.uks.beast.editor.features.add.connection.AddConnectionFeature;
 import de.uks.beast.editor.features.add.connection.ReconnectionFeature;
 import de.uks.beast.editor.features.create.CreateConnectionFeature;
-import de.uks.beast.editor.features.create.CreateNetworkComponentFeature;
+import de.uks.beast.editor.features.create.CreateNetworkFeature;
 import de.uks.beast.editor.features.create.CreateRackFeature;
 import de.uks.beast.editor.features.create.CreateRoomFeature;
 import de.uks.beast.editor.features.create.CreateServerFeature;
@@ -79,7 +79,7 @@ public class EditorFeatureProvider extends DefaultFeatureProvider
 	{
 		final ICreateFeature[] features = { new CreateServerFeature(this, SERVER.text(), SERVER.description()),
 				new CreateRackFeature(this, SERVER_RACK.text(), SERVER_RACK.description()),
-				new CreateNetworkComponentFeature(this, NETWORK.text(), NETWORK.description()),
+				new CreateNetworkFeature(this, NETWORK.text(), NETWORK.description()),
 				new CreateRoomFeature(this, SERVER_ROOM.text(), SERVER_ROOM.description()),
 				new CreaterRouterFeature(this, ROUTER.text(), ROUTER.description()) };
 		

@@ -194,6 +194,7 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		testBtn.setLayoutData(data);
 		testBtn.addSelectionListener(new SelectionListener() {
 			
+			@SuppressWarnings ("restriction")
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{

@@ -119,7 +119,8 @@ public class RoomImpl extends MinimalEObjectImpl.Container implements Room
 	 */
 	public EList<Rack> getRacks()
 	{
-		if (racks == null) {
+		if (racks == null)
+		{
 			racks = new EObjectContainmentEList<Rack>(Rack.class, this, ModelPackage.ROOM__RACKS);
 		}
 		return racks;
@@ -133,7 +134,8 @@ public class RoomImpl extends MinimalEObjectImpl.Container implements Room
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.ROOM__RACKS:
 				return ((InternalEList<?>)getRacks()).basicRemove(otherEnd, msgs);
 		}
@@ -148,7 +150,8 @@ public class RoomImpl extends MinimalEObjectImpl.Container implements Room
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.ROOM__NAME:
 				return getName();
 			case ModelPackage.ROOM__RACKS:
@@ -166,7 +169,8 @@ public class RoomImpl extends MinimalEObjectImpl.Container implements Room
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.ROOM__NAME:
 				setName((String)newValue);
 				return;
@@ -186,7 +190,8 @@ public class RoomImpl extends MinimalEObjectImpl.Container implements Room
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.ROOM__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -205,7 +210,8 @@ public class RoomImpl extends MinimalEObjectImpl.Container implements Room
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.ROOM__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ModelPackage.ROOM__RACKS:

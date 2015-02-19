@@ -18,26 +18,21 @@ import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
-import org.eclipse.graphiti.util.ColorConstant;
-import org.eclipse.graphiti.util.IColorConstant;
+
+import de.uks.beast.editor.util.ColorConstants;
 
 public class AddRoomFeature extends AbstractAddShapeFeature implements AbstractShapeFactory
 {
-	private static final IColorConstant	E_CLASS_TEXT_FOREGROUND	= IColorConstant.BLACK;
 	
-	private static final IColorConstant	E_CLASS_FOREGROUND		= new ColorConstant(98, 131, 167);
+	private static final int	WIDTH_PROPERTY	= 50;
 	
-	private static final IColorConstant	E_CLASS_BACKGROUND		= new ColorConstant(187, 218, 247);
+	private static final int	HEIGHT_PROPERTY	= 20;
 	
-	private static final int			WIDTH_PROPERTY			= 50;
+	private static final int	Y_PARTING_LINE	= 20;
 	
-	private static final int			HEIGHT_PROPERTY			= 20;
+	private static final int	X0_PARTING_LINE	= 0;
 	
-	private static final int			Y_PARTING_LINE			= 20;
-	
-	private static final int			X0_PARTING_LINE			= 0;
-	
-	private static final int			X_PROPERTY				= 5;
+	private static final int	X_PROPERTY		= 5;
 	
 	
 	
@@ -78,8 +73,8 @@ public class AddRoomFeature extends AbstractAddShapeFeature implements AbstractS
 		
 		// create and set graphics algorithm
 		final RoundedRectangle roundedRectangle = gaService.createRoundedRectangle(containerShape, 5, 5);
-		roundedRectangle.setForeground(manageColor(E_CLASS_FOREGROUND));
-		roundedRectangle.setBackground(manageColor(E_CLASS_BACKGROUND));
+		roundedRectangle.setForeground(manageColor(ColorConstants.ROOM_FOREGROUND));
+		roundedRectangle.setBackground(manageColor(ColorConstants.ROOM_BACKGROUND));
 		roundedRectangle.setLineWidth(2);
 		gaService.setLocationAndSize(roundedRectangle, context.getX(), context.getY(), context.getWidth(), context.getHeight());
 		
@@ -110,7 +105,7 @@ public class AddRoomFeature extends AbstractAddShapeFeature implements AbstractS
 		// create and set graphics algorithm
 		final Polyline polyline = gaService.createPolyline(lineShape,
 				new int[] { X0_PARTING_LINE, Y_PARTING_LINE, context.getWidth(), Y_PARTING_LINE });
-		polyline.setForeground(manageColor(E_CLASS_FOREGROUND));
+		polyline.setForeground(manageColor(ColorConstants.ROOM_FOREGROUND));
 		polyline.setLineWidth(2);
 		
 		final IDirectEditingInfo directEditingInfo = getFeatureProvider().getDirectEditingInfo();
@@ -142,7 +137,7 @@ public class AddRoomFeature extends AbstractAddShapeFeature implements AbstractS
 			final int y, final int width, final int height, final String content)
 	{
 		final Text text = gaService.createText(gaContainer, content);
-		text.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
+		text.setForeground(manageColor(ColorConstants.ROOM_TEXT_FOREGROUND));
 		text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 		// vertical alignment has as default value "center"
 		text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
