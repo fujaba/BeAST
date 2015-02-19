@@ -192,7 +192,6 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 				{
 					if (Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(shape) instanceof Room)
 					{
-						shape.
 						
 					}
 //					final EObject[] objects = Graphiti.getLinkService().getAllBusinessObjectsForLinkedPictogramElement(shape);
