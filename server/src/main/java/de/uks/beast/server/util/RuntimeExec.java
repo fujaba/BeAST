@@ -23,7 +23,7 @@ public class RuntimeExec {
             process.waitFor(); // wait for process to complete
         } catch (InterruptedException e) {
             System.err.println(e); // Can't Happen
-            return -1;
+            return process.exitValue();
         }
         System.err.println("Process done, exit status was " + process.exitValue());
         return process.exitValue();
