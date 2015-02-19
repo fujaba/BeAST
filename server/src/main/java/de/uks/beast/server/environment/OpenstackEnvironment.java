@@ -33,7 +33,7 @@ import de.uks.beast.server.environment.model.OpenstackConfiguration;
 import de.uks.beast.server.environment.model.OpenstackConnectionInfo;
 import de.uks.beast.server.vm.OpenstackConnection;
 
-public class OpenstackEnvironment extends BeastEnvironment {
+public class OpenstackEnvironment extends CloudEnvironment {
 
 	private static final Logger logger = LogManager.getLogger(OpenstackEnvironment.class);
 	
@@ -122,8 +122,15 @@ public class OpenstackEnvironment extends BeastEnvironment {
 		
 		return configs;
 	}
-
+	
 	@Override
+	public ArrayList<? extends ConnectionInfo> startVirtualMachine(List<? extends Configuration> configs) {
+		ArrayList<OpenstackConnectionInfo> cons = new ArrayList<OpenstackConnectionInfo>();
+		
+		return cons;
+	}
+
+	/*@Override
 	public ArrayList<? extends ConnectionInfo> startVirtualMachine(List<? extends Configuration> configs) {
 		ArrayList<OpenstackConnectionInfo> cons = new ArrayList<OpenstackConnectionInfo>();
 		
@@ -173,7 +180,7 @@ public class OpenstackEnvironment extends BeastEnvironment {
 		}
 		
 		return cons;
-	}
+	}*/
 	
 	@Override
 	public void establishConnection(String kafkabroker, String topic, List<? extends ConnectionInfo> cons) {
