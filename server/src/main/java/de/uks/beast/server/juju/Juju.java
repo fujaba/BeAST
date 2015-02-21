@@ -28,7 +28,7 @@ public class Juju {
      * @return
      * @throws IOException
      */
-    public RuntimeOutput deploy(String servicename) throws IOException {
+    public static RuntimeOutput deploy(String servicename) throws IOException {
         return deploy(servicename, "");
     }
 
@@ -39,7 +39,7 @@ public class Juju {
      * @return
      * @throws IOException
      */
-    public RuntimeOutput deploy(String servicename, String alias) throws IOException {
+    public static RuntimeOutput deploy(String servicename, String alias) throws IOException {
         return RuntimeExec.run("juju deploy " + alias);
     }
 
@@ -52,7 +52,7 @@ public class Juju {
      * @return
      * @throws IOException
      */
-    public RuntimeOutput deploy(String servicename, String alias, int machineNumber) throws IOException {
+    public static RuntimeOutput deploy(String servicename, String alias, int machineNumber) throws IOException {
         return RuntimeExec.run("juju deploy " + servicename + alias + "--to " + machineNumber);
     }
 
@@ -68,7 +68,23 @@ public class Juju {
         if (message.contains("created machine")) {
             return Integer.parseInt(message.replaceAll("[^\\d.]", ""));
         }
-        return 0;
+        return -1;
     }
+    
+    /**
+     * Add manual provisioned machine
+     * @param userAtHost e.g. [user@]host
+     * @return # of the added machine
+     * @throws IOException
+     * @info http://askubuntu.com/questions/469618/juju-deployment-error-on-manually-provisioned-machine
+     */
+    public static int addMachine(String userAtHost) throws IOException {
+		final RuntimeOutput out = RuntimeExec.run("juju add-machine " + userAtHost);
+		String message = out.getMessage();
+		if (message.contains("created machine")) {
+            return Integer.parseInt(message.replaceAll("[^\\d.]", ""));
+        }
+        return -1;
+	}
 
 }

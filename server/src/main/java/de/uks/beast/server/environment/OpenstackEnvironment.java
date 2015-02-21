@@ -125,7 +125,7 @@ public class OpenstackEnvironment extends CloudEnvironment {
 		for (Configuration config : configs) {
 			OpenstackConfiguration оc = (OpenstackConfiguration) config;
 			
-			// TODO: 
+			// TODO:
 			/*
 			alle openstack vms holen und merken
 			Find all running Servers
@@ -134,13 +134,21 @@ public class OpenstackEnvironment extends CloudEnvironment {
 			Find all running Servers
 			 */
 			
-			// add a blank machine, and returns its number in juju environment
+			//
+			// add a manually provisioned machine, and returns its id in juju environment
+			int machineNumber = 0;
 			try {
-				int machineNumber = Juju.addMachine();
+				// TODO get real host name/ip
+				machineNumber = Juju.addMachine("[user@]host");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			//
+			// deploy a service to created machine
+			// TODO get real servicename
+			//Juju.deploy(servicename, alias, machineNumber);
 			
 		}
 		
