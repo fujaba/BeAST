@@ -35,8 +35,8 @@ public class RuntimeExecTest {
     @Test public void testRun() throws IOException {
         System.out.println("run");
         String command = "ls -l";
-        int processExitStatus= RuntimeExec.run(command);
-        assertEquals(PROCESS_EXIT_STATUS_OK, processExitStatus);
+        RuntimeOutput out = RuntimeExec.run(command);
+        assertEquals(PROCESS_EXIT_STATUS_OK, out.getStatusCode());
     }
     
 }

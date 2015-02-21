@@ -2,22 +2,22 @@ package de.uks.beast.server.util;
 
 public class RuntimeOutput {
 
-	private int status;
+	private int statusCode;
 	private String message;
 
 	public RuntimeOutput(int statusCode, String message) {
 		super();
-		this.status = statusCode;
+		this.statusCode = statusCode;
 		this.message = message;
 	}
 
 	//
-	public int getStatus() {
-		return status;
+	public int getStatusCode() {
+		return statusCode;
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
+	public void setStatusCode(int status) {
+		this.statusCode = status;
 	}
 
 	public String getMessage() {
