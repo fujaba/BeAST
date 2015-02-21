@@ -1,5 +1,6 @@
 package de.uks.beast.server.environment;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ import de.uks.beast.server.environment.model.Configuration;
 import de.uks.beast.server.environment.model.ConnectionInfo;
 import de.uks.beast.server.environment.model.OpenstackConfiguration;
 import de.uks.beast.server.environment.model.OpenstackConnectionInfo;
+import de.uks.beast.server.juju.Juju;
 import de.uks.beast.server.vm.OpenstackConnection;
 
 public class OpenstackEnvironment extends CloudEnvironment {
@@ -123,15 +125,22 @@ public class OpenstackEnvironment extends CloudEnvironment {
 		for (Configuration config : configs) {
 			OpenstackConfiguration оc = (OpenstackConfiguration) config;
 			
-			// TODO: alle openstack vms holen und merken
-			// Find all running Servers
-//			List<? extends Server> serversBefore = os.compute().servers().list();
+			// TODO: 
+			/*
+			alle openstack vms holen und merken
+			Find all running Servers
+			int nrOfMachine = (juju deploy ubuntu) - returns machine number
+			alle openstack vms holen
+			Find all running Servers
+			 */
 			
-			//int nrOfMachine = (juju deploy ubuntu) - returns machine number
-			
-			//alle openstack vms holen
-			// Find all running Servers
-//			List<? extends Server> serversAfter = os.compute().servers().list();
+			// add a blank machine, and returns its number in juju environment
+			try {
+				int machineNumber = Juju.addMachine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		}
 		
