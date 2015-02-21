@@ -125,13 +125,13 @@ public class OpenstackEnvironment extends CloudEnvironment {
 			
 			// TODO: alle openstack vms holen und merken
 			// Find all running Servers
-			List<? extends Server> serversBefore = os.compute().servers().list();
+//			List<? extends Server> serversBefore = os.compute().servers().list();
 			
 			//int nrOfMachine = (juju deploy ubuntu) - returns machine number
 			
 			//alle openstack vms holen
 			// Find all running Servers
-			List<? extends Server> serversAfter = os.compute().servers().list();
+//			List<? extends Server> serversAfter = os.compute().servers().list();
 			
 		}
 		

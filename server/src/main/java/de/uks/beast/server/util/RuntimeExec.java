@@ -8,14 +8,15 @@ public class RuntimeExec {
 
     final static Runtime r = Runtime.getRuntime();
 
-    public static int run(String command) throws IOException {
+    public static RuntimeOutput run(String command) throws IOException {
         final Process process = r.exec(command);
         final BufferedReader is = new BufferedReader(new InputStreamReader(process.getInputStream()));
         
+        StringBuilder sb = new StringBuilder();
         String line;
         while ((line = is.readLine()) != null) {
-            // TODO: logger
-            System.out.println(line);
+        	//System.out.println(line);
+            sb.append(line);
         }
 
         System.out.flush();
@@ -23,10 +24,11 @@ public class RuntimeExec {
             process.waitFor(); // wait for process to complete
         } catch (InterruptedException e) {
             System.err.println(e); // Can't Happen
-            return process.exitValue();
+            return new RuntimeOutput(process.exitValue(), "Execution failed.");
         }
         System.err.println("Process done, exit status was " + process.exitValue());
-        return process.exitValue();
+        
+        return new RuntimeOutput(process.exitValue(), sb.toString());
     }
     
 }
