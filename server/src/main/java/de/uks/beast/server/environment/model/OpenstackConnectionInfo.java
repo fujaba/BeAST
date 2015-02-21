@@ -9,6 +9,11 @@ public class OpenstackConnectionInfo extends ConnectionInfo {
 	private String host;
 	private String ip;
 	private File privateKeyFile;
+	
+	public OpenstackConnectionInfo(String host, String floatingIpAddress) {
+		this.host = host;
+		this.ip = floatingIpAddress;
+	}
 
 	public OpenstackConnectionInfo(String host, String floatingIpAddress, String privateKey) {
 		this.host = host;
