@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?eclipse version="3.4"?>
 <plugin>
 
 	<extension point="org.eclipse.ui.popupMenus"> 
@@ -29,8 +28,19 @@
 			<diagramType
                id="de.uks.beast.editor.editorDiagramType">
 			</diagramType>
+			<imageProvider
+           	 	id="de.uks.beast.editor.provider.EditorImageProvider">
+      		</imageProvider>
 		</diagramTypeProvider>
 	</extension>
+	
+	<extension
+      	point="org.eclipse.graphiti.ui.imageProviders">
+   		<imageProvider
+         	class="de.uks.beast.editor.provider.EditorImageProvider"
+         	id="de.uks.beast.editor.provider.EditorImageProvider">
+   		</imageProvider>
+	</extension> 
 	
 	
 	<extension 

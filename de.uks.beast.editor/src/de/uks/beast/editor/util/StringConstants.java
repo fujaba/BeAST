@@ -1,6 +1,6 @@
 package de.uks.beast.editor.util;
 
-public enum Constants
+public enum StringConstants
 {
 	//@formatter:off
 	// Main
@@ -57,11 +57,13 @@ public enum Constants
 	NETWORK						("Network", 		"This is a network"),
 	ROUTER						("Router", 			"This is a router"),
 	CONNECTION					("Connection",		"This is a connection between two objects"),
-	HADOOP_CONNECTION			("HadoopConnection",""),
+	HADOOP_MASTER				("HadoopMaster",	"This is a HadoopMaster"),
+	HADOOP_SLAVE				("HadoopSlave",		"This is a HadoopSlave"),
+	HADOOP_CONNECTION			("HadoopConnection","This is a connection between HadoopMaster and HadoopSlave"),
 	
 	
 	// Service Palette
-	SERVICE_HADOOP					("Service: Hadoop",		"This Palette provides Juju services"),
+	SERVICE_HADOOP					("Service: Hadoop",		"This entry provides Juju service Hadoop"),	
 	
 	
 	//Properties/ Labels
@@ -81,14 +83,23 @@ public enum Constants
 	// warnings
 	EMPTY_NAME_WARNING			("Please enter any text as class name!",	 		""),
 	WRONG_SYMBOL_WARNING		("Spaces are not allowed in class names!", 			""),
-	LINE_BREAK_WARNING			("Line breakes are not allowed in class names!", 	"");	//@formatter:on
+	LINE_BREAK_WARNING			("Line breakes are not allowed in class names!", 	""),
+	
+	//images
+	HADOOP_MASTER_IMAGE		("icons/hadoop_master.png",		"de.uks.beast.editor.hadoop_master"),
+	HADOOP_SLAVE_IMAGE		("icons/hadoop_slave.png",		"de.uks.beast.editor.hadoop_slave"),
+	MYSQL_IMAGE				("icons/mysql.png",				"de.uks.beast.editor.mysql"),
+	MONGO_DB_IMAGE			("icons/mongo_db_png",			"de.uks.beast.editor.mongo_db"),
+	WORDPRESS_IMAGE			("icons/wordpress.png",			"de.uks.beast.editor.wordpress"),
+	CASSANDRA_IMAGE			("icons/cassandra.png",			"de.uks.beast.editor.cassandra")		
+	;//@formatter:on
 	
 	private final String	text;
 	private final String	description;
 	
 	
 	
-	private Constants(final String text, final String description)
+	private StringConstants(final String text, final String description)
 	{
 		this.text = text;
 		this.description = description;
@@ -106,6 +117,20 @@ public enum Constants
 	public String description()
 	{
 		return description;
+	}
+	
+	
+	
+	public String getImageID()
+	{
+		return description();
+	}
+	
+	
+	
+	public String getImagePath()
+	{
+		return text();
 	}
 	
 }

@@ -1,6 +1,6 @@
 package de.uks.beast.editor.services.hadoop.provider;
 
-import static de.uks.beast.editor.util.Constants.SERVICE_HADOOP;
+import static de.uks.beast.editor.util.StringConstants.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,8 +49,9 @@ public class HadoopFeatureProvider extends DefaultToolBehaviorProvider
 		// add all create-features to the new stack-entry
 		final IFeatureProvider featureProvider = getFeatureProvider();
 		
-		final ICreateFeature[] createFeatures = { new CreateHadoopMasterFeature(featureProvider, "HadoopMaster", ""),
-				new CreateHadoopSlaveFeature(featureProvider, "HadoopSlave", "") };
+		final ICreateFeature[] createFeatures = {
+				new CreateHadoopMasterFeature(featureProvider, HADOOP_MASTER.text(), HADOOP_MASTER.description()),
+				new CreateHadoopSlaveFeature(featureProvider, HADOOP_SLAVE.text(), HADOOP_SLAVE.description()) };
 		
 		for (final ICreateFeature cf : createFeatures)
 		{
@@ -61,7 +62,7 @@ public class HadoopFeatureProvider extends DefaultToolBehaviorProvider
 		
 		// add all create-connection-features to the new stack-entry
 		final ICreateConnectionFeature[] createConnectionFeatures = { new CreateHadoopConnection(featureProvider,
-				"HadoopConnection", "") };
+				HADOOP_CONNECTION.text(), HADOOP_CONNECTION.description()) };
 		
 		for (final ICreateConnectionFeature cf : createConnectionFeatures)
 		{

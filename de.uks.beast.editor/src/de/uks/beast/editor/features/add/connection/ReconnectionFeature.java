@@ -19,7 +19,7 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 	
 	
 	@Override
-	public boolean canReconnect(IReconnectionContext context)
+	public boolean canReconnect(final IReconnectionContext context)
 	{
 		super.canReconnect(context);
 		
@@ -28,11 +28,11 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 		
 		if (source instanceof Server && target instanceof Network)
 		{
-			return true;
+			return false;
 		}
 		else if (source instanceof Network && target instanceof Router)
 		{
-			return true;
+			return false;
 		}
 		else
 		{
@@ -43,7 +43,7 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 	
 	
 	@Override
-	public void preReconnect(IReconnectionContext context)
+	public void preReconnect(final IReconnectionContext context)
 	{
 		super.preReconnect(context);
 		
@@ -52,7 +52,7 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 	
 	
 	@Override
-	public void postReconnect(IReconnectionContext context)
+	public void postReconnect(final IReconnectionContext context)
 	{
 		super.postReconnect(context);
 	}

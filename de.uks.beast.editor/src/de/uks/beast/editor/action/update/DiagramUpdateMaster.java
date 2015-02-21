@@ -23,6 +23,9 @@ public class DiagramUpdateMaster implements KeyListener {
 		
 		this.updateHandler = new HashMap<String, DiagramUpdateHandler>();
 		
+		//TODO @Moritz: create List with server pictogram objects and overgive it to MemoryUsedHandler
+		//TODO @Moritz: create List with server pictogram objects and overgive it to CPUUsedHandler
+		
 		//register handler here
 		this.updateHandler.put("mem-used", new MemoryUsedHandler(diagram, model));
 	}

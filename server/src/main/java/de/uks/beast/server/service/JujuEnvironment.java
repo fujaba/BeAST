@@ -1,5 +1,12 @@
 package de.uks.beast.server.service;
 
-public class JujuEnvironment extends ServiceEnvironment {
+import java.util.List;
+
+public class JujuEnvironment implements ServiceEnvironment {
+
+	@Override
+	public void startService(String serviceName, List<String> constraints) {
+		
+	}
 
 }

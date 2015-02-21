@@ -18,14 +18,10 @@ import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 
+import static de.uks.beast.editor.util.NumberConstants.*;
+
 public class LayoutRackObjectFeature extends AbstractLayoutFeature
 {
-	
-	private static final int	MIN_HEIGHT	= 200;
-	
-	private static final int	MIN_WIDTH	= 300;
-	
-	
 	
 	public LayoutRackObjectFeature(IFeatureProvider fp)
 	{
@@ -35,7 +31,7 @@ public class LayoutRackObjectFeature extends AbstractLayoutFeature
 	
 	
 	@Override
-	public boolean canLayout(ILayoutContext context)
+	public boolean canLayout(final ILayoutContext context)
 	{
 		// return true, if pictogram element is linked to an EClass
 		final PictogramElement pe = context.getPictogramElement();
@@ -53,23 +49,23 @@ public class LayoutRackObjectFeature extends AbstractLayoutFeature
 	
 	
 	@Override
-	public boolean layout(ILayoutContext context)
+	public boolean layout(final ILayoutContext context)
 	{
 		boolean anythingChanged = false;
 		final ContainerShape containerShape = (ContainerShape) context.getPictogramElement();
 		final GraphicsAlgorithm containerGa = containerShape.getGraphicsAlgorithm();
 		
 		// height
-		if (containerGa.getHeight() < MIN_HEIGHT)
+		if (containerGa.getHeight() < RACK_INITIAL_HEIGHT)
 		{
-			containerGa.setHeight(MIN_HEIGHT);
+			containerGa.setHeight(RACK_INITIAL_HEIGHT);
 			anythingChanged = true;
 		}
 		
 		// width
-		if (containerGa.getWidth() < MIN_WIDTH)
+		if (containerGa.getWidth() < RACK_INITIAL_WIDTH)
 		{
-			containerGa.setWidth(MIN_WIDTH);
+			containerGa.setWidth(RACK_INITIAL_WIDTH);
 			anythingChanged = true;
 		}
 		

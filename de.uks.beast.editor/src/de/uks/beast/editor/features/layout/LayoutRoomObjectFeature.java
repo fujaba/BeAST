@@ -18,14 +18,10 @@ import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 
+import static de.uks.beast.editor.util.NumberConstants.*;
+
 public class LayoutRoomObjectFeature extends AbstractLayoutFeature
 {
-	
-	private static final int	MIN_HEIGHT	= 300;
-	
-	private static final int	MIN_WIDTH	= 400;
-	
-	
 	
 	public LayoutRoomObjectFeature(final IFeatureProvider fp)
 	{
@@ -60,16 +56,16 @@ public class LayoutRoomObjectFeature extends AbstractLayoutFeature
 		final GraphicsAlgorithm containerGa = containerShape.getGraphicsAlgorithm();
 		
 		// height
-		if (containerGa.getHeight() < MIN_HEIGHT)
+		if (containerGa.getHeight() < ROOM_INITIAL_HEIGHT)
 		{
-			containerGa.setHeight(MIN_HEIGHT);
+			containerGa.setHeight(ROOM_INITIAL_HEIGHT);
 			anythingChanged = true;
 		}
 		
 		// width
-		if (containerGa.getWidth() < MIN_WIDTH)
+		if (containerGa.getWidth() < ROOM_INITIAL_WIDTH)
 		{
-			containerGa.setWidth(MIN_WIDTH);
+			containerGa.setWidth(ROOM_INITIAL_WIDTH);
 			anythingChanged = true;
 		}
 		

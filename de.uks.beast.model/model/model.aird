@@ -776,10 +776,10 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
       </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_D8kU0LCrEeSu3bjAo1LjmQ" sourceNode="_8FlrMK_eEeSH9ethtF77AA" targetNode="__H4XgK_eEeSH9ethtF77AA" beginLabel="[0..1] master" endLabel="[0..*] slave">
-        <target xmi:type="ecore:EReference" href="model.ecore#//HadoopMaster/slave"/>
-        <semanticElements xmi:type="ecore:EReference" href="model.ecore#//HadoopSlave/master"/>
-        <semanticElements xmi:type="ecore:EReference" href="model.ecore#//HadoopMaster/slave"/>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_D8kU0LCrEeSu3bjAo1LjmQ" sourceNode="_8FlrMK_eEeSH9ethtF77AA" targetNode="__H4XgK_eEeSH9ethtF77AA" beginLabel="[0..1] hadoopMaster" endLabel="[0..*] hadoopSlave">
+        <target xmi:type="ecore:EReference" href="model.ecore#//HadoopMaster/hadoopSlave"/>
+        <semanticElements xmi:type="ecore:EReference" href="model.ecore#//HadoopSlave/hadoopMaster"/>
+        <semanticElements xmi:type="ecore:EReference" href="model.ecore#//HadoopMaster/hadoopSlave"/>
         <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_D8kU0bCrEeSu3bjAo1LjmQ" sourceArrow="InputArrow" routingStyle="manhattan">
           <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='Bi-directional%20EC_EReference%20']/@style"/>
           <strokeColor xmi:type="viewpoint:RGBValues" xmi:id="_D8kU0rCrEeSu3bjAo1LjmQ"/>

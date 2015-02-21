@@ -9,6 +9,7 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.impl.AbstractLayoutFeature;
 import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
+import org.eclipse.graphiti.mm.algorithms.Image;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
 import org.eclipse.graphiti.mm.algorithms.styles.Point;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
@@ -17,13 +18,10 @@ import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 
+import static de.uks.beast.editor.util.NumberConstants.*;
+
 public class LayoutServerObjectFeature extends AbstractLayoutFeature
 {
-	private static final int	MIN_HEIGHT	= 80;
-	
-	private static final int	MIN_WIDTH	= 170;
-	
-	
 	
 	public LayoutServerObjectFeature(final IFeatureProvider fp)
 	{
@@ -45,7 +43,7 @@ public class LayoutServerObjectFeature extends AbstractLayoutFeature
 		
 		final EList<EObject> businessObjects = pe.getLink().getBusinessObjects();
 		
-		return businessObjects.size() == 1 && businessObjects.get(0) instanceof Server;
+		return (businessObjects.size() == 1 && businessObjects.get(0) instanceof Server);
 	}
 	
 	
@@ -58,16 +56,16 @@ public class LayoutServerObjectFeature extends AbstractLayoutFeature
 		final GraphicsAlgorithm containerGa = containerShape.getGraphicsAlgorithm();
 		
 		// height
-		if (containerGa.getHeight() < MIN_HEIGHT)
+		if (containerGa.getHeight() < SERVER_INITIAL_HEIGHT)
 		{
-			containerGa.setHeight(MIN_HEIGHT);
+			containerGa.setHeight(SERVER_INITIAL_HEIGHT);
 			anythingChanged = true;
 		}
 		
 		// width
-		if (containerGa.getWidth() < MIN_WIDTH)
+		if (containerGa.getWidth() < SERVER_INITIAL_WIDTH)
 		{
-			containerGa.setWidth(MIN_WIDTH);
+			containerGa.setWidth(SERVER_INITIAL_WIDTH);
 			anythingChanged = true;
 		}
 		
@@ -78,6 +76,7 @@ public class LayoutServerObjectFeature extends AbstractLayoutFeature
 			final GraphicsAlgorithm graphicsAlgorithm = shape.getGraphicsAlgorithm();
 			final IGaService gaService = Graphiti.getGaService();
 			final IDimension size = gaService.calculateSize(graphicsAlgorithm);
+			
 			if (containerWidth != size.getWidth())
 			{
 				if (graphicsAlgorithm instanceof Polyline)
@@ -86,6 +85,14 @@ public class LayoutServerObjectFeature extends AbstractLayoutFeature
 					final Point secondPoint = polyline.getPoints().get(1);
 					final Point newSecondPoint = gaService.createPoint(containerWidth, secondPoint.getY());
 					polyline.getPoints().set(1, newSecondPoint);
+					anythingChanged = true;
+				}
+				else if (graphicsAlgorithm instanceof Image)
+				{
+					final Image image = (Image) graphicsAlgorithm;
+					image.setX(containerWidth - SERVICE_ICON_RESIZE_X);
+					image.setY(SERVICE_ICON_RESIZE_Y);
+					
 					anythingChanged = true;
 				}
 				else

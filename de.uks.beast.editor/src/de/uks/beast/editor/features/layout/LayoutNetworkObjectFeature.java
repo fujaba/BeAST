@@ -18,14 +18,10 @@ import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 
+import static de.uks.beast.editor.util.NumberConstants.*;
+
 public class LayoutNetworkObjectFeature extends AbstractLayoutFeature implements ILayoutFeature
 {
-	
-	private static final int	MIN_HEIGHT	= 80;
-	
-	private static final int	MIN_WIDTH	= 170;
-	
-	
 	
 	public LayoutNetworkObjectFeature(IFeatureProvider fp)
 	{
@@ -60,16 +56,16 @@ public class LayoutNetworkObjectFeature extends AbstractLayoutFeature implements
 		final GraphicsAlgorithm containerGa = containerShape.getGraphicsAlgorithm();
 		
 		// height
-		if (containerGa.getHeight() < MIN_HEIGHT)
+		if (containerGa.getHeight() < NETWORK_INITIAL_HEIGHT)
 		{
-			containerGa.setHeight(MIN_HEIGHT);
+			containerGa.setHeight(NETWORK_INITIAL_HEIGHT);
 			anythingChanged = true;
 		}
 		
 		// width
-		if (containerGa.getWidth() < MIN_WIDTH)
+		if (containerGa.getWidth() < NETWORK_INITIAL_WIDTH)
 		{
-			containerGa.setWidth(MIN_WIDTH);
+			containerGa.setWidth(NETWORK_INITIAL_WIDTH);
 			anythingChanged = true;
 		}
 		

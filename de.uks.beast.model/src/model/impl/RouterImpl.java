@@ -151,7 +151,8 @@ public class RouterImpl extends MinimalEObjectImpl.Container implements Router
 	 * @generated
 	 */
 	public EList<Network> getNetwork() {
-		if (network == null) {
+		if (network == null)
+		{
 			network = new EObjectWithInverseResolvingEList.ManyInverse<Network>(Network.class, this, ModelPackage.ROUTER__NETWORK, ModelPackage.NETWORK__ROUTER);
 		}
 		return network;
@@ -267,7 +268,8 @@ public class RouterImpl extends MinimalEObjectImpl.Container implements Router
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.ROUTER__NETWORK:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNetwork()).basicAdd(otherEnd, msgs);
 		}
@@ -283,7 +285,8 @@ public class RouterImpl extends MinimalEObjectImpl.Container implements Router
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.ROUTER__NETWORK:
 				return ((InternalEList<?>)getNetwork()).basicRemove(otherEnd, msgs);
 		}
@@ -299,7 +302,8 @@ public class RouterImpl extends MinimalEObjectImpl.Container implements Router
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.ROUTER__NETWORK:
 				return getNetwork();
 			case ModelPackage.ROUTER__ID:
@@ -324,7 +328,8 @@ public class RouterImpl extends MinimalEObjectImpl.Container implements Router
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.ROUTER__NETWORK:
 				getNetwork().clear();
 				getNetwork().addAll((Collection<? extends Network>)newValue);
@@ -354,7 +359,8 @@ public class RouterImpl extends MinimalEObjectImpl.Container implements Router
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.ROUTER__NETWORK:
 				getNetwork().clear();
 				return;
@@ -383,7 +389,8 @@ public class RouterImpl extends MinimalEObjectImpl.Container implements Router
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.ROUTER__NETWORK:
 				return network != null && !network.isEmpty();
 			case ModelPackage.ROUTER__ID:

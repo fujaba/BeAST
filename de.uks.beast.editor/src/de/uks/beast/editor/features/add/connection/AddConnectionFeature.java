@@ -10,14 +10,11 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
-import org.eclipse.graphiti.util.ColorConstant;
-import org.eclipse.graphiti.util.IColorConstant;
+
+import de.uks.beast.editor.util.ColorConstants;
 
 public class AddConnectionFeature extends AbstractAddFeature
 {
-	private static final IColorConstant	LINE_COLOR_OBJECT_CONNECTION	= new ColorConstant(255, 0, 0);
-	
-	
 	
 	public AddConnectionFeature(final IFeatureProvider fp)
 	{
@@ -53,7 +50,7 @@ public class AddConnectionFeature extends AbstractAddFeature
 		final IGaService gaService = Graphiti.getGaService();
 		final Polyline polyline = gaService.createPolyline(connection);
 		polyline.setLineWidth(2);
-		polyline.setForeground(manageColor(LINE_COLOR_OBJECT_CONNECTION));
+		polyline.setForeground(manageColor(ColorConstants.LINE_COLOR_OBJECT_CONNECTION));
 		
 		return connection;
 	}

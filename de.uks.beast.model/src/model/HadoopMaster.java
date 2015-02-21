@@ -13,7 +13,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link model.HadoopMaster#getSlave <em>Slave</em>}</li>
+ *   <li>{@link model.HadoopMaster#getHadoopSlave <em>Hadoop Slave</em>}</li>
  * </ul>
  * </p>
  *
@@ -25,20 +25,20 @@ public interface HadoopMaster extends Service
 {
 
 	/**
-	 * Returns the value of the '<em><b>Slave</b></em>' reference list.
+	 * Returns the value of the '<em><b>Hadoop Slave</b></em>' reference list.
 	 * The list contents are of type {@link model.HadoopSlave}.
-	 * It is bidirectional and its opposite is '{@link model.HadoopSlave#getMaster <em>Master</em>}'.
+	 * It is bidirectional and its opposite is '{@link model.HadoopSlave#getHadoopMaster <em>Hadoop Master</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Slave</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Hadoop Slave</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Slave</em>' reference list.
-	 * @see model.ModelPackage#getHadoopMaster_Slave()
-	 * @see model.HadoopSlave#getMaster
-	 * @model opposite="master"
+	 * @return the value of the '<em>Hadoop Slave</em>' reference list.
+	 * @see model.ModelPackage#getHadoopMaster_HadoopSlave()
+	 * @see model.HadoopSlave#getHadoopMaster
+	 * @model opposite="hadoopMaster"
 	 * @generated
 	 */
-	EList<HadoopSlave> getSlave();
+	EList<HadoopSlave> getHadoopSlave();
 } // HadoopMaster

@@ -10,11 +10,11 @@ public abstract class DiagramUpdateHandler {
 	protected Diagram diagram;
 	protected Hardware model;
 
-	public DiagramUpdateHandler(Diagram diagram, Hardware model) {
+	public DiagramUpdateHandler(final Diagram diagram, final Hardware model) {
 		this.diagram = diagram;
 		this.model = model;
 	}
 	
-	public abstract void updateShape(InstanceInformation info);
+	public abstract void updateShape(final InstanceInformation info);
 	
 }

@@ -1,12 +1,17 @@
 package de.uks.beast.editor.properties.section;
 
-import static de.uks.beast.editor.util.Constants.CPU_AMOUNT_LABEL;
-import static de.uks.beast.editor.util.Constants.CPU_TYPE_LABEL;
-import static de.uks.beast.editor.util.Constants.DISKSPACE_LABEL;
-import static de.uks.beast.editor.util.Constants.IP_LABEL;
-import static de.uks.beast.editor.util.Constants.RAM_LABEL;
-import static de.uks.beast.editor.util.Constants.RAM_STAT;
-import static de.uks.beast.editor.util.Constants.SUBMIT;
+import static de.uks.beast.editor.util.StringConstants.CPU_AMOUNT_LABEL;
+import static de.uks.beast.editor.util.StringConstants.CPU_TYPE_LABEL;
+import static de.uks.beast.editor.util.StringConstants.DISKSPACE_LABEL;
+import static de.uks.beast.editor.util.StringConstants.IP_LABEL;
+import static de.uks.beast.editor.util.StringConstants.RAM_LABEL;
+import static de.uks.beast.editor.util.StringConstants.RAM_STAT;
+import static de.uks.beast.editor.util.StringConstants.SUBMIT;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import model.Rack;
 import model.Room;
 import model.Server;
@@ -17,7 +22,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.graphiti.internal.services.GraphitiInternal;
+import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.graphiti.mm.pictograms.PictogramLink;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
@@ -35,6 +43,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
 import de.uks.beast.editor.features.util.PropertyUtil;
+import de.uks.beast.editor.util.StringConstants;
 
 public class ServerPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {
@@ -185,45 +194,91 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		testBtn.setLayoutData(data);
 		testBtn.addSelectionListener(new SelectionListener() {
 			
+			@SuppressWarnings ("restriction")
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				for (Shape shape : getDiagram().getChildren())
+				for (final Shape shape : getDiagram().getChildren())
 				{
-					
-					final EObject[] objects = Graphiti.getLinkService().getAllBusinessObjectsForLinkedPictogramElement(shape);
-					
-					if (objects[0] instanceof Room)
+					if (Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(shape) instanceof Room)
 					{
-						for (EObject e : objects[0].eContents())
+						final Room room = (Room) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(shape);
+						
+						final List<PictogramElement> ret = new ArrayList<PictogramElement>();
+						
+						if (room != null && GraphitiInternal.getEmfService().isObjectAlive(room))
 						{
-							if (e instanceof Rack)
+							final Collection<PictogramLink> links = getDiagram().getPictogramLinks();
+							for (final PictogramLink link : links)
 							{
-								for (EObject ee : e.eContents())
+								if (Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(
+										link.getPictogramElement()) instanceof Server)
 								{
-									if (ee instanceof Server)
+									//TODO: refactor and create list with Server objects
+									final PictogramElement p = link.getPictogramElement();
+									if (p instanceof ContainerShape)
 									{
-										for (PictogramElement pe : Graphiti.getLinkService().getPictogramElements(getDiagram(),
-												ee))
+										final ContainerShape c = (ContainerShape) p;
+										
+										for (final Shape sh : c.getChildren())
 										{
-											if (PropertyUtil.isAttributeShape(pe, RAM_STAT))
+											if (PropertyUtil.isAttributeShape(sh, StringConstants.RAM_STAT))
 											{
-												final org.eclipse.graphiti.mm.algorithms.Text text = (org.eclipse.graphiti.mm.algorithms.Text) pe
-														.getGraphicsAlgorithm();
-												final Thread t1 = new Thread(new TestStats(text));
-												if (!t1.isAlive())
-												{
-													t1.start();
-												}
-												
+												System.out.println("########## ram textfield of " + c.hashCode());
+											}
+											else if (PropertyUtil.isAttributeShape(sh, StringConstants.CPU_STAT))
+											{
+												System.out.println("########## cpu textfield of " + c.hashCode());
 											}
 										}
 									}
+									
 								}
+								
 							}
 						}
 					}
 				}
+				
+//				for (final Shape shape : getDiagram().getChildren())
+//				{
+//					if (Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(shape) instanceof Room)
+//					{
+//						s
+//					}
+//					final EObject[] objects = Graphiti.getLinkService().getAllBusinessObjectsForLinkedPictogramElement(shape);
+//					
+//					if (objects[0] instanceof Room)
+//					{
+//						for (EObject e : objects[0].eContents())
+//						{
+//							if (e instanceof Rack)
+//							{
+//								for (EObject ee : e.eContents())
+//								{
+//									if (ee instanceof Server)
+//									{
+//										for (PictogramElement pe : Graphiti.getLinkService().getPictogramElements(getDiagram(),
+//												ee))
+//										{
+//											if (PropertyUtil.isAttributeShape(pe, RAM_STAT))
+//											{
+//												final org.eclipse.graphiti.mm.algorithms.Text text = (org.eclipse.graphiti.mm.algorithms.Text) pe
+//														.getGraphicsAlgorithm();
+////												final Thread t1 = new Thread(new TestStats(text));
+////												if (!t1.isAlive())
+////												{
+////													t1.start();
+////												}
+//												
+//											}
+//										}
+//									}
+//								}
+//							}
+//						}
+//					}
+//				}
 				
 			}
 			

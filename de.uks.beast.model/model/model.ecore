@@ -61,11 +61,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Service" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="HadoopMaster" eSuperTypes="#//Service">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="slave" upperBound="-1"
-        eType="#//HadoopSlave" eOpposite="#//HadoopSlave/master"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hadoopSlave" upperBound="-1"
+        eType="#//HadoopSlave" eOpposite="#//HadoopSlave/hadoopMaster"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="HadoopSlave" eSuperTypes="#//Service">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="master" eType="#//HadoopMaster"
-        eOpposite="#//HadoopMaster/slave"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hadoopMaster" eType="#//HadoopMaster"
+        eOpposite="#//HadoopMaster/hadoopSlave"/>
   </eClassifiers>
 </ecore:EPackage>
