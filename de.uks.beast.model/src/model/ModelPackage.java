@@ -538,6 +538,120 @@ public interface ModelPackage extends EPackage
 
 
 	/**
+	 * The meta object id for the '{@link model.impl.MySQLImpl <em>My SQL</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see model.impl.MySQLImpl
+	 * @see model.impl.ModelPackageImpl#getMySQL()
+	 * @generated
+	 */
+	int MY_SQL = 8;
+
+	/**
+	 * The number of structural features of the '<em>My SQL</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MY_SQL_FEATURE_COUNT = SERVICE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>My SQL</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MY_SQL_OPERATION_COUNT = SERVICE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link model.impl.WordPressImpl <em>Word Press</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see model.impl.WordPressImpl
+	 * @see model.impl.ModelPackageImpl#getWordPress()
+	 * @generated
+	 */
+	int WORD_PRESS = 9;
+
+	/**
+	 * The number of structural features of the '<em>Word Press</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORD_PRESS_FEATURE_COUNT = SERVICE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Word Press</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORD_PRESS_OPERATION_COUNT = SERVICE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link model.impl.CassandraImpl <em>Cassandra</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see model.impl.CassandraImpl
+	 * @see model.impl.ModelPackageImpl#getCassandra()
+	 * @generated
+	 */
+	int CASSANDRA = 10;
+
+	/**
+	 * The number of structural features of the '<em>Cassandra</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASSANDRA_FEATURE_COUNT = SERVICE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Cassandra</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASSANDRA_OPERATION_COUNT = SERVICE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link model.impl.MongoDBImpl <em>Mongo DB</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see model.impl.MongoDBImpl
+	 * @see model.impl.ModelPackageImpl#getMongoDB()
+	 * @generated
+	 */
+	int MONGO_DB = 11;
+
+	/**
+	 * The number of structural features of the '<em>Mongo DB</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MONGO_DB_FEATURE_COUNT = SERVICE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Mongo DB</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MONGO_DB_OPERATION_COUNT = SERVICE_OPERATION_COUNT + 0;
+
+
+
+	/**
 	 * Returns the meta object for class '{@link model.Server <em>Server</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -960,6 +1074,54 @@ public interface ModelPackage extends EPackage
 
 
 	/**
+	 * Returns the meta object for class '{@link model.MySQL <em>My SQL</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>My SQL</em>'.
+	 * @see model.MySQL
+	 * @generated
+	 */
+	EClass getMySQL();
+
+
+
+	/**
+	 * Returns the meta object for class '{@link model.WordPress <em>Word Press</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Word Press</em>'.
+	 * @see model.WordPress
+	 * @generated
+	 */
+	EClass getWordPress();
+
+
+
+	/**
+	 * Returns the meta object for class '{@link model.Cassandra <em>Cassandra</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Cassandra</em>'.
+	 * @see model.Cassandra
+	 * @generated
+	 */
+	EClass getCassandra();
+
+
+
+	/**
+	 * Returns the meta object for class '{@link model.MongoDB <em>Mongo DB</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mongo DB</em>'.
+	 * @see model.MongoDB
+	 * @generated
+	 */
+	EClass getMongoDB();
+
+
+
+	/**
 	 * Returns the meta object for class '{@link model.Room <em>Room</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1298,6 +1460,46 @@ public interface ModelPackage extends EPackage
 		 * @generated
 		 */
 		EReference HADOOP_SLAVE__HADOOP_MASTER = eINSTANCE.getHadoopSlave_HadoopMaster();
+
+		/**
+		 * The meta object literal for the '{@link model.impl.MySQLImpl <em>My SQL</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see model.impl.MySQLImpl
+		 * @see model.impl.ModelPackageImpl#getMySQL()
+		 * @generated
+		 */
+		EClass MY_SQL = eINSTANCE.getMySQL();
+
+		/**
+		 * The meta object literal for the '{@link model.impl.WordPressImpl <em>Word Press</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see model.impl.WordPressImpl
+		 * @see model.impl.ModelPackageImpl#getWordPress()
+		 * @generated
+		 */
+		EClass WORD_PRESS = eINSTANCE.getWordPress();
+
+		/**
+		 * The meta object literal for the '{@link model.impl.CassandraImpl <em>Cassandra</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see model.impl.CassandraImpl
+		 * @see model.impl.ModelPackageImpl#getCassandra()
+		 * @generated
+		 */
+		EClass CASSANDRA = eINSTANCE.getCassandra();
+
+		/**
+		 * The meta object literal for the '{@link model.impl.MongoDBImpl <em>Mongo DB</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see model.impl.MongoDBImpl
+		 * @see model.impl.ModelPackageImpl#getMongoDB()
+		 * @generated
+		 */
+		EClass MONGO_DB = eINSTANCE.getMongoDB();
 
 		/**
 		 * The meta object literal for the '{@link model.impl.RoomImpl <em>Room</em>}' class.

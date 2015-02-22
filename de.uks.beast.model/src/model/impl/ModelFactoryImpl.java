@@ -75,6 +75,10 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 			case ModelPackage.ROUTER: return createRouter();
 			case ModelPackage.HADOOP_MASTER: return createHadoopMaster();
 			case ModelPackage.HADOOP_SLAVE: return createHadoopSlave();
+			case ModelPackage.MY_SQL: return createMySQL();
+			case ModelPackage.WORD_PRESS: return createWordPress();
+			case ModelPackage.CASSANDRA: return createCassandra();
+			case ModelPackage.MONGO_DB: return createMongoDB();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -156,6 +160,58 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 	{
 		HadoopSlaveImpl hadoopSlave = new HadoopSlaveImpl();
 		return hadoopSlave;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MySQL createMySQL()
+	{
+		MySQLImpl mySQL = new MySQLImpl();
+		return mySQL;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WordPress createWordPress()
+	{
+		WordPressImpl wordPress = new WordPressImpl();
+		return wordPress;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Cassandra createCassandra()
+	{
+		CassandraImpl cassandra = new CassandraImpl();
+		return cassandra;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MongoDB createMongoDB()
+	{
+		MongoDBImpl mongoDB = new MongoDBImpl();
+		return mongoDB;
 	}
 
 

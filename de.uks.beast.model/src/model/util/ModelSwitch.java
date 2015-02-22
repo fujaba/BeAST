@@ -136,6 +136,38 @@ public class ModelSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ModelPackage.MY_SQL:
+			{
+				MySQL mySQL = (MySQL)theEObject;
+				T result = caseMySQL(mySQL);
+				if (result == null) result = caseService(mySQL);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModelPackage.WORD_PRESS:
+			{
+				WordPress wordPress = (WordPress)theEObject;
+				T result = caseWordPress(wordPress);
+				if (result == null) result = caseService(wordPress);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModelPackage.CASSANDRA:
+			{
+				Cassandra cassandra = (Cassandra)theEObject;
+				T result = caseCassandra(cassandra);
+				if (result == null) result = caseService(cassandra);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModelPackage.MONGO_DB:
+			{
+				MongoDB mongoDB = (MongoDB)theEObject;
+				T result = caseMongoDB(mongoDB);
+				if (result == null) result = caseService(mongoDB);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -262,6 +294,78 @@ public class ModelSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseHadoopSlave(HadoopSlave object)
+	{
+		return null;
+	}
+
+
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>My SQL</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>My SQL</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMySQL(MySQL object)
+	{
+		return null;
+	}
+
+
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Word Press</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Word Press</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWordPress(WordPress object)
+	{
+		return null;
+	}
+
+
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Cassandra</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Cassandra</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCassandra(Cassandra object)
+	{
+		return null;
+	}
+
+
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mongo DB</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mongo DB</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMongoDB(MongoDB object)
 	{
 		return null;
 	}

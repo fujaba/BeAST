@@ -118,6 +118,26 @@ public class ModelAdapterFactory extends AdapterFactoryImpl
 				return createHadoopSlaveAdapter();
 			}
 			@Override
+			public Adapter caseMySQL(MySQL object)
+			{
+				return createMySQLAdapter();
+			}
+			@Override
+			public Adapter caseWordPress(WordPress object)
+			{
+				return createWordPressAdapter();
+			}
+			@Override
+			public Adapter caseCassandra(Cassandra object)
+			{
+				return createCassandraAdapter();
+			}
+			@Override
+			public Adapter caseMongoDB(MongoDB object)
+			{
+				return createMongoDBAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object)
 			{
 				return createEObjectAdapter();
@@ -255,6 +275,74 @@ public class ModelAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createHadoopSlaveAdapter()
+	{
+		return null;
+	}
+
+
+
+	/**
+	 * Creates a new adapter for an object of class '{@link model.MySQL <em>My SQL</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see model.MySQL
+	 * @generated
+	 */
+	public Adapter createMySQLAdapter()
+	{
+		return null;
+	}
+
+
+
+	/**
+	 * Creates a new adapter for an object of class '{@link model.WordPress <em>Word Press</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see model.WordPress
+	 * @generated
+	 */
+	public Adapter createWordPressAdapter()
+	{
+		return null;
+	}
+
+
+
+	/**
+	 * Creates a new adapter for an object of class '{@link model.Cassandra <em>Cassandra</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see model.Cassandra
+	 * @generated
+	 */
+	public Adapter createCassandraAdapter()
+	{
+		return null;
+	}
+
+
+
+	/**
+	 * Creates a new adapter for an object of class '{@link model.MongoDB <em>Mongo DB</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see model.MongoDB
+	 * @generated
+	 */
+	public Adapter createMongoDBAdapter()
 	{
 		return null;
 	}

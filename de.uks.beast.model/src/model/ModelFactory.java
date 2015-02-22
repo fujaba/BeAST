@@ -91,6 +91,50 @@ public interface ModelFactory extends EFactory
 
 
 	/**
+	 * Returns a new object of class '<em>My SQL</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>My SQL</em>'.
+	 * @generated
+	 */
+	MySQL createMySQL();
+
+
+
+	/**
+	 * Returns a new object of class '<em>Word Press</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Word Press</em>'.
+	 * @generated
+	 */
+	WordPress createWordPress();
+
+
+
+	/**
+	 * Returns a new object of class '<em>Cassandra</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Cassandra</em>'.
+	 * @generated
+	 */
+	Cassandra createCassandra();
+
+
+
+	/**
+	 * Returns a new object of class '<em>Mongo DB</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mongo DB</em>'.
+	 * @generated
+	 */
+	MongoDB createMongoDB();
+
+
+
+	/**
 	 * Returns a new object of class '<em>Room</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

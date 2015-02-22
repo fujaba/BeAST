@@ -2,16 +2,20 @@
  */
 package model.impl;
 
+import model.Cassandra;
 import model.HadoopMaster;
 import model.HadoopSlave;
 import model.ModelFactory;
 import model.ModelPackage;
+import model.MongoDB;
+import model.MySQL;
 import model.Network;
 import model.Rack;
 import model.Room;
 import model.Router;
 import model.Server;
 import model.Service;
+import model.WordPress;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -76,6 +80,34 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * @generated
 	 */
 	private EClass hadoopSlaveEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mySQLEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass wordPressEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass cassandraEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mongoDBEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -542,6 +574,54 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getMySQL()
+	{
+		return mySQLEClass;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getWordPress()
+	{
+		return wordPressEClass;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCassandra()
+	{
+		return cassandraEClass;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMongoDB()
+	{
+		return mongoDBEClass;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getRoom()
 	{
 		return roomEClass;
@@ -648,6 +728,14 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 
 		hadoopSlaveEClass = createEClass(HADOOP_SLAVE);
 		createEReference(hadoopSlaveEClass, HADOOP_SLAVE__HADOOP_MASTER);
+
+		mySQLEClass = createEClass(MY_SQL);
+
+		wordPressEClass = createEClass(WORD_PRESS);
+
+		cassandraEClass = createEClass(CASSANDRA);
+
+		mongoDBEClass = createEClass(MONGO_DB);
 	}
 	
 	/**
@@ -683,6 +771,10 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		// Add supertypes to classes
 		hadoopMasterEClass.getESuperTypes().add(this.getService());
 		hadoopSlaveEClass.getESuperTypes().add(this.getService());
+		mySQLEClass.getESuperTypes().add(this.getService());
+		wordPressEClass.getESuperTypes().add(this.getService());
+		cassandraEClass.getESuperTypes().add(this.getService());
+		mongoDBEClass.getESuperTypes().add(this.getService());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(serverEClass, Server.class, "Server", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -728,6 +820,14 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 
 		initEClass(hadoopSlaveEClass, HadoopSlave.class, "HadoopSlave", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getHadoopSlave_HadoopMaster(), this.getHadoopMaster(), this.getHadoopMaster_HadoopSlave(), "hadoopMaster", null, 0, 1, HadoopSlave.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(mySQLEClass, MySQL.class, "MySQL", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(wordPressEClass, WordPress.class, "WordPress", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(cassandraEClass, Cassandra.class, "Cassandra", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(mongoDBEClass, MongoDB.class, "MongoDB", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
