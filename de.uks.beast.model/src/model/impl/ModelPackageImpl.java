@@ -526,6 +526,18 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getService_Type()
+	{
+		return (EAttribute)serviceEClass.getEStructuralFeatures().get(0);
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getHadoopMaster()
 	{
 		return hadoopMasterEClass;
@@ -722,6 +734,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		createEAttribute(routerEClass, ROUTER__EXTERNAL_GATEWAY);
 
 		serviceEClass = createEClass(SERVICE);
+		createEAttribute(serviceEClass, SERVICE__TYPE);
 
 		hadoopMasterEClass = createEClass(HADOOP_MASTER);
 		createEReference(hadoopMasterEClass, HADOOP_MASTER__HADOOP_SLAVE);
@@ -813,7 +826,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		initEAttribute(getRouter_Name(), ecorePackage.getEString(), "name", "0", 0, 1, Router.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRouter_ExternalGateway(), ecorePackage.getEString(), "externalGateway", "0", 0, 1, Router.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(serviceEClass, Service.class, "Service", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(serviceEClass, Service.class, "Service", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getService_Type(), ecorePackage.getEString(), "type", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(hadoopMasterEClass, HadoopMaster.class, "HadoopMaster", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getHadoopMaster_HadoopSlave(), this.getHadoopSlave(), this.getHadoopSlave_HadoopMaster(), "hadoopSlave", null, 0, -1, HadoopMaster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

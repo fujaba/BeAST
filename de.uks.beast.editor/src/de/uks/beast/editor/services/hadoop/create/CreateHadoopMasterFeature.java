@@ -1,12 +1,14 @@
 package de.uks.beast.editor.services.hadoop.create;
 
-import model.HadoopMaster;
 import model.ModelFactory;
 import model.Server;
+import model.Service;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
+
+import de.uks.beast.editor.util.StringConstants;
 
 public class CreateHadoopMasterFeature extends AbstractCreateFeature
 {
@@ -39,13 +41,14 @@ public class CreateHadoopMasterFeature extends AbstractCreateFeature
 	@Override
 	public Object[] create(final ICreateContext context)
 	{
-		final HadoopMaster hadoopMaster = ModelFactory.eINSTANCE.createHadoopMaster();
+		final Service service = ModelFactory.eINSTANCE.createHadoopMaster();
+		service.setType(StringConstants.HADOOP_MASTER.text());
 		final Server server = (Server) getBusinessObjectForPictogramElement(context.getTargetContainer());
-		server.setService(hadoopMaster);
-		addGraphicalRepresentation(context, hadoopMaster);
+		server.setService(service);
+		addGraphicalRepresentation(context, service);
 		getFeatureProvider().getDirectEditingInfo().setActive(false);
 		
-		return new Object[] { hadoopMaster };
+		return new Object[] { service };
 	}
 	
 }

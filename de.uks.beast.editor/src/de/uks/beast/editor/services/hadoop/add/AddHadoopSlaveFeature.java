@@ -54,7 +54,7 @@ public class AddHadoopSlaveFeature extends AbstractAddShapeFeature
 		
 		final IGaService gaService = Graphiti.getGaService();
 		
-		final Image image = gaService.createImage(containerShape, StringConstants.HADOOP_SLAVE_IMAGE.getImageID());
+		final Image image = gaService.createImage(containerShape, StringConstants.HADOOP_SLAVE_OBJECT_IMAGE.getImageID());
 		gaService.setLocationAndSize(image, context.getX(), context.getY(), context.getWidth(), context.getHeight());
 		
 		// if added Class has no resource we add it to the resource

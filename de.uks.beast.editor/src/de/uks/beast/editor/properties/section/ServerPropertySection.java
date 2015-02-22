@@ -5,20 +5,17 @@ import static de.uks.beast.editor.util.StringConstants.CPU_TYPE_LABEL;
 import static de.uks.beast.editor.util.StringConstants.DISKSPACE_LABEL;
 import static de.uks.beast.editor.util.StringConstants.IP_LABEL;
 import static de.uks.beast.editor.util.StringConstants.RAM_LABEL;
-import static de.uks.beast.editor.util.StringConstants.RAM_STAT;
 import static de.uks.beast.editor.util.StringConstants.SUBMIT;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import model.Rack;
 import model.Room;
 import model.Server;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;

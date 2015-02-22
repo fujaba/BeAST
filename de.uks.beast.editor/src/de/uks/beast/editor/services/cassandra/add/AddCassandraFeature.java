@@ -1,6 +1,6 @@
-package de.uks.beast.editor.services.hadoop.add;
+package de.uks.beast.editor.services.cassandra.add;
 
-import model.HadoopMaster;
+import model.Cassandra;
 import model.Server;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -16,10 +16,10 @@ import org.eclipse.graphiti.services.IPeCreateService;
 
 import de.uks.beast.editor.util.StringConstants;
 
-public class AddHadoopMasterFeature extends AbstractAddShapeFeature
+public class AddCassandraFeature extends AbstractAddShapeFeature
 {
 	
-	public AddHadoopMasterFeature(final IFeatureProvider fp)
+	public AddCassandraFeature(final IFeatureProvider fp)
 	{
 		super(fp);
 	}
@@ -29,7 +29,7 @@ public class AddHadoopMasterFeature extends AbstractAddShapeFeature
 	@Override
 	public boolean canAdd(final IAddContext context)
 	{
-		if (context.getNewObject() instanceof HadoopMaster)
+		if (context.getNewObject() instanceof Cassandra)
 		{
 			if (getBusinessObjectForPictogramElement(context.getTargetContainer()) instanceof Server)
 			{
@@ -45,7 +45,7 @@ public class AddHadoopMasterFeature extends AbstractAddShapeFeature
 	@Override
 	public PictogramElement add(final IAddContext context)
 	{
-		final HadoopMaster hadoopMaster = (HadoopMaster) context.getNewObject();
+		final Cassandra cassandra = (Cassandra) context.getNewObject();
 		final ContainerShape targetDiagram = (ContainerShape) context.getTargetContainer();
 		
 		// CONTAINER SHAPE WITH ROUNDED RECTANGLE
@@ -54,18 +54,18 @@ public class AddHadoopMasterFeature extends AbstractAddShapeFeature
 		
 		final IGaService gaService = Graphiti.getGaService();
 		
-		final Image image = gaService.createImage(containerShape, StringConstants.HADOOP_MASTER_OBJECT_IMAGE.getImageID());
-		gaService.setLocationAndSize(image, context.getX(), context.getY(), context.getWidth(), context.getHeight());
+		final Image objectIcon = gaService.createImage(containerShape, StringConstants.CASSANDRA_OBJECT_IMAGE.getImageID());
+		gaService.setLocationAndSize(objectIcon, context.getX(), context.getY(), context.getWidth(), context.getHeight());
 		
 		// if added Class has no resource we add it to the resource
 		// of the diagram
 		// in a real scenario the business model would have its own resource
-		if (hadoopMaster.eResource() == null)
+		if (cassandra.eResource() == null)
 		{
-			getDiagram().eResource().getContents().add(hadoopMaster);
+			getDiagram().eResource().getContents().add(cassandra);
 		}
 		// create link and wire it
-		link(containerShape, hadoopMaster);
+		link(containerShape, cassandra);
 		
 		// add a chopbox anchor to the shape 
 		final ChopboxAnchor anchor = peCreateService.createChopboxAnchor(containerShape);

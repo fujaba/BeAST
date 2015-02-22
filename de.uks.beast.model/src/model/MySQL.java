@@ -3,6 +3,7 @@
 package model;
 
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>My SQL</b></em>'.

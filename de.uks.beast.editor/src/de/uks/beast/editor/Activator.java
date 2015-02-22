@@ -15,7 +15,9 @@ public class Activator extends AbstractUIPlugin
 	
 	// The shared instance
 	private static Activator	plugin;
-	public static Diagram diagram;
+	public static Diagram		diagram;
+	
+	
 	
 	/**
 	 * The constructor

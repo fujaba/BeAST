@@ -1,4 +1,4 @@
-package de.uks.beast.editor.services.hadoop.create;
+package de.uks.beast.editor.services.cassandra.create;
 
 import model.ModelFactory;
 import model.Server;
@@ -10,10 +10,10 @@ import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
 
 import de.uks.beast.editor.util.StringConstants;
 
-public class CreateHadoopSlaveFeature extends AbstractCreateFeature
+public class CreateCassandraFeature extends AbstractCreateFeature
 {
 	
-	public CreateHadoopSlaveFeature(final IFeatureProvider fp, final String name, final String description)
+	public CreateCassandraFeature(final IFeatureProvider fp, final String name, final String description)
 	{
 		super(fp, name, description);
 	}
@@ -41,8 +41,8 @@ public class CreateHadoopSlaveFeature extends AbstractCreateFeature
 	@Override
 	public Object[] create(final ICreateContext context)
 	{
-		final Service service = ModelFactory.eINSTANCE.createHadoopSlave();
-		service.setType(StringConstants.HADOOP_SLAVE.text());
+		final Service service = ModelFactory.eINSTANCE.createCassandra();
+		service.setType(StringConstants.CASSANDRA.text());
 		final Server server = (Server) getBusinessObjectForPictogramElement(context.getTargetContainer());
 		server.setService(service);
 		addGraphicalRepresentation(context, service);

@@ -1,11 +1,5 @@
 package de.uks.beast.editor.provider;
 
-import static de.uks.beast.editor.util.StringConstants.CONNECTION;
-import static de.uks.beast.editor.util.StringConstants.NETWORK;
-import static de.uks.beast.editor.util.StringConstants.ROUTER;
-import static de.uks.beast.editor.util.StringConstants.SERVER;
-import static de.uks.beast.editor.util.StringConstants.SERVER_RACK;
-import static de.uks.beast.editor.util.StringConstants.SERVER_ROOM;
 import model.HadoopMaster;
 import model.HadoopSlave;
 import model.Network;
@@ -13,11 +7,10 @@ import model.Rack;
 import model.Room;
 import model.Router;
 import model.Server;
+import model.Service;
 
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IAddFeature;
-import org.eclipse.graphiti.features.ICreateConnectionFeature;
-import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IDirectEditingFeature;
 import org.eclipse.graphiti.features.ILayoutFeature;
 import org.eclipse.graphiti.features.IReconnectionFeature;
@@ -39,12 +32,6 @@ import de.uks.beast.editor.features.add.AddRouterFeature;
 import de.uks.beast.editor.features.add.AddServerFeature;
 import de.uks.beast.editor.features.add.connection.AddConnectionFeature;
 import de.uks.beast.editor.features.add.connection.ReconnectionFeature;
-import de.uks.beast.editor.features.create.CreateConnectionFeature;
-import de.uks.beast.editor.features.create.CreateNetworkFeature;
-import de.uks.beast.editor.features.create.CreateRackFeature;
-import de.uks.beast.editor.features.create.CreateRoomFeature;
-import de.uks.beast.editor.features.create.CreateServerFeature;
-import de.uks.beast.editor.features.create.CreaterRouterFeature;
 import de.uks.beast.editor.features.edit.DirectEditNetworkFeature;
 import de.uks.beast.editor.features.edit.DirectEditRackFeature;
 import de.uks.beast.editor.features.edit.DirectEditRoomFeature;
@@ -60,38 +47,18 @@ import de.uks.beast.editor.features.update.UpdateRackObjectFeature;
 import de.uks.beast.editor.features.update.UpdateRoomObjectFeature;
 import de.uks.beast.editor.features.update.UpdateRouterObjectFeature;
 import de.uks.beast.editor.features.update.UpdateServerObjectFeature;
+import de.uks.beast.editor.services.cassandra.add.AddCassandraFeature;
 import de.uks.beast.editor.services.hadoop.add.AddHadoopConnection;
 import de.uks.beast.editor.services.hadoop.add.AddHadoopMasterFeature;
 import de.uks.beast.editor.services.hadoop.add.AddHadoopSlaveFeature;
+import de.uks.beast.editor.util.StringConstants;
 
-public class EditorFeatureProvider extends DefaultFeatureProvider
+public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 {
 	
-	public EditorFeatureProvider(final IDiagramTypeProvider dtp)
+	public BasicEditorFeatureProvider(final IDiagramTypeProvider dtp)
 	{
 		super(dtp);
-	}
-	
-	
-	
-	@Override
-	public ICreateFeature[] getCreateFeatures()
-	{
-		final ICreateFeature[] features = { new CreateServerFeature(this, SERVER.text(), SERVER.description()),
-				new CreateRackFeature(this, SERVER_RACK.text(), SERVER_RACK.description()),
-				new CreateNetworkFeature(this, NETWORK.text(), NETWORK.description()),
-				new CreateRoomFeature(this, SERVER_ROOM.text(), SERVER_ROOM.description()),
-				new CreaterRouterFeature(this, ROUTER.text(), ROUTER.description()) };
-		
-		return features;
-	}
-	
-	
-	
-	@Override
-	public ICreateConnectionFeature[] getCreateConnectionFeatures()
-	{
-		return new ICreateConnectionFeature[] { new CreateConnectionFeature(this, CONNECTION.text(), CONNECTION.description()) };
 	}
 	
 	
@@ -147,13 +114,23 @@ public class EditorFeatureProvider extends DefaultFeatureProvider
 		}
 		
 		//services
-		else if (context.getNewObject() instanceof HadoopMaster)
+		else if (context.getNewObject() instanceof Service)
 		{
-			return new AddHadoopMasterFeature(this);
-		}
-		else if (context.getNewObject() instanceof HadoopSlave)
-		{
-			return new AddHadoopSlaveFeature(this);
+			final Service service = (Service) context.getNewObject();
+			
+			if (service.getType().equals(StringConstants.HADOOP_MASTER.text()))
+			{
+				return new AddHadoopMasterFeature(this);
+			}
+			else if (service.getType().equals(StringConstants.HADOOP_SLAVE.text()))
+			{
+				return new AddHadoopSlaveFeature(this);
+			}
+			else if (service.getType().equals(StringConstants.CASSANDRA.text()))
+			{
+				return new AddCassandraFeature(this);
+			}
+			
 		}
 		
 		return super.getAddFeature(context);

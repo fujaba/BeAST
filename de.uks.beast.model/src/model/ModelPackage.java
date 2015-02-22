@@ -434,14 +434,23 @@ public interface ModelPackage extends EPackage
 
 
 	/**
-	 * The meta object id for the '{@link model.impl.ServiceImpl <em>Service</em>}' class.
+	 * The meta object id for the '{@link model.Service <em>Service</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see model.impl.ServiceImpl
+	 * @see model.Service
 	 * @see model.impl.ModelPackageImpl#getService()
 	 * @generated
 	 */
 	int SERVICE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__TYPE = 0;
 
 	/**
 	 * The number of structural features of the '<em>Service</em>' class.
@@ -450,7 +459,7 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_FEATURE_COUNT = 0;
+	int SERVICE_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>Service</em>' class.
@@ -470,6 +479,15 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 */
 	int HADOOP_MASTER = 6;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HADOOP_MASTER__TYPE = SERVICE__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Hadoop Slave</b></em>' reference list.
@@ -507,6 +525,15 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 */
 	int HADOOP_SLAVE = 7;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HADOOP_SLAVE__TYPE = SERVICE__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Hadoop Master</b></em>' reference.
@@ -548,6 +575,15 @@ public interface ModelPackage extends EPackage
 	int MY_SQL = 8;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MY_SQL__TYPE = SERVICE__TYPE;
+
+	/**
 	 * The number of structural features of the '<em>My SQL</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -574,6 +610,15 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 */
 	int WORD_PRESS = 9;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORD_PRESS__TYPE = SERVICE__TYPE;
 
 	/**
 	 * The number of structural features of the '<em>Word Press</em>' class.
@@ -604,6 +649,15 @@ public interface ModelPackage extends EPackage
 	int CASSANDRA = 10;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASSANDRA__TYPE = SERVICE__TYPE;
+
+	/**
 	 * The number of structural features of the '<em>Cassandra</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -630,6 +684,15 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 */
 	int MONGO_DB = 11;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MONGO_DB__TYPE = SERVICE__TYPE;
 
 	/**
 	 * The number of structural features of the '<em>Mongo DB</em>' class.
@@ -1020,6 +1083,19 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 */
 	EClass getService();
+
+
+
+	/**
+	 * Returns the meta object for the attribute '{@link model.Service#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see model.Service#getType()
+	 * @see #getService()
+	 * @generated
+	 */
+	EAttribute getService_Type();
 
 
 
@@ -1416,14 +1492,22 @@ public interface ModelPackage extends EPackage
 		EAttribute ROUTER__EXTERNAL_GATEWAY = eINSTANCE.getRouter_ExternalGateway();
 
 		/**
-		 * The meta object literal for the '{@link model.impl.ServiceImpl <em>Service</em>}' class.
+		 * The meta object literal for the '{@link model.Service <em>Service</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see model.impl.ServiceImpl
+		 * @see model.Service
 		 * @see model.impl.ModelPackageImpl#getService()
 		 * @generated
 		 */
 		EClass SERVICE = eINSTANCE.getService();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE__TYPE = eINSTANCE.getService_Type();
 
 		/**
 		 * The meta object literal for the '{@link model.impl.HadoopMasterImpl <em>Hadoop Master</em>}' class.
