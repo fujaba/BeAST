@@ -566,7 +566,6 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
