@@ -123,7 +123,7 @@ public class OpenstackEnvironment extends CloudEnvironment {
 		ArrayList<OpenstackConnectionInfo> cons = new ArrayList<OpenstackConnectionInfo>();
 
 		for (Configuration config : configs) {
-			OpenstackConfiguration оc = (OpenstackConfiguration) config;
+			//OpenstackConfiguration оc = (OpenstackConfiguration) config;
 			
 			// TODO:
 			/*
