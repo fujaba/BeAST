@@ -1,4 +1,4 @@
-package de.uks.beast.editor.services.hadoop.provider;
+package de.uks.beast.editor.provider;
 
 import static de.uks.beast.editor.util.StringConstants.*;
 

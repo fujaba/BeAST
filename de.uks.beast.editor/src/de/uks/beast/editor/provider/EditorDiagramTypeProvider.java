@@ -4,8 +4,6 @@ import org.eclipse.graphiti.dt.AbstractDiagramTypeProvider;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.tb.IToolBehaviorProvider;
 
-import de.uks.beast.editor.services.hadoop.provider.ExtendedEditorFeatureProvider;
-
 public class EditorDiagramTypeProvider extends AbstractDiagramTypeProvider
 {
 	
