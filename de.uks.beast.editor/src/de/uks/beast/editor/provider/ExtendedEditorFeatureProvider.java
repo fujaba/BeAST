@@ -1,6 +1,29 @@
 package de.uks.beast.editor.provider;
 
-import static de.uks.beast.editor.util.StringConstants.*;
+import static de.uks.beast.editor.util.StringConstants.CASSANDRA;
+import static de.uks.beast.editor.util.StringConstants.CASSANDRA_PALETTE_IMAGE;
+import static de.uks.beast.editor.util.StringConstants.CONNECTION_PALETTE_IMAGE;
+import static de.uks.beast.editor.util.StringConstants.HADOOP_CONNECTION;
+import static de.uks.beast.editor.util.StringConstants.HADOOP_MASTER;
+import static de.uks.beast.editor.util.StringConstants.HADOOP_PALETTE_IMAGE;
+import static de.uks.beast.editor.util.StringConstants.HADOOP_SLAVE;
+import static de.uks.beast.editor.util.StringConstants.HARDWARE_ETHERNET;
+import static de.uks.beast.editor.util.StringConstants.HARDWARE_LOCATION;
+import static de.uks.beast.editor.util.StringConstants.HARDWARE_NETWORK;
+import static de.uks.beast.editor.util.StringConstants.HARDWARE_SERVER;
+import static de.uks.beast.editor.util.StringConstants.LOCATION_PALETTE_IMAGE;
+import static de.uks.beast.editor.util.StringConstants.MONGO_DB;
+import static de.uks.beast.editor.util.StringConstants.MONGO_DB_PALETTE_IMAGE;
+import static de.uks.beast.editor.util.StringConstants.NETWORK;
+import static de.uks.beast.editor.util.StringConstants.NETWORK_PALETTE_IMAGE;
+import static de.uks.beast.editor.util.StringConstants.ROUTER;
+import static de.uks.beast.editor.util.StringConstants.SERVER;
+import static de.uks.beast.editor.util.StringConstants.SERVER_PALETTE_IMAGE;
+import static de.uks.beast.editor.util.StringConstants.SERVER_RACK;
+import static de.uks.beast.editor.util.StringConstants.SERVER_ROOM;
+import static de.uks.beast.editor.util.StringConstants.SERVICE_CASSANDRA;
+import static de.uks.beast.editor.util.StringConstants.SERVICE_HADOOP;
+import static de.uks.beast.editor.util.StringConstants.SERVICE_MONGODB;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +70,10 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 						new CreateRoomFeature(getFeatureProvider(), SERVER_ROOM.text(), SERVER_ROOM.description()))
 				.addCreateObjectFeature(
 						new CreateRackFeature(getFeatureProvider(), SERVER_RACK.text(), SERVER_RACK.description()))
+				.setInitialOpen(false)
 				.build();
+		locationEntry.setInitiallyOpen(false);
+		
 		
 		final PaletteCompartmentEntry serverEntry = PaletteCompartmentEntry
 				.builder()
@@ -55,6 +81,7 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 				.setIconID(SERVER_PALETTE_IMAGE.getImageID())
 				.addCreateObjectFeature(
 						new CreateServerFeature(getFeatureProvider(), SERVER.text(), SERVER.description()))
+				.setInitialOpen(false)
 				.build();
 		
 		final PaletteCompartmentEntry networkEntry = PaletteCompartmentEntry
@@ -65,6 +92,7 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 						new CreateNetworkFeature(getFeatureProvider(), NETWORK.text(), NETWORK.description()))
 				.addCreateObjectFeature(
 						new CreaterRouterFeature(getFeatureProvider(), ROUTER.text(), ROUTER.description()))
+				.setInitialOpen(false)
 				.build();
 		
 		final PaletteCompartmentEntry ethernetEntry = PaletteCompartmentEntry
@@ -74,6 +102,7 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 				.addCreateConnectionFeature(
 						new CreateConnectionFeature(getFeatureProvider(), StringConstants.CONNECTION.text(),
 								StringConstants.CONNECTION.description()))
+				.setInitialOpen(false)
 				.build();
 				
 		final PaletteCompartmentEntry hadoopEntry = PaletteCompartmentEntry
@@ -87,6 +116,7 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 				.addCreateConnectionFeature(
 						new CreateHadoopConnection(getFeatureProvider(), HADOOP_CONNECTION.text(), HADOOP_CONNECTION
 								.description()))
+				.setInitialOpen(false)
 				.build();
 				
 		final PaletteCompartmentEntry cassandraEntry = PaletteCompartmentEntry
@@ -95,6 +125,7 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 				.setIconID(CASSANDRA_PALETTE_IMAGE.getImageID())
 				.addCreateObjectFeature(
 						new CreateCassandraFeature(getFeatureProvider(), CASSANDRA.text(), CASSANDRA.description()))
+				.setInitialOpen(false)
 				.build();
 		
 		final PaletteCompartmentEntry mongoDBEntry = PaletteCompartmentEntry
@@ -103,18 +134,27 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 				.setIconID(MONGO_DB_PALETTE_IMAGE.getImageID())
 				.addCreateObjectFeature(
 						new CreateMongoDBFeature(getFeatureProvider(), MONGO_DB.text(), MONGO_DB.description()))
+				.setInitialOpen(false)
 				.build();
 		//@formatter:on
 		
-		allEntries.add(locationEntry);
-		allEntries.add(serverEntry);
-		allEntries.add(networkEntry);
-		allEntries.add(ethernetEntry);
-		allEntries.add(hadoopEntry);
-		allEntries.add(cassandraEntry);
-		allEntries.add(mongoDBEntry);
+		addAllEntries(allEntries, locationEntry, serverEntry, networkEntry, ethernetEntry, hadoopEntry, cassandraEntry,
+				mongoDBEntry);
 		
 		return allEntries.toArray(new IPaletteCompartmentEntry[allEntries.size()]);
+	}
+	
+	
+	
+	private void addAllEntries(final List<IPaletteCompartmentEntry> entryList, final PaletteCompartmentEntry... entries)
+	{
+		for (final PaletteCompartmentEntry entry : entries)
+		{
+			if (entry != null)
+			{
+				entryList.add(entry);
+			}
+		}
 	}
 	
 }

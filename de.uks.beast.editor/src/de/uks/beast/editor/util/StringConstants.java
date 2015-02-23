@@ -98,6 +98,7 @@ public enum StringConstants
 	LINE_BREAK_WARNING			("Line breakes are not allowed in class names!", 	""),
 	
 	//images
+	PALETTE_ENTRY_IMAGE			("icons/category_icon.png",						"de.uks.beast.editor.palette_entry"),
 	LOCATION_PALETTE_IMAGE		("icons/location_b.jpg",						"de.uks.beast.editor.location_palette"),
 	SERVER_PALETTE_IMAGE		("icons/server_b.jpg",							"de.uks.beast.editor.server_palette"),
 	NETWORK_PALETTE_IMAGE		("icons/network_d.png",							"de.uks.beast.editor.network_palette"),

@@ -8,6 +8,7 @@ import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
 
 public class PaletteCompartmentEntryBuilder
 {
+	private boolean										initialOpen					= true;
 	private String										name						= "default";
 	private String										iconID						= null;
 	private final List<AbstractCreateFeature>			createObjectFeatures		= new ArrayList<>();
@@ -25,7 +26,7 @@ public class PaletteCompartmentEntryBuilder
 	public PaletteCompartmentEntry build()
 	{
 		final PaletteCompartmentEntry entry = new PaletteCompartmentEntry(name, iconID, createObjectFeatures,
-				createConnectionFeatures);
+				createConnectionFeatures, initialOpen);
 		entry.addAllToolEntries();
 		
 		return entry;
@@ -106,6 +107,18 @@ public class PaletteCompartmentEntryBuilder
 	public PaletteCompartmentEntryBuilder setIconID(final String iconID)
 	{
 		this.iconID = iconID;
+		
+		return this;
+	}
+	
+	
+	
+	/**
+	 * @param initialOpen the initialOpen to set
+	 */
+	public PaletteCompartmentEntryBuilder setInitialOpen(final boolean initialOpen)
+	{
+		this.initialOpen = initialOpen;
 		
 		return this;
 	}

@@ -6,10 +6,10 @@ import org.eclipse.graphiti.util.IColorConstant;
 public class ColorConstants
 {
 	//color connection
-	public static final IColorConstant	LINE_COLOR_OBJECT_CONNECTION	= new ColorConstant(255, 0, 0);
+	public static final IColorConstant	LINE_COLOR_OBJECT_CONNECTION	= new ColorConstant(85, 85, 85);
 	
 	//color hadoopConnection
-	public static final IColorConstant	LINE_COLOR_HADOOP_CONNECTION	= new ColorConstant(0, 255, 0);
+	public static final IColorConstant	LINE_COLOR_HADOOP_CONNECTION	= new ColorConstant(0, 190, 0);
 	
 	//network
 	public static final IColorConstant	NETWORK_TEXT_FOREGROUND			= IColorConstant.BLACK;
