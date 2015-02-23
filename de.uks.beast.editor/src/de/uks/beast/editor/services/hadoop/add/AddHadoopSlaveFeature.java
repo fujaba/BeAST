@@ -1,7 +1,7 @@
 package de.uks.beast.editor.services.hadoop.add;
 
-import model.HadoopSlave;
 import model.Server;
+import model.Service;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
@@ -29,7 +29,7 @@ public class AddHadoopSlaveFeature extends AbstractAddShapeFeature
 	@Override
 	public boolean canAdd(final IAddContext context)
 	{
-		if (context.getNewObject() instanceof HadoopSlave)
+		if (context.getNewObject() instanceof Service)
 		{
 			if (getBusinessObjectForPictogramElement(context.getTargetContainer()) instanceof Server)
 			{
@@ -45,7 +45,7 @@ public class AddHadoopSlaveFeature extends AbstractAddShapeFeature
 	@Override
 	public PictogramElement add(final IAddContext context)
 	{
-		final HadoopSlave hadoopSlave = (HadoopSlave) context.getNewObject();
+		final Service hadoopSlave = (Service) context.getNewObject();
 		final ContainerShape targetDiagram = (ContainerShape) context.getTargetContainer();
 		
 		// CONTAINER SHAPE WITH ROUNDED RECTANGLE

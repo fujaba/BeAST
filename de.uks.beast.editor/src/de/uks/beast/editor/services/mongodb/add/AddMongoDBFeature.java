@@ -1,4 +1,4 @@
-package de.uks.beast.editor.services.cassandra.add;
+package de.uks.beast.editor.services.mongodb.add;
 
 import model.Server;
 import model.Service;
@@ -16,10 +16,10 @@ import org.eclipse.graphiti.services.IPeCreateService;
 
 import de.uks.beast.editor.util.StringConstants;
 
-public class AddCassandraFeature extends AbstractAddShapeFeature
+public class AddMongoDBFeature extends AbstractAddShapeFeature
 {
 	
-	public AddCassandraFeature(final IFeatureProvider fp)
+	public AddMongoDBFeature(final IFeatureProvider fp)
 	{
 		super(fp);
 	}
@@ -54,7 +54,7 @@ public class AddCassandraFeature extends AbstractAddShapeFeature
 		
 		final IGaService gaService = Graphiti.getGaService();
 		
-		final Image objectIcon = gaService.createImage(containerShape, StringConstants.CASSANDRA_OBJECT_IMAGE.getImageID());
+		final Image objectIcon = gaService.createImage(containerShape, StringConstants.MONGO_DB_OBJECT_IMAGE.getImageID());
 		gaService.setLocationAndSize(objectIcon, context.getX(), context.getY(), context.getWidth(), context.getHeight());
 		
 		// if added Class has no resource we add it to the resource

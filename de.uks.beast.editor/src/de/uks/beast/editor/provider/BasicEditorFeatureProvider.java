@@ -51,6 +51,7 @@ import de.uks.beast.editor.services.cassandra.add.AddCassandraFeature;
 import de.uks.beast.editor.services.hadoop.add.AddHadoopConnection;
 import de.uks.beast.editor.services.hadoop.add.AddHadoopMasterFeature;
 import de.uks.beast.editor.services.hadoop.add.AddHadoopSlaveFeature;
+import de.uks.beast.editor.services.mongodb.add.AddMongoDBFeature;
 import de.uks.beast.editor.util.StringConstants;
 
 public class BasicEditorFeatureProvider extends DefaultFeatureProvider
@@ -129,6 +130,10 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 			else if (service.getType().equals(StringConstants.CASSANDRA.text()))
 			{
 				return new AddCassandraFeature(this);
+			}
+			else if (service.getType().equals(StringConstants.MONGO_DB.text()))
+			{
+				return new AddMongoDBFeature(this);
 			}
 			
 		}

@@ -66,7 +66,11 @@ public enum StringConstants
 	WORDPRESS					("WordPress",			"This is a WordPress service"),
 	
 	
-	// Service Palette
+	// Palette Entries
+	HARDWARE_LOCATION				("Location",	"This entry provides hardware location"),
+	HARDWARE_SERVER					("Server",		"This entry provides hardware server"),
+	HARDWARE_NETWORK				("Network",		"This entry provides hardware network"),
+	HARDWARE_ETHERNET				("Ethernet",	"This entry provides hardware ethernet"),
 	SERVICE_HADOOP					("Hadoop",		"This entry provides Juju service Hadoop"),
 	SERVICE_CASSANDRA				("Cassandra",	"This entry provides Juju service Cassandra"),
 	SERVICE_MYSQL					("MySQL",		"This entry provides Juju service MySQL"),
@@ -104,7 +108,7 @@ public enum StringConstants
 	MYSQL_PALETTE_IMAGE			("icons/mysql_category_icon.png",				"de.uks.beast.editor.mysql_palette"),
 	MYSQL_OBJECT_IMAGE			("icons/mysql.png",								"de.uks.beast.editor.mysql_object"),
 	MONGO_DB_PALETTE_IMAGE		("icons/mongo_db_category_icon.png",			"de.uks.beast.editor.mongo_db_palette"),
-	MONGO_DB_OBJECT_IMAGE		("icons/mongo_db_png",							"de.uks.beast.editor.mongo_db_object"),
+	MONGO_DB_OBJECT_IMAGE		("icons/mongo_db.png",							"de.uks.beast.editor.mongo_db_object"),
 	WORDPRESS_PALETTE_IMAGE		("icons/wordpress_category_icon.png",			"de.uks.beast.editor.wordpress_palette"),
 	WORDPRESS_OBJECT_IMAGE		("icons/wordpress.png",							"de.uks.beast.editor.wordpress_object"),
 	CASSANDRA_PALETTE_IMAGE		("icons/cassandra_category_icon.png",			"de.uks.beast.editor.cassandra_palette"),
