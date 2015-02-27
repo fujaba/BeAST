@@ -201,31 +201,36 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 					{
 						final Room room = (Room) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(shape);
 						
-						final List<PictogramElement> ret = new ArrayList<PictogramElement>();
-						
 						if (room != null && GraphitiInternal.getEmfService().isObjectAlive(room))
 						{
 							final Collection<PictogramLink> links = getDiagram().getPictogramLinks();
+							
 							for (final PictogramLink link : links)
 							{
 								if (Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(
 										link.getPictogramElement()) instanceof Server)
 								{
-									//TODO: refactor and create list with Server objects
+									
 									final PictogramElement p = link.getPictogramElement();
 									if (p instanceof ContainerShape)
 									{
-										final ContainerShape c = (ContainerShape) p;
+										final List<ContainerShape> serverList = new ArrayList<>();
 										
-										for (final Shape sh : c.getChildren())
+										final Server server = (Server) Graphiti.getLinkService()
+												.getBusinessObjectForLinkedPictogramElement(link.getPictogramElement());
+										
+										final ContainerShape serverShape = (ContainerShape) p;
+										serverList.add(serverShape);
+										
+										for (final Shape sh : serverShape.getChildren())
 										{
 											if (PropertyUtil.isAttributeShape(sh, StringConstants.RAM_STAT))
 											{
-												System.out.println("########## ram textfield of " + c.hashCode());
+												System.out.println("########## ram textfield of " + serverShape.hashCode());
 											}
 											else if (PropertyUtil.isAttributeShape(sh, StringConstants.CPU_STAT))
 											{
-												System.out.println("########## cpu textfield of " + c.hashCode());
+												System.out.println("########## cpu textfield of " + serverShape.hashCode());
 											}
 										}
 									}
@@ -237,45 +242,7 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 					}
 				}
 				
-//				for (final Shape shape : getDiagram().getChildren())
-//				{
-//					if (Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(shape) instanceof Room)
-//					{
-//						s
-//					}
-//					final EObject[] objects = Graphiti.getLinkService().getAllBusinessObjectsForLinkedPictogramElement(shape);
-//					
-//					if (objects[0] instanceof Room)
-//					{
-//						for (EObject e : objects[0].eContents())
-//						{
-//							if (e instanceof Rack)
-//							{
-//								for (EObject ee : e.eContents())
-//								{
-//									if (ee instanceof Server)
-//									{
-//										for (PictogramElement pe : Graphiti.getLinkService().getPictogramElements(getDiagram(),
-//												ee))
-//										{
-//											if (PropertyUtil.isAttributeShape(pe, RAM_STAT))
-//											{
-//												final org.eclipse.graphiti.mm.algorithms.Text text = (org.eclipse.graphiti.mm.algorithms.Text) pe
-//														.getGraphicsAlgorithm();
-////												final Thread t1 = new Thread(new TestStats(text));
-////												if (!t1.isAlive())
-////												{
-////													t1.start();
-////												}
-//												
-//											}
-//										}
-//									}
-//								}
-//							}
-//						}
-//					}
-//				}
+//				
 				
 			}
 			
