@@ -1,6 +1,6 @@
 package de.uks.beast.editor.features.add;
 
-import static de.uks.beast.editor.util.Strings.*;
+import static de.uks.beast.editor.util.Properties.*;
 import model.Router;
 
 import org.eclipse.graphiti.features.IDirectEditingInfo;
@@ -74,7 +74,7 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		// CONTAINER SHAPE WITH ROUNDED RECTANGLE
 		final IPeCreateService peCreateService = Graphiti.getPeCreateService();
 		final ContainerShape containerShape = peCreateService.createContainerShape(targetDiagram, true);
-		PropertyUtil.setObjectShape(containerShape, ROUTER);
+		PropertyUtil.setObjectShape(containerShape, TYPE_ROUTER);
 		
 		final IGaService gaService = Graphiti.getGaService();
 		
@@ -124,7 +124,7 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		final Shape ipLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		final Text ipLabelText = createTextShape(gaService, ipLabelShape, X_PROPERTY, 20, WIDTH_LABEL, HEIGHT_LABEL,
-				IP_LABEL.text());
+				IP_LABEL.getProperty());
 		createTextShape(gaService, ipTextShape, ipLabelText.getWidth(), 20, WIDTH_PROPERTY, HEIGHT_PROPERTY, router.getIp());
 		PropertyUtil.setAttributeShape(ipTextShape, IP);
 		
@@ -137,7 +137,7 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		final Shape idLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		final Text idLabelText = createTextShape(gaService, idLabelShape, X_PROPERTY, 30, WIDTH_LABEL, HEIGHT_LABEL,
-				ID_LABEL.text());
+				ID_LABEL.getProperty());
 		createTextShape(gaService, idTextShape, idLabelText.getWidth(), 30, WIDTH_PROPERTY, HEIGHT_PROPERTY, router.getId());
 		PropertyUtil.setAttributeShape(idTextShape, ID);
 		
@@ -150,7 +150,7 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		final Shape extGatewayLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		final Text extGatewayLabelText = createTextShape(gaService, extGatewayLabelShape, X_PROPERTY, 40, WIDTH_LABEL,
-				HEIGHT_LABEL, EXTERNAL_GATEWAY_LABEL.text());
+				HEIGHT_LABEL, EXTERNAL_GATEWAY_LABEL.getProperty());
 		createTextShape(gaService, extGatewayTextShape, extGatewayLabelText.getWidth(), 40, WIDTH_PROPERTY, HEIGHT_PROPERTY,
 				router.getExternalGateway());
 		PropertyUtil.setAttributeShape(extGatewayTextShape, EXTERNAL_GATEWAY);

@@ -2,7 +2,7 @@ package de.uks.beast.editor.features.edit;
 
 import static de.uks.beast.editor.util.Strings.EMPTY_NAME_WARNING;
 import static de.uks.beast.editor.util.Strings.LINE_BREAK_WARNING;
-import static de.uks.beast.editor.util.Strings.NAME;
+import static de.uks.beast.editor.util.Properties.NAME;
 import static de.uks.beast.editor.util.Strings.WRONG_SYMBOL_WARNING;
 import model.Server;
 

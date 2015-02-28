@@ -1,17 +1,17 @@
 package de.uks.beast.editor.features.add;
 
-import static de.uks.beast.editor.util.Strings.DNS;
-import static de.uks.beast.editor.util.Strings.DNS_LABEL;
-import static de.uks.beast.editor.util.Strings.GATEWAY;
-import static de.uks.beast.editor.util.Strings.GATEWAY_LABEL;
-import static de.uks.beast.editor.util.Strings.ID;
-import static de.uks.beast.editor.util.Strings.ID_LABEL;
-import static de.uks.beast.editor.util.Strings.IP;
-import static de.uks.beast.editor.util.Strings.IP_LABEL;
-import static de.uks.beast.editor.util.Strings.NAME;
-import static de.uks.beast.editor.util.Strings.NETWORK;
-import static de.uks.beast.editor.util.Strings.SUBNET_MASK;
-import static de.uks.beast.editor.util.Strings.SUBNET_MASK_LABEL;
+import static de.uks.beast.editor.util.Properties.DNS;
+import static de.uks.beast.editor.util.Properties.DNS_LABEL;
+import static de.uks.beast.editor.util.Properties.GATEWAY;
+import static de.uks.beast.editor.util.Properties.GATEWAY_LABEL;
+import static de.uks.beast.editor.util.Properties.ID;
+import static de.uks.beast.editor.util.Properties.ID_LABEL;
+import static de.uks.beast.editor.util.Properties.IP;
+import static de.uks.beast.editor.util.Properties.IP_LABEL;
+import static de.uks.beast.editor.util.Properties.NAME;
+import static de.uks.beast.editor.util.Properties.TYPE_NETWORK;
+import static de.uks.beast.editor.util.Properties.SUBNET_MASK;
+import static de.uks.beast.editor.util.Properties.SUBNET_MASK_LABEL;
 import model.Network;
 
 import org.eclipse.graphiti.features.IDirectEditingInfo;
@@ -85,7 +85,7 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		// CONTAINER SHAPE WITH ROUNDED RECTANGLE
 		final IPeCreateService peCreateService = Graphiti.getPeCreateService();
 		final ContainerShape containerShape = peCreateService.createContainerShape(targetDiagram, true);
-		PropertyUtil.setObjectShape(containerShape, NETWORK);
+		PropertyUtil.setObjectShape(containerShape, TYPE_NETWORK);
 		
 		final IGaService gaService = Graphiti.getGaService();; // need to access it later
 		
@@ -134,7 +134,7 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		final Shape ipLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		final Text ipLabelText = createTextShape(gaService, ipLabelShape, X_PROPERTY, 20, WIDTH_LABEL, HEIGHT_LABEL,
-				IP_LABEL.text());
+				IP_LABEL.getProperty());
 		createTextShape(gaService, ipTextShape, ipLabelText.getWidth(), 20, WIDTH_PROPERTY, HEIGHT_PROPERTY, network.getIp());
 		PropertyUtil.setAttributeShape(ipTextShape, IP);
 		
@@ -147,7 +147,7 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		final Shape idLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		final Text idLabelText = createTextShape(gaService, idLabelShape, X_PROPERTY, 30, WIDTH_LABEL, HEIGHT_LABEL,
-				ID_LABEL.text());
+				ID_LABEL.getProperty());
 		createTextShape(gaService, idTextShape, idLabelText.getWidth(), 30, WIDTH_PROPERTY, HEIGHT_PROPERTY, network.getId());
 		PropertyUtil.setAttributeShape(idTextShape, ID);
 		
@@ -160,7 +160,7 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		final Shape subnetMaskLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		final Text subnetMaskLabelText = createTextShape(gaService, subnetMaskLabelShape, X_PROPERTY, 40, WIDTH_LABEL,
-				HEIGHT_LABEL, SUBNET_MASK_LABEL.text());
+				HEIGHT_LABEL, SUBNET_MASK_LABEL.getProperty());
 		createTextShape(gaService, subnetMaskTextShape, subnetMaskLabelText.getWidth(), 40, WIDTH_PROPERTY, HEIGHT_PROPERTY,
 				network.getSubnetmask());
 		PropertyUtil.setAttributeShape(subnetMaskTextShape, SUBNET_MASK);
@@ -174,7 +174,7 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		final Shape gatewayLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		final Text gatewayLabelText = createTextShape(gaService, gatewayLabelShape, X_PROPERTY, 50, WIDTH_LABEL, HEIGHT_LABEL,
-				GATEWAY_LABEL.text());
+				GATEWAY_LABEL.getProperty());
 		createTextShape(gaService, gatewayTextShape, gatewayLabelText.getWidth(), 50, WIDTH_PROPERTY, HEIGHT_PROPERTY,
 				network.getGateway());
 		PropertyUtil.setAttributeShape(gatewayTextShape, GATEWAY);
@@ -188,7 +188,7 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		final Shape dnsLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		final Text dnsLabelText = createTextShape(gaService, dnsLabelShape, X_PROPERTY, 60, WIDTH_LABEL, HEIGHT_LABEL,
-				DNS_LABEL.text());
+				DNS_LABEL.getProperty());
 		createTextShape(gaService, dnsTextShape, dnsLabelText.getWidth(), 60, WIDTH_PROPERTY, HEIGHT_PROPERTY, network.getDns());
 		PropertyUtil.setAttributeShape(dnsTextShape, DNS);
 		

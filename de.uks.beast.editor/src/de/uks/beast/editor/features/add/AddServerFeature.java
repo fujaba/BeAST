@@ -1,6 +1,6 @@
 package de.uks.beast.editor.features.add;
 
-import static de.uks.beast.editor.util.Strings.*;
+import static de.uks.beast.editor.util.Properties.*;
 import model.Rack;
 import model.Server;
 
@@ -73,7 +73,7 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		// CONTAINER SHAPE WITH ROUNDED RECTANGLE
 		final IPeCreateService peCreateService = Graphiti.getPeCreateService();
 		final ContainerShape containerShape = peCreateService.createContainerShape(targetDiagram, true);
-		PropertyUtil.setObjectShape(containerShape, SERVER);
+		PropertyUtil.setObjectShape(containerShape, TYPE_SERVER);
 		
 		final IGaService gaService = Graphiti.getGaService();
 		
@@ -145,7 +145,7 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		final Shape ipLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		final Text ipLabelText = createTextShape(gaService, ipLabelShape, X_PROPERTY, 20, WIDTH_LABEL, HEIGHT_LABEL,
-				IP_LABEL.text());
+				IP_LABEL.getProperty());
 		createTextShape(gaService, ipTextShape, ipLabelText.getWidth(), 20, WIDTH_PROPERTY, HEIGHT_PROPERTY, server.getIp());
 		PropertyUtil.setAttributeShape(ipTextShape, IP);
 		
@@ -158,7 +158,7 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		final Shape cpuAmountLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		final Text cpuAmountLabelText = createTextShape(gaService, cpuAmountLabelShape, X_PROPERTY, 30, WIDTH_LABEL,
-				HEIGHT_LABEL, CPU_AMOUNT_LABEL.text());
+				HEIGHT_LABEL, CPU_AMOUNT_LABEL.getProperty());
 		createTextShape(gaService, cpuAmountTextShape, cpuAmountLabelText.getWidth(), 30, WIDTH_PROPERTY, HEIGHT_PROPERTY,
 				String.valueOf(server.getCpuAmount()));
 		PropertyUtil.setAttributeShape(cpuAmountTextShape, CPU_AMOUNT);
@@ -172,7 +172,7 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		final Shape cpuTypeLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		final Text cpuTypeLabelText = createTextShape(gaService, cpuTypeLabelShape, X_PROPERTY, 40, WIDTH_LABEL, HEIGHT_LABEL,
-				CPU_TYPE.text());
+				CPU_TYPE.getProperty());
 		createTextShape(gaService, cpuTypeTextShape, cpuTypeLabelText.getWidth(), 40, WIDTH_PROPERTY, HEIGHT_PROPERTY,
 				server.getCpuType());
 		PropertyUtil.setAttributeShape(cpuTypeTextShape, CPU_TYPE);
@@ -186,7 +186,7 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		final Shape ramLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		final Text ramLabelText = createTextShape(gaService, ramLabelShape, X_PROPERTY, 50, WIDTH_LABEL, HEIGHT_LABEL,
-				RAM_LABEL.text());
+				RAM_LABEL.getProperty());
 		createTextShape(gaService, ramTextShape, ramLabelText.getWidth(), 50, WIDTH_PROPERTY, HEIGHT_PROPERTY,
 				String.valueOf(server.getRam()));
 		PropertyUtil.setAttributeShape(ramTextShape, RAM);
@@ -200,7 +200,7 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		final Shape diskSpaceLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
 		final Text diskSpaceLabelText = createTextShape(gaService, diskSpaceLabelShape, X_PROPERTY, 60, WIDTH_LABEL,
-				HEIGHT_LABEL, DISKSPACE_LABEL.text());
+				HEIGHT_LABEL, DISKSPACE_LABEL.getProperty());
 		createTextShape(gaService, diskSpaceTextShape, diskSpaceLabelText.getWidth(), 60, WIDTH_PROPERTY, HEIGHT_PROPERTY,
 				String.valueOf(server.getDiskSpace()));
 		PropertyUtil.setAttributeShape(diskSpaceTextShape, DISKSPACE);

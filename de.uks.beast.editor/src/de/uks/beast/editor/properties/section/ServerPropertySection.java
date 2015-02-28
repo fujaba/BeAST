@@ -1,11 +1,11 @@
 package de.uks.beast.editor.properties.section;
 
-import static de.uks.beast.editor.util.Strings.CPU_AMOUNT_LABEL;
-import static de.uks.beast.editor.util.Strings.CPU_TYPE_LABEL;
-import static de.uks.beast.editor.util.Strings.DISKSPACE_LABEL;
-import static de.uks.beast.editor.util.Strings.IP_LABEL;
-import static de.uks.beast.editor.util.Strings.RAM_LABEL;
-import static de.uks.beast.editor.util.Strings.SUBMIT;
+import static de.uks.beast.editor.util.Properties.CPU_AMOUNT_LABEL;
+import static de.uks.beast.editor.util.Properties.CPU_TYPE_LABEL;
+import static de.uks.beast.editor.util.Properties.DISKSPACE_LABEL;
+import static de.uks.beast.editor.util.Properties.IP_LABEL;
+import static de.uks.beast.editor.util.Properties.RAM_LABEL;
+import static de.uks.beast.editor.util.Properties.SUBMIT;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -40,7 +40,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
 import de.uks.beast.editor.features.util.PropertyUtil;
-import de.uks.beast.editor.util.Strings;
+import de.uks.beast.editor.util.Properties;
 
 public class ServerPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {
@@ -73,7 +73,7 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.top = new FormAttachment(0, VSPACE);
 		ipTextFld.setLayoutData(data);
 		
-		final CLabel valueLabel = factory.createCLabel(composite, IP_LABEL.text());
+		final CLabel valueLabel = factory.createCLabel(composite, IP_LABEL.getProperty());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(ipTextFld, valueLabel.getText().length());
@@ -88,7 +88,7 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.top = new FormAttachment(0, VSPACE + 25);
 		cpuAmountTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe2 = factory.createCLabel(composite, CPU_AMOUNT_LABEL.text());
+		final CLabel valueLabe2 = factory.createCLabel(composite, CPU_AMOUNT_LABEL.getProperty());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(cpuAmountTextFld, valueLabe2.getText().length());
@@ -103,7 +103,7 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.top = new FormAttachment(0, VSPACE + 50);
 		cpuTypeTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe3 = factory.createCLabel(composite, CPU_TYPE_LABEL.text());
+		final CLabel valueLabe3 = factory.createCLabel(composite, CPU_TYPE_LABEL.getProperty());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(cpuTypeTextFld, valueLabe3.getText().length());
@@ -118,7 +118,7 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.top = new FormAttachment(0, VSPACE + 75);
 		ramTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe4 = factory.createCLabel(composite, RAM_LABEL.text());
+		final CLabel valueLabe4 = factory.createCLabel(composite, RAM_LABEL.getProperty());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(ramTextFld, valueLabe4.getText().length());
@@ -133,7 +133,7 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.top = new FormAttachment(0, VSPACE + 100);
 		diskSpaceTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe5 = factory.createCLabel(composite, DISKSPACE_LABEL.text());
+		final CLabel valueLabe5 = factory.createCLabel(composite, DISKSPACE_LABEL.getProperty());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(diskSpaceTextFld, valueLabe5.getText().length());
@@ -141,7 +141,7 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		valueLabe5.setLayoutData(data);
 		
 		//Property_submit
-		submitBtn = factory.createButton(composite, SUBMIT.text(), 0);
+		submitBtn = factory.createButton(composite, SUBMIT.getProperty(), 0);
 		data = new FormData();
 		data.left = new FormAttachment(0, 20);
 		data.right = new FormAttachment(20, 0);
@@ -224,11 +224,11 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 										
 										for (final Shape sh : serverShape.getChildren())
 										{
-											if (PropertyUtil.isAttributeShape(sh, Strings.RAM_STAT))
+											if (PropertyUtil.isAttributeShape(sh, Properties.RAM_STAT))
 											{
 												System.out.println("########## ram textfield of " + serverShape.hashCode());
 											}
-											else if (PropertyUtil.isAttributeShape(sh, Strings.CPU_STAT))
+											else if (PropertyUtil.isAttributeShape(sh, Properties.CPU_STAT))
 											{
 												System.out.println("########## cpu textfield of " + serverShape.hashCode());
 											}

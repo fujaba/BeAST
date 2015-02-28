@@ -23,11 +23,11 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
-import static de.uks.beast.editor.util.Strings.*;
+import static de.uks.beast.editor.util.Properties.*;
 
 public class NetworkPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {
-	private static final Logger LOG = LogManager.getLogger(NetworkPropertySection.class); 
+	private static final Logger			LOG	= LogManager.getLogger(NetworkPropertySection.class);
 	private Text						ipTextFld;
 	private Text						subnetTextFld;
 	private Text						gatewayTextFld;
@@ -56,7 +56,7 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		data.top = new FormAttachment(0, VSPACE);
 		ipTextFld.setLayoutData(data);
 		
-		final CLabel valueLabel = factory.createCLabel(composite, IP_LABEL.text());
+		final CLabel valueLabel = factory.createCLabel(composite, IP_LABEL.getProperty());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(ipTextFld, valueLabel.getText().length());
@@ -71,7 +71,7 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		data.top = new FormAttachment(0, VSPACE + 25);
 		subnetTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe2 = factory.createCLabel(composite, SUBNET_MASK_LABEL.text());
+		final CLabel valueLabe2 = factory.createCLabel(composite, SUBNET_MASK_LABEL.getProperty());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(subnetTextFld, valueLabe2.getText().length());
@@ -86,7 +86,7 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		data.top = new FormAttachment(0, VSPACE + 50);
 		gatewayTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe3 = factory.createCLabel(composite, GATEWAY_LABEL.text());
+		final CLabel valueLabe3 = factory.createCLabel(composite, GATEWAY_LABEL.getProperty());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(gatewayTextFld, valueLabe3.getText().length());
@@ -101,7 +101,7 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		data.top = new FormAttachment(0, VSPACE + 75);
 		dnsTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe4 = factory.createCLabel(composite, DNS_LABEL.text());
+		final CLabel valueLabe4 = factory.createCLabel(composite, DNS_LABEL.getProperty());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(dnsTextFld, valueLabe4.getText().length());
@@ -116,7 +116,7 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		data.top = new FormAttachment(0, VSPACE + 100);
 		idTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe5 = factory.createCLabel(composite, ID_LABEL.text());
+		final CLabel valueLabe5 = factory.createCLabel(composite, ID_LABEL.getProperty());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(idTextFld, valueLabe5.getText().length());
@@ -124,7 +124,7 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		valueLabe5.setLayoutData(data);
 		
 		//Property_submit
-		submitBtn = factory.createButton(composite, SUBMIT.text(), 0);
+		submitBtn = factory.createButton(composite, SUBMIT.getProperty(), 0);
 		data = new FormData();
 		data.left = new FormAttachment(0, 20);
 		data.right = new FormAttachment(20, 0);
