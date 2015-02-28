@@ -1,6 +1,6 @@
 package de.uks.beast.editor.util;
 
-public class NumberConstants
+public class Dimensions
 {
 	//service
 	public static final int	SERVICE_ICON_RESIZE_X	= 45;

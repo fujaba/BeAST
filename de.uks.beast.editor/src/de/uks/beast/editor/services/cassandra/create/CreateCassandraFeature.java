@@ -8,7 +8,7 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
 
-import de.uks.beast.editor.util.StringConstants;
+import de.uks.beast.editor.util.Strings;
 
 public class CreateCassandraFeature extends AbstractCreateFeature
 {
@@ -42,7 +42,7 @@ public class CreateCassandraFeature extends AbstractCreateFeature
 	public Object[] create(final ICreateContext context)
 	{
 		final Service service = ModelFactory.eINSTANCE.createCassandra();
-		service.setType(StringConstants.CASSANDRA.text());
+		service.setType(Strings.CASSANDRA.text());
 		final Server server = (Server) getBusinessObjectForPictogramElement(context.getTargetContainer());
 		server.setService(service);
 		addGraphicalRepresentation(context, service);

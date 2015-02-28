@@ -8,7 +8,7 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
 
-import de.uks.beast.editor.util.StringConstants;
+import de.uks.beast.editor.util.Strings;
 
 public class CreateHadoopMasterFeature extends AbstractCreateFeature
 {
@@ -42,7 +42,7 @@ public class CreateHadoopMasterFeature extends AbstractCreateFeature
 	public Object[] create(final ICreateContext context)
 	{
 		final Service service = ModelFactory.eINSTANCE.createHadoopMaster();
-		service.setType(StringConstants.HADOOP_MASTER.text());
+		service.setType(Strings.HADOOP_MASTER.text());
 		final Server server = (Server) getBusinessObjectForPictogramElement(context.getTargetContainer());
 		server.setService(service);
 		addGraphicalRepresentation(context, service);

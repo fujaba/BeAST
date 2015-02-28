@@ -1,17 +1,17 @@
 package de.uks.beast.editor.features.add;
 
-import static de.uks.beast.editor.util.StringConstants.DNS;
-import static de.uks.beast.editor.util.StringConstants.DNS_LABEL;
-import static de.uks.beast.editor.util.StringConstants.GATEWAY;
-import static de.uks.beast.editor.util.StringConstants.GATEWAY_LABEL;
-import static de.uks.beast.editor.util.StringConstants.ID;
-import static de.uks.beast.editor.util.StringConstants.ID_LABEL;
-import static de.uks.beast.editor.util.StringConstants.IP;
-import static de.uks.beast.editor.util.StringConstants.IP_LABEL;
-import static de.uks.beast.editor.util.StringConstants.NAME;
-import static de.uks.beast.editor.util.StringConstants.NETWORK;
-import static de.uks.beast.editor.util.StringConstants.SUBNET_MASK;
-import static de.uks.beast.editor.util.StringConstants.SUBNET_MASK_LABEL;
+import static de.uks.beast.editor.util.Strings.DNS;
+import static de.uks.beast.editor.util.Strings.DNS_LABEL;
+import static de.uks.beast.editor.util.Strings.GATEWAY;
+import static de.uks.beast.editor.util.Strings.GATEWAY_LABEL;
+import static de.uks.beast.editor.util.Strings.ID;
+import static de.uks.beast.editor.util.Strings.ID_LABEL;
+import static de.uks.beast.editor.util.Strings.IP;
+import static de.uks.beast.editor.util.Strings.IP_LABEL;
+import static de.uks.beast.editor.util.Strings.NAME;
+import static de.uks.beast.editor.util.Strings.NETWORK;
+import static de.uks.beast.editor.util.Strings.SUBNET_MASK;
+import static de.uks.beast.editor.util.Strings.SUBNET_MASK_LABEL;
 import model.Network;
 
 import org.eclipse.graphiti.features.IDirectEditingInfo;
@@ -32,7 +32,7 @@ import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 
 import de.uks.beast.editor.features.util.PropertyUtil;
-import de.uks.beast.editor.util.ColorConstants;
+import de.uks.beast.editor.util.Colors;
 
 public class AddNetworkFeature extends AbstractAddFeature implements AbstractShapeFactory
 {
@@ -91,8 +91,8 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		
 		// create and set graphics algorithm
 		final RoundedRectangle roundedRectangle = gaService.createRoundedRectangle(containerShape, 5, 5);
-		roundedRectangle.setForeground(manageColor(ColorConstants.NETWORK_FOREGROUND));
-		roundedRectangle.setBackground(manageColor(ColorConstants.NETWORK_BACKGROUND));
+		roundedRectangle.setForeground(manageColor(Colors.NETWORK_FOREGROUND));
+		roundedRectangle.setBackground(manageColor(Colors.NETWORK_BACKGROUND));
 		roundedRectangle.setLineWidth(2);
 		gaService.setLocationAndSize(roundedRectangle, context.getX(), context.getY(), context.getWidth(), context.getHeight());
 		
@@ -125,7 +125,7 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		// create and set graphics algorithm
 		final Polyline polyline = gaService.createPolyline(lineShape,
 				new int[] { X0_PARTING_LINE, Y_PARTING_LINE, context.getWidth(), Y_PARTING_LINE });
-		polyline.setForeground(manageColor(ColorConstants.NETWORK_FOREGROUND));
+		polyline.setForeground(manageColor(Colors.NETWORK_FOREGROUND));
 		polyline.setLineWidth(2);
 		
 		// SHAPE FOR PROPERTY IP
@@ -224,7 +224,7 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 			int height, String content)
 	{
 		final Text text = gaService.createText(gaContainer, content);
-		text.setForeground(manageColor(ColorConstants.NETWORK_TEXT_FOREGROUND));
+		text.setForeground(manageColor(Colors.NETWORK_TEXT_FOREGROUND));
 		text.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
 		// vertical alignment has as default value "center"
 		text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));

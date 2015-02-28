@@ -4,49 +4,49 @@ import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 
-import de.uks.beast.editor.util.StringConstants;
+import de.uks.beast.editor.util.Strings;
 
 public class PropertyUtil
 {
 	
-	public static void setAttributeShape(final PictogramElement pe, final StringConstants stringConstants)
+	public static void setAttributeShape(final PictogramElement pe, final Strings strings)
 	{
-		Graphiti.getPeService().setPropertyValue(pe, stringConstants.text(), stringConstants.text());
+		Graphiti.getPeService().setPropertyValue(pe, strings.text(), strings.text());
 	}
 	
 	
 	
-	public static boolean isAttributeShape(final PictogramElement pe, final StringConstants stringConstants)
+	public static boolean isAttributeShape(final PictogramElement pe, final Strings strings)
 	{
-		return stringConstants.text().equals(Graphiti.getPeService().getPropertyValue(pe, stringConstants.text()));
+		return strings.text().equals(Graphiti.getPeService().getPropertyValue(pe, strings.text()));
 	}
 	
 	
 	
-	public static void setObjectShape(final PictogramElement pe, final StringConstants stringConstants)
+	public static void setObjectShape(final PictogramElement pe, final Strings strings)
 	{
-		setAttributeShape(pe, stringConstants);
+		setAttributeShape(pe, strings);
 	}
 	
 	
 	
-	public static boolean isObjectShape(final PictogramElement pe, final StringConstants stringConstants)
+	public static boolean isObjectShape(final PictogramElement pe, final Strings strings)
 	{
-		return isAttributeShape(pe, stringConstants);
+		return isAttributeShape(pe, strings);
 	}
 	
 	
 	
-	public static void setConnection(final Connection connection, final StringConstants stringConstants)
+	public static void setConnection(final Connection connection, final Strings strings)
 	{
-		Graphiti.getPeService().setPropertyValue(connection, stringConstants.text(), stringConstants.text());
+		Graphiti.getPeService().setPropertyValue(connection, strings.text(), strings.text());
 	}
 	
 	
 	
-	public static boolean isConnection(final Connection connection, final StringConstants stringConstants)
+	public static boolean isConnection(final Connection connection, final Strings strings)
 	{
-		return stringConstants.text().equals(Graphiti.getPeService().getPropertyValue(connection, stringConstants.text()));
+		return strings.text().equals(Graphiti.getPeService().getPropertyValue(connection, strings.text()));
 	}
 	
 	

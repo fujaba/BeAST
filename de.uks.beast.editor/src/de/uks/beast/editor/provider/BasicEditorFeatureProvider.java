@@ -52,7 +52,9 @@ import de.uks.beast.editor.services.hadoop.add.AddHadoopConnection;
 import de.uks.beast.editor.services.hadoop.add.AddHadoopMasterFeature;
 import de.uks.beast.editor.services.hadoop.add.AddHadoopSlaveFeature;
 import de.uks.beast.editor.services.mongodb.add.AddMongoDBFeature;
-import de.uks.beast.editor.util.StringConstants;
+import de.uks.beast.editor.services.mysql.add.AddMySqlFeature;
+import de.uks.beast.editor.services.wordpress.add.AddWordPressFeature;
+import de.uks.beast.editor.util.Strings;
 
 public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 {
@@ -119,21 +121,29 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 		{
 			final Service service = (Service) context.getNewObject();
 			
-			if (service.getType().equals(StringConstants.HADOOP_MASTER.text()))
+			if (service.getType().equals(Strings.HADOOP_MASTER.text()))
 			{
 				return new AddHadoopMasterFeature(this);
 			}
-			else if (service.getType().equals(StringConstants.HADOOP_SLAVE.text()))
+			else if (service.getType().equals(Strings.HADOOP_SLAVE.text()))
 			{
 				return new AddHadoopSlaveFeature(this);
 			}
-			else if (service.getType().equals(StringConstants.CASSANDRA.text()))
+			else if (service.getType().equals(Strings.CASSANDRA.text()))
 			{
 				return new AddCassandraFeature(this);
 			}
-			else if (service.getType().equals(StringConstants.MONGO_DB.text()))
+			else if (service.getType().equals(Strings.MONGO_DB.text()))
 			{
 				return new AddMongoDBFeature(this);
+			}
+			else if (service.getType().equals(Strings.MYSQL.text()))
+			{
+				return new AddMySqlFeature(this);
+			}
+			else if (service.getType().equals(Strings.WORDPRESS.text()))
+			{
+				return new AddWordPressFeature(this);
 			}
 			
 		}

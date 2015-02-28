@@ -14,7 +14,7 @@ import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 
 import de.uks.beast.editor.features.util.PropertyUtil;
-import de.uks.beast.editor.util.StringConstants;
+import de.uks.beast.editor.util.Strings;
 import de.uks.beast.model.Hardware;
 import de.uks.beast.model.InstanceInformation;
 import de.uks.beast.model.Server;
@@ -52,7 +52,7 @@ public class CpuUsedHandler extends DiagramUpdateHandler
 				
 				for (final Shape shape : containerShape.getChildren())
 				{
-					if (PropertyUtil.isAttributeShape(shape, StringConstants.CPU_STAT))
+					if (PropertyUtil.isAttributeShape(shape, Strings.CPU_STAT))
 					{
 						final Text cpuStatText = (Text) shape;
 						domain.getCommandStack().execute(new RecordingCommand(domain) {

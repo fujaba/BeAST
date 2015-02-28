@@ -52,8 +52,7 @@ public class PaletteCompartmentEntry extends org.eclipse.graphiti.palette.impl.P
 			for (final ICreateFeature cf : createObjectFeatures)
 			{
 				final ObjectCreationToolEntry objectCreationToolEntry = new ObjectCreationToolEntry(cf.getCreateName(),
-						cf.getCreateDescription(), StringConstants.PALETTE_ENTRY_IMAGE.getImageID(), cf.getCreateLargeImageId(),
-						cf);
+						cf.getCreateDescription(), Images.PALETTE_ENTRY_IMAGE.getImageID(), cf.getCreateLargeImageId(), cf);
 				this.addToolEntry(objectCreationToolEntry);
 				
 			}
@@ -63,7 +62,7 @@ public class PaletteCompartmentEntry extends org.eclipse.graphiti.palette.impl.P
 			for (final ICreateConnectionFeature cf : createConnectionFeatures)
 			{
 				final ConnectionCreationToolEntry connectionCreationToolEntry = new ConnectionCreationToolEntry(
-						cf.getCreateName(), cf.getCreateDescription(), StringConstants.PALETTE_ENTRY_IMAGE.getImageID(),
+						cf.getCreateName(), cf.getCreateDescription(), Images.PALETTE_ENTRY_IMAGE.getImageID(),
 						cf.getCreateLargeImageId());
 				connectionCreationToolEntry.addCreateConnectionFeature(cf);
 				this.addToolEntry(connectionCreationToolEntry);
@@ -80,6 +79,15 @@ public class PaletteCompartmentEntry extends org.eclipse.graphiti.palette.impl.P
 	public List<AbstractCreateConnectionFeature> getCreateConnectionFeatures()
 	{
 		return createConnectionFeatures;
+	}
+	
+	
+	
+	@Override
+	public String toString()
+	{
+		return "Name: " + this.getLabel() + " - CreateFeatures: " + this.getCreateObjectFeatures().size()
+				+ " - CreateConnectionFeatures: " + this.getCreateConnectionFeatures().size() + " - IconID: " + this.getIconId();
 	}
 	
 }

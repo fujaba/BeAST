@@ -3,7 +3,7 @@ package de.uks.beast.editor.util;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 
-public class ColorConstants
+public class Colors
 {
 	//color connection
 	public static final IColorConstant	LINE_COLOR_OBJECT_CONNECTION	= new ColorConstant(85, 85, 85);

@@ -8,7 +8,7 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
 
-import de.uks.beast.editor.util.StringConstants;
+import de.uks.beast.editor.util.Strings;
 
 public class CreateMongoDBFeature extends AbstractCreateFeature
 {
@@ -42,9 +42,11 @@ public class CreateMongoDBFeature extends AbstractCreateFeature
 	public Object[] create(final ICreateContext context)
 	{
 		final Service service = ModelFactory.eINSTANCE.createMongoDB();
-		service.setType(StringConstants.MONGO_DB.text());
+		service.setType(Strings.MONGO_DB.text());
+		
 		final Server server = (Server) getBusinessObjectForPictogramElement(context.getTargetContainer());
 		server.setService(service);
+		
 		addGraphicalRepresentation(context, service);
 		getFeatureProvider().getDirectEditingInfo().setActive(false);
 		

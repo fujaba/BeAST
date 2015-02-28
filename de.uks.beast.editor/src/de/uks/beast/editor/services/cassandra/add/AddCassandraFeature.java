@@ -14,7 +14,7 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 
-import de.uks.beast.editor.util.StringConstants;
+import de.uks.beast.editor.util.Images;
 
 public class AddCassandraFeature extends AbstractAddShapeFeature
 {
@@ -54,7 +54,7 @@ public class AddCassandraFeature extends AbstractAddShapeFeature
 		
 		final IGaService gaService = Graphiti.getGaService();
 		
-		final Image objectIcon = gaService.createImage(containerShape, StringConstants.CASSANDRA_OBJECT_IMAGE.getImageID());
+		final Image objectIcon = gaService.createImage(containerShape, Images.CASSANDRA_OBJECT_IMAGE.getImageID());
 		gaService.setLocationAndSize(objectIcon, context.getX(), context.getY(), context.getWidth(), context.getHeight());
 		
 		// if added Class has no resource we add it to the resource

@@ -1,4 +1,4 @@
-package de.uks.beast.editor.services.hadoop.create;
+package de.uks.beast.editor.services.mysql.create;
 
 import model.ModelFactory;
 import model.Server;
@@ -10,10 +10,10 @@ import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
 
 import de.uks.beast.editor.util.Strings;
 
-public class CreateHadoopSlaveFeature extends AbstractCreateFeature
+public class CreateMySqlFeature extends AbstractCreateFeature
 {
 	
-	public CreateHadoopSlaveFeature(final IFeatureProvider fp, final String name, final String description)
+	public CreateMySqlFeature(final IFeatureProvider fp, final String name, final String description)
 	{
 		super(fp, name, description);
 	}
@@ -41,10 +41,12 @@ public class CreateHadoopSlaveFeature extends AbstractCreateFeature
 	@Override
 	public Object[] create(final ICreateContext context)
 	{
-		final Service service = ModelFactory.eINSTANCE.createHadoopSlave();
-		service.setType(Strings.HADOOP_SLAVE.text());
+		final Service service = ModelFactory.eINSTANCE.createMySQL();
+		service.setType(Strings.MYSQL.text());
+		
 		final Server server = (Server) getBusinessObjectForPictogramElement(context.getTargetContainer());
 		server.setService(service);
+		
 		addGraphicalRepresentation(context, service);
 		getFeatureProvider().getDirectEditingInfo().setActive(false);
 		

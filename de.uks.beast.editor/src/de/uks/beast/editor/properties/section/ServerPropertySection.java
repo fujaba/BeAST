@@ -1,11 +1,11 @@
 package de.uks.beast.editor.properties.section;
 
-import static de.uks.beast.editor.util.StringConstants.CPU_AMOUNT_LABEL;
-import static de.uks.beast.editor.util.StringConstants.CPU_TYPE_LABEL;
-import static de.uks.beast.editor.util.StringConstants.DISKSPACE_LABEL;
-import static de.uks.beast.editor.util.StringConstants.IP_LABEL;
-import static de.uks.beast.editor.util.StringConstants.RAM_LABEL;
-import static de.uks.beast.editor.util.StringConstants.SUBMIT;
+import static de.uks.beast.editor.util.Strings.CPU_AMOUNT_LABEL;
+import static de.uks.beast.editor.util.Strings.CPU_TYPE_LABEL;
+import static de.uks.beast.editor.util.Strings.DISKSPACE_LABEL;
+import static de.uks.beast.editor.util.Strings.IP_LABEL;
+import static de.uks.beast.editor.util.Strings.RAM_LABEL;
+import static de.uks.beast.editor.util.Strings.SUBMIT;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -40,7 +40,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
 import de.uks.beast.editor.features.util.PropertyUtil;
-import de.uks.beast.editor.util.StringConstants;
+import de.uks.beast.editor.util.Strings;
 
 public class ServerPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {
@@ -224,11 +224,11 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 										
 										for (final Shape sh : serverShape.getChildren())
 										{
-											if (PropertyUtil.isAttributeShape(sh, StringConstants.RAM_STAT))
+											if (PropertyUtil.isAttributeShape(sh, Strings.RAM_STAT))
 											{
 												System.out.println("########## ram textfield of " + serverShape.hashCode());
 											}
-											else if (PropertyUtil.isAttributeShape(sh, StringConstants.CPU_STAT))
+											else if (PropertyUtil.isAttributeShape(sh, Strings.CPU_STAT))
 											{
 												System.out.println("########## cpu textfield of " + serverShape.hashCode());
 											}

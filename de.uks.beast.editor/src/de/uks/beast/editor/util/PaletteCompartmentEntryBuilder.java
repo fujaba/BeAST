@@ -3,11 +3,16 @@ package de.uks.beast.editor.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.eclipse.graphiti.features.impl.AbstractCreateConnectionFeature;
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
 
 public class PaletteCompartmentEntryBuilder
 {
+	private static final Logger							LOG							= LogManager
+																							.getLogger(PaletteCompartmentEntryBuilder.class);
+	
 	private boolean										initialOpen					= true;
 	private String										name						= "default";
 	private String										iconID						= null;
@@ -28,6 +33,7 @@ public class PaletteCompartmentEntryBuilder
 		final PaletteCompartmentEntry entry = new PaletteCompartmentEntry(name, iconID, createObjectFeatures,
 				createConnectionFeatures, initialOpen);
 		entry.addAllToolEntries();
+		LOG.debug("Build entry -> " + entry.toString());
 		
 		return entry;
 		

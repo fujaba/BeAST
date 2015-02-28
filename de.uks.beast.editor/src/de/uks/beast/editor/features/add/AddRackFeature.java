@@ -19,7 +19,7 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 
-import de.uks.beast.editor.util.ColorConstants;
+import de.uks.beast.editor.util.Colors;
 
 public class AddRackFeature extends AbstractAddFeature implements AbstractShapeFactory
 {
@@ -73,8 +73,8 @@ public class AddRackFeature extends AbstractAddFeature implements AbstractShapeF
 		
 		// create and set graphics algorithm
 		final RoundedRectangle roundedRectangle = gaService.createRoundedRectangle(containerShape, 5, 5);
-		roundedRectangle.setForeground(manageColor(ColorConstants.RACK_FOREGROUND));
-		roundedRectangle.setBackground(manageColor(ColorConstants.RACK_BACKGROUND));
+		roundedRectangle.setForeground(manageColor(Colors.RACK_FOREGROUND));
+		roundedRectangle.setBackground(manageColor(Colors.RACK_BACKGROUND));
 		roundedRectangle.setLineWidth(2);
 		gaService.setLocationAndSize(roundedRectangle, context.getX(), context.getY(), context.getWidth(), context.getHeight());
 		
@@ -105,7 +105,7 @@ public class AddRackFeature extends AbstractAddFeature implements AbstractShapeF
 		// create and set graphics algorithm
 		final Polyline polyline = gaService.createPolyline(lineShape, new int[] { X0_PARTING_LINE, Y_PARTING_LINE,
 				WIDTH_PROPERTY, Y_PARTING_LINE });
-		polyline.setForeground(manageColor(ColorConstants.RACK_FOREGROUND));
+		polyline.setForeground(manageColor(Colors.RACK_FOREGROUND));
 		polyline.setLineWidth(2);
 		
 		final IDirectEditingInfo directEditingInfo = getFeatureProvider().getDirectEditingInfo();
@@ -137,7 +137,7 @@ public class AddRackFeature extends AbstractAddFeature implements AbstractShapeF
 			final int y, final int width, final int height, final String content)
 	{
 		final Text text = gaService.createText(gaContainer, content);
-		text.setForeground(manageColor(ColorConstants.RACK_TEXT_FOREGROUND));
+		text.setForeground(manageColor(Colors.RACK_TEXT_FOREGROUND));
 		text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 		// vertical alignment has as default value "center"
 		text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));

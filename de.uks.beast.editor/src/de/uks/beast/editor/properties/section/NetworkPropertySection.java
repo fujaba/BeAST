@@ -23,7 +23,7 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
-import static de.uks.beast.editor.util.StringConstants.*;
+import static de.uks.beast.editor.util.Strings.*;
 
 public class NetworkPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {

@@ -1,17 +1,17 @@
 package de.uks.beast.editor.features.update;
 
-import static de.uks.beast.editor.util.StringConstants.DNS;
-import static de.uks.beast.editor.util.StringConstants.DNS_TRUE_REASON;
-import static de.uks.beast.editor.util.StringConstants.GATEWAY;
-import static de.uks.beast.editor.util.StringConstants.GATEWAY_TRUE_REASON;
-import static de.uks.beast.editor.util.StringConstants.ID;
-import static de.uks.beast.editor.util.StringConstants.ID_TRUE_REASON;
-import static de.uks.beast.editor.util.StringConstants.IP;
-import static de.uks.beast.editor.util.StringConstants.IP_TRUE_REASON;
-import static de.uks.beast.editor.util.StringConstants.NAME;
-import static de.uks.beast.editor.util.StringConstants.NAME_TRUE_REASON;
-import static de.uks.beast.editor.util.StringConstants.SUBNET_MASK;
-import static de.uks.beast.editor.util.StringConstants.SUBNET_MASK_TRUE_REASON;
+import static de.uks.beast.editor.util.Strings.DNS;
+import static de.uks.beast.editor.util.Strings.DNS_TRUE_REASON;
+import static de.uks.beast.editor.util.Strings.GATEWAY;
+import static de.uks.beast.editor.util.Strings.GATEWAY_TRUE_REASON;
+import static de.uks.beast.editor.util.Strings.ID;
+import static de.uks.beast.editor.util.Strings.ID_TRUE_REASON;
+import static de.uks.beast.editor.util.Strings.IP;
+import static de.uks.beast.editor.util.Strings.IP_TRUE_REASON;
+import static de.uks.beast.editor.util.Strings.NAME;
+import static de.uks.beast.editor.util.Strings.NAME_TRUE_REASON;
+import static de.uks.beast.editor.util.Strings.SUBNET_MASK;
+import static de.uks.beast.editor.util.Strings.SUBNET_MASK_TRUE_REASON;
 import model.Network;
 
 import org.eclipse.graphiti.features.IFeatureProvider;

@@ -11,7 +11,7 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 
-import de.uks.beast.editor.util.ColorConstants;
+import de.uks.beast.editor.util.Colors;
 
 public class AddHadoopConnection extends AbstractAddFeature
 {
@@ -49,7 +49,7 @@ public class AddHadoopConnection extends AbstractAddFeature
 		final IGaService gaService = Graphiti.getGaService();
 		final Polyline polyline = gaService.createPolyline(connection);
 		polyline.setLineWidth(2);
-		polyline.setForeground(manageColor(ColorConstants.LINE_COLOR_HADOOP_CONNECTION));
+		polyline.setForeground(manageColor(Colors.LINE_COLOR_HADOOP_CONNECTION));
 		
 		return connection;
 	}

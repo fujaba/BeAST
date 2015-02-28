@@ -1,4 +1,4 @@
-package de.uks.beast.editor.services.hadoop.add;
+package de.uks.beast.editor.services.mysql.add;
 
 import model.Server;
 import model.Service;
@@ -16,10 +16,10 @@ import org.eclipse.graphiti.services.IPeCreateService;
 
 import de.uks.beast.editor.util.Images;
 
-public class AddHadoopSlaveFeature extends AbstractAddShapeFeature
+public class AddMySqlFeature extends AbstractAddShapeFeature
 {
 	
-	public AddHadoopSlaveFeature(final IFeatureProvider fp)
+	public AddMySqlFeature(final IFeatureProvider fp)
 	{
 		super(fp);
 	}
@@ -45,7 +45,7 @@ public class AddHadoopSlaveFeature extends AbstractAddShapeFeature
 	@Override
 	public PictogramElement add(final IAddContext context)
 	{
-		final Service hadoopSlave = (Service) context.getNewObject();
+		final Service service = (Service) context.getNewObject();
 		final ContainerShape targetDiagram = (ContainerShape) context.getTargetContainer();
 		
 		// CONTAINER SHAPE WITH ROUNDED RECTANGLE
@@ -54,18 +54,18 @@ public class AddHadoopSlaveFeature extends AbstractAddShapeFeature
 		
 		final IGaService gaService = Graphiti.getGaService();
 		
-		final Image image = gaService.createImage(containerShape, Images.HADOOP_SLAVE_OBJECT_IMAGE.getImageID());
-		gaService.setLocationAndSize(image, context.getX(), context.getY(), context.getWidth(), context.getHeight());
+		final Image objectIcon = gaService.createImage(containerShape, Images.MYSQL_OBJECT_IMAGE.getImageID());
+		gaService.setLocationAndSize(objectIcon, context.getX(), context.getY(), context.getWidth(), context.getHeight());
 		
 		// if added Class has no resource we add it to the resource
 		// of the diagram
 		// in a real scenario the business model would have its own resource
-		if (hadoopSlave.eResource() == null)
+		if (service.eResource() == null)
 		{
-			getDiagram().eResource().getContents().add(hadoopSlave);
+			getDiagram().eResource().getContents().add(service);
 		}
 		// create link and wire it
-		link(containerShape, hadoopSlave);
+		link(containerShape, service);
 		
 		// add a chopbox anchor to the shape 
 		final ChopboxAnchor anchor = peCreateService.createChopboxAnchor(containerShape);

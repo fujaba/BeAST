@@ -14,7 +14,7 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 
-import de.uks.beast.editor.util.StringConstants;
+import de.uks.beast.editor.util.Images;
 
 public class AddMongoDBFeature extends AbstractAddShapeFeature
 {
@@ -54,7 +54,7 @@ public class AddMongoDBFeature extends AbstractAddShapeFeature
 		
 		final IGaService gaService = Graphiti.getGaService();
 		
-		final Image objectIcon = gaService.createImage(containerShape, StringConstants.MONGO_DB_OBJECT_IMAGE.getImageID());
+		final Image objectIcon = gaService.createImage(containerShape, Images.MONGO_DB_OBJECT_IMAGE.getImageID());
 		gaService.setLocationAndSize(objectIcon, context.getX(), context.getY(), context.getWidth(), context.getHeight());
 		
 		// if added Class has no resource we add it to the resource

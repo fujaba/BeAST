@@ -20,8 +20,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ContainerSelectionDialog;
 
-import de.uks.beast.editor.util.StringConstants;
-import static de.uks.beast.editor.util.StringConstants.*;
+import de.uks.beast.editor.util.Strings;
+import static de.uks.beast.editor.util.Strings.*;
 
 /**
  * The "New" wizard page allows setting the container for the new file as well
@@ -126,7 +126,7 @@ public class HCDWizardPage extends WizardPage
 				containerText.setText(container.getFullPath().toString());
 			}
 		}
-		fileText.setText(DEFAULT_FILENAME.text() + StringConstants.FILE_ENDING.text());
+		fileText.setText(DEFAULT_FILENAME.text() + Strings.FILE_ENDING.text());
 	}
 	
 	
@@ -190,9 +190,9 @@ public class HCDWizardPage extends WizardPage
 		if (dotLoc != -1)
 		{
 			final String ext = fileName.substring(dotLoc + 1);
-			if (ext.equalsIgnoreCase(StringConstants.FILE_TYPE.text()) == false)
+			if (ext.equalsIgnoreCase(Strings.FILE_TYPE.text()) == false)
 			{
-				updateStatus("File extension must be " + StringConstants.FILE_ENDING.text());
+				updateStatus("File extension must be " + Strings.FILE_ENDING.text());
 				return;
 			}
 		}

@@ -28,7 +28,7 @@ import java.io.*;
 import org.eclipse.ui.*;
 import org.eclipse.ui.ide.IDE;
 
-import de.uks.beast.editor.util.StringConstants;
+import de.uks.beast.editor.util.Strings;
 
 /**
  * This is a sample new wizard. Its role is to create a new file 
@@ -121,7 +121,7 @@ public class HCDWizard extends Wizard implements INewWizard
 	
 	private void createDiagram(final IFile file)
 	{
-		final Diagram diagram = Graphiti.getPeCreateService().createDiagram(StringConstants.DIAGRAM_TYPEID.text(), file.getName(), true);
+		final Diagram diagram = Graphiti.getPeCreateService().createDiagram(Strings.DIAGRAM_TYPEID.text(), file.getName(), true);
 		final URI diagramURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
 		
 		FileService.createEmfFileForDiagram(diagramURI, diagram);
@@ -190,7 +190,7 @@ public class HCDWizard extends Wizard implements INewWizard
 	
 	private void throwCoreException(final String message) throws CoreException
 	{
-		final IStatus status = new Status(IStatus.ERROR, StringConstants.PLUGIN_ID.text(), IStatus.OK, message, null);
+		final IStatus status = new Status(IStatus.ERROR, Strings.PLUGIN_ID.text(), IStatus.OK, message, null);
 		throw new CoreException(status);
 	}
 	
