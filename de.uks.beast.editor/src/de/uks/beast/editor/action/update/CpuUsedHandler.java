@@ -55,14 +55,15 @@ public class CpuUsedHandler extends DiagramUpdateHandler
 					if (PropertyUtil.isAttributeShape(shape, Properties.CPU_STAT))
 					{
 						final Text cpuStatText = (Text) shape;
+						
+						LOG.debug("Old value from cpuStatTextfield: " + cpuStatText.getValue());
 						domain.getCommandStack().execute(new RecordingCommand(domain) {
 							public void doExecute()
 							{
-								LOG.debug("Old value from cpuStatTextfield: " + cpuStatText.getValue());
-								//cpuStatText.setValue("");
-								LOG.debug("New value from cpuStatTextfield: " + cpuStatText.getValue());
+								cpuStatText.setValue(info.getValue());
 							}
 						});
+						LOG.debug("New value from cpuStatTextfield: " + cpuStatText.getValue());
 						
 						return;
 					}

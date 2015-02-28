@@ -55,14 +55,15 @@ public class MemoryUsedHandler extends DiagramUpdateHandler
 					if (PropertyUtil.isAttributeShape(shape, Properties.RAM_STAT))
 					{
 						final Text ramStatText = (Text) shape;
+						
+						LOG.debug("Old value from ramStatTextfield: " + ramStatText.getValue());
 						domain.getCommandStack().execute(new RecordingCommand(domain) {
 							public void doExecute()
 							{
-								LOG.debug("Old value from ramStatTextfield: " + ramStatText.getValue());
-								//ramStatText.setValue("");
-								LOG.debug("New value from ramStatTextfield: " + ramStatText.getValue());
+								ramStatText.setValue(info.getValue());
 							}
 						});
+						LOG.debug("New value from ramStatTextfield: " + ramStatText.getValue());
 						
 						return;
 					}

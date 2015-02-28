@@ -69,6 +69,7 @@ public class DiagramUpdateMaster implements KeyListener
 			return "OK";
 		}
 		
+		LOGGER.error("Could not find handler for key [" + info.getKey() + "]");
 		return "Could not find handler for key [" + info.getKey() + "]";
 	}
 	
