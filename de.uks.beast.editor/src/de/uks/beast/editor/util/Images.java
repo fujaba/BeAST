@@ -1,5 +1,9 @@
 package de.uks.beast.editor.util;
 
+import org.eclipse.graphiti.mm.GraphicsAlgorithmContainer;
+import org.eclipse.graphiti.mm.algorithms.Image;
+import org.eclipse.graphiti.services.Graphiti;
+
 public enum Images
 {
 	//@formatter:off
@@ -70,6 +74,16 @@ public enum Images
 	public String getImageID()
 	{
 		return imageID;
+	}
+	
+	
+	
+	/**
+	 * @return the image
+	 */
+	public Image getImageFor(final GraphicsAlgorithmContainer gaContainer)
+	{
+		return Graphiti.getGaService().createImage(gaContainer, imageID);
 	}
 	
 }
