@@ -18,7 +18,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import de.uks.beast.model.Hardware;
 import de.uks.beast.server.BeastService;
 import de.uks.beast.server.environment.model.Configuration;
-import de.uks.beast.server.environment.model.ConnectionInfo;
 import de.uks.beast.server.kafka.KafkaRemoteLogger;
 
 public class HardwareConfigProcessingActor extends UntypedActor {
@@ -78,19 +77,19 @@ public class HardwareConfigProcessingActor extends UntypedActor {
 			List<? extends Configuration> configs = service.getCloudEnvironment().createHardwareDefiniton(hw);
 			
 			/* start the instance(s) */
-			List<? extends ConnectionInfo> cons = service.getCloudEnvironment().startVirtualMachine(configs);
+			service.getCloudEnvironment().startVirtualMachine(configs);
 			
 			/* authenticate against VM(s) and deploy and start crawler service */
-			service.getCloudEnvironment().establishConnection(service.get("kafkabroker"), topic, cons);
+			service.getCloudEnvironment().establishConnection(service.get("kafkabroker"), topic, configs);
 			
 			/* prepare service orchestration */
 			service.getServiceEnvironment().setup();
 			
 			/* prepare the instances */
-			service.getServiceEnvironment().setupInstances(cons);
+			service.getServiceEnvironment().setupInstances(configs);
 			
 			/* install and start the services */
-			service.getServiceEnvironment().startService("", null);
+			service.getServiceEnvironment().startServices(configs);
 			
 			
 		} else {

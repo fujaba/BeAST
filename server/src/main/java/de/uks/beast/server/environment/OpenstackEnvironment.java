@@ -121,9 +121,7 @@ public class OpenstackEnvironment extends CloudEnvironment {
 	}
 
 	@Override
-	public ArrayList<? extends ConnectionInfo> startVirtualMachine(List<? extends Configuration> configs) {
-		ArrayList<ConnectionInfo> cons = new ArrayList<ConnectionInfo>();
-		
+	public void startVirtualMachine(List<? extends Configuration> configs) {
 		logger.info("Creating keypair for VM(s) ...");
 		
 		os.compute().keypairs().delete("beast-keypair");
@@ -166,16 +164,15 @@ public class OpenstackEnvironment extends CloudEnvironment {
 				e.printStackTrace();
 			}
 			
-			cons.add(new ConnectionInfo(cf.getHost(), netFloatingIP.getFloatingIpAddress(), kp.getPrivateKey()));
+			configuration.setConnectionInfo(new ConnectionInfo(cf.getHost(), netFloatingIP.getFloatingIpAddress(), kp.getPrivateKey()));
 		}
 		
-		return cons;
 	}
 	
 	@Override
-	public void establishConnection(String kafkabroker, String topic, List<? extends ConnectionInfo> cons) {
-		for (ConnectionInfo connectionInfo : cons) {
-			InstanceConnection con = new InstanceConnection(service.getRemoteLogger(), connectionInfo);
+	public void establishConnection(String kafkabroker, String topic, List<? extends Configuration> cons) {
+		for (Configuration configuration : cons) {
+			InstanceConnection con = new InstanceConnection(service.getRemoteLogger(), configuration.getConnectionInfo());
 			con.authenticate();
 			con.copyCrawlerService();
 			con.executeService(kafkabroker, topic);

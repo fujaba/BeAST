@@ -6,6 +6,7 @@ import java.io.IOException;
 
 public class ConnectionInfo {
 
+	private int ID;
 	private String host;
 	private String IP;
 	private File key;
@@ -40,6 +41,14 @@ public class ConnectionInfo {
 	
 	public File getPrivateKeyFile() {
 		return key;
+	}
+	
+	public void setID(int iD) {
+		ID = iD;
+	}
+	
+	public int getID() {
+		return ID;
 	}
 	
 }

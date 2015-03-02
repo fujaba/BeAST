@@ -1,11 +1,15 @@
 package de.uks.beast.server.util;
 
 import java.io.IOException;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import de.uks.beast.server.util.juju.RuntimeExec;
+import de.uks.beast.server.util.juju.RuntimeOutput;
 import static org.junit.Assert.*;
 
 public class RuntimeExecTest {

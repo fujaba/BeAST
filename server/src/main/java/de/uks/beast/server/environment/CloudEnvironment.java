@@ -1,12 +1,10 @@
 package de.uks.beast.server.environment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import de.uks.beast.model.Hardware;
 import de.uks.beast.server.BeastService;
 import de.uks.beast.server.environment.model.Configuration;
-import de.uks.beast.server.environment.model.ConnectionInfo;
 
 public abstract class CloudEnvironment {
 	
@@ -34,14 +32,14 @@ public abstract class CloudEnvironment {
 	 * @param configs Configuations for the instances
 	 * @return list of environment specific connection information for the instances
 	 */
-	public abstract ArrayList<? extends ConnectionInfo> startVirtualMachine(List<? extends Configuration> configs);
+	public abstract void startVirtualMachine(List<? extends Configuration> configs);
 	
 	/** 
 	 * Establishes connections from instances to kafka
 	 * @param kafkabroker hostname/IP:port triplet to kafkabroker
 	 * @param topic the kafka topic the information are written to
-	 * @param cons list of connection information for all instances
+	 * @param configs list of connection information for all instances
 	 */
-	public abstract void establishConnection(String kafkabroker, String topic, List<? extends ConnectionInfo> cons);
+	public abstract void establishConnection(String kafkabroker, String topic, List<? extends Configuration> configs);
 	
 }

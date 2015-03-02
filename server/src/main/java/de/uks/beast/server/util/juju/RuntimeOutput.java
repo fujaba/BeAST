@@ -1,4 +1,4 @@
-package de.uks.beast.server.util;
+package de.uks.beast.server.util.juju;
 
 public class RuntimeOutput {
 
@@ -11,7 +11,6 @@ public class RuntimeOutput {
 		this.message = message;
 	}
 
-	//
 	public int getStatusCode() {
 		return statusCode;
 	}

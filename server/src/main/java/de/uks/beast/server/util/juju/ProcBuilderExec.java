@@ -1,4 +1,4 @@
-package de.uks.beast.server.util;
+package de.uks.beast.server.util.juju;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ProcBuilderExec {
 
-    void execCommand(List<String> command) {
+    public void execCommand(List<String> command) {
 
         try {
             final ProcessBuilder pb = new ProcessBuilder(command);
