@@ -13,19 +13,33 @@ import de.uks.beast.server.akka.AkkaServer;
 import de.uks.beast.server.environment.CloudEnvironment;
 import de.uks.beast.server.environment.OpenstackEnvironment;
 import de.uks.beast.server.kafka.KafkaRemoteLogger;
+import de.uks.beast.server.service.JujuEnvironment;
+import de.uks.beast.server.service.ServiceEnvironment;
 
 public class BeastService {
 
 	private Properties props;
-	private CloudEnvironment environment;
-	private HashMap<String, CloudEnvironment> environments;
+	private HashMap<String, CloudEnvironment> cloudEnvironments;
+	private HashMap<String, ServiceEnvironment> serviceEnvironments;
+	private CloudEnvironment cloudEnvironment;
+	private ServiceEnvironment serviceEnvironment;
+	private KafkaRemoteLogger remoteLogger;
 	
 	public static void main(String[] args) {
 		new BeastService().startService();
 	}
 	
 	public BeastService() {
-		this.environments = new HashMap<String, CloudEnvironment>();
+		this.cloudEnvironments = new HashMap<String, CloudEnvironment>();
+		this.serviceEnvironments = new HashMap<String, ServiceEnvironment>(); 
+	}
+	
+	private void setCloudEnvironments() {
+		this.cloudEnvironments.put("openstack", new OpenstackEnvironment(this));
+	}
+	
+	private void setServiceEnvironments() {
+		this.serviceEnvironments.put("juju", new JujuEnvironment(this));
 	}
 	
 	private void startService() {
@@ -47,8 +61,11 @@ public class BeastService {
 			e.printStackTrace();
 		}
 		
-		setEnvironments();
-		this.environment = environments.get(get("environment"));
+		setCloudEnvironments();
+		setServiceEnvironments();
+		
+		this.cloudEnvironment = cloudEnvironments.get(get("environment"));
+		this.serviceEnvironment = serviceEnvironments.get(get("service"));
 		
 		AkkaServer server = new AkkaServer(this, getIP(), Integer.parseInt(get("port")));
 		server.start();
@@ -61,21 +78,25 @@ public class BeastService {
 			return get("ip");
 		}
 	}
-
-	private void setEnvironments() {
-		this.environments.put("openstack", new OpenstackEnvironment(this));
-	}
 	
 	public String get(String key) {
 		return props.getProperty(key);
 	}
 	
-	public CloudEnvironment getEnvironment() {
-		return environment;
+	public CloudEnvironment getCloudEnvironment() {
+		return cloudEnvironment;
 	}
-
-	public void setRemoteLogger(KafkaRemoteLogger remoteLogger) {
-		this.environment.setRemoteLogger(remoteLogger);
+	
+	public ServiceEnvironment getServiceEnvironment() {
+		return serviceEnvironment;
+	}
+	
+	public void setRemoteLogger(KafkaRemoteLogger remoteLogger){
+		this.remoteLogger = remoteLogger;
+	}
+	
+	public KafkaRemoteLogger getRemoteLogger() {
+		return this.remoteLogger;
 	}
 	
 }

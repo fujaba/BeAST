@@ -1,9 +1,9 @@
 package de.uks.beast.server.environment;
 
-import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.LogManager;
@@ -11,9 +11,15 @@ import org.apache.log4j.Logger;
 import org.openstack4j.api.Builders;
 import org.openstack4j.api.OSClient;
 import org.openstack4j.model.compute.Flavor;
+import org.openstack4j.model.compute.FloatingIP;
+import org.openstack4j.model.compute.Keypair;
+import org.openstack4j.model.compute.Server;
+import org.openstack4j.model.compute.Server.Status;
+import org.openstack4j.model.compute.ServerCreate;
 import org.openstack4j.model.identity.Tenant;
 import org.openstack4j.model.network.AttachInterfaceType;
 import org.openstack4j.model.network.IPVersionType;
+import org.openstack4j.model.network.NetFloatingIP;
 import org.openstack4j.model.network.Network;
 import org.openstack4j.model.network.Router;
 import org.openstack4j.model.network.Subnet;
@@ -24,21 +30,17 @@ import de.uks.beast.server.BeastService;
 import de.uks.beast.server.environment.model.Configuration;
 import de.uks.beast.server.environment.model.ConnectionInfo;
 import de.uks.beast.server.environment.model.OpenstackConfiguration;
-import de.uks.beast.server.environment.model.OpenstackConnectionInfo;
-import de.uks.beast.server.juju.Juju;
-import de.uks.beast.server.vm.OpenstackConnection;
+import de.uks.beast.server.vm.InstanceConnection;
 
 public class OpenstackEnvironment extends CloudEnvironment {
 
 	private static final Logger logger = LogManager.getLogger(OpenstackEnvironment.class);
 	
 	private OSClient os;
-	private final BeastService service;
 
 	public OpenstackEnvironment(BeastService service) {
-		this.service = service;
+		super(service);
 	}
-
 
 	/**
 	 * Authenticate
@@ -117,47 +119,10 @@ public class OpenstackEnvironment extends CloudEnvironment {
 		
 		return configs;
 	}
-	
+
 	@Override
 	public ArrayList<? extends ConnectionInfo> startVirtualMachine(List<? extends Configuration> configs) {
-		ArrayList<OpenstackConnectionInfo> cons = new ArrayList<OpenstackConnectionInfo>();
-
-		for (Configuration config : configs) {
-			//OpenstackConfiguration оc = (OpenstackConfiguration) config;
-			
-			// TODO:
-			/*
-			alle openstack vms holen und merken
-			Find all running Servers
-			int nrOfMachine = (juju deploy ubuntu) - returns machine number
-			alle openstack vms holen
-			Find all running Servers
-			 */
-			
-			//
-			// add a manually provisioned machine, and returns its id in juju environment
-			int machineNumber = 0;
-			try {
-				// TODO get real host name/ip
-				machineNumber = Juju.addMachine("[user@]host");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			//
-			// deploy a service to created machine
-			// TODO get real servicename
-			//Juju.deploy(servicename, alias, machineNumber);
-			
-		}
-		
-		return cons;
-	}
-
-	/*@Override
-	public ArrayList<? extends ConnectionInfo> startVirtualMachine(List<? extends Configuration> configs) {
-		ArrayList<OpenstackConnectionInfo> cons = new ArrayList<OpenstackConnectionInfo>();
+		ArrayList<ConnectionInfo> cons = new ArrayList<ConnectionInfo>();
 		
 		logger.info("Creating keypair for VM(s) ...");
 		
@@ -176,7 +141,7 @@ public class OpenstackEnvironment extends CloudEnvironment {
 			Server server = os.compute().servers().boot(sc);
 			
 			logger.info("Starting VM with hostname " + cf.getHost() + " and flavor " + cf.getId() + " ...");
-			remoteLogger.info("Starting VM with hostname " + cf.getHost() + "...");
+			service.getRemoteLogger().info("Starting VM with hostname " + cf.getHost() + "...");
 			
 			logger.info("Waiting for VM to become active ...");
 			
@@ -193,7 +158,7 @@ public class OpenstackEnvironment extends CloudEnvironment {
 			os.compute().floatingIps().addFloatingIP(server, netFloatingIP.getFloatingIpAddress());
 
 			logger.info("Added floating IP " + netFloatingIP.getFloatingIpAddress() + " to " + cf.getHost());
-			remoteLogger.info(cf.getHost() + " got public IP address: " + netFloatingIP.getFloatingIpAddress());
+			service.getRemoteLogger().info(cf.getHost() + " got public IP address: " + netFloatingIP.getFloatingIpAddress());
 			
 			try {
 				Thread.sleep(1000);
@@ -201,16 +166,16 @@ public class OpenstackEnvironment extends CloudEnvironment {
 				e.printStackTrace();
 			}
 			
-			cons.add(new OpenstackConnectionInfo(cf.getHost(), netFloatingIP.getFloatingIpAddress(), kp.getPrivateKey()));
+			cons.add(new ConnectionInfo(cf.getHost(), netFloatingIP.getFloatingIpAddress(), kp.getPrivateKey()));
 		}
 		
 		return cons;
-	}*/
+	}
 	
 	@Override
 	public void establishConnection(String kafkabroker, String topic, List<? extends ConnectionInfo> cons) {
 		for (ConnectionInfo connectionInfo : cons) {
-			OpenstackConnection con = new OpenstackConnection(service, (OpenstackConnectionInfo) connectionInfo);
+			InstanceConnection con = new InstanceConnection(service.getRemoteLogger(), connectionInfo);
 			con.authenticate();
 			con.copyCrawlerService();
 			con.executeService(kafkabroker, topic);
@@ -292,6 +257,15 @@ public class OpenstackEnvironment extends CloudEnvironment {
 	
 	private static String getEndOfPool(String ip) {
 		return ip.substring(0, ip.lastIndexOf(".")) + ".254";
+	}
+
+	private FloatingIP getFloatingIP() {
+		for (FloatingIP ip : os.compute().floatingIps().list()) {
+			if (ip.getFixedIpAddress() == null) {
+				return ip;
+			}
+		}
+		return null;
 	}
 	
 	public static int convertNetmaskToCIDR(InetAddress netmask){

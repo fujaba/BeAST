@@ -4,25 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.uks.beast.model.Hardware;
+import de.uks.beast.server.BeastService;
 import de.uks.beast.server.environment.model.Configuration;
 import de.uks.beast.server.environment.model.ConnectionInfo;
-import de.uks.beast.server.kafka.KafkaRemoteLogger;
-import de.uks.beast.server.service.ServiceEnvironment;
 
 public abstract class CloudEnvironment {
+	
+	protected BeastService service;
 
-	/** User specified environment for service orchestration */
-	protected ServiceEnvironment serviceEnvironment;
-	
-	/** remote logger; writes log information to kafka */
-	protected KafkaRemoteLogger remoteLogger;
-	
-	public void setRemoteLogger(KafkaRemoteLogger remoteLogger){
-		this.remoteLogger = remoteLogger;
-	}
-	
-	public KafkaRemoteLogger getRemoteLogger() {
-		return this.remoteLogger;
+	public CloudEnvironment(BeastService service) {
+		this.service = service;
 	}
 	
 	/** authenticate against environment */

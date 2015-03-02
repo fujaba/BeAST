@@ -25,6 +25,7 @@ public class KafkaRemoteLogger {
 		 
 		ProducerConfig config = new ProducerConfig(props);
 		producer = new Producer<String, InstanceInformation>(config);
+		//zkClient.deleteRecursive(ZkUtils.getTopicPath("myTopic"));
 	}
 
 	public void info(String msg) {

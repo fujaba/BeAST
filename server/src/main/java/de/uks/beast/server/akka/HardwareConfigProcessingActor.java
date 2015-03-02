@@ -49,12 +49,13 @@ public class HardwareConfigProcessingActor extends UntypedActor {
 	private void handleHardware(Hardware hw) {
 		logger.info("Received new hardware configuration");
 		
-		if (!service.getEnvironment().isAuthenticated()) {
-			service.getEnvironment().authenticate();
+		/* authenticate against cloud environment if necessary */
+		if (!service.getCloudEnvironment().isAuthenticated()) {
+			service.getCloudEnvironment().authenticate();
 		}
 
-		if (service.getEnvironment().isAuthenticated()) {
-			//generate a topic id
+		if (service.getCloudEnvironment().isAuthenticated()) {
+			/* generate a topic ID */
 			String topic = UUID.randomUUID().toString();
 			String zookeeperCon = service.get("zookeeper-portforward");
 			
@@ -62,27 +63,35 @@ public class HardwareConfigProcessingActor extends UntypedActor {
 				zookeeperCon = service.get("zookeeper");
 			}
 			
-			//send metadata to client
+			/* send metadata to client */
 			getSender().tell(topic + " " + zookeeperCon, getSelf());
 			
-			// create new Kafka topic
+			/* create new Kafka topic */
 			ZkClient zkClient = new ZkClient(service.get("zookeeper"), 10000, 10000, ZKStringSerializer$.MODULE$);
 			AdminUtils.createTopic(zkClient, topic, 1, 1, new Properties());
 			
-			//create kafka writer
+			/* create kafka writer */
 			KafkaRemoteLogger remoteLogger = new KafkaRemoteLogger(service.get("kafkabroker"), topic);
 			service.setRemoteLogger(remoteLogger);
 			
-			// Create hardware definition
-			List<? extends Configuration> configs = service.getEnvironment().createHardwareDefiniton(hw);
+			/* create hardware definition */
+			List<? extends Configuration> configs = service.getCloudEnvironment().createHardwareDefiniton(hw);
 			
-			// start the VM(s)
-			List<? extends ConnectionInfo> cons = service.getEnvironment().startVirtualMachine(configs);
+			/* start the instance(s) */
+			List<? extends ConnectionInfo> cons = service.getCloudEnvironment().startVirtualMachine(configs);
 			
-			//zkClient.deleteRecursive(ZkUtils.getTopicPath("myTopic"));
+			/* authenticate against VM(s) and deploy and start crawler service */
+			service.getCloudEnvironment().establishConnection(service.get("kafkabroker"), topic, cons);
 			
-			// authenticate against VM(s) and deploy and start crawler service
-			service.getEnvironment().establishConnection(service.get("kafkabroker"), topic, cons);
+			/* prepare service orchestration */
+			service.getServiceEnvironment().setup();
+			
+			/* prepare the instances */
+			service.getServiceEnvironment().setupInstances(cons);
+			
+			/* install and start the services */
+			service.getServiceEnvironment().startService("", null);
+			
 			
 		} else {
 			// handle unauthenticated failures

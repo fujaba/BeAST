@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.URISyntaxException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -18,35 +21,46 @@ import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import com.jcraft.jsch.SftpException;
 
-import de.uks.beast.server.BeastService;
-import de.uks.beast.server.environment.model.OpenstackConnectionInfo;
+import de.uks.beast.server.environment.model.ConnectionInfo;
 import de.uks.beast.server.kafka.KafkaRemoteLogger;
+import de.uks.beast.server.util.ShellCommands;
 
-public class OpenstackConnection {
+public class InstanceConnection {
 	
-	private static final String NO_ROUTE_TO_HOST = "java.net.NoRouteToHostException: No route to host";
-	private static final String CONNECTION_REFUSED = "java.net.ConnectException: Connection refused";
-	private static final String ADD_HOST = "awk '/127.0.0.1/ { print; print \"P_HOST\"; next }1' /etc/hosts > /tmp/hosts && "
-			+ "sudo mv /tmp/hosts /etc/hosts";
+	private static Logger logger = LogManager.getLogger(InstanceConnection.class);
+	
+	public static final String STRICT_HOST_KEY_CHECKING = "StrictHostKeyChecking";
+	public static final String SSH_USER = "ubuntu";
+	public static final String YES = "yes";
+	public static final String NO = "no";
+	public static final String EXEC = "exec";
+	public static final String SHELL = "shell";
+	public static final String SFTP = "sftp";
+	public static final String BEAST_SERVICE_LOCAL = "/util/bservice.jar";
+	public static final String BEAST_SERVICE_REMOTE = "/tmp/beast/util/bservice.jar";
+	public static final String SCRIPT_LOCAL = "/util/install_java.sh";
+	public static final String SCRIPT_REMOTE = "/tmp/beast/util/install_java.sh";
+	public static final String LIB_DIR_LOCAL = "/util/libs";
+	public static final String LIB_DIR_REMOTE = "/tmp/beast/util";
+	public static final String NO_ROUTE_TO_HOST = "java.net.NoRouteToHostException: No route to host";
+	public static final String CONNECTION_REFUSED = "java.net.ConnectException: Connection refused";
 
-	private static Logger logger = LogManager.getLogger(OpenstackConnection.class);
-
-	private OpenstackConnectionInfo connectionInfo;
+	private ConnectionInfo connectionInfo;
 	private Session session;
 	private KafkaRemoteLogger remoteLogger;
 
-	public OpenstackConnection(BeastService service, OpenstackConnectionInfo connectionInfo) {
+	public InstanceConnection(KafkaRemoteLogger remoteLogger, ConnectionInfo connectionInfo) {
 		this.connectionInfo = connectionInfo;
-		this.remoteLogger = service.getEnvironment().getRemoteLogger();
+		this.remoteLogger = remoteLogger;
 	}
 
 	public void authenticate() {
 		JSch jsch = new JSch();
 		
 		try {
-			JSch.setConfig("StrictHostKeyChecking", "no");
+			JSch.setConfig(STRICT_HOST_KEY_CHECKING, NO);
 			jsch.addIdentity(connectionInfo.getPrivateKeyFile().getAbsolutePath());
-			session = jsch.getSession("ubuntu", connectionInfo.getIp(), 22);
+			session = jsch.getSession(SSH_USER, connectionInfo.getIp(), 22);
 			session.connect();
 		} catch (JSchException e) {
 			if (e.getMessage().equals(NO_ROUTE_TO_HOST) || e.getMessage().equals(CONNECTION_REFUSED)) {
@@ -85,29 +99,30 @@ public class OpenstackConnection {
 		try {
 			String filelocation = "";
 			try {
-				filelocation = new File(OpenstackConnection.class.getProtectionDomain().getCodeSource()
+				filelocation = new File(InstanceConnection.class.getProtectionDomain().getCodeSource()
 						.getLocation().toURI().getPath()).getAbsolutePath();
 				filelocation = filelocation.substring(0, filelocation.lastIndexOf("/") + 1);
 			} catch (URISyntaxException e) {
 				e.printStackTrace();
 			}
+			
 			logger.info("Deploying beast service on VM ...");
 			remoteLogger.info("Deploying BeAST service on instance " + connectionInfo.getHostName());
 
-			//create tmp dir
-			Channel c = session.openChannel("exec");
+			/* create temporary directory for service */
+			Channel c = session.openChannel(EXEC);
 		    ChannelExec ce = (ChannelExec) c;
-		    ce.setCommand("mkdir -p /tmp/beast/util/");
+		    ce.setCommand(ShellCommands.createDirectory(LIB_DIR_REMOTE));
 		    ce.setErrStream(System.err);
 		    ce.connect();
 		    ce.disconnect();
 			
-			c = session.openChannel("sftp");
+			c = session.openChannel(SFTP);
 			ChannelSftp cs = (ChannelSftp) c;
 			cs.connect();
-			cs.put(filelocation + "/util/bservice.jar", "/tmp/beast/util/bservice.jar");
-			cs.put(filelocation + "/util/install_java.sh", "/tmp/beast/util/install_java.sh");
-			copyFolder(filelocation + "/util/libs", "/tmp/beast/util");
+			cs.put(filelocation + BEAST_SERVICE_LOCAL, BEAST_SERVICE_REMOTE);
+			cs.put(filelocation + SCRIPT_LOCAL, SCRIPT_REMOTE);
+			copyFolder(filelocation + LIB_DIR_LOCAL, LIB_DIR_REMOTE);
 			ce.disconnect();
 		} catch (JSchException | SftpException e) {
 			logger.error("Unexpected Exception", e);
@@ -116,7 +131,7 @@ public class OpenstackConnection {
 	
 	private void copyFolder(String src, String dest) {
 		try {
-		    Channel c = session.openChannel("sftp");
+		    Channel c = session.openChannel(SFTP);
 			ChannelSftp cs = (ChannelSftp) c;
 			cs.connect();
 			
@@ -151,17 +166,17 @@ public class OpenstackConnection {
 			String hostname = getHostname(kafkabroker);
 			kafkabroker = kafkabroker.substring(kafkabroker.indexOf("/") + 1);
 			
-			Channel c = session.openChannel("exec");
+			Channel c = session.openChannel(EXEC);
 		    ChannelExec edit_host = (ChannelExec) c;
-		    edit_host.setCommand(ADD_HOST.replace("P_HOST", hostname.replace(":", "\t")));
+		    edit_host.setCommand(ShellCommands.addToHostsFile(hostname.replace(":", "\t")));
 		    edit_host.setErrStream(System.err);
 		    edit_host.connect();
 		    edit_host.disconnect();
 			
-			//install java
-			c = session.openChannel("exec");
+			//install script
+			c = session.openChannel(EXEC);
 		    ChannelExec install_java = (ChannelExec) c;
-		    install_java.setCommand("sudo sh /tmp/beast/util/install_java.sh");
+		    install_java.setCommand(ShellCommands.executeScript(SCRIPT_REMOTE));
 		    install_java.setErrStream(System.err);
 		    install_java.connect();
 		    BufferedReader install_java_reader = new BufferedReader(new InputStreamReader(install_java.getInputStream()));
@@ -174,15 +189,14 @@ public class OpenstackConnection {
 		    //start service
 		    logger.info("Starting beast service on VM with broker = " + kafkabroker +
 					" and topic = " + topic);
-			Channel channel = session.openChannel("shell");
+			Channel channel = session.openChannel(SHELL);
 			OutputStream ops = channel.getOutputStream();
 			PrintStream ps = new PrintStream(ops, true);
 
 			channel.connect();
 
-			ps.println("nohup java -classpath /tmp/beast/util/bservice.jar:/tmp/beast/util/libs/*" +
-		    		" -Djava.library.path=/tmp/beast/util/libs/native" +
-		    		" de.uks.beast.vmservice.VMService " + connectionInfo.getHostName() + " " + kafkabroker + " " + topic + " &");
+			ps.println(ShellCommands.executeBeastService(connectionInfo.getHostName(), kafkabroker, topic));
+			
 			ps.close();
 
 			// wait till executed
@@ -197,6 +211,23 @@ public class OpenstackConnection {
 		}
 	}
 	
+	public void insertKeyToAuthorizedKeys(String publicKeyFilePath) {
+		try {
+			byte[] encoded = Files.readAllBytes(Paths.get(publicKeyFilePath));
+			String publicKey = new String(encoded, Charset.defaultCharset());
+		
+			Channel c = session.openChannel(EXEC);
+		    ChannelExec edit_key = (ChannelExec) c;
+		    edit_key.setCommand(ShellCommands.appendToFile("/home/" + SSH_USER + "/.ssh/authorized_keys", publicKey));
+		    edit_key.setErrStream(System.err);
+		    edit_key.connect();
+		    edit_key.disconnect();
+		} catch (Exception e) {
+			logger.error("Unexpected Exception", e);
+		}
+
+	}
+	
 	private String getHostname(String kafkabroker) {
 		String host = kafkabroker.substring(0, kafkabroker.indexOf("/"));
 		String ip = kafkabroker.substring(kafkabroker.indexOf("/") + 1, kafkabroker.indexOf(":"));
@@ -205,9 +236,9 @@ public class OpenstackConnection {
 
 	private void mkdir(String dest) {
 		try {
-			Channel c = session.openChannel("exec");
+			Channel c = session.openChannel(EXEC);
 		    ChannelExec ce = (ChannelExec) c;
-		    ce.setCommand("mkdir -p " + dest);
+		    ce.setCommand(ShellCommands.createDirectory(dest));
 		    ce.setErrStream(System.err);
 		    ce.connect();
 		    ce.disconnect();
