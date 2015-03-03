@@ -19,6 +19,7 @@ import de.uks.beast.editor.services.hadoop.create.CreateHadoopMasterFeature;
 import de.uks.beast.editor.services.hadoop.create.CreateHadoopSlaveFeature;
 import de.uks.beast.editor.services.mongodb.create.CreateMongoDBFeature;
 import de.uks.beast.editor.services.mysql.create.CreateMySqlFeature;
+import de.uks.beast.editor.services.ubuntu.create.CreateUbuntuFeature;
 import de.uks.beast.editor.services.wordpress.create.CreateWordPressFeature;
 import de.uks.beast.editor.util.Images;
 import de.uks.beast.editor.util.PaletteCompartmentEntry;
@@ -42,7 +43,7 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 		//@formatter:off
 		final PaletteCompartmentEntry locationEntry = PaletteCompartmentEntry
 				.builder()
-				.setName(HARDWARE_LOCATION.text())
+				.setName(LOCATION.text())
 				.setIconID(Images.LOCATION_PALETTE_IMAGE.getImageID())
 				.addAllCreateObjectFeature(
 						new CreateRoomFeature(getFeatureProvider(), SERVER_ROOM.text(), SERVER_ROOM.description()))
@@ -55,7 +56,7 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 		//@formatter:off
 		final PaletteCompartmentEntry serverEntry = PaletteCompartmentEntry
 				.builder()
-				.setName(HARDWARE_SERVER.text())
+				.setName(SERVER.text())
 				.setIconID(Images.SERVER_PALETTE_IMAGE.getImageID())
 				.addCreateObjectFeature(
 						new CreateServerFeature(getFeatureProvider(), SERVER.text(), SERVER.description()))
@@ -66,7 +67,7 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 		//@formatter:off
 		final PaletteCompartmentEntry networkEntry = PaletteCompartmentEntry
 				.builder()
-				.setName(HARDWARE_NETWORK.text())
+				.setName(NETWORK.text())
 				.setIconID(Images.NETWORK_PALETTE_IMAGE.getImageID())
 				.addCreateObjectFeature(
 						new CreateNetworkFeature(getFeatureProvider(), NETWORK.text(), NETWORK.description()))
@@ -79,7 +80,7 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 		//@formatter:off
 		final PaletteCompartmentEntry ethernetEntry = PaletteCompartmentEntry
 				.builder()
-				.setName(HARDWARE_ETHERNET.text())
+				.setName(ETHERNET.text())
 				.setIconID(Images.CONNECTION_PALETTE_IMAGE.getImageID())
 				.addCreateConnectionFeature(
 						new CreateConnectionFeature(getFeatureProvider(), CONNECTION.text(),
@@ -91,7 +92,7 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 		//@formatter:off
 		final PaletteCompartmentEntry hadoopEntry = PaletteCompartmentEntry
 				.builder()
-				.setName(SERVICE_HADOOP.text())
+				.setName(HADOOP.text())
 				.setIconID(Images.HADOOP_PALETTE_IMAGE.getImageID())
 				.addCreateObjectFeature(
 						new CreateHadoopMasterFeature(getFeatureProvider(), HADOOP_MASTER.text(), HADOOP_MASTER.description()))
@@ -107,7 +108,7 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 		//@formatter:off
 		final PaletteCompartmentEntry cassandraEntry = PaletteCompartmentEntry
 				.builder()
-				.setName(SERVICE_CASSANDRA.text())
+				.setName(CASSANDRA.text())
 				.setIconID(Images.CASSANDRA_PALETTE_IMAGE.getImageID())
 				.addCreateObjectFeature(
 						new CreateCassandraFeature(getFeatureProvider(), CASSANDRA.text(), CASSANDRA.description()))
@@ -118,7 +119,7 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 		//@formatter:off
 		final PaletteCompartmentEntry mongoDBEntry = PaletteCompartmentEntry
 				.builder()
-				.setName(SERVICE_MONGODB.text())
+				.setName(MONGO_DB.text())
 				.setIconID(Images.MONGO_DB_PALETTE_IMAGE.getImageID())
 				.addCreateObjectFeature(
 						new CreateMongoDBFeature(getFeatureProvider(), MONGO_DB.text(), MONGO_DB.description()))
@@ -129,7 +130,7 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 		//@formatter:off
 		final PaletteCompartmentEntry mySqlEntry = PaletteCompartmentEntry
 				.builder()
-				.setName(SERVICE_MYSQL.text())
+				.setName(MYSQL.text())
 				.setIconID(Images.MYSQL_PALETTE_IMAGE.getImageID())
 				.addCreateObjectFeature(
 						new CreateMySqlFeature(getFeatureProvider(), MYSQL.text(), MYSQL.description()))
@@ -140,10 +141,21 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 		//@formatter:off
 		final PaletteCompartmentEntry wordPressEntry = PaletteCompartmentEntry
 				.builder()
-				.setName(SERVICE_WORDPRESS.text())
+				.setName(WORDPRESS.text())
 				.setIconID(Images.WORDPRESS_PALETTE_IMAGE.getImageID())
 				.addCreateObjectFeature(
 						new CreateWordPressFeature(getFeatureProvider(), WORDPRESS.text(), WORDPRESS.description()))
+				.setInitialOpen(false)
+				.build();
+		//@formatter:on
+		
+		//@formatter:off
+			final PaletteCompartmentEntry ubuntuEntry = PaletteCompartmentEntry
+				.builder()
+				.setName(UBUNTU.text())
+				.setIconID(Images.UBUNTU_PALETTE_IMAGE.getImageID())
+				.addCreateObjectFeature(
+						new CreateUbuntuFeature(getFeatureProvider(), UBUNTU.text(), UBUNTU.description()))
 				.setInitialOpen(false)
 				.build();
 		//@formatter:on
@@ -159,7 +171,8 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 				cassandraEntry,
 				mongoDBEntry,
 				mySqlEntry,
-				wordPressEntry);
+				wordPressEntry,
+				ubuntuEntry);
 		//@formatter:on
 		
 		return allEntries.toArray(new IPaletteCompartmentEntry[allEntries.size()]);

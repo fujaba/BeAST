@@ -53,6 +53,7 @@ import de.uks.beast.editor.services.hadoop.add.AddHadoopMasterFeature;
 import de.uks.beast.editor.services.hadoop.add.AddHadoopSlaveFeature;
 import de.uks.beast.editor.services.mongodb.add.AddMongoDBFeature;
 import de.uks.beast.editor.services.mysql.add.AddMySqlFeature;
+import de.uks.beast.editor.services.ubuntu.add.AddUbuntuFeature;
 import de.uks.beast.editor.services.wordpress.add.AddWordPressFeature;
 import de.uks.beast.editor.util.Strings;
 
@@ -144,6 +145,10 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 			else if (service.getType().equals(Strings.WORDPRESS.text()))
 			{
 				return new AddWordPressFeature(this);
+			}
+			else if (service.getType().equals(Strings.UBUNTU.text()))
+			{
+				return new AddUbuntuFeature(this);
 			}
 			
 		}

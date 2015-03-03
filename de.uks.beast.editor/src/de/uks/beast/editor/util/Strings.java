@@ -35,32 +35,28 @@ public enum Strings
 
 	
 	//Editor objects
+	LOCATION					("Location",			"This the provides hardware location"),
 	SERVER_ROOM					("Server room",			"This is a Serverroom"),
 	SERVER_RACK					("Server rack",			"Rack has many Server"),
 	SERVER						("Server", 				"Server representing hardware"),
 	NETWORK						("Network", 			"This is a network"),
 	ROUTER						("Router", 				"This is a router"),
 	CONNECTION					("Connection",			"This is a connection between two objects"),
-	HADOOP_MASTER				("HadoopMaster",		"This is a Hadoop service - HadoopMaster"),
-	HADOOP_SLAVE				("HadoopSlave",			"This is a Hadoop service - HadoopSlave"),
+	ETHERNET					("Ethernet",			"This provides ethernet connection"),
+	HADOOP						("Hadoop",				"This is a Hadoop charm"),
+	HADOOP_MASTER				("HadoopMaster",		"This is a Hadoop charm - HadoopMaster"),
+	HADOOP_SLAVE				("HadoopSlave",			"This is a Hadoop charm - HadoopSlave"),
 	HADOOP_CONNECTION			("HadoopConnection",	"This is a connection between HadoopMaster and HadoopSlave"),
-	CASSANDRA					("Cassandra",			"This is a Cassandra service"),
-	MYSQL						("MySQL",				"This is a MySQL service"),
-	MONGO_DB					("MongoDB",				"This is a MongoDB service"),
-	WORDPRESS					("WordPress",			"This is a WordPress service"),
-	
-	
-	// Palette Entries
-	HARDWARE_LOCATION				("Location",	"This entry provides hardware location"),
-	HARDWARE_SERVER					("Server",		"This entry provides hardware server"),
-	HARDWARE_NETWORK				("Network",		"This entry provides hardware network"),
-	HARDWARE_ETHERNET				("Ethernet",	"This entry provides hardware ethernet"),
-	SERVICE_HADOOP					("Hadoop",		"This entry provides Juju service Hadoop"),
-	SERVICE_CASSANDRA				("Cassandra",	"This entry provides Juju service Cassandra"),
-	SERVICE_MYSQL					("MySQL",		"This entry provides Juju service MySQL"),
-	SERVICE_MONGODB					("MongoDB",		"This entry provides Juju service MongoDB"),
-	SERVICE_WORDPRESS				("WordPress",	"This entry provides Juju service WordPress"),
-	
+	CASSANDRA					("Cassandra",			"This is a Cassandra charm"),
+	MYSQL						("MySQL",				"This is a MySQL charm"),
+	MONGO_DB					("MongoDB",				"This is a MongoDB charm"),
+	WORDPRESS					("WordPress",			"This is a WordPress charm"),
+	UBUNTU						("Ubuntu",				"This is a Ubuntu charm"),
+	JENKINS						("Jenkins",				"This is a Jenkins charm"),
+	MEDIAWIKI					("MediaWiki",			"This is a MediaWiki charm"),
+	TOMCAT						("Tomcat",				"This is a Tomcat charm"),
+	APACHE2						("Apache2",				"This is a Apache2 charm"),
+
 	
 	// warnings
 	EMPTY_NAME_WARNING			("Please enter any text as class name!",	 		""),
