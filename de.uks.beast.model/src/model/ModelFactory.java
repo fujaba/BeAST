@@ -135,6 +135,61 @@ public interface ModelFactory extends EFactory
 
 
 	/**
+	 * Returns a new object of class '<em>Ubuntu</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ubuntu</em>'.
+	 * @generated
+	 */
+	Ubuntu createUbuntu();
+
+
+
+	/**
+	 * Returns a new object of class '<em>Apache2</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Apache2</em>'.
+	 * @generated
+	 */
+	Apache2 createApache2();
+
+
+
+	/**
+	 * Returns a new object of class '<em>Jenkins</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Jenkins</em>'.
+	 * @generated
+	 */
+	Jenkins createJenkins();
+
+
+
+	/**
+	 * Returns a new object of class '<em>Media Wiki</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Media Wiki</em>'.
+	 * @generated
+	 */
+	MediaWiki createMediaWiki();
+
+
+
+	/**
+	 * Returns a new object of class '<em>Tomcat</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tomcat</em>'.
+	 * @generated
+	 */
+	Tomcat createTomcat();
+
+
+
+	/**
 	 * Returns a new object of class '<em>Room</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

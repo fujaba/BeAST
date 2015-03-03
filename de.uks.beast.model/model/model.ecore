@@ -74,4 +74,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="WordPress" eSuperTypes="#//Service"/>
   <eClassifiers xsi:type="ecore:EClass" name="Cassandra" eSuperTypes="#//Service"/>
   <eClassifiers xsi:type="ecore:EClass" name="MongoDB" eSuperTypes="#//Service"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Ubuntu" eSuperTypes="#//Service"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Apache2" eSuperTypes="#//Service"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Jenkins" eSuperTypes="#//Service"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MediaWiki" eSuperTypes="#//Service"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Tomcat" eSuperTypes="#//Service"/>
 </ecore:EPackage>

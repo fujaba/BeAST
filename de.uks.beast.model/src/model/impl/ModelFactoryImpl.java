@@ -79,6 +79,11 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 			case ModelPackage.WORD_PRESS: return createWordPress();
 			case ModelPackage.CASSANDRA: return createCassandra();
 			case ModelPackage.MONGO_DB: return createMongoDB();
+			case ModelPackage.UBUNTU: return createUbuntu();
+			case ModelPackage.APACHE2: return createApache2();
+			case ModelPackage.JENKINS: return createJenkins();
+			case ModelPackage.MEDIA_WIKI: return createMediaWiki();
+			case ModelPackage.TOMCAT: return createTomcat();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -212,6 +217,71 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 	{
 		MongoDBImpl mongoDB = new MongoDBImpl();
 		return mongoDB;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Ubuntu createUbuntu()
+	{
+		UbuntuImpl ubuntu = new UbuntuImpl();
+		return ubuntu;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Apache2 createApache2()
+	{
+		Apache2Impl apache2 = new Apache2Impl();
+		return apache2;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Jenkins createJenkins()
+	{
+		JenkinsImpl jenkins = new JenkinsImpl();
+		return jenkins;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MediaWiki createMediaWiki()
+	{
+		MediaWikiImpl mediaWiki = new MediaWikiImpl();
+		return mediaWiki;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Tomcat createTomcat()
+	{
+		TomcatImpl tomcat = new TomcatImpl();
+		return tomcat;
 	}
 
 

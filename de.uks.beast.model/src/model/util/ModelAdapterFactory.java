@@ -138,6 +138,31 @@ public class ModelAdapterFactory extends AdapterFactoryImpl
 				return createMongoDBAdapter();
 			}
 			@Override
+			public Adapter caseUbuntu(Ubuntu object)
+			{
+				return createUbuntuAdapter();
+			}
+			@Override
+			public Adapter caseApache2(Apache2 object)
+			{
+				return createApache2Adapter();
+			}
+			@Override
+			public Adapter caseJenkins(Jenkins object)
+			{
+				return createJenkinsAdapter();
+			}
+			@Override
+			public Adapter caseMediaWiki(MediaWiki object)
+			{
+				return createMediaWikiAdapter();
+			}
+			@Override
+			public Adapter caseTomcat(Tomcat object)
+			{
+				return createTomcatAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object)
 			{
 				return createEObjectAdapter();
@@ -343,6 +368,91 @@ public class ModelAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createMongoDBAdapter()
+	{
+		return null;
+	}
+
+
+
+	/**
+	 * Creates a new adapter for an object of class '{@link model.Ubuntu <em>Ubuntu</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see model.Ubuntu
+	 * @generated
+	 */
+	public Adapter createUbuntuAdapter()
+	{
+		return null;
+	}
+
+
+
+	/**
+	 * Creates a new adapter for an object of class '{@link model.Apache2 <em>Apache2</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see model.Apache2
+	 * @generated
+	 */
+	public Adapter createApache2Adapter()
+	{
+		return null;
+	}
+
+
+
+	/**
+	 * Creates a new adapter for an object of class '{@link model.Jenkins <em>Jenkins</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see model.Jenkins
+	 * @generated
+	 */
+	public Adapter createJenkinsAdapter()
+	{
+		return null;
+	}
+
+
+
+	/**
+	 * Creates a new adapter for an object of class '{@link model.MediaWiki <em>Media Wiki</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see model.MediaWiki
+	 * @generated
+	 */
+	public Adapter createMediaWikiAdapter()
+	{
+		return null;
+	}
+
+
+
+	/**
+	 * Creates a new adapter for an object of class '{@link model.Tomcat <em>Tomcat</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see model.Tomcat
+	 * @generated
+	 */
+	public Adapter createTomcatAdapter()
 	{
 		return null;
 	}

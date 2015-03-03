@@ -168,6 +168,46 @@ public class ModelSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ModelPackage.UBUNTU:
+			{
+				Ubuntu ubuntu = (Ubuntu)theEObject;
+				T result = caseUbuntu(ubuntu);
+				if (result == null) result = caseService(ubuntu);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModelPackage.APACHE2:
+			{
+				Apache2 apache2 = (Apache2)theEObject;
+				T result = caseApache2(apache2);
+				if (result == null) result = caseService(apache2);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModelPackage.JENKINS:
+			{
+				Jenkins jenkins = (Jenkins)theEObject;
+				T result = caseJenkins(jenkins);
+				if (result == null) result = caseService(jenkins);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModelPackage.MEDIA_WIKI:
+			{
+				MediaWiki mediaWiki = (MediaWiki)theEObject;
+				T result = caseMediaWiki(mediaWiki);
+				if (result == null) result = caseService(mediaWiki);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModelPackage.TOMCAT:
+			{
+				Tomcat tomcat = (Tomcat)theEObject;
+				T result = caseTomcat(tomcat);
+				if (result == null) result = caseService(tomcat);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -366,6 +406,96 @@ public class ModelSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseMongoDB(MongoDB object)
+	{
+		return null;
+	}
+
+
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ubuntu</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ubuntu</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUbuntu(Ubuntu object)
+	{
+		return null;
+	}
+
+
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Apache2</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Apache2</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseApache2(Apache2 object)
+	{
+		return null;
+	}
+
+
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Jenkins</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Jenkins</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseJenkins(Jenkins object)
+	{
+		return null;
+	}
+
+
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Media Wiki</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Media Wiki</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMediaWiki(MediaWiki object)
+	{
+		return null;
+	}
+
+
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Tomcat</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Tomcat</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTomcat(Tomcat object)
 	{
 		return null;
 	}

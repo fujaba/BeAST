@@ -715,6 +715,193 @@ public interface ModelPackage extends EPackage
 
 
 	/**
+	 * The meta object id for the '{@link model.impl.UbuntuImpl <em>Ubuntu</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see model.impl.UbuntuImpl
+	 * @see model.impl.ModelPackageImpl#getUbuntu()
+	 * @generated
+	 */
+	int UBUNTU = 12;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UBUNTU__TYPE = SERVICE__TYPE;
+
+	/**
+	 * The number of structural features of the '<em>Ubuntu</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UBUNTU_FEATURE_COUNT = SERVICE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Ubuntu</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UBUNTU_OPERATION_COUNT = SERVICE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link model.impl.Apache2Impl <em>Apache2</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see model.impl.Apache2Impl
+	 * @see model.impl.ModelPackageImpl#getApache2()
+	 * @generated
+	 */
+	int APACHE2 = 13;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APACHE2__TYPE = SERVICE__TYPE;
+
+	/**
+	 * The number of structural features of the '<em>Apache2</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APACHE2_FEATURE_COUNT = SERVICE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Apache2</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APACHE2_OPERATION_COUNT = SERVICE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link model.impl.JenkinsImpl <em>Jenkins</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see model.impl.JenkinsImpl
+	 * @see model.impl.ModelPackageImpl#getJenkins()
+	 * @generated
+	 */
+	int JENKINS = 14;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JENKINS__TYPE = SERVICE__TYPE;
+
+	/**
+	 * The number of structural features of the '<em>Jenkins</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JENKINS_FEATURE_COUNT = SERVICE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Jenkins</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JENKINS_OPERATION_COUNT = SERVICE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link model.impl.MediaWikiImpl <em>Media Wiki</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see model.impl.MediaWikiImpl
+	 * @see model.impl.ModelPackageImpl#getMediaWiki()
+	 * @generated
+	 */
+	int MEDIA_WIKI = 15;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEDIA_WIKI__TYPE = SERVICE__TYPE;
+
+	/**
+	 * The number of structural features of the '<em>Media Wiki</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEDIA_WIKI_FEATURE_COUNT = SERVICE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Media Wiki</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEDIA_WIKI_OPERATION_COUNT = SERVICE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link model.impl.TomcatImpl <em>Tomcat</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see model.impl.TomcatImpl
+	 * @see model.impl.ModelPackageImpl#getTomcat()
+	 * @generated
+	 */
+	int TOMCAT = 16;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOMCAT__TYPE = SERVICE__TYPE;
+
+	/**
+	 * The number of structural features of the '<em>Tomcat</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOMCAT_FEATURE_COUNT = SERVICE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Tomcat</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOMCAT_OPERATION_COUNT = SERVICE_OPERATION_COUNT + 0;
+
+
+
+	/**
 	 * Returns the meta object for class '{@link model.Server <em>Server</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1198,6 +1385,66 @@ public interface ModelPackage extends EPackage
 
 
 	/**
+	 * Returns the meta object for class '{@link model.Ubuntu <em>Ubuntu</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Ubuntu</em>'.
+	 * @see model.Ubuntu
+	 * @generated
+	 */
+	EClass getUbuntu();
+
+
+
+	/**
+	 * Returns the meta object for class '{@link model.Apache2 <em>Apache2</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Apache2</em>'.
+	 * @see model.Apache2
+	 * @generated
+	 */
+	EClass getApache2();
+
+
+
+	/**
+	 * Returns the meta object for class '{@link model.Jenkins <em>Jenkins</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Jenkins</em>'.
+	 * @see model.Jenkins
+	 * @generated
+	 */
+	EClass getJenkins();
+
+
+
+	/**
+	 * Returns the meta object for class '{@link model.MediaWiki <em>Media Wiki</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Media Wiki</em>'.
+	 * @see model.MediaWiki
+	 * @generated
+	 */
+	EClass getMediaWiki();
+
+
+
+	/**
+	 * Returns the meta object for class '{@link model.Tomcat <em>Tomcat</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Tomcat</em>'.
+	 * @see model.Tomcat
+	 * @generated
+	 */
+	EClass getTomcat();
+
+
+
+	/**
 	 * Returns the meta object for class '{@link model.Room <em>Room</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1584,6 +1831,56 @@ public interface ModelPackage extends EPackage
 		 * @generated
 		 */
 		EClass MONGO_DB = eINSTANCE.getMongoDB();
+
+		/**
+		 * The meta object literal for the '{@link model.impl.UbuntuImpl <em>Ubuntu</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see model.impl.UbuntuImpl
+		 * @see model.impl.ModelPackageImpl#getUbuntu()
+		 * @generated
+		 */
+		EClass UBUNTU = eINSTANCE.getUbuntu();
+
+		/**
+		 * The meta object literal for the '{@link model.impl.Apache2Impl <em>Apache2</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see model.impl.Apache2Impl
+		 * @see model.impl.ModelPackageImpl#getApache2()
+		 * @generated
+		 */
+		EClass APACHE2 = eINSTANCE.getApache2();
+
+		/**
+		 * The meta object literal for the '{@link model.impl.JenkinsImpl <em>Jenkins</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see model.impl.JenkinsImpl
+		 * @see model.impl.ModelPackageImpl#getJenkins()
+		 * @generated
+		 */
+		EClass JENKINS = eINSTANCE.getJenkins();
+
+		/**
+		 * The meta object literal for the '{@link model.impl.MediaWikiImpl <em>Media Wiki</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see model.impl.MediaWikiImpl
+		 * @see model.impl.ModelPackageImpl#getMediaWiki()
+		 * @generated
+		 */
+		EClass MEDIA_WIKI = eINSTANCE.getMediaWiki();
+
+		/**
+		 * The meta object literal for the '{@link model.impl.TomcatImpl <em>Tomcat</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see model.impl.TomcatImpl
+		 * @see model.impl.ModelPackageImpl#getTomcat()
+		 * @generated
+		 */
+		EClass TOMCAT = eINSTANCE.getTomcat();
 
 		/**
 		 * The meta object literal for the '{@link model.impl.RoomImpl <em>Room</em>}' class.

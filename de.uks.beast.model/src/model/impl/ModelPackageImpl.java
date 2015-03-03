@@ -2,9 +2,12 @@
  */
 package model.impl;
 
+import model.Apache2;
 import model.Cassandra;
 import model.HadoopMaster;
 import model.HadoopSlave;
+import model.Jenkins;
+import model.MediaWiki;
 import model.ModelFactory;
 import model.ModelPackage;
 import model.MongoDB;
@@ -15,6 +18,8 @@ import model.Room;
 import model.Router;
 import model.Server;
 import model.Service;
+import model.Tomcat;
+import model.Ubuntu;
 import model.WordPress;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -108,6 +113,41 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * @generated
 	 */
 	private EClass mongoDBEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass ubuntuEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass apache2EClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass jenkinsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mediaWikiEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tomcatEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -634,6 +674,66 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getUbuntu()
+	{
+		return ubuntuEClass;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getApache2()
+	{
+		return apache2EClass;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getJenkins()
+	{
+		return jenkinsEClass;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMediaWiki()
+	{
+		return mediaWikiEClass;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTomcat()
+	{
+		return tomcatEClass;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getRoom()
 	{
 		return roomEClass;
@@ -749,6 +849,16 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		cassandraEClass = createEClass(CASSANDRA);
 
 		mongoDBEClass = createEClass(MONGO_DB);
+
+		ubuntuEClass = createEClass(UBUNTU);
+
+		apache2EClass = createEClass(APACHE2);
+
+		jenkinsEClass = createEClass(JENKINS);
+
+		mediaWikiEClass = createEClass(MEDIA_WIKI);
+
+		tomcatEClass = createEClass(TOMCAT);
 	}
 	
 	/**
@@ -788,6 +898,11 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		wordPressEClass.getESuperTypes().add(this.getService());
 		cassandraEClass.getESuperTypes().add(this.getService());
 		mongoDBEClass.getESuperTypes().add(this.getService());
+		ubuntuEClass.getESuperTypes().add(this.getService());
+		apache2EClass.getESuperTypes().add(this.getService());
+		jenkinsEClass.getESuperTypes().add(this.getService());
+		mediaWikiEClass.getESuperTypes().add(this.getService());
+		tomcatEClass.getESuperTypes().add(this.getService());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(serverEClass, Server.class, "Server", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -842,6 +957,16 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		initEClass(cassandraEClass, Cassandra.class, "Cassandra", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(mongoDBEClass, MongoDB.class, "MongoDB", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(ubuntuEClass, Ubuntu.class, "Ubuntu", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(apache2EClass, Apache2.class, "Apache2", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(jenkinsEClass, Jenkins.class, "Jenkins", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(mediaWikiEClass, MediaWiki.class, "MediaWiki", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(tomcatEClass, Tomcat.class, "Tomcat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
