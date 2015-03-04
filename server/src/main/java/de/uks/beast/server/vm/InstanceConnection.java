@@ -25,6 +25,12 @@ import de.uks.beast.server.environment.model.ConnectionInfo;
 import de.uks.beast.server.kafka.KafkaRemoteLogger;
 import de.uks.beast.server.util.ShellCommands;
 
+/**
+ * Class to connect to an instance via (JSCH) SSH and execute needed commands
+ * for BeAST VM service
+ * @author kassem
+ *
+ */
 public class InstanceConnection {
 	
 	private static Logger logger = LogManager.getLogger(InstanceConnection.class);
@@ -56,6 +62,11 @@ public class InstanceConnection {
 		this.remoteLogger = remoteLogger;
 	}
 
+	/**
+	 * Authenticates via SSH to an instance given as the connctionInfo parameter
+	 * in the constructor InstanceConnection(KafkaRemoteLogger remoteLogger, ConnectionInfo connectionInfo)
+	 * Saves a JSCH session in private field session
+	 */
 	public void authenticate() {
 		JSch jsch = new JSch();
 		
@@ -97,7 +108,15 @@ public class InstanceConnection {
 
 	}
 	
-	public void copyCrawlerService() {
+	/**
+	 * Copies files for BeAST VM service to the instance
+	 * Includes: 
+	 * 		BeAST VM service
+	 * 		post install script
+	 * 		Java (8u40) JDK 
+	 * 		libraries for VM service
+	 */
+	public void copyBeastFiles() {
 		try {
 			String filelocation = "";
 			try {
@@ -132,6 +151,89 @@ public class InstanceConnection {
 		}
 	}
 	
+	/**
+	 * Executes the BeAST VM service on the instance
+	 * @param kafkabroker The kafka broker the VM service is going to send information 
+	 * @param topic the kafka topic the VM service is writing to
+	 */
+	public void executeService(String kafkabroker, String topic) {
+		try {
+			/* edit /etc/hosts file (adding ip and hostname of instance) */
+			String hostname = getHostname(kafkabroker);
+			kafkabroker = kafkabroker.substring(kafkabroker.indexOf("/") + 1);
+			
+			Channel c = session.openChannel(EXEC);
+		    ChannelExec edit_host = (ChannelExec) c;
+		    edit_host.setCommand(ShellCommands.addToHostsFile(hostname.replace(":", "\t")));
+		    edit_host.setErrStream(System.err);
+		    edit_host.connect();
+		    edit_host.disconnect();
+			
+			/* execute postinstall script */
+			c = session.openChannel(EXEC);
+		    ChannelExec postinstallExec = (ChannelExec) c;
+		    postinstallExec.setCommand(ShellCommands.executeScript(SCRIPT_REMOTE));
+		    postinstallExec.setErrStream(System.err);
+		    postinstallExec.connect();
+		    BufferedReader install_java_reader = new BufferedReader(new InputStreamReader(postinstallExec.getInputStream()));
+		    String line1;
+		    while ((line1 = install_java_reader.readLine()) != null) {
+		    	logger.debug("postinstall.sh - " + line1);
+		    }
+		    postinstallExec.disconnect();
+		    
+		    /* start BeAST VM service */
+		    logger.info("Starting beast service on VM with broker = " + kafkabroker +
+					" and topic = " + topic);
+			Channel channel = session.openChannel(SHELL);
+			OutputStream ops = channel.getOutputStream();
+			PrintStream ps = new PrintStream(ops, true);
+
+			channel.connect();
+			ps.println(ShellCommands.executeBeastService(connectionInfo.getHostName(), kafkabroker, topic));
+			ps.close();
+
+			// wait till executed
+			Thread.sleep(2000);
+			channel.disconnect();
+
+		    logger.info("Finished with " + connectionInfo.getHostName());
+		    remoteLogger.info(connectionInfo.getHostName() + " is alive.");
+		} catch (Exception e) {
+			logger.error("Unexpected Exception", e);
+		}
+	}
+	
+	/* insert a public key to .ssh/authorized_keys */
+	public void insertKeyToAuthorizedKeys(String publicKeyFilePath) {
+		try {
+			byte[] encoded = Files.readAllBytes(Paths.get(publicKeyFilePath));
+			String publicKey = new String(encoded, Charset.defaultCharset());
+		
+			Channel c = session.openChannel(EXEC);
+		    ChannelExec edit_key = (ChannelExec) c;
+		    edit_key.setCommand(ShellCommands.appendToFile("/home/" + SSH_USER + "/.ssh/authorized_keys", publicKey));
+		    edit_key.setErrStream(System.err);
+		    edit_key.connect();
+		    edit_key.disconnect();
+		} catch (Exception e) {
+			logger.error("Unexpected Exception", e);
+		}
+
+	}
+	
+	/* close SSH session */
+	public void disconnect() {
+		this.session.disconnect();
+	}
+	
+	/* helper methods */
+	private String getHostname(String kafkabroker) {
+		String host = kafkabroker.substring(0, kafkabroker.indexOf("/"));
+		String ip = kafkabroker.substring(kafkabroker.indexOf("/") + 1, kafkabroker.indexOf(":"));
+		return ip + ":" + host;
+	}
+	
 	private void copyFolder(String src, String dest) {
 		try {
 		    Channel c = session.openChannel(SFTP);
@@ -162,81 +264,7 @@ public class InstanceConnection {
 			logger.error("Unexpected Exception", e);
 		}
 	}
-
-	public void executeService(String kafkabroker, String topic) {
-		try {
-			//edit /etc/hosts
-			String hostname = getHostname(kafkabroker);
-			kafkabroker = kafkabroker.substring(kafkabroker.indexOf("/") + 1);
-			
-			Channel c = session.openChannel(EXEC);
-		    ChannelExec edit_host = (ChannelExec) c;
-		    edit_host.setCommand(ShellCommands.addToHostsFile(hostname.replace(":", "\t")));
-		    edit_host.setErrStream(System.err);
-		    edit_host.connect();
-		    edit_host.disconnect();
-			
-			//install script
-			c = session.openChannel(EXEC);
-		    ChannelExec install_java = (ChannelExec) c;
-		    install_java.setCommand(ShellCommands.executeScript(SCRIPT_REMOTE));
-		    install_java.setErrStream(System.err);
-		    install_java.connect();
-		    BufferedReader install_java_reader = new BufferedReader(new InputStreamReader(install_java.getInputStream()));
-		    String line1;
-		    while ((line1 = install_java_reader.readLine()) != null) {
-		    	logger.debug("postinstall.sh - " + line1);
-		    }
-		    install_java.disconnect();
-		    
-		    //start service
-		    logger.info("Starting beast service on VM with broker = " + kafkabroker +
-					" and topic = " + topic);
-			Channel channel = session.openChannel(SHELL);
-			OutputStream ops = channel.getOutputStream();
-			PrintStream ps = new PrintStream(ops, true);
-
-			channel.connect();
-
-			ps.println(ShellCommands.executeBeastService(connectionInfo.getHostName(), kafkabroker, topic));
-			
-			ps.close();
-
-			// wait till executed
-			Thread.sleep(2000);
-
-			channel.disconnect();
-
-		    logger.info("Finished with " + connectionInfo.getHostName());
-		    remoteLogger.info(connectionInfo.getHostName() + " is alive.");
-		} catch (Exception e) {
-			logger.error("Unexpected Exception", e);
-		}
-	}
 	
-	public void insertKeyToAuthorizedKeys(String publicKeyFilePath) {
-		try {
-			byte[] encoded = Files.readAllBytes(Paths.get(publicKeyFilePath));
-			String publicKey = new String(encoded, Charset.defaultCharset());
-		
-			Channel c = session.openChannel(EXEC);
-		    ChannelExec edit_key = (ChannelExec) c;
-		    edit_key.setCommand(ShellCommands.appendToFile("/home/" + SSH_USER + "/.ssh/authorized_keys", publicKey));
-		    edit_key.setErrStream(System.err);
-		    edit_key.connect();
-		    edit_key.disconnect();
-		} catch (Exception e) {
-			logger.error("Unexpected Exception", e);
-		}
-
-	}
-	
-	private String getHostname(String kafkabroker) {
-		String host = kafkabroker.substring(0, kafkabroker.indexOf("/"));
-		String ip = kafkabroker.substring(kafkabroker.indexOf("/") + 1, kafkabroker.indexOf(":"));
-		return ip + ":" + host;
-	}
-
 	private void mkdir(String dest) {
 		try {
 			Channel c = session.openChannel(EXEC);
@@ -248,10 +276,6 @@ public class InstanceConnection {
 		} catch (JSchException e) {
 			logger.error("Unexpected Exception", e);
 		}
-	}
-	
-	public void disconnect() {
-		this.session.disconnect();
 	}
 
 }

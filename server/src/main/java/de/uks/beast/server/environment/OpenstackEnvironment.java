@@ -180,7 +180,7 @@ public class OpenstackEnvironment extends CloudEnvironment {
 		for (Configuration configuration : cons) {
 			InstanceConnection con = new InstanceConnection(service.getRemoteLogger(), configuration.getConnectionInfo());
 			con.authenticate();
-			con.copyCrawlerService();
+			con.copyBeastFiles();
 			con.executeService(kafkabroker, topic);
 			con.disconnect();
 		}
