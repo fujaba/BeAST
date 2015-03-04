@@ -8,6 +8,7 @@ public class Server implements Serializable {
 
 	private Network network;
 	private String host;
+	private String ip;
 	private int cpu;
 	private int ram;
 	private int diskSpace;
@@ -24,6 +25,10 @@ public class Server implements Serializable {
 
 	public String getHost() {
 		return host;
+	}
+	
+	public String getIp() {
+		return ip;
 	}
 	
 	public int getCpu() {
@@ -44,6 +49,10 @@ public class Server implements Serializable {
 	
 	public void setHost(String host) {
 		this.host = host;
+	}
+	
+	public void setIp(String ip) {
+		this.ip = ip;
 	}
 	
 	public void setCpu(int cpu) {
@@ -68,7 +77,7 @@ public class Server implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Host:" + host + ", CPU: " + cpu + ", RAM: " + ram + ", Disk: " + diskSpace + ", Service: " + service;
+		return "Host:" + host + ", IP: " + ip + ", CPU: " + cpu + ", RAM: " + ram + ", Disk: " + diskSpace + ", Service: " + service;
 	}
 	
 }

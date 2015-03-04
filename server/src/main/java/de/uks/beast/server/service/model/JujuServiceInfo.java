@@ -4,8 +4,8 @@ public class JujuServiceInfo extends ServiceInfo {
 
 	private int machineID;
 	
-	public JujuServiceInfo(String serviceName) {
-		super(serviceName);
+	public JujuServiceInfo(String serviceName, String serviceType) {
+		super(serviceName, serviceType);
 	}
 	
 	public JujuServiceInfo(ServiceInfo info) {

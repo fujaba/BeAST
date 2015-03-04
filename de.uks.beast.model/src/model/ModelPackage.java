@@ -444,13 +444,31 @@ public interface ModelPackage extends EPackage
 	int SERVICE = 5;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__TYPE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__SERVICE_TYPE = 1;
+
+	/**
 	 * The feature id for the '<em><b>Service Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE__SERVICE_NAME = 0;
+	int SERVICE__SERVICE_NAME = 2;
 
 	/**
 	 * The number of structural features of the '<em>Service</em>' class.
@@ -459,7 +477,7 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_FEATURE_COUNT = 1;
+	int SERVICE_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Service</em>' class.
@@ -479,6 +497,24 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 */
 	int HADOOP_MASTER = 6;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HADOOP_MASTER__TYPE = SERVICE__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HADOOP_MASTER__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Service Name</b></em>' attribute.
@@ -525,6 +561,24 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 */
 	int HADOOP_SLAVE = 7;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HADOOP_SLAVE__TYPE = SERVICE__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HADOOP_SLAVE__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Service Name</b></em>' attribute.
@@ -575,6 +629,24 @@ public interface ModelPackage extends EPackage
 	int MY_SQL = 8;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MY_SQL__TYPE = SERVICE__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MY_SQL__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
+
+	/**
 	 * The feature id for the '<em><b>Service Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -610,6 +682,24 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 */
 	int WORD_PRESS = 9;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORD_PRESS__TYPE = SERVICE__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORD_PRESS__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Service Name</b></em>' attribute.
@@ -649,6 +739,24 @@ public interface ModelPackage extends EPackage
 	int CASSANDRA = 10;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASSANDRA__TYPE = SERVICE__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASSANDRA__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
+
+	/**
 	 * The feature id for the '<em><b>Service Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -684,6 +792,24 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 */
 	int MONGO_DB = 11;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MONGO_DB__TYPE = SERVICE__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MONGO_DB__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Service Name</b></em>' attribute.
@@ -725,6 +851,24 @@ public interface ModelPackage extends EPackage
 	int UBUNTU = 12;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UBUNTU__TYPE = SERVICE__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UBUNTU__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
+
+	/**
 	 * The feature id for the '<em><b>Service Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -760,6 +904,24 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 */
 	int APACHE2 = 13;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APACHE2__TYPE = SERVICE__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APACHE2__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Service Name</b></em>' attribute.
@@ -799,6 +961,24 @@ public interface ModelPackage extends EPackage
 	int JENKINS = 14;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JENKINS__TYPE = SERVICE__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JENKINS__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
+
+	/**
 	 * The feature id for the '<em><b>Service Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -836,6 +1016,24 @@ public interface ModelPackage extends EPackage
 	int MEDIA_WIKI = 15;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEDIA_WIKI__TYPE = SERVICE__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEDIA_WIKI__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
+
+	/**
 	 * The feature id for the '<em><b>Service Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -871,6 +1069,24 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 */
 	int TOMCAT = 16;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOMCAT__TYPE = SERVICE__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOMCAT__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Service Name</b></em>' attribute.
@@ -1274,6 +1490,19 @@ public interface ModelPackage extends EPackage
 
 
 	/**
+	 * Returns the meta object for the attribute '{@link model.Service#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see model.Service#getType()
+	 * @see #getService()
+	 * @generated
+	 */
+	EAttribute getService_Type();
+
+
+
+	/**
 	 * Returns the meta object for the attribute '{@link model.Service#getServiceName <em>Service Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1283,6 +1512,19 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getService_ServiceName();
+
+
+
+	/**
+	 * Returns the meta object for the attribute '{@link model.Service#getServiceType <em>Service Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Service Type</em>'.
+	 * @see model.Service#getServiceType()
+	 * @see #getService()
+	 * @generated
+	 */
+	EAttribute getService_ServiceType();
 
 
 
@@ -1749,12 +1991,28 @@ public interface ModelPackage extends EPackage
 		EClass SERVICE = eINSTANCE.getService();
 
 		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE__TYPE = eINSTANCE.getService_Type();
+
+		/**
 		 * The meta object literal for the '<em><b>Service Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute SERVICE__SERVICE_NAME = eINSTANCE.getService_ServiceName();
+
+		/**
+		 * The meta object literal for the '<em><b>Service Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE__SERVICE_TYPE = eINSTANCE.getService_ServiceType();
 
 		/**
 		 * The meta object literal for the '{@link model.impl.HadoopMasterImpl <em>Hadoop Master</em>}' class.

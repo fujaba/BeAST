@@ -42,7 +42,7 @@ public class CreateUbuntuFeature extends AbstractCreateFeature
 	public Object[] create(final ICreateContext context)
 	{
 		final Service service = ModelFactory.eINSTANCE.createUbuntu();
-		service.setServiceName(Strings.UBUNTU.text());
+		service.setType(Strings.UBUNTU.text());
 		
 		final Server server = (Server) getBusinessObjectForPictogramElement(context.getTargetContainer());
 		server.setService(service);

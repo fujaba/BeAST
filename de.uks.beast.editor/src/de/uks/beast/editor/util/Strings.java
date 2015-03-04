@@ -44,8 +44,10 @@ public enum Strings
 	CONNECTION					("Connection",			"This is a connection between two objects"),
 	ETHERNET					("Ethernet",			"This provides ethernet connection"),
 	HADOOP						("Hadoop",				"This is a Hadoop charm"),
-	HADOOP_MASTER				("HadoopMaster",		"This is a Hadoop charm - HadoopMaster"),
-	HADOOP_SLAVE				("HadoopSlave",			"This is a Hadoop charm - HadoopSlave"),
+	
+	HADOOP_MASTER				("HadoopMaster",		"hadoop", 	"hadoop-master",	"This is a Hadoop charm - HadoopMaster"),
+	HADOOP_SLAVE				("HadoopSlave",			"hadoop", 	"hadoop-slave",		"This is a Hadoop charm - HadoopSlave"),
+	
 	HADOOP_CONNECTION			("HadoopConnection",	"This is a connection between HadoopMaster and HadoopSlave"),
 	CASSANDRA					("Cassandra",			"This is a Cassandra charm"),
 	MYSQL						("MySQL",				"This is a MySQL charm"),
@@ -65,28 +67,45 @@ public enum Strings
 	;//@formatter:on
 	
 	private final String	text;
+	private final String	serviceName;
+	private final String	serviceType;
 	private final String	description;
-	
 	
 	
 	private Strings(final String text, final String description)
 	{
 		this.text = text;
+		this.serviceName = "";
+		this.serviceType = "";
 		this.description = description;
 	}
 	
-	
+	private Strings(final String text, final String serviceName, final String serviceType, final String description)
+	{
+		this.text = text;
+		this.serviceName = serviceName;
+		this.serviceType = serviceType;
+		this.description = description;
+	}
 	
 	public String text()
 	{
 		return text;
 	}
 	
-	
-	
 	public String description()
 	{
 		return description;
+	}
+	
+	public String serviceName() 
+	{
+		return serviceName;
+	}
+	
+	public String serviceType() 
+	{
+		return serviceType;
 	}
 	
 }

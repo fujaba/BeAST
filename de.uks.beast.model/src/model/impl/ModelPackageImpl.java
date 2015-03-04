@@ -566,8 +566,30 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getService_ServiceName() {
+	public EAttribute getService_Type() {
 		return (EAttribute)serviceEClass.getEStructuralFeatures().get(0);
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getService_ServiceName() {
+		return (EAttribute)serviceEClass.getEStructuralFeatures().get(2);
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getService_ServiceType() {
+		return (EAttribute)serviceEClass.getEStructuralFeatures().get(1);
 	}
 
 
@@ -833,6 +855,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		createEAttribute(routerEClass, ROUTER__EXTERNAL_GATEWAY);
 
 		serviceEClass = createEClass(SERVICE);
+		createEAttribute(serviceEClass, SERVICE__TYPE);
+		createEAttribute(serviceEClass, SERVICE__SERVICE_TYPE);
 		createEAttribute(serviceEClass, SERVICE__SERVICE_NAME);
 
 		hadoopMasterEClass = createEClass(HADOOP_MASTER);
@@ -941,6 +965,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		initEAttribute(getRouter_ExternalGateway(), ecorePackage.getEString(), "externalGateway", "0", 0, 1, Router.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(serviceEClass, Service.class, "Service", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getService_Type(), ecorePackage.getEString(), "type", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getService_ServiceType(), ecorePackage.getEString(), "serviceType", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getService_ServiceName(), ecorePackage.getEString(), "serviceName", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(hadoopMasterEClass, HadoopMaster.class, "HadoopMaster", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

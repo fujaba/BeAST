@@ -19,6 +19,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link model.impl.HadoopSlaveImpl#getType <em>Type</em>}</li>
+ *   <li>{@link model.impl.HadoopSlaveImpl#getServiceType <em>Service Type</em>}</li>
  *   <li>{@link model.impl.HadoopSlaveImpl#getServiceName <em>Service Name</em>}</li>
  *   <li>{@link model.impl.HadoopSlaveImpl#getHadoopMaster <em>Hadoop Master</em>}</li>
  * </ul>
@@ -28,6 +30,42 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  */
 public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements HadoopSlave
 {
+	/**
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TYPE_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected String type = TYPE_EDEFAULT;
+	/**
+	 * The default value of the '{@link #getServiceType() <em>Service Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getServiceType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SERVICE_TYPE_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getServiceType() <em>Service Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getServiceType()
+	 * @generated
+	 * @ordered
+	 */
+	protected String serviceType = SERVICE_TYPE_EDEFAULT;
 	/**
 	 * The default value of the '{@link #getServiceName() <em>Service Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -81,6 +119,27 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getType() {
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setType(String newType) {
+		String oldType = type;
+		type = newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__TYPE, oldType, type));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getServiceName() {
 		return serviceName;
 	}
@@ -95,6 +154,27 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 		serviceName = newServiceName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__SERVICE_NAME, oldServiceName, serviceName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getServiceType() {
+		return serviceType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setServiceType(String newServiceType) {
+		String oldServiceType = serviceType;
+		serviceType = newServiceType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__SERVICE_TYPE, oldServiceType, serviceType));
 	}
 
 	/**
@@ -202,6 +282,10 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID) {
+			case ModelPackage.HADOOP_SLAVE__TYPE:
+				return getType();
+			case ModelPackage.HADOOP_SLAVE__SERVICE_TYPE:
+				return getServiceType();
 			case ModelPackage.HADOOP_SLAVE__SERVICE_NAME:
 				return getServiceName();
 			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTER:
@@ -220,6 +304,12 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	public void eSet(int featureID, Object newValue)
 	{
 		switch (featureID) {
+			case ModelPackage.HADOOP_SLAVE__TYPE:
+				setType((String)newValue);
+				return;
+			case ModelPackage.HADOOP_SLAVE__SERVICE_TYPE:
+				setServiceType((String)newValue);
+				return;
 			case ModelPackage.HADOOP_SLAVE__SERVICE_NAME:
 				setServiceName((String)newValue);
 				return;
@@ -239,6 +329,12 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	public void eUnset(int featureID)
 	{
 		switch (featureID) {
+			case ModelPackage.HADOOP_SLAVE__TYPE:
+				setType(TYPE_EDEFAULT);
+				return;
+			case ModelPackage.HADOOP_SLAVE__SERVICE_TYPE:
+				setServiceType(SERVICE_TYPE_EDEFAULT);
+				return;
 			case ModelPackage.HADOOP_SLAVE__SERVICE_NAME:
 				setServiceName(SERVICE_NAME_EDEFAULT);
 				return;
@@ -258,6 +354,10 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	public boolean eIsSet(int featureID)
 	{
 		switch (featureID) {
+			case ModelPackage.HADOOP_SLAVE__TYPE:
+				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+			case ModelPackage.HADOOP_SLAVE__SERVICE_TYPE:
+				return SERVICE_TYPE_EDEFAULT == null ? serviceType != null : !SERVICE_TYPE_EDEFAULT.equals(serviceType);
 			case ModelPackage.HADOOP_SLAVE__SERVICE_NAME:
 				return SERVICE_NAME_EDEFAULT == null ? serviceName != null : !SERVICE_NAME_EDEFAULT.equals(serviceName);
 			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTER:
@@ -277,7 +377,11 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (serviceName: ");
+		result.append(" (type: ");
+		result.append(type);
+		result.append(", serviceType: ");
+		result.append(serviceType);
+		result.append(", serviceName: ");
 		result.append(serviceName);
 		result.append(')');
 		return result.toString();

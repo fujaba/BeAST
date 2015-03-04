@@ -3,7 +3,6 @@ package de.uks.beast.server.environment;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.LogManager;
@@ -116,7 +115,7 @@ public class OpenstackEnvironment extends CloudEnvironment {
 				
 				OpenstackConfiguration config = new OpenstackConfiguration(openstacknetwork.getId(), flavorID, server);
 				
-				config.setServiceInfo(new ServiceInfo(server.getService().getServiceName()));
+				config.setServiceInfo(new ServiceInfo(server.getService()));
 				
 				configs.add(config);
 			}
@@ -140,7 +139,9 @@ public class OpenstackEnvironment extends CloudEnvironment {
 					.flavor(cf.getId())
 					.image(service.get("ubuntu-image"))
 					.keypairName("beast-keypair")
-					.networks(new ArrayList<String>(Arrays.asList(cf.getNetwork()))).build();
+					.build();
+			
+			sc.addNetwork(cf.getNetwork(), cf.getIp());
 			
 			Server server = os.compute().servers().boot(sc);
 			

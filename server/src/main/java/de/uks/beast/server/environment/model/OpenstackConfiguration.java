@@ -11,6 +11,7 @@ public class OpenstackConfiguration extends Configuration {
     private String network;
     private String id;
 	private String host;
+	private String ip;
 	private int cpu;
 	private int ram;
 	private int diskSpace;
@@ -19,6 +20,7 @@ public class OpenstackConfiguration extends Configuration {
 		this.network = networkID;
 		this.id = flavorID;
 		this.host = server.getHost();
+		this.ip = server.getIp();
 		this.cpu = server.getCpu();
 		this.ram = server.getRam();
 		this.diskSpace = server.getDiskSpace();
@@ -34,6 +36,10 @@ public class OpenstackConfiguration extends Configuration {
 
 	public String getHost() {
 		return host;
+	}
+	
+	public String getIp() {
+		return ip;
 	}
 	
 	public int getCpu() {

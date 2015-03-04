@@ -48,10 +48,13 @@ public class JujuEnvironment extends ServiceEnvironment {
 		
 		for (Configuration configuration : cons) {
 			JujuServiceInfo serviceInfo = (JujuServiceInfo) configuration.getServiceInfo();
-			logger.info("Deploying service \"" + serviceInfo.getServiceName() + "\" to machine " + serviceInfo.getMachineID());
+			
+			logger.info("Deploying service \"" + serviceInfo.getServiceName() + "\" with type \"" + 
+			serviceInfo.getServiceType() + "\" to machine " + serviceInfo.getMachineID());
+			
+			JujuClient.deploy(serviceInfo.getServiceName(), serviceInfo.getServiceType(), serviceInfo.getMachineID());
 		}
 		
-		//JujuClient.deploy(servicename, subservice, machineNumber);
 	}
 
 }

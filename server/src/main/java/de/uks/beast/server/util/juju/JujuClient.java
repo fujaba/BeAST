@@ -31,6 +31,18 @@ public class JujuClient {
      * @param machineNumber
      * @return
      */
+    public static RuntimeOutput deploy(String servicename, int machineNumber) {
+        return RuntimeExec.run("juju deploy " + servicename + " --to " + machineNumber);
+    }
+    
+    /**
+     * Deploy servicename to a specific machine #.
+     *
+     * @param servicename
+     * @param alias is optional (eg. juju deploy hadoop hadoop-master)
+     * @param machineNumber
+     * @return
+     */
     public static RuntimeOutput deploy(String servicename, String alias, int machineNumber) {
         return RuntimeExec.run("juju deploy " + servicename + " " + alias + " --to " + machineNumber);
     }
