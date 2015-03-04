@@ -7,9 +7,7 @@ import org.apache.log4j.Logger;
 
 import de.uks.beast.model.Configuration;
 import de.uks.beast.server.BeastService;
-import de.uks.beast.server.environment.model.ConnectionInfo;
 import de.uks.beast.server.service.model.JujuServiceInfo;
-import de.uks.beast.server.service.model.ServiceInfo;
 import de.uks.beast.server.util.juju.JujuClient;
 import de.uks.beast.server.vm.InstanceConnection;
 
