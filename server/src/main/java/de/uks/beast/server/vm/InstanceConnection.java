@@ -38,8 +38,10 @@ public class InstanceConnection {
 	public static final String SFTP = "sftp";
 	public static final String BEAST_SERVICE_LOCAL = "/util/bservice.jar";
 	public static final String BEAST_SERVICE_REMOTE = "/tmp/beast/util/bservice.jar";
-	public static final String SCRIPT_LOCAL = "/util/install_java.sh";
-	public static final String SCRIPT_REMOTE = "/tmp/beast/util/install_java.sh";
+	public static final String SCRIPT_LOCAL = "/util/postinstall.sh";
+	public static final String SCRIPT_REMOTE = "/tmp/beast/util/postinstall.sh";
+	public static final String JDK_LOCAL = "/util/jdk-8u40-linux-x64.tar.gz";
+	public static final String JDK_REMOTE = "/tmp/beast/util/jdk-8u40-linux-x64.tar.gz";
 	public static final String LIB_DIR_LOCAL = "/util/libs";
 	public static final String LIB_DIR_REMOTE = "/tmp/beast/util";
 	public static final String NO_ROUTE_TO_HOST = "java.net.NoRouteToHostException: No route to host";
@@ -122,6 +124,7 @@ public class InstanceConnection {
 			cs.connect();
 			cs.put(filelocation + BEAST_SERVICE_LOCAL, BEAST_SERVICE_REMOTE);
 			cs.put(filelocation + SCRIPT_LOCAL, SCRIPT_REMOTE);
+			cs.put(filelocation + JDK_LOCAL, JDK_REMOTE);
 			copyFolder(filelocation + LIB_DIR_LOCAL, LIB_DIR_REMOTE);
 			ce.disconnect();
 		} catch (JSchException | SftpException e) {
@@ -182,7 +185,7 @@ public class InstanceConnection {
 		    BufferedReader install_java_reader = new BufferedReader(new InputStreamReader(install_java.getInputStream()));
 		    String line1;
 		    while ((line1 = install_java_reader.readLine()) != null) {
-		    	logger.debug("[Java Installer] - " + line1);
+		    	logger.debug("postinstall.sh - " + line1);
 		    }
 		    install_java.disconnect();
 		    

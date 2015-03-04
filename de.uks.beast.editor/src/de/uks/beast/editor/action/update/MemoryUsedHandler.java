@@ -2,8 +2,6 @@ package de.uks.beast.editor.action.update;
 
 import java.util.List;
 
-import model.impl.ServerImpl;
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -43,10 +41,10 @@ public class MemoryUsedHandler extends DiagramUpdateHandler
 		
 		for (final ContainerShape containerShape : serverShapes)
 		{
-			final ServerImpl serverFromEditor = (ServerImpl) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(
+			final Server serverFromEditor = (Server) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(
 					containerShape);
 			
-			if (serverFromOpenStack.getHost().equals(serverFromEditor.getName())) //TODO
+			if (serverFromOpenStack.equals(serverFromEditor)) //TODO
 			{
 				LOG.debug("Update shape from server " + serverFromOpenStack.getHost() + " with new RAM usage");
 				
