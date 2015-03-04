@@ -1,5 +1,6 @@
 package de.uks.beast.server.environment.model;
 
+import de.uks.beast.model.Configuration;
 import de.uks.beast.model.Server;
 
 /**

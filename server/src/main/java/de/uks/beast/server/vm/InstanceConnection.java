@@ -59,7 +59,7 @@ public class InstanceConnection {
 		
 		try {
 			JSch.setConfig(STRICT_HOST_KEY_CHECKING, NO);
-			jsch.addIdentity(connectionInfo.getPrivateKeyFile().getAbsolutePath());
+			jsch.addIdentity(connectionInfo.getKey().getAbsolutePath());
 			session = jsch.getSession(SSH_USER, connectionInfo.getIp(), 22);
 			session.connect();
 		} catch (JSchException e) {

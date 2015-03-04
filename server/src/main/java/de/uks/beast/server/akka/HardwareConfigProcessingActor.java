@@ -15,9 +15,9 @@ import akka.actor.UntypedActor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import de.uks.beast.model.Configuration;
 import de.uks.beast.model.Hardware;
 import de.uks.beast.server.BeastService;
-import de.uks.beast.server.environment.model.Configuration;
 import de.uks.beast.server.kafka.KafkaRemoteLogger;
 
 public class HardwareConfigProcessingActor extends UntypedActor {

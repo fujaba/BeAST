@@ -2,8 +2,8 @@ package de.uks.beast.server.service;
 
 import java.util.List;
 
+import de.uks.beast.model.Configuration;
 import de.uks.beast.server.BeastService;
-import de.uks.beast.server.environment.model.Configuration;
 
 public abstract class ServiceEnvironment {
 

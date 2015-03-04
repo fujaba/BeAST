@@ -25,11 +25,12 @@ import org.openstack4j.model.network.Router;
 import org.openstack4j.model.network.Subnet;
 import org.openstack4j.openstack.OSFactory;
 
+import de.uks.beast.model.Configuration;
 import de.uks.beast.model.Hardware;
 import de.uks.beast.server.BeastService;
-import de.uks.beast.server.environment.model.Configuration;
 import de.uks.beast.server.environment.model.ConnectionInfo;
 import de.uks.beast.server.environment.model.OpenstackConfiguration;
+import de.uks.beast.server.service.model.ServiceInfo;
 import de.uks.beast.server.vm.InstanceConnection;
 
 public class OpenstackEnvironment extends CloudEnvironment {
@@ -112,7 +113,12 @@ public class OpenstackEnvironment extends CloudEnvironment {
 					logger.info("Created new Flavor with name " + server.buildFlavor()
 							+ " (" + flavorID + ")");
 				}
-				configs.add(new OpenstackConfiguration(openstacknetwork.getId(), flavorID, server));
+				
+				OpenstackConfiguration config = new OpenstackConfiguration(openstacknetwork.getId(), flavorID, server);
+				
+				//TODO config.setServiceInfo(new ServiceInfo(server.getService()));
+				
+				configs.add(config);
 			}
 			
 		}

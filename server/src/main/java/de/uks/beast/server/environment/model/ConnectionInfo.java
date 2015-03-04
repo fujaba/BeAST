@@ -4,9 +4,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+
 public class ConnectionInfo {
 
-	private int ID;
 	private String host;
 	private String IP;
 	private File key;
@@ -39,16 +39,8 @@ public class ConnectionInfo {
 		return IP;
 	}
 	
-	public File getPrivateKeyFile() {
+	public File getKey() {
 		return key;
-	}
-	
-	public void setID(int iD) {
-		ID = iD;
-	}
-	
-	public int getID() {
-		return ID;
 	}
 	
 }

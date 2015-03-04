@@ -5,8 +5,9 @@ import java.util.List;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import de.uks.beast.model.Configuration;
 import de.uks.beast.server.BeastService;
-import de.uks.beast.server.environment.model.Configuration;
+import de.uks.beast.server.service.model.JujuServiceInfo;
 import de.uks.beast.server.util.juju.JujuClient;
 import de.uks.beast.server.vm.InstanceConnection;
 
@@ -34,13 +35,20 @@ public class JujuEnvironment extends ServiceEnvironment {
 			//connect to instance and install juju agent
 			logger.info("Adding " + configuration.getConnectionInfo().getHostName() + " as manual managed machine to Juju");
 			int machineID = JujuClient.addMachine("ubuntu@" + configuration.getConnectionInfo().getIp());
-			configuration.getConnectionInfo().setID(machineID);
+			
+			JujuServiceInfo serviceInfo = JujuServiceInfo.from(configuration.getServiceInfo(), machineID);
+			configuration.setServiceInfo(serviceInfo);
 		}
 	}
 	
 	@Override
 	public void startServices(List<? extends Configuration> cons) {
-		logger.info("Deploying to machine ... ");
+		
+		for (Configuration configuration : cons) {
+			JujuServiceInfo serviceInfo = (JujuServiceInfo) configuration.getServiceInfo();
+			logger.info("Deploying service \"" + serviceInfo.getServiceName() + "\" to machine " + serviceInfo.getMachineID());
+		}
+		
 		//JujuClient.deploy(servicename, subservice, machineNumber);
 	}
 
