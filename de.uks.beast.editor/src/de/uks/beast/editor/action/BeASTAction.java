@@ -72,6 +72,11 @@ public class BeASTAction implements IObjectActionDelegate
 					s.setDiskSpace(server.getDiskSpace());
 					s.setHost(server.getName());
 					s.setRam(server.getRam());
+					
+					de.uks.beast.model.Service service = new de.uks.beast.model.Service();
+					service.setServiceName(server.getService().getServiceName());
+
+					s.setService(service);
 					s.setNetwork(net);
 					net.addToServer(s);
 				}

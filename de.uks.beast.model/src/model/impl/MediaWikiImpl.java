@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link model.impl.MediaWikiImpl#getType <em>Type</em>}</li>
+ *   <li>{@link model.impl.MediaWikiImpl#getServiceName <em>Service Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,24 +28,24 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 public class MediaWikiImpl extends MinimalEObjectImpl.Container implements MediaWiki
 {
 	/**
-	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * The default value of the '{@link #getServiceName() <em>Service Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getType()
+	 * @see #getServiceName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String TYPE_EDEFAULT = null;
+	protected static final String SERVICE_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * The cached value of the '{@link #getServiceName() <em>Service Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getType()
+	 * @see #getServiceName()
 	 * @generated
 	 * @ordered
 	 */
-	protected String type = TYPE_EDEFAULT;
+	protected String serviceName = SERVICE_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -73,9 +73,8 @@ public class MediaWikiImpl extends MinimalEObjectImpl.Container implements Media
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getType()
-	{
-		return type;
+	public String getServiceName() {
+		return serviceName;
 	}
 
 	/**
@@ -83,12 +82,11 @@ public class MediaWikiImpl extends MinimalEObjectImpl.Container implements Media
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(String newType)
-	{
-		String oldType = type;
-		type = newType;
+	public void setServiceName(String newServiceName) {
+		String oldServiceName = serviceName;
+		serviceName = newServiceName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.MEDIA_WIKI__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.MEDIA_WIKI__SERVICE_NAME, oldServiceName, serviceName));
 	}
 
 	/**
@@ -99,10 +97,9 @@ public class MediaWikiImpl extends MinimalEObjectImpl.Container implements Media
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
-			case ModelPackage.MEDIA_WIKI__TYPE:
-				return getType();
+		switch (featureID) {
+			case ModelPackage.MEDIA_WIKI__SERVICE_NAME:
+				return getServiceName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -115,10 +112,9 @@ public class MediaWikiImpl extends MinimalEObjectImpl.Container implements Media
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
-			case ModelPackage.MEDIA_WIKI__TYPE:
-				setType((String)newValue);
+		switch (featureID) {
+			case ModelPackage.MEDIA_WIKI__SERVICE_NAME:
+				setServiceName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -132,10 +128,9 @@ public class MediaWikiImpl extends MinimalEObjectImpl.Container implements Media
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
-			case ModelPackage.MEDIA_WIKI__TYPE:
-				setType(TYPE_EDEFAULT);
+		switch (featureID) {
+			case ModelPackage.MEDIA_WIKI__SERVICE_NAME:
+				setServiceName(SERVICE_NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -149,10 +144,9 @@ public class MediaWikiImpl extends MinimalEObjectImpl.Container implements Media
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
-			case ModelPackage.MEDIA_WIKI__TYPE:
-				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+		switch (featureID) {
+			case ModelPackage.MEDIA_WIKI__SERVICE_NAME:
+				return SERVICE_NAME_EDEFAULT == null ? serviceName != null : !SERVICE_NAME_EDEFAULT.equals(serviceName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -168,8 +162,8 @@ public class MediaWikiImpl extends MinimalEObjectImpl.Container implements Media
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (type: ");
-		result.append(type);
+		result.append(" (serviceName: ");
+		result.append(serviceName);
 		result.append(')');
 		return result.toString();
 	}

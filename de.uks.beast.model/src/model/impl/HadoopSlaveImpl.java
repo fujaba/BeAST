@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link model.impl.HadoopSlaveImpl#getType <em>Type</em>}</li>
+ *   <li>{@link model.impl.HadoopSlaveImpl#getServiceName <em>Service Name</em>}</li>
  *   <li>{@link model.impl.HadoopSlaveImpl#getHadoopMaster <em>Hadoop Master</em>}</li>
  * </ul>
  * </p>
@@ -29,23 +29,23 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements HadoopSlave
 {
 	/**
-	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * The default value of the '{@link #getServiceName() <em>Service Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getType()
+	 * @see #getServiceName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String TYPE_EDEFAULT = null;
+	protected static final String SERVICE_NAME_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * The cached value of the '{@link #getServiceName() <em>Service Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getType()
+	 * @see #getServiceName()
 	 * @generated
 	 * @ordered
 	 */
-	protected String type = TYPE_EDEFAULT;
+	protected String serviceName = SERVICE_NAME_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getHadoopMaster() <em>Hadoop Master</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -81,9 +81,8 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getType()
-	{
-		return type;
+	public String getServiceName() {
+		return serviceName;
 	}
 
 	/**
@@ -91,12 +90,11 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(String newType)
-	{
-		String oldType = type;
-		type = newType;
+	public void setServiceName(String newServiceName) {
+		String oldServiceName = serviceName;
+		serviceName = newServiceName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__SERVICE_NAME, oldServiceName, serviceName));
 	}
 
 	/**
@@ -106,12 +104,10 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	 */
 	public HadoopMaster getHadoopMaster()
 	{
-		if (hadoopMaster != null && hadoopMaster.eIsProxy())
-		{
+		if (hadoopMaster != null && hadoopMaster.eIsProxy()) {
 			InternalEObject oldHadoopMaster = (InternalEObject)hadoopMaster;
 			hadoopMaster = (HadoopMaster)eResolveProxy(oldHadoopMaster);
-			if (hadoopMaster != oldHadoopMaster)
-			{
+			if (hadoopMaster != oldHadoopMaster) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.HADOOP_SLAVE__HADOOP_MASTER, oldHadoopMaster, hadoopMaster));
 			}
@@ -138,8 +134,7 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	{
 		HadoopMaster oldHadoopMaster = hadoopMaster;
 		hadoopMaster = newHadoopMaster;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__HADOOP_MASTER, oldHadoopMaster, newHadoopMaster);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -153,8 +148,7 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	 */
 	public void setHadoopMaster(HadoopMaster newHadoopMaster)
 	{
-		if (newHadoopMaster != hadoopMaster)
-		{
+		if (newHadoopMaster != hadoopMaster) {
 			NotificationChain msgs = null;
 			if (hadoopMaster != null)
 				msgs = ((InternalEObject)hadoopMaster).eInverseRemove(this, ModelPackage.HADOOP_MASTER__HADOOP_SLAVE, HadoopMaster.class, msgs);
@@ -175,8 +169,7 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTER:
 				if (hadoopMaster != null)
 					msgs = ((InternalEObject)hadoopMaster).eInverseRemove(this, ModelPackage.HADOOP_MASTER__HADOOP_SLAVE, HadoopMaster.class, msgs);
@@ -193,8 +186,7 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTER:
 				return basicSetHadoopMaster(null, msgs);
 		}
@@ -209,10 +201,9 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
-			case ModelPackage.HADOOP_SLAVE__TYPE:
-				return getType();
+		switch (featureID) {
+			case ModelPackage.HADOOP_SLAVE__SERVICE_NAME:
+				return getServiceName();
 			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTER:
 				if (resolve) return getHadoopMaster();
 				return basicGetHadoopMaster();
@@ -228,10 +219,9 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
-			case ModelPackage.HADOOP_SLAVE__TYPE:
-				setType((String)newValue);
+		switch (featureID) {
+			case ModelPackage.HADOOP_SLAVE__SERVICE_NAME:
+				setServiceName((String)newValue);
 				return;
 			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTER:
 				setHadoopMaster((HadoopMaster)newValue);
@@ -248,10 +238,9 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
-			case ModelPackage.HADOOP_SLAVE__TYPE:
-				setType(TYPE_EDEFAULT);
+		switch (featureID) {
+			case ModelPackage.HADOOP_SLAVE__SERVICE_NAME:
+				setServiceName(SERVICE_NAME_EDEFAULT);
 				return;
 			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTER:
 				setHadoopMaster((HadoopMaster)null);
@@ -268,10 +257,9 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
-			case ModelPackage.HADOOP_SLAVE__TYPE:
-				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+		switch (featureID) {
+			case ModelPackage.HADOOP_SLAVE__SERVICE_NAME:
+				return SERVICE_NAME_EDEFAULT == null ? serviceName != null : !SERVICE_NAME_EDEFAULT.equals(serviceName);
 			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTER:
 				return hadoopMaster != null;
 		}
@@ -289,8 +277,8 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (type: ");
-		result.append(type);
+		result.append(" (serviceName: ");
+		result.append(serviceName);
 		result.append(')');
 		return result.toString();
 	}

@@ -119,8 +119,7 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	 */
 	public EList<Server> getServer()
 	{
-		if (server == null)
-		{
+		if (server == null) {
 			server = new EObjectContainmentEList<Server>(Server.class, this, ModelPackage.RACK__SERVER);
 		}
 		return server;
@@ -188,8 +187,7 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.RACK__SERVER:
 				return ((InternalEList<?>)getServer()).basicRemove(otherEnd, msgs);
 		}
@@ -206,8 +204,7 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.RACK__SERVER:
 				return getServer();
 			case ModelPackage.RACK__ID:
@@ -229,8 +226,7 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.RACK__SERVER:
 				getServer().clear();
 				getServer().addAll((Collection<? extends Server>)newValue);
@@ -255,8 +251,7 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.RACK__SERVER:
 				getServer().clear();
 				return;
@@ -280,8 +275,7 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.RACK__SERVER:
 				return server != null && !server.isEmpty();
 			case ModelPackage.RACK__ID:

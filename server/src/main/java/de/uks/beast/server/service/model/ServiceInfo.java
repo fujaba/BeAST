@@ -1,8 +1,13 @@
 package de.uks.beast.server.service.model;
 
+
 public class ServiceInfo {
 
-	public String serviceName;
+	protected String serviceName;
+	
+	protected ServiceInfo(ServiceInfo orig) {
+		this(orig.getServiceName());
+	}
 	
 	public ServiceInfo(String serviceName) {
 		this.serviceName = serviceName;

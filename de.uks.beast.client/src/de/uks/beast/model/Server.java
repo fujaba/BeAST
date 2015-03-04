@@ -11,6 +11,8 @@ public class Server implements Serializable {
 	private int cpu;
 	private int ram;
 	private int diskSpace;
+	private Service service;
+
 
 	public Network myGetNetwork() {
 		return network;
@@ -36,6 +38,10 @@ public class Server implements Serializable {
 		return diskSpace;
 	}
 	
+	public Service getService() {
+		return service;
+	}
+	
 	public void setHost(String host) {
 		this.host = host;
 	}
@@ -52,13 +58,17 @@ public class Server implements Serializable {
 		this.diskSpace = diskSpace;
 	}
 	
+	public void setService(Service service) {
+		this.service = service;
+	}
+	
 	public String buildFlavor() {
 		return "b1.c" + cpu + "r" + ram + "d" + diskSpace;
 	}
 	
 	@Override
 	public String toString() {
-		return "Host:" + host + ", CPU: " + cpu + ", RAM: " + ram + ", Disk: " + diskSpace;
+		return "Host:" + host + ", CPU: " + cpu + ", RAM: " + ram + ", Disk: " + diskSpace + ", Service: " + service;
 	}
 	
 }

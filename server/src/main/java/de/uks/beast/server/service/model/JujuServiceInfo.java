@@ -8,10 +8,8 @@ public class JujuServiceInfo extends ServiceInfo {
 		super(serviceName);
 	}
 	
-	public static JujuServiceInfo from(ServiceInfo serviceInfo, int machineID) {
-		JujuServiceInfo info = new JujuServiceInfo(serviceInfo.getServiceName());
-		info.setMachineID(machineID);
-		return info;
+	public JujuServiceInfo(ServiceInfo info) {
+		super(info);
 	}
 	
 	public int getMachineID() {

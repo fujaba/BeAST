@@ -42,7 +42,7 @@ public class CreateMySqlFeature extends AbstractCreateFeature
 	public Object[] create(final ICreateContext context)
 	{
 		final Service service = ModelFactory.eINSTANCE.createMySQL();
-		service.setType(Strings.MYSQL.text());
+		service.setServiceName(Strings.MYSQL.text());
 		
 		final Server server = (Server) getBusinessObjectForPictogramElement(context.getTargetContainer());
 		server.setService(service);

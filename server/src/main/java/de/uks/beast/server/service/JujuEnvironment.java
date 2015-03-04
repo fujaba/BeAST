@@ -36,8 +36,10 @@ public class JujuEnvironment extends ServiceEnvironment {
 			logger.info("Adding " + configuration.getConnectionInfo().getHostName() + " as manual managed machine to Juju");
 			int machineID = JujuClient.addMachine("ubuntu@" + configuration.getConnectionInfo().getIp());
 			
-			JujuServiceInfo serviceInfo = JujuServiceInfo.from(configuration.getServiceInfo(), machineID);
-			configuration.setServiceInfo(serviceInfo);
+			JujuServiceInfo jujuServiceInfo = new JujuServiceInfo(configuration.getServiceInfo());
+			jujuServiceInfo.setMachineID(machineID);
+			
+			configuration.setServiceInfo(jujuServiceInfo);
 		}
 	}
 	

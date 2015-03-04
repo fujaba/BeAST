@@ -42,7 +42,7 @@ public class CreateHadoopSlaveFeature extends AbstractCreateFeature
 	public Object[] create(final ICreateContext context)
 	{
 		final Service service = ModelFactory.eINSTANCE.createHadoopSlave();
-		service.setType(Strings.HADOOP_SLAVE.text());
+		service.setServiceName(Strings.HADOOP_SLAVE.text());
 		final Server server = (Server) getBusinessObjectForPictogramElement(context.getTargetContainer());
 		server.setService(service);
 		addGraphicalRepresentation(context, service);

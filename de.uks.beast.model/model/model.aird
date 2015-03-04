@@ -929,9 +929,9 @@
           <foregroundColor xmi:type="viewpoint:RGBValues" xmi:id="_8SUwFLrpEeS29_tGufUBDA" red="228" green="228" blue="228"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_EkqzALrlEeS29_tGufUBDA" name="type : EString" tooltipText="">
-          <target xmi:type="ecore:EAttribute" href="model.ecore#//Service/type"/>
-          <semanticElements xmi:type="ecore:EAttribute" href="model.ecore#//Service/type"/>
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_EkqzALrlEeS29_tGufUBDA" name="serviceName : EString" tooltipText="">
+          <target xmi:type="ecore:EAttribute" href="model.ecore#//Service/serviceName"/>
+          <semanticElements xmi:type="ecore:EAttribute" href="model.ecore#//Service/serviceName"/>
           <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_Invm4LrlEeS29_tGufUBDA" labelAlignment="LEFT">
             <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_Invm4brlEeS29_tGufUBDA"/>
             <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>

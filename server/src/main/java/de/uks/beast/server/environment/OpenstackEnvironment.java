@@ -116,7 +116,7 @@ public class OpenstackEnvironment extends CloudEnvironment {
 				
 				OpenstackConfiguration config = new OpenstackConfiguration(openstacknetwork.getId(), flavorID, server);
 				
-				//TODO config.setServiceInfo(new ServiceInfo(server.getService()));
+				config.setServiceInfo(new ServiceInfo(server.getService().getServiceName()));
 				
 				configs.add(config);
 			}

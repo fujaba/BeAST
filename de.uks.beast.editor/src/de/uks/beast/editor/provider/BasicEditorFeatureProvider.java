@@ -122,31 +122,31 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 		{
 			final Service service = (Service) context.getNewObject();
 			
-			if (service.getType().equals(Strings.HADOOP_MASTER.text()))
+			if (service.getServiceName().equals(Strings.HADOOP_MASTER.text()))
 			{
 				return new AddHadoopMasterFeature(this);
 			}
-			else if (service.getType().equals(Strings.HADOOP_SLAVE.text()))
+			else if (service.getServiceName().equals(Strings.HADOOP_SLAVE.text()))
 			{
 				return new AddHadoopSlaveFeature(this);
 			}
-			else if (service.getType().equals(Strings.CASSANDRA.text()))
+			else if (service.getServiceName().equals(Strings.CASSANDRA.text()))
 			{
 				return new AddCassandraFeature(this);
 			}
-			else if (service.getType().equals(Strings.MONGO_DB.text()))
+			else if (service.getServiceName().equals(Strings.MONGO_DB.text()))
 			{
 				return new AddMongoDBFeature(this);
 			}
-			else if (service.getType().equals(Strings.MYSQL.text()))
+			else if (service.getServiceName().equals(Strings.MYSQL.text()))
 			{
 				return new AddMySqlFeature(this);
 			}
-			else if (service.getType().equals(Strings.WORDPRESS.text()))
+			else if (service.getServiceName().equals(Strings.WORDPRESS.text()))
 			{
 				return new AddWordPressFeature(this);
 			}
-			else if (service.getType().equals(Strings.UBUNTU.text()))
+			else if (service.getServiceName().equals(Strings.UBUNTU.text()))
 			{
 				return new AddUbuntuFeature(this);
 			}
