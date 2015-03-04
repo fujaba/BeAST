@@ -6,6 +6,7 @@ public class ServiceInfo {
 
 	protected String serviceName;
 	protected String serviceType;
+	protected ServiceInfo relatedService;
 	
 	protected ServiceInfo(ServiceInfo orig) {
 		this(orig.getServiceName(), orig.getServiceType());
@@ -34,6 +35,14 @@ public class ServiceInfo {
 	
 	public void setServiceType(String serviceType) {
 		this.serviceType = serviceType;
+	}
+	
+	public ServiceInfo getRelatedService() {
+		return relatedService;
+	}
+	
+	public void setRelatedService(ServiceInfo relatedService) {
+		this.relatedService = relatedService;
 	}
 	
 }

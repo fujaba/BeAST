@@ -7,7 +7,9 @@ import org.apache.log4j.Logger;
 
 import de.uks.beast.model.Configuration;
 import de.uks.beast.server.BeastService;
+import de.uks.beast.server.environment.model.ConnectionInfo;
 import de.uks.beast.server.service.model.JujuServiceInfo;
+import de.uks.beast.server.service.model.ServiceInfo;
 import de.uks.beast.server.util.juju.JujuClient;
 import de.uks.beast.server.vm.InstanceConnection;
 
@@ -46,6 +48,7 @@ public class JujuEnvironment extends ServiceEnvironment {
 	@Override
 	public void startServices(List<? extends Configuration> cons) {
 		
+		// deploying juju charms to provisioned machines 
 		for (Configuration configuration : cons) {
 			JujuServiceInfo serviceInfo = (JujuServiceInfo) configuration.getServiceInfo();
 			
@@ -53,6 +56,24 @@ public class JujuEnvironment extends ServiceEnvironment {
 			serviceInfo.getServiceType() + "\" to machine " + serviceInfo.getMachineID());
 			
 			JujuClient.deploy(serviceInfo.getServiceName(), serviceInfo.getServiceType(), serviceInfo.getMachineID());
+			
+		}
+		
+		// Adding relations between services 
+		for (Configuration configuration : cons) {
+			final JujuServiceInfo serviceInfo = (JujuServiceInfo) configuration
+					.getServiceInfo();
+
+			if (serviceInfo.getRelatedService() != null
+					|| serviceInfo.getRelatedService().getServiceType() != null) {
+				
+				logger.info("Setting relationships between \""
+						+ serviceInfo.getServiceType() + "\" and \""
+						+ serviceInfo.getRelatedService().getServiceType());
+
+				JujuClient.addRelation(serviceInfo.getServiceType(),
+						serviceInfo.getRelatedService().getServiceType());
+			}
 		}
 		
 	}

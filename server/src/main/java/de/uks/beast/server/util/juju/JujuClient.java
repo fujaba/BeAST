@@ -90,7 +90,7 @@ public class JujuClient {
      * @return
      */
     public static RuntimeOutput addRelation(String service1, String service2) {
-    	return RuntimeExec.run("juju add-relation service1 service2");
+    	return RuntimeExec.run("juju add-relation " + service1 + " " + service2);
     }
     
     /**
