@@ -1,6 +1,11 @@
 package de.uks.beast.server.util.juju;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 public class JujuClient {
+	
+	private static final Logger logger = LogManager.getLogger(JujuClient.class);
 
     /**
      * Deploy a service.
@@ -61,7 +66,64 @@ public class JujuClient {
         if (message.contains("created machine")) {
             return Integer.parseInt(message.replaceAll("[^\\d.]", ""));
         }
+        logger.debug(message);
         return -1;
+    }
+    
+    /**
+     * destroy machine #
+     * @return
+     */
+    public static RuntimeOutput destroyMachine(int number) {
+    	return RuntimeExec.run("juju destroy-machine " + number);
+    }
+    
+    /**
+     * Add a relation between two services
+     * @param service1: &lt;service1&gt;[:&lt;relation name1&gt;], e.g. hadoop-master:namenode
+     * @param service2: &lt;service2&gt;[:&lt;relation name2&gt;], e.g. hadoop-slave:datanode
+     * <p>
+     * usage: juju add-relation [options] &lt;service1&gt;[:&lt;relation name1&gt;] &lt;service2&gt;[:&lt;relation name2&gt;] </br>
+     * example 1: juju add-relation hadoop-master:namenode hadoop-slave:datanode </br>
+	 * example 2: juju add-relation hadoop-master:jobtracker hadoop-slave:tasktracker </br>
+	 * </p>
+     * @return
+     */
+    public static RuntimeOutput addRelation(String service1, String service2) {
+    	return RuntimeExec.run("juju add-relation service1 service2");
+    }
+    
+    /**
+     * Remove a relation between two services
+     * @param service1
+     * @param service2
+     */
+    public static void destroyRelation(String service1,String service2) {
+    	RuntimeExec.run("juju destroy-relation " + service1 + " " + service2);
+    }
+    
+    /**
+     * Shows what's going on
+     * @return
+     */
+    public static RuntimeOutput status() {
+    	return RuntimeExec.run("juju status");
+    }
+    
+    /**
+     * Explicitly make service publically available
+     * @param servicename
+     */
+    public static void expose(String servicename) {
+    	RuntimeExec.run("juju expose " + servicename);
+    }
+    
+    /**
+     * Return the firewall settings and make a service non-public again
+     * @param servicename
+     */
+    public static void unexpose(String servicename) {
+    	RuntimeExec.run("juju unexpose " + servicename);
     }
 
 }
