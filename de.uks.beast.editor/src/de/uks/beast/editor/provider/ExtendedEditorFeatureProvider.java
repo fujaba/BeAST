@@ -14,7 +14,7 @@ import de.uks.beast.editor.features.create.CreateRoomFeature;
 import de.uks.beast.editor.features.create.CreateServerFeature;
 import de.uks.beast.editor.features.create.CreaterRouterFeature;
 import de.uks.beast.editor.services.cassandra.create.CreateCassandraFeature;
-import de.uks.beast.editor.services.hadoop.create.CreateHadoopConnection;
+import de.uks.beast.editor.services.connection.create.CreateServiceConnection;
 import de.uks.beast.editor.services.hadoop.create.CreateHadoopMasterFeature;
 import de.uks.beast.editor.services.hadoop.create.CreateHadoopSlaveFeature;
 import de.uks.beast.editor.services.mongodb.create.CreateMongoDBFeature;
@@ -90,6 +90,18 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 		//@formatter:on
 		
 		//@formatter:off
+				final PaletteCompartmentEntry serviceConnectionEntry = PaletteCompartmentEntry
+						.builder()
+						.setName(SERVICE_RELATION.text())
+						//.setIconID(Images.HADOOP_PALETTE_IMAGE.getImageID())
+						.addCreateConnectionFeature(
+								new CreateServiceConnection(getFeatureProvider(), SERVICE_CONNECTION.text(), SERVICE_CONNECTION
+										.description()))
+						.setInitialOpen(false)
+						.build();
+				//@formatter:on
+		
+		//@formatter:off
 		final PaletteCompartmentEntry hadoopEntry = PaletteCompartmentEntry
 				.builder()
 				.setName(HADOOP.text())
@@ -98,9 +110,6 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 						new CreateHadoopMasterFeature(getFeatureProvider(), HADOOP_MASTER.text(), HADOOP_MASTER.description()))
 				.addCreateObjectFeature(
 						new CreateHadoopSlaveFeature(getFeatureProvider(), HADOOP_SLAVE.text(), HADOOP_SLAVE.description()))
-				.addCreateConnectionFeature(
-						new CreateHadoopConnection(getFeatureProvider(), HADOOP_CONNECTION.text(), HADOOP_CONNECTION
-								.description()))
 				.setInitialOpen(false)
 				.build();
 		//@formatter:on
@@ -167,6 +176,7 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 				serverEntry, 
 				networkEntry, 
 				ethernetEntry, 
+				serviceConnectionEntry,
 				hadoopEntry, 
 				cassandraEntry,
 				mongoDBEntry,

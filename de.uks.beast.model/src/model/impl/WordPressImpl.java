@@ -2,13 +2,16 @@
  */
 package model.impl;
 
+import java.util.Collection;
 import model.ModelPackage;
+import model.Service;
 import model.WordPress;
-
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,6 +23,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link model.impl.WordPressImpl#getType <em>Type</em>}</li>
  *   <li>{@link model.impl.WordPressImpl#getServiceType <em>Service Type</em>}</li>
  *   <li>{@link model.impl.WordPressImpl#getServiceName <em>Service Name</em>}</li>
+ *   <li>{@link model.impl.WordPressImpl#getRelations <em>Relations</em>}</li>
  * </ul>
  * </p>
  *
@@ -81,6 +85,15 @@ public class WordPressImpl extends MinimalEObjectImpl.Container implements WordP
 	 * @ordered
 	 */
 	protected String serviceName = SERVICE_NAME_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #getRelations() <em>Relations</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRelations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Service> relations;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -149,6 +162,20 @@ public class WordPressImpl extends MinimalEObjectImpl.Container implements WordP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Service> getRelations()
+	{
+		if (relations == null)
+		{
+			relations = new EObjectResolvingEList<Service>(Service.class, this, ModelPackage.WORD_PRESS__RELATIONS);
+		}
+		return relations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getServiceType() {
 		return serviceType;
 	}
@@ -173,13 +200,16 @@ public class WordPressImpl extends MinimalEObjectImpl.Container implements WordP
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.WORD_PRESS__TYPE:
 				return getType();
 			case ModelPackage.WORD_PRESS__SERVICE_TYPE:
 				return getServiceType();
 			case ModelPackage.WORD_PRESS__SERVICE_NAME:
 				return getServiceName();
+			case ModelPackage.WORD_PRESS__RELATIONS:
+				return getRelations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -189,10 +219,12 @@ public class WordPressImpl extends MinimalEObjectImpl.Container implements WordP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.WORD_PRESS__TYPE:
 				setType((String)newValue);
 				return;
@@ -201,6 +233,10 @@ public class WordPressImpl extends MinimalEObjectImpl.Container implements WordP
 				return;
 			case ModelPackage.WORD_PRESS__SERVICE_NAME:
 				setServiceName((String)newValue);
+				return;
+			case ModelPackage.WORD_PRESS__RELATIONS:
+				getRelations().clear();
+				getRelations().addAll((Collection<? extends Service>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -214,7 +250,8 @@ public class WordPressImpl extends MinimalEObjectImpl.Container implements WordP
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.WORD_PRESS__TYPE:
 				setType(TYPE_EDEFAULT);
 				return;
@@ -223,6 +260,9 @@ public class WordPressImpl extends MinimalEObjectImpl.Container implements WordP
 				return;
 			case ModelPackage.WORD_PRESS__SERVICE_NAME:
 				setServiceName(SERVICE_NAME_EDEFAULT);
+				return;
+			case ModelPackage.WORD_PRESS__RELATIONS:
+				getRelations().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -236,13 +276,16 @@ public class WordPressImpl extends MinimalEObjectImpl.Container implements WordP
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.WORD_PRESS__TYPE:
 				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 			case ModelPackage.WORD_PRESS__SERVICE_TYPE:
 				return SERVICE_TYPE_EDEFAULT == null ? serviceType != null : !SERVICE_TYPE_EDEFAULT.equals(serviceType);
 			case ModelPackage.WORD_PRESS__SERVICE_NAME:
 				return SERVICE_NAME_EDEFAULT == null ? serviceName != null : !SERVICE_NAME_EDEFAULT.equals(serviceName);
+			case ModelPackage.WORD_PRESS__RELATIONS:
+				return relations != null && !relations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

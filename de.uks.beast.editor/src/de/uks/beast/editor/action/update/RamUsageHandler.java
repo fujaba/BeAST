@@ -2,6 +2,8 @@ package de.uks.beast.editor.action.update;
 
 import java.util.List;
 
+import model.Server;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -17,7 +19,6 @@ import de.uks.beast.editor.features.util.PropertyUtil;
 import de.uks.beast.editor.util.Properties;
 import de.uks.beast.model.Hardware;
 import de.uks.beast.model.InstanceInformation;
-import de.uks.beast.model.Server;
 
 public class RamUsageHandler extends DiagramUpdateHandler
 {
@@ -37,16 +38,16 @@ public class RamUsageHandler extends DiagramUpdateHandler
 	@Override
 	public void updateShape(final InstanceInformation info)
 	{
-		final Server serverFromOpenStack = model.serverFromHostName(info.getHost());
+		final de.uks.beast.model.Server externalServer = model.serverFromHostName(info.getHost());
 		
 		for (final ContainerShape containerShape : serverShapes)
 		{
 			final Server serverFromEditor = (Server) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(
 					containerShape);
 			
-			if (serverFromOpenStack.equals(serverFromEditor)) //TODO
+			if (checkServerEquals(externalServer, serverFromEditor))
 			{
-				LOG.debug("Update shape from server " + serverFromOpenStack.getHost() + " with new RAM usage");
+				LOG.debug("Update shape from server " + externalServer.getHost() + " with new RAM usage");
 				
 				final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(serverFromEditor);
 				
@@ -70,6 +71,14 @@ public class RamUsageHandler extends DiagramUpdateHandler
 				}
 			}
 		}
+	}
+	
+	
+	
+	private boolean checkServerEquals(final de.uks.beast.model.Server externalServer, final Server serverFromEditor)
+	{
+		return externalServer.getHost().equals(serverFromEditor.getName())
+				&& externalServer.getIp().equals(serverFromEditor.getIp());
 	}
 	
 }
