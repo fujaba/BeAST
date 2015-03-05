@@ -33,14 +33,15 @@ public class RamUsageHandler extends DiagramUpdateHandler
 		this.serverShapes = serverShapes;
 	}
 	
-	
-	
 	@Override
 	public void updateShape(final InstanceInformation info)
 	{
 		final de.uks.beast.model.Server externalServer = model.serverFromHostName(info.getHost());
 		
-		final String ramValue = "" + Long.parseLong(info.getValue()) / (externalServer.getRam() * 1000000);
+		String temp = "" + (Double.parseDouble(info.getValue()) * 100);
+		final String ramValue = temp.substring(0, temp.indexOf("."));
+		
+		LOG.debug("Value: " + info.getValue() + ", Total: " + externalServer.getRam());
 		
 		for (final ContainerShape containerShape : serverShapes)
 		{

@@ -60,6 +60,8 @@ public class DiagramUpdateMaster implements KeyListener
 			return "OK";
 		}
 		
+		LOGGER.debug(info.getKey() + ": " + info.getValue());
+		
 		final DiagramUpdateHandler handler = updateHandler.get(info.getKey());
 		
 		if (handler != null)

@@ -17,10 +17,10 @@ public class MemoryService extends ExtractorService {
 		
 		try {
 			Mem mem = sigar.getMem();
-			keys.add(new InstanceInformation(host, "mem-total", "" + mem.getTotal()));
+			/*keys.add(new InstanceInformation(host, "mem-total", "" + mem.getTotal()));
 			keys.add(new InstanceInformation(host, "mem-ram", "" + mem.getRam()));
-			keys.add(new InstanceInformation(host, "mem-free", "" + mem.getActualFree()));
-			keys.add(new InstanceInformation(host, "mem-used", "" + mem.getActualUsed()));
+			keys.add(new InstanceInformation(host, "mem-free", "" + mem.getActualFree()));*/
+			keys.add(new InstanceInformation(host, "mem-used", "" + ((double) mem.getActualUsed()/mem.getTotal())));
 		} catch (SigarException e) {
 			e.printStackTrace();
 		}
