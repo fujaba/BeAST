@@ -2,6 +2,7 @@
  */
 package model;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -15,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link model.Service#getType <em>Type</em>}</li>
  *   <li>{@link model.Service#getServiceType <em>Service Type</em>}</li>
  *   <li>{@link model.Service#getServiceName <em>Service Name</em>}</li>
+ *   <li>{@link model.Service#getRelations <em>Relations</em>}</li>
  * </ul>
  * </p>
  *
@@ -76,6 +78,22 @@ public interface Service extends EObject
 	 * @generated
 	 */
 	void setServiceName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Relations</b></em>' reference list.
+	 * The list contents are of type {@link model.Service}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Relations</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Relations</em>' reference list.
+	 * @see model.ModelPackage#getService_Relations()
+	 * @model
+	 * @generated
+	 */
+	EList<Service> getRelations();
 
 	/**
 	 * Returns the value of the '<em><b>Service Type</b></em>' attribute.

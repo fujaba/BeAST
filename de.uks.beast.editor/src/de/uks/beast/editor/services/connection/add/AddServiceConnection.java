@@ -1,4 +1,4 @@
-package de.uks.beast.editor.services.hadoop.add;
+package de.uks.beast.editor.services.connection.add;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddConnectionContext;
@@ -13,10 +13,10 @@ import org.eclipse.graphiti.services.IPeCreateService;
 
 import de.uks.beast.editor.util.Colors;
 
-public class AddHadoopConnection extends AbstractAddFeature
+public class AddServiceConnection extends AbstractAddFeature
 {
 	
-	public AddHadoopConnection(final IFeatureProvider fp)
+	public AddServiceConnection(final IFeatureProvider fp)
 	{
 		super(fp);
 	}

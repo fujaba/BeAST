@@ -48,7 +48,7 @@ import de.uks.beast.editor.features.update.UpdateRoomObjectFeature;
 import de.uks.beast.editor.features.update.UpdateRouterObjectFeature;
 import de.uks.beast.editor.features.update.UpdateServerObjectFeature;
 import de.uks.beast.editor.services.cassandra.add.AddCassandraFeature;
-import de.uks.beast.editor.services.hadoop.add.AddHadoopConnection;
+import de.uks.beast.editor.services.connection.add.AddServiceConnection;
 import de.uks.beast.editor.services.hadoop.add.AddHadoopMasterFeature;
 import de.uks.beast.editor.services.hadoop.add.AddHadoopSlaveFeature;
 import de.uks.beast.editor.services.mongodb.add.AddMongoDBFeature;
@@ -105,11 +105,11 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 		{
 			final IAddConnectionContext cc = (IAddConnectionContext) context;
 			
-			if ((getBusinessObjectForPictogramElement(cc.getSourceAnchor().getParent()) instanceof HadoopMaster)
-					&& (getBusinessObjectForPictogramElement(cc.getTargetAnchor().getParent()) instanceof HadoopSlave))
+			if ((getBusinessObjectForPictogramElement(cc.getSourceAnchor().getParent()) instanceof Service)
+					&& (getBusinessObjectForPictogramElement(cc.getTargetAnchor().getParent()) instanceof Service))
 			{
 				
-				return new AddHadoopConnection(this);
+				return new AddServiceConnection(this);
 			}
 			else
 			{

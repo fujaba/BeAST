@@ -1,7 +1,6 @@
-package de.uks.beast.editor.services.hadoop.create;
+package de.uks.beast.editor.services.connection.create;
 
-import model.HadoopMaster;
-import model.HadoopSlave;
+import model.Service;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateConnectionContext;
@@ -9,10 +8,10 @@ import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateConnectionFeature;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 
-public class CreateHadoopConnection extends AbstractCreateConnectionFeature
+public class CreateServiceConnection extends AbstractCreateConnectionFeature
 {
 	
-	public CreateHadoopConnection(final IFeatureProvider fp, final String name, final String description)
+	public CreateServiceConnection(final IFeatureProvider fp, final String name, final String description)
 	{
 		super(fp, name, description);
 	}
@@ -25,11 +24,7 @@ public class CreateHadoopConnection extends AbstractCreateConnectionFeature
 		final Object source = getBusinessObjectForPictogramElement(context.getSourcePictogramElement());
 		final Object target = getBusinessObjectForPictogramElement(context.getTargetPictogramElement());
 		
-		if (source instanceof HadoopMaster && target instanceof HadoopSlave)
-		{
-			return true;
-		}
-		else if (target instanceof HadoopMaster && source instanceof HadoopSlave)
+		if (source instanceof Service && target instanceof Service)
 		{
 			return true;
 		}
@@ -52,13 +47,12 @@ public class CreateHadoopConnection extends AbstractCreateConnectionFeature
 			final AddConnectionContext addContext = new AddConnectionContext(context.getSourceAnchor(), context.getTargetAnchor());
 			addContext.setNewObject(null);
 			
-			if (source instanceof HadoopMaster && target instanceof HadoopSlave)
+			if (source instanceof Service && target instanceof Service)
 			{
-				((HadoopMaster) source).getHadoopSlave().add(((HadoopSlave) target));
-			}
-			else if (source instanceof HadoopSlave && target instanceof HadoopMaster)
-			{
-				((HadoopSlave) source).setHadoopMaster(((HadoopMaster) target));
+				final Service sourceService = (Service) source;
+				final Service targetService = (Service) target;
+				
+				sourceService.getRelations().add(targetService);
 			}
 			
 			newConnection = (Connection) getFeatureProvider().addIfPossible(addContext);
@@ -74,7 +68,8 @@ public class CreateHadoopConnection extends AbstractCreateConnectionFeature
 	public boolean canStartConnection(final ICreateConnectionContext context)
 	{
 		final Object source = getBusinessObjectForPictogramElement(context.getSourcePictogramElement());
-		if (source instanceof HadoopMaster || source instanceof HadoopSlave)
+		
+		if (source instanceof Service || source instanceof Service)
 		{
 			return true;
 		}

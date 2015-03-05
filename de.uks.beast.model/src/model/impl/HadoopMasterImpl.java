@@ -4,17 +4,14 @@ package model.impl;
 
 import java.util.Collection;
 import model.HadoopMaster;
-import model.HadoopSlave;
 import model.ModelPackage;
+import model.Service;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +23,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link model.impl.HadoopMasterImpl#getType <em>Type</em>}</li>
  *   <li>{@link model.impl.HadoopMasterImpl#getServiceType <em>Service Type</em>}</li>
  *   <li>{@link model.impl.HadoopMasterImpl#getServiceName <em>Service Name</em>}</li>
- *   <li>{@link model.impl.HadoopMasterImpl#getHadoopSlave <em>Hadoop Slave</em>}</li>
+ *   <li>{@link model.impl.HadoopMasterImpl#getRelations <em>Relations</em>}</li>
  * </ul>
  * </p>
  *
@@ -89,14 +86,14 @@ public class HadoopMasterImpl extends MinimalEObjectImpl.Container implements Ha
 	 */
 	protected String serviceName = SERVICE_NAME_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #getHadoopSlave() <em>Hadoop Slave</em>}' reference list.
+	 * The cached value of the '{@link #getRelations() <em>Relations</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getHadoopSlave()
+	 * @see #getRelations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<HadoopSlave> hadoopSlave;
+	protected EList<Service> relations;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -165,6 +162,20 @@ public class HadoopMasterImpl extends MinimalEObjectImpl.Container implements Ha
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Service> getRelations()
+	{
+		if (relations == null)
+		{
+			relations = new EObjectResolvingEList<Service>(Service.class, this, ModelPackage.HADOOP_MASTER__RELATIONS);
+		}
+		return relations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getServiceType() {
 		return serviceType;
 	}
@@ -186,62 +197,19 @@ public class HadoopMasterImpl extends MinimalEObjectImpl.Container implements Ha
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<HadoopSlave> getHadoopSlave()
-	{
-		if (hadoopSlave == null) {
-			hadoopSlave = new EObjectWithInverseResolvingEList<HadoopSlave>(HadoopSlave.class, this, ModelPackage.HADOOP_MASTER__HADOOP_SLAVE, ModelPackage.HADOOP_SLAVE__HADOOP_MASTER);
-		}
-		return hadoopSlave;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID) {
-			case ModelPackage.HADOOP_MASTER__HADOOP_SLAVE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getHadoopSlave()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID) {
-			case ModelPackage.HADOOP_MASTER__HADOOP_SLAVE:
-				return ((InternalEList<?>)getHadoopSlave()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.HADOOP_MASTER__TYPE:
 				return getType();
 			case ModelPackage.HADOOP_MASTER__SERVICE_TYPE:
 				return getServiceType();
 			case ModelPackage.HADOOP_MASTER__SERVICE_NAME:
 				return getServiceName();
-			case ModelPackage.HADOOP_MASTER__HADOOP_SLAVE:
-				return getHadoopSlave();
+			case ModelPackage.HADOOP_MASTER__RELATIONS:
+				return getRelations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -255,7 +223,8 @@ public class HadoopMasterImpl extends MinimalEObjectImpl.Container implements Ha
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.HADOOP_MASTER__TYPE:
 				setType((String)newValue);
 				return;
@@ -265,9 +234,9 @@ public class HadoopMasterImpl extends MinimalEObjectImpl.Container implements Ha
 			case ModelPackage.HADOOP_MASTER__SERVICE_NAME:
 				setServiceName((String)newValue);
 				return;
-			case ModelPackage.HADOOP_MASTER__HADOOP_SLAVE:
-				getHadoopSlave().clear();
-				getHadoopSlave().addAll((Collection<? extends HadoopSlave>)newValue);
+			case ModelPackage.HADOOP_MASTER__RELATIONS:
+				getRelations().clear();
+				getRelations().addAll((Collection<? extends Service>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -281,7 +250,8 @@ public class HadoopMasterImpl extends MinimalEObjectImpl.Container implements Ha
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.HADOOP_MASTER__TYPE:
 				setType(TYPE_EDEFAULT);
 				return;
@@ -291,8 +261,8 @@ public class HadoopMasterImpl extends MinimalEObjectImpl.Container implements Ha
 			case ModelPackage.HADOOP_MASTER__SERVICE_NAME:
 				setServiceName(SERVICE_NAME_EDEFAULT);
 				return;
-			case ModelPackage.HADOOP_MASTER__HADOOP_SLAVE:
-				getHadoopSlave().clear();
+			case ModelPackage.HADOOP_MASTER__RELATIONS:
+				getRelations().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -306,15 +276,16 @@ public class HadoopMasterImpl extends MinimalEObjectImpl.Container implements Ha
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.HADOOP_MASTER__TYPE:
 				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 			case ModelPackage.HADOOP_MASTER__SERVICE_TYPE:
 				return SERVICE_TYPE_EDEFAULT == null ? serviceType != null : !SERVICE_TYPE_EDEFAULT.equals(serviceType);
 			case ModelPackage.HADOOP_MASTER__SERVICE_NAME:
 				return SERVICE_NAME_EDEFAULT == null ? serviceName != null : !SERVICE_NAME_EDEFAULT.equals(serviceName);
-			case ModelPackage.HADOOP_MASTER__HADOOP_SLAVE:
-				return hadoopSlave != null && !hadoopSlave.isEmpty();
+			case ModelPackage.HADOOP_MASTER__RELATIONS:
+				return relations != null && !relations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

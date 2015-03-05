@@ -44,11 +44,12 @@ public enum Strings
 	CONNECTION					("Connection",			"This is a connection between two objects"),
 	ETHERNET					("Ethernet",			"This provides ethernet connection"),
 	HADOOP						("Hadoop",				"This is a Hadoop charm"),
+	SERVICE_RELATION			("Service Relation"	,	"This is a relation between services"),
 	
 	HADOOP_MASTER				("HadoopMaster",		"hadoop", 	"hadoop-master",	"This is a Hadoop charm - HadoopMaster"),
 	HADOOP_SLAVE				("HadoopSlave",			"hadoop", 	"hadoop-slave",		"This is a Hadoop charm - HadoopSlave"),
 	
-	HADOOP_CONNECTION			("HadoopConnection",	"This is a connection between HadoopMaster and HadoopSlave"),
+	SERVICE_CONNECTION			("ServiceConnection",	"This is a connection between services"),
 	CASSANDRA					("Cassandra",			"This is a Cassandra charm"),
 	MYSQL						("MySQL",				"This is a MySQL charm"),
 	MONGO_DB					("MongoDB",				"This is a MongoDB charm"),

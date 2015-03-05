@@ -471,13 +471,22 @@ public interface ModelPackage extends EPackage
 	int SERVICE__SERVICE_NAME = 2;
 
 	/**
+	 * The feature id for the '<em><b>Relations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__RELATIONS = 3;
+
+	/**
 	 * The number of structural features of the '<em>Service</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_FEATURE_COUNT = 3;
+	int SERVICE_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Service</em>' class.
@@ -526,13 +535,13 @@ public interface ModelPackage extends EPackage
 	int HADOOP_MASTER__SERVICE_NAME = SERVICE__SERVICE_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Hadoop Slave</b></em>' reference list.
+	 * The feature id for the '<em><b>Relations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HADOOP_MASTER__HADOOP_SLAVE = SERVICE_FEATURE_COUNT + 0;
+	int HADOOP_MASTER__RELATIONS = SERVICE__RELATIONS;
 
 	/**
 	 * The number of structural features of the '<em>Hadoop Master</em>' class.
@@ -541,7 +550,7 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int HADOOP_MASTER_FEATURE_COUNT = SERVICE_FEATURE_COUNT + 1;
+	int HADOOP_MASTER_FEATURE_COUNT = SERVICE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Hadoop Master</em>' class.
@@ -590,13 +599,13 @@ public interface ModelPackage extends EPackage
 	int HADOOP_SLAVE__SERVICE_NAME = SERVICE__SERVICE_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Hadoop Master</b></em>' reference.
+	 * The feature id for the '<em><b>Relations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HADOOP_SLAVE__HADOOP_MASTER = SERVICE_FEATURE_COUNT + 0;
+	int HADOOP_SLAVE__RELATIONS = SERVICE__RELATIONS;
 
 	/**
 	 * The number of structural features of the '<em>Hadoop Slave</em>' class.
@@ -605,7 +614,7 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int HADOOP_SLAVE_FEATURE_COUNT = SERVICE_FEATURE_COUNT + 1;
+	int HADOOP_SLAVE_FEATURE_COUNT = SERVICE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Hadoop Slave</em>' class.
@@ -654,6 +663,15 @@ public interface ModelPackage extends EPackage
 	 * @ordered
 	 */
 	int MY_SQL__SERVICE_NAME = SERVICE__SERVICE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Relations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MY_SQL__RELATIONS = SERVICE__RELATIONS;
 
 	/**
 	 * The number of structural features of the '<em>My SQL</em>' class.
@@ -711,6 +729,15 @@ public interface ModelPackage extends EPackage
 	int WORD_PRESS__SERVICE_NAME = SERVICE__SERVICE_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Relations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORD_PRESS__RELATIONS = SERVICE__RELATIONS;
+
+	/**
 	 * The number of structural features of the '<em>Word Press</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -766,6 +793,15 @@ public interface ModelPackage extends EPackage
 	int CASSANDRA__SERVICE_NAME = SERVICE__SERVICE_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Relations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASSANDRA__RELATIONS = SERVICE__RELATIONS;
+
+	/**
 	 * The number of structural features of the '<em>Cassandra</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -819,6 +855,15 @@ public interface ModelPackage extends EPackage
 	 * @ordered
 	 */
 	int MONGO_DB__SERVICE_NAME = SERVICE__SERVICE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Relations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MONGO_DB__RELATIONS = SERVICE__RELATIONS;
 
 	/**
 	 * The number of structural features of the '<em>Mongo DB</em>' class.
@@ -878,6 +923,15 @@ public interface ModelPackage extends EPackage
 	int UBUNTU__SERVICE_NAME = SERVICE__SERVICE_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Relations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UBUNTU__RELATIONS = SERVICE__RELATIONS;
+
+	/**
 	 * The number of structural features of the '<em>Ubuntu</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -931,6 +985,15 @@ public interface ModelPackage extends EPackage
 	 * @ordered
 	 */
 	int APACHE2__SERVICE_NAME = SERVICE__SERVICE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Relations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APACHE2__RELATIONS = SERVICE__RELATIONS;
 
 	/**
 	 * The number of structural features of the '<em>Apache2</em>' class.
@@ -988,6 +1051,15 @@ public interface ModelPackage extends EPackage
 	int JENKINS__SERVICE_NAME = SERVICE__SERVICE_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Relations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JENKINS__RELATIONS = SERVICE__RELATIONS;
+
+	/**
 	 * The number of structural features of the '<em>Jenkins</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1043,6 +1115,15 @@ public interface ModelPackage extends EPackage
 	int MEDIA_WIKI__SERVICE_NAME = SERVICE__SERVICE_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Relations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEDIA_WIKI__RELATIONS = SERVICE__RELATIONS;
+
+	/**
 	 * The number of structural features of the '<em>Media Wiki</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1096,6 +1177,15 @@ public interface ModelPackage extends EPackage
 	 * @ordered
 	 */
 	int TOMCAT__SERVICE_NAME = SERVICE__SERVICE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Relations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOMCAT__RELATIONS = SERVICE__RELATIONS;
 
 	/**
 	 * The number of structural features of the '<em>Tomcat</em>' class.
@@ -1516,6 +1606,19 @@ public interface ModelPackage extends EPackage
 
 
 	/**
+	 * Returns the meta object for the reference list '{@link model.Service#getRelations <em>Relations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Relations</em>'.
+	 * @see model.Service#getRelations()
+	 * @see #getService()
+	 * @generated
+	 */
+	EReference getService_Relations();
+
+
+
+	/**
 	 * Returns the meta object for the attribute '{@link model.Service#getServiceType <em>Service Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1541,19 +1644,6 @@ public interface ModelPackage extends EPackage
 
 
 	/**
-	 * Returns the meta object for the reference list '{@link model.HadoopMaster#getHadoopSlave <em>Hadoop Slave</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Hadoop Slave</em>'.
-	 * @see model.HadoopMaster#getHadoopSlave()
-	 * @see #getHadoopMaster()
-	 * @generated
-	 */
-	EReference getHadoopMaster_HadoopSlave();
-
-
-
-	/**
 	 * Returns the meta object for class '{@link model.HadoopSlave <em>Hadoop Slave</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1562,19 +1652,6 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 */
 	EClass getHadoopSlave();
-
-
-
-	/**
-	 * Returns the meta object for the reference '{@link model.HadoopSlave#getHadoopMaster <em>Hadoop Master</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Hadoop Master</em>'.
-	 * @see model.HadoopSlave#getHadoopMaster()
-	 * @see #getHadoopSlave()
-	 * @generated
-	 */
-	EReference getHadoopSlave_HadoopMaster();
 
 
 
@@ -2007,6 +2084,14 @@ public interface ModelPackage extends EPackage
 		EAttribute SERVICE__SERVICE_NAME = eINSTANCE.getService_ServiceName();
 
 		/**
+		 * The meta object literal for the '<em><b>Relations</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVICE__RELATIONS = eINSTANCE.getService_Relations();
+
+		/**
 		 * The meta object literal for the '<em><b>Service Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2025,14 +2110,6 @@ public interface ModelPackage extends EPackage
 		EClass HADOOP_MASTER = eINSTANCE.getHadoopMaster();
 
 		/**
-		 * The meta object literal for the '<em><b>Hadoop Slave</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference HADOOP_MASTER__HADOOP_SLAVE = eINSTANCE.getHadoopMaster_HadoopSlave();
-
-		/**
 		 * The meta object literal for the '{@link model.impl.HadoopSlaveImpl <em>Hadoop Slave</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2041,14 +2118,6 @@ public interface ModelPackage extends EPackage
 		 * @generated
 		 */
 		EClass HADOOP_SLAVE = eINSTANCE.getHadoopSlave();
-
-		/**
-		 * The meta object literal for the '<em><b>Hadoop Master</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference HADOOP_SLAVE__HADOOP_MASTER = eINSTANCE.getHadoopSlave_HadoopMaster();
 
 		/**
 		 * The meta object literal for the '{@link model.impl.MySQLImpl <em>My SQL</em>}' class.
