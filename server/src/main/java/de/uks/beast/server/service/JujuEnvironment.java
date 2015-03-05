@@ -1,6 +1,8 @@
 package de.uks.beast.server.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -34,6 +36,7 @@ public class JujuEnvironment extends ServiceEnvironment {
 			
 			//connect to instance and install juju agent
 			logger.info("Adding " + configuration.getConnectionInfo().getHostName() + " as manual managed machine to Juju");
+			
 			int machineID = JujuClient.addMachine("ubuntu@" + configuration.getConnectionInfo().getIp());
 			
 			JujuServiceInfo jujuServiceInfo = new JujuServiceInfo(configuration.getServiceInfo());
@@ -57,13 +60,20 @@ public class JujuEnvironment extends ServiceEnvironment {
 			
 		}
 		
+		final Map<JujuServiceInfo, JujuServiceInfo> relations = new HashMap<>();
+		cons.forEach(config -> System.out.println(config.getServiceInfo().getServiceName()));
+		
 		// Adding relations between services 
 		for (Configuration configuration : cons) {
 			final JujuServiceInfo serviceInfo = (JujuServiceInfo) configuration
 					.getServiceInfo();
 
-			if (serviceInfo.getRelatedService() != null
-					|| serviceInfo.getRelatedService().getServiceType() != null) {
+			if (serviceInfo.getRelatedService() != null) {
+//				if (relations. && relations.containsKey(serviceInfo.getRelatedService())) {
+//					continue;
+//				}
+				
+				relations.put(serviceInfo, (JujuServiceInfo) serviceInfo.getRelatedService());
 				
 				logger.info("Setting relationships between \""
 						+ serviceInfo.getServiceType() + "\" and \""
