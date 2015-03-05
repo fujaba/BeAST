@@ -40,6 +40,8 @@ public class CpuUsageHandler extends DiagramUpdateHandler
 	{
 		final de.uks.beast.model.Server externalServer = model.serverFromHostName(info.getHost());
 		
+		final String cpuValue = "" + Long.parseLong(info.getValue()) / (externalServer.getCpu() * 1000000);
+		
 		for (final ContainerShape containerShape : serverShapes)
 		{
 			final Server serverFromEditor = (Server) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(
@@ -55,13 +57,14 @@ public class CpuUsageHandler extends DiagramUpdateHandler
 				{
 					if (PropertyUtil.isAttributeShape(shape, Properties.CPU_STAT))
 					{
-						final Text cpuStatText = (Text) shape;
+						final Text cpuStatText = (Text) shape.getGraphicsAlgorithm();
+						
 						
 						LOG.debug("Old value from cpuStatTextfield: " + cpuStatText.getValue());
 						domain.getCommandStack().execute(new RecordingCommand(domain) {
 							public void doExecute()
 							{
-								cpuStatText.setValue(info.getValue());
+								cpuStatText.setValue(cpuValue);
 							}
 						});
 						LOG.debug("New value from cpuStatTextfield: " + cpuStatText.getValue());

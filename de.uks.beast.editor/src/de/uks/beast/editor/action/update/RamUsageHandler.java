@@ -40,6 +40,8 @@ public class RamUsageHandler extends DiagramUpdateHandler
 	{
 		final de.uks.beast.model.Server externalServer = model.serverFromHostName(info.getHost());
 		
+		final String ramValue = "" + Long.parseLong(info.getValue()) / (externalServer.getRam() * 1000000);
+		
 		for (final ContainerShape containerShape : serverShapes)
 		{
 			final Server serverFromEditor = (Server) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(
@@ -55,13 +57,13 @@ public class RamUsageHandler extends DiagramUpdateHandler
 				{
 					if (PropertyUtil.isAttributeShape(shape, Properties.RAM_STAT))
 					{
-						final Text ramStatText = (Text) shape;
+						final Text ramStatText = (Text) shape.getGraphicsAlgorithm();
 						
 						LOG.debug("Old value from ramStatTextfield: " + ramStatText.getValue());
 						domain.getCommandStack().execute(new RecordingCommand(domain) {
 							public void doExecute()
 							{
-								ramStatText.setValue(info.getValue());
+								ramStatText.setValue(ramValue);
 							}
 						});
 						LOG.debug("New value from ramStatTextfield: " + ramStatText.getValue());

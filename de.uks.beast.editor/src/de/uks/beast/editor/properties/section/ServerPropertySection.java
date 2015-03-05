@@ -6,12 +6,6 @@ import static de.uks.beast.editor.util.Properties.DISKSPACE_LABEL;
 import static de.uks.beast.editor.util.Properties.IP_LABEL;
 import static de.uks.beast.editor.util.Properties.RAM_LABEL;
 import static de.uks.beast.editor.util.Properties.SUBMIT;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import model.Room;
 import model.Server;
 
 import org.apache.log4j.LogManager;
@@ -19,11 +13,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
-import org.eclipse.graphiti.internal.services.GraphitiInternal;
-import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
-import org.eclipse.graphiti.mm.pictograms.PictogramLink;
-import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
 import org.eclipse.swt.SWT;
@@ -38,9 +28,6 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
-
-import de.uks.beast.editor.features.util.PropertyUtil;
-import de.uks.beast.editor.util.Properties;
 
 public class ServerPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {
@@ -182,79 +169,6 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 			}
 		});
 		
-		//TODO: just for testing
-		final Button testBtn = factory.createButton(composite, "TEST", 0);
-		data = new FormData();
-		data.left = new FormAttachment(0, 20);
-		data.right = new FormAttachment(20, 0);
-		data.top = new FormAttachment(0, VSPACE + 150);
-		testBtn.setLayoutData(data);
-		testBtn.addSelectionListener(new SelectionListener() {
-			
-			@SuppressWarnings ("restriction")
-			@Override
-			public void widgetSelected(SelectionEvent arg0)
-			{
-				for (final Shape shape : getDiagram().getChildren())
-				{
-					if (Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(shape) instanceof Room)
-					{
-						final Room room = (Room) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(shape);
-						
-						if (room != null && GraphitiInternal.getEmfService().isObjectAlive(room))
-						{
-							final Collection<PictogramLink> links = getDiagram().getPictogramLinks();
-							
-							for (final PictogramLink link : links)
-							{
-								if (Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(
-										link.getPictogramElement()) instanceof Server)
-								{
-									
-									final PictogramElement p = link.getPictogramElement();
-									if (p instanceof ContainerShape)
-									{
-										final List<ContainerShape> serverList = new ArrayList<>();
-										
-										final Server server = (Server) Graphiti.getLinkService()
-												.getBusinessObjectForLinkedPictogramElement(link.getPictogramElement());
-										
-										final ContainerShape serverShape = (ContainerShape) p;
-										serverList.add(serverShape);
-										
-										for (final Shape sh : serverShape.getChildren())
-										{
-											if (PropertyUtil.isAttributeShape(sh, Properties.RAM_STAT))
-											{
-												System.out.println("########## ram textfield of " + serverShape.hashCode());
-											}
-											else if (PropertyUtil.isAttributeShape(sh, Properties.CPU_STAT))
-											{
-												System.out.println("########## cpu textfield of " + serverShape.hashCode());
-											}
-										}
-									}
-									
-								}
-								
-							}
-						}
-					}
-				}
-				
-//				
-				
-			}
-			
-			
-			
-			@Override
-			public void widgetDefaultSelected(SelectionEvent arg0)
-			{
-				// TODO Auto-generated method stub
-				
-			}
-		});
 	}
 	
 	
@@ -288,44 +202,4 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		}
 	}
 	
-	private final class TestStats implements Runnable
-	{
-		private final org.eclipse.graphiti.mm.algorithms.Text	text;
-		
-		
-		
-		private TestStats(final org.eclipse.graphiti.mm.algorithms.Text text)
-		{
-			this.text = text;
-		}
-		
-		
-		
-		@Override
-		public void run()
-		{
-			while (true)
-			{
-				domain.getCommandStack().execute(new RecordingCommand(domain) {
-					public void doExecute()
-					{
-						int randomNumber = (int) ((Math.random() * 100) + 1);
-						text.setValue(String.valueOf(randomNumber));
-					}
-				});
-				
-				try
-				{
-					Thread.sleep(1000);
-				}
-				catch (InterruptedException e)
-				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			
-		}
-		
-	}
 }
