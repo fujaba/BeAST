@@ -25,7 +25,7 @@ import de.uks.beast.model.InstanceInformation;
 @SuppressWarnings ("restriction")
 public class DiagramUpdateMaster implements KeyListener
 {
-	private static final Logger							LOGGER	= LogManager.getLogger(MemoryUsedHandler.class);
+	private static final Logger							LOGGER	= LogManager.getLogger(RamUsageHandler.class);
 	private static final String							LOG		= "LOG";
 	
 	private final Diagram								diagram;
@@ -44,8 +44,8 @@ public class DiagramUpdateMaster implements KeyListener
 		final List<ContainerShape> serverShapes = generateServerShapeList();
 		LOGGER.debug("Generate shapeList with " + serverShapes.size() + " server from the editor");
 		
-		this.updateHandler.put("mem-used", new MemoryUsedHandler(diagram, model, serverShapes));
-		this.updateHandler.put("cpu-used", new CpuUsedHandler(diagram, model, serverShapes));
+		this.updateHandler.put("mem-used", new RamUsageHandler(diagram, model, serverShapes));
+		this.updateHandler.put("cpu-used", new CpuUsageHandler(diagram, model, serverShapes));
 	}
 	
 	

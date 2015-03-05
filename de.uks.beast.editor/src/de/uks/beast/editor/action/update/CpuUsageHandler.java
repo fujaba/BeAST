@@ -19,14 +19,14 @@ import de.uks.beast.model.Hardware;
 import de.uks.beast.model.InstanceInformation;
 import de.uks.beast.model.Server;
 
-public class CpuUsedHandler extends DiagramUpdateHandler
+public class CpuUsageHandler extends DiagramUpdateHandler
 {
-	private static final Logger			LOG	= LogManager.getLogger(CpuUsedHandler.class);
+	private static final Logger			LOG	= LogManager.getLogger(CpuUsageHandler.class);
 	private final List<ContainerShape>	serverShapes;
 	
 	
 	
-	public CpuUsedHandler(final Diagram diagram, final Hardware model, final List<ContainerShape> serverShapes)
+	public CpuUsageHandler(final Diagram diagram, final Hardware model, final List<ContainerShape> serverShapes)
 	{
 		super(diagram, model);
 		this.serverShapes = serverShapes;
