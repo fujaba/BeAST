@@ -1,7 +1,5 @@
 package de.uks.beast.editor.provider;
 
-import model.HadoopMaster;
-import model.HadoopSlave;
 import model.Network;
 import model.Rack;
 import model.Room;
@@ -108,7 +106,6 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 			if ((getBusinessObjectForPictogramElement(cc.getSourceAnchor().getParent()) instanceof Service)
 					&& (getBusinessObjectForPictogramElement(cc.getTargetAnchor().getParent()) instanceof Service))
 			{
-				
 				return new AddServiceConnection(this);
 			}
 			else

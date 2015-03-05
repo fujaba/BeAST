@@ -33,13 +33,15 @@ public class RamUsageHandler extends DiagramUpdateHandler
 		this.serverShapes = serverShapes;
 	}
 	
+	
+	
 	@Override
 	public void updateShape(final InstanceInformation info)
 	{
 		final de.uks.beast.model.Server externalServer = model.serverFromHostName(info.getHost());
 		
-		String temp = "" + (Double.parseDouble(info.getValue()) * 100);
-		final String ramValue = temp.substring(0, temp.indexOf("."));
+		final String tempValue = "" + (Double.parseDouble(info.getValue()) * 100);
+		final String ramValue = tempValue.substring(0, tempValue.indexOf("."));
 		
 		LOG.debug("Value: " + info.getValue() + ", Total: " + externalServer.getRam());
 		
@@ -56,20 +58,25 @@ public class RamUsageHandler extends DiagramUpdateHandler
 				
 				for (final Shape shape : containerShape.getChildren())
 				{
-					if (PropertyUtil.isAttributeShape(shape, Properties.RAM_STAT))
+					if (shape.getGraphicsAlgorithm() instanceof Text)
 					{
-						final Text ramStatText = (Text) shape.getGraphicsAlgorithm();
-						
-						LOG.debug("Old value from ramStatTextfield: " + ramStatText.getValue());
-						domain.getCommandStack().execute(new RecordingCommand(domain) {
-							public void doExecute()
-							{
-								ramStatText.setValue(ramValue);
-							}
-						});
-						LOG.debug("New value from ramStatTextfield: " + ramStatText.getValue());
-						
-						return;
+						if (PropertyUtil.isAttributeShape(shape, Properties.RAM_STAT))
+						{
+							final Text ramStatText = (Text) shape.getGraphicsAlgorithm();
+							
+							LOG.debug("Old value from ramStatTextfield: " + ramStatText.getValue());
+							
+							domain.getCommandStack().execute(new RecordingCommand(domain) {
+								public void doExecute()
+								{
+									ramStatText.setValue(ramValue);
+								}
+							});
+							
+							LOG.debug("New value from ramStatTextfield: " + ramStatText.getValue());
+							
+							return;
+						}
 					}
 				}
 			}

@@ -40,7 +40,10 @@ public class CpuUsageHandler extends DiagramUpdateHandler
 	{
 		final de.uks.beast.model.Server externalServer = model.serverFromHostName(info.getHost());
 		
-		final String cpuValue = "" + Long.parseLong(info.getValue()) / (externalServer.getCpu() * 1000000);
+		final String tempValue = "" + (Double.parseDouble(info.getValue()) * 100);
+		final String cpuValue = tempValue.substring(0, tempValue.indexOf("."));
+		
+		LOG.debug("Value: " + info.getValue() + ", Total: " + externalServer.getCpu());
 		
 		for (final ContainerShape containerShape : serverShapes)
 		{
@@ -55,21 +58,25 @@ public class CpuUsageHandler extends DiagramUpdateHandler
 				
 				for (final Shape shape : containerShape.getChildren())
 				{
-					if (PropertyUtil.isAttributeShape(shape, Properties.CPU_STAT))
+					if (shape.getGraphicsAlgorithm() instanceof Text)
 					{
-						final Text cpuStatText = (Text) shape.getGraphicsAlgorithm();
-						
-						
-						LOG.debug("Old value from cpuStatTextfield: " + cpuStatText.getValue());
-						domain.getCommandStack().execute(new RecordingCommand(domain) {
-							public void doExecute()
-							{
-								cpuStatText.setValue(cpuValue);
-							}
-						});
-						LOG.debug("New value from cpuStatTextfield: " + cpuStatText.getValue());
-						
-						return;
+						if (PropertyUtil.isAttributeShape(shape, Properties.CPU_STAT))
+						{
+							final Text cpuStatText = (Text) shape.getGraphicsAlgorithm();
+							
+							LOG.debug("Old value from cpuStatTextfield: " + cpuStatText.getValue());
+							
+							domain.getCommandStack().execute(new RecordingCommand(domain) {
+								public void doExecute()
+								{
+									cpuStatText.setValue(cpuValue);
+								}
+							});
+							
+							LOG.debug("New value from cpuStatTextfield: " + cpuStatText.getValue());
+							
+							return;
+						}
 					}
 				}
 			}
@@ -81,7 +88,8 @@ public class CpuUsageHandler extends DiagramUpdateHandler
 	
 	private boolean checkServerEquals(final de.uks.beast.model.Server externalServer, final Server serverFromEditor)
 	{
-		return externalServer.getHost().equals(serverFromEditor.getName()) && externalServer.getIp().equals(serverFromEditor.getIp());
+		return externalServer.getHost().equals(serverFromEditor.getName())
+				&& externalServer.getIp().equals(serverFromEditor.getIp());
 	}
 	
 }
