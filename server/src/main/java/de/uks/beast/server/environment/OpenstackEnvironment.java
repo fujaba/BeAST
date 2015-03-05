@@ -171,7 +171,8 @@ public class OpenstackEnvironment extends CloudEnvironment {
 				e.printStackTrace();
 			}
 			
-			configuration.setConnectionInfo(new ConnectionInfo(cf.getHost(), netFloatingIP.getFloatingIpAddress(), kp.getPrivateKey()));
+			configuration.setConnectionInfo(new ConnectionInfo(cf.getHost(), netFloatingIP.getFloatingIpAddress(), 
+					cf.getIp(), kp.getPrivateKey()));
 		}
 		
 	}

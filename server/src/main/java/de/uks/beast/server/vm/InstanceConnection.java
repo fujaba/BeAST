@@ -159,15 +159,25 @@ public class InstanceConnection {
 	public void executeService(String kafkabroker, String topic) {
 		try {
 			/* edit /etc/hosts file (adding ip and hostname of instance) */
+			String instanceEntry = connectionInfo.getPrivateIP() + "\t" + connectionInfo.getHostName();
+			logger.info("Adding " + instanceEntry);
+			Channel c = session.openChannel(EXEC);
+		    ChannelExec add_instance_to_hosts = (ChannelExec) c;
+		    add_instance_to_hosts.setCommand(ShellCommands.addToHostsFile(instanceEntry));
+		    add_instance_to_hosts.setErrStream(System.err);
+		    add_instance_to_hosts.connect();
+		    add_instance_to_hosts.disconnect();
+			
+			/* edit /etc/hosts file (adding ip and hostname of kafka broker) */
 			String hostname = getHostname(kafkabroker);
 			kafkabroker = kafkabroker.substring(kafkabroker.indexOf("/") + 1);
 			
-			Channel c = session.openChannel(EXEC);
+			/*c = session.openChannel(EXEC);
 		    ChannelExec edit_host = (ChannelExec) c;
-		    edit_host.setCommand(ShellCommands.addToHostsFile(hostname.replace(":", "\t")));
+		    edit_host.setCommand(ShellCommands.addToHostsFile(hostname));
 		    edit_host.setErrStream(System.err);
 		    edit_host.connect();
-		    edit_host.disconnect();
+		    edit_host.disconnect();*/
 			
 			/* execute postinstall script */
 			c = session.openChannel(EXEC);
@@ -231,7 +241,7 @@ public class InstanceConnection {
 	private String getHostname(String kafkabroker) {
 		String host = kafkabroker.substring(0, kafkabroker.indexOf("/"));
 		String ip = kafkabroker.substring(kafkabroker.indexOf("/") + 1, kafkabroker.indexOf(":"));
-		return ip + ":" + host;
+		return ip + "\t" + host;
 	}
 	
 	private void copyFolder(String src, String dest) {

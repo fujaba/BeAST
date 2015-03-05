@@ -7,17 +7,7 @@ import java.util.regex.Pattern;
 
 public class JujuStatusParser {
 	
-//	parseMachineIds("\"0\": agent-state: started. \"2\": hello. \"3\": hello");
-	
-	private static final String STR_MACHINES = "machines:";
-	private static final String STR_SERVICES = "services:";
-	
 	private List<Integer> machineIds;
-	private int numberOfMachines;
-	
-
-	private void parse(String message) {
-	}
 	
 	public static List<Integer> getMachineIdsList(String message) {
 		Pattern p = Pattern.compile("\"\\d+\":");
@@ -35,10 +25,6 @@ public class JujuStatusParser {
 	
 	public void setMachineIds(List<Integer> machineIds) {
 		this.machineIds = machineIds;
-	}
-	
-	private void addMachineId(Integer id) {
-		machineIds.add(id);
 	}
 	
 }

@@ -9,6 +9,7 @@ public class ConnectionInfo {
 
 	private String host;
 	private String IP;
+	private String privateIP;
 	private File key;
 	
 	public ConnectionInfo(String host, String IP) {
@@ -16,8 +17,9 @@ public class ConnectionInfo {
 		this.IP = IP;
 	}
 
-	public ConnectionInfo(String host, String IP, String privateKeyAsString) {
+	public ConnectionInfo(String host, String IP, String privateIP, String privateKeyAsString) {
 		this(host, IP);
+		this.privateIP = privateIP;
 		
 		/* create private key file for athentication */
 		try {
@@ -37,6 +39,10 @@ public class ConnectionInfo {
 	
 	public String getIp() {
 		return IP;
+	}
+	
+	public String getPrivateIP() {
+		return privateIP;
 	}
 	
 	public File getKey() {

@@ -59,7 +59,7 @@ public class JujuEnvironment extends ServiceEnvironment {
 			JujuClient.deploy(serviceInfo.getServiceName(), serviceInfo.getServiceType(), serviceInfo.getMachineID());
 			
 		}
-		
+/*		
 //		final Map<JujuServiceInfo, JujuServiceInfo> relations = new HashMap<>();
 //		cons.forEach(config -> System.out.println(config.getServiceInfo().getServiceName()));
 		
@@ -79,7 +79,7 @@ public class JujuEnvironment extends ServiceEnvironment {
 				JujuClient.addRelation(serviceInfo.getServiceType(),
 						serviceInfo.getRelatedService().getServiceType());
 			}
-		}
+		}*/
 		
 	}
 
