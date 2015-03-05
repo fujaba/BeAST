@@ -60,8 +60,8 @@ public class JujuEnvironment extends ServiceEnvironment {
 			
 		}
 		
-		final Map<JujuServiceInfo, JujuServiceInfo> relations = new HashMap<>();
-		cons.forEach(config -> System.out.println(config.getServiceInfo().getServiceName()));
+//		final Map<JujuServiceInfo, JujuServiceInfo> relations = new HashMap<>();
+//		cons.forEach(config -> System.out.println(config.getServiceInfo().getServiceName()));
 		
 		// Adding relations between services 
 		for (Configuration configuration : cons) {
@@ -69,11 +69,8 @@ public class JujuEnvironment extends ServiceEnvironment {
 					.getServiceInfo();
 
 			if (serviceInfo.getRelatedService() != null) {
-//				if (relations. && relations.containsKey(serviceInfo.getRelatedService())) {
-//					continue;
-//				}
 				
-				relations.put(serviceInfo, (JujuServiceInfo) serviceInfo.getRelatedService());
+//				relations.put(serviceInfo, (JujuServiceInfo) serviceInfo.getRelatedService());
 				
 				logger.info("Setting relationships between \""
 						+ serviceInfo.getServiceType() + "\" and \""
