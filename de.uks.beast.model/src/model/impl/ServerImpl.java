@@ -21,8 +21,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link model.impl.ServerImpl#getIp <em>Ip</em>}</li>
- *   <li>{@link model.impl.ServerImpl#getCpuAmount <em>Cpu Amount</em>}</li>
- *   <li>{@link model.impl.ServerImpl#getCpuType <em>Cpu Type</em>}</li>
+ *   <li>{@link model.impl.ServerImpl#getCpuCores <em>Cpu Cores</em>}</li>
  *   <li>{@link model.impl.ServerImpl#getRam <em>Ram</em>}</li>
  *   <li>{@link model.impl.ServerImpl#getDiskSpace <em>Disk Space</em>}</li>
  *   <li>{@link model.impl.ServerImpl#getName <em>Name</em>}</li>
@@ -56,45 +55,25 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	protected String				ip					= IP_EDEFAULT;
 	
 	/**
-	 * The default value of the '{@link #getCpuAmount() <em>Cpu Amount</em>}' attribute.
+	 * The default value of the '{@link #getCpuCores() <em>Cpu Cores</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCpuAmount()
+	 * @see #getCpuCores()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int		CPU_AMOUNT_EDEFAULT	= 0;
-	
+	protected static final int CPU_CORES_EDEFAULT = 0;
+
 	/**
-	 * The cached value of the '{@link #getCpuAmount() <em>Cpu Amount</em>}' attribute.
+	 * The cached value of the '{@link #getCpuCores() <em>Cpu Cores</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCpuAmount()
+	 * @see #getCpuCores()
 	 * @generated
 	 * @ordered
 	 */
-	protected int					cpuAmount			= CPU_AMOUNT_EDEFAULT;
-	
-	/**
-	 * The default value of the '{@link #getCpuType() <em>Cpu Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCpuType()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String	CPU_TYPE_EDEFAULT	= "0";
-	
-	/**
-	 * The cached value of the '{@link #getCpuType() <em>Cpu Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCpuType()
-	 * @generated
-	 * @ordered
-	 */
-	protected String				cpuType				= CPU_TYPE_EDEFAULT;
-	
+	protected int cpuCores = CPU_CORES_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getRam() <em>Ram</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -236,55 +215,28 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getCpuAmount()
+	public int getCpuCores()
 	{
-		return cpuAmount;
+		return cpuCores;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCpuAmount(int newCpuAmount)
+	public void setCpuCores(int newCpuCores)
 	{
-		int oldCpuAmount = cpuAmount;
-		cpuAmount = newCpuAmount;
+		int oldCpuCores = cpuCores;
+		cpuCores = newCpuCores;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.SERVER__CPU_AMOUNT, oldCpuAmount, cpuAmount));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.SERVER__CPU_CORES, oldCpuCores, cpuCores));
 	}
-	
-	
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getCpuType()
-	{
-		return cpuType;
-	}
-	
-	
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setCpuType(String newCpuType)
-	{
-		String oldCpuType = cpuType;
-		cpuType = newCpuType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.SERVER__CPU_TYPE, oldCpuType, cpuType));
-	}
-	
-	
-	
+
+
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -540,10 +492,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 		{
 			case ModelPackage.SERVER__IP:
 				return getIp();
-			case ModelPackage.SERVER__CPU_AMOUNT:
-				return getCpuAmount();
-			case ModelPackage.SERVER__CPU_TYPE:
-				return getCpuType();
+			case ModelPackage.SERVER__CPU_CORES:
+				return getCpuCores();
 			case ModelPackage.SERVER__RAM:
 				return getRam();
 			case ModelPackage.SERVER__DISK_SPACE:
@@ -574,11 +524,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 			case ModelPackage.SERVER__IP:
 				setIp((String)newValue);
 				return;
-			case ModelPackage.SERVER__CPU_AMOUNT:
-				setCpuAmount((Integer)newValue);
-				return;
-			case ModelPackage.SERVER__CPU_TYPE:
-				setCpuType((String)newValue);
+			case ModelPackage.SERVER__CPU_CORES:
+				setCpuCores((Integer)newValue);
 				return;
 			case ModelPackage.SERVER__RAM:
 				setRam((Integer)newValue);
@@ -614,11 +561,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 			case ModelPackage.SERVER__IP:
 				setIp(IP_EDEFAULT);
 				return;
-			case ModelPackage.SERVER__CPU_AMOUNT:
-				setCpuAmount(CPU_AMOUNT_EDEFAULT);
-				return;
-			case ModelPackage.SERVER__CPU_TYPE:
-				setCpuType(CPU_TYPE_EDEFAULT);
+			case ModelPackage.SERVER__CPU_CORES:
+				setCpuCores(CPU_CORES_EDEFAULT);
 				return;
 			case ModelPackage.SERVER__RAM:
 				setRam(RAM_EDEFAULT);
@@ -653,10 +597,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 		{
 			case ModelPackage.SERVER__IP:
 				return IP_EDEFAULT == null ? ip != null : !IP_EDEFAULT.equals(ip);
-			case ModelPackage.SERVER__CPU_AMOUNT:
-				return cpuAmount != CPU_AMOUNT_EDEFAULT;
-			case ModelPackage.SERVER__CPU_TYPE:
-				return CPU_TYPE_EDEFAULT == null ? cpuType != null : !CPU_TYPE_EDEFAULT.equals(cpuType);
+			case ModelPackage.SERVER__CPU_CORES:
+				return cpuCores != CPU_CORES_EDEFAULT;
 			case ModelPackage.SERVER__RAM:
 				return ram != RAM_EDEFAULT;
 			case ModelPackage.SERVER__DISK_SPACE:
@@ -686,10 +628,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (ip: ");
 		result.append(ip);
-		result.append(", cpuAmount: ");
-		result.append(cpuAmount);
-		result.append(", cpuType: ");
-		result.append(cpuType);
+		result.append(", cpuCores: ");
+		result.append(cpuCores);
 		result.append(", ram: ");
 		result.append(ram);
 		result.append(", diskSpace: ");

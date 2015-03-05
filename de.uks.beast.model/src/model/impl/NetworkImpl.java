@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link model.impl.NetworkImpl#getGateway <em>Gateway</em>}</li>
  *   <li>{@link model.impl.NetworkImpl#getDns <em>Dns</em>}</li>
  *   <li>{@link model.impl.NetworkImpl#getRouter <em>Router</em>}</li>
- *   <li>{@link model.impl.NetworkImpl#getId <em>Id</em>}</li>
  *   <li>{@link model.impl.NetworkImpl#getName <em>Name</em>}</li>
  *   <li>{@link model.impl.NetworkImpl#getServer <em>Server</em>}</li>
  * </ul>
@@ -128,26 +127,6 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	 * @ordered
 	 */
 	protected EList<Router> router;
-
-	/**
-	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getId()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String ID_EDEFAULT = "0";
-
-	/**
-	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getId()
-	 * @generated
-	 * @ordered
-	 */
-	protected String id = ID_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -347,31 +326,6 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getId() {
-		return id;
-	}
-
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setId(String newId) {
-		String oldId = id;
-		id = newId;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.NETWORK__ID, oldId, id));
-	}
-
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getName() {
 		return name;
 	}
@@ -453,8 +407,6 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 				return getDns();
 			case ModelPackage.NETWORK__ROUTER:
 				return getRouter();
-			case ModelPackage.NETWORK__ID:
-				return getId();
 			case ModelPackage.NETWORK__NAME:
 				return getName();
 			case ModelPackage.NETWORK__SERVER:
@@ -491,9 +443,6 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 			case ModelPackage.NETWORK__ROUTER:
 				getRouter().clear();
 				getRouter().addAll((Collection<? extends Router>)newValue);
-				return;
-			case ModelPackage.NETWORK__ID:
-				setId((String)newValue);
 				return;
 			case ModelPackage.NETWORK__NAME:
 				setName((String)newValue);
@@ -533,9 +482,6 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 			case ModelPackage.NETWORK__ROUTER:
 				getRouter().clear();
 				return;
-			case ModelPackage.NETWORK__ID:
-				setId(ID_EDEFAULT);
-				return;
 			case ModelPackage.NETWORK__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -568,8 +514,6 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 				return DNS_EDEFAULT == null ? dns != null : !DNS_EDEFAULT.equals(dns);
 			case ModelPackage.NETWORK__ROUTER:
 				return router != null && !router.isEmpty();
-			case ModelPackage.NETWORK__ID:
-				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 			case ModelPackage.NETWORK__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ModelPackage.NETWORK__SERVER:
@@ -599,8 +543,6 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 		result.append(gateway);
 		result.append(", dns: ");
 		result.append(dns);
-		result.append(", id: ");
-		result.append(id);
 		result.append(", name: ");
 		result.append(name);
 		result.append(')');

@@ -42,7 +42,7 @@ public class CreateCassandraFeature extends AbstractCreateFeature
 	public Object[] create(final ICreateContext context)
 	{
 		final Service service = ModelFactory.eINSTANCE.createCassandra();
-		service.setType(Strings.CASSANDRA.text());
+		service.setTitle(Strings.CASSANDRA.text());
 		final Server server = (Server) getBusinessObjectForPictogramElement(context.getTargetContainer());
 		server.setService(service);
 		addGraphicalRepresentation(context, service);

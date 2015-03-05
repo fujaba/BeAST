@@ -11,6 +11,8 @@ import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
+import de.uks.beast.editor.features.util.PropertyUtil;
+import static de.uks.beast.editor.util.Properties.NAME;
 import static de.uks.beast.editor.util.Strings.*;
 
 public class DirectEditRouterFeature extends AbstractDirectEditingFeature implements IDirectEditingFeature
@@ -38,7 +40,7 @@ public class DirectEditRouterFeature extends AbstractDirectEditingFeature implem
 		final Object bo = getBusinessObjectForPictogramElement(pe);
 		final GraphicsAlgorithm ga = context.getGraphicsAlgorithm();
 		
-		if (bo instanceof Router && ga instanceof Text)
+		if (bo instanceof Router && ga instanceof Text && PropertyUtil.isAttributeShape(pe, NAME))
 		{
 			return true;
 		}

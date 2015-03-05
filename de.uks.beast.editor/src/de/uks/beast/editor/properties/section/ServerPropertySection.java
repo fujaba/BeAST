@@ -1,7 +1,6 @@
 package de.uks.beast.editor.properties.section;
 
-import static de.uks.beast.editor.util.Properties.CPU_AMOUNT_LABEL;
-import static de.uks.beast.editor.util.Properties.CPU_TYPE_LABEL;
+import static de.uks.beast.editor.util.Properties.CPU_CORES_LABEL;
 import static de.uks.beast.editor.util.Properties.DISKSPACE_LABEL;
 import static de.uks.beast.editor.util.Properties.IP_LABEL;
 import static de.uks.beast.editor.util.Properties.RAM_LABEL;
@@ -33,8 +32,7 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 {
 	private static final Logger			LOG	= LogManager.getLogger(ServerPropertySection.class);
 	private Text						ipTextFld;
-	private Text						cpuAmountTextFld;
-	private Text						cpuTypeTextFld;
+	private Text						cpuCoresTextFld;
 	private Text						ramTextFld;
 	private Text						diskSpaceTextFld;
 	private Button						submitBtn;
@@ -68,41 +66,26 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		valueLabel.setLayoutData(data);
 		
 		// Property_cpuAmount
-		cpuAmountTextFld = factory.createText(composite, "");
+		cpuCoresTextFld = factory.createText(composite, "");
 		data = new FormData();
 		data.left = new FormAttachment(0, STANDARD_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, VSPACE + 25);
-		cpuAmountTextFld.setLayoutData(data);
+		cpuCoresTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe2 = factory.createCLabel(composite, CPU_AMOUNT_LABEL.getProperty());
+		final CLabel valueLabe2 = factory.createCLabel(composite, CPU_CORES_LABEL.getProperty());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(cpuAmountTextFld, valueLabe2.getText().length());
-		data.top = new FormAttachment(cpuAmountTextFld, 0, SWT.CENTER);
+		data.right = new FormAttachment(cpuCoresTextFld, valueLabe2.getText().length());
+		data.top = new FormAttachment(cpuCoresTextFld, 0, SWT.CENTER);
 		valueLabe2.setLayoutData(data);
-		
-		// Property_cpuType
-		cpuTypeTextFld = factory.createText(composite, "");
-		data = new FormData();
-		data.left = new FormAttachment(0, STANDARD_LABEL_WIDTH);
-		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, VSPACE + 50);
-		cpuTypeTextFld.setLayoutData(data);
-		
-		final CLabel valueLabe3 = factory.createCLabel(composite, CPU_TYPE_LABEL.getProperty());
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(cpuTypeTextFld, valueLabe3.getText().length());
-		data.top = new FormAttachment(cpuTypeTextFld, 0, SWT.CENTER);
-		valueLabe3.setLayoutData(data);
 		
 		// Property_ram
 		ramTextFld = factory.createText(composite, "");
 		data = new FormData();
 		data.left = new FormAttachment(0, STANDARD_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, VSPACE + 75);
+		data.top = new FormAttachment(0, VSPACE + 50);
 		ramTextFld.setLayoutData(data);
 		
 		final CLabel valueLabe4 = factory.createCLabel(composite, RAM_LABEL.getProperty());
@@ -117,7 +100,7 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data = new FormData();
 		data.left = new FormAttachment(0, STANDARD_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, VSPACE + 100);
+		data.top = new FormAttachment(0, VSPACE + 75);
 		diskSpaceTextFld.setLayoutData(data);
 		
 		final CLabel valueLabe5 = factory.createCLabel(composite, DISKSPACE_LABEL.getProperty());
@@ -132,7 +115,7 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data = new FormData();
 		data.left = new FormAttachment(0, 20);
 		data.right = new FormAttachment(20, 0);
-		data.top = new FormAttachment(0, VSPACE + 125);
+		data.top = new FormAttachment(0, VSPACE + 100);
 		submitBtn.setLayoutData(data);
 		submitBtn.addSelectionListener(new SelectionListener() {
 			
@@ -143,14 +126,12 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 					public void doExecute()
 					{
 						server.setIp(ipTextFld.getText());
-						server.setCpuAmount(Integer.parseInt(cpuAmountTextFld.getText()));
-						server.setCpuType(cpuTypeTextFld.getText());
+						server.setCpuCores(Integer.parseInt(cpuCoresTextFld.getText()));
 						server.setRam(Integer.parseInt(ramTextFld.getText()));
 						server.setDiskSpace(Integer.parseInt(diskSpaceTextFld.getText()));
 						
 						LOG.debug("server hash: " + server.hashCode() + " -> ip: " + server.getIp());
-						LOG.debug("server hash: " + server.hashCode() + " -> cpu amount: " + server.getCpuAmount());
-						LOG.debug("server hash: " + server.hashCode() + " -> cpu Type: " + server.getCpuType());
+						LOG.debug("server hash: " + server.hashCode() + " -> cpu amount: " + server.getCpuCores());
 						LOG.debug("server hash: " + server.hashCode() + " -> ram: " + server.getRam());
 						LOG.debug("server hash: " + server.hashCode() + " -> diskspace: " + server.getDiskSpace());
 						LOG.debug("server hash: " + server.hashCode() + " -> host: " + server.getName());
@@ -176,8 +157,7 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 	private void setPreDefinedValuesToSheet()
 	{
 		ipTextFld.setText("" + server.getIp());
-		cpuAmountTextFld.setText("" + server.getCpuAmount());
-		cpuTypeTextFld.setText("" + server.getCpuType());
+		cpuCoresTextFld.setText("" + server.getCpuCores());
 		ramTextFld.setText("" + server.getRam());
 		diskSpaceTextFld.setText("" + server.getDiskSpace());
 	}

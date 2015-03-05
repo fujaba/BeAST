@@ -11,8 +11,7 @@ public enum Properties
 	// keys
 	NAME						("name"),
 	IP							("ip"),
-	CPU_AMOUNT					("cpuamount"),
-	CPU_TYPE					("cputype"),
+	CPU_CORES					("cpucores"),
 	RAM							("ram"),
 	DISKSPACE					("diskspace"),
 	ID							("id"),
@@ -25,16 +24,15 @@ public enum Properties
 	
 	//Properties/ Labels
 	IP_LABEL					("IP: "),
-	CPU_AMOUNT_LABEL			("CPU amount: "),
-	CPU_TYPE_LABEL				("CPU type: "),
+	CPU_CORES_LABEL				("CPU cores: "),
 	RAM_LABEL					("RAM [mb]: "),
-	DISKSPACE_LABEL				("Disk space [mb]: "),
+	DISKSPACE_LABEL				("Diskspace [mb]: "),
 	ID_LABEL					("ID: "),
 	EXTERNAL_GATEWAY_LABEL		("External gateway: "),
 	SUBNET_MASK_LABEL			("Subnet mask: "),
 	GATEWAY_LABEL				("Gateway: "),
 	DNS_LABEL					("DNS: "),
-	SUBMIT						("submit"),
+	SUBMIT						("Submit"),
 	;//@formatter:on
 	
 	private final String	property;

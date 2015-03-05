@@ -107,22 +107,22 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		
 		// SHAPE FOR RESOURCE STAT RAM
 		final Shape ramStatTextShape = createShape(peCreateService, containerShape);
-		final Text ramStatText = createTextShape(gaService, ramStatTextShape, X_PROPERTY - 5, 0, 1, HEIGHT_PROPERTY, "100");
+		final Text ramStatText = createTextShape(gaService, ramStatTextShape, X_PROPERTY - 5, 0, 1, HEIGHT_PROPERTY, "--");
 		ramStatText.setHorizontalAlignment(Orientation.ALIGNMENT_RIGHT);
 		PropertyUtil.setAttributeShape(ramStatTextShape, RAM_STAT);
 		
 		// create link and wire it
-		//link(ramStatTextShape, server);
+		link(ramStatTextShape, server);
 		
 		// SHAPE FOR RESOURCE STAT CPU
 		final Shape cpuStatTextShape = createShape(peCreateService, containerShape);
 		final Text cpuStatText = createTextShape(gaService, cpuStatTextShape, ramStatText.getX() - 20, 0, 1, HEIGHT_PROPERTY,
-				"80");
+				"--");
 		cpuStatText.setHorizontalAlignment(Orientation.ALIGNMENT_RIGHT);
 		PropertyUtil.setAttributeShape(cpuStatTextShape, CPU_STAT);
 		
 		// create link and wire it
-		//link(cpuStatTextShape, server);
+		link(cpuStatTextShape, server);
 		
 		final Shape statsLabelShape = createShape(peCreateService, containerShape);
 		final Text statsLabelText = createTextShape(gaService, statsLabelShape, cpuStatText.getX() - 18, 0, 10, HEIGHT_LABEL,
@@ -154,40 +154,26 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		
 		//SHAPE FOR PROPERTY CPU_AMOUNT
 		// create shape for text
-		final Shape cpuAmountTextShape = createShape(peCreateService, containerShape);
-		final Shape cpuAmountLabelShape = createShape(peCreateService, containerShape);
+		final Shape cpuCoresTextShape = createShape(peCreateService, containerShape);
+		final Shape cpuCoresLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text cpuAmountLabelText = createTextShape(gaService, cpuAmountLabelShape, X_PROPERTY, 30, WIDTH_LABEL,
-				HEIGHT_LABEL, CPU_AMOUNT_LABEL.getProperty());
-		createTextShape(gaService, cpuAmountTextShape, cpuAmountLabelText.getWidth(), 30, WIDTH_PROPERTY, HEIGHT_PROPERTY,
-				String.valueOf(server.getCpuAmount()));
-		PropertyUtil.setAttributeShape(cpuAmountTextShape, CPU_AMOUNT);
+		final Text cpuCoresLabelText = createTextShape(gaService, cpuCoresLabelShape, X_PROPERTY, 30, WIDTH_LABEL, HEIGHT_LABEL,
+				CPU_CORES_LABEL.getProperty());
+		createTextShape(gaService, cpuCoresTextShape, cpuCoresLabelText.getWidth(), 30, WIDTH_PROPERTY, HEIGHT_PROPERTY,
+				String.valueOf(server.getCpuCores()));
+		PropertyUtil.setAttributeShape(cpuCoresTextShape, CPU_CORES);
 		
 		// create link and wire it
-		link(cpuAmountTextShape, server);
-		
-		//SHAPE FOR PROPERTY CPU_TYPE
-		// create shape for text
-		final Shape cpuTypeTextShape = createShape(peCreateService, containerShape);
-		final Shape cpuTypeLabelShape = createShape(peCreateService, containerShape);
-		// create and set text graphics algorithm
-		final Text cpuTypeLabelText = createTextShape(gaService, cpuTypeLabelShape, X_PROPERTY, 40, WIDTH_LABEL, HEIGHT_LABEL,
-				CPU_TYPE.getProperty());
-		createTextShape(gaService, cpuTypeTextShape, cpuTypeLabelText.getWidth(), 40, WIDTH_PROPERTY, HEIGHT_PROPERTY,
-				server.getCpuType());
-		PropertyUtil.setAttributeShape(cpuTypeTextShape, CPU_TYPE);
-		
-		// create link and wire it
-		link(cpuTypeTextShape, server);
+		link(cpuCoresTextShape, server);
 		
 		//SHAPE FOR PROPERTY RAM
 		// create shape for text
 		final Shape ramTextShape = createShape(peCreateService, containerShape);
 		final Shape ramLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text ramLabelText = createTextShape(gaService, ramLabelShape, X_PROPERTY, 50, WIDTH_LABEL, HEIGHT_LABEL,
+		final Text ramLabelText = createTextShape(gaService, ramLabelShape, X_PROPERTY, 40, WIDTH_LABEL, HEIGHT_LABEL,
 				RAM_LABEL.getProperty());
-		createTextShape(gaService, ramTextShape, ramLabelText.getWidth(), 50, WIDTH_PROPERTY, HEIGHT_PROPERTY,
+		createTextShape(gaService, ramTextShape, ramLabelText.getWidth(), 40, WIDTH_PROPERTY, HEIGHT_PROPERTY,
 				String.valueOf(server.getRam()));
 		PropertyUtil.setAttributeShape(ramTextShape, RAM);
 		
@@ -199,9 +185,9 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		final Shape diskSpaceTextShape = createShape(peCreateService, containerShape);
 		final Shape diskSpaceLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text diskSpaceLabelText = createTextShape(gaService, diskSpaceLabelShape, X_PROPERTY, 60, WIDTH_LABEL,
+		final Text diskSpaceLabelText = createTextShape(gaService, diskSpaceLabelShape, X_PROPERTY, 50, WIDTH_LABEL,
 				HEIGHT_LABEL, DISKSPACE_LABEL.getProperty());
-		createTextShape(gaService, diskSpaceTextShape, diskSpaceLabelText.getWidth(), 60, WIDTH_PROPERTY, HEIGHT_PROPERTY,
+		createTextShape(gaService, diskSpaceTextShape, diskSpaceLabelText.getWidth(), 50, WIDTH_PROPERTY, HEIGHT_PROPERTY,
 				String.valueOf(server.getDiskSpace()));
 		PropertyUtil.setAttributeShape(diskSpaceTextShape, DISKSPACE);
 		

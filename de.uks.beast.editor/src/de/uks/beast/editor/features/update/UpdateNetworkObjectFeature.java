@@ -4,8 +4,6 @@ import static de.uks.beast.editor.util.Properties.DNS;
 import static de.uks.beast.editor.util.Strings.DNS_TRUE_REASON;
 import static de.uks.beast.editor.util.Properties.GATEWAY;
 import static de.uks.beast.editor.util.Strings.GATEWAY_TRUE_REASON;
-import static de.uks.beast.editor.util.Properties.ID;
-import static de.uks.beast.editor.util.Strings.ID_TRUE_REASON;
 import static de.uks.beast.editor.util.Properties.IP;
 import static de.uks.beast.editor.util.Strings.IP_TRUE_REASON;
 import static de.uks.beast.editor.util.Properties.NAME;
@@ -31,7 +29,6 @@ public class UpdateNetworkObjectFeature extends AbstractUpdateFeature
 	// retrieve values from pictogram model
 	private String	pictogramName		= null;
 	private String	pictogramIp			= null;
-	private String	pictogramId			= null;
 	private String	pictogramDns		= null;
 	private String	pictogramGateway	= null;
 	private String	pictogramSubnetMask	= null;
@@ -39,7 +36,6 @@ public class UpdateNetworkObjectFeature extends AbstractUpdateFeature
 	// retrieve values from business model
 	private String	businessName		= null;
 	private String	businessIp			= null;
-	private String	businessId			= null;
 	private String	businessDns			= null;
 	private String	businessGateway		= null;
 	private String	businessSubnetMask	= null;
@@ -87,10 +83,6 @@ public class UpdateNetworkObjectFeature extends AbstractUpdateFeature
 					{
 						pictogramIp = text.getValue();
 					}
-					else if (PropertyUtil.isAttributeShape(shape, ID))
-					{
-						pictogramId = text.getValue();
-					}
 					else if (PropertyUtil.isAttributeShape(shape, DNS))
 					{
 						pictogramDns = text.getValue();
@@ -114,7 +106,6 @@ public class UpdateNetworkObjectFeature extends AbstractUpdateFeature
 			final Network network = (Network) bo;
 			businessName = network.getName();
 			businessIp = network.getIp();
-			businessId = network.getId();
 			businessDns = network.getDns();
 			businessGateway = network.getGateway();
 			businessSubnetMask = network.getSubnetmask();
@@ -127,10 +118,6 @@ public class UpdateNetworkObjectFeature extends AbstractUpdateFeature
 		else if (PropertyUtil.updateNeeded(pictogramIp, businessIp))
 		{
 			return Reason.createTrueReason(IP_TRUE_REASON.text());
-		}
-		else if (PropertyUtil.updateNeeded(pictogramId, businessId))
-		{
-			return Reason.createTrueReason(ID_TRUE_REASON.text());
 		}
 		else if (PropertyUtil.updateNeeded(pictogramDns, businessDns))
 		{
@@ -163,7 +150,6 @@ public class UpdateNetworkObjectFeature extends AbstractUpdateFeature
 			final Network network = (Network) bo;
 			businessName = network.getName();
 			businessIp = network.getIp();
-			businessId = network.getId();
 			businessDns = network.getDns();
 			businessGateway = network.getGateway();
 			businessSubnetMask = network.getSubnetmask();
@@ -186,10 +172,6 @@ public class UpdateNetworkObjectFeature extends AbstractUpdateFeature
 					else if (PropertyUtil.isAttributeShape(shape, IP))
 					{
 						text.setValue(businessIp);
-					}
-					else if (PropertyUtil.isAttributeShape(shape, ID))
-					{
-						text.setValue(businessId);
 					}
 					else if (PropertyUtil.isAttributeShape(shape, DNS))
 					{

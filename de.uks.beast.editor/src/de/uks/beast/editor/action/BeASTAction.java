@@ -40,44 +40,50 @@ import de.uks.beast.model.Network;
 
 public class BeASTAction implements IObjectActionDelegate
 {
-
+	
 	private IStructuredSelection	selection;
 	private Shell					shell;
-	private MessageConsoleStream consoleStream;
+	private MessageConsoleStream	consoleStream;
+	
+	
 	
 	@Override
 	public void run(final IAction action)
 	{
-		Hardware hw = new Hardware();
+		final Hardware hw = new Hardware();
 		
 		//parse diagram
-		Diagram diagram = EditorDiagramTypeProvider.getCurrentDiagram();
-		EList<Shape> children = diagram.getChildren();
-		for (Shape shape : children) {
-			EObject roomOrNetwork = shape.getLink().getBusinessObjects().get(0);
+		final Diagram diagram = EditorDiagramTypeProvider.getCurrentDiagram();
+		final EList<Shape> children = diagram.getChildren();
+		
+		for (final Shape shape : children)
+		{
+			final EObject roomOrNetwork = shape.getLink().getBusinessObjects().get(0);
 			
-			if (roomOrNetwork instanceof NetworkImpl) {
-				NetworkImpl network = (NetworkImpl) roomOrNetwork;
+			if (roomOrNetwork instanceof NetworkImpl)
+			{
+				final NetworkImpl network = (NetworkImpl) roomOrNetwork;
 				
-				Network net = new Network();
+				final Network net = new Network();
 				net.setGateway(network.getGateway());
 				net.setIp(network.getIp());
 				net.setName(network.getName());
 				net.setSubnetmask(network.getSubnetmask());
 				net.setDns(network.getDns());
 				
-				for (Server server : network.getServer()) {
-					de.uks.beast.model.Server s = new de.uks.beast.model.Server();
-					s.setCpu(server.getCpuAmount());
+				for (final Server server : network.getServer())
+				{
+					final de.uks.beast.model.Server s = new de.uks.beast.model.Server();
+					s.setCpu(server.getCpuCores());
 					s.setDiskSpace(server.getDiskSpace());
 					s.setHost(server.getName());
 					s.setIp(server.getIp());
 					s.setRam(server.getRam());
 					
-					de.uks.beast.model.Service service = new de.uks.beast.model.Service();
+					final de.uks.beast.model.Service service = new de.uks.beast.model.Service();
 					service.setServiceName(server.getService().getServiceName());
 					service.setServiceType(server.getService().getServiceType());
-
+					
 					s.setService(service);
 					s.setNetwork(net);
 					net.addToServer(s);
@@ -89,18 +95,21 @@ public class BeASTAction implements IObjectActionDelegate
 		}
 		
 		//open console
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();
-		MessageConsole console = findConsole("BeAST Session ID (" + dateFormat.format(date) +  ")");
+		final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		final Date date = new Date();
+		final MessageConsole console = findConsole("BeAST Session ID (" + dateFormat.format(date) + ")");
 		
-		try {
-			IWorkbench wb = PlatformUI.getWorkbench();
-			IWorkbenchWindow win = wb.getActiveWorkbenchWindow();
-			IWorkbenchPage page = win.getActivePage();
-			IConsoleView view = (IConsoleView) page.showView(IConsoleConstants.ID_CONSOLE_VIEW);
+		try
+		{
+			final IWorkbench wb = PlatformUI.getWorkbench();
+			final IWorkbenchWindow win = wb.getActiveWorkbenchWindow();
+			final IWorkbenchPage page = win.getActivePage();
+			final IConsoleView view = (IConsoleView) page.showView(IConsoleConstants.ID_CONSOLE_VIEW);
 			view.display(console);
 			
-		} catch (PartInitException e) {
+		}
+		catch (final PartInitException e)
+		{
 			e.printStackTrace();
 		}
 		
@@ -109,17 +118,17 @@ public class BeASTAction implements IObjectActionDelegate
 		printToConsole("Started BeAST session...");
 		printToConsole("Connecting to BeAST server 141.51.169.20:4410");
 		
-		BeastTestScenario test = new BeastTestScenario();
+		final BeastTestScenario test = new BeastTestScenario();
 		test.setEnvironment(new TestEnvironment("141.51.169.20", 4410));
 		
 		printToConsole("Waiting for metadata...");
-		String kafkaInfos = test.executeEnvironment(hw);
+		final String kafkaInfos = test.executeEnvironment(hw);
 		printToConsole("Connecting to Kafka...");
 		
-		String[] metadata = kafkaInfos.split(" ");
+		final String[] metadata = kafkaInfos.split(" ");
 		
-		DiagramUpdateMaster updateMaster = new DiagramUpdateMaster(this, diagram, hw);
-		KafkaListener listener = new KafkaListener(updateMaster, metadata[1].trim(), metadata[0].trim());
+		final DiagramUpdateMaster updateMaster = new DiagramUpdateMaster(this, diagram, hw);
+		final KafkaListener listener = new KafkaListener(updateMaster, metadata[1].trim(), metadata[0].trim());
 		listener.start();
 	}
 	
@@ -146,26 +155,37 @@ public class BeASTAction implements IObjectActionDelegate
 		return shell;
 	}
 	
-	public IStructuredSelection getSelection() {
+	
+	
+	public IStructuredSelection getSelection()
+	{
 		return selection;
 	}
-
-	private MessageConsole findConsole(String name) {
-		ConsolePlugin plugin = ConsolePlugin.getDefault();
-		IConsoleManager conMan = plugin.getConsoleManager();
-		IConsole[] existing = conMan.getConsoles();
+	
+	
+	
+	private MessageConsole findConsole(final String name)
+	{
+		final ConsolePlugin plugin = ConsolePlugin.getDefault();
+		final IConsoleManager conMan = plugin.getConsoleManager();
+		final IConsole[] existing = conMan.getConsoles();
+		
 		for (int i = 0; i < existing.length; i++)
 			if (name.equals(existing[i].getName()))
 				return (MessageConsole) existing[i];
 		// no console found, so create a new one
-		MessageConsole myConsole = new MessageConsole(name, null);
+		final MessageConsole myConsole = new MessageConsole(name, null);
 		conMan.addConsoles(new IConsole[] { myConsole });
+		
 		return myConsole;
 	}
 	
-	public void printToConsole(String message) {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();
+	
+	
+	public void printToConsole(final String message)
+	{
+		final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		final Date date = new Date();
 		consoleStream.println(dateFormat.format(date) + ": " + message);
 	}
 	

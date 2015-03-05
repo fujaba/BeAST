@@ -4,14 +4,12 @@ import static de.uks.beast.editor.util.Properties.DNS;
 import static de.uks.beast.editor.util.Properties.DNS_LABEL;
 import static de.uks.beast.editor.util.Properties.GATEWAY;
 import static de.uks.beast.editor.util.Properties.GATEWAY_LABEL;
-import static de.uks.beast.editor.util.Properties.ID;
-import static de.uks.beast.editor.util.Properties.ID_LABEL;
 import static de.uks.beast.editor.util.Properties.IP;
 import static de.uks.beast.editor.util.Properties.IP_LABEL;
 import static de.uks.beast.editor.util.Properties.NAME;
-import static de.uks.beast.editor.util.Properties.TYPE_NETWORK;
 import static de.uks.beast.editor.util.Properties.SUBNET_MASK;
 import static de.uks.beast.editor.util.Properties.SUBNET_MASK_LABEL;
+import static de.uks.beast.editor.util.Properties.TYPE_NETWORK;
 import model.Network;
 
 import org.eclipse.graphiti.features.IDirectEditingInfo;
@@ -141,27 +139,14 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		// create link and wire it
 		link(ipTextShape, network);
 		
-		//SHAPE FOR PROPERTY ID
-		// create shape for text
-		final Shape idTextShape = createShape(peCreateService, containerShape);
-		final Shape idLabelShape = createShape(peCreateService, containerShape);
-		// create and set text graphics algorithm
-		final Text idLabelText = createTextShape(gaService, idLabelShape, X_PROPERTY, 30, WIDTH_LABEL, HEIGHT_LABEL,
-				ID_LABEL.getProperty());
-		createTextShape(gaService, idTextShape, idLabelText.getWidth(), 30, WIDTH_PROPERTY, HEIGHT_PROPERTY, network.getId());
-		PropertyUtil.setAttributeShape(idTextShape, ID);
-		
-		// create link and wire it
-		link(idTextShape, network);
-		
 		//SHAPE FOR PROPERTY SUBNET_MASK
 		// create shape for text
 		final Shape subnetMaskTextShape = createShape(peCreateService, containerShape);
 		final Shape subnetMaskLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text subnetMaskLabelText = createTextShape(gaService, subnetMaskLabelShape, X_PROPERTY, 40, WIDTH_LABEL,
+		final Text subnetMaskLabelText = createTextShape(gaService, subnetMaskLabelShape, X_PROPERTY, 30, WIDTH_LABEL,
 				HEIGHT_LABEL, SUBNET_MASK_LABEL.getProperty());
-		createTextShape(gaService, subnetMaskTextShape, subnetMaskLabelText.getWidth(), 40, WIDTH_PROPERTY, HEIGHT_PROPERTY,
+		createTextShape(gaService, subnetMaskTextShape, subnetMaskLabelText.getWidth(), 30, WIDTH_PROPERTY, HEIGHT_PROPERTY,
 				network.getSubnetmask());
 		PropertyUtil.setAttributeShape(subnetMaskTextShape, SUBNET_MASK);
 		
@@ -173,9 +158,9 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		final Shape gatewayTextShape = createShape(peCreateService, containerShape);
 		final Shape gatewayLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text gatewayLabelText = createTextShape(gaService, gatewayLabelShape, X_PROPERTY, 50, WIDTH_LABEL, HEIGHT_LABEL,
+		final Text gatewayLabelText = createTextShape(gaService, gatewayLabelShape, X_PROPERTY, 40, WIDTH_LABEL, HEIGHT_LABEL,
 				GATEWAY_LABEL.getProperty());
-		createTextShape(gaService, gatewayTextShape, gatewayLabelText.getWidth(), 50, WIDTH_PROPERTY, HEIGHT_PROPERTY,
+		createTextShape(gaService, gatewayTextShape, gatewayLabelText.getWidth(), 40, WIDTH_PROPERTY, HEIGHT_PROPERTY,
 				network.getGateway());
 		PropertyUtil.setAttributeShape(gatewayTextShape, GATEWAY);
 		
@@ -187,9 +172,9 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		final Shape dnsTextShape = createShape(peCreateService, containerShape);
 		final Shape dnsLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text dnsLabelText = createTextShape(gaService, dnsLabelShape, X_PROPERTY, 60, WIDTH_LABEL, HEIGHT_LABEL,
+		final Text dnsLabelText = createTextShape(gaService, dnsLabelShape, X_PROPERTY, 50, WIDTH_LABEL, HEIGHT_LABEL,
 				DNS_LABEL.getProperty());
-		createTextShape(gaService, dnsTextShape, dnsLabelText.getWidth(), 60, WIDTH_PROPERTY, HEIGHT_PROPERTY, network.getDns());
+		createTextShape(gaService, dnsTextShape, dnsLabelText.getWidth(), 50, WIDTH_PROPERTY, HEIGHT_PROPERTY, network.getDns());
 		PropertyUtil.setAttributeShape(dnsTextShape, DNS);
 		
 		// create link and wire it

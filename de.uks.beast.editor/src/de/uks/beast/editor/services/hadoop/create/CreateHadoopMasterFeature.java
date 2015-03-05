@@ -42,7 +42,7 @@ public class CreateHadoopMasterFeature extends AbstractCreateFeature
 	public Object[] create(final ICreateContext context)
 	{
 		final Service service = ModelFactory.eINSTANCE.createHadoopMaster();
-		service.setType(Strings.HADOOP_MASTER.text());
+		service.setTitle(Strings.HADOOP_MASTER.text());
 		service.setServiceName(Strings.HADOOP_MASTER.serviceName());
 		service.setServiceType(Strings.HADOOP_MASTER.serviceType());
 		final Server server = (Server) getBusinessObjectForPictogramElement(context.getTargetContainer());

@@ -21,16 +21,14 @@ public class UpdateServerObjectFeature extends AbstractUpdateFeature
 	// retrieve values from pictogram model
 	private String	pictogramName		= null;
 	private String	pictogramIp			= null;
-	private String	pictogramCpuAmount	= null;
-	private String	pictogramCpuType	= null;
+	private String	pictogramCpuCores	= null;
 	private String	pictogramRam		= null;
 	private String	pictogramDiskSpace	= null;
 	
 	// retrieve values from business model
 	private String	businessName		= null;
 	private String	businessIp			= null;
-	private String	businessCpuAmount	= null;
-	private String	businessCpuType		= null;
+	private String	businessCpuCores	= null;
 	private String	businessRam			= null;
 	private String	businessDiskSpace	= null;
 	
@@ -78,13 +76,9 @@ public class UpdateServerObjectFeature extends AbstractUpdateFeature
 					{
 						pictogramIp = text.getValue();
 					}
-					else if (PropertyUtil.isAttributeShape(shape, CPU_AMOUNT))
+					else if (PropertyUtil.isAttributeShape(shape, CPU_CORES))
 					{
-						pictogramCpuAmount = text.getValue();
-					}
-					else if (PropertyUtil.isAttributeShape(shape, CPU_TYPE))
-					{
-						pictogramCpuType = text.getValue();
+						pictogramCpuCores = text.getValue();
 					}
 					else if (PropertyUtil.isAttributeShape(shape, RAM))
 					{
@@ -113,8 +107,7 @@ public class UpdateServerObjectFeature extends AbstractUpdateFeature
 			final Server server = (Server) object;
 			businessName = server.getName();
 			businessIp = server.getIp();
-			businessCpuAmount = String.valueOf(server.getCpuAmount());
-			businessCpuType = server.getCpuType();
+			businessCpuCores = String.valueOf(server.getCpuCores());
 			businessRam = String.valueOf(server.getRam());
 			businessDiskSpace = String.valueOf(server.getDiskSpace());
 			
@@ -128,13 +121,9 @@ public class UpdateServerObjectFeature extends AbstractUpdateFeature
 		{
 			return Reason.createTrueReason(IP_TRUE_REASON.text());
 		}
-		else if (PropertyUtil.updateNeeded(pictogramCpuAmount, businessCpuAmount))
+		else if (PropertyUtil.updateNeeded(pictogramCpuCores, businessCpuCores))
 		{
-			return Reason.createTrueReason(CPU_AMOUNT_TRUE_REASON.text());
-		}
-		else if (PropertyUtil.updateNeeded(pictogramCpuType, businessCpuType))
-		{
-			return Reason.createTrueReason(CPU_TYPE_TRUE_REASON.text());
+			return Reason.createTrueReason(CPU_CORES_TRUE_REASON.text());
 		}
 		else if (PropertyUtil.updateNeeded(pictogramRam, businessRam))
 		{
@@ -164,8 +153,7 @@ public class UpdateServerObjectFeature extends AbstractUpdateFeature
 			final Server server = (Server) object;
 			businessName = server.getName();
 			businessIp = server.getIp();
-			businessCpuAmount = String.valueOf(server.getCpuAmount());
-			businessCpuType = server.getCpuType();
+			businessCpuCores = String.valueOf(server.getCpuCores());
 			businessRam = String.valueOf(server.getRam());
 			businessDiskSpace = String.valueOf(server.getDiskSpace());
 		}
@@ -189,13 +177,9 @@ public class UpdateServerObjectFeature extends AbstractUpdateFeature
 					{
 						text.setValue(businessIp);
 					}
-					else if (PropertyUtil.isAttributeShape(shape, CPU_AMOUNT))
+					else if (PropertyUtil.isAttributeShape(shape, CPU_CORES))
 					{
-						text.setValue(businessCpuAmount);
-					}
-					else if (PropertyUtil.isAttributeShape(shape, CPU_TYPE))
-					{
-						text.setValue(businessCpuType);
+						text.setValue(businessCpuCores);
 					}
 					else if (PropertyUtil.isAttributeShape(shape, RAM))
 					{

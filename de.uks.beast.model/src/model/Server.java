@@ -13,8 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link model.Server#getIp <em>Ip</em>}</li>
- *   <li>{@link model.Server#getCpuAmount <em>Cpu Amount</em>}</li>
- *   <li>{@link model.Server#getCpuType <em>Cpu Type</em>}</li>
+ *   <li>{@link model.Server#getCpuCores <em>Cpu Cores</em>}</li>
  *   <li>{@link model.Server#getRam <em>Ram</em>}</li>
  *   <li>{@link model.Server#getDiskSpace <em>Disk Space</em>}</li>
  *   <li>{@link model.Server#getName <em>Name</em>}</li>
@@ -61,66 +60,36 @@ public interface Server extends EObject
 	
 	
 	/**
-	 * Returns the value of the '<em><b>Cpu Amount</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Cpu Amount</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Cpu Amount</em>' attribute.
-	 * @see #setCpuAmount(int)
-	 * @see model.ModelPackage#getServer_CpuAmount()
-	 * @model
-	 * @generated
-	 */
-	int getCpuAmount();
-	
-	
-	
-	/**
-	 * Sets the value of the '{@link model.Server#getCpuAmount <em>Cpu Amount</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Cpu Amount</em>' attribute.
-	 * @see #getCpuAmount()
-	 * @generated
-	 */
-	void setCpuAmount(int value);
-	
-	
-	
-	/**
-	 * Returns the value of the '<em><b>Cpu Type</b></em>' attribute.
+	 * Returns the value of the '<em><b>Cpu Cores</b></em>' attribute.
 	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Cpu Type</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Cpu Cores</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Cpu Type</em>' attribute.
-	 * @see #setCpuType(String)
-	 * @see model.ModelPackage#getServer_CpuType()
+	 * @return the value of the '<em>Cpu Cores</em>' attribute.
+	 * @see #setCpuCores(int)
+	 * @see model.ModelPackage#getServer_CpuCores()
 	 * @model default="0"
 	 * @generated
 	 */
-	String getCpuType();
-	
-	
-	
+	int getCpuCores();
+
+
+
 	/**
-	 * Sets the value of the '{@link model.Server#getCpuType <em>Cpu Type</em>}' attribute.
+	 * Sets the value of the '{@link model.Server#getCpuCores <em>Cpu Cores</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Cpu Type</em>' attribute.
-	 * @see #getCpuType()
+	 * @param value the new value of the '<em>Cpu Cores</em>' attribute.
+	 * @see #getCpuCores()
 	 * @generated
 	 */
-	void setCpuType(String value);
-	
-	
-	
+	void setCpuCores(int value);
+
+
+
 	/**
 	 * Returns the value of the '<em><b>Ram</b></em>' attribute.
 	 * <!-- begin-user-doc -->

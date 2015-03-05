@@ -13,10 +13,10 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link model.Service#getType <em>Type</em>}</li>
- *   <li>{@link model.Service#getServiceType <em>Service Type</em>}</li>
- *   <li>{@link model.Service#getServiceName <em>Service Name</em>}</li>
+ *   <li>{@link model.Service#getTitle <em>Title</em>}</li>
  *   <li>{@link model.Service#getRelations <em>Relations</em>}</li>
+ *   <li>{@link model.Service#getServiceName <em>Service Name</em>}</li>
+ *   <li>{@link model.Service#getServiceType <em>Service Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,30 +28,46 @@ public interface Service extends EObject
 {
 
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * Returns the value of the '<em><b>Title</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Title</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' attribute.
-	 * @see #setType(String)
-	 * @see model.ModelPackage#getService_Type()
+	 * @return the value of the '<em>Title</em>' attribute.
+	 * @see #setTitle(String)
+	 * @see model.ModelPackage#getService_Title()
 	 * @model
 	 * @generated
 	 */
-	String getType();
+	String getTitle();
 
 	/**
-	 * Sets the value of the '{@link model.Service#getType <em>Type</em>}' attribute.
+	 * Sets the value of the '{@link model.Service#getTitle <em>Title</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' attribute.
-	 * @see #getType()
+	 * @param value the new value of the '<em>Title</em>' attribute.
+	 * @see #getTitle()
 	 * @generated
 	 */
-	void setType(String value);
+	void setTitle(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Relations</b></em>' reference list.
+	 * The list contents are of type {@link model.Service}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Relations</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Relations</em>' reference list.
+	 * @see model.ModelPackage#getService_Relations()
+	 * @model
+	 * @generated
+	 */
+	EList<Service> getRelations();
 
 	/**
 	 * Returns the value of the '<em><b>Service Name</b></em>' attribute.
@@ -78,22 +94,6 @@ public interface Service extends EObject
 	 * @generated
 	 */
 	void setServiceName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Relations</b></em>' reference list.
-	 * The list contents are of type {@link model.Service}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Relations</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Relations</em>' reference list.
-	 * @see model.ModelPackage#getService_Relations()
-	 * @model
-	 * @generated
-	 */
-	EList<Service> getRelations();
 
 	/**
 	 * Returns the value of the '<em><b>Service Type</b></em>' attribute.

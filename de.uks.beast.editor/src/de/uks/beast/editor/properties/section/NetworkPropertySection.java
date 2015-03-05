@@ -32,7 +32,6 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 	private Text						subnetTextFld;
 	private Text						gatewayTextFld;
 	private Text						dnsTextFld;
-	private Text						idTextFld;
 	private Button						submitBtn;
 	private Network						network;
 	private TransactionalEditingDomain	domain;
@@ -108,21 +107,6 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		data.top = new FormAttachment(dnsTextFld, 0, SWT.CENTER);
 		valueLabe4.setLayoutData(data);
 		
-		//Property_diskSpace
-		idTextFld = factory.createText(composite, "");
-		data = new FormData();
-		data.left = new FormAttachment(0, STANDARD_LABEL_WIDTH);
-		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, VSPACE + 100);
-		idTextFld.setLayoutData(data);
-		
-		final CLabel valueLabe5 = factory.createCLabel(composite, ID_LABEL.getProperty());
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(idTextFld, valueLabe5.getText().length());
-		data.top = new FormAttachment(idTextFld, 0, SWT.CENTER);
-		valueLabe5.setLayoutData(data);
-		
 		//Property_submit
 		submitBtn = factory.createButton(composite, SUBMIT.getProperty(), 0);
 		data = new FormData();
@@ -142,13 +126,11 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 						network.setSubnetmask(subnetTextFld.getText());
 						network.setGateway(gatewayTextFld.getText());
 						network.setDns(dnsTextFld.getText());
-						network.setId(idTextFld.getText());
 						
 						LOG.debug("network hash: " + network.hashCode() + " -> ip: " + network.getIp());
 						LOG.debug("network hash: " + network.hashCode() + " -> subnet: " + network.getSubnetmask());
 						LOG.debug("network hash: " + network.hashCode() + " -> gateway: " + network.getGateway());
 						LOG.debug("network hash: " + network.hashCode() + " -> dns: " + network.getDns());
-						LOG.debug("network hash: " + network.hashCode() + " -> id: " + network.getId());
 						LOG.debug("network hash: " + network.hashCode() + " -> name: " + network.getName());
 					}
 				});
@@ -174,7 +156,6 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		subnetTextFld.setText("" + network.getSubnetmask());
 		gatewayTextFld.setText(network.getGateway());
 		dnsTextFld.setText("" + network.getDns());
-		idTextFld.setText("" + network.getId());
 	}
 	
 	

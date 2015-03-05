@@ -23,8 +23,7 @@ public enum Strings
 	// True reasons
 	NAME_TRUE_REASON			("Name is out of date!", 				""),
 	IP_TRUE_REASON				("IP is out of date!", 					""),
-	CPU_AMOUNT_TRUE_REASON		("CPU amount is out of date!", 			""),
-	CPU_TYPE_TRUE_REASON		("CPU type is out of date!", 			""),
+	CPU_CORES_TRUE_REASON		("CPU amount is out of date!", 			""),
 	RAM_TRUE_REASON				("RAM is out of date!", 				""),
 	DISKSPACE_TRUE_REASON		("Disk space is out of date!", 			""),
 	ID_TRUE_REASON				("ID is out of date!", 					""),

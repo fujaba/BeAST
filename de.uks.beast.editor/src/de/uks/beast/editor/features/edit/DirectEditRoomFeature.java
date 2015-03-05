@@ -11,6 +11,8 @@ import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
+import de.uks.beast.editor.features.util.PropertyUtil;
+import static de.uks.beast.editor.util.Properties.NAME;
 import static de.uks.beast.editor.util.Strings.*;
 
 public class DirectEditRoomFeature extends AbstractDirectEditingFeature implements IDirectEditingFeature
@@ -38,7 +40,7 @@ public class DirectEditRoomFeature extends AbstractDirectEditingFeature implemen
 		final Object bo = getBusinessObjectForPictogramElement(pe);
 		final GraphicsAlgorithm ga = context.getGraphicsAlgorithm();
 		
-		if (bo instanceof Room && ga instanceof Text)
+		if (bo instanceof Room && ga instanceof Text && PropertyUtil.isAttributeShape(pe, NAME))
 		{
 			return true;
 		}

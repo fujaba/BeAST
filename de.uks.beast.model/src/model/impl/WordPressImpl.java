@@ -20,10 +20,10 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link model.impl.WordPressImpl#getType <em>Type</em>}</li>
- *   <li>{@link model.impl.WordPressImpl#getServiceType <em>Service Type</em>}</li>
- *   <li>{@link model.impl.WordPressImpl#getServiceName <em>Service Name</em>}</li>
+ *   <li>{@link model.impl.WordPressImpl#getTitle <em>Title</em>}</li>
  *   <li>{@link model.impl.WordPressImpl#getRelations <em>Relations</em>}</li>
+ *   <li>{@link model.impl.WordPressImpl#getServiceName <em>Service Name</em>}</li>
+ *   <li>{@link model.impl.WordPressImpl#getServiceType <em>Service Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,41 +32,32 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 public class WordPressImpl extends MinimalEObjectImpl.Container implements WordPress
 {
 	/**
-	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * The default value of the '{@link #getTitle() <em>Title</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getType()
+	 * @see #getTitle()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String TYPE_EDEFAULT = null;
+	protected static final String TITLE_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * The cached value of the '{@link #getTitle() <em>Title</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getType()
+	 * @see #getTitle()
 	 * @generated
 	 * @ordered
 	 */
-	protected String type = TYPE_EDEFAULT;
+	protected String title = TITLE_EDEFAULT;
 	/**
-	 * The default value of the '{@link #getServiceType() <em>Service Type</em>}' attribute.
+	 * The cached value of the '{@link #getRelations() <em>Relations</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getServiceType()
+	 * @see #getRelations()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String SERVICE_TYPE_EDEFAULT = null;
-	/**
-	 * The cached value of the '{@link #getServiceType() <em>Service Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getServiceType()
-	 * @generated
-	 * @ordered
-	 */
-	protected String serviceType = SERVICE_TYPE_EDEFAULT;
+	protected EList<Service> relations;
 	/**
 	 * The default value of the '{@link #getServiceName() <em>Service Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -86,14 +77,23 @@ public class WordPressImpl extends MinimalEObjectImpl.Container implements WordP
 	 */
 	protected String serviceName = SERVICE_NAME_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #getRelations() <em>Relations</em>}' reference list.
+	 * The default value of the '{@link #getServiceType() <em>Service Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRelations()
+	 * @see #getServiceType()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Service> relations;
+	protected static final String SERVICE_TYPE_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getServiceType() <em>Service Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getServiceType()
+	 * @generated
+	 * @ordered
+	 */
+	protected String serviceType = SERVICE_TYPE_EDEFAULT;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -120,8 +120,9 @@ public class WordPressImpl extends MinimalEObjectImpl.Container implements WordP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getType() {
-		return type;
+	public String getTitle()
+	{
+		return title;
 	}
 
 	/**
@@ -129,32 +130,12 @@ public class WordPressImpl extends MinimalEObjectImpl.Container implements WordP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(String newType) {
-		String oldType = type;
-		type = newType;
+	public void setTitle(String newTitle)
+	{
+		String oldTitle = title;
+		title = newTitle;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.WORD_PRESS__TYPE, oldType, type));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getServiceName() {
-		return serviceName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setServiceName(String newServiceName) {
-		String oldServiceName = serviceName;
-		serviceName = newServiceName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.WORD_PRESS__SERVICE_NAME, oldServiceName, serviceName));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.WORD_PRESS__TITLE, oldTitle, title));
 	}
 
 	/**
@@ -176,7 +157,31 @@ public class WordPressImpl extends MinimalEObjectImpl.Container implements WordP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getServiceType() {
+	public String getServiceName()
+	{
+		return serviceName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setServiceName(String newServiceName)
+	{
+		String oldServiceName = serviceName;
+		serviceName = newServiceName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.WORD_PRESS__SERVICE_NAME, oldServiceName, serviceName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getServiceType()
+	{
 		return serviceType;
 	}
 
@@ -185,7 +190,8 @@ public class WordPressImpl extends MinimalEObjectImpl.Container implements WordP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setServiceType(String newServiceType) {
+	public void setServiceType(String newServiceType)
+	{
 		String oldServiceType = serviceType;
 		serviceType = newServiceType;
 		if (eNotificationRequired())
@@ -202,14 +208,14 @@ public class WordPressImpl extends MinimalEObjectImpl.Container implements WordP
 	{
 		switch (featureID)
 		{
-			case ModelPackage.WORD_PRESS__TYPE:
-				return getType();
-			case ModelPackage.WORD_PRESS__SERVICE_TYPE:
-				return getServiceType();
-			case ModelPackage.WORD_PRESS__SERVICE_NAME:
-				return getServiceName();
+			case ModelPackage.WORD_PRESS__TITLE:
+				return getTitle();
 			case ModelPackage.WORD_PRESS__RELATIONS:
 				return getRelations();
+			case ModelPackage.WORD_PRESS__SERVICE_NAME:
+				return getServiceName();
+			case ModelPackage.WORD_PRESS__SERVICE_TYPE:
+				return getServiceType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -225,18 +231,18 @@ public class WordPressImpl extends MinimalEObjectImpl.Container implements WordP
 	{
 		switch (featureID)
 		{
-			case ModelPackage.WORD_PRESS__TYPE:
-				setType((String)newValue);
-				return;
-			case ModelPackage.WORD_PRESS__SERVICE_TYPE:
-				setServiceType((String)newValue);
-				return;
-			case ModelPackage.WORD_PRESS__SERVICE_NAME:
-				setServiceName((String)newValue);
+			case ModelPackage.WORD_PRESS__TITLE:
+				setTitle((String)newValue);
 				return;
 			case ModelPackage.WORD_PRESS__RELATIONS:
 				getRelations().clear();
 				getRelations().addAll((Collection<? extends Service>)newValue);
+				return;
+			case ModelPackage.WORD_PRESS__SERVICE_NAME:
+				setServiceName((String)newValue);
+				return;
+			case ModelPackage.WORD_PRESS__SERVICE_TYPE:
+				setServiceType((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -252,17 +258,17 @@ public class WordPressImpl extends MinimalEObjectImpl.Container implements WordP
 	{
 		switch (featureID)
 		{
-			case ModelPackage.WORD_PRESS__TYPE:
-				setType(TYPE_EDEFAULT);
+			case ModelPackage.WORD_PRESS__TITLE:
+				setTitle(TITLE_EDEFAULT);
 				return;
-			case ModelPackage.WORD_PRESS__SERVICE_TYPE:
-				setServiceType(SERVICE_TYPE_EDEFAULT);
+			case ModelPackage.WORD_PRESS__RELATIONS:
+				getRelations().clear();
 				return;
 			case ModelPackage.WORD_PRESS__SERVICE_NAME:
 				setServiceName(SERVICE_NAME_EDEFAULT);
 				return;
-			case ModelPackage.WORD_PRESS__RELATIONS:
-				getRelations().clear();
+			case ModelPackage.WORD_PRESS__SERVICE_TYPE:
+				setServiceType(SERVICE_TYPE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -278,14 +284,14 @@ public class WordPressImpl extends MinimalEObjectImpl.Container implements WordP
 	{
 		switch (featureID)
 		{
-			case ModelPackage.WORD_PRESS__TYPE:
-				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
-			case ModelPackage.WORD_PRESS__SERVICE_TYPE:
-				return SERVICE_TYPE_EDEFAULT == null ? serviceType != null : !SERVICE_TYPE_EDEFAULT.equals(serviceType);
-			case ModelPackage.WORD_PRESS__SERVICE_NAME:
-				return SERVICE_NAME_EDEFAULT == null ? serviceName != null : !SERVICE_NAME_EDEFAULT.equals(serviceName);
+			case ModelPackage.WORD_PRESS__TITLE:
+				return TITLE_EDEFAULT == null ? title != null : !TITLE_EDEFAULT.equals(title);
 			case ModelPackage.WORD_PRESS__RELATIONS:
 				return relations != null && !relations.isEmpty();
+			case ModelPackage.WORD_PRESS__SERVICE_NAME:
+				return SERVICE_NAME_EDEFAULT == null ? serviceName != null : !SERVICE_NAME_EDEFAULT.equals(serviceName);
+			case ModelPackage.WORD_PRESS__SERVICE_TYPE:
+				return SERVICE_TYPE_EDEFAULT == null ? serviceType != null : !SERVICE_TYPE_EDEFAULT.equals(serviceType);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -301,12 +307,12 @@ public class WordPressImpl extends MinimalEObjectImpl.Container implements WordP
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (type: ");
-		result.append(type);
-		result.append(", serviceType: ");
-		result.append(serviceType);
+		result.append(" (title: ");
+		result.append(title);
 		result.append(", serviceName: ");
 		result.append(serviceName);
+		result.append(", serviceType: ");
+		result.append(serviceType);
 		result.append(')');
 		return result.toString();
 	}

@@ -19,7 +19,9 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 
+import de.uks.beast.editor.features.util.PropertyUtil;
 import de.uks.beast.editor.util.Colors;
+import de.uks.beast.editor.util.Properties;
 
 public class AddRoomFeature extends AbstractAddShapeFeature implements AbstractShapeFactory
 {
@@ -90,13 +92,15 @@ public class AddRoomFeature extends AbstractAddShapeFeature implements AbstractS
 		
 		// SHAPE WITH TEXT
 		// create shape for text
-		final Shape textShape = createShape(peCreateService, containerShape);
+		final Shape nameTextShape = createShape(peCreateService, containerShape);
 		
 		// create and set text graphics algorithm
-		final Text text = createTextShape(gaService, textShape, X_PROPERTY, 0, WIDTH_PROPERTY, HEIGHT_PROPERTY, room.getName());
+		final Text nameText = createTextShape(gaService, nameTextShape, X_PROPERTY, 0, WIDTH_PROPERTY, HEIGHT_PROPERTY,
+				room.getName());
+		PropertyUtil.setAttributeShape(nameTextShape, Properties.NAME);
 		
 		// create link and wire it
-		link(textShape, room);
+		link(nameTextShape, room);
 		
 		// SHAPE WITH LINE
 		// create shape for line
@@ -110,8 +114,8 @@ public class AddRoomFeature extends AbstractAddShapeFeature implements AbstractS
 		
 		final IDirectEditingInfo directEditingInfo = getFeatureProvider().getDirectEditingInfo();
 		directEditingInfo.setMainPictogramElement(containerShape);
-		directEditingInfo.setPictogramElement(textShape);
-		directEditingInfo.setGraphicsAlgorithm(text);
+		directEditingInfo.setPictogramElement(nameTextShape);
+		directEditingInfo.setGraphicsAlgorithm(nameText);
 		
 		// add a chopbox anchor to the shape 
 		peCreateService.createChopboxAnchor(containerShape);

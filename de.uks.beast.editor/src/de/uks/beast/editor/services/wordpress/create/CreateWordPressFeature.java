@@ -42,7 +42,7 @@ public class CreateWordPressFeature extends AbstractCreateFeature
 	public Object[] create(final ICreateContext context)
 	{
 		final Service service = ModelFactory.eINSTANCE.createWordPress();
-		service.setType(Strings.WORDPRESS.text());
+		service.setTitle(Strings.WORDPRESS.text());
 		
 		final Server server = (Server) getBusinessObjectForPictogramElement(context.getTargetContainer());
 		server.setService(service);
