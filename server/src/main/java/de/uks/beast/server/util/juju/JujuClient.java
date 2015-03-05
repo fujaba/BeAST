@@ -1,5 +1,7 @@
 package de.uks.beast.server.util.juju;
 
+import java.util.List;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -56,17 +58,21 @@ public class JujuClient {
      * Add manual provisioned machine
      *
      * @param userAtHost e.g. [user@]host
-     * @return # of the added machine
+     * @return # of the added machine or -1 if failed.
      * @info
      * http://askubuntu.com/questions/469618/juju-deployment-error-on-manually-provisioned-machine
      */
     public static int addMachine(String userAtHost) {
-        final RuntimeOutput out = RuntimeExec.run("juju add-machine ssh:" + userAtHost);
-        String message = out.getMessage();
-        if (message.contains("created machine")) {
-            return Integer.parseInt(message.replaceAll("[^\\d.]", ""));
+    	final List<Integer> before = JujuStatusParser.getMachineIdsList(status().getMessage());
+        RuntimeExec.run("juju add-machine ssh:" + userAtHost);
+        final List<Integer> after = JujuStatusParser.getMachineIdsList(status().getMessage());
+        
+        after.removeAll(before);
+        
+        if (after.size() == 1) {
+            return after.get(0);
         }
-        logger.debug(message);
+
         return -1;
     }
     

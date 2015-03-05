@@ -6,7 +6,7 @@ public class ServiceInfo {
 
 	protected String serviceName;
 	protected String serviceType;
-	protected ServiceInfo relatedService;
+	protected ServiceInfo relatedService; // TODO list
 	
 	protected ServiceInfo(ServiceInfo orig) {
 		this(orig.getServiceName(), orig.getServiceType());
