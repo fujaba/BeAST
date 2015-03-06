@@ -21,6 +21,7 @@ import org.eclipse.graphiti.services.IPeCreateService;
 
 import de.uks.beast.editor.features.util.PropertyUtil;
 import de.uks.beast.editor.util.Colors;
+import de.uks.beast.editor.util.Fonts;
 import de.uks.beast.editor.util.Properties;
 
 public class AddRoomFeature extends AbstractAddShapeFeature implements AbstractShapeFactory
@@ -144,7 +145,8 @@ public class AddRoomFeature extends AbstractAddShapeFeature implements AbstractS
 		text.setForeground(manageColor(Colors.ROOM_TEXT_FOREGROUND));
 		text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 		// vertical alignment has as default value "center"
-		text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
+		text.setFont(gaService.manageFont(getDiagram(), Fonts.ROOM_TITEL.getName(), Fonts.ROOM_TITEL.getSize(),
+				Fonts.ROOM_TITEL.isItalic(), Fonts.ROOM_TITEL.isBold()));
 		gaService.setLocationAndSize(text, x, y, width, height);
 		
 		return text;

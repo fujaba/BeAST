@@ -22,6 +22,7 @@ import org.eclipse.graphiti.services.IPeCreateService;
 
 import de.uks.beast.editor.features.util.PropertyUtil;
 import de.uks.beast.editor.util.Colors;
+import de.uks.beast.editor.util.Fonts;
 
 public class AddRouterFeature extends AbstractAddFeature implements AbstractShapeFactory
 {
@@ -190,7 +191,8 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		text.setForeground(manageColor(Colors.ROUTER_TEXT_FOREGROUND));
 		text.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
 		// vertical alignment has as default value "center"
-		text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
+		text.setFont(gaService.manageFont(getDiagram(), Fonts.ROUTER_TITEL.getName(), Fonts.ROUTER_TITEL.getSize(),
+				Fonts.ROUTER_TITEL.isItalic(), Fonts.ROUTER_TITEL.isBold()));
 		gaService.setLocationAndSize(text, x, y, width, height);
 		
 		return text;

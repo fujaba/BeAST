@@ -22,6 +22,7 @@ import org.eclipse.graphiti.services.IPeCreateService;
 
 import de.uks.beast.editor.features.util.PropertyUtil;
 import de.uks.beast.editor.util.Colors;
+import de.uks.beast.editor.util.Fonts;
 
 public class AddServerFeature extends AbstractAddShapeFeature implements AbstractShapeFactory
 {
@@ -226,7 +227,8 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		text.setForeground(manageColor(Colors.SERVER_TEXT_FOREGROUND));
 		text.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
 		// vertical alignment has as default value "center"
-		text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
+		text.setFont(gaService.manageFont(getDiagram(), Fonts.SERVER_TITEL.getName(), Fonts.SERVER_TITEL.getSize(),
+				Fonts.SERVER_TITEL.isItalic(), Fonts.SERVER_TITEL.isBold()));
 		gaService.setLocationAndSize(text, x, y, width, height);
 		
 		return text;

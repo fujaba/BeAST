@@ -21,6 +21,7 @@ import org.eclipse.graphiti.services.IPeCreateService;
 
 import de.uks.beast.editor.features.util.PropertyUtil;
 import de.uks.beast.editor.util.Colors;
+import de.uks.beast.editor.util.Fonts;
 import de.uks.beast.editor.util.Properties;
 
 public class AddRackFeature extends AbstractAddFeature implements AbstractShapeFactory
@@ -144,7 +145,8 @@ public class AddRackFeature extends AbstractAddFeature implements AbstractShapeF
 		text.setForeground(manageColor(Colors.RACK_TEXT_FOREGROUND));
 		text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 		// vertical alignment has as default value "center"
-		text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
+		text.setFont(gaService.manageFont(getDiagram(), Fonts.RACK_TITEL.getName(), Fonts.RACK_TITEL.getSize(),
+				Fonts.RACK_TITEL.isItalic(), Fonts.RACK_TITEL.isBold()));
 		gaService.setLocationAndSize(text, x, y, width, height);
 		
 		return text;

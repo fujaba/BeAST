@@ -31,6 +31,7 @@ import org.eclipse.graphiti.services.IPeCreateService;
 
 import de.uks.beast.editor.features.util.PropertyUtil;
 import de.uks.beast.editor.util.Colors;
+import de.uks.beast.editor.util.Fonts;
 
 public class AddNetworkFeature extends AbstractAddFeature implements AbstractShapeFactory
 {
@@ -212,7 +213,8 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		text.setForeground(manageColor(Colors.NETWORK_TEXT_FOREGROUND));
 		text.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
 		// vertical alignment has as default value "center"
-		text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
+		text.setFont(gaService.manageFont(getDiagram(), Fonts.NETWORK_TITEL.getName(), Fonts.NETWORK_TITEL.getSize(),
+				Fonts.NETWORK_TITEL.isItalic(), Fonts.NETWORK_TITEL.isBold()));
 		gaService.setLocationAndSize(text, x, y, width, height);
 		
 		return text;
