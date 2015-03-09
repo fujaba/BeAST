@@ -9,6 +9,7 @@ import java.net.URISyntaxException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -75,6 +76,9 @@ public class InstanceConnection {
 			jsch.addIdentity(connectionInfo.getKey().getAbsolutePath());
 			session = jsch.getSession(SSH_USER, connectionInfo.getIp(), 22);
 			session.connect();
+			
+			logger.info("[" + connectionInfo.getHostName() + "] Connection established via SSH");
+			remoteLogger.info("[" + connectionInfo.getHostName() + "] Connection established via SSH");
 		} catch (JSchException e) {
 			if (e.getMessage().equals(NO_ROUTE_TO_HOST) || e.getMessage().equals(CONNECTION_REFUSED)) {
 				logger.info("Waiting for SSH daemon to be up and ready ...");
@@ -91,8 +95,8 @@ public class InstanceConnection {
 					} catch (JSchException je) {
 					}
 					if (session.isConnected()) {
-						logger.info("[SSH] Connected to VM");
-						remoteLogger.info("Connected to " + connectionInfo.getHostName());
+						logger.info("[" + connectionInfo.getHostName() + "] Connection established via SSH");
+						remoteLogger.info("[" + connectionInfo.getHostName() + "] Connection established via SSH");
 						break;
 					}
 				}
@@ -127,8 +131,8 @@ public class InstanceConnection {
 				e.printStackTrace();
 			}
 			
-			logger.info("Deploying beast service on VM ...");
-			remoteLogger.info("Deploying BeAST service on instance " + connectionInfo.getHostName());
+			logger.info("[" + connectionInfo.getHostName() + "] Deploying BeAST agent on instance ...");
+			remoteLogger.info("[" + connectionInfo.getHostName() + "] Deploying BeAST agent on instance ...");
 
 			/* create temporary directory for service */
 			Channel c = session.openChannel(EXEC);
@@ -155,32 +159,30 @@ public class InstanceConnection {
 	 * Executes the BeAST VM service on the instance
 	 * @param kafkabroker The kafka broker the VM service is going to send information 
 	 * @param topic the kafka topic the VM service is writing to
+	 * @param cons 
 	 */
-	public void executeService(String kafkabroker, String topic) {
+	public void executeService(String kafkabroker, String topic, List<ConnectionInfo> cons) {
 		try {
-			/* edit /etc/hosts file (adding ip and hostname of instance) */
-			/*String instanceEntry = connectionInfo.getPrivateIP() + "\t" + connectionInfo.getHostName();
-			logger.info("Adding " + instanceEntry);
-			Channel c = session.openChannel(EXEC);
-		    ChannelExec add_instance_to_hosts = (ChannelExec) c;
-		    add_instance_to_hosts.setCommand(ShellCommands.addToHostsFile(instanceEntry));
-		    add_instance_to_hosts.setErrStream(System.err);
-		    add_instance_to_hosts.connect();
-		    add_instance_to_hosts.disconnect();*/
 			
-			/* edit /etc/hosts file (adding ip and hostname of kafka broker) */
+			/* edit /etc/hosts file */
 			String hostname = getHostname(kafkabroker);
 			kafkabroker = kafkabroker.substring(kafkabroker.indexOf("/") + 1);
 			
-			Channel c = session.openChannel(EXEC);
-		    ChannelExec edit_host = (ChannelExec) c;
-		    edit_host.setCommand(ShellCommands.addToHostsFile(hostname));
-		    edit_host.setErrStream(System.err);
-		    edit_host.connect();
-		    edit_host.disconnect();
-			
+			Channel editHosts = session.openChannel("exec");
+		    ChannelExec editHostsExec = (ChannelExec) editHosts;
+		    
+		    String hostFileEntries = hostname;
+		    for (ConnectionInfo ci : cons) {
+				hostFileEntries += " \\\\\n" + ci.getPrivateIP() + "\t" + ci.getHostName();
+			}
+		    
+		    editHostsExec.setCommand(ShellCommands.addToHostsFile(hostFileEntries));
+		    editHostsExec.setErrStream(System.err);
+		    editHostsExec.connect();
+		    editHostsExec.disconnect();
+		    
 			/* execute postinstall script */
-			c = session.openChannel(EXEC);
+			Channel c = session.openChannel(EXEC);
 		    ChannelExec postinstallExec = (ChannelExec) c;
 		    postinstallExec.setCommand(ShellCommands.executeScript(SCRIPT_REMOTE));
 		    postinstallExec.setErrStream(System.err);
@@ -188,12 +190,12 @@ public class InstanceConnection {
 		    BufferedReader install_java_reader = new BufferedReader(new InputStreamReader(postinstallExec.getInputStream()));
 		    String line1;
 		    while ((line1 = install_java_reader.readLine()) != null) {
-		    	logger.debug("postinstall.sh - " + line1);
+		    	logger.debug("[" + connectionInfo.getHostName() + "] postinstall.sh - " + line1);
 		    }
 		    postinstallExec.disconnect();
 		    
 		    /* start BeAST VM service */
-		    logger.info("Starting beast service on VM with broker = " + kafkabroker +
+		    logger.info("[" + connectionInfo.getHostName() + "] Starting BeAST agent on instance with broker = " + kafkabroker +
 					" and topic = " + topic);
 			Channel channel = session.openChannel(SHELL);
 			OutputStream ops = channel.getOutputStream();
@@ -207,13 +209,13 @@ public class InstanceConnection {
 			Thread.sleep(2000);
 			channel.disconnect();
 
-		    logger.info("Finished with " + connectionInfo.getHostName());
-		    remoteLogger.info(connectionInfo.getHostName() + " is alive.");
+		    logger.info("[" + connectionInfo.getHostName() + "] Finished setup process");
+		    remoteLogger.info("[" + connectionInfo.getHostName() + "] Online");
 		} catch (Exception e) {
 			logger.error("Unexpected Exception", e);
 		}
 	}
-	
+
 	/* insert a public key to .ssh/authorized_keys */
 	public void insertKeyToAuthorizedKeys(String publicKeyFilePath) {
 		try {

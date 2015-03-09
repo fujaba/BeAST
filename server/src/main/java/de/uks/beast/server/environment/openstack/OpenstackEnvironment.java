@@ -1,24 +1,20 @@
-package de.uks.beast.server.environment;
+package de.uks.beast.server.environment.openstack;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openstack4j.api.Builders;
 import org.openstack4j.api.OSClient;
 import org.openstack4j.model.compute.Flavor;
-import org.openstack4j.model.compute.FloatingIP;
 import org.openstack4j.model.compute.Keypair;
-import org.openstack4j.model.compute.Server;
-import org.openstack4j.model.compute.Server.Status;
-import org.openstack4j.model.compute.ServerCreate;
 import org.openstack4j.model.identity.Tenant;
 import org.openstack4j.model.network.AttachInterfaceType;
 import org.openstack4j.model.network.IPVersionType;
-import org.openstack4j.model.network.NetFloatingIP;
 import org.openstack4j.model.network.Network;
 import org.openstack4j.model.network.Router;
 import org.openstack4j.model.network.Subnet;
@@ -27,16 +23,17 @@ import org.openstack4j.openstack.OSFactory;
 import de.uks.beast.model.Configuration;
 import de.uks.beast.model.Hardware;
 import de.uks.beast.server.BeastService;
+import de.uks.beast.server.environment.CloudEnvironment;
 import de.uks.beast.server.environment.model.ConnectionInfo;
 import de.uks.beast.server.environment.model.OpenstackConfiguration;
 import de.uks.beast.server.service.model.ServiceInfo;
-import de.uks.beast.server.vm.InstanceConnection;
 
 public class OpenstackEnvironment extends CloudEnvironment {
 
 	private static final Logger logger = LogManager.getLogger(OpenstackEnvironment.class);
 	
 	private OSClient os;
+	private Object floatingIPLock = new Object();
 
 	public OpenstackEnvironment(BeastService service) {
 		super(service);
@@ -132,60 +129,50 @@ public class OpenstackEnvironment extends CloudEnvironment {
 		os.compute().keypairs().delete("beast-keypair");
 		Keypair kp = os.compute().keypairs().create("beast-keypair", null);
 		
+		final CountDownLatch latch = new CountDownLatch(configs.size());
+		
 		for (Configuration configuration : configs) {
-			OpenstackConfiguration cf = (OpenstackConfiguration) configuration;
-			ServerCreate sc = Builders.server()
-					.name(cf.getHost())
-					.flavor(cf.getId())
-					.image(service.get("ubuntu-image"))
-					.keypairName("beast-keypair")
-					.build();
-			
-			sc.addNetwork(cf.getNetwork(), cf.getIp());
-			
-			Server server = os.compute().servers().boot(sc);
-			
-			logger.info("Starting VM with hostname " + cf.getHost() + " and flavor " + cf.getId() + " ...");
-			service.getRemoteLogger().info("Starting VM with hostname " + cf.getHost() + "...");
-			
-			logger.info("Waiting for VM to become active ...");
-			
-			while (!os.compute().servers().get(server.getId()).getStatus().equals(Status.ACTIVE)) {
-				try {
-					Thread.sleep(100);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-
-			FloatingIP ip = getFloatingIP();
-			NetFloatingIP netFloatingIP = os.networking().floatingip().get(ip.getId());
-			os.compute().floatingIps().addFloatingIP(server, netFloatingIP.getFloatingIpAddress());
-
-			logger.info("Added floating IP " + netFloatingIP.getFloatingIpAddress() + " to " + cf.getHost());
-			service.getRemoteLogger().info(cf.getHost() + " got public IP address: " + netFloatingIP.getFloatingIpAddress());
-			
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			configuration.setConnectionInfo(new ConnectionInfo(cf.getHost(), netFloatingIP.getFloatingIpAddress(), 
-					cf.getIp(), kp.getPrivateKey()));
+			OpenstackInstanceBootAction bootAction = new OpenstackInstanceBootAction((OpenstackConfiguration) configuration, kp, service, 
+					os.getAccess(), latch, floatingIPLock);
+		
+			bootAction.start();
 		}
 		
+		try {
+			latch.await(); 
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		logger.info("All Instances started successfully");
 	}
 	
 	@Override
-	public void establishConnection(String kafkabroker, String topic, List<? extends Configuration> cons) {
-		for (Configuration configuration : cons) {
-			InstanceConnection con = new InstanceConnection(service.getRemoteLogger(), configuration.getConnectionInfo());
-			con.authenticate();
-			con.copyBeastFiles();
-			con.executeService(kafkabroker, topic);
-			con.disconnect();
+	public void establishConnection(String kafkabroker, String topic, List<? extends Configuration> configs) {
+		final CountDownLatch latch = new CountDownLatch(configs.size());
+		
+		for (Configuration configuration : configs) {
+			OpenstackInstanceConnectAction connectAction = new OpenstackInstanceConnectAction(service.getRemoteLogger(), configuration.getConnectionInfo(), 
+					kafkabroker, topic, getConnectionInfos(configs), latch);
+			
+			connectAction.start();
 		}
+		
+		try {
+			latch.await(); 
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private List<ConnectionInfo> getConnectionInfos(List<? extends Configuration> configs) {
+		List<ConnectionInfo> infos = new ArrayList<ConnectionInfo>();
+		
+		for (Configuration config : configs) {
+			infos.add(config.getConnectionInfo());
+		}
+		
+		return infos;
 	}
 
 	@Override
@@ -262,15 +249,6 @@ public class OpenstackEnvironment extends CloudEnvironment {
 	
 	private static String getEndOfPool(String ip) {
 		return ip.substring(0, ip.lastIndexOf(".")) + ".254";
-	}
-
-	private FloatingIP getFloatingIP() {
-		for (FloatingIP ip : os.compute().floatingIps().list()) {
-			if (ip.getFixedIpAddress() == null) {
-				return ip;
-			}
-		}
-		return null;
 	}
 	
 	public static int convertNetmaskToCIDR(InetAddress netmask){

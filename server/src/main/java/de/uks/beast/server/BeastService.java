@@ -11,7 +11,7 @@ import java.util.Properties;
 
 import de.uks.beast.server.akka.AkkaServer;
 import de.uks.beast.server.environment.CloudEnvironment;
-import de.uks.beast.server.environment.OpenstackEnvironment;
+import de.uks.beast.server.environment.openstack.OpenstackEnvironment;
 import de.uks.beast.server.kafka.KafkaRemoteLogger;
 import de.uks.beast.server.service.JujuEnvironment;
 import de.uks.beast.server.service.ServiceEnvironment;
