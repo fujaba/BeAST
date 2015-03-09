@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 
 import de.uks.beast.model.Configuration;
 import de.uks.beast.server.BeastService;
-import de.uks.beast.server.kafka.KafkaRemoteLogger;
 import de.uks.beast.server.service.model.JujuServiceInfo;
 import de.uks.beast.server.util.juju.JujuClient;
 import de.uks.beast.server.vm.InstanceConnection;
@@ -15,11 +14,9 @@ import de.uks.beast.server.vm.InstanceConnection;
 public class JujuEnvironment extends ServiceEnvironment {
 
 	private static final Logger logger = LogManager.getLogger(JujuEnvironment.class);
-	private KafkaRemoteLogger remoteLogger;
 	
 	public JujuEnvironment(BeastService service) {
 		super(service);
-		this.remoteLogger = service.getRemoteLogger();
 	}
 
 	@Override
@@ -29,7 +26,7 @@ public class JujuEnvironment extends ServiceEnvironment {
 
 	@Override
 	public void setupInstances(List<? extends Configuration> cons) {
-		remoteLogger.info("Preparing Juju for service orchestration ...");
+		service.getRemoteLogger().info("Preparing Juju for service orchestration ...");
 		for (Configuration configuration : cons) { //TODO async
 			//connect to instance and add juju key
 			InstanceConnection con = new InstanceConnection(service.getRemoteLogger(), configuration.getConnectionInfo());
@@ -55,7 +52,7 @@ public class JujuEnvironment extends ServiceEnvironment {
 		for (Configuration configuration : cons) {
 			JujuServiceInfo serviceInfo = (JujuServiceInfo) configuration.getServiceInfo();
 			
-			remoteLogger.info("[" + configuration.getConnectionInfo().getHostName() + "] Deploying service \"" 
+			service.getRemoteLogger().info("[" + configuration.getConnectionInfo().getHostName() + "] Deploying service \"" 
 					+ serviceInfo.getServiceType() + " ...");
 			
 			logger.info("Deploying service \"" + serviceInfo.getServiceName() + "\" with type \"" + 
