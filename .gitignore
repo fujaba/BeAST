@@ -16,6 +16,8 @@ local.properties
 .classpath
 .project
 .recommenders
+abtestlib/
+akka-redirect/
 
 # External tool builders
 .externalToolBuilders/
