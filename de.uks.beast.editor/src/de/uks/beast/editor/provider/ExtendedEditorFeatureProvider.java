@@ -7,20 +7,20 @@ import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.palette.IPaletteCompartmentEntry;
 import org.eclipse.graphiti.tb.DefaultToolBehaviorProvider;
 
-import de.uks.beast.editor.features.create.CreateConnectionFeature;
-import de.uks.beast.editor.features.create.CreateNetworkFeature;
-import de.uks.beast.editor.features.create.CreateRackFeature;
-import de.uks.beast.editor.features.create.CreateRoomFeature;
-import de.uks.beast.editor.features.create.CreateServerFeature;
-import de.uks.beast.editor.features.create.CreaterRouterFeature;
-import de.uks.beast.editor.services.cassandra.create.CreateCassandraFeature;
-import de.uks.beast.editor.services.connection.create.CreateServiceConnection;
-import de.uks.beast.editor.services.hadoop.create.CreateHadoopMasterFeature;
-import de.uks.beast.editor.services.hadoop.create.CreateHadoopSlaveFeature;
-import de.uks.beast.editor.services.mongodb.create.CreateMongoDBFeature;
-import de.uks.beast.editor.services.mysql.create.CreateMySqlFeature;
-import de.uks.beast.editor.services.ubuntu.create.CreateUbuntuFeature;
-import de.uks.beast.editor.services.wordpress.create.CreateWordPressFeature;
+import de.uks.beast.editor.feature.create.CreateConnectionFeature;
+import de.uks.beast.editor.feature.create.CreateNetworkFeature;
+import de.uks.beast.editor.feature.create.CreateRackFeature;
+import de.uks.beast.editor.feature.create.CreateRoomFeature;
+import de.uks.beast.editor.feature.create.CreateServerFeature;
+import de.uks.beast.editor.feature.create.CreaterRouterFeature;
+import de.uks.beast.editor.service.services.cassandra.create.CreateCassandraFeature;
+import de.uks.beast.editor.service.services.hadoop.create.CreateHadoopMasterFeature;
+import de.uks.beast.editor.service.services.hadoop.create.CreateHadoopSlaveFeature;
+import de.uks.beast.editor.service.services.mongodb.create.CreateMongoDBFeature;
+import de.uks.beast.editor.service.services.mysql.create.CreateMySqlFeature;
+import de.uks.beast.editor.service.services.relation.create.CreateServiceRelation;
+import de.uks.beast.editor.service.services.ubuntu.create.CreateUbuntuFeature;
+import de.uks.beast.editor.service.services.wordpress.create.CreateWordPressFeature;
 import de.uks.beast.editor.util.Images;
 import de.uks.beast.editor.util.PaletteCompartmentEntry;
 import static de.uks.beast.editor.util.Strings.*;
@@ -90,12 +90,12 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 		//@formatter:on
 		
 		//@formatter:off
-				final PaletteCompartmentEntry serviceConnectionEntry = PaletteCompartmentEntry
+				final PaletteCompartmentEntry serviceRelationEntry = PaletteCompartmentEntry
 						.builder()
 						.setName(SERVICE_RELATION.text())
 						.setIconID(Images.SERVICE_RELATION.getImageID())
 						.addCreateConnectionFeature(
-								new CreateServiceConnection(getFeatureProvider(), SERVICE_RELATION.serviceName(), SERVICE_RELATION
+								new CreateServiceRelation(getFeatureProvider(), SERVICE_RELATION.serviceName(), SERVICE_RELATION
 										.description()))
 						.setInitialOpen(false)
 						.build();
@@ -176,7 +176,7 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 				serverEntry, 
 				networkEntry, 
 				ethernetEntry, 
-				serviceConnectionEntry,
+				serviceRelationEntry,
 				hadoopEntry, 
 				cassandraEntry,
 				mongoDBEntry,

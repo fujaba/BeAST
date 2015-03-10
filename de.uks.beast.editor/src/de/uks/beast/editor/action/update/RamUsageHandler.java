@@ -15,8 +15,8 @@ import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 
-import de.uks.beast.editor.features.util.PropertyUtil;
 import de.uks.beast.editor.util.Properties;
+import de.uks.beast.editor.util.PropertyUtil;
 import de.uks.beast.model.Hardware;
 import de.uks.beast.model.InstanceInformation;
 

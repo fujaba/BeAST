@@ -23,36 +23,36 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
-import de.uks.beast.editor.features.add.AddNetworkFeature;
-import de.uks.beast.editor.features.add.AddRackFeature;
-import de.uks.beast.editor.features.add.AddRoomFeature;
-import de.uks.beast.editor.features.add.AddRouterFeature;
-import de.uks.beast.editor.features.add.AddServerFeature;
-import de.uks.beast.editor.features.add.connection.AddConnectionFeature;
-import de.uks.beast.editor.features.add.connection.ReconnectionFeature;
-import de.uks.beast.editor.features.edit.DirectEditNetworkFeature;
-import de.uks.beast.editor.features.edit.DirectEditRackFeature;
-import de.uks.beast.editor.features.edit.DirectEditRoomFeature;
-import de.uks.beast.editor.features.edit.DirectEditRouterFeature;
-import de.uks.beast.editor.features.edit.DirectEditServerFeature;
-import de.uks.beast.editor.features.layout.LayoutNetworkObjectFeature;
-import de.uks.beast.editor.features.layout.LayoutRackObjectFeature;
-import de.uks.beast.editor.features.layout.LayoutRoomObjectFeature;
-import de.uks.beast.editor.features.layout.LayoutRouterObjectFeature;
-import de.uks.beast.editor.features.layout.LayoutServerObjectFeature;
-import de.uks.beast.editor.features.update.UpdateNetworkObjectFeature;
-import de.uks.beast.editor.features.update.UpdateRackObjectFeature;
-import de.uks.beast.editor.features.update.UpdateRoomObjectFeature;
-import de.uks.beast.editor.features.update.UpdateRouterObjectFeature;
-import de.uks.beast.editor.features.update.UpdateServerObjectFeature;
-import de.uks.beast.editor.services.cassandra.add.AddCassandraFeature;
-import de.uks.beast.editor.services.connection.add.AddServiceConnection;
-import de.uks.beast.editor.services.hadoop.add.AddHadoopMasterFeature;
-import de.uks.beast.editor.services.hadoop.add.AddHadoopSlaveFeature;
-import de.uks.beast.editor.services.mongodb.add.AddMongoDBFeature;
-import de.uks.beast.editor.services.mysql.add.AddMySqlFeature;
-import de.uks.beast.editor.services.ubuntu.add.AddUbuntuFeature;
-import de.uks.beast.editor.services.wordpress.add.AddWordPressFeature;
+import de.uks.beast.editor.feature.add.AddNetworkFeature;
+import de.uks.beast.editor.feature.add.AddRackFeature;
+import de.uks.beast.editor.feature.add.AddRoomFeature;
+import de.uks.beast.editor.feature.add.AddRouterFeature;
+import de.uks.beast.editor.feature.add.AddServerFeature;
+import de.uks.beast.editor.feature.add.connection.AddConnectionFeature;
+import de.uks.beast.editor.feature.add.connection.ReconnectionFeature;
+import de.uks.beast.editor.feature.edit.DirectEditNetworkFeature;
+import de.uks.beast.editor.feature.edit.DirectEditRackFeature;
+import de.uks.beast.editor.feature.edit.DirectEditRoomFeature;
+import de.uks.beast.editor.feature.edit.DirectEditRouterFeature;
+import de.uks.beast.editor.feature.edit.DirectEditServerFeature;
+import de.uks.beast.editor.feature.layout.LayoutNetworkObjectFeature;
+import de.uks.beast.editor.feature.layout.LayoutRackObjectFeature;
+import de.uks.beast.editor.feature.layout.LayoutRoomObjectFeature;
+import de.uks.beast.editor.feature.layout.LayoutRouterObjectFeature;
+import de.uks.beast.editor.feature.layout.LayoutServerObjectFeature;
+import de.uks.beast.editor.feature.update.UpdateNetworkObjectFeature;
+import de.uks.beast.editor.feature.update.UpdateRackObjectFeature;
+import de.uks.beast.editor.feature.update.UpdateRoomObjectFeature;
+import de.uks.beast.editor.feature.update.UpdateRouterObjectFeature;
+import de.uks.beast.editor.feature.update.UpdateServerObjectFeature;
+import de.uks.beast.editor.service.services.cassandra.add.AddCassandraFeature;
+import de.uks.beast.editor.service.services.hadoop.add.AddHadoopMasterFeature;
+import de.uks.beast.editor.service.services.hadoop.add.AddHadoopSlaveFeature;
+import de.uks.beast.editor.service.services.mongodb.add.AddMongoDBFeature;
+import de.uks.beast.editor.service.services.mysql.add.AddMySqlFeature;
+import de.uks.beast.editor.service.services.relation.add.AddServiceRelation;
+import de.uks.beast.editor.service.services.ubuntu.add.AddUbuntuFeature;
+import de.uks.beast.editor.service.services.wordpress.add.AddWordPressFeature;
 import de.uks.beast.editor.util.Strings;
 
 public class BasicEditorFeatureProvider extends DefaultFeatureProvider
@@ -106,7 +106,7 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 			if ((getBusinessObjectForPictogramElement(cc.getSourceAnchor().getParent()) instanceof Service)
 					&& (getBusinessObjectForPictogramElement(cc.getTargetAnchor().getParent()) instanceof Service))
 			{
-				return new AddServiceConnection(this);
+				return new AddServiceRelation(this);
 			}
 			else
 			{
