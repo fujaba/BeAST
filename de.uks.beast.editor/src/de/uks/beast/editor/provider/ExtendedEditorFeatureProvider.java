@@ -13,12 +13,16 @@ import de.uks.beast.editor.feature.create.CreateRackFeature;
 import de.uks.beast.editor.feature.create.CreateRoomFeature;
 import de.uks.beast.editor.feature.create.CreateServerFeature;
 import de.uks.beast.editor.feature.create.CreaterRouterFeature;
+import de.uks.beast.editor.service.services.apache2.create.CreateApache2Feature;
 import de.uks.beast.editor.service.services.cassandra.create.CreateCassandraFeature;
 import de.uks.beast.editor.service.services.hadoop.create.CreateHadoopMasterFeature;
 import de.uks.beast.editor.service.services.hadoop.create.CreateHadoopSlaveFeature;
+import de.uks.beast.editor.service.services.jenkins.create.CreateJenkinsFeature;
+import de.uks.beast.editor.service.services.mediawiki.create.CreateMediaWikiFeature;
 import de.uks.beast.editor.service.services.mongodb.create.CreateMongoDBFeature;
 import de.uks.beast.editor.service.services.mysql.create.CreateMySqlFeature;
 import de.uks.beast.editor.service.services.relation.create.CreateServiceRelation;
+import de.uks.beast.editor.service.services.tomcat.create.CreateTomcatFeature;
 import de.uks.beast.editor.service.services.ubuntu.create.CreateUbuntuFeature;
 import de.uks.beast.editor.service.services.wordpress.create.CreateWordPressFeature;
 import de.uks.beast.editor.util.Images;
@@ -90,16 +94,16 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 		//@formatter:on
 		
 		//@formatter:off
-				final PaletteCompartmentEntry serviceRelationEntry = PaletteCompartmentEntry
-						.builder()
-						.setName(SERVICE_RELATION.text())
-						.setIconID(Images.SERVICE_RELATION.getImageID())
-						.addCreateConnectionFeature(
-								new CreateServiceRelation(getFeatureProvider(), SERVICE_RELATION.serviceName(), SERVICE_RELATION
+		final PaletteCompartmentEntry serviceRelationEntry = PaletteCompartmentEntry
+				.builder()
+				.setName(SERVICE_RELATION.text())
+				.setIconID(Images.SERVICE_RELATION.getImageID())
+				.addCreateConnectionFeature(
+						new CreateServiceRelation(getFeatureProvider(), SERVICE_RELATION.serviceName(), SERVICE_RELATION
 										.description()))
-						.setInitialOpen(false)
-						.build();
-				//@formatter:on
+				.setInitialOpen(false)
+				.build();
+		//@formatter:on
 		
 		//@formatter:off
 		final PaletteCompartmentEntry hadoopEntry = PaletteCompartmentEntry
@@ -159,12 +163,56 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 		//@formatter:on
 		
 		//@formatter:off
-			final PaletteCompartmentEntry ubuntuEntry = PaletteCompartmentEntry
+		final PaletteCompartmentEntry ubuntuEntry = PaletteCompartmentEntry
 				.builder()
 				.setName(UBUNTU.text())
 				.setIconID(Images.UBUNTU_PALETTE_IMAGE.getImageID())
 				.addCreateObjectFeature(
 						new CreateUbuntuFeature(getFeatureProvider(), UBUNTU.text(), UBUNTU.description()))
+				.setInitialOpen(false)
+				.build();
+		//@formatter:on
+		
+		//@formatter:off
+		final PaletteCompartmentEntry apache2Entry = PaletteCompartmentEntry
+				.builder()
+				.setName(APACHE2.text())
+				.setIconID(Images.APACHE2_PALETTE_IMAGE.getImageID())
+				.addCreateObjectFeature(
+						new CreateApache2Feature(getFeatureProvider(), APACHE2.text(), APACHE2.description()))
+				.setInitialOpen(false)
+				.build();
+		//@formatter:on
+		
+		//@formatter:off
+		final PaletteCompartmentEntry jenkinsEntry = PaletteCompartmentEntry
+				.builder()
+				.setName(JENKINS.text())
+				.setIconID(Images.JENKINS_PALETTE_IMAGE.getImageID())
+				.addCreateObjectFeature(
+						new CreateJenkinsFeature(getFeatureProvider(), JENKINS.text(), JENKINS.description()))
+				.setInitialOpen(false)
+				.build();
+		//@formatter:on
+		
+		//@formatter:off
+		final PaletteCompartmentEntry mediaWikiEntry = PaletteCompartmentEntry
+				.builder()
+				.setName(MEDIAWIKI.text())
+				.setIconID(Images.MEDIAWIKI_PALETTE_IMAGE.getImageID())
+				.addCreateObjectFeature(
+						new CreateMediaWikiFeature(getFeatureProvider(), MEDIAWIKI.text(), MEDIAWIKI.description()))
+				.setInitialOpen(false)
+				.build();
+		//@formatter:on
+		
+		//@formatter:off
+		final PaletteCompartmentEntry tomcatEntry = PaletteCompartmentEntry
+				.builder()
+				.setName(TOMCAT.text())
+				.setIconID(Images.TOMCAT_PALETTE_IMAGE.getImageID())
+				.addCreateObjectFeature(
+						new CreateTomcatFeature(getFeatureProvider(), TOMCAT.text(), TOMCAT.description()))
 				.setInitialOpen(false)
 				.build();
 		//@formatter:on
@@ -182,7 +230,11 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 				mongoDBEntry,
 				mySqlEntry,
 				wordPressEntry,
-				ubuntuEntry);
+				ubuntuEntry, 
+				apache2Entry,
+				jenkinsEntry,
+				mediaWikiEntry,
+				tomcatEntry);
 		//@formatter:on
 		
 		return allEntries.toArray(new IPaletteCompartmentEntry[allEntries.size()]);

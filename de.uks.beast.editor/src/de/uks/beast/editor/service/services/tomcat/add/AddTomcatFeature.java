@@ -1,4 +1,4 @@
-package de.uks.beast.editor.service.services.mongodb.add;
+package de.uks.beast.editor.service.services.tomcat.add;
 
 import model.Server;
 import model.Service;
@@ -17,10 +17,10 @@ import org.eclipse.graphiti.services.IPeCreateService;
 import de.uks.beast.editor.util.Images;
 import de.uks.beast.editor.util.Strings;
 
-public class AddMongoDBFeature extends AbstractAddShapeFeature
+public class AddTomcatFeature extends AbstractAddShapeFeature
 {
 	
-	public AddMongoDBFeature(final IFeatureProvider fp)
+	public AddTomcatFeature(final IFeatureProvider fp)
 	{
 		super(fp);
 	}
@@ -33,7 +33,7 @@ public class AddMongoDBFeature extends AbstractAddShapeFeature
 		if (context.getNewObject() instanceof Service)
 		{
 			final Service service = (Service) context.getNewObject();
-			if (Strings.MONGO_DB.text().equals(service.getTitle()))
+			if (Strings.TOMCAT.text().equals(service.getTitle()))
 			{
 				if (getBusinessObjectForPictogramElement(context.getTargetContainer()) instanceof Server)
 				{
@@ -59,7 +59,7 @@ public class AddMongoDBFeature extends AbstractAddShapeFeature
 		
 		final IGaService gaService = Graphiti.getGaService();
 		
-		final Image objectIcon = gaService.createImage(containerShape, Images.MONGO_DB_OBJECT_IMAGE.getImageID());
+		final Image objectIcon = gaService.createImage(containerShape, Images.TOMCAT_OBJECT_IMAGE.getImageID());
 		gaService.setLocationAndSize(objectIcon, context.getX(), context.getY(), context.getWidth(), context.getHeight());
 		
 		// if added Class has no resource we add it to the resource

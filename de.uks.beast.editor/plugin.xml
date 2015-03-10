@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
 
-	<!-- Execute As popup -->
+	<!-- Execute BeAST test...-->
 	<extension point="org.eclipse.ui.popupMenus"> 
 	    <objectContribution
 	      adaptable="true"
@@ -98,8 +98,8 @@
 		point="org.eclipse.ui.views.properties.tabbed.propertySections">
 		<propertySections
           contributorId="hardwareComposition.PropertyContributor">
-			<propertySection class="de.uks.beast.editor.properties.section.ServerPropertySection"
-				filter="de.uks.beast.editor.properties.filter.ServerPropertyFilter"
+			<propertySection class="de.uks.beast.editor.property.section.ServerPropertySection"
+				filter="de.uks.beast.editor.property.filter.ServerPropertyFilter"
 				id="graphiti.main.tab.server" tab="graphiti.main.tab.server">
 			</propertySection>
 		</propertySections>
@@ -108,8 +108,8 @@
 		point="org.eclipse.ui.views.properties.tabbed.propertySections">
 		<propertySections
           contributorId="hardwareComposition.PropertyContributor">
-			<propertySection class="de.uks.beast.editor.properties.section.RouterPropertySection"
-				filter="de.uks.beast.editor.properties.filter.RouterPropertyFilter"
+			<propertySection class="de.uks.beast.editor.property.section.RouterPropertySection"
+				filter="de.uks.beast.editor.property.filter.RouterPropertyFilter"
 				id="graphiti.main.tab.router" tab="graphiti.main.tab.router">
 			</propertySection>
 		</propertySections>
@@ -118,8 +118,8 @@
 		point="org.eclipse.ui.views.properties.tabbed.propertySections">
 		<propertySections
           contributorId="hardwareComposition.PropertyContributor">
-			<propertySection class="de.uks.beast.editor.properties.section.NetworkPropertySection"
-				filter="de.uks.beast.editor.properties.filter.NetworkPropertyFilter"
+			<propertySection class="de.uks.beast.editor.property.section.NetworkPropertySection"
+				filter="de.uks.beast.editor.property.filter.NetworkPropertyFilter"
 				id="graphiti.main.tab.network" tab="graphiti.main.tab.network">
 			</propertySection>
 		</propertySections>
@@ -128,8 +128,8 @@
 		point="org.eclipse.ui.views.properties.tabbed.propertySections">
 		<propertySections
           contributorId="hardwareComposition.PropertyContributor">
-			<propertySection class="de.uks.beast.editor.properties.section.ServicePropertySection"
-				filter="de.uks.beast.editor.properties.filter.ServicePropertyFilter"
+			<propertySection class="de.uks.beast.editor.property.section.ServicePropertySection"
+				filter="de.uks.beast.editor.property.filter.ServicePropertyFilter"
 				id="graphiti.main.tab.service" tab="graphiti.main.tab.service">
 			</propertySection>
 		</propertySections>

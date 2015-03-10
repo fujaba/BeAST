@@ -45,12 +45,16 @@ import de.uks.beast.editor.feature.update.UpdateRackObjectFeature;
 import de.uks.beast.editor.feature.update.UpdateRoomObjectFeature;
 import de.uks.beast.editor.feature.update.UpdateRouterObjectFeature;
 import de.uks.beast.editor.feature.update.UpdateServerObjectFeature;
+import de.uks.beast.editor.service.services.apache2.add.AddApache2Feature;
 import de.uks.beast.editor.service.services.cassandra.add.AddCassandraFeature;
 import de.uks.beast.editor.service.services.hadoop.add.AddHadoopMasterFeature;
 import de.uks.beast.editor.service.services.hadoop.add.AddHadoopSlaveFeature;
+import de.uks.beast.editor.service.services.jenkins.add.AddJenkinsFeature;
+import de.uks.beast.editor.service.services.mediawiki.add.AddMediaWikiFeature;
 import de.uks.beast.editor.service.services.mongodb.add.AddMongoDBFeature;
 import de.uks.beast.editor.service.services.mysql.add.AddMySqlFeature;
 import de.uks.beast.editor.service.services.relation.add.AddServiceRelation;
+import de.uks.beast.editor.service.services.tomcat.add.AddTomcatFeature;
 import de.uks.beast.editor.service.services.ubuntu.add.AddUbuntuFeature;
 import de.uks.beast.editor.service.services.wordpress.add.AddWordPressFeature;
 import de.uks.beast.editor.util.Strings;
@@ -146,6 +150,22 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 			else if (service.getTitle().equals(Strings.UBUNTU.text()))
 			{
 				return new AddUbuntuFeature(this);
+			}
+			else if (service.getTitle().equals(Strings.APACHE2.text()))
+			{
+				return new AddApache2Feature(this);
+			}
+			else if (service.getTitle().equals(Strings.JENKINS.text()))
+			{
+				return new AddJenkinsFeature(this);
+			}
+			else if (service.getTitle().equals(Strings.MEDIAWIKI.text()))
+			{
+				return new AddMediaWikiFeature(this);
+			}
+			else if (service.getTitle().equals(Strings.TOMCAT.text()))
+			{
+				return new AddTomcatFeature(this);
 			}
 			
 		}
