@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
 
+	<!-- Execute As popup -->
 	<extension point="org.eclipse.ui.popupMenus"> 
 	    <objectContribution
 	      adaptable="true"
@@ -16,11 +17,14 @@
 	    </objectContribution>
 	</extension>
 
+	<!-- Diagram type -->
 	<extension
          point="org.eclipse.graphiti.ui.diagramTypes">
 		<diagramType name="Editor Diagram Type" type="hardwareComposition" id="de.uks.beast.editor.editorDiagramType">
 		</diagramType>
 	</extension>
+	
+	<!-- Diagram provider -->
 	<extension
          point="org.eclipse.graphiti.ui.diagramTypeProviders">
 		<diagramTypeProvider name="Editor Diagram Type Provider" class="de.uks.beast.editor.provider.EditorDiagramTypeProvider"
@@ -43,6 +47,7 @@
 	</extension> 
 	
 	
+	<!-- PropertyContributor -->
 	<extension 
 		point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
 		<propertyContributor contributorId="hardwareComposition.PropertyContributor">
@@ -53,6 +58,7 @@
 	
 	
 	
+	<!-- PropertyTabs -->
 	<extension
       point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
 		<propertyTabs
@@ -77,9 +83,17 @@
 			</propertyTab>
 		</propertyTabs>
 	</extension>
+	<extension
+      point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+		<propertyTabs
+          contributorId="hardwareComposition.PropertyContributor">
+			<propertyTab category="Configuration" id="graphiti.main.tab.service" label="Jobs">
+			</propertyTab>
+		</propertyTabs>
+	</extension>
 	
 	
-	
+	<!-- PropertySections -->
 	<extension 
 		point="org.eclipse.ui.views.properties.tabbed.propertySections">
 		<propertySections
@@ -110,6 +124,18 @@
 			</propertySection>
 		</propertySections>
 	</extension>
+	<extension 
+		point="org.eclipse.ui.views.properties.tabbed.propertySections">
+		<propertySections
+          contributorId="hardwareComposition.PropertyContributor">
+			<propertySection class="de.uks.beast.editor.properties.section.ServicePropertySection"
+				filter="de.uks.beast.editor.properties.filter.ServicePropertyFilter"
+				id="graphiti.main.tab.service" tab="graphiti.main.tab.service">
+			</propertySection>
+		</propertySections>
+	</extension>
+ 
+ <!-- Wizard -->
  <extension
        point="org.eclipse.ui.newWizards">
     <category
