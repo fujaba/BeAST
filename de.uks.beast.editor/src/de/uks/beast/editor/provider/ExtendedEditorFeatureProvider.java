@@ -93,9 +93,9 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 				final PaletteCompartmentEntry serviceConnectionEntry = PaletteCompartmentEntry
 						.builder()
 						.setName(SERVICE_RELATION.text())
-						//.setIconID(Images.HADOOP_PALETTE_IMAGE.getImageID())
+						.setIconID(Images.SERVICE_RELATION.getImageID())
 						.addCreateConnectionFeature(
-								new CreateServiceConnection(getFeatureProvider(), SERVICE_CONNECTION.text(), SERVICE_CONNECTION
+								new CreateServiceConnection(getFeatureProvider(), SERVICE_RELATION.serviceName(), SERVICE_RELATION
 										.description()))
 						.setInitialOpen(false)
 						.build();

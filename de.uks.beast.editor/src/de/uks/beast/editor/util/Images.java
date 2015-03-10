@@ -13,6 +13,8 @@ public enum Images
 	NETWORK_PALETTE_IMAGE		("icons/compartment/network_d.png",						"de.uks.beast.editor.network_palette"),
 	CONNECTION_PALETTE_IMAGE	("icons/compartment/ethernet_a.jpg",					"de.uks.beast.editor.ethernet_connection_palette"),
 	
+	SERVICE_RELATION			("icons/compartment/service_relation.jpg", 				"de.uks.beast.editor.service_relation_palette"),
+	
 	HADOOP_PALETTE_IMAGE		("icons/compartment/hadoop_category_icon.png",			"de.uks.beast.editor.hadoop_palette"),
 	HADOOP_MASTER_OBJECT_IMAGE	("icons/object/hadoop_master.png",						"de.uks.beast.editor.hadoop_master_object"),
 	HADOOP_SLAVE_OBJECT_IMAGE	("icons/object/hadoop_slave.png",						"de.uks.beast.editor.hadoop_slave_object"),
