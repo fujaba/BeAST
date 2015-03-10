@@ -13,7 +13,12 @@ public interface AbstractShapeFactory
 	
 	
 	
-	public Text createTextShape(final IGaService gaService, final GraphicsAlgorithmContainer gaContainer, final int x,
+	public Text createPropertyTextShape(final IGaService gaService, final GraphicsAlgorithmContainer gaContainer, final int x,
+			final int y, final int width, final int height, final String content);
+	
+	
+	
+	public Text createTitleTextShape(final IGaService gaService, final GraphicsAlgorithmContainer gaContainer, final int x,
 			final int y, final int width, final int height, final String content);
 	
 }

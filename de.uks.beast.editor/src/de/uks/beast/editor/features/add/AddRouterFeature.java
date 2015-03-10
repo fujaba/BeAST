@@ -111,9 +111,8 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		// create shape for text
 		final Shape nameTextShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text nameText = createTextShape(gaService, nameTextShape, X_PROPERTY, 0, WIDTH_PROPERTY, HEIGHT_PROPERTY,
+		final Text nameText = createTitleTextShape(gaService, nameTextShape, X_PROPERTY, 0, WIDTH_PROPERTY, HEIGHT_PROPERTY,
 				router.getName());
-		nameText.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 		PropertyUtil.setAttributeShape(nameTextShape, NAME);
 		
 		// create link and wire it
@@ -124,9 +123,10 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		final Shape ipTextShape = createShape(peCreateService, containerShape);
 		final Shape ipLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text ipLabelText = createTextShape(gaService, ipLabelShape, X_PROPERTY, 20, WIDTH_LABEL, HEIGHT_LABEL,
+		final Text ipLabelText = createPropertyTextShape(gaService, ipLabelShape, X_PROPERTY, 20, WIDTH_LABEL, HEIGHT_LABEL,
 				IP_LABEL.getProperty());
-		createTextShape(gaService, ipTextShape, ipLabelText.getWidth(), 20, WIDTH_PROPERTY, HEIGHT_PROPERTY, router.getIp());
+		createPropertyTextShape(gaService, ipTextShape, ipLabelText.getWidth(), 20, WIDTH_PROPERTY, HEIGHT_PROPERTY,
+				router.getIp());
 		PropertyUtil.setAttributeShape(ipTextShape, IP);
 		
 		// create link and wire it
@@ -137,9 +137,10 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		final Shape idTextShape = createShape(peCreateService, containerShape);
 		final Shape idLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text idLabelText = createTextShape(gaService, idLabelShape, X_PROPERTY, 30, WIDTH_LABEL, HEIGHT_LABEL,
+		final Text idLabelText = createPropertyTextShape(gaService, idLabelShape, X_PROPERTY, 30, WIDTH_LABEL, HEIGHT_LABEL,
 				ID_LABEL.getProperty());
-		createTextShape(gaService, idTextShape, idLabelText.getWidth(), 30, WIDTH_PROPERTY, HEIGHT_PROPERTY, router.getId());
+		createPropertyTextShape(gaService, idTextShape, idLabelText.getWidth(), 30, WIDTH_PROPERTY, HEIGHT_PROPERTY,
+				router.getId());
 		PropertyUtil.setAttributeShape(idTextShape, ID);
 		
 		// create link and wire it
@@ -150,10 +151,10 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		final Shape extGatewayTextShape = createShape(peCreateService, containerShape);
 		final Shape extGatewayLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text extGatewayLabelText = createTextShape(gaService, extGatewayLabelShape, X_PROPERTY, 40, WIDTH_LABEL,
+		final Text extGatewayLabelText = createPropertyTextShape(gaService, extGatewayLabelShape, X_PROPERTY, 40, WIDTH_LABEL,
 				HEIGHT_LABEL, EXTERNAL_GATEWAY_LABEL.getProperty());
-		createTextShape(gaService, extGatewayTextShape, extGatewayLabelText.getWidth(), 40, WIDTH_PROPERTY, HEIGHT_PROPERTY,
-				router.getExternalGateway());
+		createPropertyTextShape(gaService, extGatewayTextShape, extGatewayLabelText.getWidth(), 40, WIDTH_PROPERTY,
+				HEIGHT_PROPERTY, router.getExternalGateway());
 		PropertyUtil.setAttributeShape(extGatewayTextShape, EXTERNAL_GATEWAY);
 		
 		// create link and wire it
@@ -184,12 +185,29 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 	
 	
 	@Override
-	public Text createTextShape(final IGaService gaService, final GraphicsAlgorithmContainer gaContainer, final int x,
+	public Text createPropertyTextShape(final IGaService gaService, final GraphicsAlgorithmContainer gaContainer, final int x,
 			final int y, final int width, final int height, final String content)
 	{
 		final Text text = gaService.createText(gaContainer, content);
 		text.setForeground(manageColor(Colors.ROUTER_TEXT_FOREGROUND));
 		text.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
+		// vertical alignment has as default value "center"
+		text.setFont(gaService.manageFont(getDiagram(), Fonts.ROOM_PROPERTY.getName(), Fonts.ROOM_PROPERTY.getSize(),
+				Fonts.ROOM_PROPERTY.isItalic(), Fonts.ROOM_PROPERTY.isBold()));
+		gaService.setLocationAndSize(text, x, y, width, height);
+		
+		return text;
+	}
+	
+	
+	
+	@Override
+	public Text createTitleTextShape(IGaService gaService, GraphicsAlgorithmContainer gaContainer, int x, int y, int width,
+			int height, String content)
+	{
+		final Text text = gaService.createText(gaContainer, content);
+		text.setForeground(manageColor(Colors.ROUTER_TEXT_FOREGROUND));
+		text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 		// vertical alignment has as default value "center"
 		text.setFont(gaService.manageFont(getDiagram(), Fonts.ROUTER_TITEL.getName(), Fonts.ROUTER_TITEL.getSize(),
 				Fonts.ROUTER_TITEL.isItalic(), Fonts.ROUTER_TITEL.isBold()));

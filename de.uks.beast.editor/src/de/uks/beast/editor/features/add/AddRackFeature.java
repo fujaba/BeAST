@@ -96,7 +96,7 @@ public class AddRackFeature extends AbstractAddFeature implements AbstractShapeF
 		final Shape nameTextShape = createShape(peCreateService, containerShape);
 		
 		// create and set text graphics algorithm
-		final Text nameText = createTextShape(gaService, nameTextShape, X_PROPERTY, 0, WIDTH_PROPERTY, HEIGHT_PROPERTY,
+		final Text nameText = createTitleTextShape(gaService, nameTextShape, X_PROPERTY, 0, WIDTH_PROPERTY, HEIGHT_PROPERTY,
 				rack.getName());
 		PropertyUtil.setAttributeShape(nameTextShape, Properties.NAME);
 		
@@ -138,8 +138,25 @@ public class AddRackFeature extends AbstractAddFeature implements AbstractShapeF
 	
 	
 	@Override
-	public Text createTextShape(final IGaService gaService, final GraphicsAlgorithmContainer gaContainer, final int x,
+	public Text createPropertyTextShape(final IGaService gaService, final GraphicsAlgorithmContainer gaContainer, final int x,
 			final int y, final int width, final int height, final String content)
+	{
+		final Text text = gaService.createText(gaContainer, content);
+		text.setForeground(manageColor(Colors.RACK_TEXT_FOREGROUND));
+		text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
+		// vertical alignment has as default value "center"
+		text.setFont(gaService.manageFont(getDiagram(), Fonts.RACK_PROPERTY.getName(), Fonts.RACK_PROPERTY.getSize(),
+				Fonts.RACK_PROPERTY.isItalic(), Fonts.RACK_PROPERTY.isBold()));
+		gaService.setLocationAndSize(text, x, y, width, height);
+		
+		return text;
+	}
+	
+	
+	
+	@Override
+	public Text createTitleTextShape(IGaService gaService, GraphicsAlgorithmContainer gaContainer, int x, int y, int width,
+			int height, String content)
 	{
 		final Text text = gaService.createText(gaContainer, content);
 		text.setForeground(manageColor(Colors.RACK_TEXT_FOREGROUND));

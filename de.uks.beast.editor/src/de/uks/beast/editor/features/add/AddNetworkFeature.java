@@ -109,9 +109,8 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		// create shape for text
 		final Shape nameTextShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text nameText = createTextShape(gaService, nameTextShape, X_PROPERTY, 0, WIDTH_PROPERTY, HEIGHT_PROPERTY,
+		final Text nameText = createTitleTextShape(gaService, nameTextShape, X_PROPERTY, 0, WIDTH_PROPERTY, HEIGHT_PROPERTY,
 				network.getName());
-		nameText.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 		PropertyUtil.setAttributeShape(nameTextShape, NAME);
 		
 		// create link and wire it
@@ -132,9 +131,10 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		final Shape ipTextShape = createShape(peCreateService, containerShape);
 		final Shape ipLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text ipLabelText = createTextShape(gaService, ipLabelShape, X_PROPERTY, 20, WIDTH_LABEL, HEIGHT_LABEL,
+		final Text ipLabelText = createPropertyTextShape(gaService, ipLabelShape, X_PROPERTY, 20, WIDTH_LABEL, HEIGHT_LABEL,
 				IP_LABEL.getProperty());
-		createTextShape(gaService, ipTextShape, ipLabelText.getWidth(), 20, WIDTH_PROPERTY, HEIGHT_PROPERTY, network.getIp());
+		createPropertyTextShape(gaService, ipTextShape, ipLabelText.getWidth(), 20, WIDTH_PROPERTY, HEIGHT_PROPERTY,
+				network.getIp());
 		PropertyUtil.setAttributeShape(ipTextShape, IP);
 		
 		// create link and wire it
@@ -145,10 +145,10 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		final Shape subnetMaskTextShape = createShape(peCreateService, containerShape);
 		final Shape subnetMaskLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text subnetMaskLabelText = createTextShape(gaService, subnetMaskLabelShape, X_PROPERTY, 30, WIDTH_LABEL,
+		final Text subnetMaskLabelText = createPropertyTextShape(gaService, subnetMaskLabelShape, X_PROPERTY, 30, WIDTH_LABEL,
 				HEIGHT_LABEL, SUBNET_MASK_LABEL.getProperty());
-		createTextShape(gaService, subnetMaskTextShape, subnetMaskLabelText.getWidth(), 30, WIDTH_PROPERTY, HEIGHT_PROPERTY,
-				network.getSubnetmask());
+		createPropertyTextShape(gaService, subnetMaskTextShape, subnetMaskLabelText.getWidth(), 30, WIDTH_PROPERTY,
+				HEIGHT_PROPERTY, network.getSubnetmask());
 		PropertyUtil.setAttributeShape(subnetMaskTextShape, SUBNET_MASK);
 		
 		// create link and wire it
@@ -159,9 +159,9 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		final Shape gatewayTextShape = createShape(peCreateService, containerShape);
 		final Shape gatewayLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text gatewayLabelText = createTextShape(gaService, gatewayLabelShape, X_PROPERTY, 40, WIDTH_LABEL, HEIGHT_LABEL,
-				GATEWAY_LABEL.getProperty());
-		createTextShape(gaService, gatewayTextShape, gatewayLabelText.getWidth(), 40, WIDTH_PROPERTY, HEIGHT_PROPERTY,
+		final Text gatewayLabelText = createPropertyTextShape(gaService, gatewayLabelShape, X_PROPERTY, 40, WIDTH_LABEL,
+				HEIGHT_LABEL, GATEWAY_LABEL.getProperty());
+		createPropertyTextShape(gaService, gatewayTextShape, gatewayLabelText.getWidth(), 40, WIDTH_PROPERTY, HEIGHT_PROPERTY,
 				network.getGateway());
 		PropertyUtil.setAttributeShape(gatewayTextShape, GATEWAY);
 		
@@ -173,9 +173,10 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		final Shape dnsTextShape = createShape(peCreateService, containerShape);
 		final Shape dnsLabelShape = createShape(peCreateService, containerShape);
 		// create and set text graphics algorithm
-		final Text dnsLabelText = createTextShape(gaService, dnsLabelShape, X_PROPERTY, 50, WIDTH_LABEL, HEIGHT_LABEL,
+		final Text dnsLabelText = createPropertyTextShape(gaService, dnsLabelShape, X_PROPERTY, 50, WIDTH_LABEL, HEIGHT_LABEL,
 				DNS_LABEL.getProperty());
-		createTextShape(gaService, dnsTextShape, dnsLabelText.getWidth(), 50, WIDTH_PROPERTY, HEIGHT_PROPERTY, network.getDns());
+		createPropertyTextShape(gaService, dnsTextShape, dnsLabelText.getWidth(), 50, WIDTH_PROPERTY, HEIGHT_PROPERTY,
+				network.getDns());
 		PropertyUtil.setAttributeShape(dnsTextShape, DNS);
 		
 		// create link and wire it
@@ -206,12 +207,29 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 	
 	
 	@Override
-	public Text createTextShape(IGaService gaService, GraphicsAlgorithmContainer gaContainer, int x, int y, int width,
+	public Text createPropertyTextShape(IGaService gaService, GraphicsAlgorithmContainer gaContainer, int x, int y, int width,
 			int height, String content)
 	{
 		final Text text = gaService.createText(gaContainer, content);
 		text.setForeground(manageColor(Colors.NETWORK_TEXT_FOREGROUND));
 		text.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
+		// vertical alignment has as default value "center"
+		text.setFont(gaService.manageFont(getDiagram(), Fonts.NETWORK_PROPERTY.getName(), Fonts.NETWORK_PROPERTY.getSize(),
+				Fonts.NETWORK_PROPERTY.isItalic(), Fonts.NETWORK_PROPERTY.isBold()));
+		gaService.setLocationAndSize(text, x, y, width, height);
+		
+		return text;
+	}
+	
+	
+	
+	@Override
+	public Text createTitleTextShape(IGaService gaService, GraphicsAlgorithmContainer gaContainer, int x, int y, int width,
+			int height, String content)
+	{
+		final Text text = gaService.createText(gaContainer, content);
+		text.setForeground(manageColor(Colors.NETWORK_TEXT_FOREGROUND));
+		text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 		// vertical alignment has as default value "center"
 		text.setFont(gaService.manageFont(getDiagram(), Fonts.NETWORK_TITEL.getName(), Fonts.NETWORK_TITEL.getSize(),
 				Fonts.NETWORK_TITEL.isItalic(), Fonts.NETWORK_TITEL.isBold()));
