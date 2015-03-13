@@ -1,6 +1,7 @@
 package de.uks.beast.editor.feature.update;
 
-import model.Rack;
+import static de.uks.beast.editor.util.Strings.NAME_TRUE_REASON;
+import model.Group;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.IReason;
@@ -13,12 +14,10 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
-import static de.uks.beast.editor.util.Strings.*;
-
-public class UpdateRackObjectFeature extends AbstractUpdateFeature implements IUpdateFeature
+public class UpdateGroupObjectFeature extends AbstractUpdateFeature implements IUpdateFeature
 {
 	
-	public UpdateRackObjectFeature(final IFeatureProvider fp)
+	public UpdateGroupObjectFeature(final IFeatureProvider fp)
 	{
 		super(fp);
 	}
@@ -31,7 +30,7 @@ public class UpdateRackObjectFeature extends AbstractUpdateFeature implements IU
 		// return true, if linked business object is a EClass
 		final Object bo = getBusinessObjectForPictogramElement(context.getPictogramElement());
 		
-		return (bo instanceof Rack);
+		return (bo instanceof Group);
 	}
 	
 	
@@ -61,10 +60,10 @@ public class UpdateRackObjectFeature extends AbstractUpdateFeature implements IU
 		String businessName = null;
 		final Object bo = getBusinessObjectForPictogramElement(pictogramElement);
 		
-		if (bo instanceof Rack)
+		if (bo instanceof Group)
 		{
-			final Rack rack = (Rack) bo;
-			businessName = rack.getName();
+			final Group group = (Group) bo;
+			businessName = group.getName();
 		}
 		
 		// update needed, if names are different
@@ -91,10 +90,10 @@ public class UpdateRackObjectFeature extends AbstractUpdateFeature implements IU
 		final PictogramElement pictogramElement = context.getPictogramElement();
 		final Object bo = getBusinessObjectForPictogramElement(pictogramElement);
 		
-		if (bo instanceof Rack)
+		if (bo instanceof Group)
 		{
-			final Rack rack = (Rack) bo;
-			businessName = rack.getName();
+			final Group group = (Group) bo;
+			businessName = group.getName();
 		}
 		
 		// Set name in pictogram model

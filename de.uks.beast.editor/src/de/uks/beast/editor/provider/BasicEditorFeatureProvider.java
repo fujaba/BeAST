@@ -1,8 +1,7 @@
 package de.uks.beast.editor.provider;
 
+import model.Group;
 import model.Network;
-import model.Rack;
-import model.Room;
 import model.Router;
 import model.Server;
 import model.Service;
@@ -24,25 +23,21 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
 import de.uks.beast.editor.feature.add.AddNetworkFeature;
-import de.uks.beast.editor.feature.add.AddRackFeature;
-import de.uks.beast.editor.feature.add.AddRoomFeature;
+import de.uks.beast.editor.feature.add.AddGroupFeature;
 import de.uks.beast.editor.feature.add.AddRouterFeature;
 import de.uks.beast.editor.feature.add.AddServerFeature;
 import de.uks.beast.editor.feature.add.connection.AddConnectionFeature;
 import de.uks.beast.editor.feature.add.connection.ReconnectionFeature;
 import de.uks.beast.editor.feature.edit.DirectEditNetworkFeature;
-import de.uks.beast.editor.feature.edit.DirectEditRackFeature;
-import de.uks.beast.editor.feature.edit.DirectEditRoomFeature;
+import de.uks.beast.editor.feature.edit.DirectEditGroupFeature;
 import de.uks.beast.editor.feature.edit.DirectEditRouterFeature;
 import de.uks.beast.editor.feature.edit.DirectEditServerFeature;
 import de.uks.beast.editor.feature.layout.LayoutNetworkObjectFeature;
-import de.uks.beast.editor.feature.layout.LayoutRackObjectFeature;
-import de.uks.beast.editor.feature.layout.LayoutRoomObjectFeature;
+import de.uks.beast.editor.feature.layout.LayoutGroupObjectFeature;
 import de.uks.beast.editor.feature.layout.LayoutRouterObjectFeature;
 import de.uks.beast.editor.feature.layout.LayoutServerObjectFeature;
 import de.uks.beast.editor.feature.update.UpdateNetworkObjectFeature;
-import de.uks.beast.editor.feature.update.UpdateRackObjectFeature;
-import de.uks.beast.editor.feature.update.UpdateRoomObjectFeature;
+import de.uks.beast.editor.feature.update.UpdateGroupObjectFeature;
 import de.uks.beast.editor.feature.update.UpdateRouterObjectFeature;
 import de.uks.beast.editor.feature.update.UpdateServerObjectFeature;
 import de.uks.beast.editor.service.services.apache2.add.AddApache2Feature;
@@ -85,9 +80,9 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 		{
 			return new AddServerFeature(this);
 		}
-		else if (context.getNewObject() instanceof Rack)
+		else if (context.getNewObject() instanceof Group)
 		{
-			return new AddRackFeature(this);
+			return new AddGroupFeature(this);
 		}
 		else if (context.getNewObject() instanceof Network)
 		{
@@ -96,10 +91,6 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 		else if (context.getNewObject() instanceof Router)
 		{
 			return new AddRouterFeature(this);
-		}
-		else if (context.getNewObject() instanceof Room)
-		{
-			return new AddRoomFeature(this);
 		}
 		
 		//connections
@@ -185,13 +176,9 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 		{
 			return new LayoutServerObjectFeature(this);
 		}
-		else if (bo instanceof Rack)
+		else if (bo instanceof Group)
 		{
-			return new LayoutRackObjectFeature(this);
-		}
-		else if (bo instanceof Room)
-		{
-			return new LayoutRoomObjectFeature(this);
+			return new LayoutGroupObjectFeature(this);
 		}
 		else if (bo instanceof Network)
 		{
@@ -217,13 +204,9 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 		{
 			return new DirectEditServerFeature(this);
 		}
-		else if (object instanceof Room)
+		else if (object instanceof Group)
 		{
-			return new DirectEditRoomFeature(this);
-		}
-		else if (object instanceof Rack)
-		{
-			return new DirectEditRackFeature(this);
+			return new DirectEditGroupFeature(this);
 		}
 		else if (object instanceof Router)
 		{
@@ -248,13 +231,9 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 		{
 			final Object bo = getBusinessObjectForPictogramElement(pictogramElement);
 			
-			if (bo instanceof Room)
+			if (bo instanceof Group)
 			{
-				return new UpdateRoomObjectFeature(this);
-			}
-			else if (bo instanceof Rack)
-			{
-				return new UpdateRackObjectFeature(this);
+				return new UpdateGroupObjectFeature(this);
 			}
 			else if (bo instanceof Server)
 			{

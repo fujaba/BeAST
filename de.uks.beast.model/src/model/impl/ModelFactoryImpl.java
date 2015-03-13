@@ -69,9 +69,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 		switch (eClass.getClassifierID())
 		{
 			case ModelPackage.SERVER: return createServer();
-			case ModelPackage.RACK: return createRack();
+			case ModelPackage.GROUP: return createGroup();
 			case ModelPackage.NETWORK: return createNetwork();
-			case ModelPackage.ROOM: return createRoom();
 			case ModelPackage.ROUTER: return createRouter();
 			case ModelPackage.HADOOP_MASTER: return createHadoopMaster();
 			case ModelPackage.HADOOP_SLAVE: return createHadoopSlave();
@@ -109,14 +108,14 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Rack createRack()
+	public Group createGroup()
 	{
-		RackImpl rack = new RackImpl();
-		return rack;
+		GroupImpl group = new GroupImpl();
+		return group;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -282,19 +281,6 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 	{
 		TomcatImpl tomcat = new TomcatImpl();
 		return tomcat;
-	}
-
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Room createRoom()
-	{
-		RoomImpl room = new RoomImpl();
-		return room;
 	}
 
 

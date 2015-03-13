@@ -6,13 +6,9 @@ public class Dimensions
 	public static final int	SERVICE_ICON_RESIZE_X	= 45;
 	public static final int	SERVICE_ICON_RESIZE_Y	= 25;
 	
-	//room
-	public static final int	ROOM_INITIAL_WIDTH		= 500;
-	public static final int	ROOM_INITIAL_HEIGHT		= 400;
-	
-	//rack
-	public static final int	RACK_INITIAL_WIDTH		= 400;
-	public static final int	RACK_INITIAL_HEIGHT		= 300;
+	//group
+	public static final int	GROUP_INITIAL_WIDTH		= 400;
+	public static final int	GROUP_INITIAL_HEIGHT	= 300;
 	
 	//server
 	public static final int	SERVER_INITIAL_WIDTH	= 170;

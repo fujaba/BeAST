@@ -166,7 +166,7 @@ public interface Network extends EObject
 	 * @return the value of the '<em>Server</em>' reference list.
 	 * @see model.ModelPackage#getNetwork_Server()
 	 * @see model.Server#getNetwork
-	 * @model opposite="network"
+	 * @model opposite="Network"
 	 * @generated
 	 */
 	EList<Server> getServer();
@@ -186,7 +186,7 @@ public interface Network extends EObject
 	 * @return the value of the '<em>Router</em>' reference list.
 	 * @see model.ModelPackage#getNetwork_Router()
 	 * @see model.Router#getNetwork
-	 * @model opposite="network" required="true"
+	 * @model opposite="Network" required="true"
 	 * @generated
 	 */
 	EList<Router> getRouter();

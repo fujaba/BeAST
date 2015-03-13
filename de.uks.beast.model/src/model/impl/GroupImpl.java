@@ -3,8 +3,8 @@
 package model.impl;
 
 import java.util.Collection;
+import model.Group;
 import model.ModelPackage;
-import model.Rack;
 import model.Server;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -18,20 +18,21 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Rack</b></em>'.
+ * An implementation of the model object '<em><b>Group</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link model.impl.RackImpl#getServer <em>Server</em>}</li>
- *   <li>{@link model.impl.RackImpl#getId <em>Id</em>}</li>
- *   <li>{@link model.impl.RackImpl#getName <em>Name</em>}</li>
+ *   <li>{@link model.impl.GroupImpl#getServer <em>Server</em>}</li>
+ *   <li>{@link model.impl.GroupImpl#getId <em>Id</em>}</li>
+ *   <li>{@link model.impl.GroupImpl#getName <em>Name</em>}</li>
+ *   <li>{@link model.impl.GroupImpl#getGroup <em>Group</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class RackImpl extends MinimalEObjectImpl.Container implements Rack
+public class GroupImpl extends MinimalEObjectImpl.Container implements Group
 {
 	/**
 	 * The cached value of the '{@link #getServer() <em>Server</em>}' containment reference list.
@@ -41,8 +42,8 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Server>		server;
-	
+	protected EList<Server> server;
+
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -62,8 +63,6 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	 * @ordered
 	 */
 	protected int id = ID_EDEFAULT;
-
-
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -85,20 +84,26 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	 */
 	protected String name = NAME_EDEFAULT;
 
-
+	/**
+	 * The cached value of the '{@link #getGroup() <em>Group</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGroup()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Group> group;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RackImpl()
+	protected GroupImpl()
 	{
 		super();
 	}
-	
-	
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -107,11 +112,9 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	@Override
 	protected EClass eStaticClass()
 	{
-		return ModelPackage.Literals.RACK;
+		return ModelPackage.Literals.GROUP;
 	}
-	
-	
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -121,13 +124,11 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	{
 		if (server == null)
 		{
-			server = new EObjectContainmentEList<Server>(Server.class, this, ModelPackage.RACK__SERVER);
+			server = new EObjectContainmentEList<Server>(Server.class, this, ModelPackage.GROUP__SERVER);
 		}
 		return server;
 	}
-	
-	
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -137,8 +138,6 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	{
 		return id;
 	}
-
-
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -150,35 +149,45 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 		int oldId = id;
 		id = newId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.RACK__ID, oldId, id));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.GROUP__ID, oldId, id));
 	}
-
-
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
+	public String getName()
+	{
 		return name;
 	}
 
-
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName)
+	{
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.GROUP__NAME, oldName, name));
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.RACK__NAME, oldName, name));
+	public EList<Group> getGroup()
+	{
+		if (group == null)
+		{
+			group = new EObjectContainmentEList<Group>(Group.class, this, ModelPackage.GROUP__GROUP);
+		}
+		return group;
 	}
-
-
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -190,14 +199,14 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	{
 		switch (featureID)
 		{
-			case ModelPackage.RACK__SERVER:
+			case ModelPackage.GROUP__SERVER:
 				return ((InternalEList<?>)getServer()).basicRemove(otherEnd, msgs);
+			case ModelPackage.GROUP__GROUP:
+				return ((InternalEList<?>)getGroup()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
-	
-	
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -208,45 +217,47 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	{
 		switch (featureID)
 		{
-			case ModelPackage.RACK__SERVER:
+			case ModelPackage.GROUP__SERVER:
 				return getServer();
-			case ModelPackage.RACK__ID:
+			case ModelPackage.GROUP__ID:
 				return getId();
-			case ModelPackage.RACK__NAME:
+			case ModelPackage.GROUP__NAME:
 				return getName();
+			case ModelPackage.GROUP__GROUP:
+				return getGroup();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
-	
-	
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings ("unchecked")
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
 		switch (featureID)
 		{
-			case ModelPackage.RACK__SERVER:
+			case ModelPackage.GROUP__SERVER:
 				getServer().clear();
 				getServer().addAll((Collection<? extends Server>)newValue);
 				return;
-			case ModelPackage.RACK__ID:
+			case ModelPackage.GROUP__ID:
 				setId((Integer)newValue);
 				return;
-			case ModelPackage.RACK__NAME:
+			case ModelPackage.GROUP__NAME:
 				setName((String)newValue);
+				return;
+			case ModelPackage.GROUP__GROUP:
+				getGroup().clear();
+				getGroup().addAll((Collection<? extends Group>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
 	}
-	
-	
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -257,21 +268,22 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	{
 		switch (featureID)
 		{
-			case ModelPackage.RACK__SERVER:
+			case ModelPackage.GROUP__SERVER:
 				getServer().clear();
 				return;
-			case ModelPackage.RACK__ID:
+			case ModelPackage.GROUP__ID:
 				setId(ID_EDEFAULT);
 				return;
-			case ModelPackage.RACK__NAME:
+			case ModelPackage.GROUP__NAME:
 				setName(NAME_EDEFAULT);
+				return;
+			case ModelPackage.GROUP__GROUP:
+				getGroup().clear();
 				return;
 		}
 		super.eUnset(featureID);
 	}
-	
-	
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -282,17 +294,17 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 	{
 		switch (featureID)
 		{
-			case ModelPackage.RACK__SERVER:
+			case ModelPackage.GROUP__SERVER:
 				return server != null && !server.isEmpty();
-			case ModelPackage.RACK__ID:
+			case ModelPackage.GROUP__ID:
 				return id != ID_EDEFAULT;
-			case ModelPackage.RACK__NAME:
+			case ModelPackage.GROUP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case ModelPackage.GROUP__GROUP:
+				return group != null && !group.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
-
-
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -312,5 +324,5 @@ public class RackImpl extends MinimalEObjectImpl.Container implements Rack
 		result.append(')');
 		return result.toString();
 	}
-	
-} //RackImpl
+
+} //GroupImpl

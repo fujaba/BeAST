@@ -1,6 +1,13 @@
 package de.uks.beast.editor.feature.add;
 
-import static de.uks.beast.editor.util.Properties.*;
+import static de.uks.beast.editor.util.Properties.EXTERNAL_GATEWAY;
+import static de.uks.beast.editor.util.Properties.EXTERNAL_GATEWAY_LABEL;
+import static de.uks.beast.editor.util.Properties.ID;
+import static de.uks.beast.editor.util.Properties.ID_LABEL;
+import static de.uks.beast.editor.util.Properties.IP;
+import static de.uks.beast.editor.util.Properties.IP_LABEL;
+import static de.uks.beast.editor.util.Properties.NAME;
+import static de.uks.beast.editor.util.Properties.TYPE_ROUTER;
 import model.Router;
 
 import org.eclipse.graphiti.features.IDirectEditingInfo;
@@ -192,8 +199,8 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		text.setForeground(manageColor(Colors.ROUTER_TEXT_FOREGROUND));
 		text.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
 		// vertical alignment has as default value "center"
-		text.setFont(gaService.manageFont(getDiagram(), Fonts.ROOM_PROPERTY.getName(), Fonts.ROOM_PROPERTY.getSize(),
-				Fonts.ROOM_PROPERTY.isItalic(), Fonts.ROOM_PROPERTY.isBold()));
+		text.setFont(gaService.manageFont(getDiagram(), Fonts.ROUTER_PROPERTY.getName(), Fonts.ROUTER_PROPERTY.getSize(),
+				Fonts.ROUTER_PROPERTY.isItalic(), Fonts.ROUTER_PROPERTY.isBold()));
 		gaService.setLocationAndSize(text, x, y, width, height);
 		
 		return text;

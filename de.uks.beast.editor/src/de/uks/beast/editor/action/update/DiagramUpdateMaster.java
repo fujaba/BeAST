@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import model.Room;
+import model.Group;
 import model.Server;
 
 import org.apache.log4j.LogManager;
@@ -90,11 +90,32 @@ public class DiagramUpdateMaster implements KeyListener
 		
 		for (final Shape shape : getDiagram().getChildren())
 		{
-			if (Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(shape) instanceof Room)
+//			if (Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(shape) instanceof Room)
+//			{
+//				final Room room = (Room) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(shape);
+//				
+//				if (room != null && GraphitiInternal.getEmfService().isObjectAlive(room))
+//				{
+//					for (final PictogramLink link : getDiagram().getPictogramLinks())
+//					{
+//						if (Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(link.getPictogramElement()) instanceof Server)
+//						{
+//							final PictogramElement pictogramElement = link.getPictogramElement();
+//							
+//							if (pictogramElement instanceof ContainerShape)
+//							{
+//								final ContainerShape serverShape = (ContainerShape) pictogramElement;
+//								shapeList.add(serverShape);
+//							}
+//						}
+//					}
+//				}
+//			}
+			if (Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(shape) instanceof Group)
 			{
-				final Room room = (Room) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(shape);
+				final Group group = (Group) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(shape);
 				
-				if (room != null && GraphitiInternal.getEmfService().isObjectAlive(room))
+				if (group != null && GraphitiInternal.getEmfService().isObjectAlive(group))
 				{
 					for (final PictogramLink link : getDiagram().getPictogramLinks())
 					{

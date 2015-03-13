@@ -41,7 +41,7 @@ public interface Router extends EObject
 	 * @return the value of the '<em>Network</em>' reference list.
 	 * @see model.ModelPackage#getRouter_Network()
 	 * @see model.Network#getRouter
-	 * @model opposite="router" required="true"
+	 * @model opposite="Router" required="true"
 	 * @generated
 	 */
 	EList<Network> getNetwork();

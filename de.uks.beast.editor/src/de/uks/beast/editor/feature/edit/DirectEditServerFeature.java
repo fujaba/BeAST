@@ -41,7 +41,6 @@ public class DirectEditServerFeature extends AbstractDirectEditingFeature
 		final Object object = getBusinessObjectForPictogramElement(pe);
 		final GraphicsAlgorithm ga = context.getGraphicsAlgorithm();
 		
-		//ServerPictogramManager.get(NAME).equals((Text) ga)
 		if (object instanceof Server && ga instanceof Text && PropertyUtil.isAttributeShape(pe, NAME))
 		{
 			return true;

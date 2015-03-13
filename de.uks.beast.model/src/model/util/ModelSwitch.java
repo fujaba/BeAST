@@ -85,10 +85,10 @@ public class ModelSwitch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ModelPackage.RACK:
+			case ModelPackage.GROUP:
 			{
-				Rack rack = (Rack)theEObject;
-				T result = caseRack(rack);
+				Group group = (Group)theEObject;
+				T result = caseGroup(group);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -96,13 +96,6 @@ public class ModelSwitch<T> extends Switch<T>
 			{
 				Network network = (Network)theEObject;
 				T result = caseNetwork(network);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ModelPackage.ROOM:
-			{
-				Room room = (Room)theEObject;
-				T result = caseRoom(room);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -233,23 +226,23 @@ public class ModelSwitch<T> extends Switch<T>
 	
 	
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Rack</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Group</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Rack</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Group</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRack(Rack object)
+	public T caseGroup(Group object)
 	{
 		return null;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Network</em>'.
 	 * <!-- begin-user-doc -->
@@ -496,24 +489,6 @@ public class ModelSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseTomcat(Tomcat object)
-	{
-		return null;
-	}
-
-
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Room</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Room</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRoom(Room object)
 	{
 		return null;
 	}

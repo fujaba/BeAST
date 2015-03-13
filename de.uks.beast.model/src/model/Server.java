@@ -193,7 +193,7 @@ public interface Server extends EObject
 	 * @see #setNetwork(Network)
 	 * @see model.ModelPackage#getServer_Network()
 	 * @see model.Network#getServer
-	 * @model opposite="server"
+	 * @model opposite="Server"
 	 * @generated
 	 */
 	Network getNetwork();

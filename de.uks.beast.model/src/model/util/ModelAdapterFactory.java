@@ -83,19 +83,14 @@ public class ModelAdapterFactory extends AdapterFactoryImpl
 				return createServerAdapter();
 			}
 			@Override
-			public Adapter caseRack(Rack object)
+			public Adapter caseGroup(Group object)
 			{
-				return createRackAdapter();
+				return createGroupAdapter();
 			}
 			@Override
 			public Adapter caseNetwork(Network object)
 			{
 				return createNetworkAdapter();
-			}
-			@Override
-			public Adapter caseRoom(Room object)
-			{
-				return createRoomAdapter();
 			}
 			@Override
 			public Adapter caseRouter(Router object)
@@ -205,22 +200,22 @@ public class ModelAdapterFactory extends AdapterFactoryImpl
 	
 	
 	/**
-	 * Creates a new adapter for an object of class '{@link model.Rack <em>Rack</em>}'.
+	 * Creates a new adapter for an object of class '{@link model.Group <em>Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see model.Rack
+	 * @see model.Group
 	 * @generated
 	 */
-	public Adapter createRackAdapter()
+	public Adapter createGroupAdapter()
 	{
 		return null;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Creates a new adapter for an object of class '{@link model.Network <em>Network</em>}'.
 	 * <!-- begin-user-doc -->
@@ -453,23 +448,6 @@ public class ModelAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createTomcatAdapter()
-	{
-		return null;
-	}
-
-
-
-	/**
-	 * Creates a new adapter for an object of class '{@link model.Room <em>Room</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see model.Room
-	 * @generated
-	 */
-	public Adapter createRoomAdapter()
 	{
 		return null;
 	}

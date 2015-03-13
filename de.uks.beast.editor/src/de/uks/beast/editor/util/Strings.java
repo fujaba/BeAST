@@ -35,8 +35,7 @@ public enum Strings
 	
 	//Editor objects
 	LOCATION					("Location",			"This the provides hardware location"),
-	SERVER_ROOM					("Server room",			"This is a Serverroom"),
-	SERVER_RACK					("Server rack",			"Rack has many Server"),
+	SERVER_GROUP				("Server group",		"Group has many Server oder groups"),
 	SERVER						("Server", 				"Server representing hardware"),
 	NETWORK						("Network", 			"This is a network"),
 	ROUTER						("Router", 				"This is a router"),

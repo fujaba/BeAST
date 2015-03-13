@@ -12,29 +12,26 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Server/ram"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Server/diskSpace"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Server/name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Server/network"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Server/service"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Server/Network"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Server/Service"/>
     </genClasses>
-    <genClasses ecoreClass="model.ecore#//Rack">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Rack/server"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Rack/id"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Rack/name"/>
+    <genClasses ecoreClass="model.ecore#//Group">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Group/Server"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Group/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Group/name"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Group/Group"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//Network">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Network/ip"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Network/subnetmask"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Network/gateway"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Network/dns"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Network/router"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Network/Router"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Network/name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Network/server"/>
-    </genClasses>
-    <genClasses ecoreClass="model.ecore#//Room">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Room/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Room/racks"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Network/Server"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//Router">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Router/network"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Router/Network"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Router/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Router/ip"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Router/name"/>

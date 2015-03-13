@@ -1,7 +1,18 @@
 package de.uks.beast.editor.feature.add;
 
-import static de.uks.beast.editor.util.Properties.*;
-import model.Rack;
+import static de.uks.beast.editor.util.Properties.CPU_CORES;
+import static de.uks.beast.editor.util.Properties.CPU_CORES_LABEL;
+import static de.uks.beast.editor.util.Properties.CPU_STAT;
+import static de.uks.beast.editor.util.Properties.DISKSPACE;
+import static de.uks.beast.editor.util.Properties.DISKSPACE_LABEL;
+import static de.uks.beast.editor.util.Properties.IP;
+import static de.uks.beast.editor.util.Properties.IP_LABEL;
+import static de.uks.beast.editor.util.Properties.NAME;
+import static de.uks.beast.editor.util.Properties.RAM;
+import static de.uks.beast.editor.util.Properties.RAM_LABEL;
+import static de.uks.beast.editor.util.Properties.RAM_STAT;
+import static de.uks.beast.editor.util.Properties.TYPE_SERVER;
+import model.Group;
 import model.Server;
 
 import org.eclipse.graphiti.features.IDirectEditingInfo;
@@ -55,7 +66,7 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 	{
 		if (context.getNewObject() instanceof Server)
 		{
-			if (getBusinessObjectForPictogramElement(context.getTargetContainer()) instanceof Rack)
+			if (getBusinessObjectForPictogramElement(context.getTargetContainer()) instanceof Group)
 			{
 				return true;
 			}
@@ -69,11 +80,11 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 	public PictogramElement add(final IAddContext context)
 	{
 		final Server server = (Server) context.getNewObject();
-		final ContainerShape targetDiagram = (ContainerShape) context.getTargetContainer();
+		final ContainerShape parentContainer = (ContainerShape) context.getTargetContainer();
 		
 		// CONTAINER SHAPE WITH ROUNDED RECTANGLE
 		final IPeCreateService peCreateService = Graphiti.getPeCreateService();
-		final ContainerShape containerShape = peCreateService.createContainerShape(targetDiagram, true);
+		final ContainerShape containerShape = peCreateService.createContainerShape(parentContainer, true);
 		PropertyUtil.setObjectShape(containerShape, TYPE_SERVER);
 		
 		final IGaService gaService = Graphiti.getGaService();
@@ -110,26 +121,27 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		final Shape ramStatTextShape = createShape(peCreateService, containerShape);
 		final Text ramStatText = createPropertyTextShape(gaService, ramStatTextShape, X_PROPERTY - 10, 0, 1, HEIGHT_PROPERTY,
 				"--");
+		ramStatText.setLineVisible(true);
 		ramStatText.setHorizontalAlignment(Orientation.ALIGNMENT_RIGHT);
 		PropertyUtil.setAttributeShape(ramStatTextShape, RAM_STAT);
 		
 		// create link and wire it
 		link(ramStatTextShape, server);
-		
-		// SHAPE FOR RESOURCE STAT CPU
-		final Shape cpuStatTextShape = createShape(peCreateService, containerShape);
-		final Text cpuStatText = createPropertyTextShape(gaService, cpuStatTextShape, ramStatText.getX() - 20, 0, 1,
-				HEIGHT_PROPERTY, "--");
-		cpuStatText.setHorizontalAlignment(Orientation.ALIGNMENT_RIGHT);
-		PropertyUtil.setAttributeShape(cpuStatTextShape, CPU_STAT);
-		
-		// create link and wire it
-		link(cpuStatTextShape, server);
-		
-		final Shape statsLabelShape = createShape(peCreateService, containerShape);
-		final Text statsLabelText = createPropertyTextShape(gaService, statsLabelShape, cpuStatText.getX() - 18, 0, 10,
-				HEIGHT_LABEL, "CPU [%]/RAM [%]: ");
-		statsLabelText.setHorizontalAlignment(Orientation.ALIGNMENT_RIGHT);
+//		
+//		// SHAPE FOR RESOURCE STAT CPU
+//		final Shape cpuStatTextShape = createShape(peCreateService, containerShape);
+//		final Text cpuStatText = createPropertyTextShape(gaService, cpuStatTextShape, ramStatText.getX() - 20, 0, 1,
+//				HEIGHT_PROPERTY, "--");
+//		cpuStatText.setHorizontalAlignment(Orientation.ALIGNMENT_RIGHT);
+//		PropertyUtil.setAttributeShape(cpuStatTextShape, CPU_STAT);
+//		
+//		// create link and wire it
+//		link(cpuStatTextShape, server);
+//		
+//		final Shape statsLabelShape = createShape(peCreateService, containerShape);
+//		final Text statsLabelText = createPropertyTextShape(gaService, statsLabelShape, cpuStatText.getX() - 18, 0, 10,
+//				HEIGHT_LABEL, "CPU [%]/RAM [%]: ");
+//		statsLabelText.setHorizontalAlignment(Orientation.ALIGNMENT_RIGHT);
 		
 		// SHAPE WITH LINE
 		// create shape for line

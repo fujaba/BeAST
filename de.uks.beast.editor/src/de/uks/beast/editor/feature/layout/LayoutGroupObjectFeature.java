@@ -1,6 +1,8 @@
 package de.uks.beast.editor.feature.layout;
 
-import model.Room;
+import static de.uks.beast.editor.util.Dimensions.GROUP_INITIAL_HEIGHT;
+import static de.uks.beast.editor.util.Dimensions.GROUP_INITIAL_WIDTH;
+import model.Group;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -18,12 +20,10 @@ import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 
-import static de.uks.beast.editor.util.Dimensions.*;
-
-public class LayoutRoomObjectFeature extends AbstractLayoutFeature
+public class LayoutGroupObjectFeature extends AbstractLayoutFeature
 {
 	
-	public LayoutRoomObjectFeature(final IFeatureProvider fp)
+	public LayoutGroupObjectFeature(IFeatureProvider fp)
 	{
 		super(fp);
 	}
@@ -43,7 +43,7 @@ public class LayoutRoomObjectFeature extends AbstractLayoutFeature
 		
 		final EList<EObject> businessObjects = pe.getLink().getBusinessObjects();
 		
-		return businessObjects.size() == 1 && businessObjects.get(0) instanceof Room;
+		return businessObjects.size() == 1 && businessObjects.get(0) instanceof Group;
 	}
 	
 	
@@ -56,16 +56,16 @@ public class LayoutRoomObjectFeature extends AbstractLayoutFeature
 		final GraphicsAlgorithm containerGa = containerShape.getGraphicsAlgorithm();
 		
 		// height
-		if (containerGa.getHeight() < ROOM_INITIAL_HEIGHT)
+		if (containerGa.getHeight() < GROUP_INITIAL_HEIGHT)
 		{
-			containerGa.setHeight(ROOM_INITIAL_HEIGHT);
+			containerGa.setHeight(GROUP_INITIAL_HEIGHT);
 			anythingChanged = true;
 		}
 		
 		// width
-		if (containerGa.getWidth() < ROOM_INITIAL_WIDTH)
+		if (containerGa.getWidth() < GROUP_INITIAL_WIDTH)
 		{
-			containerGa.setWidth(ROOM_INITIAL_WIDTH);
+			containerGa.setWidth(GROUP_INITIAL_WIDTH);
 			anythingChanged = true;
 		}
 		

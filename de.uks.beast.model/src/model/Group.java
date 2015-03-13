@@ -8,23 +8,24 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Rack</b></em>'.
+ * A representation of the model object '<em><b>Group</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link model.Rack#getServer <em>Server</em>}</li>
- *   <li>{@link model.Rack#getId <em>Id</em>}</li>
- *   <li>{@link model.Rack#getName <em>Name</em>}</li>
+ *   <li>{@link model.Group#getServer <em>Server</em>}</li>
+ *   <li>{@link model.Group#getId <em>Id</em>}</li>
+ *   <li>{@link model.Group#getName <em>Name</em>}</li>
+ *   <li>{@link model.Group#getGroup <em>Group</em>}</li>
  * </ul>
  * </p>
  *
- * @see model.ModelPackage#getRack()
+ * @see model.ModelPackage#getGroup()
  * @model
  * @generated
  */
-public interface Rack extends EObject
+public interface Group extends EObject
 {
 	/**
 	 * Returns the value of the '<em><b>Server</b></em>' containment reference list.
@@ -36,14 +37,12 @@ public interface Rack extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Server</em>' containment reference list.
-	 * @see model.ModelPackage#getRack_Server()
+	 * @see model.ModelPackage#getGroup_Server()
 	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Server> getServer();
-	
-	
-	
+
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -54,16 +53,14 @@ public interface Rack extends EObject
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(int)
-	 * @see model.ModelPackage#getRack_Id()
+	 * @see model.ModelPackage#getGroup_Id()
 	 * @model
 	 * @generated
 	 */
 	int getId();
 
-
-
 	/**
-	 * Sets the value of the '{@link model.Rack#getId <em>Id</em>}' attribute.
+	 * Sets the value of the '{@link model.Group#getId <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Id</em>' attribute.
@@ -71,8 +68,6 @@ public interface Rack extends EObject
 	 * @generated
 	 */
 	void setId(int value);
-
-
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -85,16 +80,14 @@ public interface Rack extends EObject
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see model.ModelPackage#getRack_Name()
+	 * @see model.ModelPackage#getGroup_Name()
 	 * @model default="0"
 	 * @generated
 	 */
 	String getName();
 
-
-
 	/**
-	 * Sets the value of the '{@link model.Rack#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link model.Group#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
@@ -102,5 +95,21 @@ public interface Rack extends EObject
 	 * @generated
 	 */
 	void setName(String value);
-	
-} // Rack
+
+	/**
+	 * Returns the value of the '<em><b>Group</b></em>' containment reference list.
+	 * The list contents are of type {@link model.Group}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Group</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Group</em>' containment reference list.
+	 * @see model.ModelPackage#getGroup_Group()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Group> getGroup();
+
+} // Group

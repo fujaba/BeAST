@@ -4,6 +4,7 @@ package model.impl;
 
 import model.Apache2;
 import model.Cassandra;
+import model.Group;
 import model.HadoopMaster;
 import model.HadoopSlave;
 import model.Jenkins;
@@ -13,8 +14,6 @@ import model.ModelPackage;
 import model.MongoDB;
 import model.MySQL;
 import model.Network;
-import model.Rack;
-import model.Room;
 import model.Router;
 import model.Server;
 import model.Service;
@@ -47,8 +46,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass	rackEClass				= null;
-	
+	private EClass groupEClass = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -148,15 +147,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * @generated
 	 */
 	private EClass tomcatEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass roomEClass = null;
-
-
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -325,33 +315,9 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRack()
+	public EClass getGroup()
 	{
-		return rackEClass;
-	}
-	
-	
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getRack_Server()
-	{
-		return (EReference)rackEClass.getEStructuralFeatures().get(0);
-	}
-	
-	
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getRack_Id()
-	{
-		return (EAttribute)rackEClass.getEStructuralFeatures().get(1);
+		return groupEClass;
 	}
 
 
@@ -361,8 +327,45 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRack_Name() {
-		return (EAttribute)rackEClass.getEStructuralFeatures().get(2);
+	public EReference getGroup_Server()
+	{
+		return (EReference)groupEClass.getEStructuralFeatures().get(0);
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGroup_Id()
+	{
+		return (EAttribute)groupEClass.getEStructuralFeatures().get(1);
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGroup_Name()
+	{
+		return (EAttribute)groupEClass.getEStructuralFeatures().get(2);
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGroup_Group()
+	{
+		return (EReference)groupEClass.getEStructuralFeatures().get(3);
 	}
 
 
@@ -723,42 +726,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRoom()
-	{
-		return roomEClass;
-	}
-
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getRoom_Name()
-	{
-		return (EAttribute)roomEClass.getEStructuralFeatures().get(0);
-	}
-
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getRoom_Racks()
-	{
-		return (EReference)roomEClass.getEStructuralFeatures().get(1);
-	}
-
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ModelFactory getModelFactory()
 	{
 		return (ModelFactory)getEFactoryInstance();
@@ -795,10 +762,11 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		createEReference(serverEClass, SERVER__NETWORK);
 		createEReference(serverEClass, SERVER__SERVICE);
 
-		rackEClass = createEClass(RACK);
-		createEReference(rackEClass, RACK__SERVER);
-		createEAttribute(rackEClass, RACK__ID);
-		createEAttribute(rackEClass, RACK__NAME);
+		groupEClass = createEClass(GROUP);
+		createEReference(groupEClass, GROUP__SERVER);
+		createEAttribute(groupEClass, GROUP__ID);
+		createEAttribute(groupEClass, GROUP__NAME);
+		createEReference(groupEClass, GROUP__GROUP);
 
 		networkEClass = createEClass(NETWORK);
 		createEAttribute(networkEClass, NETWORK__IP);
@@ -808,10 +776,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		createEReference(networkEClass, NETWORK__ROUTER);
 		createEAttribute(networkEClass, NETWORK__NAME);
 		createEReference(networkEClass, NETWORK__SERVER);
-
-		roomEClass = createEClass(ROOM);
-		createEAttribute(roomEClass, ROOM__NAME);
-		createEReference(roomEClass, ROOM__RACKS);
 
 		routerEClass = createEClass(ROUTER);
 		createEReference(routerEClass, ROUTER__NETWORK);
@@ -899,29 +863,26 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		initEAttribute(getServer_Ram(), ecorePackage.getEInt(), "ram", null, 0, 1, Server.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getServer_DiskSpace(), ecorePackage.getEInt(), "diskSpace", null, 0, 1, Server.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getServer_Name(), ecorePackage.getEString(), "name", "0", 0, 1, Server.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getServer_Network(), this.getNetwork(), this.getNetwork_Server(), "network", null, 0, 1, Server.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getServer_Service(), this.getService(), null, "service", null, 0, 1, Server.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getServer_Network(), this.getNetwork(), this.getNetwork_Server(), "Network", null, 0, 1, Server.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getServer_Service(), this.getService(), null, "Service", null, 0, 1, Server.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(rackEClass, Rack.class, "Rack", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRack_Server(), this.getServer(), null, "server", null, 0, -1, Rack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRack_Id(), ecorePackage.getEInt(), "id", null, 0, 1, Rack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRack_Name(), ecorePackage.getEString(), "name", "0", 0, 1, Rack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(groupEClass, Group.class, "Group", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGroup_Server(), this.getServer(), null, "Server", null, 0, -1, Group.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGroup_Id(), ecorePackage.getEInt(), "id", null, 0, 1, Group.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGroup_Name(), ecorePackage.getEString(), "name", "0", 0, 1, Group.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGroup_Group(), this.getGroup(), null, "Group", null, 0, -1, Group.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(networkEClass, Network.class, "Network", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNetwork_Ip(), ecorePackage.getEString(), "ip", "0", 0, 1, Network.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNetwork_Subnetmask(), ecorePackage.getEString(), "subnetmask", "0", 0, 1, Network.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNetwork_Gateway(), ecorePackage.getEString(), "gateway", "0", 0, 1, Network.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNetwork_Dns(), ecorePackage.getEString(), "dns", "0", 0, 1, Network.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNetwork_Router(), this.getRouter(), this.getRouter_Network(), "router", null, 1, -1, Network.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNetwork_Router(), this.getRouter(), this.getRouter_Network(), "Router", null, 1, -1, Network.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNetwork_Name(), ecorePackage.getEString(), "name", "0", 0, 1, Network.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNetwork_Server(), this.getServer(), this.getServer_Network(), "server", null, 0, -1, Network.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(roomEClass, Room.class, "Room", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getRoom_Name(), ecorePackage.getEString(), "name", "0", 0, 1, Room.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRoom_Racks(), this.getRack(), null, "racks", null, 0, -1, Room.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNetwork_Server(), this.getServer(), this.getServer_Network(), "Server", null, 0, -1, Network.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(routerEClass, Router.class, "Router", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRouter_Network(), this.getNetwork(), this.getNetwork_Router(), "network", null, 1, -1, Router.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRouter_Network(), this.getNetwork(), this.getNetwork_Router(), "Network", null, 1, -1, Router.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRouter_Id(), ecorePackage.getEString(), "id", "0", 0, 1, Router.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRouter_Ip(), ecorePackage.getEString(), "ip", "0", 0, 1, Router.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRouter_Name(), ecorePackage.getEString(), "name", "0", 0, 1, Router.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

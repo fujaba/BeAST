@@ -149,15 +149,15 @@ public interface ModelPackage extends EPackage
 	int				SERVER_OPERATION_COUNT				= 0;
 	
 	/**
-	 * The meta object id for the '{@link model.impl.RackImpl <em>Rack</em>}' class.
+	 * The meta object id for the '{@link model.impl.GroupImpl <em>Group</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see model.impl.RackImpl
-	 * @see model.impl.ModelPackageImpl#getRack()
+	 * @see model.impl.GroupImpl
+	 * @see model.impl.ModelPackageImpl#getGroup()
 	 * @generated
 	 */
-	int				RACK								= 1;
-	
+	int GROUP = 1;
+
 	/**
 	 * The feature id for the '<em><b>Server</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -165,8 +165,8 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int				RACK__SERVER						= 0;
-	
+	int GROUP__SERVER = 0;
+
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -174,7 +174,7 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RACK__ID = 1;
+	int GROUP__ID = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -183,26 +183,35 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RACK__NAME = 2;
+	int GROUP__NAME = 2;
 
 	/**
-	 * The number of structural features of the '<em>Rack</em>' class.
+	 * The feature id for the '<em><b>Group</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int				RACK_FEATURE_COUNT					= 3;
-	
+	int GROUP__GROUP = 3;
+
 	/**
-	 * The number of operations of the '<em>Rack</em>' class.
+	 * The number of structural features of the '<em>Group</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int				RACK_OPERATION_COUNT				= 0;
-	
+	int GROUP_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>Group</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP_OPERATION_COUNT = 0;
+
 	/**
 	 * The meta object id for the '{@link model.impl.NetworkImpl <em>Network</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -302,54 +311,8 @@ public interface ModelPackage extends EPackage
 	 * @see model.impl.ModelPackageImpl#getRouter()
 	 * @generated
 	 */
-	int				ROUTER								= 4;
+	int				ROUTER								= 3;
 	
-	/**
-	 * The meta object id for the '{@link model.impl.RoomImpl <em>Room</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see model.impl.RoomImpl
-	 * @see model.impl.ModelPackageImpl#getRoom()
-	 * @generated
-	 */
-	int ROOM = 3;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROOM__NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Racks</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROOM__RACKS = 1;
-
-	/**
-	 * The number of structural features of the '<em>Room</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROOM_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Room</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROOM_OPERATION_COUNT = 0;
-
 	/**
 	 * The feature id for the '<em><b>Network</b></em>' reference list.
 	 * <!-- begin-user-doc -->
@@ -423,7 +386,7 @@ public interface ModelPackage extends EPackage
 	 * @see model.impl.ModelPackageImpl#getService()
 	 * @generated
 	 */
-	int SERVICE = 5;
+	int SERVICE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -487,7 +450,7 @@ public interface ModelPackage extends EPackage
 	 * @see model.impl.ModelPackageImpl#getHadoopMaster()
 	 * @generated
 	 */
-	int HADOOP_MASTER = 6;
+	int HADOOP_MASTER = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -551,7 +514,7 @@ public interface ModelPackage extends EPackage
 	 * @see model.impl.ModelPackageImpl#getHadoopSlave()
 	 * @generated
 	 */
-	int HADOOP_SLAVE = 7;
+	int HADOOP_SLAVE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -617,7 +580,7 @@ public interface ModelPackage extends EPackage
 	 * @see model.impl.ModelPackageImpl#getMySQL()
 	 * @generated
 	 */
-	int MY_SQL = 8;
+	int MY_SQL = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -681,7 +644,7 @@ public interface ModelPackage extends EPackage
 	 * @see model.impl.ModelPackageImpl#getWordPress()
 	 * @generated
 	 */
-	int WORD_PRESS = 9;
+	int WORD_PRESS = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -745,7 +708,7 @@ public interface ModelPackage extends EPackage
 	 * @see model.impl.ModelPackageImpl#getCassandra()
 	 * @generated
 	 */
-	int CASSANDRA = 10;
+	int CASSANDRA = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -809,7 +772,7 @@ public interface ModelPackage extends EPackage
 	 * @see model.impl.ModelPackageImpl#getMongoDB()
 	 * @generated
 	 */
-	int MONGO_DB = 11;
+	int MONGO_DB = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -875,7 +838,7 @@ public interface ModelPackage extends EPackage
 	 * @see model.impl.ModelPackageImpl#getUbuntu()
 	 * @generated
 	 */
-	int UBUNTU = 12;
+	int UBUNTU = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -939,7 +902,7 @@ public interface ModelPackage extends EPackage
 	 * @see model.impl.ModelPackageImpl#getApache2()
 	 * @generated
 	 */
-	int APACHE2 = 13;
+	int APACHE2 = 12;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1003,7 +966,7 @@ public interface ModelPackage extends EPackage
 	 * @see model.impl.ModelPackageImpl#getJenkins()
 	 * @generated
 	 */
-	int JENKINS = 14;
+	int JENKINS = 13;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1067,7 +1030,7 @@ public interface ModelPackage extends EPackage
 	 * @see model.impl.ModelPackageImpl#getMediaWiki()
 	 * @generated
 	 */
-	int MEDIA_WIKI = 15;
+	int MEDIA_WIKI = 14;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1131,7 +1094,7 @@ public interface ModelPackage extends EPackage
 	 * @see model.impl.ModelPackageImpl#getTomcat()
 	 * @generated
 	 */
-	int TOMCAT = 16;
+	int TOMCAT = 15;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1293,53 +1256,66 @@ public interface ModelPackage extends EPackage
 
 
 	/**
-	 * Returns the meta object for class '{@link model.Rack <em>Rack</em>}'.
+	 * Returns the meta object for class '{@link model.Group <em>Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Rack</em>'.
-	 * @see model.Rack
+	 * @return the meta object for class '<em>Group</em>'.
+	 * @see model.Group
 	 * @generated
 	 */
-	EClass getRack();
-	
-	
-	
+	EClass getGroup();
+
+
+
 	/**
-	 * Returns the meta object for the containment reference list '{@link model.Rack#getServer <em>Server</em>}'.
+	 * Returns the meta object for the containment reference list '{@link model.Group#getServer <em>Server</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Server</em>'.
-	 * @see model.Rack#getServer()
-	 * @see #getRack()
+	 * @see model.Group#getServer()
+	 * @see #getGroup()
 	 * @generated
 	 */
-	EReference getRack_Server();
-	
-	
-	
+	EReference getGroup_Server();
+
+
+
 	/**
-	 * Returns the meta object for the attribute '{@link model.Rack#getId <em>Id</em>}'.
+	 * Returns the meta object for the attribute '{@link model.Group#getId <em>Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see model.Rack#getId()
-	 * @see #getRack()
+	 * @see model.Group#getId()
+	 * @see #getGroup()
 	 * @generated
 	 */
-	EAttribute getRack_Id();
+	EAttribute getGroup_Id();
 
 
 
 	/**
-	 * Returns the meta object for the attribute '{@link model.Rack#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link model.Group#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see model.Rack#getName()
-	 * @see #getRack()
+	 * @see model.Group#getName()
+	 * @see #getGroup()
 	 * @generated
 	 */
-	EAttribute getRack_Name();
+	EAttribute getGroup_Name();
+
+
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link model.Group#getGroup <em>Group</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Group</em>'.
+	 * @see model.Group#getGroup()
+	 * @see #getGroup()
+	 * @generated
+	 */
+	EReference getGroup_Group();
 
 
 
@@ -1720,44 +1696,6 @@ public interface ModelPackage extends EPackage
 
 
 	/**
-	 * Returns the meta object for class '{@link model.Room <em>Room</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Room</em>'.
-	 * @see model.Room
-	 * @generated
-	 */
-	EClass getRoom();
-
-
-
-	/**
-	 * Returns the meta object for the attribute '{@link model.Room#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see model.Room#getName()
-	 * @see #getRoom()
-	 * @generated
-	 */
-	EAttribute getRoom_Name();
-
-
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link model.Room#getRacks <em>Racks</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Racks</em>'.
-	 * @see model.Room#getRacks()
-	 * @see #getRoom()
-	 * @generated
-	 */
-	EReference getRoom_Racks();
-
-
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1848,30 +1786,30 @@ public interface ModelPackage extends EPackage
 		EReference SERVER__SERVICE = eINSTANCE.getServer_Service();
 
 		/**
-		 * The meta object literal for the '{@link model.impl.RackImpl <em>Rack</em>}' class.
+		 * The meta object literal for the '{@link model.impl.GroupImpl <em>Group</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see model.impl.RackImpl
-		 * @see model.impl.ModelPackageImpl#getRack()
+		 * @see model.impl.GroupImpl
+		 * @see model.impl.ModelPackageImpl#getGroup()
 		 * @generated
 		 */
-		EClass		RACK						= eINSTANCE.getRack();
-		
+		EClass GROUP = eINSTANCE.getGroup();
+
 		/**
 		 * The meta object literal for the '<em><b>Server</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference	RACK__SERVER				= eINSTANCE.getRack_Server();
-		
+		EReference GROUP__SERVER = eINSTANCE.getGroup_Server();
+
 		/**
 		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute RACK__ID = eINSTANCE.getRack_Id();
+		EAttribute GROUP__ID = eINSTANCE.getGroup_Id();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -1879,7 +1817,15 @@ public interface ModelPackage extends EPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute RACK__NAME = eINSTANCE.getRack_Name();
+		EAttribute GROUP__NAME = eINSTANCE.getGroup_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Group</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GROUP__GROUP = eINSTANCE.getGroup_Group();
 
 		/**
 		 * The meta object literal for the '{@link model.impl.NetworkImpl <em>Network</em>}' class.
@@ -2148,32 +2094,6 @@ public interface ModelPackage extends EPackage
 		 * @generated
 		 */
 		EClass TOMCAT = eINSTANCE.getTomcat();
-
-		/**
-		 * The meta object literal for the '{@link model.impl.RoomImpl <em>Room</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see model.impl.RoomImpl
-		 * @see model.impl.ModelPackageImpl#getRoom()
-		 * @generated
-		 */
-		EClass ROOM = eINSTANCE.getRoom();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ROOM__NAME = eINSTANCE.getRoom_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Racks</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ROOM__RACKS = eINSTANCE.getRoom_Racks();
 		
 	}
 	

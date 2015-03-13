@@ -3,13 +3,11 @@ package de.uks.beast.editor.util;
 public enum Fonts
 {
 	//@formatter:off
-	ROOM_TITEL				("Arial",		12, 		true,		true),
-	RACK_TITEL				("Arial",		11, 		true,		true),
+	GROUP_TITEL				("Arial",		11, 		true,		true),
 	SERVER_TITEL			("Arial",		10, 		true,		true),
 	ROUTER_TITEL			("Arial",		10, 		true,		true),
 	NETWORK_TITEL			("Arial",		10, 		true,		true),
-	ROOM_PROPERTY			("Arial",		8, 			false,		true),
-	RACK_PROPERTY			("Arial",		8, 			false,		true),
+	GROUP_PROPERTY			("Arial",		8, 			false,		true),
 	SERVER_PROPERTY			("Arial",		8, 			false,		true),
 	NETWORK_PROPERTY		("Arial",		8, 			false,		true),
 	ROUTER_PROPERTY			("Arial",		8, 			false,		true),

@@ -1,6 +1,10 @@
 package de.uks.beast.editor.feature.edit;
 
-import model.Room;
+import static de.uks.beast.editor.util.Properties.NAME;
+import static de.uks.beast.editor.util.Strings.EMPTY_NAME_WARNING;
+import static de.uks.beast.editor.util.Strings.LINE_BREAK_WARNING;
+import static de.uks.beast.editor.util.Strings.WRONG_SYMBOL_WARNING;
+import model.Group;
 
 import org.eclipse.graphiti.features.IDirectEditingFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -12,13 +16,11 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
 import de.uks.beast.editor.util.PropertyUtil;
-import static de.uks.beast.editor.util.Properties.NAME;
-import static de.uks.beast.editor.util.Strings.*;
 
-public class DirectEditRoomFeature extends AbstractDirectEditingFeature implements IDirectEditingFeature
+public class DirectEditGroupFeature extends AbstractDirectEditingFeature implements IDirectEditingFeature
 {
 	
-	public DirectEditRoomFeature(final IFeatureProvider fp)
+	public DirectEditGroupFeature(final IFeatureProvider fp)
 	{
 		super(fp);
 	}
@@ -40,7 +42,7 @@ public class DirectEditRoomFeature extends AbstractDirectEditingFeature implemen
 		final Object bo = getBusinessObjectForPictogramElement(pe);
 		final GraphicsAlgorithm ga = context.getGraphicsAlgorithm();
 		
-		if (bo instanceof Room && ga instanceof Text && PropertyUtil.isAttributeShape(pe, NAME))
+		if (bo instanceof Group && ga instanceof Text && PropertyUtil.isAttributeShape(pe, NAME))
 		{
 			return true;
 		}
@@ -54,9 +56,9 @@ public class DirectEditRoomFeature extends AbstractDirectEditingFeature implemen
 	public String getInitialValue(final IDirectEditingContext context)
 	{
 		final PictogramElement pe = context.getPictogramElement();
-		final Room room = (Room) getBusinessObjectForPictogramElement(pe);
+		final Group rack = (Group) getBusinessObjectForPictogramElement(pe);
 		
-		return room.getName();
+		return rack.getName();
 	}
 	
 	
@@ -85,8 +87,8 @@ public class DirectEditRoomFeature extends AbstractDirectEditingFeature implemen
 	public void setValue(final String value, final IDirectEditingContext context)
 	{
 		final PictogramElement pe = context.getPictogramElement();
-		final Room room = (Room) getBusinessObjectForPictogramElement(pe);
-		room.setName(value);
+		final Group rack = (Group) getBusinessObjectForPictogramElement(pe);
+		rack.setName(value);
 		updatePictogramElement(((Shape) pe).getContainer());
 	}
 	

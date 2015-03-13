@@ -1,11 +1,11 @@
 package de.uks.beast.editor.feature.add;
 
-import model.Room;
+import model.Group;
 
 import org.eclipse.graphiti.features.IDirectEditingInfo;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
-import org.eclipse.graphiti.features.impl.AbstractAddShapeFeature;
+import org.eclipse.graphiti.features.impl.AbstractAddFeature;
 import org.eclipse.graphiti.mm.GraphicsAlgorithmContainer;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
 import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
@@ -24,7 +24,7 @@ import de.uks.beast.editor.util.Fonts;
 import de.uks.beast.editor.util.Properties;
 import de.uks.beast.editor.util.PropertyUtil;
 
-public class AddRoomFeature extends AbstractAddShapeFeature implements AbstractShapeFactory
+public class AddGroupFeature extends AbstractAddFeature implements AbstractShapeFactory
 {
 	
 	private static final int	WIDTH_PROPERTY	= 50;
@@ -39,7 +39,7 @@ public class AddRoomFeature extends AbstractAddShapeFeature implements AbstractS
 	
 	
 	
-	public AddRoomFeature(final IFeatureProvider fp)
+	public AddGroupFeature(final IFeatureProvider fp)
 	{
 		super(fp);
 	}
@@ -49,9 +49,13 @@ public class AddRoomFeature extends AbstractAddShapeFeature implements AbstractS
 	@Override
 	public boolean canAdd(final IAddContext context)
 	{
-		if (context.getNewObject() instanceof Room)
+		if (context.getNewObject() instanceof Group)
 		{
 			if (context.getTargetContainer() instanceof Diagram)
+			{
+				return true;
+			}
+			else if (getBusinessObjectForPictogramElement(context.getTargetContainer()) instanceof Group)
 			{
 				return true;
 			}
@@ -65,8 +69,8 @@ public class AddRoomFeature extends AbstractAddShapeFeature implements AbstractS
 	@Override
 	public PictogramElement add(final IAddContext context)
 	{
-		final Room room = (Room) context.getNewObject();
-		final Diagram targetDiagram = (Diagram) context.getTargetContainer();
+		final Group group = (Group) context.getNewObject();
+		final ContainerShape targetDiagram = (ContainerShape) context.getTargetContainer();
 		
 		// CONTAINER SHAPE WITH ROUNDED RECTANGLE
 		final IPeCreateService peCreateService = Graphiti.getPeCreateService();
@@ -76,20 +80,20 @@ public class AddRoomFeature extends AbstractAddShapeFeature implements AbstractS
 		
 		// create and set graphics algorithm
 		final RoundedRectangle roundedRectangle = gaService.createRoundedRectangle(containerShape, 5, 5);
-		roundedRectangle.setForeground(manageColor(Colors.ROOM_FOREGROUND));
-		roundedRectangle.setBackground(manageColor(Colors.ROOM_BACKGROUND));
+		roundedRectangle.setForeground(manageColor(Colors.GROUP_FOREGROUND));
+		roundedRectangle.setBackground(manageColor(Colors.GROUP_BACKGROUND));
 		roundedRectangle.setLineWidth(2);
 		gaService.setLocationAndSize(roundedRectangle, context.getX(), context.getY(), context.getWidth(), context.getHeight());
 		
 		// if added Class has no resource we add it to the resource
 		// of the diagram
 		// in a real scenario the business model would have its own resource
-		if (room.eResource() == null)
+		if (group.eResource() == null)
 		{
-			getDiagram().eResource().getContents().add(room);
+			getDiagram().eResource().getContents().add(group);
 		}
 		// create link and wire it
-		link(containerShape, room);
+		link(containerShape, group);
 		
 		// SHAPE WITH TEXT
 		// create shape for text
@@ -97,20 +101,20 @@ public class AddRoomFeature extends AbstractAddShapeFeature implements AbstractS
 		
 		// create and set text graphics algorithm
 		final Text nameText = createTitleTextShape(gaService, nameTextShape, X_PROPERTY, 0, WIDTH_PROPERTY, HEIGHT_PROPERTY,
-				room.getName());
+				group.getName());
 		PropertyUtil.setAttributeShape(nameTextShape, Properties.NAME);
 		
 		// create link and wire it
-		link(nameTextShape, room);
+		link(nameTextShape, group);
 		
 		// SHAPE WITH LINE
 		// create shape for line
 		final Shape lineShape = createShape(peCreateService, containerShape);
 		
 		// create and set graphics algorithm
-		final Polyline polyline = gaService.createPolyline(lineShape,
-				new int[] { X0_PARTING_LINE, Y_PARTING_LINE, context.getWidth(), Y_PARTING_LINE });
-		polyline.setForeground(manageColor(Colors.ROOM_FOREGROUND));
+		final Polyline polyline = gaService.createPolyline(lineShape, new int[] { X0_PARTING_LINE, Y_PARTING_LINE,
+				WIDTH_PROPERTY, Y_PARTING_LINE });
+		polyline.setForeground(manageColor(Colors.GROUP_FOREGROUND));
 		polyline.setLineWidth(2);
 		
 		final IDirectEditingInfo directEditingInfo = getFeatureProvider().getDirectEditingInfo();
@@ -142,11 +146,11 @@ public class AddRoomFeature extends AbstractAddShapeFeature implements AbstractS
 			final int y, final int width, final int height, final String content)
 	{
 		final Text text = gaService.createText(gaContainer, content);
-		text.setForeground(manageColor(Colors.ROOM_TEXT_FOREGROUND));
+		text.setForeground(manageColor(Colors.GROUP_TEXT_FOREGROUND));
 		text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 		// vertical alignment has as default value "center"
-		text.setFont(gaService.manageFont(getDiagram(), Fonts.ROOM_PROPERTY.getName(), Fonts.ROOM_PROPERTY.getSize(),
-				Fonts.ROOM_PROPERTY.isItalic(), Fonts.ROOM_PROPERTY.isBold()));
+		text.setFont(gaService.manageFont(getDiagram(), Fonts.GROUP_PROPERTY.getName(), Fonts.GROUP_PROPERTY.getSize(),
+				Fonts.GROUP_PROPERTY.isItalic(), Fonts.GROUP_PROPERTY.isBold()));
 		gaService.setLocationAndSize(text, x, y, width, height);
 		
 		return text;
@@ -159,11 +163,11 @@ public class AddRoomFeature extends AbstractAddShapeFeature implements AbstractS
 			int height, String content)
 	{
 		final Text text = gaService.createText(gaContainer, content);
-		text.setForeground(manageColor(Colors.ROOM_TEXT_FOREGROUND));
+		text.setForeground(manageColor(Colors.GROUP_TEXT_FOREGROUND));
 		text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 		// vertical alignment has as default value "center"
-		text.setFont(gaService.manageFont(getDiagram(), Fonts.ROOM_TITEL.getName(), Fonts.ROOM_TITEL.getSize(),
-				Fonts.ROOM_TITEL.isItalic(), Fonts.ROOM_TITEL.isBold()));
+		text.setFont(gaService.manageFont(getDiagram(), Fonts.GROUP_TITEL.getName(), Fonts.GROUP_TITEL.getSize(),
+				Fonts.GROUP_TITEL.isItalic(), Fonts.GROUP_TITEL.isBold()));
 		gaService.setLocationAndSize(text, x, y, width, height);
 		
 		return text;

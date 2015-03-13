@@ -36,16 +36,16 @@ public interface ModelFactory extends EFactory
 	
 	
 	/**
-	 * Returns a new object of class '<em>Rack</em>'.
+	 * Returns a new object of class '<em>Group</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Rack</em>'.
+	 * @return a new object of class '<em>Group</em>'.
 	 * @generated
 	 */
-	Rack createRack();
-	
-	
-	
+	Group createGroup();
+
+
+
 	/**
 	 * Returns a new object of class '<em>Network</em>'.
 	 * <!-- begin-user-doc -->
@@ -186,17 +186,6 @@ public interface ModelFactory extends EFactory
 	 * @generated
 	 */
 	Tomcat createTomcat();
-
-
-
-	/**
-	 * Returns a new object of class '<em>Room</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Room</em>'.
-	 * @generated
-	 */
-	Room createRoom();
 
 
 

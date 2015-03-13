@@ -1,5 +1,26 @@
 package de.uks.beast.editor.provider;
 
+import static de.uks.beast.editor.util.Strings.APACHE2;
+import static de.uks.beast.editor.util.Strings.CASSANDRA;
+import static de.uks.beast.editor.util.Strings.CONNECTION;
+import static de.uks.beast.editor.util.Strings.ETHERNET;
+import static de.uks.beast.editor.util.Strings.HADOOP;
+import static de.uks.beast.editor.util.Strings.HADOOP_MASTER;
+import static de.uks.beast.editor.util.Strings.HADOOP_SLAVE;
+import static de.uks.beast.editor.util.Strings.JENKINS;
+import static de.uks.beast.editor.util.Strings.LOCATION;
+import static de.uks.beast.editor.util.Strings.MEDIAWIKI;
+import static de.uks.beast.editor.util.Strings.MONGO_DB;
+import static de.uks.beast.editor.util.Strings.MYSQL;
+import static de.uks.beast.editor.util.Strings.NETWORK;
+import static de.uks.beast.editor.util.Strings.ROUTER;
+import static de.uks.beast.editor.util.Strings.SERVER;
+import static de.uks.beast.editor.util.Strings.SERVER_GROUP;
+import static de.uks.beast.editor.util.Strings.SERVICE_RELATION;
+import static de.uks.beast.editor.util.Strings.TOMCAT;
+import static de.uks.beast.editor.util.Strings.UBUNTU;
+import static de.uks.beast.editor.util.Strings.WORDPRESS;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,9 +29,8 @@ import org.eclipse.graphiti.palette.IPaletteCompartmentEntry;
 import org.eclipse.graphiti.tb.DefaultToolBehaviorProvider;
 
 import de.uks.beast.editor.feature.create.CreateConnectionFeature;
+import de.uks.beast.editor.feature.create.CreateGroupFeature;
 import de.uks.beast.editor.feature.create.CreateNetworkFeature;
-import de.uks.beast.editor.feature.create.CreateRackFeature;
-import de.uks.beast.editor.feature.create.CreateRoomFeature;
 import de.uks.beast.editor.feature.create.CreateServerFeature;
 import de.uks.beast.editor.feature.create.CreaterRouterFeature;
 import de.uks.beast.editor.service.services.apache2.create.CreateApache2Feature;
@@ -27,7 +47,6 @@ import de.uks.beast.editor.service.services.ubuntu.create.CreateUbuntuFeature;
 import de.uks.beast.editor.service.services.wordpress.create.CreateWordPressFeature;
 import de.uks.beast.editor.util.Images;
 import de.uks.beast.editor.util.PaletteCompartmentEntry;
-import static de.uks.beast.editor.util.Strings.*;
 
 public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 {
@@ -49,10 +68,8 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 				.builder()
 				.setName(LOCATION.text())
 				.setIconID(Images.LOCATION_PALETTE_IMAGE.getImageID())
-				.addAllCreateObjectFeature(
-						new CreateRoomFeature(getFeatureProvider(), SERVER_ROOM.text(), SERVER_ROOM.description()))
 				.addCreateObjectFeature(
-						new CreateRackFeature(getFeatureProvider(), SERVER_RACK.text(), SERVER_RACK.description()))
+						new CreateGroupFeature(getFeatureProvider(), SERVER_GROUP.text(), SERVER_GROUP.description()))
 				.setInitialOpen(false)
 				.build();
 		//@formatter:on
