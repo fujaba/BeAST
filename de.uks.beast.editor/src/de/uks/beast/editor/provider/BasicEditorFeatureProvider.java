@@ -123,47 +123,47 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 		{
 			final Service service = (Service) context.getNewObject();
 			
-			if (service.getTitle().equals(Strings.HADOOP_MASTER.text()))
+			if (service.getName().equals(Strings.HADOOP_MASTER.text()))
 			{
 				return new AddHadoopMasterFeature(this);
 			}
-			else if (service.getTitle().equals(Strings.HADOOP_SLAVE.text()))
+			else if (service.getName().equals(Strings.HADOOP_SLAVE.text()))
 			{
 				return new AddHadoopSlaveFeature(this);
 			}
-			else if (service.getTitle().equals(Strings.CASSANDRA.text()))
+			else if (service.getName().equals(Strings.CASSANDRA.text()))
 			{
 				return new AddCassandraFeature(this);
 			}
-			else if (service.getTitle().equals(Strings.MONGO_DB.text()))
+			else if (service.getName().equals(Strings.MONGO_DB.text()))
 			{
 				return new AddMongoDBFeature(this);
 			}
-			else if (service.getTitle().equals(Strings.MYSQL.text()))
+			else if (service.getName().equals(Strings.MYSQL.text()))
 			{
 				return new AddMySqlFeature(this);
 			}
-			else if (service.getTitle().equals(Strings.WORDPRESS.text()))
+			else if (service.getName().equals(Strings.WORDPRESS.text()))
 			{
 				return new AddWordPressFeature(this);
 			}
-			else if (service.getTitle().equals(Strings.UBUNTU.text()))
+			else if (service.getName().equals(Strings.UBUNTU.text()))
 			{
 				return new AddUbuntuFeature(this);
 			}
-			else if (service.getTitle().equals(Strings.APACHE2.text()))
+			else if (service.getName().equals(Strings.APACHE2.text()))
 			{
 				return new AddApache2Feature(this);
 			}
-			else if (service.getTitle().equals(Strings.JENKINS.text()))
+			else if (service.getName().equals(Strings.JENKINS.text()))
 			{
 				return new AddJenkinsFeature(this);
 			}
-			else if (service.getTitle().equals(Strings.MEDIAWIKI.text()))
+			else if (service.getName().equals(Strings.MEDIAWIKI.text()))
 			{
 				return new AddMediaWikiFeature(this);
 			}
-			else if (service.getTitle().equals(Strings.TOMCAT.text()))
+			else if (service.getName().equals(Strings.TOMCAT.text()))
 			{
 				return new AddTomcatFeature(this);
 			}

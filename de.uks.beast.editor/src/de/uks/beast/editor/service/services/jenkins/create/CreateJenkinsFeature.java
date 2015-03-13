@@ -42,7 +42,7 @@ public class CreateJenkinsFeature extends AbstractCreateFeature
 	public Object[] create(final ICreateContext context)
 	{
 		final Service service = ModelFactory.eINSTANCE.createJenkins();
-		service.setTitle(Strings.JENKINS.text());
+		service.setName(Strings.JENKINS.text());
 		
 		final Server server = (Server) getBusinessObjectForPictogramElement(context.getTargetContainer());
 		server.setService(service);

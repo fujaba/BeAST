@@ -33,7 +33,7 @@ public class AddJenkinsFeature extends AbstractAddShapeFeature
 		if (context.getNewObject() instanceof Service)
 		{
 			final Service service = (Service) context.getNewObject();
-			if (Strings.JENKINS.text().equals(service.getTitle()))
+			if (Strings.JENKINS.text().equals(service.getName()))
 			{
 				if (getBusinessObjectForPictogramElement(context.getTargetContainer()) instanceof Server)
 				{

@@ -33,7 +33,7 @@ public class AddApache2Feature extends AbstractAddShapeFeature
 		if (context.getNewObject() instanceof Service)
 		{
 			final Service service = (Service) context.getNewObject();
-			if (Strings.APACHE2.text().equals(service.getTitle()))
+			if (Strings.APACHE2.text().equals(service.getName()))
 			{
 				if (getBusinessObjectForPictogramElement(context.getTargetContainer()) instanceof Server)
 				{

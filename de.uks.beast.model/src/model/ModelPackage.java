@@ -426,22 +426,22 @@ public interface ModelPackage extends EPackage
 	int SERVICE = 5;
 
 	/**
-	 * The feature id for the '<em><b>Title</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE__TITLE = 0;
+	int SERVICE__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Relations</b></em>' reference list.
+	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE__RELATIONS = 1;
+	int SERVICE__SERVICE_TYPE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Service Name</b></em>' attribute.
@@ -453,13 +453,13 @@ public interface ModelPackage extends EPackage
 	int SERVICE__SERVICE_NAME = 2;
 
 	/**
-	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Relations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE__SERVICE_TYPE = 3;
+	int SERVICE__RELATIONS = 3;
 
 	/**
 	 * The number of structural features of the '<em>Service</em>' class.
@@ -490,22 +490,22 @@ public interface ModelPackage extends EPackage
 	int HADOOP_MASTER = 6;
 
 	/**
-	 * The feature id for the '<em><b>Title</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HADOOP_MASTER__TITLE = SERVICE__TITLE;
+	int HADOOP_MASTER__NAME = SERVICE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Relations</b></em>' reference list.
+	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HADOOP_MASTER__RELATIONS = SERVICE__RELATIONS;
+	int HADOOP_MASTER__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Service Name</b></em>' attribute.
@@ -517,13 +517,13 @@ public interface ModelPackage extends EPackage
 	int HADOOP_MASTER__SERVICE_NAME = SERVICE__SERVICE_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Relations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HADOOP_MASTER__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
+	int HADOOP_MASTER__RELATIONS = SERVICE__RELATIONS;
 
 	/**
 	 * The number of structural features of the '<em>Hadoop Master</em>' class.
@@ -554,22 +554,22 @@ public interface ModelPackage extends EPackage
 	int HADOOP_SLAVE = 7;
 
 	/**
-	 * The feature id for the '<em><b>Title</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HADOOP_SLAVE__TITLE = SERVICE__TITLE;
+	int HADOOP_SLAVE__NAME = SERVICE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Relations</b></em>' reference list.
+	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HADOOP_SLAVE__RELATIONS = SERVICE__RELATIONS;
+	int HADOOP_SLAVE__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Service Name</b></em>' attribute.
@@ -581,13 +581,13 @@ public interface ModelPackage extends EPackage
 	int HADOOP_SLAVE__SERVICE_NAME = SERVICE__SERVICE_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Relations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HADOOP_SLAVE__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
+	int HADOOP_SLAVE__RELATIONS = SERVICE__RELATIONS;
 
 	/**
 	 * The number of structural features of the '<em>Hadoop Slave</em>' class.
@@ -620,22 +620,22 @@ public interface ModelPackage extends EPackage
 	int MY_SQL = 8;
 
 	/**
-	 * The feature id for the '<em><b>Title</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MY_SQL__TITLE = SERVICE__TITLE;
+	int MY_SQL__NAME = SERVICE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Relations</b></em>' reference list.
+	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MY_SQL__RELATIONS = SERVICE__RELATIONS;
+	int MY_SQL__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Service Name</b></em>' attribute.
@@ -647,13 +647,13 @@ public interface ModelPackage extends EPackage
 	int MY_SQL__SERVICE_NAME = SERVICE__SERVICE_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Relations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MY_SQL__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
+	int MY_SQL__RELATIONS = SERVICE__RELATIONS;
 
 	/**
 	 * The number of structural features of the '<em>My SQL</em>' class.
@@ -684,22 +684,22 @@ public interface ModelPackage extends EPackage
 	int WORD_PRESS = 9;
 
 	/**
-	 * The feature id for the '<em><b>Title</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WORD_PRESS__TITLE = SERVICE__TITLE;
+	int WORD_PRESS__NAME = SERVICE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Relations</b></em>' reference list.
+	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WORD_PRESS__RELATIONS = SERVICE__RELATIONS;
+	int WORD_PRESS__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Service Name</b></em>' attribute.
@@ -711,13 +711,13 @@ public interface ModelPackage extends EPackage
 	int WORD_PRESS__SERVICE_NAME = SERVICE__SERVICE_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Relations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WORD_PRESS__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
+	int WORD_PRESS__RELATIONS = SERVICE__RELATIONS;
 
 	/**
 	 * The number of structural features of the '<em>Word Press</em>' class.
@@ -748,22 +748,22 @@ public interface ModelPackage extends EPackage
 	int CASSANDRA = 10;
 
 	/**
-	 * The feature id for the '<em><b>Title</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CASSANDRA__TITLE = SERVICE__TITLE;
+	int CASSANDRA__NAME = SERVICE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Relations</b></em>' reference list.
+	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CASSANDRA__RELATIONS = SERVICE__RELATIONS;
+	int CASSANDRA__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Service Name</b></em>' attribute.
@@ -775,13 +775,13 @@ public interface ModelPackage extends EPackage
 	int CASSANDRA__SERVICE_NAME = SERVICE__SERVICE_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Relations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CASSANDRA__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
+	int CASSANDRA__RELATIONS = SERVICE__RELATIONS;
 
 	/**
 	 * The number of structural features of the '<em>Cassandra</em>' class.
@@ -812,22 +812,22 @@ public interface ModelPackage extends EPackage
 	int MONGO_DB = 11;
 
 	/**
-	 * The feature id for the '<em><b>Title</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MONGO_DB__TITLE = SERVICE__TITLE;
+	int MONGO_DB__NAME = SERVICE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Relations</b></em>' reference list.
+	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MONGO_DB__RELATIONS = SERVICE__RELATIONS;
+	int MONGO_DB__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Service Name</b></em>' attribute.
@@ -839,13 +839,13 @@ public interface ModelPackage extends EPackage
 	int MONGO_DB__SERVICE_NAME = SERVICE__SERVICE_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Relations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MONGO_DB__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
+	int MONGO_DB__RELATIONS = SERVICE__RELATIONS;
 
 	/**
 	 * The number of structural features of the '<em>Mongo DB</em>' class.
@@ -878,22 +878,22 @@ public interface ModelPackage extends EPackage
 	int UBUNTU = 12;
 
 	/**
-	 * The feature id for the '<em><b>Title</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UBUNTU__TITLE = SERVICE__TITLE;
+	int UBUNTU__NAME = SERVICE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Relations</b></em>' reference list.
+	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UBUNTU__RELATIONS = SERVICE__RELATIONS;
+	int UBUNTU__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Service Name</b></em>' attribute.
@@ -905,13 +905,13 @@ public interface ModelPackage extends EPackage
 	int UBUNTU__SERVICE_NAME = SERVICE__SERVICE_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Relations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UBUNTU__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
+	int UBUNTU__RELATIONS = SERVICE__RELATIONS;
 
 	/**
 	 * The number of structural features of the '<em>Ubuntu</em>' class.
@@ -942,22 +942,22 @@ public interface ModelPackage extends EPackage
 	int APACHE2 = 13;
 
 	/**
-	 * The feature id for the '<em><b>Title</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int APACHE2__TITLE = SERVICE__TITLE;
+	int APACHE2__NAME = SERVICE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Relations</b></em>' reference list.
+	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int APACHE2__RELATIONS = SERVICE__RELATIONS;
+	int APACHE2__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Service Name</b></em>' attribute.
@@ -969,13 +969,13 @@ public interface ModelPackage extends EPackage
 	int APACHE2__SERVICE_NAME = SERVICE__SERVICE_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Relations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int APACHE2__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
+	int APACHE2__RELATIONS = SERVICE__RELATIONS;
 
 	/**
 	 * The number of structural features of the '<em>Apache2</em>' class.
@@ -1006,22 +1006,22 @@ public interface ModelPackage extends EPackage
 	int JENKINS = 14;
 
 	/**
-	 * The feature id for the '<em><b>Title</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JENKINS__TITLE = SERVICE__TITLE;
+	int JENKINS__NAME = SERVICE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Relations</b></em>' reference list.
+	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JENKINS__RELATIONS = SERVICE__RELATIONS;
+	int JENKINS__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Service Name</b></em>' attribute.
@@ -1033,13 +1033,13 @@ public interface ModelPackage extends EPackage
 	int JENKINS__SERVICE_NAME = SERVICE__SERVICE_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Relations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JENKINS__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
+	int JENKINS__RELATIONS = SERVICE__RELATIONS;
 
 	/**
 	 * The number of structural features of the '<em>Jenkins</em>' class.
@@ -1070,22 +1070,22 @@ public interface ModelPackage extends EPackage
 	int MEDIA_WIKI = 15;
 
 	/**
-	 * The feature id for the '<em><b>Title</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MEDIA_WIKI__TITLE = SERVICE__TITLE;
+	int MEDIA_WIKI__NAME = SERVICE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Relations</b></em>' reference list.
+	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MEDIA_WIKI__RELATIONS = SERVICE__RELATIONS;
+	int MEDIA_WIKI__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Service Name</b></em>' attribute.
@@ -1097,13 +1097,13 @@ public interface ModelPackage extends EPackage
 	int MEDIA_WIKI__SERVICE_NAME = SERVICE__SERVICE_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Relations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MEDIA_WIKI__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
+	int MEDIA_WIKI__RELATIONS = SERVICE__RELATIONS;
 
 	/**
 	 * The number of structural features of the '<em>Media Wiki</em>' class.
@@ -1134,22 +1134,22 @@ public interface ModelPackage extends EPackage
 	int TOMCAT = 16;
 
 	/**
-	 * The feature id for the '<em><b>Title</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOMCAT__TITLE = SERVICE__TITLE;
+	int TOMCAT__NAME = SERVICE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Relations</b></em>' reference list.
+	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOMCAT__RELATIONS = SERVICE__RELATIONS;
+	int TOMCAT__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Service Name</b></em>' attribute.
@@ -1161,13 +1161,13 @@ public interface ModelPackage extends EPackage
 	int TOMCAT__SERVICE_NAME = SERVICE__SERVICE_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Service Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Relations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOMCAT__SERVICE_TYPE = SERVICE__SERVICE_TYPE;
+	int TOMCAT__RELATIONS = SERVICE__RELATIONS;
 
 	/**
 	 * The number of structural features of the '<em>Tomcat</em>' class.
@@ -1536,15 +1536,15 @@ public interface ModelPackage extends EPackage
 
 
 	/**
-	 * Returns the meta object for the attribute '{@link model.Service#getTitle <em>Title</em>}'.
+	 * Returns the meta object for the attribute '{@link model.Service#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Title</em>'.
-	 * @see model.Service#getTitle()
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see model.Service#getName()
 	 * @see #getService()
 	 * @generated
 	 */
-	EAttribute getService_Title();
+	EAttribute getService_Name();
 
 
 
@@ -2008,12 +2008,12 @@ public interface ModelPackage extends EPackage
 		EClass SERVICE = eINSTANCE.getService();
 
 		/**
-		 * The meta object literal for the '<em><b>Title</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SERVICE__TITLE = eINSTANCE.getService_Title();
+		EAttribute SERVICE__NAME = eINSTANCE.getService_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Relations</b></em>' reference list feature.

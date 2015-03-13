@@ -20,7 +20,7 @@ public class ServicePropertyFilter extends AbstractPropertySectionFilter
 		{
 			final Service service = (Service) object;
 			
-			if (Strings.HADOOP_MASTER.text().equals(service.getTitle()))
+			if (Strings.HADOOP_MASTER.text().equals(service.getName()))
 			{
 				return true;
 			}

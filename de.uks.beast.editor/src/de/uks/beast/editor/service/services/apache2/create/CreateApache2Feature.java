@@ -42,7 +42,7 @@ public class CreateApache2Feature extends AbstractCreateFeature
 	public Object[] create(final ICreateContext context)
 	{
 		final Service service = ModelFactory.eINSTANCE.createApache2();
-		service.setTitle(Strings.APACHE2.text());
+		service.setName(Strings.APACHE2.text());
 		
 		final Server server = (Server) getBusinessObjectForPictogramElement(context.getTargetContainer());
 		server.setService(service);

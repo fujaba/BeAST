@@ -42,7 +42,7 @@ public class CreateMediaWikiFeature extends AbstractCreateFeature
 	public Object[] create(final ICreateContext context)
 	{
 		final Service service = ModelFactory.eINSTANCE.createMediaWiki();
-		service.setTitle(Strings.MEDIAWIKI.text());
+		service.setName(Strings.MEDIAWIKI.text());
 		
 		final Server server = (Server) getBusinessObjectForPictogramElement(context.getTargetContainer());
 		server.setService(service);

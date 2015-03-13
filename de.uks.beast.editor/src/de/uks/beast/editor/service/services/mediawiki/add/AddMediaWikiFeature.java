@@ -33,7 +33,7 @@ public class AddMediaWikiFeature extends AbstractAddShapeFeature
 		if (context.getNewObject() instanceof Service)
 		{
 			final Service service = (Service) context.getNewObject();
-			if (Strings.MEDIAWIKI.text().equals(service.getTitle()))
+			if (Strings.MEDIAWIKI.text().equals(service.getName()))
 			{
 				if (getBusinessObjectForPictogramElement(context.getTargetContainer()) instanceof Server)
 				{

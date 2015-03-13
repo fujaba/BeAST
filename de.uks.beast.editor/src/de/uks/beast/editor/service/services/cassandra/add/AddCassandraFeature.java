@@ -15,6 +15,7 @@ import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 
 import de.uks.beast.editor.util.Images;
+import de.uks.beast.editor.util.Strings;
 
 public class AddCassandraFeature extends AbstractAddShapeFeature
 {
@@ -31,9 +32,13 @@ public class AddCassandraFeature extends AbstractAddShapeFeature
 	{
 		if (context.getNewObject() instanceof Service)
 		{
-			if (getBusinessObjectForPictogramElement(context.getTargetContainer()) instanceof Server)
+			final Service service = (Service) context.getNewObject();
+			if (Strings.CASSANDRA.text().equals(service.getName()))
 			{
-				return true;
+				if (getBusinessObjectForPictogramElement(context.getTargetContainer()) instanceof Server)
+				{
+					return true;
+				}
 			}
 		}
 		

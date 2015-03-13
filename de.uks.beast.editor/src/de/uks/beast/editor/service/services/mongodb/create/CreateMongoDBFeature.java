@@ -42,7 +42,7 @@ public class CreateMongoDBFeature extends AbstractCreateFeature
 	public Object[] create(final ICreateContext context)
 	{
 		final Service service = ModelFactory.eINSTANCE.createMongoDB();
-		service.setTitle(Strings.MONGO_DB.text());
+		service.setName(Strings.MONGO_DB.text());
 		
 		final Server server = (Server) getBusinessObjectForPictogramElement(context.getTargetContainer());
 		server.setService(service);

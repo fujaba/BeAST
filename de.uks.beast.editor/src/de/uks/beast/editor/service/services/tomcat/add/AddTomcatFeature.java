@@ -33,7 +33,7 @@ public class AddTomcatFeature extends AbstractAddShapeFeature
 		if (context.getNewObject() instanceof Service)
 		{
 			final Service service = (Service) context.getNewObject();
-			if (Strings.TOMCAT.text().equals(service.getTitle()))
+			if (Strings.TOMCAT.text().equals(service.getName()))
 			{
 				if (getBusinessObjectForPictogramElement(context.getTargetContainer()) instanceof Server)
 				{

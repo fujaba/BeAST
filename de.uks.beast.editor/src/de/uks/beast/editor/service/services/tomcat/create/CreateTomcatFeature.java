@@ -42,7 +42,7 @@ public class CreateTomcatFeature extends AbstractCreateFeature
 	public Object[] create(final ICreateContext context)
 	{
 		final Service service = ModelFactory.eINSTANCE.createTomcat();
-		service.setTitle(Strings.TOMCAT.text());
+		service.setName(Strings.TOMCAT.text());
 		
 		final Server server = (Server) getBusinessObjectForPictogramElement(context.getTargetContainer());
 		server.setService(service);
