@@ -20,6 +20,7 @@ import org.eclipse.graphiti.mm.GraphicsAlgorithmContainer;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
 import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
 import org.eclipse.graphiti.mm.algorithms.Text;
+import org.eclipse.graphiti.mm.algorithms.styles.Color;
 import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
@@ -36,19 +37,9 @@ import de.uks.beast.editor.util.PropertyUtil;
 public class AddNetworkFeature extends AbstractAddFeature implements AbstractShapeFactory
 {
 	
-	private static final int	WIDTH_PROPERTY	= 50;
-	
-	private static final int	WIDTH_LABEL		= 100;
-	
-	private static final int	HEIGHT_PROPERTY	= 20;
-	
-	private static final int	HEIGHT_LABEL	= 20;
-	
 	private static final int	Y_PARTING_LINE	= 20;
 	
 	private static final int	X0_PARTING_LINE	= 0;
-	
-	private static final int	X_PROPERTY		= 5;
 	
 	
 	
@@ -81,105 +72,70 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		final Network network = (Network) context.getNewObject();
 		final Diagram targetDiagram = (Diagram) context.getTargetContainer();
 		
-		// CONTAINER SHAPE WITH ROUNDED RECTANGLE
 		final IPeCreateService peCreateService = Graphiti.getPeCreateService();
 		final ContainerShape containerShape = peCreateService.createContainerShape(targetDiagram, true);
 		PropertyUtil.setObjectShape(containerShape, TYPE_NETWORK);
 		
 		final IGaService gaService = Graphiti.getGaService();; // need to access it later
 		
-		// create and set graphics algorithm
 		final RoundedRectangle roundedRectangle = gaService.createRoundedRectangle(containerShape, 5, 5);
 		roundedRectangle.setForeground(manageColor(Colors.NETWORK_FOREGROUND));
 		roundedRectangle.setBackground(manageColor(Colors.NETWORK_BACKGROUND));
 		roundedRectangle.setLineWidth(2);
 		gaService.setLocationAndSize(roundedRectangle, context.getX(), context.getY(), context.getWidth(), context.getHeight());
 		
-		// if added Class has no resource we add it to the resource
-		// of the diagram
-		// in a real scenario the business model would have its own resource
+		final Color color = manageColor(Colors.ROUTER_TEXT_FOREGROUND);
+		
 		if (network.eResource() == null)
 		{
 			getDiagram().eResource().getContents().add(network);
 		}
-		// create link and wire it
 		link(containerShape, network);
 		
 		// SHAPE FOR PROPERTY NAME
-		// create shape for text
 		final Shape nameTextShape = createShape(peCreateService, containerShape);
-		// create and set text graphics algorithm
-		final Text nameText = createTitleTextShape(gaService, nameTextShape, X_PROPERTY, 0, WIDTH_PROPERTY, HEIGHT_PROPERTY,
-				network.getName());
+		final Text nameText = Textfields.NETWORK_NAME_FIELD.addTo(getDiagram(), nameTextShape, network.getName(), color);
 		PropertyUtil.setAttributeShape(nameTextShape, NAME);
-		
-		// create link and wire it
 		link(nameTextShape, network);
 		
 		// SHAPE WITH LINE
-		// create shape for line
 		final Shape lineShape = createShape(peCreateService, containerShape);
-		
-		// create and set graphics algorithm
 		final Polyline polyline = gaService.createPolyline(lineShape,
 				new int[] { X0_PARTING_LINE, Y_PARTING_LINE, context.getWidth(), Y_PARTING_LINE });
 		polyline.setForeground(manageColor(Colors.NETWORK_FOREGROUND));
 		polyline.setLineWidth(2);
 		
 		// SHAPE FOR PROPERTY IP
-		// create shape for text
 		final Shape ipTextShape = createShape(peCreateService, containerShape);
 		final Shape ipLabelShape = createShape(peCreateService, containerShape);
-		// create and set text graphics algorithm
-		final Text ipLabelText = createPropertyTextShape(gaService, ipLabelShape, X_PROPERTY, 20, WIDTH_LABEL, HEIGHT_LABEL,
-				IP_LABEL.getProperty());
-		createPropertyTextShape(gaService, ipTextShape, ipLabelText.getWidth(), 20, WIDTH_PROPERTY, HEIGHT_PROPERTY,
-				network.getIp());
+		Textfields.NETWORK_IP_LABEL_FIELD.addTo(getDiagram(), ipLabelShape, IP_LABEL.getProperty(), color);
+		Textfields.NETWORK_IP_PROP_FIELD.addTo(getDiagram(), ipTextShape, network.getIp(), color);
 		PropertyUtil.setAttributeShape(ipTextShape, IP);
-		
-		// create link and wire it
 		link(ipTextShape, network);
 		
 		//SHAPE FOR PROPERTY SUBNET_MASK
-		// create shape for text
 		final Shape subnetMaskTextShape = createShape(peCreateService, containerShape);
 		final Shape subnetMaskLabelShape = createShape(peCreateService, containerShape);
-		// create and set text graphics algorithm
-		final Text subnetMaskLabelText = createPropertyTextShape(gaService, subnetMaskLabelShape, X_PROPERTY, 30, WIDTH_LABEL,
-				HEIGHT_LABEL, SUBNET_MASK_LABEL.getProperty());
-		createPropertyTextShape(gaService, subnetMaskTextShape, subnetMaskLabelText.getWidth(), 30, WIDTH_PROPERTY,
-				HEIGHT_PROPERTY, network.getSubnetmask());
+		Textfields.NETWORK_SUBNET_MASK_LABEL_FIELD.addTo(getDiagram(), subnetMaskLabelShape, SUBNET_MASK_LABEL.getProperty(),
+				color);
+		Textfields.NETWORK_SUBNET_MASK_PROP_FIELD.addTo(getDiagram(), subnetMaskTextShape, network.getSubnetmask(), color);
 		PropertyUtil.setAttributeShape(subnetMaskTextShape, SUBNET_MASK);
-		
-		// create link and wire it
 		link(subnetMaskTextShape, network);
 		
 		//SHAPE FOR PROPERTY GATEWAY
-		// create shape for text
 		final Shape gatewayTextShape = createShape(peCreateService, containerShape);
 		final Shape gatewayLabelShape = createShape(peCreateService, containerShape);
-		// create and set text graphics algorithm
-		final Text gatewayLabelText = createPropertyTextShape(gaService, gatewayLabelShape, X_PROPERTY, 40, WIDTH_LABEL,
-				HEIGHT_LABEL, GATEWAY_LABEL.getProperty());
-		createPropertyTextShape(gaService, gatewayTextShape, gatewayLabelText.getWidth(), 40, WIDTH_PROPERTY, HEIGHT_PROPERTY,
-				network.getGateway());
+		Textfields.NETWORK_GATEWAY_LABEL_FIELD.addTo(getDiagram(), gatewayLabelShape, GATEWAY_LABEL.getProperty(), color);
+		Textfields.NETWORK_GATEWAY_PROP_FIELD.addTo(getDiagram(), gatewayTextShape, network.getGateway(), color);
 		PropertyUtil.setAttributeShape(gatewayTextShape, GATEWAY);
-		
-		// create link and wire it
 		link(gatewayTextShape, network);
 		
 		//SHAPE FOR PROPERTY DNS
-		// create shape for text
 		final Shape dnsTextShape = createShape(peCreateService, containerShape);
 		final Shape dnsLabelShape = createShape(peCreateService, containerShape);
-		// create and set text graphics algorithm
-		final Text dnsLabelText = createPropertyTextShape(gaService, dnsLabelShape, X_PROPERTY, 50, WIDTH_LABEL, HEIGHT_LABEL,
-				DNS_LABEL.getProperty());
-		createPropertyTextShape(gaService, dnsTextShape, dnsLabelText.getWidth(), 50, WIDTH_PROPERTY, HEIGHT_PROPERTY,
-				network.getDns());
+		Textfields.NETWORK_DNS_LABEL_FIELD.addTo(getDiagram(), dnsLabelShape, DNS_LABEL.getProperty(), color);
+		Textfields.NETWORK_DNS_PROP_FIELD.addTo(getDiagram(), dnsTextShape, network.getDns(), color);
 		PropertyUtil.setAttributeShape(dnsTextShape, DNS);
-		
-		// create link and wire it
 		link(dnsTextShape, network);
 		
 		final IDirectEditingInfo directEditingInfo = getFeatureProvider().getDirectEditingInfo();

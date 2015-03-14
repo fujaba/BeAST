@@ -16,9 +16,9 @@ public class Dimensions
 	
 	//network
 	public static final int	NETWORK_INITIAL_WIDTH	= 170;
-	public static final int	NETWORK_INITIAL_HEIGHT	= 80;
+	public static final int	NETWORK_INITIAL_HEIGHT	= 90;
 	
 	//router
 	public static final int	ROUTER_INITIAL_WIDTH	= 150;
-	public static final int	ROUTER_INITIAL_HEIGHT	= 60;
+	public static final int	ROUTER_INITIAL_HEIGHT	= 75;
 }
