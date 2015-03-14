@@ -11,8 +11,8 @@ public class Dimensions
 	public static final int	GROUP_INITIAL_HEIGHT	= 300;
 	
 	//server
-	public static final int	SERVER_INITIAL_WIDTH	= 230;
-	public static final int	SERVER_INITIAL_HEIGHT	= 80;
+	public static final int	SERVER_INITIAL_WIDTH	= 250;
+	public static final int	SERVER_INITIAL_HEIGHT	= 90;
 	
 	//network
 	public static final int	NETWORK_INITIAL_WIDTH	= 170;

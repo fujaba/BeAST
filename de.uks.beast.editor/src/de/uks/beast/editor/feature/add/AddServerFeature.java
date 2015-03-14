@@ -41,19 +41,9 @@ import de.uks.beast.editor.util.Strings;
 public class AddServerFeature extends AbstractAddShapeFeature implements AbstractShapeFactory
 {
 	
-	private static final int	WIDTH_PROPERTY	= 50;
-	
-	private static final int	WIDTH_LABEL		= 100;
-	
-	private static final int	HEIGHT_PROPERTY	= 20;
-	
-	private static final int	HEIGHT_LABEL	= 20;
-	
 	private static final int	Y_PARTING_LINE	= 20;
 	
 	private static final int	X0_PARTING_LINE	= 0;
-	
-	private static final int	X_PROPERTY		= 5;
 	
 	
 	
@@ -108,95 +98,65 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		// SHAPE FOR PROPERTY NAME
 		final Shape nameTextShape = createShape(peCreateService, containerShape);
 		final Text nameText = Textfields.SERVER_NAME_FIELD.addTo(getDiagram(), nameTextShape, server.getName(), color);
-		nameText.setFilled(true);
 		PropertyUtil.setAttributeShape(nameTextShape, NAME);
 		link(nameTextShape, server);
 		
 		// SHAPE FOR RESOURCE STAT RAM
 		final Shape ramStatTextShape = createShape(peCreateService, containerShape);
-		final Text ramStatText = Textfields.SERVER_RAM_FIELD.addTo(getDiagram(), ramStatTextShape, "--", color);
-		ramStatText.setFilled(true);
+		Textfields.SERVER_RAM_FIELD.addTo(getDiagram(), ramStatTextShape, "--", color);
 		PropertyUtil.setAttributeShape(ramStatTextShape, RAM_STAT);
 		link(ramStatTextShape, server);
 		
 		// SHAPE FOR RESOURCE STAT CPU
 		final Shape cpuStatTextShape = createShape(peCreateService, containerShape);
-		final Text cpuStatText = Textfields.SERVER_CPU_FIELD.addTo(getDiagram(), cpuStatTextShape, "--", color);
-		cpuStatText.setFilled(true);
+		Textfields.SERVER_CPU_FIELD.addTo(getDiagram(), cpuStatTextShape, "--", color);
 		PropertyUtil.setAttributeShape(cpuStatTextShape, CPU_STAT);
 		link(cpuStatTextShape, server);
 		
 		// SHAPE LABEL FOR CPU AND RAM
 		final Shape statsLabelShape = createShape(peCreateService, containerShape);
-		final Text statsLabelText = Textfields.SERVER_RAM_CPU_FIELD.addTo(getDiagram(), statsLabelShape,
-				Strings.STAT_LABEL_NAME.text(), color);
-		statsLabelText.setFilled(true);
+		Textfields.SERVER_RAM_CPU_FIELD.addTo(getDiagram(), statsLabelShape, Strings.STAT_LABEL_NAME.text(), color);
 		PropertyUtil.setAttributeShape(statsLabelShape, Properties.STAT_LABEL);
 		
 		// SHAPE WITH LINE
-		// create shape for line
 		final Shape lineShape = createShape(peCreateService, containerShape);
-		
-		// create and set graphics algorithm
 		final Polyline polyline = gaService.createPolyline(lineShape,
 				new int[] { X0_PARTING_LINE, Y_PARTING_LINE, context.getWidth(), Y_PARTING_LINE });
 		polyline.setForeground(manageColor(Colors.SERVER_FOREGROUND));
 		polyline.setLineWidth(2);
 		
 		// SHAPE FOR PROPERTY IP
-		// create shape for text
 		final Shape ipTextShape = createShape(peCreateService, containerShape);
 		final Shape ipLabelShape = createShape(peCreateService, containerShape);
-		// create and set text graphics algorithm
-		final Text ipLabelText = createPropertyTextShape(gaService, ipLabelShape, X_PROPERTY, 20, WIDTH_LABEL, HEIGHT_LABEL,
-				IP_LABEL.getProperty());
-		createPropertyTextShape(gaService, ipTextShape, ipLabelText.getWidth(), 20, WIDTH_PROPERTY, HEIGHT_PROPERTY,
-				server.getIp());
+		Textfields.SERVER_IP_LABEL_FIELD.addTo(getDiagram(), ipLabelShape, IP_LABEL.getProperty(), color);
+		Textfields.SERVER_IP_PROP_FIELD.addTo(getDiagram(), ipTextShape, server.getIp(), color);
 		PropertyUtil.setAttributeShape(ipTextShape, IP);
-		
-		// create link and wire it
 		link(ipTextShape, server);
 		
 		//SHAPE FOR PROPERTY CPU_AMOUNT
-		// create shape for text
 		final Shape cpuCoresTextShape = createShape(peCreateService, containerShape);
 		final Shape cpuCoresLabelShape = createShape(peCreateService, containerShape);
-		// create and set text graphics algorithm
-		final Text cpuCoresLabelText = createPropertyTextShape(gaService, cpuCoresLabelShape, X_PROPERTY, 30, WIDTH_LABEL,
-				HEIGHT_LABEL, CPU_CORES_LABEL.getProperty());
-		createPropertyTextShape(gaService, cpuCoresTextShape, cpuCoresLabelText.getWidth(), 30, WIDTH_PROPERTY, HEIGHT_PROPERTY,
-				String.valueOf(server.getCpuCores()));
+		Textfields.SERVER_CPU_CORES_LABEL_FIELD.addTo(getDiagram(), cpuCoresLabelShape, CPU_CORES_LABEL.getProperty(), color);
+		Textfields.SERVER_CPU_CORES_PROP_FIELD
+				.addTo(getDiagram(), cpuCoresTextShape, String.valueOf(server.getCpuCores()), color);
 		PropertyUtil.setAttributeShape(cpuCoresTextShape, CPU_CORES);
-		
-		// create link and wire it
 		link(cpuCoresTextShape, server);
 		
 		//SHAPE FOR PROPERTY RAM
-		// create shape for text
 		final Shape ramTextShape = createShape(peCreateService, containerShape);
 		final Shape ramLabelShape = createShape(peCreateService, containerShape);
-		// create and set text graphics algorithm
-		final Text ramLabelText = createPropertyTextShape(gaService, ramLabelShape, X_PROPERTY, 40, WIDTH_LABEL, HEIGHT_LABEL,
-				RAM_LABEL.getProperty());
-		createPropertyTextShape(gaService, ramTextShape, ramLabelText.getWidth(), 40, WIDTH_PROPERTY, HEIGHT_PROPERTY,
-				String.valueOf(server.getRam()));
+		Textfields.SERVER_MAX_RAM_LABEL_FIELD.addTo(getDiagram(), ramLabelShape, RAM_LABEL.getProperty(), color);
+		Textfields.SERVER_MAX_RAM_PROP_FIELD.addTo(getDiagram(), ramTextShape, String.valueOf(server.getRam()), color);
 		PropertyUtil.setAttributeShape(ramTextShape, RAM);
-		
-		// create link and wire it
 		link(ramTextShape, server);
 		
 		//SHAPE FOR PROPERTY DISK_SPACE
-		// create shape for text
 		final Shape diskSpaceTextShape = createShape(peCreateService, containerShape);
 		final Shape diskSpaceLabelShape = createShape(peCreateService, containerShape);
-		// create and set text graphics algorithm
-		final Text diskSpaceLabelText = createPropertyTextShape(gaService, diskSpaceLabelShape, X_PROPERTY, 50, WIDTH_LABEL,
-				HEIGHT_LABEL, DISKSPACE_LABEL.getProperty());
-		createPropertyTextShape(gaService, diskSpaceTextShape, diskSpaceLabelText.getWidth(), 50, WIDTH_PROPERTY,
-				HEIGHT_PROPERTY, String.valueOf(server.getDiskSpace()));
+		Textfields.SERVER_DISK_SPACE_LABEL_FIELD.addTo(getDiagram(), diskSpaceLabelShape, DISKSPACE_LABEL.getProperty(), color);
+		Textfields.SERVER_DISK_SPACE_PROP_FIELD.addTo(getDiagram(), diskSpaceTextShape, String.valueOf(server.getDiskSpace()),
+				color);
 		PropertyUtil.setAttributeShape(diskSpaceTextShape, DISKSPACE);
-		
-		// create link and wire it
 		link(diskSpaceTextShape, server);
 		
 		final IDirectEditingInfo directEditingInfo = getFeatureProvider().getDirectEditingInfo();
