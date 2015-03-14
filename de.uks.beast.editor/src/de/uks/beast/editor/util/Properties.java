@@ -21,6 +21,8 @@ public enum Properties
 	DNS							("dns"),
 	CPU_STAT					("cpuStat"),
 	RAM_STAT					("ramStat"),
+	STAT_LABEL					("stats"),
+	
 	
 	//Properties/ Labels
 	IP_LABEL					("IP: "),

@@ -11,6 +11,7 @@ import org.eclipse.graphiti.features.impl.AbstractLayoutFeature;
 import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Image;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
+import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.algorithms.styles.Point;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -18,6 +19,9 @@ import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 
+import de.uks.beast.editor.feature.add.Textfields;
+import de.uks.beast.editor.util.Properties;
+import de.uks.beast.editor.util.PropertyUtil;
 import static de.uks.beast.editor.util.Dimensions.*;
 
 public class LayoutServerObjectFeature extends AbstractLayoutFeature
@@ -95,9 +99,25 @@ public class LayoutServerObjectFeature extends AbstractLayoutFeature
 					
 					anythingChanged = true;
 				}
-				else
+				else if (graphicsAlgorithm instanceof Text && PropertyUtil.isAttributeShape(shape, Properties.RAM_STAT))
 				{
-					gaService.setWidth(graphicsAlgorithm, containerWidth);
+					final Text text = (Text) graphicsAlgorithm;
+					text.setX(containerWidth - text.getWidth() - Textfields.SERVER_RAM_FIELD.moveForX());
+					text.setY(text.getY());
+					anythingChanged = true;
+				}
+				else if (graphicsAlgorithm instanceof Text && PropertyUtil.isAttributeShape(shape, Properties.CPU_STAT))
+				{
+					final Text text = (Text) graphicsAlgorithm;
+					text.setX(containerWidth - text.getWidth() - Textfields.SERVER_CPU_FIELD.moveForX());
+					text.setY(text.getY());
+					anythingChanged = true;
+				}
+				else if (graphicsAlgorithm instanceof Text && PropertyUtil.isAttributeShape(shape, Properties.STAT_LABEL))
+				{
+					final Text text = (Text) graphicsAlgorithm;
+					text.setX(containerWidth - text.getWidth() - Textfields.SERVER_RAM_CPU_FIELD.moveForX());
+					text.setY(text.getY());
 					anythingChanged = true;
 				}
 			}

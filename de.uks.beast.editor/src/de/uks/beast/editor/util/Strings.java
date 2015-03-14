@@ -31,6 +31,9 @@ public enum Strings
 	DNS_TRUE_REASON				("DNS is out of date!", 				""),
 	GATEWAY_TRUE_REASON			("Gateway is out of date!", 			""),
 	SUBNET_MASK_TRUE_REASON		("Subnet mask is out of date!", 		""),
+	
+	//labels
+	STAT_LABEL_NAME				("CPU [%]/RAM [%]:",					""),
 
 	
 	//Editor objects

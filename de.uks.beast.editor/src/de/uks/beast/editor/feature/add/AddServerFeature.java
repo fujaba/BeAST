@@ -23,6 +23,7 @@ import org.eclipse.graphiti.mm.GraphicsAlgorithmContainer;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
 import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
 import org.eclipse.graphiti.mm.algorithms.Text;
+import org.eclipse.graphiti.mm.algorithms.styles.Color;
 import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -33,7 +34,9 @@ import org.eclipse.graphiti.services.IPeCreateService;
 
 import de.uks.beast.editor.util.Colors;
 import de.uks.beast.editor.util.Fonts;
+import de.uks.beast.editor.util.Properties;
 import de.uks.beast.editor.util.PropertyUtil;
+import de.uks.beast.editor.util.Strings;
 
 public class AddServerFeature extends AbstractAddShapeFeature implements AbstractShapeFactory
 {
@@ -82,66 +85,53 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		final Server server = (Server) context.getNewObject();
 		final ContainerShape parentContainer = (ContainerShape) context.getTargetContainer();
 		
-		// CONTAINER SHAPE WITH ROUNDED RECTANGLE
 		final IPeCreateService peCreateService = Graphiti.getPeCreateService();
 		final ContainerShape containerShape = peCreateService.createContainerShape(parentContainer, true);
 		PropertyUtil.setObjectShape(containerShape, TYPE_SERVER);
 		
 		final IGaService gaService = Graphiti.getGaService();
 		
-		// create and set graphics algorithm
 		final RoundedRectangle roundedRectangle = gaService.createRoundedRectangle(containerShape, 5, 5);
 		roundedRectangle.setForeground(manageColor(Colors.SERVER_FOREGROUND));
 		roundedRectangle.setBackground(manageColor(Colors.SERVER_BACKGROUND));
 		roundedRectangle.setLineWidth(2);
 		gaService.setLocationAndSize(roundedRectangle, context.getX(), context.getY(), context.getWidth(), context.getHeight());
 		
-		// if added Class has no resource we add it to the resource
-		// of the diagram
-		// in a real scenario the business model would have its own resource
 		if (server.eResource() == null)
 		{
 			getDiagram().eResource().getContents().add(server);
 		}
-		// create link and wire it
 		link(containerShape, server);
 		
-		// SHAPE FOR PROPERTY NAME
-		// create shape for text
-		final Shape nameTextShape = createShape(peCreateService, containerShape);
-		// create and set text graphics algorithm
-		final Text nameText = createTitleTextShape(gaService, nameTextShape, X_PROPERTY, 0, WIDTH_PROPERTY, HEIGHT_PROPERTY,
-				server.getName());
-		PropertyUtil.setAttributeShape(nameTextShape, NAME);
+		final Color color = manageColor(Colors.SERVER_TEXT_FOREGROUND);
 		
-		// create link and wire it
+		// SHAPE FOR PROPERTY NAME
+		final Shape nameTextShape = createShape(peCreateService, containerShape);
+		final Text nameText = Textfields.SERVER_NAME_FIELD.addTo(getDiagram(), nameTextShape, server.getName(), color);
+		nameText.setFilled(true);
+		PropertyUtil.setAttributeShape(nameTextShape, NAME);
 		link(nameTextShape, server);
 		
 		// SHAPE FOR RESOURCE STAT RAM
 		final Shape ramStatTextShape = createShape(peCreateService, containerShape);
-		final Text ramStatText = createPropertyTextShape(gaService, ramStatTextShape, X_PROPERTY - 10, 0, 1, HEIGHT_PROPERTY,
-				"--");
-		ramStatText.setLineVisible(true);
-		ramStatText.setHorizontalAlignment(Orientation.ALIGNMENT_RIGHT);
+		final Text ramStatText = Textfields.SERVER_RAM_FIELD.addTo(getDiagram(), ramStatTextShape, "--", color);
+		ramStatText.setFilled(true);
 		PropertyUtil.setAttributeShape(ramStatTextShape, RAM_STAT);
-		
-		// create link and wire it
 		link(ramStatTextShape, server);
-//		
-//		// SHAPE FOR RESOURCE STAT CPU
-//		final Shape cpuStatTextShape = createShape(peCreateService, containerShape);
-//		final Text cpuStatText = createPropertyTextShape(gaService, cpuStatTextShape, ramStatText.getX() - 20, 0, 1,
-//				HEIGHT_PROPERTY, "--");
-//		cpuStatText.setHorizontalAlignment(Orientation.ALIGNMENT_RIGHT);
-//		PropertyUtil.setAttributeShape(cpuStatTextShape, CPU_STAT);
-//		
-//		// create link and wire it
-//		link(cpuStatTextShape, server);
-//		
-//		final Shape statsLabelShape = createShape(peCreateService, containerShape);
-//		final Text statsLabelText = createPropertyTextShape(gaService, statsLabelShape, cpuStatText.getX() - 18, 0, 10,
-//				HEIGHT_LABEL, "CPU [%]/RAM [%]: ");
-//		statsLabelText.setHorizontalAlignment(Orientation.ALIGNMENT_RIGHT);
+		
+		// SHAPE FOR RESOURCE STAT CPU
+		final Shape cpuStatTextShape = createShape(peCreateService, containerShape);
+		final Text cpuStatText = Textfields.SERVER_CPU_FIELD.addTo(getDiagram(), cpuStatTextShape, "--", color);
+		cpuStatText.setFilled(true);
+		PropertyUtil.setAttributeShape(cpuStatTextShape, CPU_STAT);
+		link(cpuStatTextShape, server);
+		
+		// SHAPE LABEL FOR CPU AND RAM
+		final Shape statsLabelShape = createShape(peCreateService, containerShape);
+		final Text statsLabelText = Textfields.SERVER_RAM_CPU_FIELD.addTo(getDiagram(), statsLabelShape,
+				Strings.STAT_LABEL_NAME.text(), color);
+		statsLabelText.setFilled(true);
+		PropertyUtil.setAttributeShape(statsLabelShape, Properties.STAT_LABEL);
 		
 		// SHAPE WITH LINE
 		// create shape for line
@@ -260,8 +250,10 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		// vertical alignment has as default value "center"
 		text.setFont(gaService.manageFont(getDiagram(), Fonts.SERVER_TITEL.getName(), Fonts.SERVER_TITEL.getSize(),
 				Fonts.SERVER_TITEL.isItalic(), Fonts.SERVER_TITEL.isBold()));
-		gaService.setLocationAndSize(text, x, y, width, height);
+		text.setWidth(width);
+		//gaService.setLocationAndSize(text, x, y, width, height);
 		
 		return text;
 	}
+	
 }
