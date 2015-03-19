@@ -23,6 +23,7 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
+import de.uks.beast.editor.util.Dimensions;
 import static de.uks.beast.editor.util.Properties.*;
 
 public class RouterPropertySection extends GFPropertySection implements ITabbedPropertyConstants
@@ -49,9 +50,9 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		//Property_ip
 		ipTextFld = factory.createText(composite, "");
 		data = new FormData();
-		data.left = new FormAttachment(0, STANDARD_LABEL_WIDTH);
+		data.left = new FormAttachment(0, Dimensions.ROUTER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, VSPACE);
+		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE);
 		ipTextFld.setLayoutData(data);
 		
 		final CLabel valueLabel = factory.createCLabel(composite, IP_LABEL.getProperty());
@@ -64,9 +65,9 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		//Property_cpuType
 		externalGatewayTextFld = factory.createText(composite, "");
 		data = new FormData();
-		data.left = new FormAttachment(0, STANDARD_LABEL_WIDTH);
+		data.left = new FormAttachment(0, Dimensions.ROUTER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, VSPACE + 25);
+		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 25);
 		externalGatewayTextFld.setLayoutData(data);
 		
 		final CLabel valueLabe3 = factory.createCLabel(composite, EXTERNAL_GATEWAY_LABEL.getProperty());
@@ -79,9 +80,9 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		//Property_diskSpace
 		idTextFld = factory.createText(composite, "");
 		data = new FormData();
-		data.left = new FormAttachment(0, STANDARD_LABEL_WIDTH);
+		data.left = new FormAttachment(0, Dimensions.ROUTER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, VSPACE + 50);
+		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 50);
 		idTextFld.setLayoutData(data);
 		
 		final CLabel valueLabe5 = factory.createCLabel(composite, ID_LABEL.getProperty());
@@ -92,11 +93,11 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		valueLabe5.setLayoutData(data);
 		
 		//Property_submit
-		submitBtn = factory.createButton(composite, SUBMIT.getProperty(), 0);
+		submitBtn = factory.createButton(composite, TRANSFER.getProperty(), 0);
 		data = new FormData();
 		data.left = new FormAttachment(0, 20);
 		data.right = new FormAttachment(20, 0);
-		data.top = new FormAttachment(0, VSPACE + 75);
+		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 125);
 		submitBtn.setLayoutData(data);
 		submitBtn.addSelectionListener(new SelectionListener() {
 			
@@ -151,6 +152,7 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 			router = (Router) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
 			domain = TransactionUtil.getEditingDomain(router);
 			setPreDefinedValuesToSheet();
+			
 			if (router == null)
 			{
 				return;

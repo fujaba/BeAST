@@ -4,7 +4,7 @@ import static de.uks.beast.editor.util.Properties.CPU_CORES_LABEL;
 import static de.uks.beast.editor.util.Properties.DISKSPACE_LABEL;
 import static de.uks.beast.editor.util.Properties.IP_LABEL;
 import static de.uks.beast.editor.util.Properties.RAM_LABEL;
-import static de.uks.beast.editor.util.Properties.SUBMIT;
+import static de.uks.beast.editor.util.Properties.TRANSFER;
 import model.Server;
 
 import org.apache.log4j.LogManager;
@@ -27,6 +27,8 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
+
+import de.uks.beast.editor.util.Dimensions;
 
 public class ServerPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {
@@ -53,9 +55,9 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		// Property_ip
 		ipTextFld = factory.createText(composite, "");
 		data = new FormData();
-		data.left = new FormAttachment(0, STANDARD_LABEL_WIDTH);
+		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, VSPACE);
+		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE);
 		ipTextFld.setLayoutData(data);
 		
 		final CLabel valueLabel = factory.createCLabel(composite, IP_LABEL.getProperty());
@@ -68,9 +70,9 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		// Property_cpuAmount
 		cpuCoresTextFld = factory.createText(composite, "");
 		data = new FormData();
-		data.left = new FormAttachment(0, STANDARD_LABEL_WIDTH);
+		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, VSPACE + 25);
+		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 25);
 		cpuCoresTextFld.setLayoutData(data);
 		
 		final CLabel valueLabe2 = factory.createCLabel(composite, CPU_CORES_LABEL.getProperty());
@@ -83,9 +85,9 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		// Property_ram
 		ramTextFld = factory.createText(composite, "");
 		data = new FormData();
-		data.left = new FormAttachment(0, STANDARD_LABEL_WIDTH);
+		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, VSPACE + 50);
+		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 50);
 		ramTextFld.setLayoutData(data);
 		
 		final CLabel valueLabe4 = factory.createCLabel(composite, RAM_LABEL.getProperty());
@@ -98,9 +100,9 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		// Property_diskSpace
 		diskSpaceTextFld = factory.createText(composite, "");
 		data = new FormData();
-		data.left = new FormAttachment(0, STANDARD_LABEL_WIDTH);
+		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, VSPACE + 75);
+		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 75);
 		diskSpaceTextFld.setLayoutData(data);
 		
 		final CLabel valueLabe5 = factory.createCLabel(composite, DISKSPACE_LABEL.getProperty());
@@ -111,12 +113,13 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		valueLabe5.setLayoutData(data);
 		
 		//Property_submit
-		submitBtn = factory.createButton(composite, SUBMIT.getProperty(), 0);
+		submitBtn = factory.createButton(composite, TRANSFER.getProperty(), 0);
 		data = new FormData();
 		data.left = new FormAttachment(0, 20);
 		data.right = new FormAttachment(20, 0);
-		data.top = new FormAttachment(0, VSPACE + 100);
+		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 125);
 		submitBtn.setLayoutData(data);
+		submitBtn.setToolTipText("Transfer data to backend");
 		submitBtn.addSelectionListener(new SelectionListener() {
 			
 			@Override

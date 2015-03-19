@@ -34,7 +34,7 @@ public enum Properties
 	SUBNET_MASK_LABEL			("Subnet mask: "),
 	GATEWAY_LABEL				("Gateway: "),
 	DNS_LABEL					("DNS: "),
-	SUBMIT						("Submit"),
+	TRANSFER					("Transfer"),
 	;//@formatter:on
 	
 	private final String	property;
