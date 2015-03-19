@@ -26,7 +26,7 @@ import de.uks.beast.editor.util.FileBrowser;
 
 public class ServicePropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {
-	private static final Logger			LOG	= LogManager.getLogger(ServerPropertySection.class);
+	private static final Logger			LOG	= LogManager.getLogger(ServicePropertySection.class);
 	private Button						submitBtn;
 	private TransactionalEditingDomain	domain;
 	private final FileBrowser			fileBrowser;

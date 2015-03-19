@@ -29,6 +29,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
 import de.uks.beast.editor.util.Dimensions;
+import de.uks.beast.editor.util.ToolTips;
 
 public class ServerPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {
@@ -58,6 +59,7 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE);
+		ipTextFld.setToolTipText(ToolTips.IP_PROP_TIP.getToolTip());
 		ipTextFld.setLayoutData(data);
 		
 		final CLabel valueLabel = factory.createCLabel(composite, IP_LABEL.getProperty());
@@ -73,6 +75,7 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 25);
+		cpuCoresTextFld.setToolTipText(ToolTips.CPU_CORES_PROP_TIP.getToolTip());
 		cpuCoresTextFld.setLayoutData(data);
 		
 		final CLabel valueLabe2 = factory.createCLabel(composite, CPU_CORES_LABEL.getProperty());
@@ -88,6 +91,7 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 50);
+		ramTextFld.setToolTipText(ToolTips.MAX_RAM_PROP_TIP.getToolTip());
 		ramTextFld.setLayoutData(data);
 		
 		final CLabel valueLabe4 = factory.createCLabel(composite, RAM_LABEL.getProperty());
@@ -103,6 +107,7 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 75);
+		diskSpaceTextFld.setToolTipText(ToolTips.DISK_SPACE_PROP_TIP.getToolTip());
 		diskSpaceTextFld.setLayoutData(data);
 		
 		final CLabel valueLabe5 = factory.createCLabel(composite, DISKSPACE_LABEL.getProperty());
@@ -119,7 +124,7 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.right = new FormAttachment(20, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 125);
 		submitBtn.setLayoutData(data);
-		submitBtn.setToolTipText("Transfer data to backend");
+		submitBtn.setToolTipText(ToolTips.TRANSFER_BTN_TIP.getToolTip());
 		submitBtn.addSelectionListener(new SelectionListener() {
 			
 			@Override

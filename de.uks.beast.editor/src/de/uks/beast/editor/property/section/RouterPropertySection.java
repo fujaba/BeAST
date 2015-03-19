@@ -24,6 +24,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
 import de.uks.beast.editor.util.Dimensions;
+import de.uks.beast.editor.util.ToolTips;
 import static de.uks.beast.editor.util.Properties.*;
 
 public class RouterPropertySection extends GFPropertySection implements ITabbedPropertyConstants
@@ -53,6 +54,7 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		data.left = new FormAttachment(0, Dimensions.ROUTER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE);
+		ipTextFld.setToolTipText(ToolTips.IP_PROP_TIP.getToolTip());
 		ipTextFld.setLayoutData(data);
 		
 		final CLabel valueLabel = factory.createCLabel(composite, IP_LABEL.getProperty());
@@ -68,6 +70,7 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		data.left = new FormAttachment(0, Dimensions.ROUTER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 25);
+		externalGatewayTextFld.setToolTipText(ToolTips.EXT_GATEWAY_PROP_TIP.getToolTip());
 		externalGatewayTextFld.setLayoutData(data);
 		
 		final CLabel valueLabe3 = factory.createCLabel(composite, EXTERNAL_GATEWAY_LABEL.getProperty());
@@ -83,6 +86,7 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		data.left = new FormAttachment(0, Dimensions.ROUTER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 50);
+		idTextFld.setToolTipText(ToolTips.ID_PROP_TIP.getToolTip());
 		idTextFld.setLayoutData(data);
 		
 		final CLabel valueLabe5 = factory.createCLabel(composite, ID_LABEL.getProperty());
@@ -99,6 +103,7 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		data.right = new FormAttachment(20, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 125);
 		submitBtn.setLayoutData(data);
+		submitBtn.setToolTipText(ToolTips.TRANSFER_BTN_TIP.getToolTip());
 		submitBtn.addSelectionListener(new SelectionListener() {
 			
 			@Override
