@@ -22,20 +22,26 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
+import de.uks.beast.editor.service.job.Job;
+import de.uks.beast.editor.service.job.JobBuilder;
+import de.uks.beast.editor.service.job.JobFile;
 import de.uks.beast.editor.util.FileBrowser;
 
 public class ServicePropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {
 	private static final Logger			LOG	= LogManager.getLogger(ServicePropertySection.class);
-	private Button						submitBtn;
+	private Button						inputFilesBtn;
 	private TransactionalEditingDomain	domain;
 	private final FileBrowser			fileBrowser;
+	private final JobBuilder			jobBuilder;
 	
 	
 	
 	public ServicePropertySection()
 	{
-		fileBrowser = new FileBrowser();
+		this.fileBrowser = new FileBrowser();
+		this.jobBuilder = Job.builder();
+		
 	}
 	
 	
@@ -50,21 +56,24 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 		FormData data;
 		
 		//Property_submit
-		submitBtn = factory.createButton(composite, "Browse files", 0);
+		inputFilesBtn = factory.createButton(composite, "Browse files", 0);
 		data = new FormData();
 		data.left = new FormAttachment(0, 20);
 		data.right = new FormAttachment(20, 0);
 		data.top = new FormAttachment(0, VSPACE);
-		submitBtn.setLayoutData(data);
-		submitBtn.addSelectionListener(new SelectionListener() {
+		inputFilesBtn.setLayoutData(data);
+		inputFilesBtn.addSelectionListener(new SelectionListener() {
 			
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
+				
 				fileBrowser.openFileDialog();
+				
 				for (final Path path : fileBrowser.getFileList())
 				{
 					LOG.debug("Selected file: " + path);
+					jobBuilder.addInputFiles(new JobFile(path.getFileName().toString(), path));
 				}
 				
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
