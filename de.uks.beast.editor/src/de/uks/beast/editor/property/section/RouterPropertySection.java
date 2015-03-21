@@ -54,10 +54,10 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		data.left = new FormAttachment(0, Dimensions.ROUTER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE);
-		ipTextFld.setToolTipText(ToolTips.IP_PROP_TIP.getToolTip());
+		ipTextFld.setToolTipText(ToolTips.IP_PROP_TIP.get());
 		ipTextFld.setLayoutData(data);
 		
-		final CLabel valueLabel = factory.createCLabel(composite, IP_LABEL.getProperty());
+		final CLabel valueLabel = factory.createCLabel(composite, IP_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(ipTextFld, valueLabel.getText().length());
@@ -70,10 +70,10 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		data.left = new FormAttachment(0, Dimensions.ROUTER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 25);
-		externalGatewayTextFld.setToolTipText(ToolTips.EXT_GATEWAY_PROP_TIP.getToolTip());
+		externalGatewayTextFld.setToolTipText(ToolTips.EXT_GATEWAY_PROP_TIP.get());
 		externalGatewayTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe3 = factory.createCLabel(composite, EXTERNAL_GATEWAY_LABEL.getProperty());
+		final CLabel valueLabe3 = factory.createCLabel(composite, EXTERNAL_GATEWAY_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(externalGatewayTextFld, valueLabe3.getText().length());
@@ -86,10 +86,10 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		data.left = new FormAttachment(0, Dimensions.ROUTER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 50);
-		idTextFld.setToolTipText(ToolTips.ID_PROP_TIP.getToolTip());
+		idTextFld.setToolTipText(ToolTips.ID_PROP_TIP.get());
 		idTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe5 = factory.createCLabel(composite, ID_LABEL.getProperty());
+		final CLabel valueLabe5 = factory.createCLabel(composite, ID_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(idTextFld, valueLabe5.getText().length());
@@ -97,13 +97,13 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		valueLabe5.setLayoutData(data);
 		
 		//Property_submit
-		submitBtn = factory.createButton(composite, TRANSFER.getProperty(), 0);
+		submitBtn = factory.createButton(composite, TRANSFER.get(), 0);
 		data = new FormData();
 		data.left = new FormAttachment(0, 20);
 		data.right = new FormAttachment(20, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 125);
 		submitBtn.setLayoutData(data);
-		submitBtn.setToolTipText(ToolTips.TRANSFER_BTN_TIP.getToolTip());
+		submitBtn.setToolTipText(ToolTips.TRANSFER_BTN_TIP.get());
 		submitBtn.addSelectionListener(new SelectionListener() {
 			
 			@Override

@@ -35,6 +35,7 @@ import de.uks.beast.editor.service.job.Job;
 import de.uks.beast.editor.service.job.JobFile;
 import de.uks.beast.editor.service.job.JobOutputFile;
 import de.uks.beast.editor.util.FileBrowser;
+import de.uks.beast.editor.util.ToolTips;
 
 public class ServicePropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {
@@ -76,8 +77,8 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 		data.left = new FormAttachment(nameLabel, 0);
 		data.right = new FormAttachment(5, 0);
 		data.top = new FormAttachment(0, 0);
-		//jobFileTextFld.setToolTipText(ToolTips.IP_PROP_TIP.getToolTip());
 		nameTextFld.setLayoutData(data);
+		nameTextFld.setToolTipText(ToolTips.NAME_TEXT_TIP.get());
 		
 		final CLabel priorityLabel = factory.createCLabel(composite, "Priority:");
 		data = new FormData();
@@ -89,12 +90,12 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 		final CCombo priorityCombo = factory.createCCombo(composite);
 		priorityCombo.setItems(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", });
 		priorityCombo.setEditable(false);
-		priorityCombo.setBounds(50, 50, 150, 65);
 		data = new FormData();
 		data.left = new FormAttachment(priorityLabel, 0);
 		data.right = new FormAttachment(7, -10);
 		data.top = new FormAttachment(0, 0);
 		priorityCombo.setLayoutData(data);
+		priorityCombo.setToolTipText(ToolTips.PRIORITY_COMBO_TIP.get());
 		
 		final Button runStateBtn = factory.createButton(composite, "Run immediately", SWT.CHECK);
 		runStateBtn.setAlignment(SWT.LEFT);
@@ -103,6 +104,7 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 		data.right = new FormAttachment(10, 0);
 		data.top = new FormAttachment(0, 0);
 		runStateBtn.setLayoutData(data);
+		runStateBtn.setToolTipText(ToolTips.RUN_STATE_CHECK_BTN_TIP.get());
 		
 		final CLabel jobFileLabel = factory.createCLabel(composite, "Job file:");
 		data = new FormData();
@@ -116,7 +118,6 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 		data.left = new FormAttachment(jobFileLabel, 0);
 		data.right = new FormAttachment(0, 400);
 		data.top = new FormAttachment(nameLabel, 0);
-		//jobFileTextFld.setToolTipText(ToolTips.IP_PROP_TIP.getToolTip());
 		jobFileTextFld.setEditable(false);
 		jobFileTextFld.setLayoutData(data);
 		
@@ -127,6 +128,7 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 		data.right = new FormAttachment(9, 0);
 		data.top = new FormAttachment(nameLabel, -1);
 		jobFileBtn.setLayoutData(data);
+		jobFileBtn.setToolTipText(ToolTips.JOB_FILE_BTN_TIP.get());
 		jobFileBtn.addSelectionListener(new SelectionListener() {
 			
 			@Override
@@ -168,17 +170,16 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 		data.left = new FormAttachment(inputFileLabel, 0);
 		data.right = new FormAttachment(0, 400);
 		data.top = new FormAttachment(jobFileLabel, 0);
-		//jobFileTextFld.setToolTipText(ToolTips.IP_PROP_TIP.getToolTip());
 		inputFileTextFld.setEditable(false);
 		inputFileTextFld.setLayoutData(data);
 		
-		//Button for input files
 		final Button inputFilesBtn = factory.createButton(composite, "Input files", 0);
 		data = new FormData();
 		data.left = new FormAttachment(inputFileTextFld, 0);
 		data.right = new FormAttachment(9, 0);
 		data.top = new FormAttachment(jobFileLabel, -1);
 		inputFilesBtn.setLayoutData(data);
+		inputFilesBtn.setToolTipText(ToolTips.INPUT_FILE_BTN_TIP.get());
 		inputFilesBtn.addSelectionListener(new SelectionListener() {
 			
 			@Override
@@ -214,33 +215,8 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 		data.left = new FormAttachment(outputFileHomeLabel, 0);
 		data.right = new FormAttachment(0, 400);
 		data.top = new FormAttachment(inputFileTextFld, 0);
-		//jobFileTextFld.setToolTipText(ToolTips.IP_PROP_TIP.getToolTip());
 		outputFileHomeTextFld.setEditable(false);
 		outputFileHomeTextFld.setLayoutData(data);
-		
-		final CLabel outputExtFileLabel = factory.createCLabel(composite, "External output file:");
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(0, 110);
-		data.top = new FormAttachment(outputFileHomeLabel, 0);
-		outputExtFileLabel.setLayoutData(data);
-		
-		final Text outputFileExtTextFld = factory.createText(composite, "");
-		data = new FormData();
-		data.left = new FormAttachment(outputExtFileLabel, 0);
-		data.right = new FormAttachment(0, 400);
-		data.top = new FormAttachment(outputFileHomeLabel, 0);
-		//jobFileTextFld.setToolTipText(ToolTips.IP_PROP_TIP.getToolTip());
-		outputFileExtTextFld.setEditable(true);
-		outputFileExtTextFld.setLayoutData(data);
-		outputFileExtTextFld.addModifyListener(new ModifyListener() {
-			
-			@Override
-			public void modifyText(ModifyEvent arg0)
-			{
-				extOutputFilePath = Paths.get(outputFileExtTextFld.getText());
-			}
-		});
 		
 		final Button outputFileBtn = factory.createButton(composite, "Output file", 0);
 		data = new FormData();
@@ -248,6 +224,7 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 		data.right = new FormAttachment(9, 0);
 		data.top = new FormAttachment(inputFileTextFld, -1);
 		outputFileBtn.setLayoutData(data);
+		outputFileBtn.setToolTipText(ToolTips.HOME_OUTPUT_FILE_BTN.get());
 		outputFileBtn.addSelectionListener(new SelectionListener() {
 			
 			@Override
@@ -275,6 +252,30 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 			}
 		});
 		
+		final CLabel outputExtFileLabel = factory.createCLabel(composite, "External output file:");
+		data = new FormData();
+		data.left = new FormAttachment(0, 0);
+		data.right = new FormAttachment(0, 110);
+		data.top = new FormAttachment(outputFileHomeLabel, 0);
+		outputExtFileLabel.setLayoutData(data);
+		
+		final Text outputFileExtTextFld = factory.createText(composite, "");
+		data = new FormData();
+		data.left = new FormAttachment(outputExtFileLabel, 0);
+		data.right = new FormAttachment(0, 400);
+		data.top = new FormAttachment(outputFileHomeLabel, 0);
+		outputFileExtTextFld.setEditable(true);
+		outputFileExtTextFld.setLayoutData(data);
+		outputFileExtTextFld.setToolTipText(ToolTips.EXT_OUTPUT_FILE_TIP.get());
+		outputFileExtTextFld.addModifyListener(new ModifyListener() {
+			
+			@Override
+			public void modifyText(ModifyEvent arg0)
+			{
+				extOutputFilePath = Paths.get(outputFileExtTextFld.getText());
+			}
+		});
+		
 		//Button for job transfer
 		final Button transferBtn = factory.createButton(composite, "Job transfer", 0);
 		data = new FormData();
@@ -282,6 +283,7 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 		data.right = new FormAttachment(2, 0);
 		data.top = new FormAttachment(outputExtFileLabel, 30);
 		transferBtn.setLayoutData(data);
+		transferBtn.setToolTipText(ToolTips.JOB_TRANSFER_BTN_TIP.get());
 		transferBtn.addSelectionListener(new SelectionListener() {
 			
 			@Override
@@ -335,6 +337,7 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 		data.right = new FormAttachment(3, 0);
 		data.top = new FormAttachment(outputExtFileLabel, 30);
 		resetBtn.setLayoutData(data);
+		resetBtn.setToolTipText(ToolTips.RESET_BTN_TIP.get());
 		resetBtn.addSelectionListener(new SelectionListener() {
 			
 			@Override

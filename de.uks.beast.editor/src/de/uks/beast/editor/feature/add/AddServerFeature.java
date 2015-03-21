@@ -128,7 +128,7 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		// SHAPE FOR PROPERTY IP
 		final Shape ipTextShape = createShape(peCreateService, containerShape);
 		final Shape ipLabelShape = createShape(peCreateService, containerShape);
-		Textfields.SERVER_IP_LABEL_FIELD.addTo(getDiagram(), ipLabelShape, IP_LABEL.getProperty(), color);
+		Textfields.SERVER_IP_LABEL_FIELD.addTo(getDiagram(), ipLabelShape, IP_LABEL.get(), color);
 		Textfields.SERVER_IP_PROP_FIELD.addTo(getDiagram(), ipTextShape, server.getIp(), color);
 		PropertyUtil.setAttributeShape(ipTextShape, IP);
 		link(ipTextShape, server);
@@ -136,7 +136,7 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		//SHAPE FOR PROPERTY CPU_AMOUNT
 		final Shape cpuCoresTextShape = createShape(peCreateService, containerShape);
 		final Shape cpuCoresLabelShape = createShape(peCreateService, containerShape);
-		Textfields.SERVER_CPU_CORES_LABEL_FIELD.addTo(getDiagram(), cpuCoresLabelShape, CPU_CORES_LABEL.getProperty(), color);
+		Textfields.SERVER_CPU_CORES_LABEL_FIELD.addTo(getDiagram(), cpuCoresLabelShape, CPU_CORES_LABEL.get(), color);
 		Textfields.SERVER_CPU_CORES_PROP_FIELD
 				.addTo(getDiagram(), cpuCoresTextShape, String.valueOf(server.getCpuCores()), color);
 		PropertyUtil.setAttributeShape(cpuCoresTextShape, CPU_CORES);
@@ -145,7 +145,7 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		//SHAPE FOR PROPERTY RAM
 		final Shape ramTextShape = createShape(peCreateService, containerShape);
 		final Shape ramLabelShape = createShape(peCreateService, containerShape);
-		Textfields.SERVER_MAX_RAM_LABEL_FIELD.addTo(getDiagram(), ramLabelShape, RAM_LABEL.getProperty(), color);
+		Textfields.SERVER_MAX_RAM_LABEL_FIELD.addTo(getDiagram(), ramLabelShape, RAM_LABEL.get(), color);
 		Textfields.SERVER_MAX_RAM_PROP_FIELD.addTo(getDiagram(), ramTextShape, String.valueOf(server.getRam()), color);
 		PropertyUtil.setAttributeShape(ramTextShape, RAM);
 		link(ramTextShape, server);
@@ -153,7 +153,7 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		//SHAPE FOR PROPERTY DISK_SPACE
 		final Shape diskSpaceTextShape = createShape(peCreateService, containerShape);
 		final Shape diskSpaceLabelShape = createShape(peCreateService, containerShape);
-		Textfields.SERVER_DISK_SPACE_LABEL_FIELD.addTo(getDiagram(), diskSpaceLabelShape, DISKSPACE_LABEL.getProperty(), color);
+		Textfields.SERVER_DISK_SPACE_LABEL_FIELD.addTo(getDiagram(), diskSpaceLabelShape, DISKSPACE_LABEL.get(), color);
 		Textfields.SERVER_DISK_SPACE_PROP_FIELD.addTo(getDiagram(), diskSpaceTextShape, String.valueOf(server.getDiskSpace()),
 				color);
 		PropertyUtil.setAttributeShape(diskSpaceTextShape, DISKSPACE);

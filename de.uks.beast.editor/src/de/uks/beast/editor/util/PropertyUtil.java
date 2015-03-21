@@ -9,14 +9,14 @@ public class PropertyUtil
 	
 	public static void setAttributeShape(final PictogramElement pe, final Properties property)
 	{
-		Graphiti.getPeService().setPropertyValue(pe, property.getProperty(), property.getProperty());
+		Graphiti.getPeService().setPropertyValue(pe, property.get(), property.get());
 	}
 	
 	
 	
 	public static boolean isAttributeShape(final PictogramElement pe, final Properties property)
 	{
-		return property.getProperty().equals(Graphiti.getPeService().getPropertyValue(pe, property.getProperty()));
+		return property.get().equals(Graphiti.getPeService().getPropertyValue(pe, property.get()));
 	}
 	
 	
@@ -37,14 +37,14 @@ public class PropertyUtil
 	
 	public static void setConnection(final Connection connection, final Properties property)
 	{
-		Graphiti.getPeService().setPropertyValue(connection, property.getProperty(), property.getProperty());
+		Graphiti.getPeService().setPropertyValue(connection, property.get(), property.get());
 	}
 	
 	
 	
 	public static boolean isConnection(final Connection connection, final Properties property)
 	{
-		return property.getProperty().equals(Graphiti.getPeService().getPropertyValue(connection, property.getProperty()));
+		return property.get().equals(Graphiti.getPeService().getPropertyValue(connection, property.get()));
 	}
 	
 	

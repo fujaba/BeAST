@@ -51,7 +51,7 @@ public enum Properties
 	/**
 	 * @return the property
 	 */
-	public String getProperty()
+	public String get()
 	{
 		return property;
 	}

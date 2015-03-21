@@ -108,7 +108,7 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		// SHAPE FOR PROPERTY IP
 		final Shape ipTextShape = createShape(peCreateService, containerShape);
 		final Shape ipLabelShape = createShape(peCreateService, containerShape);
-		Textfields.NETWORK_IP_LABEL_FIELD.addTo(getDiagram(), ipLabelShape, IP_LABEL.getProperty(), color);
+		Textfields.NETWORK_IP_LABEL_FIELD.addTo(getDiagram(), ipLabelShape, IP_LABEL.get(), color);
 		Textfields.NETWORK_IP_PROP_FIELD.addTo(getDiagram(), ipTextShape, network.getIp(), color);
 		PropertyUtil.setAttributeShape(ipTextShape, IP);
 		link(ipTextShape, network);
@@ -116,7 +116,7 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		//SHAPE FOR PROPERTY SUBNET_MASK
 		final Shape subnetMaskTextShape = createShape(peCreateService, containerShape);
 		final Shape subnetMaskLabelShape = createShape(peCreateService, containerShape);
-		Textfields.NETWORK_SUBNET_MASK_LABEL_FIELD.addTo(getDiagram(), subnetMaskLabelShape, SUBNET_MASK_LABEL.getProperty(),
+		Textfields.NETWORK_SUBNET_MASK_LABEL_FIELD.addTo(getDiagram(), subnetMaskLabelShape, SUBNET_MASK_LABEL.get(),
 				color);
 		Textfields.NETWORK_SUBNET_MASK_PROP_FIELD.addTo(getDiagram(), subnetMaskTextShape, network.getSubnetmask(), color);
 		PropertyUtil.setAttributeShape(subnetMaskTextShape, SUBNET_MASK);
@@ -125,7 +125,7 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		//SHAPE FOR PROPERTY GATEWAY
 		final Shape gatewayTextShape = createShape(peCreateService, containerShape);
 		final Shape gatewayLabelShape = createShape(peCreateService, containerShape);
-		Textfields.NETWORK_GATEWAY_LABEL_FIELD.addTo(getDiagram(), gatewayLabelShape, GATEWAY_LABEL.getProperty(), color);
+		Textfields.NETWORK_GATEWAY_LABEL_FIELD.addTo(getDiagram(), gatewayLabelShape, GATEWAY_LABEL.get(), color);
 		Textfields.NETWORK_GATEWAY_PROP_FIELD.addTo(getDiagram(), gatewayTextShape, network.getGateway(), color);
 		PropertyUtil.setAttributeShape(gatewayTextShape, GATEWAY);
 		link(gatewayTextShape, network);
@@ -133,7 +133,7 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		//SHAPE FOR PROPERTY DNS
 		final Shape dnsTextShape = createShape(peCreateService, containerShape);
 		final Shape dnsLabelShape = createShape(peCreateService, containerShape);
-		Textfields.NETWORK_DNS_LABEL_FIELD.addTo(getDiagram(), dnsLabelShape, DNS_LABEL.getProperty(), color);
+		Textfields.NETWORK_DNS_LABEL_FIELD.addTo(getDiagram(), dnsLabelShape, DNS_LABEL.get(), color);
 		Textfields.NETWORK_DNS_PROP_FIELD.addTo(getDiagram(), dnsTextShape, network.getDns(), color);
 		PropertyUtil.setAttributeShape(dnsTextShape, DNS);
 		link(dnsTextShape, network);

@@ -59,10 +59,10 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE);
-		ipTextFld.setToolTipText(ToolTips.IP_PROP_TIP.getToolTip());
+		ipTextFld.setToolTipText(ToolTips.IP_PROP_TIP.get());
 		ipTextFld.setLayoutData(data);
 		
-		final CLabel valueLabel = factory.createCLabel(composite, IP_LABEL.getProperty());
+		final CLabel valueLabel = factory.createCLabel(composite, IP_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(ipTextFld, valueLabel.getText().length());
@@ -75,10 +75,10 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 25);
-		cpuCoresTextFld.setToolTipText(ToolTips.CPU_CORES_PROP_TIP.getToolTip());
+		cpuCoresTextFld.setToolTipText(ToolTips.CPU_CORES_PROP_TIP.get());
 		cpuCoresTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe2 = factory.createCLabel(composite, CPU_CORES_LABEL.getProperty());
+		final CLabel valueLabe2 = factory.createCLabel(composite, CPU_CORES_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(cpuCoresTextFld, valueLabe2.getText().length());
@@ -91,10 +91,10 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 50);
-		ramTextFld.setToolTipText(ToolTips.MAX_RAM_PROP_TIP.getToolTip());
+		ramTextFld.setToolTipText(ToolTips.MAX_RAM_PROP_TIP.get());
 		ramTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe4 = factory.createCLabel(composite, RAM_LABEL.getProperty());
+		final CLabel valueLabe4 = factory.createCLabel(composite, RAM_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(ramTextFld, valueLabe4.getText().length());
@@ -107,10 +107,10 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 75);
-		diskSpaceTextFld.setToolTipText(ToolTips.DISK_SPACE_PROP_TIP.getToolTip());
+		diskSpaceTextFld.setToolTipText(ToolTips.DISK_SPACE_PROP_TIP.get());
 		diskSpaceTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe5 = factory.createCLabel(composite, DISKSPACE_LABEL.getProperty());
+		final CLabel valueLabe5 = factory.createCLabel(composite, DISKSPACE_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(diskSpaceTextFld, valueLabe5.getText().length());
@@ -118,13 +118,13 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		valueLabe5.setLayoutData(data);
 		
 		//Property_submit
-		submitBtn = factory.createButton(composite, TRANSFER.getProperty(), 0);
+		submitBtn = factory.createButton(composite, TRANSFER.get(), 0);
 		data = new FormData();
 		data.left = new FormAttachment(0, 20);
 		data.right = new FormAttachment(20, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 125);
 		submitBtn.setLayoutData(data);
-		submitBtn.setToolTipText(ToolTips.TRANSFER_BTN_TIP.getToolTip());
+		submitBtn.setToolTipText(ToolTips.TRANSFER_BTN_TIP.get());
 		submitBtn.addSelectionListener(new SelectionListener() {
 			
 			@Override

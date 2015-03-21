@@ -112,7 +112,7 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		// SHAPE FOR PROPERTY IP
 		final Shape ipTextShape = createShape(peCreateService, containerShape);
 		final Shape ipLabelShape = createShape(peCreateService, containerShape);
-		Textfields.ROUTER_IP_LABEL_FIELD.addTo(getDiagram(), ipLabelShape, IP_LABEL.getProperty(), color);
+		Textfields.ROUTER_IP_LABEL_FIELD.addTo(getDiagram(), ipLabelShape, IP_LABEL.get(), color);
 		Textfields.ROUTER_IP_PROP_FIELD.addTo(getDiagram(), ipTextShape, router.getIp(), color);
 		PropertyUtil.setAttributeShape(ipTextShape, IP);
 		link(ipTextShape, router);
@@ -120,7 +120,7 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		//SHAPE FOR PROPERTY ID
 		final Shape idTextShape = createShape(peCreateService, containerShape);
 		final Shape idLabelShape = createShape(peCreateService, containerShape);
-		Textfields.ROUTER_ID_LABEL_FIELD.addTo(getDiagram(), idLabelShape, ID_LABEL.getProperty(), color);
+		Textfields.ROUTER_ID_LABEL_FIELD.addTo(getDiagram(), idLabelShape, ID_LABEL.get(), color);
 		Textfields.ROUTER_ID_PROP_FIELD.addTo(getDiagram(), idTextShape, router.getId(), color);
 		PropertyUtil.setAttributeShape(idTextShape, ID);
 		link(idTextShape, router);
@@ -128,7 +128,7 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		//SHAPE FOR PROPERTY EXTERNAL_GATEWAY
 		final Shape extGatewayTextShape = createShape(peCreateService, containerShape);
 		final Shape extGatewayLabelShape = createShape(peCreateService, containerShape);
-		Textfields.ROUTER_EXT_GATEWAY_LABEL_FIELD.addTo(getDiagram(), extGatewayLabelShape, EXTERNAL_GATEWAY_LABEL.getProperty(),
+		Textfields.ROUTER_EXT_GATEWAY_LABEL_FIELD.addTo(getDiagram(), extGatewayLabelShape, EXTERNAL_GATEWAY_LABEL.get(),
 				color);
 		Textfields.ROUTER_EXT_GATEWAY_PROP_FIELD.addTo(getDiagram(), extGatewayTextShape, router.getExternalGateway(), color);
 		PropertyUtil.setAttributeShape(extGatewayTextShape, EXTERNAL_GATEWAY);

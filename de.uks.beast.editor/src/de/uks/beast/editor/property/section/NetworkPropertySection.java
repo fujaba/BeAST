@@ -55,10 +55,10 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		data.left = new FormAttachment(0, Dimensions.NETWORK_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE);
-		ipTextFld.setToolTipText(ToolTips.IP_PROP_TIP.getToolTip());
+		ipTextFld.setToolTipText(ToolTips.IP_PROP_TIP.get());
 		ipTextFld.setLayoutData(data);
 		
-		final CLabel valueLabel = factory.createCLabel(composite, IP_LABEL.getProperty());
+		final CLabel valueLabel = factory.createCLabel(composite, IP_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(ipTextFld, valueLabel.getText().length());
@@ -71,10 +71,10 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		data.left = new FormAttachment(0, Dimensions.NETWORK_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 25);
-		subnetTextFld.setToolTipText(ToolTips.SUBNET_MASK_PROP_TIP.getToolTip());
+		subnetTextFld.setToolTipText(ToolTips.SUBNET_MASK_PROP_TIP.get());
 		subnetTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe2 = factory.createCLabel(composite, SUBNET_MASK_LABEL.getProperty());
+		final CLabel valueLabe2 = factory.createCLabel(composite, SUBNET_MASK_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(subnetTextFld, valueLabe2.getText().length());
@@ -87,10 +87,10 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		data.left = new FormAttachment(0, Dimensions.NETWORK_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 50);
-		gatewayTextFld.setToolTipText(ToolTips.GATEWAY_PROP_TIP.getToolTip());
+		gatewayTextFld.setToolTipText(ToolTips.GATEWAY_PROP_TIP.get());
 		gatewayTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe3 = factory.createCLabel(composite, GATEWAY_LABEL.getProperty());
+		final CLabel valueLabe3 = factory.createCLabel(composite, GATEWAY_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(gatewayTextFld, valueLabe3.getText().length());
@@ -103,10 +103,10 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		data.left = new FormAttachment(0, Dimensions.NETWORK_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 75);
-		dnsTextFld.setToolTipText(ToolTips.DNS_PROP_TIP.getToolTip());
+		dnsTextFld.setToolTipText(ToolTips.DNS_PROP_TIP.get());
 		dnsTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe4 = factory.createCLabel(composite, DNS_LABEL.getProperty());
+		final CLabel valueLabe4 = factory.createCLabel(composite, DNS_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(dnsTextFld, valueLabe4.getText().length());
@@ -114,13 +114,13 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		valueLabe4.setLayoutData(data);
 		
 		//Property_submit
-		submitBtn = factory.createButton(composite, TRANSFER.getProperty(), 0);
+		submitBtn = factory.createButton(composite, TRANSFER.get(), 0);
 		data = new FormData();
 		data.left = new FormAttachment(0, 20);
 		data.right = new FormAttachment(20, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 125);
 		submitBtn.setLayoutData(data);
-		submitBtn.setToolTipText(ToolTips.TRANSFER_BTN_TIP.getToolTip());
+		submitBtn.setToolTipText(ToolTips.TRANSFER_BTN_TIP.get());
 		submitBtn.addSelectionListener(new SelectionListener() {
 			
 			@Override
