@@ -5,12 +5,14 @@ public enum Strings
 	//@formatter:off
 	// Main
 	PLUGIN_ID					("de.uks.beast.editor",		""),
-	DIAGRAM_TYPEID				("hardwareComposition", 	""),
+	//TODO OLD: DIAGRAM_TYPEID ("hardwareComposition", 	""),
+	DIAGRAM_TYPEID				("beast", 	""),
 	
 	
 	//Wizard
 	WIZARD_PAGE_NAME			("wizardPage",							""),
-	WIZARD_TITLE				("Hardware Composition Editor File",	""),
+	//TODO: OLD: WIZARD_TITLE ("Hardware Composition Editor File",	""),
+	WIZARD_TITLE				("BeAST Diagram File",	""),
 	WIZARD_DESCRIPTION			("",									"This wizard creates a new file with *.diagram extension that can be opened by a multi-page editor."),
 	BROWSE_BUTTON_TEXT			("Browse...",							""),
 	FILE_LABEL					("File name:",							""),

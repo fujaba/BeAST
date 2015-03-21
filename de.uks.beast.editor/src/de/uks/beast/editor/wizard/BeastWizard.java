@@ -41,10 +41,10 @@ import de.uks.beast.editor.util.Strings;
  * be able to open it.
  */
 
-public class HCDWizard extends Wizard implements INewWizard
+public class BeastWizard extends Wizard implements INewWizard
 {
-	private static final Logger	LOG	= LogManager.getLogger(HCDWizard.class);
-	private HCDWizardPage		page;
+	private static final Logger	LOG	= LogManager.getLogger(BeastWizard.class);
+	private BeastWizardPage		page;
 	private ISelection			selection;
 	
 	
@@ -52,7 +52,7 @@ public class HCDWizard extends Wizard implements INewWizard
 	/**
 	 * Constructor for HCDWizard.
 	 */
-	public HCDWizard()
+	public BeastWizard()
 	{
 		super();
 		setNeedsProgressMonitor(true);
@@ -66,7 +66,7 @@ public class HCDWizard extends Wizard implements INewWizard
 	
 	public void addPages()
 	{
-		page = new HCDWizardPage(selection);
+		page = new BeastWizardPage(selection);
 		addPage(page);
 	}
 	

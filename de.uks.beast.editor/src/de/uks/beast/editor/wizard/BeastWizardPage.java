@@ -29,7 +29,7 @@ import static de.uks.beast.editor.util.Strings.*;
  * OR with the extension that matches the expected one (diagram).
  */
 
-public class HCDWizardPage extends WizardPage
+public class BeastWizardPage extends WizardPage
 {
 	private Text		containerText;
 	
@@ -44,7 +44,7 @@ public class HCDWizardPage extends WizardPage
 	 * 
 	 * @param pageName
 	 */
-	public HCDWizardPage(final ISelection selection)
+	public BeastWizardPage(final ISelection selection)
 	{
 		super(WIZARD_PAGE_NAME.text());
 		setTitle(WIZARD_TITLE.text());
