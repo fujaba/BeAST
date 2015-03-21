@@ -42,16 +42,16 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 	private static final Logger			LOG	= LogManager.getLogger(ServicePropertySection.class);
 	private TransactionalEditingDomain	domain;
 	
-	private Path						jobFile;
-	private Path						extOutputFilePath;
-	private Path						homeOutputFile;
-	private List<Path>					inputFiles;
+	private Path						jobPath;
+	private Path						extOutputPath;
+	private Path						homeOutputPath;
+	private List<Path>					inputPathes;
 	
 	
 	
 	public ServicePropertySection()
 	{
-		inputFiles = new ArrayList<>();
+		inputPathes = new ArrayList<>();
 	}
 	
 	
@@ -139,8 +139,8 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 				
 				if (fileBrowser.getFileList().size() == 1)
 				{
-					jobFile = fileBrowser.getFileList().get(0);
-					jobFileTextFld.setText(jobFile.toString());
+					jobPath = fileBrowser.getFileList().get(0);
+					jobFileTextFld.setText(jobPath.toString());
 				}
 				else
 				{
@@ -190,7 +190,7 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 				
 				for (final Path path : fileBrowser.getFileList())
 				{
-					inputFiles.add(path);
+					inputPathes.add(path);
 					inputFileTextFld.append(path.toString() + "\n");
 				}
 			}
@@ -235,8 +235,8 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 				
 				if (fileBrowser.getFileList().size() == 1)
 				{
-					homeOutputFile = fileBrowser.getFileList().get(0);
-					outputFileHomeTextFld.setText(homeOutputFile.toString());
+					homeOutputPath = fileBrowser.getFileList().get(0);
+					outputFileHomeTextFld.setText(homeOutputPath.toString());
 				}
 				else
 				{
@@ -272,7 +272,7 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 			@Override
 			public void modifyText(ModifyEvent arg0)
 			{
-				extOutputFilePath = Paths.get(outputFileExtTextFld.getText());
+				extOutputPath = Paths.get(outputFileExtTextFld.getText());
 			}
 		});
 		
@@ -297,9 +297,9 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 						  .setName(name)
 						  .setPriority(Integer.valueOf(prio))
 						  .setRunImmediately(runStateBtn.getSelection())
-						  .setJobFile(new JobFile(jobFile.getFileName().toString(), jobFile))
-						  .setOutputFile(new JobOutputFile(homeOutputFile.getFileName().toString(), homeOutputFile, extOutputFilePath))
-						  .addInputFilesFromPaths(inputFiles)
+						  .setJobFile(new JobFile(jobPath.getFileName().toString(), jobPath))
+						  .setOutputFile(new JobOutputFile(homeOutputPath.getFileName().toString(), homeOutputPath, extOutputPath))
+						  .addInputFilesFromPaths(inputPathes)
 						  .build();
 				//@formatter:on
 				
@@ -364,10 +364,10 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 				outputFileExtTextFld.setText("");
 				priorityCombo.deselectAll();
 				runStateBtn.setSelection(false);
-				jobFile = Paths.get("default");
-				inputFiles.clear();
-				homeOutputFile = Paths.get("default");
-				extOutputFilePath = Paths.get("default");
+				jobPath = Paths.get("default");
+				inputPathes.clear();
+				homeOutputPath = Paths.get("default");
+				extOutputPath = Paths.get("default");
 			}
 		});
 	}
