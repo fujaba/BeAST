@@ -90,4 +90,12 @@ public class Job
 		return inputFiles;
 	}
 	
+	
+	
+	@Override
+	public String toString()
+	{
+		return "name: " + name + " - " + "prio: " + priority + " - " + "runImmediateliy: " + runImmediately;
+	}
+	
 }

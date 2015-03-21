@@ -8,7 +8,7 @@ public class JobOutputFile extends JobFile
 	
 	
 	
-	protected JobOutputFile(final String name, final Path homePath, final Path externalPath)
+	public JobOutputFile(final String name, final Path homePath, final Path externalPath)
 	{
 		super(name, homePath);
 		this.externalFilePath = externalPath;
@@ -24,4 +24,12 @@ public class JobOutputFile extends JobFile
 		return externalFilePath;
 	}
 	
+	
+	
+	@Override
+	public String toString()
+	{
+		return "name: " + getName() + " - " + " homePath: " + getPath().toString() + " - " + " extPath: "
+				+ externalFilePath.toString();
+	}
 }

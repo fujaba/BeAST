@@ -10,8 +10,8 @@ public class JobBuilder
 	protected String		name			= "default";
 	protected int			priority		= 0;
 	protected boolean		runImmediately	= false;
-	protected JobFile		jobFile			= new JobFile("default", Paths.get(""));
-	protected JobOutputFile	outputFile		= new JobOutputFile("default", Paths.get(""), Paths.get(""));
+	protected JobFile		jobFile			= new JobFile("default", Paths.get("/test/test"));
+	protected JobOutputFile	outputFile		= new JobOutputFile("default", Paths.get("/test/test"), Paths.get("/test/test"));
 	protected List<JobFile>	inputFiles		= new ArrayList<>();
 	
 	
@@ -90,13 +90,28 @@ public class JobBuilder
 	{
 		for (final JobFile inputFile : inputFiles)
 		{
-			if (inputFile != null && Files.exists(inputFile.getPath()))
+			if (inputFile != null && Files.exists(inputFile.getPath()) && !isExisting(inputFile))
 			{
+				System.out.println("add: " + inputFile.getPath());
 				this.inputFiles.add(inputFile);
 			}
 		}
 		
 		return this;
+	}
+	
+	
+	
+	private boolean isExisting(final JobFile jobFile)
+	{
+		for (final JobFile jf : this.inputFiles)
+		{
+			if (jobFile.getPath().equals(jf.getPath()))
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }

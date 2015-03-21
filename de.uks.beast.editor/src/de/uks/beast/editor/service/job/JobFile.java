@@ -35,4 +35,12 @@ public class JobFile
 		return name;
 	}
 	
+	
+	
+	@Override
+	public String toString()
+	{
+		return "name: " + name + " - " + " filePath: " + path.toString();
+	}
+	
 }

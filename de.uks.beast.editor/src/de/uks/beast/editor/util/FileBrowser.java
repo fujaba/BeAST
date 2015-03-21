@@ -26,15 +26,16 @@ public class FileBrowser
 		this.fileDialog = new FileDialog(shell, SWT.MULTI);
 		this.filePathes = new ArrayList<>();
 		
-		manageFileDialog();
+		configureFileDialog();
 	}
 	
 	
 	
-	private void manageFileDialog()
+	private void configureFileDialog()
 	{
-		fileDialog.setFilterExtensions(new String[] { "*.jar", "*.zip", "*.rar", "*.*" });
-		fileDialog.setFilterNames(new String[] { "JAR", "ZIP", "RAR", "Any" });
+		fileDialog.setFilterExtensions(new String[] { "*.jar", "*.zip", "*.rar", "*.txt", "*.*" });
+		fileDialog.setFilterNames(new String[] { "JAR", "ZIP", "RAR", "TXT", "Any" });
+		fileDialog.setOverwrite(true);
 	}
 	
 	
@@ -57,7 +58,7 @@ public class FileBrowser
 				final String fileSeparator = System.getProperty("file.separator");
 				final Path path = Paths.get(fileDialog.getFilterPath() + fileSeparator + fileName);
 				
-				if (Files.exists(path))
+				if (Files.exists(path) && !filePathes.contains(path))
 				{
 					filePathes.add(path);
 				}
@@ -68,7 +69,7 @@ public class FileBrowser
 				final String fileSeparator = "/";
 				final Path path = Paths.get(fileDialog.getFilterPath() + fileSeparator + fileName);
 				
-				if (Files.exists(path))
+				if (Files.exists(path) && !filePathes.contains(path))
 				{
 					filePathes.add(path);
 				}
