@@ -243,23 +243,25 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				final FileBrowser fileBrowser = new FileBrowser();
-				fileBrowser.openFileDialog();
-				
-				if (fileBrowser.getFileList().size() == 1)
+				if (!outputFileExtTextFld.getText().isEmpty())
 				{
-					final Path filePath = fileBrowser.getFileList().get(0);
-					final String extOutputFile = outputFileExtTextFld.getText().isEmpty() ? "/home" : outputFileExtTextFld
-							.getText();
-					jobBuilder.setOutputFile(new JobOutputFile(filePath.getFileName().toString(), filePath, Paths
-							.get(extOutputFile)));
-					outputFileHomeTextFld.setText(filePath.toString());
+					final FileBrowser fileBrowser = new FileBrowser();
+					fileBrowser.openFileDialog();
+					
+					if (fileBrowser.getFileList().size() == 1)
+					{
+						final Path filePath = fileBrowser.getFileList().get(0);
+						final String extOutputFile = outputFileExtTextFld.getText().isEmpty() ? "/home" : outputFileExtTextFld
+								.getText();
+						jobBuilder.setOutputFile(new JobOutputFile(filePath.getFileName().toString(), filePath, Paths
+								.get(extOutputFile)));
+						outputFileHomeTextFld.setText(filePath.toString());
+					}
+					else
+					{
+						throw new RuntimeException("It is just allowd to select ONE outputFile!");
+					}
 				}
-				else
-				{
-					throw new RuntimeException("It is just allowd to select ONE outputFile!");
-				}
-				
 			}
 			
 			
