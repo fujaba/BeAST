@@ -95,7 +95,7 @@ public class Job
 	@Override
 	public String toString()
 	{
-		return "name: " + name + " - " + "prio: " + priority + " - " + "runImmediateliy: " + runImmediately;
+		return "name: " + name + " - prio: " + priority + " - runImmediateliy: " + runImmediately;
 	}
 	
 }

@@ -2,6 +2,8 @@ package de.uks.beast.editor.property.section;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Service;
 
@@ -16,6 +18,8 @@ import org.eclipse.graphiti.ui.platform.GFPropertySection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.CLabel;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FormAttachment;
@@ -28,7 +32,6 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
 import de.uks.beast.editor.service.job.Job;
-import de.uks.beast.editor.service.job.JobBuilder;
 import de.uks.beast.editor.service.job.JobFile;
 import de.uks.beast.editor.service.job.JobOutputFile;
 import de.uks.beast.editor.util.FileBrowser;
@@ -37,14 +40,17 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 {
 	private static final Logger			LOG	= LogManager.getLogger(ServicePropertySection.class);
 	private TransactionalEditingDomain	domain;
-	private JobBuilder					jobBuilder;
+	
+	private Path						jobFile;
+	private Path						extOutputFilePath;
+	private Path						homeOutputFile;
+	private List<Path>					inputFiles;
 	
 	
 	
 	public ServicePropertySection()
 	{
-		this.jobBuilder = Job.builder();
-		
+		inputFiles = new ArrayList<>();
 	}
 	
 	
@@ -131,9 +137,8 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 				
 				if (fileBrowser.getFileList().size() == 1)
 				{
-					final Path filePath = fileBrowser.getFileList().get(0);
-					jobBuilder.setJobFile(new JobFile(filePath.getFileName().toString(), filePath));
-					jobFileTextFld.setText(filePath.toString());
+					jobFile = fileBrowser.getFileList().get(0);
+					jobFileTextFld.setText(jobFile.toString());
 				}
 				else
 				{
@@ -147,8 +152,6 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 			@Override
 			public void widgetDefaultSelected(SelectionEvent arg0)
 			{
-				// TODO Auto-generated method stub
-				
 			}
 		});
 		
@@ -186,7 +189,7 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 				
 				for (final Path path : fileBrowser.getFileList())
 				{
-					jobBuilder.addInputFiles(new JobFile(path.getFileName().toString(), path));
+					inputFiles.add(path);
 					inputFileTextFld.append(path.toString() + "\n");
 				}
 			}
@@ -230,8 +233,15 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 		//jobFileTextFld.setToolTipText(ToolTips.IP_PROP_TIP.getToolTip());
 		outputFileExtTextFld.setEditable(true);
 		outputFileExtTextFld.setLayoutData(data);
+		outputFileExtTextFld.addModifyListener(new ModifyListener() {
+			
+			@Override
+			public void modifyText(ModifyEvent arg0)
+			{
+				extOutputFilePath = Paths.get(outputFileExtTextFld.getText());
+			}
+		});
 		
-		//TODO: external path muss später ins object geschrieben werden
 		final Button outputFileBtn = factory.createButton(composite, "Output file", 0);
 		data = new FormData();
 		data.left = new FormAttachment(outputFileHomeTextFld, 0);
@@ -243,24 +253,17 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				if (!outputFileExtTextFld.getText().isEmpty())
+				final FileBrowser fileBrowser = new FileBrowser();
+				fileBrowser.openFileDialog();
+				
+				if (fileBrowser.getFileList().size() == 1)
 				{
-					final FileBrowser fileBrowser = new FileBrowser();
-					fileBrowser.openFileDialog();
-					
-					if (fileBrowser.getFileList().size() == 1)
-					{
-						final Path filePath = fileBrowser.getFileList().get(0);
-						final String extOutputFile = outputFileExtTextFld.getText().isEmpty() ? "/home" : outputFileExtTextFld
-								.getText();
-						jobBuilder.setOutputFile(new JobOutputFile(filePath.getFileName().toString(), filePath, Paths
-								.get(extOutputFile)));
-						outputFileHomeTextFld.setText(filePath.toString());
-					}
-					else
-					{
-						throw new RuntimeException("It is just allowd to select ONE outputFile!");
-					}
+					homeOutputFile = fileBrowser.getFileList().get(0);
+					outputFileHomeTextFld.setText(homeOutputFile.toString());
+				}
+				else
+				{
+					throw new RuntimeException("It is just allowd to select ONE outputFile!");
 				}
 			}
 			
@@ -269,8 +272,6 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 			@Override
 			public void widgetDefaultSelected(SelectionEvent arg0)
 			{
-				// TODO Auto-generated method stub
-				
 			}
 		});
 		
@@ -288,30 +289,35 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 			{
 				final String name = nameTextFld.getText().isEmpty() ? "default" : nameTextFld.getText();
 				final String prio = priorityCombo.getText().isEmpty() ? "0" : priorityCombo.getText();
-				final boolean runState = runStateBtn.getSelection();
 				
-				final Job buildedJob = jobBuilder.setName(name).setPriority(Integer.valueOf(prio)).setRunImmediately(runState)
-						.build();
+				//@formatter:off
+				final Job buildedJob = Job.builder()
+						  .setName(name)
+						  .setPriority(Integer.valueOf(prio))
+						  .setRunImmediately(runStateBtn.getSelection())
+						  .setJobFile(new JobFile(jobFile.getFileName().toString(), jobFile))
+						  .setOutputFile(new JobOutputFile(homeOutputFile.getFileName().toString(), homeOutputFile, extOutputFilePath))
+						  .addInputFilesFromPaths(inputFiles)
+						  .build();
+				//@formatter:on
 				
-				LOG.debug("############### <buildedJob> ###############\n");
-				LOG.debug("buildedJob: " + buildedJob.toString());
-				LOG.debug("jobFile: " + buildedJob.getJobFile());
-				for (final JobFile inputFile : buildedJob.getInputFiles())
-				{
-					LOG.debug("inputFile: " + inputFile);
-				}
-				LOG.debug("outputFile: " + buildedJob.getOutputFile());
-				LOG.debug("\n############### </buildedJob> ###############");
+				printJob(buildedJob);
 				
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					public void doExecute()
 					{
 						//TODO: transfer buildedJob !!!!!!!!!!!!
+						if (buildedJob != null)
+						{
+							
+						}
+						else
+						{
+							throw new RuntimeException("The created Job is null");
+						}
 					}
 				});
 				
-				//reset the builder to for new job creation
-				jobBuilder = Job.builder();
 			}
 			
 			
@@ -320,7 +326,62 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 			public void widgetDefaultSelected(SelectionEvent arg0)
 			{
 			}
+			
 		});
+		
+		final Button resetBtn = factory.createButton(composite, "Reset", 0);
+		data = new FormData();
+		data.left = new FormAttachment(transferBtn, 0);
+		data.right = new FormAttachment(3, 0);
+		data.top = new FormAttachment(outputExtFileLabel, 30);
+		resetBtn.setLayoutData(data);
+		resetBtn.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				resetAll();
+			}
+			
+			
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0)
+			{
+			}
+			
+			
+			
+			private void resetAll()
+			{
+				nameTextFld.setText("");
+				jobFileTextFld.setText("");
+				inputFileTextFld.setText("");
+				outputFileHomeTextFld.setText("");
+				outputFileExtTextFld.setText("");
+				priorityCombo.deselectAll();
+				runStateBtn.setSelection(false);
+				jobFile = Paths.get("default");
+				inputFiles.clear();
+				homeOutputFile = Paths.get("default");
+				extOutputFilePath = Paths.get("default");
+			}
+		});
+	}
+	
+	
+	
+	private void printJob(final Job job)
+	{
+		LOG.debug("############### <buildedJob> ###############");
+		LOG.debug("buildedJob: " + job.toString());
+		LOG.debug("jobFile: " + job.getJobFile());
+		for (final JobFile inputFile : job.getInputFiles())
+		{
+			LOG.debug("inputFile: " + inputFile);
+		}
+		LOG.debug("outputFile: " + job.getOutputFile());
+		LOG.debug("############### </buildedJob> ###############");
 	}
 	
 	

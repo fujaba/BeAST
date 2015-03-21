@@ -1,6 +1,7 @@
 package de.uks.beast.editor.service.job;
 
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +65,10 @@ public class JobBuilder
 	 */
 	public final JobBuilder setJobFile(final JobFile jobFile)
 	{
-		this.jobFile = jobFile;
+		if (jobFile != null)
+		{
+			this.jobFile = jobFile;
+		}
 		
 		return this;
 	}
@@ -76,7 +80,10 @@ public class JobBuilder
 	 */
 	public final JobBuilder setOutputFile(final JobOutputFile outputFile)
 	{
-		this.outputFile = outputFile;
+		if (outputFile != null)
+		{
+			this.outputFile = outputFile;
+		}
 		
 		return this;
 	}
@@ -92,8 +99,29 @@ public class JobBuilder
 		{
 			if (inputFile != null && Files.exists(inputFile.getPath()) && !isExisting(inputFile))
 			{
-				System.out.println("add: " + inputFile.getPath());
 				this.inputFiles.add(inputFile);
+			}
+		}
+		
+		return this;
+	}
+	
+	
+	
+	/**
+	 * @param inputFiles the inputFiles to set
+	 */
+	public final JobBuilder addInputFilesFromPaths(final List<Path> pathList)
+	{
+		for (final Path inputFile : pathList)
+		{
+			if (inputFile != null && Files.exists(inputFile))
+			{
+				final JobFile jobFile = new JobFile(inputFile.getFileName().toString(), inputFile);
+				if (!isExisting(jobFile))
+				{
+					this.inputFiles.add(jobFile);
+				}
 			}
 		}
 		

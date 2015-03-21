@@ -29,7 +29,6 @@ public class JobOutputFile extends JobFile
 	@Override
 	public String toString()
 	{
-		return "name: " + getName() + " - " + " homePath: " + getPath().toString() + " - " + " extPath: "
-				+ externalFilePath.toString();
+		return "name: " + getName() + " - homePath: " + getPath().toString() + " - extPath: " + externalFilePath.toString();
 	}
 }

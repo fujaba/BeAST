@@ -40,7 +40,7 @@ public class JobFile
 	@Override
 	public String toString()
 	{
-		return "name: " + name + " - " + " filePath: " + path.toString();
+		return "name: " + name + " - filePath: " + path.toString();
 	}
 	
 }
