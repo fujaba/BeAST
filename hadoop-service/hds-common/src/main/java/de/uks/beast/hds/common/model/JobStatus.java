@@ -10,5 +10,10 @@ package de.uks.beast.hds.common.model;
  * @author valentyn
  */
 public class JobStatus {
+
+    @Override
+    public String toString() {
+        return super.toString(); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
