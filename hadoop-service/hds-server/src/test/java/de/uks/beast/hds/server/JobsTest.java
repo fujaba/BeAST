@@ -1,6 +1,5 @@
 package de.uks.beast.hds.server;
 
-import de.uks.beast.hds.server.Main;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;

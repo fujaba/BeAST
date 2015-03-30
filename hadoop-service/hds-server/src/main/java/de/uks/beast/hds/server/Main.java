@@ -9,7 +9,10 @@ import java.net.URI;
 
 /**
  * Main class.
- *
+ * This is an entry point of the 'hadoop service (hds)' server application.
+ * Starts the server with the hadoop RESTful services.
+ * 
+ * @author unik
  */
 public class Main {
     // Base URI the Grizzly HTTP server will listen on
