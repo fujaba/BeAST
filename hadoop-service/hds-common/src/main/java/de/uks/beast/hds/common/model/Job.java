@@ -7,13 +7,16 @@ package de.uks.beast.hds.common.model;
 
 /**
  *
- * @author valentyn
+ * @author unik
  */
 public class Job {
+    
+    private String id;
+    private String name;
 
     @Override
     public String toString() {
         return super.toString(); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

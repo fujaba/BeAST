@@ -9,11 +9,16 @@ package de.uks.beast.hds.common.model;
  *
  * @author unik
  */
-public class JobStatus {
+public class FileAttachment {
+    
+    private String name;
 
-    @Override
-    public String toString() {
-        return super.toString(); //To change body of generated methods, choose Tools | Templates.
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
     
 }
