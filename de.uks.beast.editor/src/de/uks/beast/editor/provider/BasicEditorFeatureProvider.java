@@ -8,36 +8,50 @@ import model.Service;
 
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IAddFeature;
+import org.eclipse.graphiti.features.ICopyFeature;
 import org.eclipse.graphiti.features.IDirectEditingFeature;
 import org.eclipse.graphiti.features.ILayoutFeature;
+import org.eclipse.graphiti.features.IPasteFeature;
 import org.eclipse.graphiti.features.IReconnectionFeature;
 import org.eclipse.graphiti.features.IUpdateFeature;
 import org.eclipse.graphiti.features.context.IAddConnectionContext;
 import org.eclipse.graphiti.features.context.IAddContext;
+import org.eclipse.graphiti.features.context.ICopyContext;
 import org.eclipse.graphiti.features.context.IDirectEditingContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
+import org.eclipse.graphiti.features.context.IPasteContext;
 import org.eclipse.graphiti.features.context.IReconnectionContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
+import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.graphiti.mm.pictograms.PictogramLink;
+import org.eclipse.graphiti.services.Graphiti;
+import org.eclipse.graphiti.services.ILinkService;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
-import de.uks.beast.editor.feature.add.AddNetworkFeature;
 import de.uks.beast.editor.feature.add.AddGroupFeature;
+import de.uks.beast.editor.feature.add.AddNetworkFeature;
 import de.uks.beast.editor.feature.add.AddRouterFeature;
 import de.uks.beast.editor.feature.add.AddServerFeature;
 import de.uks.beast.editor.feature.add.connection.AddConnectionFeature;
 import de.uks.beast.editor.feature.add.connection.ReconnectionFeature;
-import de.uks.beast.editor.feature.edit.DirectEditNetworkFeature;
+import de.uks.beast.editor.feature.copy.CopyNetworkFeature;
+import de.uks.beast.editor.feature.copy.CopyRouterFeature;
+import de.uks.beast.editor.feature.copy.CopyServerFeature;
 import de.uks.beast.editor.feature.edit.DirectEditGroupFeature;
+import de.uks.beast.editor.feature.edit.DirectEditNetworkFeature;
 import de.uks.beast.editor.feature.edit.DirectEditRouterFeature;
 import de.uks.beast.editor.feature.edit.DirectEditServerFeature;
-import de.uks.beast.editor.feature.layout.LayoutNetworkObjectFeature;
 import de.uks.beast.editor.feature.layout.LayoutGroupObjectFeature;
+import de.uks.beast.editor.feature.layout.LayoutNetworkObjectFeature;
 import de.uks.beast.editor.feature.layout.LayoutRouterObjectFeature;
 import de.uks.beast.editor.feature.layout.LayoutServerObjectFeature;
-import de.uks.beast.editor.feature.update.UpdateNetworkObjectFeature;
+import de.uks.beast.editor.feature.paste.PasteNetworkFeature;
+import de.uks.beast.editor.feature.paste.PasteRouterFeature;
+import de.uks.beast.editor.feature.paste.PasteServerFeature;
 import de.uks.beast.editor.feature.update.UpdateGroupObjectFeature;
+import de.uks.beast.editor.feature.update.UpdateNetworkObjectFeature;
 import de.uks.beast.editor.feature.update.UpdateRouterObjectFeature;
 import de.uks.beast.editor.feature.update.UpdateServerObjectFeature;
 import de.uks.beast.editor.service.services.apache2.add.AddApache2Feature;
@@ -52,6 +66,7 @@ import de.uks.beast.editor.service.services.relation.add.AddServiceRelation;
 import de.uks.beast.editor.service.services.tomcat.add.AddTomcatFeature;
 import de.uks.beast.editor.service.services.ubuntu.add.AddUbuntuFeature;
 import de.uks.beast.editor.service.services.wordpress.add.AddWordPressFeature;
+import de.uks.beast.editor.util.Properties;
 import de.uks.beast.editor.util.Strings;
 
 public class BasicEditorFeatureProvider extends DefaultFeatureProvider
@@ -251,4 +266,48 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 		return super.getUpdateFeature(context);
 	}
 	
+	
+	
+	@Override
+	public ICopyFeature getCopyFeature(final ICopyContext context)
+	{
+		final PictogramElement[] pictogramElements = context.getPictogramElements();
+		if (getBusinessObjectForPictogramElement(pictogramElements[0]) instanceof Router)
+		{
+			return new CopyRouterFeature(this);
+		}
+		else if (getBusinessObjectForPictogramElement(pictogramElements[0]) instanceof Server)
+		{
+			return new CopyServerFeature(this);
+		}
+		else if (getBusinessObjectForPictogramElement(pictogramElements[0]) instanceof Network)
+		{
+			return new CopyNetworkFeature(this);
+		}
+		
+		return super.getCopyFeature(context);
+	}
+	
+	
+	
+	@Override
+	public IPasteFeature getPasteFeature(final IPasteContext context)
+	{
+//		final PictogramElement[] pictogramElements = context.getPictogramElements();
+//		if (pictogramElements[0] instanceof Diagram)
+//		{
+//			return new PasteRouterFeature(this);
+//		}
+//		else if (getBusinessObjectForPictogramElement(pictogramElements[0]) instanceof Server)
+//		{
+//			return new PasteServerFeature(this);
+//		}
+//		else if (getBusinessObjectForPictogramElement(pictogramElements[0]) instanceof Network)
+//		{
+//			return new PasteNetworkFeature(this);
+//		}
+//		
+//		return null;
+		return new PasteRouterFeature(this);
+	}
 }
