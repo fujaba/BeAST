@@ -19,9 +19,9 @@ import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 
-import de.uks.beast.editor.feature.add.Textfields;
 import de.uks.beast.editor.util.Properties;
 import de.uks.beast.editor.util.PropertyUtil;
+import de.uks.beast.editor.util.Textfields;
 import static de.uks.beast.editor.util.Dimensions.*;
 
 public class LayoutServerObjectFeature extends AbstractLayoutFeature

@@ -1,4 +1,4 @@
-package de.uks.beast.editor.feature.add;
+package de.uks.beast.editor.util;
 
 import org.eclipse.graphiti.mm.GraphicsAlgorithmContainer;
 import org.eclipse.graphiti.mm.algorithms.Text;
@@ -7,8 +7,6 @@ import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
-
-import de.uks.beast.editor.util.Fonts;
 
 public enum Textfields
 {

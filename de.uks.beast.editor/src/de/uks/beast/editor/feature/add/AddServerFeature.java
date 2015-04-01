@@ -37,6 +37,7 @@ import de.uks.beast.editor.util.Fonts;
 import de.uks.beast.editor.util.Properties;
 import de.uks.beast.editor.util.PropertyUtil;
 import de.uks.beast.editor.util.Strings;
+import de.uks.beast.editor.util.Textfields;
 
 public class AddServerFeature extends AbstractAddShapeFeature implements AbstractShapeFactory
 {

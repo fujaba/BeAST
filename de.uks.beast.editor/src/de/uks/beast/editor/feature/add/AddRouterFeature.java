@@ -31,6 +31,7 @@ import org.eclipse.graphiti.services.IPeCreateService;
 import de.uks.beast.editor.util.Colors;
 import de.uks.beast.editor.util.Fonts;
 import de.uks.beast.editor.util.PropertyUtil;
+import de.uks.beast.editor.util.Textfields;
 
 public class AddRouterFeature extends AbstractAddFeature implements AbstractShapeFactory
 {
