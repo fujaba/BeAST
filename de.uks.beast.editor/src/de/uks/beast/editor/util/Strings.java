@@ -61,6 +61,8 @@ public enum Strings
 	MEDIAWIKI					("MediaWiki",			"This is a MediaWiki charm"),
 	TOMCAT						("Tomcat",				"This is a Tomcat charm"),
 	APACHE2						("Apache2",				"This is a Apache2 charm"),
+	
+	EMPTY						("",					""),			
 
 	
 	// warnings
@@ -75,6 +77,7 @@ public enum Strings
 	private final String	description;
 	
 	
+	
 	private Strings(final String text, final String description)
 	{
 		this.text = text;
@@ -82,6 +85,8 @@ public enum Strings
 		this.serviceType = "";
 		this.description = description;
 	}
+	
+	
 	
 	private Strings(final String text, final String serviceName, final String serviceType, final String description)
 	{
@@ -91,22 +96,30 @@ public enum Strings
 		this.description = description;
 	}
 	
+	
+	
 	public String text()
 	{
 		return text;
 	}
+	
+	
 	
 	public String description()
 	{
 		return description;
 	}
 	
-	public String serviceName() 
+	
+	
+	public String serviceName()
 	{
 		return serviceName;
 	}
 	
-	public String serviceType() 
+	
+	
+	public String serviceType()
 	{
 		return serviceType;
 	}

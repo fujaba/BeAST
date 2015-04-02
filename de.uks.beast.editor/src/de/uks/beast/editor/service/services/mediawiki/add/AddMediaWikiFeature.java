@@ -59,7 +59,7 @@ public class AddMediaWikiFeature extends AbstractAddShapeFeature
 		
 		final IGaService gaService = Graphiti.getGaService();
 		
-		final Image objectIcon = gaService.createImage(containerShape, Images.MEDIAWIKI_OBJECT_IMAGE.getImageID());
+		final Image objectIcon = Images.MEDIAWIKI_OBJECT_IMAGE.getImageFor(containerShape);
 		gaService.setLocationAndSize(objectIcon, context.getX(), context.getY(), context.getWidth(), context.getHeight());
 		
 		// if added Class has no resource we add it to the resource

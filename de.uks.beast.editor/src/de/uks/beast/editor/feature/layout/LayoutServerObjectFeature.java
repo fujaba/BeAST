@@ -1,5 +1,9 @@
 package de.uks.beast.editor.feature.layout;
 
+import static de.uks.beast.editor.util.Dimensions.SERVER_INITIAL_HEIGHT;
+import static de.uks.beast.editor.util.Dimensions.SERVER_INITIAL_WIDTH;
+import static de.uks.beast.editor.util.Dimensions.SERVICE_ICON_RESIZE_X;
+import static de.uks.beast.editor.util.Dimensions.SERVICE_ICON_RESIZE_Y;
 import model.Server;
 
 import org.eclipse.emf.common.util.EList;
@@ -22,7 +26,6 @@ import org.eclipse.graphiti.services.IGaService;
 import de.uks.beast.editor.util.Properties;
 import de.uks.beast.editor.util.PropertyUtil;
 import de.uks.beast.editor.util.Textfields;
-import static de.uks.beast.editor.util.Dimensions.*;
 
 public class LayoutServerObjectFeature extends AbstractLayoutFeature
 {

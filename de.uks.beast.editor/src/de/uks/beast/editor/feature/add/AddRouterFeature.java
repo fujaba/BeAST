@@ -129,8 +129,7 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		//SHAPE FOR PROPERTY EXTERNAL_GATEWAY
 		final Shape extGatewayTextShape = createShape(peCreateService, containerShape);
 		final Shape extGatewayLabelShape = createShape(peCreateService, containerShape);
-		Textfields.ROUTER_EXT_GATEWAY_LABEL_FIELD.addTo(getDiagram(), extGatewayLabelShape, EXTERNAL_GATEWAY_LABEL.get(),
-				color);
+		Textfields.ROUTER_EXT_GATEWAY_LABEL_FIELD.addTo(getDiagram(), extGatewayLabelShape, EXTERNAL_GATEWAY_LABEL.get(), color);
 		Textfields.ROUTER_EXT_GATEWAY_PROP_FIELD.addTo(getDiagram(), extGatewayTextShape, router.getExternalGateway(), color);
 		PropertyUtil.setAttributeShape(extGatewayTextShape, EXTERNAL_GATEWAY);
 		link(extGatewayTextShape, router);

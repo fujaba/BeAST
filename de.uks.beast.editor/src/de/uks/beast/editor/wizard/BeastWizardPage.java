@@ -1,9 +1,18 @@
 package de.uks.beast.editor.wizard;
 
+import static de.uks.beast.editor.util.Strings.BROWSE_BUTTON_TEXT;
+import static de.uks.beast.editor.util.Strings.CONTAINER_LABEL;
+import static de.uks.beast.editor.util.Strings.DEFAULT_FILENAME;
+import static de.uks.beast.editor.util.Strings.FILE_LABEL;
+import static de.uks.beast.editor.util.Strings.WIZARD_DESCRIPTION;
+import static de.uks.beast.editor.util.Strings.WIZARD_PAGE_NAME;
+import static de.uks.beast.editor.util.Strings.WIZARD_TITLE;
+
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.jface.dialogs.IDialogPage;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.WizardPage;
@@ -21,7 +30,6 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ContainerSelectionDialog;
 
 import de.uks.beast.editor.util.Strings;
-import static de.uks.beast.editor.util.Strings.*;
 
 /**
  * The "New" wizard page allows setting the container for the new file as well

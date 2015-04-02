@@ -23,11 +23,7 @@ import org.eclipse.graphiti.features.context.IPasteContext;
 import org.eclipse.graphiti.features.context.IReconnectionContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
-import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
-import org.eclipse.graphiti.mm.pictograms.PictogramLink;
-import org.eclipse.graphiti.services.Graphiti;
-import org.eclipse.graphiti.services.ILinkService;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
 import de.uks.beast.editor.feature.add.AddGroupFeature;
@@ -47,9 +43,7 @@ import de.uks.beast.editor.feature.layout.LayoutGroupObjectFeature;
 import de.uks.beast.editor.feature.layout.LayoutNetworkObjectFeature;
 import de.uks.beast.editor.feature.layout.LayoutRouterObjectFeature;
 import de.uks.beast.editor.feature.layout.LayoutServerObjectFeature;
-import de.uks.beast.editor.feature.paste.PasteNetworkFeature;
-import de.uks.beast.editor.feature.paste.PasteRouterFeature;
-import de.uks.beast.editor.feature.paste.PasteServerFeature;
+import de.uks.beast.editor.feature.paste.UniversalPasteFeature;
 import de.uks.beast.editor.feature.update.UpdateGroupObjectFeature;
 import de.uks.beast.editor.feature.update.UpdateNetworkObjectFeature;
 import de.uks.beast.editor.feature.update.UpdateRouterObjectFeature;
@@ -66,7 +60,6 @@ import de.uks.beast.editor.service.services.relation.add.AddServiceRelation;
 import de.uks.beast.editor.service.services.tomcat.add.AddTomcatFeature;
 import de.uks.beast.editor.service.services.ubuntu.add.AddUbuntuFeature;
 import de.uks.beast.editor.service.services.wordpress.add.AddWordPressFeature;
-import de.uks.beast.editor.util.Properties;
 import de.uks.beast.editor.util.Strings;
 
 public class BasicEditorFeatureProvider extends DefaultFeatureProvider
@@ -293,21 +286,6 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 	@Override
 	public IPasteFeature getPasteFeature(final IPasteContext context)
 	{
-//		final PictogramElement[] pictogramElements = context.getPictogramElements();
-//		if (pictogramElements[0] instanceof Diagram)
-//		{
-//			return new PasteRouterFeature(this);
-//		}
-//		else if (getBusinessObjectForPictogramElement(pictogramElements[0]) instanceof Server)
-//		{
-//			return new PasteServerFeature(this);
-//		}
-//		else if (getBusinessObjectForPictogramElement(pictogramElements[0]) instanceof Network)
-//		{
-//			return new PasteNetworkFeature(this);
-//		}
-//		
-//		return null;
-		return new PasteRouterFeature(this);
+		return new UniversalPasteFeature(this);
 	}
 }

@@ -1,5 +1,9 @@
 package de.uks.beast.editor.property.section;
 
+import static de.uks.beast.editor.util.Properties.EXTERNAL_GATEWAY_LABEL;
+import static de.uks.beast.editor.util.Properties.ID_LABEL;
+import static de.uks.beast.editor.util.Properties.IP_LABEL;
+import static de.uks.beast.editor.util.Properties.TRANSFER;
 import model.Router;
 
 import org.apache.log4j.LogManager;
@@ -25,7 +29,6 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
 import de.uks.beast.editor.util.Dimensions;
 import de.uks.beast.editor.util.ToolTips;
-import static de.uks.beast.editor.util.Properties.*;
 
 public class RouterPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {

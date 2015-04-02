@@ -28,6 +28,7 @@ public class CopyServerFeature extends AbstractCopyFeature
 		for (int i = 0; i < pes.length; i++)
 		{
 			final PictogramElement pe = pes[i];
+			
 			bos[i] = getBusinessObjectForPictogramElement(pe);
 		}
 		// put all business objects to the clipboard

@@ -117,8 +117,7 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		//SHAPE FOR PROPERTY SUBNET_MASK
 		final Shape subnetMaskTextShape = createShape(peCreateService, containerShape);
 		final Shape subnetMaskLabelShape = createShape(peCreateService, containerShape);
-		Textfields.NETWORK_SUBNET_MASK_LABEL_FIELD.addTo(getDiagram(), subnetMaskLabelShape, SUBNET_MASK_LABEL.get(),
-				color);
+		Textfields.NETWORK_SUBNET_MASK_LABEL_FIELD.addTo(getDiagram(), subnetMaskLabelShape, SUBNET_MASK_LABEL.get(), color);
 		Textfields.NETWORK_SUBNET_MASK_PROP_FIELD.addTo(getDiagram(), subnetMaskTextShape, network.getSubnetmask(), color);
 		PropertyUtil.setAttributeShape(subnetMaskTextShape, SUBNET_MASK);
 		link(subnetMaskTextShape, network);

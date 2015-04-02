@@ -59,7 +59,7 @@ public class AddApache2Feature extends AbstractAddShapeFeature
 		
 		final IGaService gaService = Graphiti.getGaService();
 		
-		final Image objectIcon = gaService.createImage(containerShape, Images.APACHE2_OBJECT_IMAGE.getImageID());
+		final Image objectIcon = Images.APACHE2_OBJECT_IMAGE.getImageFor(containerShape);
 		gaService.setLocationAndSize(objectIcon, context.getX(), context.getY(), context.getWidth(), context.getHeight());
 		
 		// if added Class has no resource we add it to the resource

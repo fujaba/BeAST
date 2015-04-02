@@ -1,5 +1,13 @@
 package de.uks.beast.editor.feature.update;
 
+import static de.uks.beast.editor.util.Properties.EXTERNAL_GATEWAY;
+import static de.uks.beast.editor.util.Properties.ID;
+import static de.uks.beast.editor.util.Properties.IP;
+import static de.uks.beast.editor.util.Properties.NAME;
+import static de.uks.beast.editor.util.Strings.EXT_GATEWAY_TRUE_REASON;
+import static de.uks.beast.editor.util.Strings.ID_TRUE_REASON;
+import static de.uks.beast.editor.util.Strings.IP_TRUE_REASON;
+import static de.uks.beast.editor.util.Strings.NAME_TRUE_REASON;
 import model.Router;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -14,8 +22,6 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
 import de.uks.beast.editor.util.PropertyUtil;
-import static de.uks.beast.editor.util.Properties.*;
-import static de.uks.beast.editor.util.Strings.*;
 
 public class UpdateRouterObjectFeature extends AbstractUpdateFeature implements IUpdateFeature
 {

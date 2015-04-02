@@ -1,5 +1,10 @@
 package de.uks.beast.editor.property.section;
 
+import static de.uks.beast.editor.util.Properties.DNS_LABEL;
+import static de.uks.beast.editor.util.Properties.GATEWAY_LABEL;
+import static de.uks.beast.editor.util.Properties.IP_LABEL;
+import static de.uks.beast.editor.util.Properties.SUBNET_MASK_LABEL;
+import static de.uks.beast.editor.util.Properties.TRANSFER;
 import model.Network;
 
 import org.apache.log4j.LogManager;
@@ -25,7 +30,6 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
 import de.uks.beast.editor.util.Dimensions;
 import de.uks.beast.editor.util.ToolTips;
-import static de.uks.beast.editor.util.Properties.*;
 
 public class NetworkPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {

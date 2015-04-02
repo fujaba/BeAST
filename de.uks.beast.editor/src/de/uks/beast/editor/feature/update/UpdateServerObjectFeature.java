@@ -1,5 +1,17 @@
 package de.uks.beast.editor.feature.update;
 
+import static de.uks.beast.editor.util.Properties.CPU_CORES;
+import static de.uks.beast.editor.util.Properties.CPU_STAT;
+import static de.uks.beast.editor.util.Properties.DISKSPACE;
+import static de.uks.beast.editor.util.Properties.IP;
+import static de.uks.beast.editor.util.Properties.NAME;
+import static de.uks.beast.editor.util.Properties.RAM;
+import static de.uks.beast.editor.util.Properties.RAM_STAT;
+import static de.uks.beast.editor.util.Strings.CPU_CORES_TRUE_REASON;
+import static de.uks.beast.editor.util.Strings.DISKSPACE_TRUE_REASON;
+import static de.uks.beast.editor.util.Strings.IP_TRUE_REASON;
+import static de.uks.beast.editor.util.Strings.NAME_TRUE_REASON;
+import static de.uks.beast.editor.util.Strings.RAM_TRUE_REASON;
 import model.Server;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -13,8 +25,6 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
 import de.uks.beast.editor.util.PropertyUtil;
-import static de.uks.beast.editor.util.Strings.*;
-import static de.uks.beast.editor.util.Properties.*;
 
 public class UpdateServerObjectFeature extends AbstractUpdateFeature
 {

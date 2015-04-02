@@ -1,14 +1,14 @@
 package de.uks.beast.editor.feature.update;
 
 import static de.uks.beast.editor.util.Properties.DNS;
-import static de.uks.beast.editor.util.Strings.DNS_TRUE_REASON;
 import static de.uks.beast.editor.util.Properties.GATEWAY;
-import static de.uks.beast.editor.util.Strings.GATEWAY_TRUE_REASON;
 import static de.uks.beast.editor.util.Properties.IP;
-import static de.uks.beast.editor.util.Strings.IP_TRUE_REASON;
 import static de.uks.beast.editor.util.Properties.NAME;
-import static de.uks.beast.editor.util.Strings.NAME_TRUE_REASON;
 import static de.uks.beast.editor.util.Properties.SUBNET_MASK;
+import static de.uks.beast.editor.util.Strings.DNS_TRUE_REASON;
+import static de.uks.beast.editor.util.Strings.GATEWAY_TRUE_REASON;
+import static de.uks.beast.editor.util.Strings.IP_TRUE_REASON;
+import static de.uks.beast.editor.util.Strings.NAME_TRUE_REASON;
 import static de.uks.beast.editor.util.Strings.SUBNET_MASK_TRUE_REASON;
 import model.Network;
 

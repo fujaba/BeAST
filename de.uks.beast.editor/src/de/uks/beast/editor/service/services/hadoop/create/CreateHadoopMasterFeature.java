@@ -49,7 +49,7 @@ public class CreateHadoopMasterFeature extends AbstractCreateFeature
 		server.setService(service);
 		addGraphicalRepresentation(context, service);
 		getFeatureProvider().getDirectEditingInfo().setActive(false);
-
+		
 		return new Object[] { service };
 	}
 	

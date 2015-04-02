@@ -54,7 +54,7 @@ public class AddHadoopMasterFeature extends AbstractAddShapeFeature
 		
 		final IGaService gaService = Graphiti.getGaService();
 		
-		final Image image = gaService.createImage(containerShape, Images.HADOOP_MASTER_OBJECT_IMAGE.getImageID());
+		final Image image = Images.HADOOP_MASTER_OBJECT_IMAGE.getImageFor(containerShape);
 		gaService.setLocationAndSize(image, context.getX(), context.getY(), context.getWidth(), context.getHeight());
 		
 		// if added Class has no resource we add it to the resource

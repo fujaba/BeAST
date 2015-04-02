@@ -1,5 +1,9 @@
 package de.uks.beast.editor.feature.edit;
 
+import static de.uks.beast.editor.util.Properties.NAME;
+import static de.uks.beast.editor.util.Strings.EMPTY_NAME_WARNING;
+import static de.uks.beast.editor.util.Strings.LINE_BREAK_WARNING;
+import static de.uks.beast.editor.util.Strings.WRONG_SYMBOL_WARNING;
 import model.Network;
 
 import org.eclipse.graphiti.features.IDirectEditingFeature;
@@ -12,8 +16,6 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
 import de.uks.beast.editor.util.PropertyUtil;
-import static de.uks.beast.editor.util.Properties.NAME;
-import static de.uks.beast.editor.util.Strings.*;
 
 public class DirectEditNetworkFeature extends AbstractDirectEditingFeature implements IDirectEditingFeature
 {
