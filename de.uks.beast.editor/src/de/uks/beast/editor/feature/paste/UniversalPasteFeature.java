@@ -25,7 +25,7 @@ public class UniversalPasteFeature extends AbstractPasteFeature
 	
 	
 	
-	private Server makeDeepCopy(final Group parentContainer, final Server toCopy)
+	private Server makeDeepServerCopy(final Group parentContainer, final Server toCopy)
 	{
 		final Server server = ModelFactory.eINSTANCE.createServer();
 		
@@ -55,6 +55,35 @@ public class UniversalPasteFeature extends AbstractPasteFeature
 	
 	
 	
+	private Network makeDeepCopy(final Network toCopy)
+	{
+		final Network network = ModelFactory.eINSTANCE.createNetwork();
+		
+		network.setDns(toCopy.getDns());
+		network.setGateway(toCopy.getGateway());
+		network.setIp(toCopy.getIp());
+		network.setName(toCopy.getName());
+		network.setSubnetmask(toCopy.getSubnetmask());
+		
+		return network;
+	}
+	
+	
+	
+	private Router makeDeepCopy(final Router toCopy)
+	{
+		final Router router = ModelFactory.eINSTANCE.createRouter();
+		
+		router.setExternalGateway(toCopy.getExternalGateway());
+		router.setId(toCopy.getId());
+		router.setIp(toCopy.getIp());
+		router.setName(toCopy.getName());
+		
+		return router;
+	}
+	
+	
+	
 	@Override
 	public void paste(final IPasteContext context)
 	{
@@ -65,7 +94,7 @@ public class UniversalPasteFeature extends AbstractPasteFeature
 			if (object instanceof Server)
 			{
 				final Group parentContainer = (Group) getBusinessObjectForPictogramElement(pes[0]);
-				final Server newServer = makeDeepCopy(parentContainer, (Server) object);
+				final Server newServer = makeDeepServerCopy(parentContainer, (Server) object);
 				
 				parentContainer.getServer().add(newServer);
 				
@@ -76,15 +105,19 @@ public class UniversalPasteFeature extends AbstractPasteFeature
 			}
 			else if (object instanceof Router)
 			{
+				final Router newRouter = makeDeepCopy((Router) object);
 				final AddContext ac = new AddContext();
+				ac.setNewObject(newRouter);
 				ac.setTargetContainer((Diagram) pes[0]);
-				addGraphicalRepresentation(ac, object);
+				addGraphicalRepresentation(ac, newRouter);
 			}
 			else if (object instanceof Network)
 			{
+				final Network newNetwork = makeDeepCopy((Network) object);
 				final AddContext ac = new AddContext();
+				ac.setNewObject(newNetwork);
 				ac.setTargetContainer((Diagram) pes[0]);
-				addGraphicalRepresentation(ac, object);
+				addGraphicalRepresentation(ac, newNetwork);
 			}
 		}
 	}
