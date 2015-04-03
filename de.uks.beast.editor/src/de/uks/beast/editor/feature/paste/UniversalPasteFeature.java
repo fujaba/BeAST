@@ -13,6 +13,7 @@ import org.eclipse.graphiti.features.context.impl.AddContext;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.features.AbstractPasteFeature;
 
 public class UniversalPasteFeature extends AbstractPasteFeature
@@ -25,7 +26,7 @@ public class UniversalPasteFeature extends AbstractPasteFeature
 	
 	
 	
-	private Server makeDeepServerCopy(final Group parentContainer, final Server toCopy)
+	private Server makeDeepCopy(final Server toCopy)
 	{
 		final Server server = ModelFactory.eINSTANCE.createServer();
 		
@@ -38,19 +39,27 @@ public class UniversalPasteFeature extends AbstractPasteFeature
 		
 		if (toCopy.getService() != null)
 		{
-			final Service service = toCopy.getService();
-			final AddContext ac = new AddContext();
-			ac.setNewObject(service);
-			server.setService(service);
-//			server.getService().setName(toCopy.getService().getName());
-//			server.getService().setServiceName(toCopy.getService().getServiceName());
-//			server.getService().setServiceType(toCopy.getService().getServiceType());
-			addGraphicalRepresentation(ac, server);
+			final Service newService = (Service) ModelFactory.eINSTANCE.create(toCopy.getService().eClass());
+			
+			server.setService(newService);
+			server.getService().setName(toCopy.getService().getName());
+			server.getService().setServiceName(toCopy.getService().getServiceName());
+			server.getService().setServiceType(toCopy.getService().getServiceType());
+			
 		}
 		
-		parentContainer.getServer().add(server);
-		
 		return server;
+	}
+	
+	
+	
+	private void updateGuiWithService(final Server newServer)
+	{
+		final AddContext ac = new AddContext();
+		//ac.setNewObject(newServer.getService());
+		ac.setTargetContainer((ContainerShape) Graphiti.getLinkService().getPictogramElements(getDiagram(), newServer).get(0));
+		
+		addGraphicalRepresentation(ac, newServer.getService());
 	}
 	
 	
@@ -94,14 +103,16 @@ public class UniversalPasteFeature extends AbstractPasteFeature
 			if (object instanceof Server)
 			{
 				final Group parentContainer = (Group) getBusinessObjectForPictogramElement(pes[0]);
-				final Server newServer = makeDeepServerCopy(parentContainer, (Server) object);
-				
+				final Server newServer = makeDeepCopy((Server) object);
 				parentContainer.getServer().add(newServer);
 				
 				final AddContext ac = new AddContext();
-				ac.setNewObject(newServer);
+				//ac.setNewObject(newServer);
 				ac.setTargetContainer((ContainerShape) pes[0]);
 				addGraphicalRepresentation(ac, newServer);
+				
+				updateGuiWithService(newServer);
+				
 			}
 			else if (object instanceof Router)
 			{
