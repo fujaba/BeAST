@@ -1,4 +1,4 @@
-package de.uks.beast.hds.server;
+package de.uks.beast.hds.server.resources;
 
 import de.uks.beast.hds.common.model.Job;
 import javax.ws.rs.Consumes;
