@@ -25,6 +25,12 @@ public class FileUpload {
     // each job should eventualy have a subfolder here.
     private static final String FILES_ROOT_DIR = ""; // TODO add path
     
+    // • Send the file first in a multipart/form-data POST, and return an ID to the client. 
+    // The client then sends the metadata with the ID, and the server re-associates the file and the metadata.
+    // or
+    // • Send the metadata first, and return an ID to the client. 
+    // The client then sends the file with the ID, and the server re-associates the file and the metadata.
+    
 //    @POST
 ////    @Path("/upload")
 //    @Consumes(MediaType.MULTIPART_FORM_DATA)

@@ -9,6 +9,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,11 +79,12 @@ public class Jobs {
     public String submitJob(final Job job) {
         
         if (job == null) {
-            throw new UnsupportedOperationException("No job to submit.");
+			LOG.debug("Cannot submit a job because no valid Job provided.");
+            return Response.status(Status.NOT_FOUND).build().toString();
         }
         
         LOG.info("Submit a new job to run.");
-        // TODO Submit a new job to run
+        // TODO handle job submition.
         return "Submit a new job to run.";
     }
     
