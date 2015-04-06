@@ -25,7 +25,7 @@ public class Main {
     public static HttpServer startServer() {
         // create a resource config that scans for JAX-RS resources and providers
         // in de.uks.beast.hadoop package
-        final ResourceConfig rc = new ResourceConfig().packages("de.uks.beast.hds.server");
+        final ResourceConfig rc = new ResourceConfig().packages("de.uks.beast.hds.server.resources");
 
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI
