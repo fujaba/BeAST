@@ -16,6 +16,8 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.features.AbstractPasteFeature;
 
+import de.uks.beast.editor.util.Dimensions;
+
 public class UniversalPasteFeature extends AbstractPasteFeature
 {
 	
@@ -29,8 +31,8 @@ public class UniversalPasteFeature extends AbstractPasteFeature
 	private Server makeDeepCopy(final Server toCopy)
 	{
 		final Server server = ModelFactory.eINSTANCE.createServer();
-		
-		server.setName(toCopy.getName());
+		//Server object have to be unique for pasting correctly
+		server.setName(toCopy.getName() + "_" + server.hashCode());
 		server.setIp(toCopy.getIp());
 		server.setCpuCores(toCopy.getCpuCores());
 		server.setDiskSpace(toCopy.getDiskSpace());
@@ -40,26 +42,14 @@ public class UniversalPasteFeature extends AbstractPasteFeature
 		if (toCopy.getService() != null)
 		{
 			final Service newService = (Service) ModelFactory.eINSTANCE.create(toCopy.getService().eClass());
+			newService.setName(toCopy.getService().getName());
+			newService.setServiceName(toCopy.getService().getServiceName());
+			newService.setServiceType(toCopy.getService().getServiceType());
 			
 			server.setService(newService);
-			server.getService().setName(toCopy.getService().getName());
-			server.getService().setServiceName(toCopy.getService().getServiceName());
-			server.getService().setServiceType(toCopy.getService().getServiceType());
-			
 		}
 		
 		return server;
-	}
-	
-	
-	
-	private void updateGuiWithService(final Server newServer)
-	{
-		final AddContext ac = new AddContext();
-		//ac.setNewObject(newServer.getService());
-		ac.setTargetContainer((ContainerShape) Graphiti.getLinkService().getPictogramElements(getDiagram(), newServer).get(0));
-		
-		addGraphicalRepresentation(ac, newServer.getService());
 	}
 	
 	
@@ -71,7 +61,7 @@ public class UniversalPasteFeature extends AbstractPasteFeature
 		network.setDns(toCopy.getDns());
 		network.setGateway(toCopy.getGateway());
 		network.setIp(toCopy.getIp());
-		network.setName(toCopy.getName());
+		network.setName(toCopy.getName() + "_" + network.hashCode());
 		network.setSubnetmask(toCopy.getSubnetmask());
 		
 		return network;
@@ -86,9 +76,24 @@ public class UniversalPasteFeature extends AbstractPasteFeature
 		router.setExternalGateway(toCopy.getExternalGateway());
 		router.setId(toCopy.getId());
 		router.setIp(toCopy.getIp());
-		router.setName(toCopy.getName());
+		router.setName(toCopy.getName() + "_" + router.hashCode());
 		
 		return router;
+	}
+	
+	
+	
+	private void updateGuiWithService(final Server newServer)
+	{
+		final AddContext ac = new AddContext();
+		ac.setNewObject(newServer.getService());
+		final ContainerShape parentShape = (ContainerShape) Graphiti.getLinkService()
+				.getPictogramElements(getDiagram(), newServer).get(0);
+		ac.setTargetContainer(parentShape);
+		ac.setLocation(parentShape.getGraphicsAlgorithm().getWidth() - Dimensions.SERVICE_ICON_RESIZE_X,
+				Dimensions.SERVICE_ICON_RESIZE_Y);
+		
+		addGraphicalRepresentation(ac, ac.getNewObject());
 	}
 	
 	
@@ -107,9 +112,9 @@ public class UniversalPasteFeature extends AbstractPasteFeature
 				parentContainer.getServer().add(newServer);
 				
 				final AddContext ac = new AddContext();
-				//ac.setNewObject(newServer);
+				ac.setNewObject(newServer);
 				ac.setTargetContainer((ContainerShape) pes[0]);
-				addGraphicalRepresentation(ac, newServer);
+				addGraphicalRepresentation(ac, ac.getNewObject());
 				
 				updateGuiWithService(newServer);
 				
@@ -120,7 +125,7 @@ public class UniversalPasteFeature extends AbstractPasteFeature
 				final AddContext ac = new AddContext();
 				ac.setNewObject(newRouter);
 				ac.setTargetContainer((Diagram) pes[0]);
-				addGraphicalRepresentation(ac, newRouter);
+				addGraphicalRepresentation(ac, ac.getNewObject());
 			}
 			else if (object instanceof Network)
 			{
@@ -128,7 +133,7 @@ public class UniversalPasteFeature extends AbstractPasteFeature
 				final AddContext ac = new AddContext();
 				ac.setNewObject(newNetwork);
 				ac.setTargetContainer((Diagram) pes[0]);
-				addGraphicalRepresentation(ac, newNetwork);
+				addGraphicalRepresentation(ac, ac.getNewObject());
 			}
 		}
 	}

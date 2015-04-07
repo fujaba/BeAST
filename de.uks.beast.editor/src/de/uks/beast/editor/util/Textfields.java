@@ -11,7 +11,7 @@ import org.eclipse.graphiti.services.IGaService;
 public enum Textfields
 {
 	//@formatter:off
-	SERVER_NAME_FIELD				(5,		0,		50,		20,		Orientation.ALIGNMENT_LEFT,		Fonts.SERVER_TITEL),
+	SERVER_NAME_FIELD				(5,		0,		90,		20,		Orientation.ALIGNMENT_LEFT,		Fonts.SERVER_TITEL),
 	SERVER_RAM_FIELD				(5,		0,		20,		20,		Orientation.ALIGNMENT_CENTER,	Fonts.SERVER_PROPERTY),
 	SERVER_CPU_FIELD				(25,	0,		20,		20,		Orientation.ALIGNMENT_CENTER,	Fonts.SERVER_PROPERTY),
 	SERVER_RAM_CPU_FIELD			(45,	0,		97,		20,		Orientation.ALIGNMENT_CENTER,	Fonts.SERVER_PROPERTY),
