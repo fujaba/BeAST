@@ -41,5 +41,10 @@ public abstract class CloudEnvironment {
 	 * @param configs list of connection information for all instances
 	 */
 	public abstract void establishConnection(String kafkabroker, String topic, List<? extends Configuration> configs);
+
+	/**
+	 * Shutdown all instances which were started in that session
+	 */
+	public abstract void  shutdownAll();
 	
 }

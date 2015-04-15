@@ -128,6 +128,7 @@ public class OpenstackEnvironment extends CloudEnvironment {
 		
 		os.compute().keypairs().delete("beast-keypair");
 		Keypair kp = os.compute().keypairs().create("beast-keypair", null);
+		System.out.println(kp.getPrivateKey());
 		
 		final CountDownLatch latch = new CountDownLatch(configs.size());
 		
@@ -144,7 +145,7 @@ public class OpenstackEnvironment extends CloudEnvironment {
 			e.printStackTrace();
 		}
 		
-		logger.info("All Instances started successfully");
+		logger.info("All instances started successfully");
 	}
 	
 	@Override
@@ -164,15 +165,10 @@ public class OpenstackEnvironment extends CloudEnvironment {
 			e.printStackTrace();
 		}
 	}
-
-	private List<ConnectionInfo> getConnectionInfos(List<? extends Configuration> configs) {
-		List<ConnectionInfo> infos = new ArrayList<ConnectionInfo>();
-		
-		for (Configuration config : configs) {
-			infos.add(config.getConnectionInfo());
-		}
-		
-		return infos;
+	
+	@Override
+	public void shutdownAll() {
+		//os.compute().servers().delete(serverId)
 	}
 
 	@Override
@@ -241,6 +237,16 @@ public class OpenstackEnvironment extends CloudEnvironment {
 		}
 		
 		return openstacknetwork;
+	}
+	
+	private List<ConnectionInfo> getConnectionInfos(List<? extends Configuration> configs) {
+		List<ConnectionInfo> infos = new ArrayList<ConnectionInfo>();
+		
+		for (Configuration config : configs) {
+			infos.add(config.getConnectionInfo());
+		}
+		
+		return infos;
 	}
 	
 	private static String getStartOfPool(String ip) {
