@@ -3,6 +3,7 @@ package de.uks.beast.editor.feature.add.connection;
 import model.Network;
 import model.Router;
 import model.Server;
+import model.Service;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IReconnectionContext;
@@ -21,7 +22,7 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 	@Override
 	public boolean canReconnect(final IReconnectionContext context)
 	{
-		super.canReconnect(context);
+		super.canReconnect(context); //delete this
 		
 		final Object source = getBusinessObjectForPictogramElement(context.getConnection().getStart().getParent());
 		final Object target = getBusinessObjectForPictogramElement(context.getTargetPictogramElement());
@@ -31,6 +32,10 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 			return false;
 		}
 		else if (source instanceof Network && target instanceof Router)
+		{
+			return false;
+		}
+		else if (source instanceof Service && target instanceof Service)
 		{
 			return false;
 		}
@@ -45,7 +50,7 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 	@Override
 	public void preReconnect(final IReconnectionContext context)
 	{
-		super.preReconnect(context);
+		super.preReconnect(context); // delete this
 		
 	}
 	
@@ -54,7 +59,7 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 	@Override
 	public void postReconnect(final IReconnectionContext context)
 	{
-		super.postReconnect(context);
+		super.postReconnect(context); //delete this
 	}
 	
 }
