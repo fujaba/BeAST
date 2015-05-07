@@ -15,6 +15,7 @@ import de.uks.beast.server.environment.openstack.OpenstackEnvironment;
 import de.uks.beast.server.kafka.KafkaRemoteLogger;
 import de.uks.beast.server.service.JujuEnvironment;
 import de.uks.beast.server.service.ServiceEnvironment;
+import de.uks.beast.server.shutdown.BeastServiceTermination;
 
 public class BeastService {
 
@@ -43,6 +44,8 @@ public class BeastService {
 	}
 	
 	private void startService() {
+		Runtime.getRuntime().addShutdownHook(new BeastServiceTermination(this));
+		
 		this.props = new Properties();
 		
 		String pathToConf = "";

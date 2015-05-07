@@ -5,6 +5,7 @@ import java.util.Timer;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import de.uks.beast.vmservice.rest.EmbeddedServer;
 import de.uks.beast.vmservice.service.extract.ExtractorMaster;
 import de.uks.beast.vmservice.service.extract.ExtractorService;
 import de.uks.beast.vmservice.service.kafka.KafkaWriter;
@@ -20,13 +21,14 @@ public class VMService {
 		 */
 		logger.info("Started VM service");
 		Timer timer = new Timer();
-		
+
 		ExtractorMaster em = new ExtractorMaster(args[0], new KafkaWriter(args[1], args[2]));
 		
 		for (ExtractorService service : em.getServices()) {
 			timer.schedule(service, 0, 2000);
 		}
 		
+		new EmbeddedServer().startRESTServer();
 	}
 	
 }
