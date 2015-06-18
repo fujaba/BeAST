@@ -9,6 +9,7 @@ import model.Service;
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.ICopyFeature;
+import org.eclipse.graphiti.features.IDeleteFeature;
 import org.eclipse.graphiti.features.IDirectEditingFeature;
 import org.eclipse.graphiti.features.ILayoutFeature;
 import org.eclipse.graphiti.features.IPasteFeature;
@@ -17,11 +18,13 @@ import org.eclipse.graphiti.features.IUpdateFeature;
 import org.eclipse.graphiti.features.context.IAddConnectionContext;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.context.ICopyContext;
+import org.eclipse.graphiti.features.context.IDeleteContext;
 import org.eclipse.graphiti.features.context.IDirectEditingContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.context.IPasteContext;
 import org.eclipse.graphiti.features.context.IReconnectionContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
+import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
@@ -35,6 +38,8 @@ import de.uks.beast.editor.feature.add.connection.ReconnectionFeature;
 import de.uks.beast.editor.feature.copy.CopyNetworkFeature;
 import de.uks.beast.editor.feature.copy.CopyRouterFeature;
 import de.uks.beast.editor.feature.copy.CopyServerFeature;
+import de.uks.beast.editor.feature.delete.DeleteConnectionFeature;
+import de.uks.beast.editor.feature.delete.DeleteServiceRelationFeature;
 import de.uks.beast.editor.feature.edit.DirectEditGroupFeature;
 import de.uks.beast.editor.feature.edit.DirectEditNetworkFeature;
 import de.uks.beast.editor.feature.edit.DirectEditRouterFeature;
@@ -288,4 +293,30 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 	{
 		return new UniversalPasteFeature(this);
 	}
+	
+	
+	
+	@Override
+	public IDeleteFeature getDeleteFeature(final IDeleteContext context)
+	{
+		if (context.getPictogramElement() instanceof Connection)
+		{
+			final Connection cc = (Connection) context.getPictogramElement();
+			
+			if ((getBusinessObjectForPictogramElement(cc.getStart().getParent()) instanceof Service)
+					&& (getBusinessObjectForPictogramElement(cc.getEnd().getParent()) instanceof Service))
+			{
+				return new DeleteServiceRelationFeature(this);
+			}
+			else
+			{
+				return new DeleteConnectionFeature(this);
+			}
+		}
+		else
+		{
+			return super.getDeleteFeature(context);
+		}
+	}
+	
 }

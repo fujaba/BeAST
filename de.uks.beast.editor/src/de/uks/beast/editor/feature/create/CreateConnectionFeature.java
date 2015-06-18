@@ -31,19 +31,42 @@ public class CreateConnectionFeature extends AbstractCreateConnectionFeature
 		
 		if (source instanceof Server && target instanceof Network)
 		{
-			return true;
+			final Server server = (Server) source;
+			if (server.getNetwork() == null)
+			{
+				return true;
+			}
+			
 		}
 		else if (target instanceof Server && source instanceof Network)
 		{
-			return true;
+			final Server server = (Server) target;
+			final Network network = (Network) source;
+			if (!network.getServer().contains(server))
+			{
+				return true;
+			}
+			
 		}
 		else if (source instanceof Network && target instanceof Router)
 		{
-			return true;
+			final Router router = (Router) target;
+			final Network network = (Network) source;
+			if (!network.getRouter().contains(router))
+			{
+				return true;
+			}
+			
 		}
 		else if (target instanceof Network && source instanceof Router)
 		{
-			return true;
+			final Router router = (Router) source;
+			final Network network = (Network) target;
+			if (!router.getNetwork().contains(network))
+			{
+				return true;
+			}
+			
 		}
 		
 		return false;

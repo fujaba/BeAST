@@ -11,6 +11,12 @@ import org.eclipse.graphiti.features.impl.DefaultReconnectionFeature;
 
 public class ReconnectionFeature extends DefaultReconnectionFeature
 {
+	private Router	router;
+	private Network	network;
+	private Server	server;
+	private Service	service;
+	
+	
 	
 	public ReconnectionFeature(final IFeatureProvider fp)
 	{
@@ -22,27 +28,64 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 	@Override
 	public boolean canReconnect(final IReconnectionContext context)
 	{
-		//super.canReconnect(context); //delete this
+		final Object start = getBusinessObjectForPictogramElement(context.getConnection().getStart().getParent());
+		final Object end = getBusinessObjectForPictogramElement(context.getConnection().getEnd().getParent());
 		
-		final Object source = getBusinessObjectForPictogramElement(context.getConnection().getStart().getParent());
-		final Object target = getBusinessObjectForPictogramElement(context.getTargetPictogramElement());
+		Object oldAnchor = null;
+		Object newAnchor = null;
+		if (context.getOldAnchor() != null && context.getNewAnchor() != null)
+		{
+			oldAnchor = getBusinessObjectForPictogramElement(context.getOldAnchor().getParent());
+			newAnchor = getBusinessObjectForPictogramElement(context.getNewAnchor().getParent());
+		}
 		
-		if (source instanceof Server && target instanceof Network)
+		if ((start instanceof Router || end instanceof Router) && oldAnchor instanceof Network && newAnchor instanceof Network)
 		{
+			router = (start instanceof Router) ? (Router) start : (Router) end;
+			if (!router.getNetwork().contains(newAnchor))
+			{
+				return true;
+			}
+			
+		}
+		else if ((start instanceof Network || end instanceof Network) && oldAnchor instanceof Router
+				&& newAnchor instanceof Router)
+		{
+			network = (start instanceof Network) ? (Network) start : (Network) end;
+			if (!network.getRouter().contains(newAnchor))
+			{
+				return true;
+			}
+			
+		}
+		else if ((start instanceof Server || end instanceof Server) && oldAnchor instanceof Network
+				&& newAnchor instanceof Network)
+		{
+			server = (start instanceof Server) ? (Server) start : (Server) end;
+			if (!server.getNetwork().equals(newAnchor))
+			{
+				return true;
+			}
+			
+		}
+		else if ((start instanceof Network || end instanceof Network) && oldAnchor instanceof Server
+				&& newAnchor instanceof Server)
+		{
+			network = (start instanceof Network) ? (Network) start : (Network) end;
+			if (!network.getServer().contains(newAnchor))
+			{
+				return true;
+			}
+		}
+		
+		else if ((start instanceof Service || end instanceof Service) && oldAnchor instanceof Service
+				&& newAnchor instanceof Service)
+		{
+			service = (start instanceof Service) ? (Service) start : (Service) end;
 			return false;
 		}
-		else if (source instanceof Network && target instanceof Router)
-		{
-			return true;
-		}
-		else if (source instanceof Service && target instanceof Service)
-		{
-			return false;
-		}
-		else
-		{
-			return false;
-		}
+		
+		return false;
 	}
 	
 	
@@ -51,29 +94,64 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 	public void preReconnect(final IReconnectionContext context)
 	{
 		System.out.println("PRE");
-		final Object source = getBusinessObjectForPictogramElement(context.getConnection().getStart().getParent());
-		final Object target = getBusinessObjectForPictogramElement(context.getTargetPictogramElement());
+		final Object oldTarget = getBusinessObjectForPictogramElement(context.getOldAnchor().getParent());
 		
-		final Network network = (Network) source;
-		if (getBusinessObjectForPictogramElement(context.getOldAnchor().getParent()) instanceof Router)
+		if (network != null && oldTarget instanceof Router)
 		{
-			final Router oldRouter = (Router) getBusinessObjectForPictogramElement(context.getOldAnchor().getParent());
+			final Router oldRouter = (Router) oldTarget;
 			
-			
-			
-			if (oldRouter != null && network.getRouter().contains(oldRouter))
+			if (network.getRouter().contains(oldRouter))
 			{
 				network.getRouter().remove(oldRouter);
 			}
 			
-			for(final Network n : oldRouter.getNetwork()) {
-				System.out.println("##### network " + n.getName());
+			for (final Router r : network.getRouter())
+			{
+				System.out.println(network.getName() + " has: " + r.getName());
 			}
+			
 		}
-		
-		for (final Router r : network.getRouter())
+		else if (router != null && oldTarget instanceof Network)
 		{
-			System.out.println("##### " + r.getName());
+			final Network oldNetwork = (Network) oldTarget;
+			
+			if (router.getNetwork().contains(oldNetwork))
+			{
+				router.getNetwork().remove(oldNetwork);
+			}
+			
+			for (final Network n : router.getNetwork())
+			{
+				System.out.println(router.getName() + " has: " + n.getName());
+			}
+			
+		}
+		else if (server != null && oldTarget instanceof Network)
+		{
+			final Network oldNetwork = (Network) oldTarget;
+			
+			if (oldNetwork.getServer().contains(server))
+			{
+				oldNetwork.getServer().remove(server);
+			}
+			
+			System.out.println("server has: " + oldNetwork.getName());
+			
+		}
+		else if (network != null && oldTarget instanceof Server)
+		{
+			final Server oldServer = (Server) oldTarget;
+			
+			if (network.getServer().contains(oldServer))
+			{
+				network.getServer().remove(oldServer);
+			}
+			
+			for (final Server s : network.getServer())
+			{
+				System.out.println(network.getName() + " has: " + s.getName());
+			}
+			
 		}
 		
 	}
@@ -84,25 +162,64 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 	public void postReconnect(final IReconnectionContext context)
 	{
 		System.out.println("POST");
-		final Object source = getBusinessObjectForPictogramElement(context.getConnection().getStart().getParent());
 		final Object target = getBusinessObjectForPictogramElement(context.getTargetPictogramElement());
 		
-		final Network network = (Network) source;
-		
-		if (target instanceof Router)
+		if (network != null && target instanceof Router)
 		{
 			final Router newRouter = (Router) target;
 			
-			if (newRouter != null && !network.getRouter().contains(newRouter))
+			if (!network.getRouter().contains(newRouter))
 			{
 				network.getRouter().add(newRouter);
 			}
+			
+			for (final Router r : network.getRouter())
+			{
+				System.out.println(network.getName() + " has: " + r.getName());
+			}
+			
+		}
+		else if (router != null && target instanceof Network)
+		{
+			final Network newNetwork = (Network) target;
+			
+			if (!router.getNetwork().contains(newNetwork))
+			{
+				router.getNetwork().add(newNetwork);
+			}
+			
+			for (final Network n : router.getNetwork())
+			{
+				System.out.println(router.getName() + " has: " + n.getName());
+			}
+			
+		}
+		else if (server != null && target instanceof Network)
+		{
+			final Network newNetwork = (Network) target;
+			
+			if (server.getNetwork() == null || !server.getNetwork().equals(newNetwork))
+			{
+				server.setNetwork(newNetwork);
+			}
+			
+			System.out.println(server.getName() + " has: " + newNetwork.getName());
+		}
+		else if (network != null && target instanceof Server)
+		{
+			final Server newServer = (Server) target;
+			
+			if (!network.getServer().contains(newServer))
+			{
+				network.getServer().add(newServer);
+			}
+			
+			for (final Server s : network.getServer())
+			{
+				System.out.println(network.getName() + " has: " + s.getName());
+			}
+			
 		}
 		
-		for (final Router r : network.getRouter())
-		{
-			System.out.println("##### " + r.getName());
-		}
 	}
-	
 }
