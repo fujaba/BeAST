@@ -2,6 +2,7 @@ package de.uks.beast.editor.feature.delete;
 
 import model.Network;
 import model.Router;
+import model.Service;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IDeleteContext;
@@ -47,6 +48,22 @@ public class DeleteConnectionFeature extends DefaultDeleteFeature
 			if (network.getRouter().contains(router))
 			{
 				network.getRouter().remove(router);
+			}
+			
+			setDoneChanges(true);
+		}
+		else if (start instanceof Service && end instanceof Service)
+		{
+			final Service startService = (Service) start;
+			final Service endService = (Service) end;
+			
+			if (startService.getRelations().contains(endService))
+			{
+				startService.getRelations().remove(endService);
+			}
+			if (endService.getRelations().contains(startService))
+			{
+				endService.getRelations().remove(startService);
 			}
 			
 			setDoneChanges(true);

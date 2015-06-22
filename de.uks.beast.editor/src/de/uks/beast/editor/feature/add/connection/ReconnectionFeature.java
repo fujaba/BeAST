@@ -3,7 +3,6 @@ package de.uks.beast.editor.feature.add.connection;
 import model.Network;
 import model.Router;
 import model.Server;
-import model.Service;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IReconnectionContext;
@@ -14,7 +13,6 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 	private Router	router;
 	private Network	network;
 	private Server	server;
-	private Service	service;
 	
 	
 	
@@ -76,13 +74,6 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 			{
 				return true;
 			}
-		}
-		
-		else if ((start instanceof Service || end instanceof Service) && oldAnchor instanceof Service
-				&& newAnchor instanceof Service)
-		{
-			service = (start instanceof Service) ? (Service) start : (Service) end;
-			return false;
 		}
 		
 		return false;

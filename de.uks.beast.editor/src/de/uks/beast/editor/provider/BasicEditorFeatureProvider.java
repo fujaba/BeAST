@@ -39,7 +39,6 @@ import de.uks.beast.editor.feature.copy.CopyNetworkFeature;
 import de.uks.beast.editor.feature.copy.CopyRouterFeature;
 import de.uks.beast.editor.feature.copy.CopyServerFeature;
 import de.uks.beast.editor.feature.delete.DeleteConnectionFeature;
-import de.uks.beast.editor.feature.delete.DeleteServiceRelationFeature;
 import de.uks.beast.editor.feature.edit.DirectEditGroupFeature;
 import de.uks.beast.editor.feature.edit.DirectEditNetworkFeature;
 import de.uks.beast.editor.feature.edit.DirectEditRouterFeature;
@@ -301,17 +300,7 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 	{
 		if (context.getPictogramElement() instanceof Connection)
 		{
-			final Connection cc = (Connection) context.getPictogramElement();
-			
-			if ((getBusinessObjectForPictogramElement(cc.getStart().getParent()) instanceof Service)
-					&& (getBusinessObjectForPictogramElement(cc.getEnd().getParent()) instanceof Service))
-			{
-				return new DeleteServiceRelationFeature(this);
-			}
-			else
-			{
-				return new DeleteConnectionFeature(this);
-			}
+			return new DeleteConnectionFeature(this);
 		}
 		else
 		{
