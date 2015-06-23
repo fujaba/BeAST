@@ -9,7 +9,6 @@ import model.Service;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -35,6 +34,7 @@ import de.uks.beast.editor.service.job.Job;
 import de.uks.beast.editor.service.job.JobFile;
 import de.uks.beast.editor.service.job.JobOutputFile;
 import de.uks.beast.editor.util.FileBrowser;
+import de.uks.beast.editor.util.FileUtil;
 import de.uks.beast.editor.util.ToolTips;
 
 public class ServicePropertySection extends GFPropertySection implements ITabbedPropertyConstants
@@ -305,21 +305,14 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 				
 				printJob(buildedJob);
 				
-				domain.getCommandStack().execute(new RecordingCommand(domain) {
-					public void doExecute()
-					{
-						//TODO: transfer buildedJob !!!!!!!!!!!!
-						if (buildedJob != null)
-						{
-							
-						}
-						else
-						{
-							throw new RuntimeException("The created Job is null");
-						}
-					}
-				});
-				
+				if (buildedJob != null)
+				{
+					FileUtil.createZipFromJob(buildedJob, "C:\\test\\");
+				}
+				else
+				{
+					throw new RuntimeException("The created Job is null");
+				}
 			}
 			
 			
