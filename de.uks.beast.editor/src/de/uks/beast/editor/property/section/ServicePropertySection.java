@@ -33,8 +33,8 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import de.uks.beast.editor.service.job.Job;
 import de.uks.beast.editor.service.job.JobFile;
 import de.uks.beast.editor.service.job.JobOutputFile;
+import de.uks.beast.editor.util.EclipseJobSynchronizer;
 import de.uks.beast.editor.util.FileBrowser;
-import de.uks.beast.editor.util.FileUtil;
 import de.uks.beast.editor.util.ToolTips;
 
 public class ServicePropertySection extends GFPropertySection implements ITabbedPropertyConstants
@@ -292,8 +292,10 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 				final String name = nameTextFld.getText().isEmpty() ? "default" : nameTextFld.getText();
 				final String prio = priorityCombo.getText().isEmpty() ? "0" : priorityCombo.getText();
 				
-				//@formatter:off
-				final Job buildedJob = Job.builder()
+				try
+				{
+					//@formatter:off
+					final Job buildedJob = Job.builder()
 						  .setName(name)
 						  .setPriority(Integer.valueOf(prio))
 						  .setRunImmediately(runStateBtn.getSelection())
@@ -301,18 +303,19 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 						  .setOutputFile(new JobOutputFile(homeOutputPath.getFileName().toString(), homeOutputPath, extOutputPath))
 						  .addInputFilesFromPaths(inputPathes)
 						  .build();
-				//@formatter:on
-				
-				printJob(buildedJob);
-				
-				if (buildedJob != null)
-				{
-					FileUtil.createZipFromJob(buildedJob, "C:\\test\\");
+					//@formatter:on
+					
+					printJob(buildedJob);
+					
+					final EclipseJobSynchronizer jobSynchronizer = new EclipseJobSynchronizer(parent.getShell(), buildedJob);
+					jobSynchronizer.initAndRun();
+					
 				}
-				else
+				catch (final Exception e)
 				{
-					throw new RuntimeException("The created Job is null");
+					throw new RuntimeException("Error while building or zipping!", e);
 				}
+				
 			}
 			
 			
@@ -363,6 +366,7 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 				extOutputPath = Paths.get("default");
 			}
 		});
+		
 	}
 	
 	

@@ -1,6 +1,7 @@
 package de.uks.beast.editor.service.job;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Job
 {
@@ -10,6 +11,7 @@ public class Job
 	private final JobFile		jobFile;
 	private final JobOutputFile	outputFile;
 	private final List<JobFile>	inputFiles;
+	private final int			counter;
 	
 	
 	
@@ -21,6 +23,29 @@ public class Job
 		this.jobFile = builder.jobFile;
 		this.outputFile = builder.outputFile;
 		this.inputFiles = builder.inputFiles;
+		this.counter = countFiles();
+	}
+	
+	
+	
+	private int countFiles()
+	{
+		final AtomicInteger counter = new AtomicInteger(0);
+		
+		if (jobFile != null)
+		{
+			counter.incrementAndGet();
+		}
+		if (outputFile != null)
+		{
+			counter.incrementAndGet();
+		}
+		if (!inputFiles.isEmpty())
+		{
+			counter.set(counter.get() + inputFiles.size());
+		}
+		
+		return counter.get();
 	}
 	
 	
@@ -96,6 +121,13 @@ public class Job
 	public String toString()
 	{
 		return "name: " + name + " - prio: " + priority + " - runImmediateliy: " + runImmediately;
+	}
+	
+	
+	
+	public int getFileCount()
+	{
+		return counter;
 	}
 	
 }

@@ -7,11 +7,16 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.zip.Deflater;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 
 import de.uks.beast.editor.service.job.Job;
 import de.uks.beast.editor.service.job.JobFile;
@@ -33,8 +38,9 @@ public class FileUtil
 	
 	
 	
-	public static boolean createZipFromJob(final Job job, String targetPlace)
+	public static IStatus createZipFromJob(final Job job, String targetPlace, final IProgressMonitor monitor)
 	{
+		final AtomicInteger fileCounter = new AtomicInteger(1);
 		//remove last symbol "separator" if exists
 		if (targetPlace.endsWith(separator))
 		{
@@ -43,28 +49,57 @@ public class FileUtil
 		}
 		try
 		{
+			// set total number of work units
+			monitor.beginTask("Zipping" + job.getFileCount() + " files...", job.getFileCount());
+			
 			final FileOutputStream dest = new FileOutputStream(new File(targetPlace + separator + job.getName() + ".zip"));
 			final ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(dest));
 			
+			out.setLevel(Deflater.BEST_COMPRESSION);
+			
 			if (job.getJobFile() != null && Files.exists(job.getJobFile().getPath()))
 			{
+				if (monitor.isCanceled())
+				{
+					out.close();
+					throw new IOException("Zipping was canceled!");
+				}
+				monitor.subTask(fileCounter.get() + "/" + job.getFileCount() + " - " + job.getJobFile().getName());
 				addToArchive("jobFile", job.getJobFile(), out);
+				monitor.worked(1);
+				fileCounter.incrementAndGet();
 			}
 			
 			if (!job.getInputFiles().isEmpty())
 			{
 				for (final JobFile inputFile : job.getInputFiles())
 				{
+					if (monitor.isCanceled())
+					{
+						out.close();
+						throw new IOException("Zipping was canceled!");
+					}
 					if (Files.exists(inputFile.getPath()))
 					{
+						monitor.subTask(fileCounter.get() + "/" + job.getFileCount() + " - " + inputFile.getName());
 						addToArchive("inputFiles", inputFile, out);
+						monitor.worked(1);
+						fileCounter.incrementAndGet();
 					}
 				}
 			}
 			
 			if (job.getOutputFile() != null && Files.exists(job.getOutputFile().getPath()))
 			{
+				if (monitor.isCanceled())
+				{
+					out.close();
+					throw new IOException("Zipping was canceled!");
+				}
+				monitor.subTask(fileCounter.get() + "/" + job.getFileCount() + " - " + job.getOutputFile().getName());
 				addToArchive("outputFile", job.getOutputFile(), out);
+				monitor.worked(1);
+				fileCounter.incrementAndGet();
 			}
 			
 			out.flush();
@@ -72,13 +107,12 @@ public class FileUtil
 		}
 		catch (final IOException e)
 		{
-			LOG.error("createZipArchive threw exception: " + e.getMessage());
-			e.printStackTrace();
-			return false;
 			
+			LOG.error("Error while zip creation: ", e);
+			return Status.CANCEL_STATUS;
 		}
 		
-		return true;
+		return Status.OK_STATUS;
 	}
 	
 	
@@ -102,6 +136,7 @@ public class FileUtil
 		
 		zos.closeEntry();
 		fis.close();
+		
 	}
 	
 }
