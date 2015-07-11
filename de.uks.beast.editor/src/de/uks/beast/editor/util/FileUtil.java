@@ -19,7 +19,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 
 import de.uks.beast.editor.service.job.Job;
-import de.uks.beast.editor.service.job.JobFile;
+import de.uks.beast.editor.service.job.JobInterface;
 import de.uks.beast.editor.util.OSChecker.OSType;
 
 public class FileUtil
@@ -72,17 +72,17 @@ public class FileUtil
 			
 			if (!job.getInputFiles().isEmpty())
 			{
-				for (final JobFile inputFile : job.getInputFiles())
+				for (final JobInterface ji : job.getInputFiles())
 				{
 					if (monitor.isCanceled())
 					{
 						out.close();
 						throw new IOException("Zipping was canceled!");
 					}
-					if (Files.exists(inputFile.getPath()))
+					if (Files.exists(ji.getPath()))
 					{
-						monitor.subTask(fileCounter.get() + "/" + job.getFileCount() + " - " + inputFile.getName());
-						addToArchive("inputFiles", inputFile, out);
+						monitor.subTask(fileCounter.get() + "/" + job.getFileCount() + " - " + ji.getName());
+						addToArchive("inputFiles", ji, out);
 						monitor.worked(1);
 						fileCounter.incrementAndGet();
 					}
@@ -117,14 +117,15 @@ public class FileUtil
 	
 	
 	
-	private static void addToArchive(final String subDir, final JobFile jobFile, final ZipOutputStream zos) throws IOException
+	private static void addToArchive(final String subDir, final JobInterface jobInterface, final ZipOutputStream zos)
+			throws IOException
 	{
-		LOG.info("Writing '" + jobFile.getName() + "' to zip file");
+		LOG.info("Writing '" + jobInterface.getName() + "' to zip file");
 		
-		final File file = jobFile.getPath().toFile();
+		final File file = jobInterface.getPath().toFile();
 		final FileInputStream fis = new FileInputStream(file);
 		final BufferedInputStream origin = new BufferedInputStream(fis, BUFFER);
-		final ZipEntry zipEntry = new ZipEntry(subDir + separator + jobFile.getName());
+		final ZipEntry zipEntry = new ZipEntry(subDir + separator + jobInterface.getName());
 		zos.putNextEntry(zipEntry);
 		
 		final byte[] bytes = new byte[BUFFER];

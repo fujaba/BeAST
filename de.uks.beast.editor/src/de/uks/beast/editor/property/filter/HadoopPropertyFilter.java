@@ -8,7 +8,7 @@ import org.eclipse.graphiti.ui.platform.AbstractPropertySectionFilter;
 
 import de.uks.beast.editor.util.Strings;
 
-public class ServicePropertyFilter extends AbstractPropertySectionFilter
+public class HadoopPropertyFilter extends AbstractPropertySectionFilter
 {
 	
 	@Override

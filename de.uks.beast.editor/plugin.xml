@@ -132,8 +132,8 @@
 		point="org.eclipse.ui.views.properties.tabbed.propertySections">
 		<propertySections
           contributorId="beast.PropertyContributor">
-			<propertySection class="de.uks.beast.editor.property.section.ServicePropertySection"
-				filter="de.uks.beast.editor.property.filter.ServicePropertyFilter"
+			<propertySection class="de.uks.beast.editor.property.section.HadoopPropertySection"
+				filter="de.uks.beast.editor.property.filter.HadoopPropertyFilter"
 				id="graphiti.main.tab.service" tab="graphiti.main.tab.service">
 			</propertySection>
 		</propertySections>

@@ -8,12 +8,11 @@ import java.util.List;
 
 public class JobBuilder
 {
-	protected String		name			= "default";
-	protected int			priority		= 0;
-	protected boolean		runImmediately	= false;
-	protected JobFile		jobFile			= new JobFile("default", Paths.get("/test/test"));
-	protected JobOutputFile	outputFile		= new JobOutputFile("default", Paths.get("/test/test"), Paths.get("/test/test"));
-	protected List<JobFile>	inputFiles		= new ArrayList<>();
+	private static final Path		DEFAULT_PATH	= Paths.get("");
+	protected String				name			= "default";
+	protected JobInterface			jobFile			= new JobFile("default", DEFAULT_PATH, DEFAULT_PATH);
+	protected JobInterface			outputFile		= new JobFile("default", DEFAULT_PATH, DEFAULT_PATH);
+	protected List<JobInterface>	inputFiles		= new ArrayList<>();
 	
 	
 	
@@ -37,37 +36,13 @@ public class JobBuilder
 	
 	
 	/**
-	 * @param priority the priority to set
+	 * @param jobInterface the jobFile to set
 	 */
-	public final JobBuilder setPriority(final int priority)
+	public final JobBuilder setJobFile(final JobInterface jobInterface)
 	{
-		this.priority = priority;
-		
-		return this;
-	}
-	
-	
-	
-	/**
-	 * @param runImmediately the runImmediately to set
-	 */
-	public final JobBuilder setRunImmediately(final boolean runImmediately)
-	{
-		this.runImmediately = runImmediately;
-		
-		return this;
-	}
-	
-	
-	
-	/**
-	 * @param jobFile the jobFile to set
-	 */
-	public final JobBuilder setJobFile(final JobFile jobFile)
-	{
-		if (jobFile != null)
+		if (jobInterface != null)
 		{
-			this.jobFile = jobFile;
+			this.jobFile = jobInterface.getFile();
 		}
 		
 		return this;
@@ -76,13 +51,13 @@ public class JobBuilder
 	
 	
 	/**
-	 * @param outputFile the outputFile to set
+	 * @param jobInterface the outputFile to set
 	 */
-	public final JobBuilder setOutputFile(final JobOutputFile outputFile)
+	public final JobBuilder setOutputFile(final JobInterface jobInterface)
 	{
-		if (outputFile != null)
+		if (jobInterface != null)
 		{
-			this.outputFile = outputFile;
+			this.outputFile = jobInterface.getFile();
 		}
 		
 		return this;
@@ -93,11 +68,11 @@ public class JobBuilder
 	/**
 	 * @param inputFiles the inputFiles to set
 	 */
-	public final JobBuilder addInputFiles(final JobFile... inputFiles)
+	public final JobBuilder addInputFiles(final JobInterface... inputFiles)
 	{
-		for (final JobFile inputFile : inputFiles)
+		for (final JobInterface inputFile : inputFiles)
 		{
-			if (inputFile != null && Files.exists(inputFile.getPath()) && !isExisting(inputFile))
+			if (inputFile != null && Files.exists(inputFile.getPath()) && !exist(inputFile))
 			{
 				this.inputFiles.add(inputFile);
 			}
@@ -117,10 +92,11 @@ public class JobBuilder
 		{
 			if (inputFile != null && Files.exists(inputFile))
 			{
-				final JobFile jobFile = new JobFile(inputFile.getFileName().toString(), inputFile);
-				if (!isExisting(jobFile))
+				final JobFile jobFile = new JobFile(inputFile.getFileName().toString(), inputFile, DEFAULT_PATH);
+				
+				if (!exist(jobFile))
 				{
-					this.inputFiles.add(jobFile);
+					inputFiles.add(jobFile);
 				}
 			}
 		}
@@ -130,11 +106,11 @@ public class JobBuilder
 	
 	
 	
-	private boolean isExisting(final JobFile jobFile)
+	private boolean exist(final JobInterface jobInterface)
 	{
-		for (final JobFile jf : this.inputFiles)
+		for (final JobInterface ji : inputFiles)
 		{
-			if (jobFile.getPath().equals(jf.getPath()))
+			if (jobInterface.getPath().equals(ji.getPath()))
 			{
 				return true;
 			}

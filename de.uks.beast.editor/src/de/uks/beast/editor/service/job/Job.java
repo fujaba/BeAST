@@ -5,21 +5,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Job
 {
-	private final String		name;
-	private final int			priority;
-	private final boolean		runImmediately;
-	private final JobFile		jobFile;
-	private final JobOutputFile	outputFile;
-	private final List<JobFile>	inputFiles;
-	private final int			counter;
+	private final String				name;
+	private final JobInterface			jobFile;
+	private final JobInterface			outputFile;
+	private final List<JobInterface>	inputFiles;
+	private final int					counter;
 	
 	
 	
 	protected Job(final JobBuilder builder)
 	{
 		this.name = builder.name;
-		this.priority = builder.priority;
-		this.runImmediately = builder.runImmediately;
 		this.jobFile = builder.jobFile;
 		this.outputFile = builder.outputFile;
 		this.inputFiles = builder.inputFiles;
@@ -68,29 +64,9 @@ public class Job
 	
 	
 	/**
-	 * @return the priority
-	 */
-	public int getPriority()
-	{
-		return priority;
-	}
-	
-	
-	
-	/**
-	 * @return the runImmediately
-	 */
-	public boolean isRunImmediately()
-	{
-		return runImmediately;
-	}
-	
-	
-	
-	/**
 	 * @return the jobFile
 	 */
-	public JobFile getJobFile()
+	public JobInterface getJobFile()
 	{
 		return jobFile;
 	}
@@ -100,7 +76,7 @@ public class Job
 	/**
 	 * @return the outputFile
 	 */
-	public JobOutputFile getOutputFile()
+	public JobInterface getOutputFile()
 	{
 		return outputFile;
 	}
@@ -110,17 +86,9 @@ public class Job
 	/**
 	 * @return the inputFiles
 	 */
-	public List<JobFile> getInputFiles()
+	public List<JobInterface> getInputFiles()
 	{
 		return inputFiles;
-	}
-	
-	
-	
-	@Override
-	public String toString()
-	{
-		return "name: " + name + " - prio: " + priority + " - runImmediateliy: " + runImmediately;
 	}
 	
 	

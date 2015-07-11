@@ -27,7 +27,7 @@ public class EclipseJobSynchronizer
 	{
 		Job eclipseJob = new Job(beastJob.getName() + ".zip" + "...") {
 			@Override
-			protected IStatus run(IProgressMonitor monitor)
+			protected IStatus run(final IProgressMonitor monitor)
 			{
 				FileUtil.createZipFromJob(beastJob, "C:\\test\\", monitor);
 				

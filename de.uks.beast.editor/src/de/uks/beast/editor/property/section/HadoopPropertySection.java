@@ -32,24 +32,23 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
 import de.uks.beast.editor.service.job.Job;
 import de.uks.beast.editor.service.job.JobFile;
-import de.uks.beast.editor.service.job.JobOutputFile;
+import de.uks.beast.editor.service.job.JobInterface;
 import de.uks.beast.editor.util.EclipseJobSynchronizer;
 import de.uks.beast.editor.util.FileBrowser;
 import de.uks.beast.editor.util.ToolTips;
 
-public class ServicePropertySection extends GFPropertySection implements ITabbedPropertyConstants
+public class HadoopPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {
-	private static final Logger			LOG	= LogManager.getLogger(ServicePropertySection.class);
+	private static final Logger			LOG	= LogManager.getLogger(HadoopPropertySection.class);
 	private TransactionalEditingDomain	domain;
 	
 	private Path						jobPath;
-	private Path						extOutputPath;
 	private Path						homeOutputPath;
 	private List<Path>					inputPathes;
 	
 	
 	
-	public ServicePropertySection()
+	public HadoopPropertySection()
 	{
 		inputPathes = new ArrayList<>();
 	}
@@ -264,7 +263,7 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 		data.left = new FormAttachment(outputExtFileLabel, 0);
 		data.right = new FormAttachment(0, 400);
 		data.top = new FormAttachment(outputFileHomeLabel, 0);
-		outputFileExtTextFld.setEditable(true);
+		outputFileExtTextFld.setEditable(false);
 		outputFileExtTextFld.setLayoutData(data);
 		outputFileExtTextFld.setToolTipText(ToolTips.EXT_OUTPUT_FILE_TIP.get());
 		outputFileExtTextFld.addModifyListener(new ModifyListener() {
@@ -272,7 +271,7 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 			@Override
 			public void modifyText(ModifyEvent arg0)
 			{
-				extOutputPath = Paths.get(outputFileExtTextFld.getText());
+				//extOutputPath = Paths.get(outputFileExtTextFld.getText());
 			}
 		});
 		
@@ -289,18 +288,15 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				final String name = nameTextFld.getText().isEmpty() ? "default" : nameTextFld.getText();
-				final String prio = priorityCombo.getText().isEmpty() ? "0" : priorityCombo.getText();
 				
 				try
 				{
+					final String name = nameTextFld.getText().isEmpty() ? "default" : nameTextFld.getText();
 					//@formatter:off
 					final Job buildedJob = Job.builder()
 						  .setName(name)
-						  .setPriority(Integer.valueOf(prio))
-						  .setRunImmediately(runStateBtn.getSelection())
-						  .setJobFile(new JobFile(jobPath.getFileName().toString(), jobPath))
-						  .setOutputFile(new JobOutputFile(homeOutputPath.getFileName().toString(), homeOutputPath, extOutputPath))
+						  .setJobFile(new JobFile(jobPath.getFileName().toString(), jobPath, Paths.get("")))
+						  .setOutputFile(new JobFile(homeOutputPath.getFileName().toString(), homeOutputPath, Paths.get("")))
 						  .addInputFilesFromPaths(inputPathes)
 						  .build();
 					//@formatter:on
@@ -358,12 +354,9 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 				inputFileTextFld.setText("");
 				outputFileHomeTextFld.setText("");
 				outputFileExtTextFld.setText("");
-				priorityCombo.deselectAll();
-				runStateBtn.setSelection(false);
 				jobPath = Paths.get("default");
 				inputPathes.clear();
 				homeOutputPath = Paths.get("default");
-				extOutputPath = Paths.get("default");
 			}
 		});
 		
@@ -374,13 +367,13 @@ public class ServicePropertySection extends GFPropertySection implements ITabbed
 	private void printJob(final Job job)
 	{
 		LOG.debug("############### <buildedJob> ###############");
-		LOG.debug("buildedJob: " + job.toString());
-		LOG.debug("jobFile: " + job.getJobFile());
-		for (final JobFile inputFile : job.getInputFiles())
+		LOG.debug("buildedJob: " + job.getName() + " with " + job.getFileCount() + " files");
+		LOG.debug("jobFile: " + job.getJobFile().getPath() + "/" + job.getJobFile().getName());
+		for (final JobInterface inputFile : job.getInputFiles())
 		{
-			LOG.debug("inputFile: " + inputFile);
+			LOG.debug("inputFile: " + inputFile.getPath() + "/" + inputFile.getName());
 		}
-		LOG.debug("outputFile: " + job.getOutputFile());
+		LOG.debug("outputFile: " + job.getOutputFile().getPath() + "/" + job.getOutputFile().getName());
 		LOG.debug("############### </buildedJob> ###############");
 	}
 	
