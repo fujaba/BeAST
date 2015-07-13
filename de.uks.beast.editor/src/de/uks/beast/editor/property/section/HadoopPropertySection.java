@@ -30,6 +30,8 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
+import de.uks.beast.editor.property.popup.PopupController;
+import de.uks.beast.editor.property.popup.PopupController.Status;
 import de.uks.beast.editor.service.job.Job;
 import de.uks.beast.editor.service.job.JobFile;
 import de.uks.beast.editor.service.job.JobInterface;
@@ -42,7 +44,7 @@ public class HadoopPropertySection extends GFPropertySection implements ITabbedP
 	private static final Logger			LOG	= LogManager.getLogger(HadoopPropertySection.class);
 	private TransactionalEditingDomain	domain;
 	
-	private Path						jobPath;
+	//private Path						jobPath;
 	private Path						homeOutputPath;
 	private List<Path>					inputPathes;
 	
@@ -59,6 +61,8 @@ public class HadoopPropertySection extends GFPropertySection implements ITabbedP
 	public void createControls(final Composite parent, final TabbedPropertySheetPage tabbedPropertySheetPage)
 	{
 		super.createControls(parent, tabbedPropertySheetPage);
+		
+		final PopupController popupController = new PopupController(parent.getDisplay());
 		
 		final TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
 		final Composite composite = factory.createFlatFormComposite(parent);
@@ -133,19 +137,10 @@ public class HadoopPropertySection extends GFPropertySection implements ITabbedP
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				final FileBrowser fileBrowser = new FileBrowser();
-				fileBrowser.openFileDialog();
-				
-				if (fileBrowser.getFileList().size() == 1)
+				if (Status.SUCCES.equals(popupController.interactWithFileBrowser()))
 				{
-					jobPath = fileBrowser.getFileList().get(0);
-					jobFileTextFld.setText(jobPath.toString());
+					jobFileTextFld.setText(popupController.getJobFileInfo());
 				}
-				else
-				{
-					throw new RuntimeException("It is just allowd to select ONE jobFile!");
-				}
-				
 			}
 			
 			
@@ -184,14 +179,7 @@ public class HadoopPropertySection extends GFPropertySection implements ITabbedP
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				final FileBrowser fileBrowser = new FileBrowser();
-				fileBrowser.openFileDialog();
-				
-				for (final Path path : fileBrowser.getFileList())
-				{
-					inputPathes.add(path);
-					inputFileTextFld.append(path.toString() + "\n");
-				}
+				popupController.showPopup();
 			}
 			
 			
@@ -229,18 +217,18 @@ public class HadoopPropertySection extends GFPropertySection implements ITabbedP
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				final FileBrowser fileBrowser = new FileBrowser();
-				fileBrowser.openFileDialog();
-				
-				if (fileBrowser.getFileList().size() == 1)
-				{
-					homeOutputPath = fileBrowser.getFileList().get(0);
-					outputFileHomeTextFld.setText(homeOutputPath.toString());
-				}
-				else
-				{
-					throw new RuntimeException("It is just allowd to select ONE outputFile!");
-				}
+//				final FileBrowser fileBrowser = new FileBrowser();
+//				fileBrowser.openFileDialog();
+//				
+//				if (fileBrowser.getFileList().size() == 1)
+//				{
+//					homeOutputPath = fileBrowser.getFileList().get(0);
+//					outputFileHomeTextFld.setText(homeOutputPath.toString());
+//				}
+//				else
+//				{
+//					throw new RuntimeException("It is just allowd to select ONE outputFile!");
+//				}
 			}
 			
 			
@@ -291,19 +279,20 @@ public class HadoopPropertySection extends GFPropertySection implements ITabbedP
 				
 				try
 				{
-					final String name = nameTextFld.getText().isEmpty() ? "default" : nameTextFld.getText();
-					//@formatter:off
-					final Job buildedJob = Job.builder()
-						  .setName(name)
-						  .setJobFile(new JobFile(jobPath.getFileName().toString(), jobPath, Paths.get("")))
-						  .setOutputFile(new JobFile(homeOutputPath.getFileName().toString(), homeOutputPath, Paths.get("")))
-						  .addInputFilesFromPaths(inputPathes)
-						  .build();
-					//@formatter:on
+//					final String name = nameTextFld.getText().isEmpty() ? "default" : nameTextFld.getText();
+//					//@formatter:off
+//					final Job buildedJob = Job.builder()
+//						  .setName(name)
+//						  .setJobFile(new JobFile(jobPath.getFileName().toString(), jobPath, Paths.get("")))
+//						  .setOutputFile(new JobFile(homeOutputPath.getFileName().toString(), homeOutputPath, Paths.get("")))
+//						  .addInputFilesFromPaths(inputPathes)
+//						  .build();
+//					//@formatter:on
+//					
+//					printJob(buildedJob);
 					
-					printJob(buildedJob);
-					
-					final EclipseJobSynchronizer jobSynchronizer = new EclipseJobSynchronizer(parent.getShell(), buildedJob);
+					final EclipseJobSynchronizer jobSynchronizer = new EclipseJobSynchronizer(parent.getShell(), popupController
+							.getJob());
 					jobSynchronizer.initAndRun();
 					
 				}
@@ -349,14 +338,14 @@ public class HadoopPropertySection extends GFPropertySection implements ITabbedP
 			
 			private void resetAll()
 			{
-				nameTextFld.setText("");
-				jobFileTextFld.setText("");
-				inputFileTextFld.setText("");
-				outputFileHomeTextFld.setText("");
-				outputFileExtTextFld.setText("");
-				jobPath = Paths.get("default");
-				inputPathes.clear();
-				homeOutputPath = Paths.get("default");
+//				nameTextFld.setText("");
+//				jobFileTextFld.setText("");
+//				inputFileTextFld.setText("");
+//				outputFileHomeTextFld.setText("");
+//				outputFileExtTextFld.setText("");
+//				jobPath = Paths.get("default");
+//				inputPathes.clear();
+//				homeOutputPath = Paths.get("default");
 			}
 		});
 		

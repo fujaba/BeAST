@@ -38,6 +38,13 @@ public class FileUtil
 	
 	
 	
+	public static String getSpecificFileSeparator()
+	{
+		return separator;
+	}
+	
+	
+	
 	public static IStatus createZipFromJob(final Job job, String targetPlace, final IProgressMonitor monitor)
 	{
 		final AtomicInteger fileCounter = new AtomicInteger(1);

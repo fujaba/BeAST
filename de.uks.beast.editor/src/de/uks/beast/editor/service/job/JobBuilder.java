@@ -68,15 +68,9 @@ public class JobBuilder
 	/**
 	 * @param inputFiles the inputFiles to set
 	 */
-	public final JobBuilder addInputFiles(final JobInterface... inputFiles)
+	public final JobBuilder addInputFiles(final List<JobInterface> inputFiles)
 	{
-		for (final JobInterface inputFile : inputFiles)
-		{
-			if (inputFile != null && Files.exists(inputFile.getPath()) && !exist(inputFile))
-			{
-				this.inputFiles.add(inputFile);
-			}
-		}
+		this.inputFiles = inputFiles;
 		
 		return this;
 	}
@@ -86,13 +80,13 @@ public class JobBuilder
 	/**
 	 * @param inputFiles the inputFiles to set
 	 */
-	public final JobBuilder addInputFilesFromPaths(final List<Path> pathList)
+	public final JobBuilder addInputFilesFromPaths(final List<Path> pathList, final Path unzipTo)
 	{
 		for (final Path inputFile : pathList)
 		{
 			if (inputFile != null && Files.exists(inputFile))
 			{
-				final JobFile jobFile = new JobFile(inputFile.getFileName().toString(), inputFile, DEFAULT_PATH);
+				final JobFile jobFile = new JobFile(inputFile.getFileName().toString(), inputFile, unzipTo);
 				
 				if (!exist(jobFile))
 				{
