@@ -80,6 +80,21 @@ public class JobBuilder
 	/**
 	 * @param inputFiles the inputFiles to set
 	 */
+	public final JobBuilder addInputFiles(final JobInterface inputFile)
+	{
+		if (inputFile != null)
+		{
+			this.inputFiles.add(inputFile);
+		}
+		
+		return this;
+	}
+	
+	
+	
+	/**
+	 * @param inputFiles the inputFiles to set
+	 */
 	public final JobBuilder addInputFilesFromPaths(final List<Path> pathList, final Path unzipTo)
 	{
 		for (final Path inputFile : pathList)

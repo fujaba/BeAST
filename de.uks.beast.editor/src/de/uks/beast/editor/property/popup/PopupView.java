@@ -1,5 +1,8 @@
 package de.uks.beast.editor.property.popup;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Rectangle;
@@ -8,7 +11,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class PopupView
+public class PopupView implements Observer
 {
 	private Shell			shell;
 	private Button			fileBrowserBtn;
@@ -27,32 +30,25 @@ public class PopupView
 	
 	
 	
-	protected boolean isClosed()
-	{
-		return shell.isDisposed();
-	}
-	
-	
-	
-	protected Shell createShell()
+	private Shell createShell()
 	{
 		return new Shell(currentDisplay, SWT.CLOSE | SWT.TITLE | SWT.MIN);
 	}
 	
 	
 	
-	protected void reCreateShellAndShow()
+	private void reCreateShellAndShow()
 	{
-		this.shell = createShell();
+		shell = createShell();
 		createContent();
-		show();
+		shell.open();
 	}
 	
 	
 	
 	private void createContent()
 	{
-		final Rectangle boundRect = new Rectangle(0, 0, 400, 100);
+		final Rectangle boundRect = new Rectangle(300, 300, 400, 100);
 		shell.setBounds(boundRect);
 		final Rectangle boundInternal = shell.getClientArea();
 		
@@ -100,30 +96,34 @@ public class PopupView
 	
 	
 	
-	protected boolean isDisposed()
+	@Override
+	public void update(Observable o, Object arg)
 	{
-		return shell.isDisposed();
-	}
-	
-	
-	
-	protected boolean isVisible()
-	{
-		return shell.isVisible();
-	}
-	
-	
-	
-	protected void show()
-	{
-		shell.open();
-	}
-	
-	
-	
-	protected void close()
-	{
-		shell.close();
+		if (arg instanceof Enum)
+		{
+			final Instruction instruction = (Instruction) arg;
+			
+			if (Instruction.CLOSE.equals(instruction))
+			{
+				shell.dispose();
+			}
+			else if (Instruction.OPEN.equals(instruction))
+			{
+				if (!shell.isDisposed())
+				{
+					shell.open();
+				}
+				else
+				{
+					//reCreateShellAndShow();
+					shell.setVisible(true);
+				}
+			}
+			else if (Instruction.HIDE.equals(instruction))
+			{
+				shell.setVisible(false);
+			}
+		}
 	}
 	
 }
