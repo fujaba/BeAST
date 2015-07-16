@@ -22,21 +22,19 @@ import de.uks.beast.editor.util.EclipseJobSynchronizer;
 import de.uks.beast.editor.util.FileBrowser;
 import de.uks.beast.editor.util.FileUtil;
 
-public class JobInformationController
+public class JobInformationController extends Observable
 {
 	private static final Logger			LOG				= LogManager.getLogger(JobInformationController.class);
 	private static final String			FILE_SEPARATOR	= FileUtil.getSpecificFileSeparator();
-	private final InfoContainer			infoContainer;
+	private final InfoContainer			infoContainer	= new InfoContainer();
 	private final PopupView				popupView;
 	private final HadoopPropertyView	propertyView;
-	//private final List<Path>			tmpList			= new ArrayList<>();
 	private final Shell					mainShell;
 	
 	
 	
 	public JobInformationController(final Display display, final Composite parent, final TabbedPropertySheetWidgetFactory factory)
 	{
-		this.infoContainer = new InfoContainer();
 		this.popupView = new PopupView(display);
 		this.propertyView = new HadoopPropertyView(parent, factory);
 		this.mainShell = parent.getShell();
@@ -48,8 +46,84 @@ public class JobInformationController
 	
 	private void init()
 	{
+		addObservers();
 		setListenerToPropertyView();
-//		setListenerToPopupView();
+	}
+	
+	
+	
+	private void addObservers()
+	{
+		this.addObserver(infoContainer);
+		this.addObserver(popupView);
+		this.addObserver(propertyView);
+	}
+	
+	
+	
+	private void update(final InputFileContainer container)
+	{
+		if (countObservers() > 0 && container != null)
+		{
+			setChanged();
+			notifyObservers(container);
+		}
+		
+	}
+	
+	
+	
+	private void update(final Instruction instruction)
+	{
+		if (countObservers() > 0 && instruction != null)
+		{
+			setChanged();
+			notifyObservers(instruction);
+		}
+	}
+	
+	
+	
+	private void update(final JobFileContainer container)
+	{
+		if (countObservers() > 0 && container != null)
+		{
+			setChanged();
+			notifyObservers(container);
+		}
+	}
+	
+	
+	
+	private void update(final OutputFileContainer container)
+	{
+		if (countObservers() > 0 && container != null)
+		{
+			setChanged();
+			notifyObservers(container);
+		}
+	}
+	
+	
+	
+	private void update(final String string)
+	{
+		if (countObservers() > 0 && string != null && !string.isEmpty())
+		{
+			setChanged();
+			notifyObservers(string);
+		}
+	}
+	
+	
+	
+	private void update(final InfoContainer container)
+	{
+		if (countObservers() > 0 && container != null)
+		{
+			setChanged();
+			notifyObservers(container);
+		}
 	}
 	
 	
@@ -62,11 +136,6 @@ public class JobInformationController
 			@Override
 			public void widgetSelected(SelectionEvent event)
 			{
-				if (!tmpList.isEmpty())
-				{
-					tmpList.clear();
-				}
-				
 				final FileBrowser fileBrowser = new FileBrowser();
 				fileBrowser.openFileDialog();
 				
@@ -76,13 +145,11 @@ public class JobInformationController
 					{
 						tmpList.add(path);
 					}
-					
 				}
 				else
 				{
 					throw new RuntimeException("It is just allowd to select ONE or MORE input files!");
 				}
-				
 			}
 			
 			
@@ -106,23 +173,23 @@ public class JobInformationController
 					{
 						for (final Path p : c.getInputPaths())
 						{
-							System.out.println("listener vorher: " + c + " -> " + p);
+							System.out.println("listener vorher: " + c + " -> " + p + " -> " + c.getUnzipToPath());
 						}
 					}
 					
 					final Path unzipToPath = Paths.get(popupView.getTextfldInput());
-					infoContainer.add(new InputFileContainer(tmpList, unzipToPath));
+					update(new InputFileContainer(tmpList, unzipToPath));
 					
 					for (final InputFileContainer c : infoContainer.getList())
 					{
 						for (final Path p : c.getInputPaths())
 						{
-							System.out.println("listener nachher: " + c + " -> " + p);
+							System.out.println("listener nachher: " + c + " -> " + p + " -> " + c.getUnzipToPath());
 						}
 					}
 					
 				}
-				popupView.close();
+				update(Instruction.CLOSE);
 			}
 			
 			
@@ -145,20 +212,19 @@ public class JobInformationController
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-//				final FileBrowser fb = new FileBrowser();
-//				fb.openFileDialog();
-//				
-//				if (fb.getFileList().size() == 1)
-//				{
-//					infoContainer.setJobFilePath(fb.getFileList().get(0));
-//					infoContainer.setJobFileChanged(true);
-//					changeRequest(infoContainer);
-//				}
-//				else
-//				{
-//					//clearChanged();
-//					throw new RuntimeException("It is just allowd to select ONE jobFile!");
-//				}
+				final FileBrowser fb = new FileBrowser();
+				fb.openFileDialog();
+				
+				if (fb.getFileList().size() == 1)
+				{
+					update(new JobFileContainer(fb.getFileList().get(0)));
+					update(infoContainer);
+				}
+				else
+				{
+					//clearChanged();
+					throw new RuntimeException("It is just allowd to select ONE jobFile!");
+				}
 			}
 			
 			
@@ -176,7 +242,7 @@ public class JobInformationController
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				popupView.show();
+				update(Instruction.OPEN);
 				setListenerToPopupView();
 			}
 			
@@ -197,13 +263,19 @@ public class JobInformationController
 			{
 				try
 				{
+					update(propertyView.getNameInput());
+					update(new OutputFileContainer(Paths.get(propertyView.getOutputFileInput())));
+					
 					final Job job = infoContainer.getBuildedJob();
 					
 					printJob(job);
 					
+					FileUtil.createConfigFile("OutputFileConfig.cfg", job.getOutputFile().getPath());
+					
 					final EclipseJobSynchronizer jobSynchronizer = new EclipseJobSynchronizer(mainShell, job);
 					jobSynchronizer.initAndRun();
 					
+					update(Instruction.CLOSE);
 				}
 				catch (final Exception e)
 				{
@@ -226,6 +298,7 @@ public class JobInformationController
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
+				//update(Instruction.CLEAR);
 			}
 			
 			

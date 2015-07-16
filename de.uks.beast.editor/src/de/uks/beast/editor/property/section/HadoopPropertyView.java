@@ -14,13 +14,14 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
-import de.uks.beast.editor.property.popup.InfoContainer;
 import de.uks.beast.editor.property.popup.InputFileContainer;
 import de.uks.beast.editor.property.popup.Instruction;
+import de.uks.beast.editor.property.popup.JobFileContainer;
+import de.uks.beast.editor.property.popup.OutputFileContainer;
 import de.uks.beast.editor.util.FileUtil;
 import de.uks.beast.editor.util.ToolTips;
 
-public class HadoopPropertyView
+public class HadoopPropertyView implements Observer
 {
 	private static final String						FILE_SEPARATOR	= FileUtil.getSpecificFileSeparator();
 	private static final String						EMPTY			= "";
@@ -168,6 +169,13 @@ public class HadoopPropertyView
 	
 	
 	
+	public String getOutputFileInput()
+	{
+		return outputFileTextFld.getText().isEmpty() ? "default" : outputFileTextFld.getText();
+	}
+	
+	
+	
 	public void addHandlerToJobFileBtn(final SelectionListener listener)
 	{
 		if (listener != null)
@@ -208,42 +216,49 @@ public class HadoopPropertyView
 	
 	
 	
-//	@Override
-//	public void update(Observable o, Object arg)
-//	{
-//		
-//		
-//		if (arg instanceof InfoContainer)
-//		{
-//			final InfoContainer infoContainer = (InfoContainer) arg;
-//			
-//			if (infoContainer.getJobFilePath() != null)
-//			{
-//				jobFileTextFld.setText(infoContainer.getJobFilePath() + FILE_SEPARATOR
-//						+ infoContainer.getJobFilePath().getFileName());
-//			}
-//			
-//		}
-//		else if (arg instanceof InputFileContainer)
-//		{
-//			final InputFileContainer container = (InputFileContainer) arg;
-//			if (container.getInputPaths() != null && !container.getInputPaths().isEmpty())
-//			{
-//				for (final Path p : container.getInputPaths())
-//				{
-//					inputFileTextFld.append(p + FILE_SEPARATOR + p.getFileName() + "\n");
-//				}
-//			}
-//		}
-//		else if (arg instanceof Enum)
-//		{
-//			final Instruction instruction = (Instruction) arg;
-//			
-//			if (Instruction.CLEAR.equals(instruction))
-//			{
-//				resetAll();
-//			}
-//		}
-//	}
+	@Override
+	public void update(Observable o, Object arg)
+	{
+		
+		if (arg instanceof JobFileContainer)
+		{
+			final JobFileContainer container = (JobFileContainer) arg;
+			
+			if (container.getJobFilePath() != null && !container.getJobFilePath().toString().isEmpty())
+			{
+				jobFileTextFld.setText(container.getJobFilePath().toString());
+			}
+			
+		}
+		else if (arg instanceof OutputFileContainer)
+		{
+			final OutputFileContainer container = (OutputFileContainer) arg;
+			
+			if (container.getOutputFilePath() != null && !container.getOutputFilePath().toString().isEmpty())
+			{
+				outputFileTextFld.setText(container.getOutputFilePath().toString());
+			}
+		}
+		else if (arg instanceof InputFileContainer)
+		{
+			final InputFileContainer container = (InputFileContainer) arg;
+			if (container.getInputPaths() != null && !container.getInputPaths().isEmpty())
+			{
+				for (final Path p : container.getInputPaths())
+				{
+					inputFileTextFld.append(p + "\n");
+				}
+			}
+		}
+		else if (arg instanceof Enum)
+		{
+			final Instruction instruction = (Instruction) arg;
+			
+			if (Instruction.CLEAR.equals(instruction))
+			{
+				resetAll();
+			}
+		}
+	}
 	
 }

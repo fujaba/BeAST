@@ -25,11 +25,11 @@ public class EclipseJobSynchronizer
 	
 	public void initAndRun()
 	{
-		Job eclipseJob = new Job(beastJob.getName() + ".zip" + "...") {
+		final Job eclipseJob = new Job(beastJob.getName() + ".zip" + "...") {
 			@Override
 			protected IStatus run(final IProgressMonitor monitor)
 			{
-				FileUtil.createZipFromJob(beastJob, "C:\\test\\", monitor);
+				FileUtil.createZipFromJob(beastJob, System.getProperty("java.io.tmpdir"), monitor);
 				
 				if (monitor.isCanceled())
 				{

@@ -6,7 +6,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.zip.Deflater;
 import java.util.zip.ZipEntry;
@@ -41,6 +44,28 @@ public class FileUtil
 	public static String getSpecificFileSeparator()
 	{
 		return separator;
+	}
+	
+	
+	
+	public static void createConfigFile(final String name, final Path content)
+	{
+		try
+		{
+			final Path path = Paths.get(System.getProperty("java.io.tmpdir"), name);
+			Files.createFile(path);
+			
+			if (Files.exists(path))
+			{
+				final PrintWriter writer = new PrintWriter(path.getFileName().toString(), "UTF-8");
+				writer.write(content.toString());
+				writer.close();
+			}
+		}
+		catch (IOException e)
+		{
+			throw new RuntimeException("Cannot create OutputConfig file", e);
+		}
 	}
 	
 	
@@ -96,7 +121,8 @@ public class FileUtil
 				}
 			}
 			
-			if (job.getOutputFile() != null && Files.exists(job.getOutputFile().getPath()))
+			if (job.getOutputFile() != null
+					&& Files.exists(Paths.get(System.getProperty("java.io.tmpdir"), "OutputFileConfig.cfg")))
 			{
 				if (monitor.isCanceled())
 				{
@@ -104,7 +130,8 @@ public class FileUtil
 					throw new IOException("Zipping was canceled!");
 				}
 				monitor.subTask(fileCounter.get() + "/" + job.getFileCount() + " - " + job.getOutputFile().getName());
-				addToArchive("outputFile", job.getOutputFile(), out);
+				//addToArchive("outputFile", job.getOutputFile(), out);
+				addConfigFileToArchive("outputfile", Paths.get(System.getProperty("java.io.tmpdir"), "OutputFileConfig.cfg"), out);
 				monitor.worked(1);
 				fileCounter.incrementAndGet();
 			}
@@ -120,6 +147,30 @@ public class FileUtil
 		}
 		
 		return Status.OK_STATUS;
+	}
+	
+	
+	
+	private static void addConfigFileToArchive(final String subDir, final Path path, final ZipOutputStream zos)
+			throws IOException
+	{
+		LOG.info("Writing '" + path.getFileName() + "' to zip file");
+		
+		final File file = path.toFile();
+		final FileInputStream fis = new FileInputStream(file);
+		final BufferedInputStream origin = new BufferedInputStream(fis, BUFFER);
+		final ZipEntry zipEntry = new ZipEntry(subDir + separator + path.getFileName());
+		zos.putNextEntry(zipEntry);
+		
+		final byte[] bytes = new byte[BUFFER];
+		int length;
+		while ((length = origin.read(bytes)) >= 0)
+		{
+			zos.write(bytes, 0, length);
+		}
+		
+		zos.closeEntry();
+		fis.close();
 	}
 	
 	
