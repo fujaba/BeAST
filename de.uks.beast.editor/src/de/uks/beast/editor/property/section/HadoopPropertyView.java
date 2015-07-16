@@ -20,7 +20,7 @@ import de.uks.beast.editor.property.popup.Instruction;
 import de.uks.beast.editor.util.FileUtil;
 import de.uks.beast.editor.util.ToolTips;
 
-public class HadoopPropertyView implements Observer
+public class HadoopPropertyView
 {
 	private static final String						FILE_SEPARATOR	= FileUtil.getSpecificFileSeparator();
 	private static final String						EMPTY			= "";
@@ -208,11 +208,11 @@ public class HadoopPropertyView implements Observer
 	
 	
 	
-	@Override
-	public void update(Observable o, Object arg)
-	{
-		
-		
+//	@Override
+//	public void update(Observable o, Object arg)
+//	{
+//		
+//		
 //		if (arg instanceof InfoContainer)
 //		{
 //			final InfoContainer infoContainer = (InfoContainer) arg;
@@ -244,6 +244,6 @@ public class HadoopPropertyView implements Observer
 //				resetAll();
 //			}
 //		}
-	}
+//	}
 	
 }

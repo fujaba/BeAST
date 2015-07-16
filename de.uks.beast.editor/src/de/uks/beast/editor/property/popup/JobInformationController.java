@@ -22,20 +22,21 @@ import de.uks.beast.editor.util.EclipseJobSynchronizer;
 import de.uks.beast.editor.util.FileBrowser;
 import de.uks.beast.editor.util.FileUtil;
 
-public class JobInformationController extends Observable
+public class JobInformationController
 {
 	private static final Logger			LOG				= LogManager.getLogger(JobInformationController.class);
 	private static final String			FILE_SEPARATOR	= FileUtil.getSpecificFileSeparator();
-	private final InfoContainer			infoContainer	= new InfoContainer();
+	private final InfoContainer			infoContainer;
 	private final PopupView				popupView;
 	private final HadoopPropertyView	propertyView;
-	private final List<Path>			tmpList			= new ArrayList<>();
+	//private final List<Path>			tmpList			= new ArrayList<>();
 	private final Shell					mainShell;
 	
 	
 	
 	public JobInformationController(final Display display, final Composite parent, final TabbedPropertySheetWidgetFactory factory)
 	{
+		this.infoContainer = new InfoContainer();
 		this.popupView = new PopupView(display);
 		this.propertyView = new HadoopPropertyView(parent, factory);
 		this.mainShell = parent.getShell();
@@ -47,47 +48,15 @@ public class JobInformationController extends Observable
 	
 	private void init()
 	{
-		addObservers();
 		setListenerToPropertyView();
-		setListenerToPopupView();
-	}
-	
-	
-	
-	private void addObservers()
-	{
-		this.addObserver(infoContainer);
-		this.addObserver(popupView);
-		this.addObserver(propertyView);
-	}
-	
-	
-	
-	private void update(final InputFileContainer container)
-	{
-		if (countObservers() > 0 && container != null)
-		{
-			setChanged();
-			notifyObservers(container);
-		}
-		
-	}
-	
-	
-	
-	private void update(final Instruction instruction)
-	{
-		if (countObservers() > 0 && instruction != null)
-		{
-			setChanged();
-			notifyObservers(instruction);
-		}
+//		setListenerToPopupView();
 	}
 	
 	
 	
 	private void setListenerToPopupView()
 	{
+		final List<Path> tmpList = new ArrayList<>();
 		popupView.setFileBrowserBtnListener(new SelectionListener() {
 			
 			@Override
@@ -133,11 +102,27 @@ public class JobInformationController extends Observable
 			{
 				if (popupView.getTextfldInput() != null && !popupView.getTextfldInput().isEmpty())
 				{
+					for (final InputFileContainer c : infoContainer.getList())
+					{
+						for (final Path p : c.getInputPaths())
+						{
+							System.out.println("listener vorher: " + c + " -> " + p);
+						}
+					}
+					
 					final Path unzipToPath = Paths.get(popupView.getTextfldInput());
-					update(new InputFileContainer(tmpList, unzipToPath));
+					infoContainer.add(new InputFileContainer(tmpList, unzipToPath));
+					
+					for (final InputFileContainer c : infoContainer.getList())
+					{
+						for (final Path p : c.getInputPaths())
+						{
+							System.out.println("listener nachher: " + c + " -> " + p);
+						}
+					}
 					
 				}
-				update(Instruction.HIDE);
+				popupView.close();
 			}
 			
 			
@@ -191,7 +176,8 @@ public class JobInformationController extends Observable
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				update(Instruction.OPEN);
+				popupView.show();
+				setListenerToPopupView();
 			}
 			
 			
@@ -218,7 +204,6 @@ public class JobInformationController extends Observable
 					final EclipseJobSynchronizer jobSynchronizer = new EclipseJobSynchronizer(mainShell, job);
 					jobSynchronizer.initAndRun();
 					
-					update(Instruction.CLOSE);
 				}
 				catch (final Exception e)
 				{
@@ -241,7 +226,6 @@ public class JobInformationController extends Observable
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				update(Instruction.CLEAR);
 			}
 			
 			

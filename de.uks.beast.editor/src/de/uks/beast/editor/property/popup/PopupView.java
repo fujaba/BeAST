@@ -11,7 +11,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class PopupView implements Observer
+public class PopupView
 {
 	private Shell			shell;
 	private Button			fileBrowserBtn;
@@ -96,34 +96,61 @@ public class PopupView implements Observer
 	
 	
 	
-	@Override
-	public void update(Observable o, Object arg)
+	public void show()
 	{
-		if (arg instanceof Enum)
+		if (!shell.isDisposed())
 		{
-			final Instruction instruction = (Instruction) arg;
-			
-			if (Instruction.CLOSE.equals(instruction))
-			{
-				shell.dispose();
-			}
-			else if (Instruction.OPEN.equals(instruction))
-			{
-				if (!shell.isDisposed())
-				{
-					shell.open();
-				}
-				else
-				{
-					//reCreateShellAndShow();
-					shell.setVisible(true);
-				}
-			}
-			else if (Instruction.HIDE.equals(instruction))
-			{
-				shell.setVisible(false);
-			}
+			shell.open();
+		}
+		else
+		{
+			reCreateShellAndShow();
+			//shell.setVisible(true);
 		}
 	}
+	
+	
+	
+	public void hide()
+	{
+		shell.setVisible(false);
+	}
+	
+	
+	
+	public void close()
+	{
+		shell.dispose();
+	}
+	
+//	@Override
+//	public void update(Observable o, Object arg)
+//	{
+//		if (arg instanceof Enum)
+//		{
+//			final Instruction instruction = (Instruction) arg;
+//			
+//			if (Instruction.CLOSE.equals(instruction))
+//			{
+//				shell.dispose();
+//			}
+//			else if (Instruction.OPEN.equals(instruction))
+//			{
+//				if (!shell.isDisposed())
+//				{
+//					shell.open();
+//				}
+//				else
+//				{
+//					//reCreateShellAndShow();
+//					shell.setVisible(true);
+//				}
+//			}
+//			else if (Instruction.HIDE.equals(instruction))
+//			{
+//				shell.setVisible(false);
+//			}
+//		}
+//	}
 	
 }

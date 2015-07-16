@@ -9,16 +9,17 @@ import java.util.Observer;
 import de.uks.beast.editor.service.job.Job;
 import de.uks.beast.editor.service.job.JobBuilder;
 
-public class InfoContainer implements Observer
+public class InfoContainer
 {
-	private final List<InputFileContainer>	inputFileContaineList	= new ArrayList<>();
-	private Path							jobFilePath;
-	private Path							jobOutputFilePath;
+	private List<InputFileContainer>	inputFileContaineList	= null;
+	private Path						jobFilePath				= null;
+	private Path						jobOutputFilePath		= null;
 	
 	
 	
 	protected InfoContainer()
 	{
+		this.inputFileContaineList = new ArrayList<InputFileContainer>();
 	}
 	
 	
@@ -40,6 +41,16 @@ public class InfoContainer implements Observer
 	public List<InputFileContainer> getList()
 	{
 		return inputFileContaineList;
+	}
+	
+	
+	
+	public void add(final InputFileContainer container)
+	{
+		if (container != null)
+		{
+			inputFileContaineList.add(container);
+		}
 	}
 	
 	
@@ -83,34 +94,58 @@ public class InfoContainer implements Observer
 		this.jobFilePath = jobFilePath;
 	}
 	
-	
-	
-	@Override
-	public void update(Observable o, Object arg)
-	{
-		if (arg instanceof InputFileContainer)
-		{
-			final InputFileContainer ifc = (InputFileContainer) arg;
-			
-			System.out.println(ifc);
-			for(final Path p : ifc.getInputPaths()) {
-				System.out.println("input: " + p + " -> " + ifc.getUnzipToPath());
-			}
-//			for (final InputFileContainer c : inputFileContaineList)
+//	@Override
+//	public void update(Observable o, Object arg)
+//	{
+//		
+//		if (arg instanceof InputFileContainer)
+//		{
+//			final InputFileContainer ifc = (InputFileContainer) arg;
+//			
+//			for (final Path p : ifc.getInputPaths())
 //			{
-//				System.out.println("#: " + c.getInputPaths().get(0) + " -> " + c.getUnzipToPath());
-////				if (c.equals(ifc))
-////				{
-////					return;
-////				}
+//				System.out.println(ifc + " -> " + p + " -> " + ifc.getUnzipToPath());
 //			}
-			inputFileContaineList.add(ifc);
-			
-			for (final InputFileContainer c : inputFileContaineList)
-			{
-				System.out.println("#: " + c.getInputPaths().get(0) + " -> " + c.getUnzipToPath());
-			}
-		}
-	}
+//			
+//			for (final InputFileContainer c : this.inputFileContaineList)
+//			{
+//				for (final Path p : c.getInputPaths())
+//				{
+//					System.out.println("vorher: " + c + " -> " + p);
+//				}
+//			}
+//			
+//
+//			inputFileContaineList.add(ifc);
+////			System.out.println(ifc);
+////			for(final Path p : ifc.getInputPaths()) {
+////				System.out.println("input: " + p + " -> " + ifc.getUnzipToPath());
+////			}
+//////			for (final InputFileContainer c : inputFileContaineList)
+//////			{
+//////				System.out.println("#: " + c.getInputPaths().get(0) + " -> " + c.getUnzipToPath());
+////////				if (c.equals(ifc))
+////////				{
+////////					return;
+////////				}
+//////			}
+//			//inputFileContaineList.add(ifc);
+////			
+////			for (final InputFileContainer c : inputFileContaineList)
+////			{
+////				System.out.println("#: " + c.getInputPaths().get(0) + " -> " + c.getUnzipToPath());
+////			}
+//			
+//			for (final InputFileContainer c : this.inputFileContaineList)
+//			{
+//				for (final Path p : c.getInputPaths())
+//				{
+//					System.out.println("nachher: " + c + " -> " + p);
+//				}
+//			}
+//			
+//		}
+//		
+//	}
 	
 }

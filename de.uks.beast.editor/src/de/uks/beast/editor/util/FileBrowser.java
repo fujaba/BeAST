@@ -60,6 +60,7 @@ public class FileBrowser
 				
 				if (Files.exists(path) && !filePathes.contains(path))
 				{
+					System.out.println("fileUtil: " + path);
 					filePathes.add(path);
 				}
 			}
