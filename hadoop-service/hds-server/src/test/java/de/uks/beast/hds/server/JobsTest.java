@@ -74,7 +74,7 @@ public class JobsTest extends JerseyTest {
         System.out.println("**** Start file upload");
 
         // source file
-        String FILE = "/BeAST-20140122.zip";
+        String FILE = "/thinkdifferent.zip";
         URL url = this.getClass().getResource(FILE);
         File data = new File(url.getFile());
 

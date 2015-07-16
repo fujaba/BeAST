@@ -47,7 +47,7 @@ public class FileUpload {
         final String destinationFileLocation = TARGET_FILES_ROOT_DIR + fileDetails.getFileName();
 //        System.out.println("**** [path]: " + path);
 
-        System.out.println("**** [DESTINATION]: " + fileDetails.getFileName());
+//        System.out.println("**** [DESTINATION]: " + fileDetails.getFileName());
         
         // save received file to local storage
         saveToDisk(fis, destinationFileLocation);
