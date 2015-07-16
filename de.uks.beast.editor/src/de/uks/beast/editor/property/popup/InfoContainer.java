@@ -27,34 +27,6 @@ public class InfoContainer implements Observer
 	
 	
 	
-	public JobFileContainer getJobFilePath()
-	{
-		return jobFileContainer;
-	}
-	
-	
-	
-	public OutputFileContainer getJobOuputFilePath()
-	{
-		return outputFileContainer;
-	}
-	
-	
-	
-	public List<InputFileContainer> getList()
-	{
-		return inputFileContaineList;
-	}
-	
-	
-	
-	public InputFileContainer getLastAddedInputFileContainer()
-	{
-		return inputFileContaineList.get(inputFileContaineList.size() - 1);
-	}
-	
-	
-	
 	protected Job getBuildedJob()
 	{
 		final JobBuilder builder = Job.builder();

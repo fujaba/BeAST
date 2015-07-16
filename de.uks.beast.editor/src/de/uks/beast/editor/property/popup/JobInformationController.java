@@ -25,7 +25,6 @@ import de.uks.beast.editor.util.FileUtil;
 public class JobInformationController extends Observable
 {
 	private static final Logger			LOG				= LogManager.getLogger(JobInformationController.class);
-	private static final String			FILE_SEPARATOR	= FileUtil.getSpecificFileSeparator();
 	private final InfoContainer			infoContainer	= new InfoContainer();
 	private final PopupView				popupView;
 	private final HadoopPropertyView	propertyView;
@@ -169,25 +168,8 @@ public class JobInformationController extends Observable
 			{
 				if (popupView.getTextfldInput() != null && !popupView.getTextfldInput().isEmpty())
 				{
-					for (final InputFileContainer c : infoContainer.getList())
-					{
-						for (final Path p : c.getInputPaths())
-						{
-							System.out.println("listener vorher: " + c + " -> " + p + " -> " + c.getUnzipToPath());
-						}
-					}
-					
 					final Path unzipToPath = Paths.get(popupView.getTextfldInput());
 					update(new InputFileContainer(tmpList, unzipToPath));
-					
-					for (final InputFileContainer c : infoContainer.getList())
-					{
-						for (final Path p : c.getInputPaths())
-						{
-							System.out.println("listener nachher: " + c + " -> " + p + " -> " + c.getUnzipToPath());
-						}
-					}
-					
 				}
 				update(Instruction.CLOSE);
 			}
@@ -319,13 +301,12 @@ public class JobInformationController extends Observable
 	{
 		LOG.debug("############### <buildedJob> ###############");
 		LOG.debug("Name: " + job.getName() + " with " + job.getFileCount() + " files");
-		LOG.debug("JobFile: " + job.getJobFile().getPath() + FILE_SEPARATOR + job.getJobFile().getName());
+		LOG.debug("JobFile: " + job.getJobFile().getPath());
 		for (final JobInterface inputFile : job.getInputFiles())
 		{
-			LOG.debug("InputFile: " + inputFile.getPath() + FILE_SEPARATOR + inputFile.getName() + " with unzipTarget: "
-					+ inputFile.unzipTo());
+			LOG.debug("InputFile: " + inputFile.getPath() + " with unzipTarget: " + inputFile.unzipTo());
 		}
-		LOG.debug("outputFile: " + job.getOutputFile().getPath() + FILE_SEPARATOR + job.getOutputFile().getName());
+		LOG.debug("outputFile: " + job.getOutputFile().getPath());
 		LOG.debug("############### </buildedJob> ###############");
 	}
 	
