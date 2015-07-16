@@ -53,14 +53,14 @@ public class FileUtil
 		try
 		{
 			final Path path = Paths.get(System.getProperty("java.io.tmpdir"), name);
-			Files.createFile(path);
-			
-			if (Files.exists(path))
+			if (!Files.exists(path))
 			{
-				final PrintWriter writer = new PrintWriter(path.getFileName().toString(), "UTF-8");
-				writer.write(content.toString());
-				writer.close();
+				Files.createFile(path);
 			}
+			
+			final PrintWriter writer = new PrintWriter(path.toString(), "UTF-8");
+			writer.write(content.toString());
+			writer.close();
 		}
 		catch (IOException e)
 		{
@@ -130,7 +130,6 @@ public class FileUtil
 					throw new IOException("Zipping was canceled!");
 				}
 				monitor.subTask(fileCounter.get() + "/" + job.getFileCount() + " - " + job.getOutputFile().getName());
-				//addToArchive("outputFile", job.getOutputFile(), out);
 				addConfigFileToArchive("outputfile", Paths.get(System.getProperty("java.io.tmpdir"), "OutputFileConfig.cfg"), out);
 				monitor.worked(1);
 				fileCounter.incrementAndGet();
@@ -195,7 +194,6 @@ public class FileUtil
 		
 		zos.closeEntry();
 		fis.close();
-		
 	}
 	
 }
