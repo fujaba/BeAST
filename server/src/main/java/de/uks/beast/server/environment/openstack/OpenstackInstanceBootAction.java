@@ -1,5 +1,6 @@
 package de.uks.beast.server.environment.openstack;
 
+import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 
 import org.apache.log4j.LogManager;
@@ -14,6 +15,9 @@ import org.openstack4j.model.compute.ServerCreate;
 import org.openstack4j.model.identity.Access;
 import org.openstack4j.model.network.NetFloatingIP;
 import org.openstack4j.openstack.OSFactory;
+
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.Session;
 
 import de.uks.beast.server.BeastService;
 import de.uks.beast.server.environment.model.ConnectionInfo;
@@ -90,6 +94,25 @@ public class OpenstackInstanceBootAction extends Thread {
 		
 		configuration.setConnectionInfo(new ConnectionInfo(cf.getHost(), netFloatingIP.getFloatingIpAddress(), 
 				cf.getIp(), keypair.getPrivateKey()));
+		
+		//create port forward ?!
+		try {
+			JSch jsch = new JSch();
+			Session session = jsch.getSession("openstack", "localhost", 22);
+			session.setPassword("secloud14");
+			Properties config = new Properties(); 
+			config.put("StrictHostKeyChecking", "no");
+			session.setConfig(config);
+			int lport = 1143;
+			String rhost = configuration.getConnectionInfo().getIp();
+			int rport = 1143;
+			session.connect();
+
+			int assinged_port = session.setPortForwardingL(lport, rhost, rport);
+			logger.info("localhost:"+assinged_port+" -> "+rhost+":"+rport);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		latch.countDown();
 	}
