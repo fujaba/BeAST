@@ -23,9 +23,9 @@ import de.uks.beast.editor.util.EclipseJobSynchronizer;
 import de.uks.beast.editor.util.FileBrowser;
 import de.uks.beast.editor.util.FileUtil;
 
-public class JobInformationController extends Observable
+public class JobDataController extends Observable
 {
-	private static final Logger			LOG					= LogManager.getLogger(JobInformationController.class);
+	private static final Logger			LOG					= LogManager.getLogger(JobDataController.class);
 	private final JobDataContainer		jobDataContainer	= new JobDataContainer();
 	private final PopupView				popupView;
 	private final HadoopPropertyView	propertyView;
@@ -33,7 +33,7 @@ public class JobInformationController extends Observable
 	
 	
 	
-	public JobInformationController(final Display display, final Composite parent, final TabbedPropertySheetWidgetFactory factory)
+	public JobDataController(final Display display, final Composite parent, final TabbedPropertySheetWidgetFactory factory)
 	{
 		this.popupView = new PopupView(display);
 		this.propertyView = new HadoopPropertyView(parent, factory);

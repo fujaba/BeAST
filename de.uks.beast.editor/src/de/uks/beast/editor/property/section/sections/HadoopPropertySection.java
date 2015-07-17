@@ -14,7 +14,7 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
-import de.uks.beast.editor.property.popup.JobInformationController;
+import de.uks.beast.editor.property.popup.JobDataController;
 
 public class HadoopPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {
@@ -37,7 +37,7 @@ public class HadoopPropertySection extends GFPropertySection implements ITabbedP
 		final TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
 		final Composite composite = factory.createFlatFormComposite(parent);
 		
-		final JobInformationController controller = new JobInformationController(parent.getDisplay(), composite, factory);
+		final JobDataController controller = new JobDataController(parent.getDisplay(), composite, factory);
 		controller.init();
 		LOG.debug("Init JobInformationController...");
 	}
