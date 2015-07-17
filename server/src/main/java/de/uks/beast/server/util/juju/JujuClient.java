@@ -2,6 +2,9 @@ package de.uks.beast.server.util.juju;
 
 import java.util.List;
 
+import de.uks.beast.server.util.RuntimeExec;
+import de.uks.beast.server.util.RuntimeOutput;
+
 public class JujuClient {
 	
     /**

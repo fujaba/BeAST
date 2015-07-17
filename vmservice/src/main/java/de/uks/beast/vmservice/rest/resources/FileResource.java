@@ -22,7 +22,11 @@ public class FileResource {
 	@POST
 	@Path("/upload/{sessionID}")
 	@Consumes(MediaType.APPLICATION_OCTET_STREAM)
-	public Response putFile(@Context HttpServletRequest req, @PathParam("sessionID") String sessionID, @HeaderParam("Content-Disposition") String content, InputStream fis) {
+	public Response putFile(@Context HttpServletRequest req, 
+							@PathParam("sessionID") String sessionID, 
+							@HeaderParam("Content-Disposition") String content, 
+							InputStream fis) {
+		
 		String fileName = content.replace("attachment; filename=", "").replace("\"", "");
 		File dir = new File("/tmp/beast/" + sessionID + "/");
 		dir.mkdirs();

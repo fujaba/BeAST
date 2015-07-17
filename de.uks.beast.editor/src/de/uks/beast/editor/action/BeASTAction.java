@@ -80,11 +80,14 @@ public class BeASTAction implements IObjectActionDelegate
 					s.setIp(server.getIp());
 					s.setRam(server.getRam());
 					
-					final de.uks.beast.model.Service service = new de.uks.beast.model.Service();
-					service.setServiceName(server.getService().getServiceName());
-					service.setServiceType(server.getService().getServiceType());
+					if (server.getService() != null) {
+						final de.uks.beast.model.Service service = new de.uks.beast.model.Service();
+						service.setServiceName(server.getService().getServiceName());
+						service.setServiceType(server.getService().getServiceType());
+						
+						s.setService(service);
+					}
 					
-					s.setService(service);
 					s.setNetwork(net);
 					net.addToServer(s);
 				}

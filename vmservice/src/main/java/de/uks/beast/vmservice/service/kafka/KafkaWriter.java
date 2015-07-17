@@ -9,6 +9,8 @@ import kafka.producer.ProducerConfig;
 import de.uks.beast.vmservice.service.model.InstanceInformation;
 
 public class KafkaWriter implements KeyListener {
+	
+	private static final String LOG = "LOG";
 
 	private Producer<String, InstanceInformation> producer;
 	private String topic;
@@ -30,6 +32,10 @@ public class KafkaWriter implements KeyListener {
 		for (InstanceInformation key : keys) {
 			producer.send(new KeyedMessage<String, InstanceInformation>(topic, key));
 		}
+	}
+	
+	public void info(String msg) {
+		producer.send(new KeyedMessage<String, InstanceInformation>(topic, new InstanceInformation("", LOG, msg)));
 	}
 
 }

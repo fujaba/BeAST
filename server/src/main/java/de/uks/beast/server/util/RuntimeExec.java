@@ -1,4 +1,4 @@
-package de.uks.beast.server.util.juju;
+package de.uks.beast.server.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -22,13 +22,14 @@ public class VMService {
 		logger.info("Started VM service");
 		Timer timer = new Timer();
 
-		ExtractorMaster em = new ExtractorMaster(args[0], new KafkaWriter(args[1], args[2]));
+		KafkaWriter writer = new KafkaWriter(args[1], args[2]);
+		ExtractorMaster em = new ExtractorMaster(args[0], writer);
 		
 		for (ExtractorService service : em.getServices()) {
 			timer.schedule(service, 0, 2000);
 		}
 		
-		new EmbeddedServer().startRESTServer();
+		new EmbeddedServer(writer).start();
 	}
 	
 }

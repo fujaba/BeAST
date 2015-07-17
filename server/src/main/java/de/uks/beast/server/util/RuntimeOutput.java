@@ -1,4 +1,4 @@
-package de.uks.beast.server.util.juju;
+package de.uks.beast.server.util;
 
 public class RuntimeOutput {
 
