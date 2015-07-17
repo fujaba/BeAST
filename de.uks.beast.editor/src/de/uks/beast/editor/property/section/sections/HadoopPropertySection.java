@@ -14,7 +14,7 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
-import de.uks.beast.editor.property.popup.JobDataController;
+import de.uks.beast.editor.property.data.JobDataController;
 
 public class HadoopPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {

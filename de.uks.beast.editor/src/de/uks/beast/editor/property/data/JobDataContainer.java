@@ -1,4 +1,4 @@
-package de.uks.beast.editor.property.popup;
+package de.uks.beast.editor.property.data;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-import de.uks.beast.editor.property.popup.JobFileDataContainer.Type;
+import de.uks.beast.editor.property.data.JobFileDataContainer.Type;
 import de.uks.beast.editor.service.job.Job;
 import de.uks.beast.editor.service.job.JobBuilder;
 import de.uks.beast.editor.service.job.JobFile;

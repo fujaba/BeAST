@@ -14,10 +14,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
-import de.uks.beast.editor.property.popup.InputFileDataContainer;
-import de.uks.beast.editor.property.popup.Instruction;
-import de.uks.beast.editor.property.popup.JobFileDataContainer;
-import de.uks.beast.editor.property.popup.JobFileDataContainer.Type;
+import de.uks.beast.editor.property.data.InputFileDataContainer;
+import de.uks.beast.editor.property.data.Instruction;
+import de.uks.beast.editor.property.data.JobFileDataContainer;
+import de.uks.beast.editor.property.data.JobFileDataContainer.Type;
 import de.uks.beast.editor.util.ToolTips;
 
 public class HadoopPropertyView implements Observer

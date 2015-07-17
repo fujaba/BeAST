@@ -1,4 +1,4 @@
-package de.uks.beast.editor.property.popup;
+package de.uks.beast.editor.property.data;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,7 +15,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
-import de.uks.beast.editor.property.popup.JobFileDataContainer.Type;
+import de.uks.beast.editor.property.data.JobFileDataContainer.Type;
+import de.uks.beast.editor.property.popup.PopupView;
 import de.uks.beast.editor.property.section.views.HadoopPropertyView;
 import de.uks.beast.editor.service.job.Job;
 import de.uks.beast.editor.service.job.JobInterface;

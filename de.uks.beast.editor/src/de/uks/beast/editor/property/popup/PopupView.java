@@ -11,6 +11,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
+import de.uks.beast.editor.property.data.Instruction;
+
 public class PopupView implements Observer
 {
 	private Shell			shell;
@@ -21,7 +23,7 @@ public class PopupView implements Observer
 	
 	
 	
-	protected PopupView(final Display display)
+	public PopupView(final Display display)
 	{
 		this.currentDisplay = display;
 		this.shell = createShell();
@@ -69,7 +71,7 @@ public class PopupView implements Observer
 	
 	
 	
-	protected void setFileBrowserBtnListener(final SelectionListener listener)
+	public void setFileBrowserBtnListener(final SelectionListener listener)
 	{
 		if (listener != null)
 		{
@@ -79,7 +81,7 @@ public class PopupView implements Observer
 	
 	
 	
-	protected void setSaveBtnListener(final SelectionListener listener)
+	public void setSaveBtnListener(final SelectionListener listener)
 	{
 		if (listener != null)
 		{
@@ -89,7 +91,7 @@ public class PopupView implements Observer
 	
 	
 	
-	protected String getTextfldInput()
+	public String getTextfldInput()
 	{
 		return unzipTargetTextfld.getText();
 	}

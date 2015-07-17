@@ -1,4 +1,4 @@
-package de.uks.beast.editor.property.popup;
+package de.uks.beast.editor.property.data;
 
 public enum Instruction
 {
