@@ -102,7 +102,7 @@
 		point="org.eclipse.ui.views.properties.tabbed.propertySections">
 		<propertySections
           contributorId="beast.PropertyContributor">
-			<propertySection class="de.uks.beast.editor.property.section.ServerPropertySection"
+			<propertySection class="de.uks.beast.editor.property.section.sections.ServerPropertySection"
 				filter="de.uks.beast.editor.property.filter.ServerPropertyFilter"
 				id="graphiti.main.tab.server" tab="graphiti.main.tab.server">
 			</propertySection>
@@ -112,7 +112,7 @@
 		point="org.eclipse.ui.views.properties.tabbed.propertySections">
 		<propertySections
           contributorId="beast.PropertyContributor">
-			<propertySection class="de.uks.beast.editor.property.section.RouterPropertySection"
+			<propertySection class="de.uks.beast.editor.property.section.sections.RouterPropertySection"
 				filter="de.uks.beast.editor.property.filter.RouterPropertyFilter"
 				id="graphiti.main.tab.router" tab="graphiti.main.tab.router">
 			</propertySection>
@@ -122,7 +122,7 @@
 		point="org.eclipse.ui.views.properties.tabbed.propertySections">
 		<propertySections
           contributorId="beast.PropertyContributor">
-			<propertySection class="de.uks.beast.editor.property.section.NetworkPropertySection"
+			<propertySection class="de.uks.beast.editor.property.section.sections.NetworkPropertySection"
 				filter="de.uks.beast.editor.property.filter.NetworkPropertyFilter"
 				id="graphiti.main.tab.network" tab="graphiti.main.tab.network">
 			</propertySection>
@@ -132,7 +132,7 @@
 		point="org.eclipse.ui.views.properties.tabbed.propertySections">
 		<propertySections
           contributorId="beast.PropertyContributor">
-			<propertySection class="de.uks.beast.editor.property.section.HadoopPropertySection"
+			<propertySection class="de.uks.beast.editor.property.section.sections.HadoopPropertySection"
 				filter="de.uks.beast.editor.property.filter.HadoopPropertyFilter"
 				id="graphiti.main.tab.service" tab="graphiti.main.tab.service">
 			</propertySection>
@@ -142,10 +142,6 @@
  <!-- Wizard -->
  <extension
        point="org.eclipse.ui.newWizards">
-    <!-- <category
-          id="de.uks.beast.editor"
-          name="Hardware Composition Diagram">
-    </category> -->
     <category
           id="de.uks.beast.editor"
           name="BeAST Test">
@@ -158,30 +154,5 @@
           name="Beast Diagram">
     </wizard>
  </extension>
- 
- <!-- <extension point="org.eclipse.ui.commands">
-      <command
-            defaultHandler="de.uks.beast.editor.action.ExitHandler"
-            id="de.uks.beast.editor.action.terminate"
-            name="Terminate">
-      </command>
-   </extension>
- 
- <extension point="org.eclipse.ui.menus">
-	<menuContribution allPopups="false" locationURI="toolbar:org.eclipse.ui.console.ConsoleView">
-		<toolbar
-               id="org.eclipse.run.ui.launchActionSet">
-         </toolbar>
-		<command 
-			commandId="de.uks.beast.editor.action.terminate"
-            icon="platform:/plugin/de.uks.beast.editor/icons/sample.gif"
-            label="%Terminate"
-            style="push">
-            <visibleWhen
-                  checkEnabled="false">
-            </visibleWhen>
-        </command>
-    </menuContribution>
- </extension> -->
- 
+  
 </plugin>

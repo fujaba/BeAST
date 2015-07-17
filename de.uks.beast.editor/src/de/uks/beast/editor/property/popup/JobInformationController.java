@@ -15,6 +15,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
+import de.uks.beast.editor.property.popup.JobFileDataContainer.Type;
 import de.uks.beast.editor.property.section.views.HadoopPropertyView;
 import de.uks.beast.editor.service.job.Job;
 import de.uks.beast.editor.service.job.JobInterface;
@@ -24,8 +25,8 @@ import de.uks.beast.editor.util.FileUtil;
 
 public class JobInformationController extends Observable
 {
-	private static final Logger			LOG				= LogManager.getLogger(JobInformationController.class);
-	private final JobDataContainer			jobDataContainer	= new JobDataContainer();
+	private static final Logger			LOG					= LogManager.getLogger(JobInformationController.class);
+	private final JobDataContainer		jobDataContainer	= new JobDataContainer();
 	private final PopupView				popupView;
 	private final HadoopPropertyView	propertyView;
 	private final Shell					mainShell;
@@ -82,17 +83,6 @@ public class JobInformationController extends Observable
 	
 	
 	private void update(final JobFileDataContainer container)
-	{
-		if (countObservers() > 0 && container != null)
-		{
-			setChanged();
-			notifyObservers(container);
-		}
-	}
-	
-	
-	
-	private void update(final OutputFileDataContainer container)
 	{
 		if (countObservers() > 0 && container != null)
 		{
@@ -197,12 +187,11 @@ public class JobInformationController extends Observable
 				
 				if (fb.getFileList().size() == 1)
 				{
-					update(new JobFileDataContainer(fb.getFileList().get(0)));
+					update(new JobFileDataContainer(Type.JOBFILE, fb.getFileList().get(0)));
 					update(jobDataContainer);
 				}
 				else
 				{
-					//clearChanged();
 					throw new RuntimeException("It is just allowd to select ONE jobFile!");
 				}
 			}
@@ -212,7 +201,7 @@ public class JobInformationController extends Observable
 			@Override
 			public void widgetDefaultSelected(SelectionEvent arg0)
 			{
-				// TODO Auto-generated method stub
+				// Nothing to do!
 				
 			}
 		});
@@ -244,13 +233,13 @@ public class JobInformationController extends Observable
 				try
 				{
 					update(propertyView.getNameInput());
-					update(new OutputFileDataContainer(Paths.get(propertyView.getOutputFileInput())));
+					update(new JobFileDataContainer(Type.OUTPUTFILE, Paths.get(propertyView.getOutputFileInput())));
 					
 					final Job job = jobDataContainer.getBuildedJob();
 					
 					printJob(job);
 					
-					FileUtil.createConfigFile("OutputFileConfig.cfg", job.getOutputFile().getPath());
+					FileUtil.createConfigFile(job.getOutputFile().getName(), job.getOutputFile().getPath());
 					
 					final EclipseJobSynchronizer jobSynchronizer = new EclipseJobSynchronizer(mainShell, job);
 					jobSynchronizer.initAndRun();

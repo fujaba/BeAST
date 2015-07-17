@@ -27,15 +27,19 @@ import de.uks.beast.editor.util.OSChecker.OSType;
 
 public class FileUtil
 {
-	private final static int	BUFFER		= 2048;
-	private static final Logger	LOG			= LogManager.getLogger(FileUtil.class);
-	private static String		separator	= "/";
+	private final static int	BUFFER	= 2048;
+	private static final Logger	LOG		= LogManager.getLogger(FileUtil.class);
+	private static String		separator;
 	
 	static
 	{
 		if (OSChecker.getOperatingSystemType().equals(OSType.Windows))
 		{
 			separator = "\\";
+		}
+		else
+		{
+			separator = "/";
 		}
 	}
 	
@@ -64,7 +68,7 @@ public class FileUtil
 		}
 		catch (IOException e)
 		{
-			throw new RuntimeException("Cannot create OutputConfig file", e);
+			throw new RuntimeException("Cannot create output config file", e);
 		}
 	}
 	
@@ -82,9 +86,12 @@ public class FileUtil
 		try
 		{
 			// set total number of work units
-			monitor.beginTask("Zipping" + job.getFileCount() + " files...", job.getFileCount());
+			monitor.beginTask("Zipping " + job.getFileCount() + " files...", job.getFileCount());
 			
-			final FileOutputStream dest = new FileOutputStream(new File(targetPlace + separator + job.getName() + ".zip"));
+			final Path zipFile = Paths.get(targetPlace, job.getName() + ".zip");
+			Files.deleteIfExists(zipFile);
+			
+			final FileOutputStream dest = new FileOutputStream(zipFile.toFile());
 			final ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(dest));
 			
 			out.setLevel(Deflater.BEST_COMPRESSION);
@@ -97,7 +104,7 @@ public class FileUtil
 					throw new IOException("Zipping was canceled!");
 				}
 				monitor.subTask(fileCounter.get() + "/" + job.getFileCount() + " - " + job.getJobFile().getName());
-				addToArchive("jobFile", job.getJobFile(), out);
+				addToArchive(job.getJobFile(), null, out);
 				monitor.worked(1);
 				fileCounter.incrementAndGet();
 			}
@@ -114,7 +121,7 @@ public class FileUtil
 					if (Files.exists(ji.getPath()))
 					{
 						monitor.subTask(fileCounter.get() + "/" + job.getFileCount() + " - " + ji.getName());
-						addToArchive("inputFiles", ji, out);
+						addToArchive(ji, null, out, "inputFiles");
 						monitor.worked(1);
 						fileCounter.incrementAndGet();
 					}
@@ -130,17 +137,19 @@ public class FileUtil
 					throw new IOException("Zipping was canceled!");
 				}
 				monitor.subTask(fileCounter.get() + "/" + job.getFileCount() + " - " + job.getOutputFile().getName());
-				addConfigFileToArchive("outputfile", Paths.get(System.getProperty("java.io.tmpdir"), "OutputFileConfig.cfg"), out);
+				addToArchive(job.getOutputFile(), Paths.get(System.getProperty("java.io.tmpdir"), job.getOutputFile().getName()),
+						out, "outputfile");
 				monitor.worked(1);
 				fileCounter.incrementAndGet();
 			}
 			
 			out.flush();
 			out.close();
+			
+			removeConfigFile(job.getOutputFile());
 		}
 		catch (final IOException e)
 		{
-			
 			LOG.error("Error while zip creation: ", e);
 			return Status.CANCEL_STATUS;
 		}
@@ -150,39 +159,43 @@ public class FileUtil
 	
 	
 	
-	private static void addConfigFileToArchive(final String subDir, final Path path, final ZipOutputStream zos)
-			throws IOException
+	private static void removeConfigFile(final JobInterface file) throws IOException
 	{
-		LOG.info("Writing '" + path.getFileName() + "' to zip file");
-		
-		final File file = path.toFile();
-		final FileInputStream fis = new FileInputStream(file);
-		final BufferedInputStream origin = new BufferedInputStream(fis, BUFFER);
-		final ZipEntry zipEntry = new ZipEntry(subDir + separator + path.getFileName());
-		zos.putNextEntry(zipEntry);
-		
-		final byte[] bytes = new byte[BUFFER];
-		int length;
-		while ((length = origin.read(bytes)) >= 0)
+		if (file != null)
 		{
-			zos.write(bytes, 0, length);
+			Files.deleteIfExists(Paths.get(System.getProperty("java.io.tmpdir"), file.getName()));
 		}
-		
-		zos.closeEntry();
-		fis.close();
 	}
 	
 	
 	
-	private static void addToArchive(final String subDir, final JobInterface jobInterface, final ZipOutputStream zos)
-			throws IOException
+	private static void addToArchive(final JobInterface jobInterface, final Path specialPath, final ZipOutputStream zos,
+			final String... subdirs) throws IOException
 	{
 		LOG.info("Writing '" + jobInterface.getName() + "' to zip file");
 		
-		final File file = jobInterface.getPath().toFile();
+		final File file;
+		if (specialPath != null)
+		{
+			file = specialPath.toFile();
+		}
+		else
+		{
+			file = jobInterface.getPath().toFile();
+		}
 		final FileInputStream fis = new FileInputStream(file);
 		final BufferedInputStream origin = new BufferedInputStream(fis, BUFFER);
-		final ZipEntry zipEntry = new ZipEntry(subDir + separator + jobInterface.getName());
+		
+		final Path path = Paths.get("", subdirs);
+		ZipEntry zipEntry;
+		if (subdirs.length > 0)
+		{
+			zipEntry = new ZipEntry(path + separator + jobInterface.getName());
+		}
+		else
+		{
+			zipEntry = new ZipEntry(jobInterface.getName());
+		}
 		zos.putNextEntry(zipEntry);
 		
 		final byte[] bytes = new byte[BUFFER];

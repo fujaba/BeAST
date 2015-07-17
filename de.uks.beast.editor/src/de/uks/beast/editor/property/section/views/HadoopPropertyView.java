@@ -17,14 +17,12 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import de.uks.beast.editor.property.popup.InputFileDataContainer;
 import de.uks.beast.editor.property.popup.Instruction;
 import de.uks.beast.editor.property.popup.JobFileDataContainer;
-import de.uks.beast.editor.property.popup.OutputFileDataContainer;
-import de.uks.beast.editor.util.FileUtil;
+import de.uks.beast.editor.property.popup.JobFileDataContainer.Type;
 import de.uks.beast.editor.util.ToolTips;
 
 public class HadoopPropertyView implements Observer
 {
-	private static final String						FILE_SEPARATOR	= FileUtil.getSpecificFileSeparator();
-	private static final String						EMPTY			= "";
+	private static final String						EMPTY	= "";
 	private final Composite							composite;
 	private final TabbedPropertySheetWidgetFactory	factory;
 	private Button									jobFileBtn;
@@ -224,24 +222,27 @@ public class HadoopPropertyView implements Observer
 		{
 			final JobFileDataContainer container = (JobFileDataContainer) arg;
 			
-			if (container.getJobFilePath() != null && !container.getJobFilePath().toString().isEmpty())
+			if (Type.JOBFILE.equals(container.getType()))
 			{
-				jobFileTextFld.setText(container.getJobFilePath().toString());
+				
+				if (container.getPath() != null && !container.getPath().toString().isEmpty())
+				{
+					jobFileTextFld.setText(container.getPath().toString());
+				}
+			}
+			else if (Type.OUTPUTFILE.equals(container.getType()))
+			{
+				if (container.getPath() != null && !container.getPath().toString().isEmpty())
+				{
+					outputFileTextFld.setText(container.getPath().toString());
+				}
 			}
 			
-		}
-		else if (arg instanceof OutputFileDataContainer)
-		{
-			final OutputFileDataContainer container = (OutputFileDataContainer) arg;
-			
-			if (container.getOutputFilePath() != null && !container.getOutputFilePath().toString().isEmpty())
-			{
-				outputFileTextFld.setText(container.getOutputFilePath().toString());
-			}
 		}
 		else if (arg instanceof InputFileDataContainer)
 		{
 			final InputFileDataContainer container = (InputFileDataContainer) arg;
+			
 			if (container.getInputPaths() != null && !container.getInputPaths().isEmpty())
 			{
 				for (final Path p : container.getInputPaths())

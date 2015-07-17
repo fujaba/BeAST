@@ -4,13 +4,15 @@ import java.nio.file.Path;
 
 public class JobFileDataContainer
 {
-	private final Path	jobFilePath;
+	private final Path	path;
+	private final Type	type;
 	
 	
 	
-	public JobFileDataContainer(final Path path)
+	public JobFileDataContainer(final Type type, final Path path)
 	{
-		this.jobFilePath = path;
+		this.type = type;
+		this.path = path;
 	}
 	
 	
@@ -18,8 +20,23 @@ public class JobFileDataContainer
 	/**
 	 * @return the jobFilePath
 	 */
-	public Path getJobFilePath()
+	public Path getPath()
 	{
-		return jobFilePath;
+		return path;
+	}
+	
+	
+	
+	/**
+	 * @return the type
+	 */
+	public Type getType()
+	{
+		return type;
+	}
+	
+	public static enum Type
+	{
+		JOBFILE, OUTPUTFILE
 	}
 }

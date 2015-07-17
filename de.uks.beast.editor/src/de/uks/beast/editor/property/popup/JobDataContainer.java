@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+import de.uks.beast.editor.property.popup.JobFileDataContainer.Type;
 import de.uks.beast.editor.service.job.Job;
 import de.uks.beast.editor.service.job.JobBuilder;
 import de.uks.beast.editor.service.job.JobFile;
@@ -16,8 +17,8 @@ public class JobDataContainer implements Observer
 {
 	private final List<InputFileDataContainer>	inputFileContaineList	= new ArrayList<>();
 	private JobFileDataContainer				jobFileDataContainer;
-	private OutputFileDataContainer				outputFileDataContainer;
-	private String							name;
+	private JobFileDataContainer				outputFileDataContainer;
+	private String								name;
 	
 	
 	
@@ -33,10 +34,9 @@ public class JobDataContainer implements Observer
 		
 		builder.setName(name);
 		
-		final JobInterface jobFile = new JobFile(jobFileDataContainer.getJobFilePath().getFileName().toString(),
-				jobFileDataContainer.getJobFilePath(), Paths.get(""));
-		final JobInterface jobOuputFile = new JobFile(outputFileDataContainer.getOutputFilePath().getFileName().toString(),
-				outputFileDataContainer.getOutputFilePath(), Paths.get(""));
+		final JobInterface jobFile = new JobFile(jobFileDataContainer.getPath().getFileName().toString(),
+				jobFileDataContainer.getPath(), Paths.get(""));
+		final JobInterface jobOuputFile = new JobFile("OutputFileConfig.cfg", outputFileDataContainer.getPath(), Paths.get(""));
 		
 		builder.setJobFile(jobFile);
 		builder.setOutputFile(jobOuputFile);
@@ -59,7 +59,7 @@ public class JobDataContainer implements Observer
 	{
 		if (path != null)
 		{
-			this.jobFileDataContainer = new JobFileDataContainer(path);
+			this.jobFileDataContainer = new JobFileDataContainer(Type.JOBFILE, path);
 		}
 	}
 	
@@ -69,7 +69,7 @@ public class JobDataContainer implements Observer
 	{
 		if (path != null)
 		{
-			this.outputFileDataContainer = new OutputFileDataContainer(path);
+			this.outputFileDataContainer = new JobFileDataContainer(Type.OUTPUTFILE, path);
 		}
 	}
 	
@@ -82,20 +82,22 @@ public class JobDataContainer implements Observer
 		{
 			final JobFileDataContainer container = (JobFileDataContainer) arg;
 			
-			if (container.getJobFilePath() != null && !container.getJobFilePath().toString().isEmpty())
+			if (Type.JOBFILE.equals(container.getType()))
 			{
-				this.jobFileDataContainer = container;
+				
+				if (container.getPath() != null && !container.getPath().toString().isEmpty())
+				{
+					this.jobFileDataContainer = container;
+				}
+			}
+			else if (Type.OUTPUTFILE.equals(container.getType()))
+			{
+				if (container.getPath() != null && !container.getPath().toString().isEmpty())
+				{
+					this.outputFileDataContainer = container;
+				}
 			}
 			
-		}
-		else if (arg instanceof OutputFileDataContainer)
-		{
-			final OutputFileDataContainer container = (OutputFileDataContainer) arg;
-			
-			if (container.getOutputFilePath() != null && !container.getOutputFilePath().toString().isEmpty())
-			{
-				this.outputFileDataContainer = container;
-			}
 		}
 		else if (arg instanceof InputFileDataContainer)
 		{
