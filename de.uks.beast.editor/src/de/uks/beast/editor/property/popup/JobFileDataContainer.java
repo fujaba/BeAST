@@ -2,13 +2,13 @@ package de.uks.beast.editor.property.popup;
 
 import java.nio.file.Path;
 
-public class JobFileContainer
+public class JobFileDataContainer
 {
 	private final Path	jobFilePath;
 	
 	
 	
-	public JobFileContainer(final Path path)
+	public JobFileDataContainer(final Path path)
 	{
 		this.jobFilePath = path;
 	}

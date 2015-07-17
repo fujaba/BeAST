@@ -1,11 +1,11 @@
-package de.uks.beast.editor.property.section;
+package de.uks.beast.editor.property.section.sections;
 
-import static de.uks.beast.editor.util.Properties.DNS_LABEL;
-import static de.uks.beast.editor.util.Properties.GATEWAY_LABEL;
+import static de.uks.beast.editor.util.Properties.CPU_CORES_LABEL;
+import static de.uks.beast.editor.util.Properties.DISKSPACE_LABEL;
 import static de.uks.beast.editor.util.Properties.IP_LABEL;
-import static de.uks.beast.editor.util.Properties.SUBNET_MASK_LABEL;
+import static de.uks.beast.editor.util.Properties.RAM_LABEL;
 import static de.uks.beast.editor.util.Properties.TRANSFER;
-import model.Network;
+import model.Server;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -31,15 +31,15 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import de.uks.beast.editor.util.Dimensions;
 import de.uks.beast.editor.util.ToolTips;
 
-public class NetworkPropertySection extends GFPropertySection implements ITabbedPropertyConstants
+public class ServerPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {
-	private static final Logger			LOG	= LogManager.getLogger(NetworkPropertySection.class);
+	private static final Logger			LOG	= LogManager.getLogger(ServerPropertySection.class);
 	private Text						ipTextFld;
-	private Text						subnetTextFld;
-	private Text						gatewayTextFld;
-	private Text						dnsTextFld;
+	private Text						cpuCoresTextFld;
+	private Text						ramTextFld;
+	private Text						diskSpaceTextFld;
 	private Button						submitBtn;
-	private Network						network;
+	private Server						server;
 	private TransactionalEditingDomain	domain;
 	
 	
@@ -53,10 +53,10 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		final Composite composite = factory.createFlatFormComposite(parent);
 		FormData data;
 		
-		//Property_ip
+		// Property_ip
 		ipTextFld = factory.createText(composite, "");
 		data = new FormData();
-		data.left = new FormAttachment(0, Dimensions.NETWORK_PROP_LABEL_WIDTH);
+		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE);
 		ipTextFld.setToolTipText(ToolTips.IP_PROP_TIP.get());
@@ -69,53 +69,53 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 		data.top = new FormAttachment(ipTextFld, 0, SWT.CENTER);
 		valueLabel.setLayoutData(data);
 		
-		//Property_cpuAmount
-		subnetTextFld = factory.createText(composite, "");
+		// Property_cpuAmount
+		cpuCoresTextFld = factory.createText(composite, "");
 		data = new FormData();
-		data.left = new FormAttachment(0, Dimensions.NETWORK_PROP_LABEL_WIDTH);
+		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 25);
-		subnetTextFld.setToolTipText(ToolTips.SUBNET_MASK_PROP_TIP.get());
-		subnetTextFld.setLayoutData(data);
+		cpuCoresTextFld.setToolTipText(ToolTips.CPU_CORES_PROP_TIP.get());
+		cpuCoresTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe2 = factory.createCLabel(composite, SUBNET_MASK_LABEL.get());
+		final CLabel valueLabe2 = factory.createCLabel(composite, CPU_CORES_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(subnetTextFld, valueLabe2.getText().length());
-		data.top = new FormAttachment(subnetTextFld, 0, SWT.CENTER);
+		data.right = new FormAttachment(cpuCoresTextFld, valueLabe2.getText().length());
+		data.top = new FormAttachment(cpuCoresTextFld, 0, SWT.CENTER);
 		valueLabe2.setLayoutData(data);
 		
-		//Property_cpuType
-		gatewayTextFld = factory.createText(composite, "");
+		// Property_ram
+		ramTextFld = factory.createText(composite, "");
 		data = new FormData();
-		data.left = new FormAttachment(0, Dimensions.NETWORK_PROP_LABEL_WIDTH);
+		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 50);
-		gatewayTextFld.setToolTipText(ToolTips.GATEWAY_PROP_TIP.get());
-		gatewayTextFld.setLayoutData(data);
+		ramTextFld.setToolTipText(ToolTips.MAX_RAM_PROP_TIP.get());
+		ramTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe3 = factory.createCLabel(composite, GATEWAY_LABEL.get());
+		final CLabel valueLabe4 = factory.createCLabel(composite, RAM_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(gatewayTextFld, valueLabe3.getText().length());
-		data.top = new FormAttachment(gatewayTextFld, 0, SWT.CENTER);
-		valueLabe3.setLayoutData(data);
+		data.right = new FormAttachment(ramTextFld, valueLabe4.getText().length());
+		data.top = new FormAttachment(ramTextFld, 0, SWT.CENTER);
+		valueLabe4.setLayoutData(data);
 		
-		//Property_ram
-		dnsTextFld = factory.createText(composite, "");
+		// Property_diskSpace
+		diskSpaceTextFld = factory.createText(composite, "");
 		data = new FormData();
-		data.left = new FormAttachment(0, Dimensions.NETWORK_PROP_LABEL_WIDTH);
+		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 75);
-		dnsTextFld.setToolTipText(ToolTips.DNS_PROP_TIP.get());
-		dnsTextFld.setLayoutData(data);
+		diskSpaceTextFld.setToolTipText(ToolTips.DISK_SPACE_PROP_TIP.get());
+		diskSpaceTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe4 = factory.createCLabel(composite, DNS_LABEL.get());
+		final CLabel valueLabe5 = factory.createCLabel(composite, DISKSPACE_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(dnsTextFld, valueLabe4.getText().length());
-		data.top = new FormAttachment(dnsTextFld, 0, SWT.CENTER);
-		valueLabe4.setLayoutData(data);
+		data.right = new FormAttachment(diskSpaceTextFld, valueLabe5.getText().length());
+		data.top = new FormAttachment(diskSpaceTextFld, 0, SWT.CENTER);
+		valueLabe5.setLayoutData(data);
 		
 		//Property_submit
 		submitBtn = factory.createButton(composite, TRANSFER.get(), 0);
@@ -133,16 +133,16 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					public void doExecute()
 					{
-						network.setIp(ipTextFld.getText());
-						network.setSubnetmask(subnetTextFld.getText());
-						network.setGateway(gatewayTextFld.getText());
-						network.setDns(dnsTextFld.getText());
+						server.setIp(ipTextFld.getText());
+						server.setCpuCores(Integer.parseInt(cpuCoresTextFld.getText()));
+						server.setRam(Integer.parseInt(ramTextFld.getText()));
+						server.setDiskSpace(Integer.parseInt(diskSpaceTextFld.getText()));
 						
-						LOG.debug("network hash: " + network.hashCode() + " -> ip: " + network.getIp());
-						LOG.debug("network hash: " + network.hashCode() + " -> subnet: " + network.getSubnetmask());
-						LOG.debug("network hash: " + network.hashCode() + " -> gateway: " + network.getGateway());
-						LOG.debug("network hash: " + network.hashCode() + " -> dns: " + network.getDns());
-						LOG.debug("network hash: " + network.hashCode() + " -> name: " + network.getName());
+						LOG.debug("server hash: " + server.hashCode() + " -> ip: " + server.getIp());
+						LOG.debug("server hash: " + server.hashCode() + " -> cpu amount: " + server.getCpuCores());
+						LOG.debug("server hash: " + server.hashCode() + " -> ram: " + server.getRam());
+						LOG.debug("server hash: " + server.hashCode() + " -> diskspace: " + server.getDiskSpace());
+						LOG.debug("server hash: " + server.hashCode() + " -> host: " + server.getName());
 					}
 				});
 				
@@ -157,16 +157,17 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 				
 			}
 		});
+		
 	}
 	
 	
 	
 	private void setPreDefinedValuesToSheet()
 	{
-		ipTextFld.setText(network.getIp());
-		subnetTextFld.setText("" + network.getSubnetmask());
-		gatewayTextFld.setText(network.getGateway());
-		dnsTextFld.setText("" + network.getDns());
+		ipTextFld.setText("" + server.getIp());
+		cpuCoresTextFld.setText("" + server.getCpuCores());
+		ramTextFld.setText("" + server.getRam());
+		diskSpaceTextFld.setText("" + server.getDiskSpace());
 	}
 	
 	
@@ -175,14 +176,13 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 	public void refresh()
 	{
 		final PictogramElement pe = getSelectedPictogramElement();
-		
 		if (pe != null)
 		{
-			network = (Network) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
-			domain = TransactionUtil.getEditingDomain(network);
+			server = (Server) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
+			domain = TransactionUtil.getEditingDomain(server);
 			setPreDefinedValuesToSheet();
 			
-			if (network == null)
+			if (server == null)
 			{
 				return;
 			}

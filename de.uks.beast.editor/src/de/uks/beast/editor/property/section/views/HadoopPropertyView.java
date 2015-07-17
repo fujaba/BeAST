@@ -1,4 +1,4 @@
-package de.uks.beast.editor.property.section;
+package de.uks.beast.editor.property.section.views;
 
 import java.nio.file.Path;
 import java.util.Observable;
@@ -14,10 +14,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
-import de.uks.beast.editor.property.popup.InputFileContainer;
+import de.uks.beast.editor.property.popup.InputFileDataContainer;
 import de.uks.beast.editor.property.popup.Instruction;
-import de.uks.beast.editor.property.popup.JobFileContainer;
-import de.uks.beast.editor.property.popup.OutputFileContainer;
+import de.uks.beast.editor.property.popup.JobFileDataContainer;
+import de.uks.beast.editor.property.popup.OutputFileDataContainer;
 import de.uks.beast.editor.util.FileUtil;
 import de.uks.beast.editor.util.ToolTips;
 
@@ -220,9 +220,9 @@ public class HadoopPropertyView implements Observer
 	public void update(Observable o, Object arg)
 	{
 		
-		if (arg instanceof JobFileContainer)
+		if (arg instanceof JobFileDataContainer)
 		{
-			final JobFileContainer container = (JobFileContainer) arg;
+			final JobFileDataContainer container = (JobFileDataContainer) arg;
 			
 			if (container.getJobFilePath() != null && !container.getJobFilePath().toString().isEmpty())
 			{
@@ -230,18 +230,18 @@ public class HadoopPropertyView implements Observer
 			}
 			
 		}
-		else if (arg instanceof OutputFileContainer)
+		else if (arg instanceof OutputFileDataContainer)
 		{
-			final OutputFileContainer container = (OutputFileContainer) arg;
+			final OutputFileDataContainer container = (OutputFileDataContainer) arg;
 			
 			if (container.getOutputFilePath() != null && !container.getOutputFilePath().toString().isEmpty())
 			{
 				outputFileTextFld.setText(container.getOutputFilePath().toString());
 			}
 		}
-		else if (arg instanceof InputFileContainer)
+		else if (arg instanceof InputFileDataContainer)
 		{
-			final InputFileContainer container = (InputFileContainer) arg;
+			final InputFileDataContainer container = (InputFileDataContainer) arg;
 			if (container.getInputPaths() != null && !container.getInputPaths().isEmpty())
 			{
 				for (final Path p : container.getInputPaths())

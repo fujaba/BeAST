@@ -1,10 +1,11 @@
-package de.uks.beast.editor.property.section;
+package de.uks.beast.editor.property.section.sections;
 
-import static de.uks.beast.editor.util.Properties.EXTERNAL_GATEWAY_LABEL;
-import static de.uks.beast.editor.util.Properties.ID_LABEL;
+import static de.uks.beast.editor.util.Properties.DNS_LABEL;
+import static de.uks.beast.editor.util.Properties.GATEWAY_LABEL;
 import static de.uks.beast.editor.util.Properties.IP_LABEL;
+import static de.uks.beast.editor.util.Properties.SUBNET_MASK_LABEL;
 import static de.uks.beast.editor.util.Properties.TRANSFER;
-import model.Router;
+import model.Network;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -30,14 +31,15 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import de.uks.beast.editor.util.Dimensions;
 import de.uks.beast.editor.util.ToolTips;
 
-public class RouterPropertySection extends GFPropertySection implements ITabbedPropertyConstants
+public class NetworkPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {
-	private static final Logger			LOG	= LogManager.getLogger(RouterPropertySection.class);
+	private static final Logger			LOG	= LogManager.getLogger(NetworkPropertySection.class);
 	private Text						ipTextFld;
-	private Text						externalGatewayTextFld;
-	private Text						idTextFld;
+	private Text						subnetTextFld;
+	private Text						gatewayTextFld;
+	private Text						dnsTextFld;
 	private Button						submitBtn;
-	private Router						router;
+	private Network						network;
 	private TransactionalEditingDomain	domain;
 	
 	
@@ -54,7 +56,7 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		//Property_ip
 		ipTextFld = factory.createText(composite, "");
 		data = new FormData();
-		data.left = new FormAttachment(0, Dimensions.ROUTER_PROP_LABEL_WIDTH);
+		data.left = new FormAttachment(0, Dimensions.NETWORK_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE);
 		ipTextFld.setToolTipText(ToolTips.IP_PROP_TIP.get());
@@ -67,37 +69,53 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		data.top = new FormAttachment(ipTextFld, 0, SWT.CENTER);
 		valueLabel.setLayoutData(data);
 		
-		//Property_cpuType
-		externalGatewayTextFld = factory.createText(composite, "");
+		//Property_cpuAmount
+		subnetTextFld = factory.createText(composite, "");
 		data = new FormData();
-		data.left = new FormAttachment(0, Dimensions.ROUTER_PROP_LABEL_WIDTH);
+		data.left = new FormAttachment(0, Dimensions.NETWORK_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 25);
-		externalGatewayTextFld.setToolTipText(ToolTips.EXT_GATEWAY_PROP_TIP.get());
-		externalGatewayTextFld.setLayoutData(data);
+		subnetTextFld.setToolTipText(ToolTips.SUBNET_MASK_PROP_TIP.get());
+		subnetTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe3 = factory.createCLabel(composite, EXTERNAL_GATEWAY_LABEL.get());
+		final CLabel valueLabe2 = factory.createCLabel(composite, SUBNET_MASK_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(externalGatewayTextFld, valueLabe3.getText().length());
-		data.top = new FormAttachment(externalGatewayTextFld, 0, SWT.CENTER);
-		valueLabe3.setLayoutData(data);
+		data.right = new FormAttachment(subnetTextFld, valueLabe2.getText().length());
+		data.top = new FormAttachment(subnetTextFld, 0, SWT.CENTER);
+		valueLabe2.setLayoutData(data);
 		
-		//Property_diskSpace
-		idTextFld = factory.createText(composite, "");
+		//Property_cpuType
+		gatewayTextFld = factory.createText(composite, "");
 		data = new FormData();
-		data.left = new FormAttachment(0, Dimensions.ROUTER_PROP_LABEL_WIDTH);
+		data.left = new FormAttachment(0, Dimensions.NETWORK_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 50);
-		idTextFld.setToolTipText(ToolTips.ID_PROP_TIP.get());
-		idTextFld.setLayoutData(data);
+		gatewayTextFld.setToolTipText(ToolTips.GATEWAY_PROP_TIP.get());
+		gatewayTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe5 = factory.createCLabel(composite, ID_LABEL.get());
+		final CLabel valueLabe3 = factory.createCLabel(composite, GATEWAY_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(idTextFld, valueLabe5.getText().length());
-		data.top = new FormAttachment(idTextFld, 0, SWT.CENTER);
-		valueLabe5.setLayoutData(data);
+		data.right = new FormAttachment(gatewayTextFld, valueLabe3.getText().length());
+		data.top = new FormAttachment(gatewayTextFld, 0, SWT.CENTER);
+		valueLabe3.setLayoutData(data);
+		
+		//Property_ram
+		dnsTextFld = factory.createText(composite, "");
+		data = new FormData();
+		data.left = new FormAttachment(0, Dimensions.NETWORK_PROP_LABEL_WIDTH);
+		data.right = new FormAttachment(100, 0);
+		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 75);
+		dnsTextFld.setToolTipText(ToolTips.DNS_PROP_TIP.get());
+		dnsTextFld.setLayoutData(data);
+		
+		final CLabel valueLabe4 = factory.createCLabel(composite, DNS_LABEL.get());
+		data = new FormData();
+		data.left = new FormAttachment(0, 0);
+		data.right = new FormAttachment(dnsTextFld, valueLabe4.getText().length());
+		data.top = new FormAttachment(dnsTextFld, 0, SWT.CENTER);
+		valueLabe4.setLayoutData(data);
 		
 		//Property_submit
 		submitBtn = factory.createButton(composite, TRANSFER.get(), 0);
@@ -115,14 +133,16 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					public void doExecute()
 					{
-						router.setIp(ipTextFld.getText());
-						router.setExternalGateway(externalGatewayTextFld.getText());
-						router.setId(idTextFld.getText());
+						network.setIp(ipTextFld.getText());
+						network.setSubnetmask(subnetTextFld.getText());
+						network.setGateway(gatewayTextFld.getText());
+						network.setDns(dnsTextFld.getText());
 						
-						LOG.debug("router hash: " + router.hashCode() + " -> ip: " + router.getIp());
-						LOG.debug("router hash: " + router.hashCode() + " -> external gateway: " + router.getExternalGateway());
-						LOG.debug("router hash: " + router.hashCode() + " -> id: " + router.getId());
-						LOG.debug("router hash: " + router.hashCode() + " -> name: " + router.getName());
+						LOG.debug("network hash: " + network.hashCode() + " -> ip: " + network.getIp());
+						LOG.debug("network hash: " + network.hashCode() + " -> subnet: " + network.getSubnetmask());
+						LOG.debug("network hash: " + network.hashCode() + " -> gateway: " + network.getGateway());
+						LOG.debug("network hash: " + network.hashCode() + " -> dns: " + network.getDns());
+						LOG.debug("network hash: " + network.hashCode() + " -> name: " + network.getName());
 					}
 				});
 				
@@ -143,9 +163,10 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 	
 	private void setPreDefinedValuesToSheet()
 	{
-		ipTextFld.setText(router.getIp());
-		externalGatewayTextFld.setText("" + router.getExternalGateway());
-		idTextFld.setText(router.getId());
+		ipTextFld.setText(network.getIp());
+		subnetTextFld.setText("" + network.getSubnetmask());
+		gatewayTextFld.setText(network.getGateway());
+		dnsTextFld.setText("" + network.getDns());
 	}
 	
 	
@@ -157,15 +178,16 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 		
 		if (pe != null)
 		{
-			router = (Router) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
-			domain = TransactionUtil.getEditingDomain(router);
+			network = (Network) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
+			domain = TransactionUtil.getEditingDomain(network);
 			setPreDefinedValuesToSheet();
 			
-			if (router == null)
+			if (network == null)
 			{
 				return;
 			}
 			
 		}
 	}
+	
 }

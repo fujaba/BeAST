@@ -1,11 +1,10 @@
-package de.uks.beast.editor.property.section;
+package de.uks.beast.editor.property.section.sections;
 
-import static de.uks.beast.editor.util.Properties.CPU_CORES_LABEL;
-import static de.uks.beast.editor.util.Properties.DISKSPACE_LABEL;
+import static de.uks.beast.editor.util.Properties.EXTERNAL_GATEWAY_LABEL;
+import static de.uks.beast.editor.util.Properties.ID_LABEL;
 import static de.uks.beast.editor.util.Properties.IP_LABEL;
-import static de.uks.beast.editor.util.Properties.RAM_LABEL;
 import static de.uks.beast.editor.util.Properties.TRANSFER;
-import model.Server;
+import model.Router;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -31,15 +30,14 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import de.uks.beast.editor.util.Dimensions;
 import de.uks.beast.editor.util.ToolTips;
 
-public class ServerPropertySection extends GFPropertySection implements ITabbedPropertyConstants
+public class RouterPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {
-	private static final Logger			LOG	= LogManager.getLogger(ServerPropertySection.class);
+	private static final Logger			LOG	= LogManager.getLogger(RouterPropertySection.class);
 	private Text						ipTextFld;
-	private Text						cpuCoresTextFld;
-	private Text						ramTextFld;
-	private Text						diskSpaceTextFld;
+	private Text						externalGatewayTextFld;
+	private Text						idTextFld;
 	private Button						submitBtn;
-	private Server						server;
+	private Router						router;
 	private TransactionalEditingDomain	domain;
 	
 	
@@ -53,10 +51,10 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		final Composite composite = factory.createFlatFormComposite(parent);
 		FormData data;
 		
-		// Property_ip
+		//Property_ip
 		ipTextFld = factory.createText(composite, "");
 		data = new FormData();
-		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
+		data.left = new FormAttachment(0, Dimensions.ROUTER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE);
 		ipTextFld.setToolTipText(ToolTips.IP_PROP_TIP.get());
@@ -69,52 +67,36 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		data.top = new FormAttachment(ipTextFld, 0, SWT.CENTER);
 		valueLabel.setLayoutData(data);
 		
-		// Property_cpuAmount
-		cpuCoresTextFld = factory.createText(composite, "");
+		//Property_cpuType
+		externalGatewayTextFld = factory.createText(composite, "");
 		data = new FormData();
-		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
+		data.left = new FormAttachment(0, Dimensions.ROUTER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 25);
-		cpuCoresTextFld.setToolTipText(ToolTips.CPU_CORES_PROP_TIP.get());
-		cpuCoresTextFld.setLayoutData(data);
+		externalGatewayTextFld.setToolTipText(ToolTips.EXT_GATEWAY_PROP_TIP.get());
+		externalGatewayTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe2 = factory.createCLabel(composite, CPU_CORES_LABEL.get());
+		final CLabel valueLabe3 = factory.createCLabel(composite, EXTERNAL_GATEWAY_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(cpuCoresTextFld, valueLabe2.getText().length());
-		data.top = new FormAttachment(cpuCoresTextFld, 0, SWT.CENTER);
-		valueLabe2.setLayoutData(data);
+		data.right = new FormAttachment(externalGatewayTextFld, valueLabe3.getText().length());
+		data.top = new FormAttachment(externalGatewayTextFld, 0, SWT.CENTER);
+		valueLabe3.setLayoutData(data);
 		
-		// Property_ram
-		ramTextFld = factory.createText(composite, "");
+		//Property_diskSpace
+		idTextFld = factory.createText(composite, "");
 		data = new FormData();
-		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
+		data.left = new FormAttachment(0, Dimensions.ROUTER_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 50);
-		ramTextFld.setToolTipText(ToolTips.MAX_RAM_PROP_TIP.get());
-		ramTextFld.setLayoutData(data);
+		idTextFld.setToolTipText(ToolTips.ID_PROP_TIP.get());
+		idTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe4 = factory.createCLabel(composite, RAM_LABEL.get());
+		final CLabel valueLabe5 = factory.createCLabel(composite, ID_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(ramTextFld, valueLabe4.getText().length());
-		data.top = new FormAttachment(ramTextFld, 0, SWT.CENTER);
-		valueLabe4.setLayoutData(data);
-		
-		// Property_diskSpace
-		diskSpaceTextFld = factory.createText(composite, "");
-		data = new FormData();
-		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
-		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 75);
-		diskSpaceTextFld.setToolTipText(ToolTips.DISK_SPACE_PROP_TIP.get());
-		diskSpaceTextFld.setLayoutData(data);
-		
-		final CLabel valueLabe5 = factory.createCLabel(composite, DISKSPACE_LABEL.get());
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(diskSpaceTextFld, valueLabe5.getText().length());
-		data.top = new FormAttachment(diskSpaceTextFld, 0, SWT.CENTER);
+		data.right = new FormAttachment(idTextFld, valueLabe5.getText().length());
+		data.top = new FormAttachment(idTextFld, 0, SWT.CENTER);
 		valueLabe5.setLayoutData(data);
 		
 		//Property_submit
@@ -133,16 +115,14 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					public void doExecute()
 					{
-						server.setIp(ipTextFld.getText());
-						server.setCpuCores(Integer.parseInt(cpuCoresTextFld.getText()));
-						server.setRam(Integer.parseInt(ramTextFld.getText()));
-						server.setDiskSpace(Integer.parseInt(diskSpaceTextFld.getText()));
+						router.setIp(ipTextFld.getText());
+						router.setExternalGateway(externalGatewayTextFld.getText());
+						router.setId(idTextFld.getText());
 						
-						LOG.debug("server hash: " + server.hashCode() + " -> ip: " + server.getIp());
-						LOG.debug("server hash: " + server.hashCode() + " -> cpu amount: " + server.getCpuCores());
-						LOG.debug("server hash: " + server.hashCode() + " -> ram: " + server.getRam());
-						LOG.debug("server hash: " + server.hashCode() + " -> diskspace: " + server.getDiskSpace());
-						LOG.debug("server hash: " + server.hashCode() + " -> host: " + server.getName());
+						LOG.debug("router hash: " + router.hashCode() + " -> ip: " + router.getIp());
+						LOG.debug("router hash: " + router.hashCode() + " -> external gateway: " + router.getExternalGateway());
+						LOG.debug("router hash: " + router.hashCode() + " -> id: " + router.getId());
+						LOG.debug("router hash: " + router.hashCode() + " -> name: " + router.getName());
 					}
 				});
 				
@@ -157,17 +137,15 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 				
 			}
 		});
-		
 	}
 	
 	
 	
 	private void setPreDefinedValuesToSheet()
 	{
-		ipTextFld.setText("" + server.getIp());
-		cpuCoresTextFld.setText("" + server.getCpuCores());
-		ramTextFld.setText("" + server.getRam());
-		diskSpaceTextFld.setText("" + server.getDiskSpace());
+		ipTextFld.setText(router.getIp());
+		externalGatewayTextFld.setText("" + router.getExternalGateway());
+		idTextFld.setText(router.getId());
 	}
 	
 	
@@ -176,18 +154,18 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 	public void refresh()
 	{
 		final PictogramElement pe = getSelectedPictogramElement();
+		
 		if (pe != null)
 		{
-			server = (Server) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
-			domain = TransactionUtil.getEditingDomain(server);
+			router = (Router) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
+			domain = TransactionUtil.getEditingDomain(router);
 			setPreDefinedValuesToSheet();
 			
-			if (server == null)
+			if (router == null)
 			{
 				return;
 			}
 			
 		}
 	}
-	
 }

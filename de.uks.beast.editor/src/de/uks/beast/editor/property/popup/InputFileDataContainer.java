@@ -6,14 +6,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class InputFileContainer
+public class InputFileDataContainer
 {
 	private final List<Path>	inputPaths;
 	private final Path			unzipToPath;
 	
 	
 	
-	protected InputFileContainer(final List<Path> inputPaths, final Path unzipToPath)
+	protected InputFileDataContainer(final List<Path> inputPaths, final Path unzipToPath)
 	{
 		this.inputPaths = Collections.unmodifiableList(inputPaths);
 		this.unzipToPath = unzipToPath;
@@ -44,15 +44,15 @@ public class InputFileContainer
 	@Override
 	public boolean equals(Object obj)
 	{
-		if (obj instanceof InputFileContainer)
+		if (obj instanceof InputFileDataContainer)
 		{
 			final Set<Path> currentSet = new HashSet<>();
 			currentSet.addAll(inputPaths);
 			
 			final Set<Path> setToCheck = new HashSet<>();
-			setToCheck.addAll(((InputFileContainer) obj).getInputPaths());
+			setToCheck.addAll(((InputFileDataContainer) obj).getInputPaths());
 			
-			return (currentSet.equals(setToCheck) && ((InputFileContainer) obj).getUnzipToPath().equals(unzipToPath));
+			return (currentSet.equals(setToCheck) && ((InputFileDataContainer) obj).getUnzipToPath().equals(unzipToPath));
 		}
 		
 		return false;

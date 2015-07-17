@@ -1,4 +1,4 @@
-package de.uks.beast.editor.property.section;
+package de.uks.beast.editor.property.section.sections;
 
 import model.Service;
 
@@ -37,7 +37,8 @@ public class HadoopPropertySection extends GFPropertySection implements ITabbedP
 		final TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
 		final Composite composite = factory.createFlatFormComposite(parent);
 		
-		new JobInformationController(parent.getDisplay(), composite, factory);
+		final JobInformationController controller = new JobInformationController(parent.getDisplay(), composite, factory);
+		controller.init();
 		LOG.debug("Init JobInformationController...");
 	}
 	

@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
-import de.uks.beast.editor.property.section.HadoopPropertyView;
+import de.uks.beast.editor.property.section.views.HadoopPropertyView;
 import de.uks.beast.editor.service.job.Job;
 import de.uks.beast.editor.service.job.JobInterface;
 import de.uks.beast.editor.util.EclipseJobSynchronizer;
@@ -25,7 +25,7 @@ import de.uks.beast.editor.util.FileUtil;
 public class JobInformationController extends Observable
 {
 	private static final Logger			LOG				= LogManager.getLogger(JobInformationController.class);
-	private final InfoContainer			infoContainer	= new InfoContainer();
+	private final JobDataContainer			jobDataContainer	= new JobDataContainer();
 	private final PopupView				popupView;
 	private final HadoopPropertyView	propertyView;
 	private final Shell					mainShell;
@@ -37,13 +37,11 @@ public class JobInformationController extends Observable
 		this.popupView = new PopupView(display);
 		this.propertyView = new HadoopPropertyView(parent, factory);
 		this.mainShell = parent.getShell();
-		
-		init();
 	}
 	
 	
 	
-	private void init()
+	public void init()
 	{
 		addObservers();
 		setListenerToPropertyView();
@@ -53,14 +51,14 @@ public class JobInformationController extends Observable
 	
 	private void addObservers()
 	{
-		this.addObserver(infoContainer);
+		this.addObserver(jobDataContainer);
 		this.addObserver(popupView);
 		this.addObserver(propertyView);
 	}
 	
 	
 	
-	private void update(final InputFileContainer container)
+	private void update(final InputFileDataContainer container)
 	{
 		if (countObservers() > 0 && container != null)
 		{
@@ -83,7 +81,7 @@ public class JobInformationController extends Observable
 	
 	
 	
-	private void update(final JobFileContainer container)
+	private void update(final JobFileDataContainer container)
 	{
 		if (countObservers() > 0 && container != null)
 		{
@@ -94,7 +92,7 @@ public class JobInformationController extends Observable
 	
 	
 	
-	private void update(final OutputFileContainer container)
+	private void update(final OutputFileDataContainer container)
 	{
 		if (countObservers() > 0 && container != null)
 		{
@@ -116,7 +114,7 @@ public class JobInformationController extends Observable
 	
 	
 	
-	private void update(final InfoContainer container)
+	private void update(final JobDataContainer container)
 	{
 		if (countObservers() > 0 && container != null)
 		{
@@ -169,7 +167,7 @@ public class JobInformationController extends Observable
 				if (popupView.getTextfldInput() != null && !popupView.getTextfldInput().isEmpty())
 				{
 					final Path unzipToPath = Paths.get(popupView.getTextfldInput());
-					update(new InputFileContainer(tmpList, unzipToPath));
+					update(new InputFileDataContainer(tmpList, unzipToPath));
 				}
 				update(Instruction.CLOSE);
 			}
@@ -199,8 +197,8 @@ public class JobInformationController extends Observable
 				
 				if (fb.getFileList().size() == 1)
 				{
-					update(new JobFileContainer(fb.getFileList().get(0)));
-					update(infoContainer);
+					update(new JobFileDataContainer(fb.getFileList().get(0)));
+					update(jobDataContainer);
 				}
 				else
 				{
@@ -246,9 +244,9 @@ public class JobInformationController extends Observable
 				try
 				{
 					update(propertyView.getNameInput());
-					update(new OutputFileContainer(Paths.get(propertyView.getOutputFileInput())));
+					update(new OutputFileDataContainer(Paths.get(propertyView.getOutputFileInput())));
 					
-					final Job job = infoContainer.getBuildedJob();
+					final Job job = jobDataContainer.getBuildedJob();
 					
 					printJob(job);
 					

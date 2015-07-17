@@ -2,13 +2,13 @@ package de.uks.beast.editor.property.popup;
 
 import java.nio.file.Path;
 
-public class OutputFileContainer
+public class OutputFileDataContainer
 {
 	private final Path	outputFilePath;
 	
 	
 	
-	public OutputFileContainer(final Path path)
+	public OutputFileDataContainer(final Path path)
 	{
 		this.outputFilePath = path;
 	}

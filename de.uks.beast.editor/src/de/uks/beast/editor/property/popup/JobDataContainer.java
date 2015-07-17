@@ -12,16 +12,16 @@ import de.uks.beast.editor.service.job.JobBuilder;
 import de.uks.beast.editor.service.job.JobFile;
 import de.uks.beast.editor.service.job.JobInterface;
 
-public class InfoContainer implements Observer
+public class JobDataContainer implements Observer
 {
-	private final List<InputFileContainer>	inputFileContaineList	= new ArrayList<>();
-	private JobFileContainer				jobFileContainer;
-	private OutputFileContainer				outputFileContainer;
+	private final List<InputFileDataContainer>	inputFileContaineList	= new ArrayList<>();
+	private JobFileDataContainer				jobFileDataContainer;
+	private OutputFileDataContainer				outputFileDataContainer;
 	private String							name;
 	
 	
 	
-	protected InfoContainer()
+	protected JobDataContainer()
 	{
 	}
 	
@@ -33,15 +33,15 @@ public class InfoContainer implements Observer
 		
 		builder.setName(name);
 		
-		final JobInterface jobFile = new JobFile(jobFileContainer.getJobFilePath().getFileName().toString(),
-				jobFileContainer.getJobFilePath(), Paths.get(""));
-		final JobInterface jobOuputFile = new JobFile(outputFileContainer.getOutputFilePath().getFileName().toString(),
-				outputFileContainer.getOutputFilePath(), Paths.get(""));
+		final JobInterface jobFile = new JobFile(jobFileDataContainer.getJobFilePath().getFileName().toString(),
+				jobFileDataContainer.getJobFilePath(), Paths.get(""));
+		final JobInterface jobOuputFile = new JobFile(outputFileDataContainer.getOutputFilePath().getFileName().toString(),
+				outputFileDataContainer.getOutputFilePath(), Paths.get(""));
 		
 		builder.setJobFile(jobFile);
 		builder.setOutputFile(jobOuputFile);
 		
-		for (final InputFileContainer container : inputFileContaineList)
+		for (final InputFileDataContainer container : inputFileContaineList)
 		{
 			for (final Path p : container.getInputPaths())
 			{
@@ -59,7 +59,7 @@ public class InfoContainer implements Observer
 	{
 		if (path != null)
 		{
-			this.jobFileContainer = new JobFileContainer(path);
+			this.jobFileDataContainer = new JobFileDataContainer(path);
 		}
 	}
 	
@@ -69,7 +69,7 @@ public class InfoContainer implements Observer
 	{
 		if (path != null)
 		{
-			this.outputFileContainer = new OutputFileContainer(path);
+			this.outputFileDataContainer = new OutputFileDataContainer(path);
 		}
 	}
 	
@@ -78,30 +78,30 @@ public class InfoContainer implements Observer
 	@Override
 	public void update(Observable o, Object arg)
 	{
-		if (arg instanceof JobFileContainer)
+		if (arg instanceof JobFileDataContainer)
 		{
-			final JobFileContainer container = (JobFileContainer) arg;
+			final JobFileDataContainer container = (JobFileDataContainer) arg;
 			
 			if (container.getJobFilePath() != null && !container.getJobFilePath().toString().isEmpty())
 			{
-				this.jobFileContainer = container;
+				this.jobFileDataContainer = container;
 			}
 			
 		}
-		else if (arg instanceof OutputFileContainer)
+		else if (arg instanceof OutputFileDataContainer)
 		{
-			final OutputFileContainer container = (OutputFileContainer) arg;
+			final OutputFileDataContainer container = (OutputFileDataContainer) arg;
 			
 			if (container.getOutputFilePath() != null && !container.getOutputFilePath().toString().isEmpty())
 			{
-				this.outputFileContainer = container;
+				this.outputFileDataContainer = container;
 			}
 		}
-		else if (arg instanceof InputFileContainer)
+		else if (arg instanceof InputFileDataContainer)
 		{
-			final InputFileContainer ifc = (InputFileContainer) arg;
+			final InputFileDataContainer ifc = (InputFileDataContainer) arg;
 			
-			for (final InputFileContainer c : inputFileContaineList)
+			for (final InputFileDataContainer c : inputFileContaineList)
 			{
 				if (c.equals(ifc))
 				{
