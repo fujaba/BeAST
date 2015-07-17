@@ -55,7 +55,7 @@ public class JobDataContainer implements Observer
 	
 	
 	
-	public void setJobFilePath(final Path path)
+	protected void setJobFilePath(final Path path)
 	{
 		if (path != null)
 		{
@@ -65,7 +65,7 @@ public class JobDataContainer implements Observer
 	
 	
 	
-	public void setJobOutputPath(final Path path)
+	protected void setJobOutputPath(final Path path)
 	{
 		if (path != null)
 		{

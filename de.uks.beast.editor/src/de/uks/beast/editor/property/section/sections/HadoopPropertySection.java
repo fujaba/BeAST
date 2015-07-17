@@ -38,7 +38,7 @@ public class HadoopPropertySection extends GFPropertySection implements ITabbedP
 		final Composite composite = factory.createFlatFormComposite(parent);
 		
 		final JobDataController controller = new JobDataController(parent.getDisplay(), composite, factory);
-		controller.init();
+		controller.execute();
 		LOG.debug("Init JobInformationController...");
 	}
 	

@@ -43,7 +43,7 @@ public class JobDataController extends Observable
 	
 	
 	
-	public void init()
+	public void execute()
 	{
 		addObservers();
 		setListenerToPropertyView();

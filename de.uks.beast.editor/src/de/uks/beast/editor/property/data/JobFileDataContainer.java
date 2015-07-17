@@ -9,7 +9,7 @@ public class JobFileDataContainer
 	
 	
 	
-	public JobFileDataContainer(final Type type, final Path path)
+	protected JobFileDataContainer(final Type type, final Path path)
 	{
 		this.type = type;
 		this.path = path;

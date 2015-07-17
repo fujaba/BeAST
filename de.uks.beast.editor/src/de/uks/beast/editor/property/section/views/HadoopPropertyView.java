@@ -255,7 +255,7 @@ public class HadoopPropertyView implements Observer
 		{
 			final Instruction instruction = (Instruction) arg;
 			
-			if (Instruction.CLEAR.equals(instruction))
+			if (Instruction.RESET.equals(instruction))
 			{
 				resetAll();
 			}
