@@ -42,17 +42,6 @@ public class JobFile implements JobInterface
 	
 	
 	/**
-	 * @return the jobFile
-	 */
-	@Override
-	public JobFile getFile()
-	{
-		return this;
-	}
-	
-	
-	
-	/**
 	 * @return the unzip path
 	 */
 	@Override

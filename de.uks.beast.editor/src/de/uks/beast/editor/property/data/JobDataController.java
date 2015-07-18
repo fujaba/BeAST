@@ -22,7 +22,6 @@ import de.uks.beast.editor.service.job.Job;
 import de.uks.beast.editor.service.job.JobInterface;
 import de.uks.beast.editor.util.EclipseJobSynchronizer;
 import de.uks.beast.editor.util.FileBrowser;
-import de.uks.beast.editor.util.FileUtil;
 
 public class JobDataController extends Observable
 {
@@ -239,8 +238,6 @@ public class JobDataController extends Observable
 					final Job job = jobDataContainer.getBuildedJob();
 					
 					printJob(job);
-					
-					FileUtil.createConfigFile(job.getOutputFile().getName(), job.getOutputFile().getPath());
 					
 					final EclipseJobSynchronizer jobSynchronizer = new EclipseJobSynchronizer(mainShell, job);
 					jobSynchronizer.initAndRun();

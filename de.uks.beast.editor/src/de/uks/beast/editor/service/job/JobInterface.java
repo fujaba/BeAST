@@ -12,10 +12,6 @@ public interface JobInterface
 	
 	
 	
-	public JobFile getFile();
-	
-	
-	
 	public Path unzipTo();
 	
 }

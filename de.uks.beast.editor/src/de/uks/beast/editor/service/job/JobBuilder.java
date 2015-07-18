@@ -42,7 +42,7 @@ public class JobBuilder
 	{
 		if (jobInterface != null)
 		{
-			this.jobFile = jobInterface.getFile();
+			this.jobFile = jobInterface;
 		}
 		
 		return this;
@@ -57,7 +57,7 @@ public class JobBuilder
 	{
 		if (jobInterface != null)
 		{
-			this.outputFile = jobInterface.getFile();
+			this.outputFile = jobInterface;
 		}
 		
 		return this;

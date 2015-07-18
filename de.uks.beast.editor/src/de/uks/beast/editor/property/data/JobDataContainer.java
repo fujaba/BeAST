@@ -12,6 +12,7 @@ import de.uks.beast.editor.service.job.Job;
 import de.uks.beast.editor.service.job.JobBuilder;
 import de.uks.beast.editor.service.job.JobFile;
 import de.uks.beast.editor.service.job.JobInterface;
+import de.uks.beast.editor.util.Configs;
 
 public class JobDataContainer implements Observer
 {
@@ -36,7 +37,8 @@ public class JobDataContainer implements Observer
 		
 		final JobInterface jobFile = new JobFile(jobFileDataContainer.getPath().getFileName().toString(),
 				jobFileDataContainer.getPath(), Paths.get(""));
-		final JobInterface jobOuputFile = new JobFile("OutputFileConfig.cfg", outputFileDataContainer.getPath(), Paths.get(""));
+		final JobInterface jobOuputFile = new JobFile(Configs.CONFIG_XML.getPath().getFileName().toString(),
+				outputFileDataContainer.getPath(), Paths.get(""));
 		
 		builder.setJobFile(jobFile);
 		builder.setOutputFile(jobOuputFile);
