@@ -29,7 +29,7 @@ import de.uks.beast.editor.util.FileBrowser;
 public class JobDataController extends Observable
 {
 	private static final Logger			LOG					= LogManager.getLogger(JobDataController.class);
-	private final JobDataContainer		jobDataContainer	= new JobDataContainer();
+	private JobDataContainer			jobDataContainer	= new JobDataContainer();
 	private final PopupView				popupView;
 	private final HadoopPropertyView	propertyView;
 	private final Shell					mainShell;
@@ -284,7 +284,9 @@ public class JobDataController extends Observable
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				//update(Instruction.CLEAR);
+				update(Instruction.RESET);
+				jobDataContainer = new JobDataContainer();
+				addObservers();
 			}
 			
 			
