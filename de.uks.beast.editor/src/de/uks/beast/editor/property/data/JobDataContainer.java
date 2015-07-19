@@ -1,5 +1,6 @@
 package de.uks.beast.editor.property.data;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -29,30 +30,37 @@ public class JobDataContainer implements Observer
 	
 	
 	
-	protected Job getBuildedJob()
+	protected Job buildJob() throws IOException
 	{
 		final JobBuilder builder = Job.builder();
 		
-		builder.setName(name);
-		
-		final JobInterface jobFile = new JobFile(jobFileDataContainer.getPath().getFileName().toString(),
-				jobFileDataContainer.getPath(), Paths.get(""));
-		final JobInterface jobOuputFile = new JobFile(Configs.CONFIG_XML.getPath().getFileName().toString(),
-				outputFileDataContainer.getPath(), Paths.get(""));
-		
-		builder.setJobFile(jobFile);
-		builder.setOutputFile(jobOuputFile);
-		
-		for (final InputFileDataContainer container : inputFileContaineList)
+		try
 		{
-			for (final Path p : container.getInputPaths())
+			builder.setName(name);
+			
+			final JobInterface jobFile = new JobFile(jobFileDataContainer.getPath().getFileName().toString(),
+					jobFileDataContainer.getPath(), Paths.get(""));
+			final JobInterface jobOuputFile = new JobFile(Configs.CONFIG_XML.getPath().getFileName().toString(),
+					outputFileDataContainer.getPath(), Paths.get(""));
+			
+			builder.setJobFile(jobFile);
+			builder.setOutputFile(jobOuputFile);
+			
+			for (final InputFileDataContainer container : inputFileContaineList)
 			{
-				final JobInterface inputFile = new JobFile(p.getFileName().toString(), p, container.getUnzipToPath());
-				builder.addInputFiles(inputFile);
+				for (final Path p : container.getInputPaths())
+				{
+					final JobInterface inputFile = new JobFile(p.getFileName().toString(), p, container.getUnzipToPath());
+					builder.addInputFiles(inputFile);
+				}
 			}
+			
+			return builder.build();
 		}
-		
-		return builder.build();
+		catch (NullPointerException npe)
+		{
+			throw new IOException();
+		}
 	}
 	
 	

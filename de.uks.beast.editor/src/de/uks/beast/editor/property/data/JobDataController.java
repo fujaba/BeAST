@@ -1,10 +1,13 @@
 package de.uks.beast.editor.property.data;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
+
+import javax.xml.bind.ValidationException;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -118,6 +121,7 @@ public class JobDataController extends Observable
 	private void setListenerToPopupView()
 	{
 		final List<Path> tmpList = new ArrayList<>();
+		
 		popupView.setFileBrowserBtnListener(new SelectionListener() {
 			
 			@Override
@@ -154,10 +158,14 @@ public class JobDataController extends Observable
 			@Override
 			public void widgetSelected(SelectionEvent event)
 			{
-				if (popupView.getTextfldInput() != null && !popupView.getTextfldInput().isEmpty())
+				if (popupView.getTextfldInput() != null && !popupView.getTextfldInput().isEmpty() && !tmpList.isEmpty())
 				{
 					final Path unzipToPath = Paths.get(popupView.getTextfldInput());
 					update(new InputFileDataContainer(tmpList, unzipToPath));
+				}
+				else
+				{
+					throw new RuntimeException("Adding input files without files or unzip path are not allowed!");
 				}
 				update(Instruction.CLOSE);
 			}
@@ -235,19 +243,30 @@ public class JobDataController extends Observable
 					update(propertyView.getNameInput());
 					update(new JobFileDataContainer(Type.OUTPUTFILE, Paths.get(propertyView.getOutputFileInput())));
 					
-					final Job job = jobDataContainer.getBuildedJob();
+					final Job job = jobDataContainer.buildJob();
 					
-					printJob(job);
-					
-					final EclipseJobSynchronizer jobSynchronizer = new EclipseJobSynchronizer(mainShell, job);
-					jobSynchronizer.initAndRun();
-					
-					update(Instruction.CLOSE);
+					try
+					{
+						if (validateJob(job))
+						{
+							printJob(job);
+							
+							final EclipseJobSynchronizer jobSynchronizer = new EclipseJobSynchronizer(mainShell, job);
+							jobSynchronizer.initAndRun();
+							
+							update(Instruction.CLOSE);
+						}
+					}
+					catch (ValidationException e)
+					{
+						throw new RuntimeException("Job validation failed!", e);
+					}
 				}
-				catch (final Exception e)
+				catch (final IOException e)
 				{
-					throw new RuntimeException("Error while building or zipping!", e);
+					throw new RuntimeException("Job building failed!", e);
 				}
+				
 			}
 			
 			
@@ -278,6 +297,27 @@ public class JobDataController extends Observable
 			}
 		});
 		
+	}
+	
+	
+	
+	private boolean validateJob(final Job job) throws ValidationException
+	{
+		final boolean nameValid = job.getName() != null && !job.getName().isEmpty();
+		final boolean jobFileValid = job.getJobFile() != null && job.getJobFile().getPath() != null
+				&& !job.getJobFile().getName().isEmpty();
+		final boolean inputFileValid = job.getInputFiles() != null && !job.getInputFiles().isEmpty();
+		final boolean outputFileValid = job.getOutputFile() != null && job.getOutputFile().getPath() != null
+				&& !job.getOutputFile().getName().isEmpty();
+		
+		if (nameValid && jobFileValid && inputFileValid && outputFileValid)
+		{
+			return true;
+		}
+		else
+		{
+			throw new ValidationException("");
+		}
 	}
 	
 	

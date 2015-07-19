@@ -162,14 +162,14 @@ public class HadoopPropertyView implements Observer
 	
 	public String getNameInput()
 	{
-		return nameTextFld.getText().isEmpty() ? "default" : nameTextFld.getText();
+		return nameTextFld.getText();
 	}
 	
 	
 	
 	public String getOutputFileInput()
 	{
-		return outputFileTextFld.getText().isEmpty() ? "default" : outputFileTextFld.getText();
+		return outputFileTextFld.getText();
 	}
 	
 	
