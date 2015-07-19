@@ -1,6 +1,5 @@
 package de.uks.beast.editor.property.data;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -245,26 +244,23 @@ public class JobDataController extends Observable
 					
 					final Job job = jobDataContainer.buildJob();
 					
-					try
+					if (validateJob(job))
 					{
-						if (validateJob(job))
-						{
-							printJob(job);
-							
-							final EclipseJobSynchronizer jobSynchronizer = new EclipseJobSynchronizer(mainShell, job);
-							jobSynchronizer.initAndRun();
-							
-							update(Instruction.CLOSE);
-						}
+						printJob(job);
+						
+						final EclipseJobSynchronizer jobSynchronizer = new EclipseJobSynchronizer(mainShell, job);
+						jobSynchronizer.initAndRun();
+						
+						update(Instruction.CLOSE);
 					}
-					catch (ValidationException e)
+					else
 					{
-						throw new RuntimeException("Job validation failed!", e);
+						throw new ValidationException("Job validation failed! [validateJob(Job job) -> false]");
 					}
 				}
-				catch (final IOException e)
+				catch (final NullPointerException | ValidationException e)
 				{
-					throw new RuntimeException("Job building failed!", e);
+					LOG.error("Job building or validation failed!", e);
 				}
 				
 			}
@@ -303,7 +299,7 @@ public class JobDataController extends Observable
 	
 	
 	
-	private boolean validateJob(final Job job) throws ValidationException
+	private boolean validateJob(final Job job)
 	{
 		final boolean nameValid = job.getName() != null && !job.getName().isEmpty();
 		final boolean jobFileValid = job.getJobFile() != null && job.getJobFile().getPath() != null
@@ -312,14 +308,7 @@ public class JobDataController extends Observable
 		final boolean outputFileValid = job.getOutputFile() != null && job.getOutputFile().getPath() != null
 				&& !job.getOutputFile().getName().isEmpty();
 		
-		if (nameValid && jobFileValid && inputFileValid && outputFileValid)
-		{
-			return true;
-		}
-		else
-		{
-			throw new ValidationException("");
-		}
+		return nameValid && jobFileValid && inputFileValid && outputFileValid;
 	}
 	
 	

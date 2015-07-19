@@ -43,7 +43,6 @@ public class NetworkPropertyView
 	{
 		FormData data;
 		
-		//Property_ip
 		ipTextFld = factory.createText(composite, "");
 		data = new FormData();
 		data.left = new FormAttachment(0, Dimensions.NETWORK_PROP_LABEL_WIDTH);
@@ -59,7 +58,6 @@ public class NetworkPropertyView
 		data.top = new FormAttachment(ipTextFld, 0, SWT.CENTER);
 		valueLabel.setLayoutData(data);
 		
-		//Property_cpuAmount
 		subnetTextFld = factory.createText(composite, "");
 		data = new FormData();
 		data.left = new FormAttachment(0, Dimensions.NETWORK_PROP_LABEL_WIDTH);
@@ -75,7 +73,6 @@ public class NetworkPropertyView
 		data.top = new FormAttachment(subnetTextFld, 0, SWT.CENTER);
 		valueLabe2.setLayoutData(data);
 		
-		//Property_cpuType
 		gatewayTextFld = factory.createText(composite, "");
 		data = new FormData();
 		data.left = new FormAttachment(0, Dimensions.NETWORK_PROP_LABEL_WIDTH);
@@ -91,7 +88,6 @@ public class NetworkPropertyView
 		data.top = new FormAttachment(gatewayTextFld, 0, SWT.CENTER);
 		valueLabe3.setLayoutData(data);
 		
-		//Property_ram
 		dnsTextFld = factory.createText(composite, "");
 		data = new FormData();
 		data.left = new FormAttachment(0, Dimensions.NETWORK_PROP_LABEL_WIDTH);
@@ -107,7 +103,6 @@ public class NetworkPropertyView
 		data.top = new FormAttachment(dnsTextFld, 0, SWT.CENTER);
 		valueLabe4.setLayoutData(data);
 		
-		//Property_submit
 		submitBtn = factory.createButton(composite, TRANSFER.get(), 0);
 		data = new FormData();
 		data.left = new FormAttachment(0, 20);
