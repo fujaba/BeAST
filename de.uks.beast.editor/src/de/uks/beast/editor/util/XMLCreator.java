@@ -28,7 +28,7 @@ public class XMLCreator
 		return docBuilder.newDocument();
 	}
 	
-	private static enum Title
+	private static enum Elements
 	{
 		//@formatter:off
 		JOB				("job"),
@@ -46,7 +46,7 @@ public class XMLCreator
 		
 		
 		
-		private Title(final String msg)
+		private Elements(final String msg)
 		{
 			this.msg = msg;
 		}
@@ -60,45 +60,45 @@ public class XMLCreator
 		{
 			final Document doc = createDocument();
 			
-			final Element rootElement = doc.createElement(Title.JOB.msg);
+			final Element rootElement = doc.createElement(Elements.JOB.msg);
 			doc.appendChild(rootElement);
 			
-			final Attr jobName = doc.createAttribute(Title.NAME.msg);
+			final Attr jobName = doc.createAttribute(Elements.NAME.msg);
 			jobName.setValue(job.getName());
 			rootElement.setAttributeNode(jobName);
 			
-			final Element jobFile = doc.createElement(Title.JOB_FILE.msg);
+			final Element jobFile = doc.createElement(Elements.JOB_FILE.msg);
 			rootElement.appendChild(jobFile);
 			
-			final Attr jobFileName = doc.createAttribute(Title.NAME.msg);
+			final Attr jobFileName = doc.createAttribute(Elements.NAME.msg);
 			jobFileName.setValue(job.getJobFile().getName());
 			jobFile.setAttributeNode(jobFileName);
 			
-			final Element inputFiles = doc.createElement(Title.INPUT_FILES.msg);
+			final Element inputFiles = doc.createElement(Elements.INPUT_FILES.msg);
 			rootElement.appendChild(inputFiles);
 			
 			for (final JobInterface ji : job.getInputFiles())
 			{
-				final Element inputFile = doc.createElement(Title.INPUT_FILE.msg);
+				final Element inputFile = doc.createElement(Elements.INPUT_FILE.msg);
 				inputFiles.appendChild(inputFile);
 				
-				final Attr inputFileName = doc.createAttribute(Title.NAME.msg);
+				final Attr inputFileName = doc.createAttribute(Elements.NAME.msg);
 				inputFileName.setValue(ji.getName());
 				inputFile.setAttributeNode(inputFileName);
 				
-				final Element inputFileSource = doc.createElement(Title.SOURCE_PATH.msg);
+				final Element inputFileSource = doc.createElement(Elements.SOURCE_PATH.msg);
 				inputFileSource.appendChild(doc.createTextNode(ji.getPath().toString()));
 				inputFile.appendChild(inputFileSource);
 				
-				final Element inputFileTarget = doc.createElement(Title.TARGET_PATH.msg);
+				final Element inputFileTarget = doc.createElement(Elements.TARGET_PATH.msg);
 				inputFileTarget.appendChild(doc.createTextNode(ji.unzipTo().toString()));
 				inputFile.appendChild(inputFileTarget);
 			}
 			
-			final Element jobOutputFile = doc.createElement(Title.OUTPUT_FILE.msg);
+			final Element jobOutputFile = doc.createElement(Elements.OUTPUT_FILE.msg);
 			rootElement.appendChild(jobOutputFile);
 			
-			final Attr jobOutputName = doc.createAttribute(Title.PATH.msg);
+			final Attr jobOutputName = doc.createAttribute(Elements.PATH.msg);
 			jobOutputName.setValue(job.getOutputFile().getPath().toString());
 			jobOutputFile.setAttributeNode(jobOutputName);
 			

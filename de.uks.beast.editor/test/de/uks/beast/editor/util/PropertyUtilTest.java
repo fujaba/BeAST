@@ -1,6 +1,8 @@
 package de.uks.beast.editor.util;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -83,5 +85,12 @@ public class PropertyUtilTest
 		
 		valid = PropertyUtil.validateIp("22.2222.22.2");
 		assertEquals(false, valid);
+	}
+	
+	@Test
+	public void updateNeededTest() {
+		assertTrue(PropertyUtil.updateNeeded("eins", "zwei"));
+		
+		assertFalse(PropertyUtil.updateNeeded("eins", "eins"));
 	}
 }
