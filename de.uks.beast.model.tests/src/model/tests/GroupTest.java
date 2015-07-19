@@ -3,29 +3,31 @@
 package model.tests;
 
 import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
-
+import model.Group;
 import model.ModelFactory;
-import model.Room;
+
+import org.junit.Test;
 
 /**
  * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Room</b></em>'.
+ * A test case for the model object '<em><b>Group</b></em>'.
  * <!-- end-user-doc -->
  * @generated
  */
-public class RoomTest extends TestCase
+public class GroupTest extends TestCase
 {
-
+	
 	/**
-	 * The fixture for this Room test case.
+	 * The fixture for this Group test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Room fixture = null;
-
+	protected Group	fixture	= null;
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -33,42 +35,50 @@ public class RoomTest extends TestCase
 	 */
 	public static void main(String[] args)
 	{
-		TestRunner.run(RoomTest.class);
+		TestRunner.run(GroupTest.class);
 	}
-
+	
+	
+	
 	/**
-	 * Constructs a new Room test case with the given name.
+	 * Constructs a new Group test case with the given name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RoomTest(String name)
+	public GroupTest(String name)
 	{
 		super(name);
 	}
-
+	
+	
+	
 	/**
-	 * Sets the fixture for this Room test case.
+	 * Sets the fixture for this Group test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void setFixture(Room fixture)
+	protected void setFixture(Group fixture)
 	{
 		this.fixture = fixture;
 	}
-
+	
+	
+	
 	/**
-	 * Returns the fixture for this Room test case.
+	 * Returns the fixture for this Group test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Room getFixture()
+	protected Group getFixture()
 	{
 		return fixture;
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,9 +88,11 @@ public class RoomTest extends TestCase
 	@Override
 	protected void setUp() throws Exception
 	{
-		setFixture(ModelFactory.eINSTANCE.createRoom());
+		setFixture(ModelFactory.eINSTANCE.createGroup());
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -92,5 +104,19 @@ public class RoomTest extends TestCase
 	{
 		setFixture(null);
 	}
-
-} //RoomTest
+	
+	
+	
+	@Test
+	public void testGetterAndSetter()
+	{
+		final Group r = getFixture();
+		
+		r.setName("test_network");
+		r.setId(1);
+		
+		assertEquals("test_network", r.getName());
+		assertEquals(1, r.getId());
+	}
+	
+} //GroupTest

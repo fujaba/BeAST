@@ -3,11 +3,11 @@
 package model.tests;
 
 import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
-
 import model.ModelFactory;
 import model.Router;
+
+import org.junit.Test;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,15 +17,17 @@ import model.Router;
  */
 public class RouterTest extends TestCase
 {
-
+	
 	/**
 	 * The fixture for this Router test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Router fixture = null;
-
+	protected Router	fixture	= null;
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -35,7 +37,9 @@ public class RouterTest extends TestCase
 	{
 		TestRunner.run(RouterTest.class);
 	}
-
+	
+	
+	
 	/**
 	 * Constructs a new Router test case with the given name.
 	 * <!-- begin-user-doc -->
@@ -46,7 +50,9 @@ public class RouterTest extends TestCase
 	{
 		super(name);
 	}
-
+	
+	
+	
 	/**
 	 * Sets the fixture for this Router test case.
 	 * <!-- begin-user-doc -->
@@ -57,7 +63,9 @@ public class RouterTest extends TestCase
 	{
 		this.fixture = fixture;
 	}
-
+	
+	
+	
 	/**
 	 * Returns the fixture for this Router test case.
 	 * <!-- begin-user-doc -->
@@ -68,7 +76,9 @@ public class RouterTest extends TestCase
 	{
 		return fixture;
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +90,9 @@ public class RouterTest extends TestCase
 	{
 		setFixture(ModelFactory.eINSTANCE.createRouter());
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -92,5 +104,23 @@ public class RouterTest extends TestCase
 	{
 		setFixture(null);
 	}
-
+	
+	
+	
+	@Test
+	public void testGetterAndSetter()
+	{
+		final Router r = getFixture();
+		
+		r.setName("test_network");
+		r.setId("test_id");
+		r.setExternalGateway("test_external_gateway");
+		r.setIp("test_ip");
+		
+		assertEquals("test_network", r.getName());
+		assertEquals("test_id", r.getId());
+		assertEquals("test_external_gateway", r.getExternalGateway());
+		assertEquals("test_ip", r.getIp());
+	}
+	
 } //RouterTest

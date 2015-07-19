@@ -179,8 +179,8 @@ public class NetworkItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Network_router_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Network_router_feature", "_UI_Network_type"),
+				 getString("_UI_Network_Router_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Network_Router_feature", "_UI_Network_type"),
 				 ModelPackage.Literals.NETWORK__ROUTER,
 				 true,
 				 false,
@@ -225,8 +225,8 @@ public class NetworkItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Network_server_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Network_server_feature", "_UI_Network_type"),
+				 getString("_UI_Network_Server_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Network_Server_feature", "_UI_Network_type"),
 				 ModelPackage.Literals.NETWORK__SERVER,
 				 true,
 				 false,

@@ -64,29 +64,29 @@ public class MongoDBItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addTitlePropertyDescriptor(object);
-			addRelationsPropertyDescriptor(object);
-			addServiceNamePropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
 			addServiceTypePropertyDescriptor(object);
+			addServiceNamePropertyDescriptor(object);
+			addRelationsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Title feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTitlePropertyDescriptor(Object object)
+	protected void addNamePropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Service_title_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Service_title_feature", "_UI_Service_type"),
-				 ModelPackage.Literals.SERVICE__TITLE,
+				 getString("_UI_Service_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Service_name_feature", "_UI_Service_type"),
+				 ModelPackage.Literals.SERVICE__NAME,
 				 true,
 				 false,
 				 false,
@@ -185,7 +185,7 @@ public class MongoDBItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((MongoDB)object).getServiceName();
+		String label = ((MongoDB)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_MongoDB_type") :
 			getString("_UI_MongoDB_type") + " " + label;
@@ -206,9 +206,9 @@ public class MongoDBItemProvider
 
 		switch (notification.getFeatureID(MongoDB.class))
 		{
-			case ModelPackage.MONGO_DB__TITLE:
-			case ModelPackage.MONGO_DB__SERVICE_NAME:
+			case ModelPackage.MONGO_DB__NAME:
 			case ModelPackage.MONGO_DB__SERVICE_TYPE:
+			case ModelPackage.MONGO_DB__SERVICE_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

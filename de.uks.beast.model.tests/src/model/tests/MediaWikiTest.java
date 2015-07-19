@@ -3,11 +3,11 @@
 package model.tests;
 
 import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
-
 import model.MediaWiki;
 import model.ModelFactory;
+
+import org.junit.Test;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,15 +17,17 @@ import model.ModelFactory;
  */
 public class MediaWikiTest extends TestCase
 {
-
+	
 	/**
 	 * The fixture for this Media Wiki test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MediaWiki fixture = null;
-
+	protected MediaWiki	fixture	= null;
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -35,7 +37,9 @@ public class MediaWikiTest extends TestCase
 	{
 		TestRunner.run(MediaWikiTest.class);
 	}
-
+	
+	
+	
 	/**
 	 * Constructs a new Media Wiki test case with the given name.
 	 * <!-- begin-user-doc -->
@@ -46,7 +50,9 @@ public class MediaWikiTest extends TestCase
 	{
 		super(name);
 	}
-
+	
+	
+	
 	/**
 	 * Sets the fixture for this Media Wiki test case.
 	 * <!-- begin-user-doc -->
@@ -57,7 +63,9 @@ public class MediaWikiTest extends TestCase
 	{
 		this.fixture = fixture;
 	}
-
+	
+	
+	
 	/**
 	 * Returns the fixture for this Media Wiki test case.
 	 * <!-- begin-user-doc -->
@@ -68,7 +76,9 @@ public class MediaWikiTest extends TestCase
 	{
 		return fixture;
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +90,9 @@ public class MediaWikiTest extends TestCase
 	{
 		setFixture(ModelFactory.eINSTANCE.createMediaWiki());
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -92,5 +104,28 @@ public class MediaWikiTest extends TestCase
 	{
 		setFixture(null);
 	}
-
+	
+	
+	
+	@Test
+	public void testGetterAndSetter()
+	{
+		final MediaWiki a = getFixture();
+		final MediaWiki b = getFixture();
+		
+		a.setName("test_name");
+		a.setServiceName("test_service");
+		a.setServiceType("test_type");
+		
+		assertTrue(a.getRelations().isEmpty());
+		
+		a.getRelations().add(b);
+		
+		assertEquals("test_name", a.getName());
+		assertEquals("test_service", a.getServiceName());
+		assertEquals("test_type", a.getServiceType());
+		assertTrue(a.getRelations().size() == 1);
+		assertEquals(b, a.getRelations().get(0));
+	}
+	
 } //MediaWikiTest

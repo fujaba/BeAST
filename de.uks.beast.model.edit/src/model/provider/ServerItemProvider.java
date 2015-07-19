@@ -204,8 +204,8 @@ public class ServerItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Server_network_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Server_network_feature", "_UI_Server_type"),
+				 getString("_UI_Server_Network_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Server_Network_feature", "_UI_Server_type"),
 				 ModelPackage.Literals.SERVER__NETWORK,
 				 true,
 				 false,

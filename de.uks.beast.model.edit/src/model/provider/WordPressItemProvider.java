@@ -64,29 +64,29 @@ public class WordPressItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addTitlePropertyDescriptor(object);
-			addRelationsPropertyDescriptor(object);
-			addServiceNamePropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
 			addServiceTypePropertyDescriptor(object);
+			addServiceNamePropertyDescriptor(object);
+			addRelationsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Title feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTitlePropertyDescriptor(Object object)
+	protected void addNamePropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Service_title_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Service_title_feature", "_UI_Service_type"),
-				 ModelPackage.Literals.SERVICE__TITLE,
+				 getString("_UI_Service_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Service_name_feature", "_UI_Service_type"),
+				 ModelPackage.Literals.SERVICE__NAME,
 				 true,
 				 false,
 				 false,
@@ -185,7 +185,7 @@ public class WordPressItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((WordPress)object).getServiceName();
+		String label = ((WordPress)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_WordPress_type") :
 			getString("_UI_WordPress_type") + " " + label;
@@ -206,9 +206,9 @@ public class WordPressItemProvider
 
 		switch (notification.getFeatureID(WordPress.class))
 		{
-			case ModelPackage.WORD_PRESS__TITLE:
-			case ModelPackage.WORD_PRESS__SERVICE_NAME:
+			case ModelPackage.WORD_PRESS__NAME:
 			case ModelPackage.WORD_PRESS__SERVICE_TYPE:
+			case ModelPackage.WORD_PRESS__SERVICE_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

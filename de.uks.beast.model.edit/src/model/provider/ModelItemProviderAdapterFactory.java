@@ -99,28 +99,28 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link model.Rack} instances.
+	 * This keeps track of the one adapter used for all {@link model.Group} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RackItemProvider rackItemProvider;
+	protected GroupItemProvider groupItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link model.Rack}.
+	 * This creates an adapter for a {@link model.Group}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createRackAdapter()
+	public Adapter createGroupAdapter()
 	{
-		if (rackItemProvider == null)
+		if (groupItemProvider == null)
 		{
-			rackItemProvider = new RackItemProvider(this);
+			groupItemProvider = new GroupItemProvider(this);
 		}
 
-		return rackItemProvider;
+		return groupItemProvider;
 	}
 
 	/**
@@ -146,31 +146,6 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 		}
 
 		return networkItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link model.Room} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected RoomItemProvider roomItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link model.Room}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createRoomAdapter()
-	{
-		if (roomItemProvider == null)
-		{
-			roomItemProvider = new RoomItemProvider(this);
-		}
-
-		return roomItemProvider;
 	}
 
 	/**
@@ -585,9 +560,8 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	public void dispose()
 	{
 		if (serverItemProvider != null) serverItemProvider.dispose();
-		if (rackItemProvider != null) rackItemProvider.dispose();
+		if (groupItemProvider != null) groupItemProvider.dispose();
 		if (networkItemProvider != null) networkItemProvider.dispose();
-		if (roomItemProvider != null) roomItemProvider.dispose();
 		if (routerItemProvider != null) routerItemProvider.dispose();
 		if (hadoopMasterItemProvider != null) hadoopMasterItemProvider.dispose();
 		if (hadoopSlaveItemProvider != null) hadoopSlaveItemProvider.dispose();

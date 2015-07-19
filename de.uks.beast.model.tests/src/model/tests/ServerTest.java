@@ -3,11 +3,13 @@
 package model.tests;
 
 import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
-
 import model.ModelFactory;
+import model.Network;
 import model.Server;
+import model.Service;
+
+import org.junit.Test;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,15 +19,17 @@ import model.Server;
  */
 public class ServerTest extends TestCase
 {
-
+	
 	/**
 	 * The fixture for this Server test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Server fixture = null;
-
+	protected Server	fixture	= null;
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -35,7 +39,9 @@ public class ServerTest extends TestCase
 	{
 		TestRunner.run(ServerTest.class);
 	}
-
+	
+	
+	
 	/**
 	 * Constructs a new Server test case with the given name.
 	 * <!-- begin-user-doc -->
@@ -46,7 +52,9 @@ public class ServerTest extends TestCase
 	{
 		super(name);
 	}
-
+	
+	
+	
 	/**
 	 * Sets the fixture for this Server test case.
 	 * <!-- begin-user-doc -->
@@ -57,7 +65,9 @@ public class ServerTest extends TestCase
 	{
 		this.fixture = fixture;
 	}
-
+	
+	
+	
 	/**
 	 * Returns the fixture for this Server test case.
 	 * <!-- begin-user-doc -->
@@ -68,7 +78,9 @@ public class ServerTest extends TestCase
 	{
 		return fixture;
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +92,9 @@ public class ServerTest extends TestCase
 	{
 		setFixture(ModelFactory.eINSTANCE.createServer());
 	}
-
+	
+	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -92,5 +106,33 @@ public class ServerTest extends TestCase
 	{
 		setFixture(null);
 	}
-
+	
+	
+	
+	@Test
+	public void testGetterAndSetter()
+	{
+		final Server r = getFixture();
+		final NetworkTest networkTest = new NetworkTest("network_test");
+		final Network n = networkTest.getFixture();
+		final ServiceTest serviceTest = new ServiceTest("service_test") {};
+		final Service s = serviceTest.getFixture();
+		
+		r.setName("test_network");
+		r.setIp("test_ip");
+		r.setCpuCores(1);
+		r.setDiskSpace(1);
+		r.setRam(1);
+		r.setNetwork(n);
+		r.setService(s);
+		
+		assertEquals("test_network", r.getName());
+		assertEquals("test_ip", r.getIp());
+		assertEquals(1, r.getCpuCores());
+		assertEquals(1, r.getDiskSpace());
+		assertEquals(1, r.getRam());
+		assertEquals(n, r.getNetwork());
+		assertEquals(s, r.getService());
+	}
+	
 } //ServerTest

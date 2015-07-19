@@ -3,8 +3,9 @@
 package model.tests;
 
 import junit.framework.TestCase;
-
 import model.Service;
+
+import org.junit.Test;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,15 +15,17 @@ import model.Service;
  */
 public abstract class ServiceTest extends TestCase
 {
-
+	
 	/**
 	 * The fixture for this Service test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Service fixture = null;
-
+	protected Service	fixture	= null;
+	
+	
+	
 	/**
 	 * Constructs a new Service test case with the given name.
 	 * <!-- begin-user-doc -->
@@ -33,7 +36,9 @@ public abstract class ServiceTest extends TestCase
 	{
 		super(name);
 	}
-
+	
+	
+	
 	/**
 	 * Sets the fixture for this Service test case.
 	 * <!-- begin-user-doc -->
@@ -44,7 +49,9 @@ public abstract class ServiceTest extends TestCase
 	{
 		this.fixture = fixture;
 	}
-
+	
+	
+	
 	/**
 	 * Returns the fixture for this Service test case.
 	 * <!-- begin-user-doc -->
@@ -55,5 +62,13 @@ public abstract class ServiceTest extends TestCase
 	{
 		return fixture;
 	}
-
+	
+	
+	
+	@Test
+	public void testGetterAndSetter()
+	{
+		
+	}
+	
 } //ServiceTest

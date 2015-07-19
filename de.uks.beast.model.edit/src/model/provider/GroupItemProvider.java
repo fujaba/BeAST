@@ -6,9 +6,9 @@ package model.provider;
 import java.util.Collection;
 import java.util.List;
 
+import model.Group;
 import model.ModelFactory;
 import model.ModelPackage;
-import model.Rack;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -29,12 +29,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link model.Rack} object.
+ * This is the item provider adapter for a {@link model.Group} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class RackItemProvider 
+public class GroupItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -49,7 +49,7 @@ public class RackItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RackItemProvider(AdapterFactory adapterFactory)
+	public GroupItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -69,6 +69,7 @@ public class RackItemProvider
 
 			addIdPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
+			addGroupPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -85,9 +86,9 @@ public class RackItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Rack_id_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Rack_id_feature", "_UI_Rack_type"),
-				 ModelPackage.Literals.RACK__ID,
+				 getString("_UI_Group_id_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Group_id_feature", "_UI_Group_type"),
+				 ModelPackage.Literals.GROUP__ID,
 				 true,
 				 false,
 				 false,
@@ -108,13 +109,36 @@ public class RackItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Rack_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Rack_name_feature", "_UI_Rack_type"),
-				 ModelPackage.Literals.RACK__NAME,
+				 getString("_UI_Group_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Group_name_feature", "_UI_Group_type"),
+				 ModelPackage.Literals.GROUP__NAME,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Group feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addGroupPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Group_Group_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Group_Group_feature", "_UI_Group_type"),
+				 ModelPackage.Literals.GROUP__GROUP,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -133,7 +157,8 @@ public class RackItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ModelPackage.Literals.RACK__SERVER);
+			childrenFeatures.add(ModelPackage.Literals.GROUP__SERVER);
+			childrenFeatures.add(ModelPackage.Literals.GROUP__GROUP);
 		}
 		return childrenFeatures;
 	}
@@ -153,7 +178,7 @@ public class RackItemProvider
 	}
 
 	/**
-	 * This returns Rack.gif.
+	 * This returns Group.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -161,7 +186,7 @@ public class RackItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Rack"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Group"));
 	}
 
 	/**
@@ -173,10 +198,10 @@ public class RackItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((Rack)object).getName();
+		String label = ((Group)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Rack_type") :
-			getString("_UI_Rack_type") + " " + label;
+			getString("_UI_Group_type") :
+			getString("_UI_Group_type") + " " + label;
 	}
 	
 
@@ -192,13 +217,14 @@ public class RackItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Rack.class))
+		switch (notification.getFeatureID(Group.class))
 		{
-			case ModelPackage.RACK__ID:
-			case ModelPackage.RACK__NAME:
+			case ModelPackage.GROUP__ID:
+			case ModelPackage.GROUP__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ModelPackage.RACK__SERVER:
+			case ModelPackage.GROUP__SERVER:
+			case ModelPackage.GROUP__GROUP:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -219,8 +245,13 @@ public class RackItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ModelPackage.Literals.RACK__SERVER,
+				(ModelPackage.Literals.GROUP__SERVER,
 				 ModelFactory.eINSTANCE.createServer()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.GROUP__GROUP,
+				 ModelFactory.eINSTANCE.createGroup()));
 	}
 
 	/**
