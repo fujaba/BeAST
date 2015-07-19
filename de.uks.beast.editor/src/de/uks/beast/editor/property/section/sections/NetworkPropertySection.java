@@ -1,5 +1,7 @@
 package de.uks.beast.editor.property.section.sections;
 
+import java.net.UnknownHostException;
+
 import model.Network;
 
 import org.apache.log4j.LogManager;
@@ -53,16 +55,23 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					public void doExecute()
 					{
-						network.setIp(networkPropertyView.getIpInput());
-						network.setSubnetmask(networkPropertyView.getSubnetInput());
-						network.setGateway(networkPropertyView.getGatewayInput());
-						network.setDns(networkPropertyView.getDnsInput());
-						
-						LOG.debug("network hash: " + network.hashCode() + " -> ip: " + network.getIp());
-						LOG.debug("network hash: " + network.hashCode() + " -> subnet: " + network.getSubnetmask());
-						LOG.debug("network hash: " + network.hashCode() + " -> gateway: " + network.getGateway());
-						LOG.debug("network hash: " + network.hashCode() + " -> dns: " + network.getDns());
-						LOG.debug("network hash: " + network.hashCode() + " -> name: " + network.getName());
+						try
+						{
+							network.setIp(networkPropertyView.getIpInput());
+							network.setSubnetmask(networkPropertyView.getSubnetInput());
+							network.setGateway(networkPropertyView.getGatewayInput());
+							network.setDns(networkPropertyView.getDnsInput());
+							
+							LOG.debug("network hash: " + network.hashCode() + " -> ip: " + network.getIp());
+							LOG.debug("network hash: " + network.hashCode() + " -> subnet: " + network.getSubnetmask());
+							LOG.debug("network hash: " + network.hashCode() + " -> gateway: " + network.getGateway());
+							LOG.debug("network hash: " + network.hashCode() + " -> dns: " + network.getDns());
+							LOG.debug("network hash: " + network.hashCode() + " -> name: " + network.getName());
+						}
+						catch (UnknownHostException e)
+						{
+							throw new RuntimeException("Wrong IP format!", e);
+						}
 					}
 				});
 				

@@ -5,6 +5,8 @@ import static de.uks.beast.editor.util.Properties.ID_LABEL;
 import static de.uks.beast.editor.util.Properties.IP_LABEL;
 import static de.uks.beast.editor.util.Properties.TRANSFER;
 
+import java.net.UnknownHostException;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.SelectionListener;
@@ -16,6 +18,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
 import de.uks.beast.editor.util.Dimensions;
+import de.uks.beast.editor.util.PropertyUtil;
 import de.uks.beast.editor.util.ToolTips;
 
 public class RouterPropertyView
@@ -101,9 +104,16 @@ public class RouterPropertyView
 	
 	
 	
-	public String getIpInput()
+	public String getIpInput() throws UnknownHostException
 	{
-		return ipTextFld.getText();
+		if (PropertyUtil.validateIp(ipTextFld.getText()))
+		{
+			return ipTextFld.getText();
+		}
+		else
+		{
+			throw new UnknownHostException();
+		}
 	}
 	
 	
@@ -115,9 +125,17 @@ public class RouterPropertyView
 	
 	
 	
-	public String getExternalGatewayInput()
+	public String getExternalGatewayInput() throws UnknownHostException
 	{
-		return externalGatewayTextFld.getText();
+		if (PropertyUtil.validateIp(externalGatewayTextFld.getText()))
+		{
+			return externalGatewayTextFld.getText();
+		}
+		else
+		{
+			throw new UnknownHostException();
+			
+		}
 	}
 	
 	

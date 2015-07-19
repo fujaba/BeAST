@@ -1,10 +1,7 @@
 package de.uks.beast.editor.property.section.sections;
 
-import static de.uks.beast.editor.util.Properties.CPU_CORES_LABEL;
-import static de.uks.beast.editor.util.Properties.DISKSPACE_LABEL;
-import static de.uks.beast.editor.util.Properties.IP_LABEL;
-import static de.uks.beast.editor.util.Properties.RAM_LABEL;
-import static de.uks.beast.editor.util.Properties.TRANSFER;
+import java.net.UnknownHostException;
+
 import model.Server;
 
 import org.apache.log4j.LogManager;
@@ -15,30 +12,19 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.layout.FormAttachment;
-import org.eclipse.swt.layout.FormData;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
-import de.uks.beast.editor.util.Dimensions;
-import de.uks.beast.editor.util.ToolTips;
+import de.uks.beast.editor.property.section.views.ServerPropertyView;
 
 public class ServerPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {
 	private static final Logger			LOG	= LogManager.getLogger(ServerPropertySection.class);
-	private Text						ipTextFld;
-	private Text						cpuCoresTextFld;
-	private Text						ramTextFld;
-	private Text						diskSpaceTextFld;
-	private Button						submitBtn;
+	private ServerPropertyView			serverPropertyView;
 	private Server						server;
 	private TransactionalEditingDomain	domain;
 	
@@ -51,81 +37,17 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		
 		final TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
 		final Composite composite = factory.createFlatFormComposite(parent);
-		FormData data;
 		
-		// Property_ip
-		ipTextFld = factory.createText(composite, "");
-		data = new FormData();
-		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
-		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE);
-		ipTextFld.setToolTipText(ToolTips.IP_PROP_TIP.get());
-		ipTextFld.setLayoutData(data);
+		serverPropertyView = new ServerPropertyView(composite, factory);
 		
-		final CLabel valueLabel = factory.createCLabel(composite, IP_LABEL.get());
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(ipTextFld, valueLabel.getText().length());
-		data.top = new FormAttachment(ipTextFld, 0, SWT.CENTER);
-		valueLabel.setLayoutData(data);
-		
-		// Property_cpuAmount
-		cpuCoresTextFld = factory.createText(composite, "");
-		data = new FormData();
-		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
-		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 25);
-		cpuCoresTextFld.setToolTipText(ToolTips.CPU_CORES_PROP_TIP.get());
-		cpuCoresTextFld.setLayoutData(data);
-		
-		final CLabel valueLabe2 = factory.createCLabel(composite, CPU_CORES_LABEL.get());
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(cpuCoresTextFld, valueLabe2.getText().length());
-		data.top = new FormAttachment(cpuCoresTextFld, 0, SWT.CENTER);
-		valueLabe2.setLayoutData(data);
-		
-		// Property_ram
-		ramTextFld = factory.createText(composite, "");
-		data = new FormData();
-		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
-		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 50);
-		ramTextFld.setToolTipText(ToolTips.MAX_RAM_PROP_TIP.get());
-		ramTextFld.setLayoutData(data);
-		
-		final CLabel valueLabe4 = factory.createCLabel(composite, RAM_LABEL.get());
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(ramTextFld, valueLabe4.getText().length());
-		data.top = new FormAttachment(ramTextFld, 0, SWT.CENTER);
-		valueLabe4.setLayoutData(data);
-		
-		// Property_diskSpace
-		diskSpaceTextFld = factory.createText(composite, "");
-		data = new FormData();
-		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
-		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 75);
-		diskSpaceTextFld.setToolTipText(ToolTips.DISK_SPACE_PROP_TIP.get());
-		diskSpaceTextFld.setLayoutData(data);
-		
-		final CLabel valueLabe5 = factory.createCLabel(composite, DISKSPACE_LABEL.get());
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(diskSpaceTextFld, valueLabe5.getText().length());
-		data.top = new FormAttachment(diskSpaceTextFld, 0, SWT.CENTER);
-		valueLabe5.setLayoutData(data);
-		
-		//Property_submit
-		submitBtn = factory.createButton(composite, TRANSFER.get(), 0);
-		data = new FormData();
-		data.left = new FormAttachment(0, 20);
-		data.right = new FormAttachment(20, 0);
-		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 125);
-		submitBtn.setLayoutData(data);
-		submitBtn.setToolTipText(ToolTips.TRANSFER_BTN_TIP.get());
-		submitBtn.addSelectionListener(new SelectionListener() {
+		addListener();
+	}
+	
+	
+	
+	private void addListener()
+	{
+		serverPropertyView.setListenerToSubmitBtn(new SelectionListener() {
 			
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
@@ -133,16 +55,27 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					public void doExecute()
 					{
-						server.setIp(ipTextFld.getText());
-						server.setCpuCores(Integer.parseInt(cpuCoresTextFld.getText()));
-						server.setRam(Integer.parseInt(ramTextFld.getText()));
-						server.setDiskSpace(Integer.parseInt(diskSpaceTextFld.getText()));
-						
-						LOG.debug("server hash: " + server.hashCode() + " -> ip: " + server.getIp());
-						LOG.debug("server hash: " + server.hashCode() + " -> cpu amount: " + server.getCpuCores());
-						LOG.debug("server hash: " + server.hashCode() + " -> ram: " + server.getRam());
-						LOG.debug("server hash: " + server.hashCode() + " -> diskspace: " + server.getDiskSpace());
-						LOG.debug("server hash: " + server.hashCode() + " -> host: " + server.getName());
+						try
+						{
+							server.setIp(serverPropertyView.getIpInput());
+							server.setCpuCores(serverPropertyView.getCpuCoresInput());
+							server.setRam(serverPropertyView.getRamInput());
+							server.setDiskSpace(serverPropertyView.getDiskSpaceInput());
+							
+							LOG.debug("server hash: " + server.hashCode() + " -> ip: " + server.getIp());
+							LOG.debug("server hash: " + server.hashCode() + " -> cpu amount: " + server.getCpuCores());
+							LOG.debug("server hash: " + server.hashCode() + " -> ram: " + server.getRam());
+							LOG.debug("server hash: " + server.hashCode() + " -> diskspace: " + server.getDiskSpace());
+							LOG.debug("server hash: " + server.hashCode() + " -> host: " + server.getName());
+						}
+						catch (NumberFormatException e)
+						{
+							throw new RuntimeException("Just integer values are allowed!", e);
+						}
+						catch (UnknownHostException e)
+						{
+							throw new RuntimeException("Wrong IP format!", e);
+						}
 					}
 				});
 				
@@ -153,21 +86,20 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 			@Override
 			public void widgetDefaultSelected(SelectionEvent arg0)
 			{
-				// TODO Auto-generated method stub
+				// Nothing to do!
 				
 			}
 		});
-		
 	}
 	
 	
 	
 	private void setPreDefinedValuesToSheet()
 	{
-		ipTextFld.setText("" + server.getIp());
-		cpuCoresTextFld.setText("" + server.getCpuCores());
-		ramTextFld.setText("" + server.getRam());
-		diskSpaceTextFld.setText("" + server.getDiskSpace());
+		serverPropertyView.setIpInput("" + server.getIp());
+		serverPropertyView.setCpuCoresInput("" + server.getCpuCores());
+		serverPropertyView.setRamInput("" + server.getRam());
+		serverPropertyView.setDiskSpaceInput("" + server.getDiskSpace());
 	}
 	
 	

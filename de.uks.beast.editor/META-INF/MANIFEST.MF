@@ -17,7 +17,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.ide,
  de.uks.beast.client;bundle-version="1.0.0",
  org.eclipse.ui.console;bundle-version="3.5.300",
- org.eclipse.graphiti.examples.common
+ org.eclipse.graphiti.examples.common,
+ org.junit
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: libs/log4j-1.2.17.jar,

@@ -1,5 +1,7 @@
 package de.uks.beast.editor.property.section.sections;
 
+import java.net.UnknownHostException;
+
 import model.Router;
 
 import org.apache.log4j.LogManager;
@@ -53,14 +55,22 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					public void doExecute()
 					{
-						router.setIp(routerPropertyView.getIpInput());
-						router.setExternalGateway(routerPropertyView.getExternalGatewayInput());
-						router.setId(routerPropertyView.getIdInput());
-						
-						LOG.debug("router hash: " + router.hashCode() + " -> ip: " + router.getIp());
-						LOG.debug("router hash: " + router.hashCode() + " -> external gateway: " + router.getExternalGateway());
-						LOG.debug("router hash: " + router.hashCode() + " -> id: " + router.getId());
-						LOG.debug("router hash: " + router.hashCode() + " -> name: " + router.getName());
+						try
+						{
+							router.setIp(routerPropertyView.getIpInput());
+							router.setExternalGateway(routerPropertyView.getExternalGatewayInput());
+							router.setId(routerPropertyView.getIdInput());
+							
+							LOG.debug("router hash: " + router.hashCode() + " -> ip: " + router.getIp());
+							LOG.debug("router hash: " + router.hashCode() + " -> external gateway: "
+									+ router.getExternalGateway());
+							LOG.debug("router hash: " + router.hashCode() + " -> id: " + router.getId());
+							LOG.debug("router hash: " + router.hashCode() + " -> name: " + router.getName());
+						}
+						catch (UnknownHostException e)
+						{
+							throw new RuntimeException("Wrong IP format!", e);
+						}
 					}
 				});
 				
@@ -72,7 +82,6 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 			public void widgetDefaultSelected(SelectionEvent arg0)
 			{
 				// Nothing to do!
-				
 			}
 		});
 	}

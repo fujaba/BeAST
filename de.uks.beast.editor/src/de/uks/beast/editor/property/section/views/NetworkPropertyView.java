@@ -6,6 +6,8 @@ import static de.uks.beast.editor.util.Properties.IP_LABEL;
 import static de.uks.beast.editor.util.Properties.SUBNET_MASK_LABEL;
 import static de.uks.beast.editor.util.Properties.TRANSFER;
 
+import java.net.UnknownHostException;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.SelectionListener;
@@ -17,6 +19,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
 import de.uks.beast.editor.util.Dimensions;
+import de.uks.beast.editor.util.PropertyUtil;
 import de.uks.beast.editor.util.ToolTips;
 
 public class NetworkPropertyView
@@ -123,30 +126,58 @@ public class NetworkPropertyView
 	
 	
 	
-	public String getIpInput()
+	public String getIpInput() throws UnknownHostException
 	{
-		return ipTextFld.getText();
+		if (PropertyUtil.validateIp(ipTextFld.getText()))
+		{
+			return ipTextFld.getText();
+		}
+		else
+		{
+			throw new UnknownHostException();
+		}
 	}
 	
 	
 	
-	public String getSubnetInput()
+	public String getSubnetInput() throws UnknownHostException
 	{
-		return subnetTextFld.getText();
+		if (PropertyUtil.validateIp(subnetTextFld.getText()))
+		{
+			return subnetTextFld.getText();
+		}
+		else
+		{
+			throw new UnknownHostException();
+		}
 	}
 	
 	
 	
-	public String getGatewayInput()
+	public String getGatewayInput() throws UnknownHostException
 	{
-		return gatewayTextFld.getText();
+		if (PropertyUtil.validateIp(gatewayTextFld.getText()))
+		{
+			return gatewayTextFld.getText();
+		}
+		else
+		{
+			throw new UnknownHostException();
+		}
 	}
 	
 	
 	
-	public String getDnsInput()
+	public String getDnsInput() throws UnknownHostException
 	{
-		return dnsTextFld.getText();
+		if (PropertyUtil.validateIp(dnsTextFld.getText()))
+		{
+			return dnsTextFld.getText();
+		}
+		else
+		{
+			throw new UnknownHostException();
+		}
 	}
 	
 	
