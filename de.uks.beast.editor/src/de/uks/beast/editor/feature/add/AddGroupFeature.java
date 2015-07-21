@@ -23,6 +23,7 @@ import de.uks.beast.editor.util.Colors;
 import de.uks.beast.editor.util.Fonts;
 import de.uks.beast.editor.util.Properties;
 import de.uks.beast.editor.util.PropertyUtil;
+import de.uks.beast.editor.util.StyleUtil;
 
 public class AddGroupFeature extends AbstractAddFeature implements AbstractShapeFactory
 {
@@ -79,10 +80,8 @@ public class AddGroupFeature extends AbstractAddFeature implements AbstractShape
 		final IGaService gaService = Graphiti.getGaService();
 		
 		// create and set graphics algorithm
-		final RoundedRectangle roundedRectangle = gaService.createRoundedRectangle(containerShape, 5, 5);
-		roundedRectangle.setForeground(manageColor(Colors.GROUP_FOREGROUND));
-		roundedRectangle.setBackground(manageColor(Colors.GROUP_BACKGROUND));
-		roundedRectangle.setLineWidth(2);
+		final RoundedRectangle roundedRectangle = gaService.createPlainRoundedRectangle(containerShape, 5, 5);
+		roundedRectangle.setStyle(StyleUtil.getSilverWhiteGlossStyleForObject(getDiagram(), StyleUtil.GROUP_STYLE_ID));
 		gaService.setLocationAndSize(roundedRectangle, context.getX(), context.getY(), context.getWidth(), context.getHeight());
 		
 		// if added Class has no resource we add it to the resource

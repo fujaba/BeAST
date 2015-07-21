@@ -37,6 +37,7 @@ import de.uks.beast.editor.util.Fonts;
 import de.uks.beast.editor.util.Properties;
 import de.uks.beast.editor.util.PropertyUtil;
 import de.uks.beast.editor.util.Strings;
+import de.uks.beast.editor.util.StyleUtil;
 import de.uks.beast.editor.util.Textfields;
 
 public class AddServerFeature extends AbstractAddShapeFeature implements AbstractShapeFactory
@@ -82,10 +83,8 @@ public class AddServerFeature extends AbstractAddShapeFeature implements Abstrac
 		
 		final IGaService gaService = Graphiti.getGaService();
 		
-		final RoundedRectangle roundedRectangle = gaService.createRoundedRectangle(containerShape, 5, 5);
-		roundedRectangle.setForeground(manageColor(Colors.SERVER_FOREGROUND));
-		roundedRectangle.setBackground(manageColor(Colors.SERVER_BACKGROUND));
-		roundedRectangle.setLineWidth(2);
+		final RoundedRectangle roundedRectangle = gaService.createPlainRoundedRectangle(containerShape, 5, 5);
+		roundedRectangle.setStyle(StyleUtil.getBlueWhiteGlossStyleForObject(getDiagram(), StyleUtil.SERVER_STYLE_ID));
 		gaService.setLocationAndSize(roundedRectangle, context.getX(), context.getY(), context.getWidth(), context.getHeight());
 		
 		if (server.eResource() == null)

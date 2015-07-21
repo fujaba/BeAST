@@ -31,6 +31,7 @@ import org.eclipse.graphiti.services.IPeCreateService;
 import de.uks.beast.editor.util.Colors;
 import de.uks.beast.editor.util.Fonts;
 import de.uks.beast.editor.util.PropertyUtil;
+import de.uks.beast.editor.util.StyleUtil;
 import de.uks.beast.editor.util.Textfields;
 
 public class AddRouterFeature extends AbstractAddFeature implements AbstractShapeFactory
@@ -79,10 +80,9 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		final IGaService gaService = Graphiti.getGaService();
 		
 		// create and set graphics algorithm
-		final RoundedRectangle roundedRectangle = gaService.createRoundedRectangle(containerShape, 5, 5);
-		roundedRectangle.setForeground(manageColor(Colors.ROUTER_FOREGROUND));
-		roundedRectangle.setBackground(manageColor(Colors.ROUTER_BACKGROUND));
-		roundedRectangle.setLineWidth(2);
+		
+		final RoundedRectangle roundedRectangle = gaService.createPlainRoundedRectangle(containerShape, 5, 5);
+		roundedRectangle.setStyle(StyleUtil.getLimeWhiteStyleForObject(getDiagram(), StyleUtil.ROUTER_STYLE_ID));
 		gaService.setLocationAndSize(roundedRectangle, context.getX(), context.getY(), context.getWidth(), context.getHeight());
 		
 		final Color color = manageColor(Colors.ROUTER_TEXT_FOREGROUND);
