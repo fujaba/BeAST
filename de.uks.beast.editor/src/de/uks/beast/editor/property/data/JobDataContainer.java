@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+import de.uks.beast.editor.job.Job;
+import de.uks.beast.editor.job.JobBuilder;
+import de.uks.beast.editor.job.JobFile;
+import de.uks.beast.editor.job.JobInterface;
 import de.uks.beast.editor.property.data.JobFileDataContainer.Type;
-import de.uks.beast.editor.service.job.Job;
-import de.uks.beast.editor.service.job.JobBuilder;
-import de.uks.beast.editor.service.job.JobFile;
-import de.uks.beast.editor.service.job.JobInterface;
 import de.uks.beast.editor.util.Configs;
 
 public class JobDataContainer implements Observer

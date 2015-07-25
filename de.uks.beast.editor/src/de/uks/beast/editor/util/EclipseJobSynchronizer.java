@@ -10,12 +10,12 @@ import org.eclipse.swt.widgets.Shell;
 
 public class EclipseJobSynchronizer
 {
-	private final de.uks.beast.editor.service.job.Job	beastJob;
-	private final Shell									shell;
+	private final de.uks.beast.editor.job.Job	beastJob;
+	private final Shell							shell;
 	
 	
 	
-	public EclipseJobSynchronizer(final Shell shell, final de.uks.beast.editor.service.job.Job beastJob)
+	public EclipseJobSynchronizer(final Shell shell, final de.uks.beast.editor.job.Job beastJob)
 	{
 		this.shell = shell;
 		this.beastJob = beastJob;

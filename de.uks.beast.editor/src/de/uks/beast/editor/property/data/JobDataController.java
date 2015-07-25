@@ -17,11 +17,11 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
+import de.uks.beast.editor.job.Job;
+import de.uks.beast.editor.job.JobInterface;
 import de.uks.beast.editor.property.data.JobFileDataContainer.Type;
 import de.uks.beast.editor.property.popup.PopupView;
 import de.uks.beast.editor.property.section.views.HadoopPropertyView;
-import de.uks.beast.editor.service.job.Job;
-import de.uks.beast.editor.service.job.JobInterface;
 import de.uks.beast.editor.util.EclipseJobSynchronizer;
 import de.uks.beast.editor.util.FileBrowser;
 
