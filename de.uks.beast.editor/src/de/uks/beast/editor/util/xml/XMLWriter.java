@@ -61,7 +61,7 @@ public class XMLWriter
 	
 	
 	
-	public static void writeXml(final Job job)
+	protected static void writeXml(final Job job)
 	{
 		try
 		{

@@ -45,7 +45,7 @@ public class XMLReader
 	
 	
 	
-	public static Data readXml(final Path configFile)
+	protected static Data readXml(final Path configFile)
 	{
 		final Data data = new Data();
 		try
@@ -73,7 +73,7 @@ public class XMLReader
 					else if (startElement.getName().getLocalPart() == JOB_FILE)
 					{
 						final Attribute attribute = startElement.getAttributeByName(QName.valueOf(NAME));
-						final Item item = new Item(Type.JOBFILE, attribute.getValue());
+						final Item item = new Item(attribute.getValue());
 						data.setJobFile(item);
 						continue;
 					}
@@ -84,7 +84,7 @@ public class XMLReader
 					else if (startElement.getName().getLocalPart() == INPUT_FILE)
 					{
 						final Attribute attribute = startElement.getAttributeByName(QName.valueOf(NAME));
-						extendedItem = new ExtendedItem(Type.INPUT, attribute.getValue());
+						extendedItem = new ExtendedItem(attribute.getValue());
 						continue;
 					}
 					else if (startElement.getName().getLocalPart() == SOURCE_PATH)
@@ -109,7 +109,7 @@ public class XMLReader
 					else if (startElement.getName().getLocalPart() == OUTPUT_FILE)
 					{
 						final Attribute attribute = startElement.getAttributeByName(QName.valueOf(PATH));
-						final Item item = new Item(Type.OUTPUT, attribute.getValue());
+						final Item item = new Item(attribute.getValue());
 						data.setOutputFile(item);
 						continue;
 					}
@@ -134,16 +134,14 @@ public class XMLReader
 		return data;
 	}
 	
-	public static class Item
+	protected static class Item
 	{
 		private String	value;
-		private Type	type;
 		
 		
 		
-		private Item(final Type type, final String name)
+		private Item(final String name)
 		{
-			this.type = type;
 			this.value = name;
 		}
 		
@@ -152,33 +150,23 @@ public class XMLReader
 		/**
 		 * @return the value
 		 */
-		public String getValue()
+		protected String getValue()
 		{
 			return value;
 		}
 		
-		
-		
-		/**
-		 * @return the type
-		 */
-		protected Type getType()
-		{
-			return type;
-		}
-		
 	}
 	
-	public static class ExtendedItem extends Item
+	protected static class ExtendedItem extends Item
 	{
 		private Path	sourcePath;
 		private Path	targetPath;
 		
 		
 		
-		private ExtendedItem(final Type type, final String name)
+		private ExtendedItem(final String name)
 		{
-			super(type, name);
+			super(name);
 		}
 		
 		
@@ -186,7 +174,7 @@ public class XMLReader
 		/**
 		 * @return the sourcePath
 		 */
-		public Path getSourcePath()
+		protected Path getSourcePath()
 		{
 			return sourcePath;
 		}
@@ -196,16 +184,11 @@ public class XMLReader
 		/**
 		 * @return the targetPath
 		 */
-		public Path getTargetPath()
+		protected Path getTargetPath()
 		{
 			return targetPath;
 		}
 		
-	}
-	
-	private static enum Type
-	{
-		JOBFILE, INPUT, OUTPUT
 	}
 	
 }

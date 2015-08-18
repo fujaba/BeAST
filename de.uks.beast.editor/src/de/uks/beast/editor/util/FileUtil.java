@@ -23,7 +23,7 @@ import org.eclipse.core.runtime.Status;
 import de.uks.beast.editor.job.Job;
 import de.uks.beast.editor.job.JobInterface;
 import de.uks.beast.editor.util.OSChecker.OSType;
-import de.uks.beast.editor.util.xml.XMLWriter;
+import de.uks.beast.editor.util.xml.XMLHandler;
 
 public class FileUtil
 {
@@ -55,7 +55,7 @@ public class FileUtil
 	private static void createConfigXml(final Job job) throws IOException
 	{
 		Files.deleteIfExists(Configs.CONFIG_XML.getPath());
-		XMLWriter.writeXml(job);
+		XMLHandler.writeXml(job);
 	}
 	
 	

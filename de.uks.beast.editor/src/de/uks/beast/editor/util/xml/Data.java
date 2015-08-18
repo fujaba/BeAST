@@ -23,9 +23,9 @@ public class Data
 	
 	
 	/**
-	 * @return the jobFile
+	 * @return the jobFile path
 	 */
-	public String getJobFileName()
+	public String getJobFilePath()
 	{
 		return jobFile.getValue();
 	}
@@ -33,21 +33,61 @@ public class Data
 	
 	
 	/**
-	 * @return the inputFiles
+	 * @return the inputFiles paths
 	 */
-	public List<ExtendedItem> getInputFiles()
+	public List<String> getInputFilesPaths()
 	{
-		return inputFiles;
+		final List<String> tmp = new ArrayList<>();
+		for (final ExtendedItem ei : inputFiles)
+		{
+			tmp.add(ei.getValue());
+		}
+		
+		return tmp;
 	}
 	
 	
 	
 	/**
-	 * @return the outputFile
+	 * @return the source path for special inputFile
 	 */
-	public Item getOutputFile()
+	public String getSourcePathForItem(final String name)
 	{
-		return outputFile;
+		for (final ExtendedItem ei : inputFiles)
+		{
+			if (name.equals(ei.getValue()))
+			{
+				return ei.getSourcePath().toString();
+			}
+		}
+		return null;
+	}
+	
+	
+	
+	/**
+	 * @return the target path for special inputFile
+	 */
+	public String getTargetPathForItem(final String name)
+	{
+		for (final ExtendedItem ei : inputFiles)
+		{
+			if (name.equals(ei.getValue()))
+			{
+				return ei.getTargetPath().toString();
+			}
+		}
+		return null;
+	}
+	
+	
+	
+	/**
+	 * @return the outputFile path
+	 */
+	public String getOutputFilePath()
+	{
+		return outputFile.getValue();
 	}
 	
 	
@@ -86,7 +126,7 @@ public class Data
 	
 	
 	/**
-	 * @return the name
+	 * @return the job name
 	 */
 	public String getName()
 	{

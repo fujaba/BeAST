@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<job name="TestJob">
+	<jobFile name="TestJobFile.txt"/>
+	<inputFiles>
+		<inputFile name="TestInputFile_0.txt">
+			<sourcePath>D:\Home\Test\TestInputFile_0.txt</sourcePath>
+			<targetPath>C:\test_0</targetPath>
+		</inputFile>
+		<inputFile name="TestInputFile_1.txt">
+			<sourcePath>D:\Home\Test\TestInputFile_1.txt</sourcePath>
+			<targetPath>C:\test_1</targetPath>
+		</inputFile>
+		<inputFile name="TestInputFile_2.txt">
+			<sourcePath>D:\Home\Test\TestInputFile_2.txt</sourcePath>
+			<targetPath>C:\test_2</targetPath>
+		</inputFile>
+	</inputFiles>
+	<outputFile path="C:\test\test"/>
+</job>
