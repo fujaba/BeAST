@@ -10,7 +10,10 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -25,6 +28,8 @@ import java.net.URL;
 import static org.junit.Assert.assertEquals;
 
 public class JobsTest extends JerseyTest {
+
+    private static final Logger LOG = LoggerFactory.getLogger(JobsTest.class);
 
     private HttpServer server;
     private WebTarget target;
@@ -43,7 +48,7 @@ public class JobsTest extends JerseyTest {
         // client.configuration().enable(new org.glassfish.jersey.media.json.JsonJaxbFeature());
 
         target = client.target(Main.BASE_URI);
-        System.out.println("**** target uri: " + target.getUri());
+        LOG.info("Service Base URI: {}", target.getUri());
     }
 
     @After public void tearDown() throws Exception {
@@ -68,7 +73,7 @@ public class JobsTest extends JerseyTest {
         clientConfig.register(MultiPartFeature.class);
     }
 
-
+    @Ignore
     @Test public void testFileUpload() {
         System.out.println("**** Start file upload");
 
@@ -95,5 +100,26 @@ public class JobsTest extends JerseyTest {
         System.out.println("**** " + response. getStatusInfo() + " " + response);
 
         response.close();
+    }
+
+    @Test public void testUpload() {
+        LOG.info("Uploading new job file.");
+        String FILE = "/thinkdifferent.zip";
+        URL url = this.getClass().getResource(FILE);
+        File data = new File(url.getFile());
+
+        LOG.info("OK. The file is here.");
+
+        MultiPart multiPart = new MultiPart();
+        multiPart.setMediaType(MediaType.MULTIPART_FORM_DATA_TYPE);
+
+        FileDataBodyPart fileDataBodyPart = new FileDataBodyPart("file", data, MediaType.APPLICATION_OCTET_STREAM_TYPE);
+        multiPart.bodyPart(fileDataBodyPart);
+
+        Response response = target.path("jobs").path("upload").request().post(
+                Entity.entity(multiPart, multiPart.getMediaType()));
+
+        LOG.info("upload response status: {}", response.getStatus());
+//        LOG.info("{} :: {}", response.getStatusInfo(), response);
     }
 }

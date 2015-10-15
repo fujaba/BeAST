@@ -1,6 +1,8 @@
 package de.uks.beast.hds.server.resources;
 
 import de.uks.beast.hds.common.model.Job;
+import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -8,7 +10,9 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 
 /**
@@ -20,7 +24,7 @@ import javax.ws.rs.core.Response.Status;
 public class Jobs {
 
     private static final Logger LOG = LoggerFactory.getLogger(Jobs.class);
-
+    private static final String TARGET_FILES_ROOT_DIR = "/tmp/";
     
     /**
      * List submitted jobs.
@@ -92,5 +96,58 @@ public class Jobs {
     public String deleteJobById(@PathParam("id") String id) {
         LOG.info("Delete the job with the id: " + id);
         return "Delete the job with the id";
+    }
+
+    /**
+     * Upload job file (ZIP).
+     * @param fis
+     * @param fileDetails
+     * @param path
+     * @return
+     */
+    @POST @Path("upload")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response fileUpload(
+            @FormDataParam("file") InputStream fis,
+            @FormDataParam("file") FormDataContentDisposition fileDetails,
+            @FormDataParam("path") String path) {
+
+        final String destinationFileLocation = TARGET_FILES_ROOT_DIR + fileDetails.getFileName();
+//        try {
+//            Files.createDirectories(Paths.get("/tmp/bjob_" + fileDetails.getFileName()));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+        // save received file to local storage
+        saveToDisk(fis, destinationFileLocation);
+
+        // TODO unzip file to specified targets
+
+        return Response.status(Response.Status.OK).entity("File uploaded to: " + destinationFileLocation).build();
+    }
+
+
+    /*
+     * Helper
+     */
+    private void saveToDisk(InputStream uploadedInputStream, String uploadedFileLocation) {
+
+        try {
+            OutputStream out; // = new FileOutputStream(new File(uploadedFileLocation));
+            int read = 0;
+            byte[] bytes = new byte[1024];
+
+            out = new FileOutputStream(new File(uploadedFileLocation));
+            while ((read = uploadedInputStream.read(bytes)) != -1) {
+                out.write(bytes, 0, read);
+            }
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
