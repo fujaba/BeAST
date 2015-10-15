@@ -34,12 +34,13 @@ public class Jobs {
     
     /**
      * List submitted jobs.
+     * A file ist considered a BeAST-Job if the file name starts with JOBFILE_PREFIX and ends with '.zip'.
      * @return
      */
     @GET
     @Path("/list")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response findJobs() {
+    public Response listJobs() {
         LOG.info("List submited jobs.");
         java.nio.file.Path dir = Paths.get(TARGET_FILES_ROOT_DIR);
         final List<String> joblist = new ArrayList();
