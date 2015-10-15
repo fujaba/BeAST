@@ -115,8 +115,9 @@ public class JobsTest extends JerseyTest {
     @Test public void testFindJobs() {
         LOG.info("List me all uploaded jobs.");
         final Response response = target.path("jobs").path("list").request().get();
-        List list = response.readEntity(List.class);
-        LOG.info("found ({}) job file(s).", list.size());
-        LOG.info("Response: {}", list);
+        final List<String> list = response.readEntity(List.class);
+        LOG.info("Found {} job file(s):", list.size());
+//        LOG.info("Response: {}", list);
+        list.forEach((String k) -> LOG.info("\t\t • {}", k));
     }
  }
