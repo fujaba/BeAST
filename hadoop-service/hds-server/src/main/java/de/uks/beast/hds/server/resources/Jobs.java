@@ -7,12 +7,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import java.io.*;
+import java.nio.file.DirectoryIteratorException;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -25,18 +30,31 @@ public class Jobs {
 
     private static final Logger LOG = LoggerFactory.getLogger(Jobs.class);
     private static final String TARGET_FILES_ROOT_DIR = "/tmp/";
+    private static final String JOBFILE_PREFIX = "beastjob_";
     
     /**
      * List submitted jobs.
-     * @return 
+     * @return
      */
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String findJobs() {
+    @Path("/list")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findJobs() {
         LOG.info("List submited jobs.");
-        // TODO List submited jobs
-        return "Got it!"; // for the test-case sake.
-//        return "List submited jobs.";
+        java.nio.file.Path dir = Paths.get(TARGET_FILES_ROOT_DIR);
+        final List<String> joblist = new ArrayList();
+        // filter: show only files with 'JOBFILE_PREFIX' and of mime type 'application/zip'
+        try (DirectoryStream<java.nio.file.Path> stream = Files.newDirectoryStream(dir, (JOBFILE_PREFIX + "*.zip"))) {
+            for (java.nio.file.Path file: stream) {
+                joblist.add(file.toString());
+            }
+        } catch (IOException | DirectoryIteratorException x) {
+            // IOException can never be thrown by the iteration.
+            // In this snippet, it can only be thrown by newDirectoryStream.
+            System.err.println(x);
+        }
+        final GenericEntity<List<String>> entity = new GenericEntity<List<String>>(joblist) {};
+        return Response.ok(entity).build();
     }
     
     /**
@@ -113,7 +131,7 @@ public class Jobs {
             @FormDataParam("file") FormDataContentDisposition fileDetails,
             @FormDataParam("path") String path) {
 
-        final String destinationFileLocation = TARGET_FILES_ROOT_DIR + fileDetails.getFileName();
+        final String destinationFileLocation = TARGET_FILES_ROOT_DIR + JOBFILE_PREFIX + fileDetails.getFileName();
 //        try {
 //            Files.createDirectories(Paths.get("/tmp/bjob_" + fileDetails.getFileName()));
 //        } catch (IOException e) {
@@ -125,7 +143,7 @@ public class Jobs {
 
         // TODO unzip file to specified targets
 
-        return Response.status(Response.Status.OK).entity("File uploaded to: " + destinationFileLocation).build();
+        return Response.ok().entity("File uploaded to: " + destinationFileLocation).build();
     }
 
 

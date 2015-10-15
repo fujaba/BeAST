@@ -10,7 +10,6 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,8 +23,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.File;
 import java.net.URL;
-
-import static org.junit.Assert.assertEquals;
+import java.util.List;
 
 public class JobsTest extends JerseyTest {
 
@@ -55,15 +53,6 @@ public class JobsTest extends JerseyTest {
         server.stop();
     }
 
-    /**
-     * Test to see that the message "Got it!" is sent in the response.
-     */
-    @Test
-    public void testGetIt() {
-        String responseMsg = target.path("jobs").request().get(String.class);
-        assertEquals("Got it!", responseMsg);
-    }
-
 
     @Override protected Application configure() {
         return new ResourceConfig(FileUpload.class);
@@ -73,7 +62,7 @@ public class JobsTest extends JerseyTest {
         clientConfig.register(MultiPartFeature.class);
     }
 
-    @Ignore
+    /*@Ignore
     @Test public void testFileUpload() {
         System.out.println("**** Start file upload");
 
@@ -97,10 +86,10 @@ public class JobsTest extends JerseyTest {
                 Entity.entity(multiPart, multiPart.getMediaType()));
 
         System.out.println("**** upload response status: " + response.getStatus());
-        System.out.println("**** " + response. getStatusInfo() + " " + response);
+        System.out.println("**** " + response.getStatusInfo() + " " + response);
 
         response.close();
-    }
+    }*/
 
     @Test public void testUpload() {
         LOG.info("Uploading new job file.");
@@ -122,4 +111,12 @@ public class JobsTest extends JerseyTest {
         LOG.info("upload response status: {}", response.getStatus());
 //        LOG.info("{} :: {}", response.getStatusInfo(), response);
     }
-}
+
+    @Test public void testFindJobs() {
+        LOG.info("List me all uploaded jobs.");
+        final Response response = target.path("jobs").path("list").request().get();
+        List list = response.readEntity(List.class);
+        LOG.info("found ({}) job file(s).", list.size());
+        LOG.info("Response: {}", list);
+    }
+ }
