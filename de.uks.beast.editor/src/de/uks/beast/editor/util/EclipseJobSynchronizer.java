@@ -23,7 +23,7 @@ public class EclipseJobSynchronizer
 	
 	
 	
-	public void initAndRun()
+	public IStatus initAndRun()
 	{
 		final Job eclipseJob = new Job(beastJob.getName() + ".zip" + "...") {
 			@Override
@@ -48,6 +48,8 @@ public class EclipseJobSynchronizer
 		};
 		eclipseJob.setUser(true);
 		eclipseJob.schedule();
+		
+		return eclipseJob.getResult();
 	}
 	
 	

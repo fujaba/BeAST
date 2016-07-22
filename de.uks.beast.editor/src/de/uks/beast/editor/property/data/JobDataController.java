@@ -1,5 +1,7 @@
 package de.uks.beast.editor.property.data;
 
+import java.io.File;
+import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -10,6 +12,8 @@ import javax.xml.bind.ValidationException;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Composite;
@@ -249,9 +253,15 @@ public class JobDataController extends Observable
 						printJob(job);
 						
 						final EclipseJobSynchronizer jobSynchronizer = new EclipseJobSynchronizer(mainShell, job);
-						jobSynchronizer.initAndRun();
+						final IStatus status = jobSynchronizer.initAndRun();
 						
 						update(Instruction.CLOSE);
+						
+						if(Status.OK_STATUS.equals(status)) {
+							//TODO: add file upload here
+							
+							 
+						}
 					}
 					else
 					{
