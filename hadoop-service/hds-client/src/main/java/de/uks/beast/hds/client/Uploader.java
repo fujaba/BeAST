@@ -1,3 +1,5 @@
+package de.uks.beast.hds.client;
+
 import com.sun.net.httpserver.HttpServer;
 
 import org.glassfish.jersey.media.multipart.MultiPart;
@@ -49,7 +51,7 @@ public class Uploader {
         Response response = target.path("jobs").path("upload").request().post(
                 Entity.entity(multiPart, multiPart.getMediaType()));
 
-//        LOG.info("Uploader response status: {}", response.getStatus());
+//        LOG.info("de.uks.beast.hds.client.Uploader response status: {}", response.getStatus());
 //        LOG.info("{} :: {}", response.getStatusInfo(), response);
     }
 }
