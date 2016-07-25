@@ -97,7 +97,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>de.uks.beast.hadoop.Main</mainClass>
+                    <mainClass>de.uks.beast.hds.server.Main</mainClass>
                 </configuration>
             </plugin>
         </plugins>
