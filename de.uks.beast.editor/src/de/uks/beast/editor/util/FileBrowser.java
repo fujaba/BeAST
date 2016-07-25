@@ -34,7 +34,7 @@ public class FileBrowser
 	private void configureFileDialog()
 	{
 		fileDialog.setFilterExtensions(new String[] { "*.jar", "*.zip", "*.rar", "*.txt", "*.*" });
-		fileDialog.setFilterNames(new String[] { "JAR", "ZIP", "RAR", "TXT", "Any" });
+		fileDialog.setFilterNames(new String[] { "Any", "ZIP", "RAR", "TXT", "JAR" });
 		fileDialog.setOverwrite(true);
 	}
 	
