@@ -160,7 +160,7 @@ public class JobDataController extends Observable
 			
 			@Override
 			public void widgetSelected(SelectionEvent event)
-			{
+			{		
 				if (!tmpList.isEmpty())
 				{
 					final Path unzipToPath = Paths.get(popupView.getTextfldInput());
@@ -259,7 +259,7 @@ public class JobDataController extends Observable
 						
 						if(Status.OK_STATUS.equals(status)) {
 							//TODO: add file upload here
-							
+							Uploader.upload(job);
 							 
 						}
 					}

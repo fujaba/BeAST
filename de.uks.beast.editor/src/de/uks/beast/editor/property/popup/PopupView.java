@@ -61,11 +61,12 @@ public class PopupView implements Observer
 		shell.setText("Fixed size SWT Window.");
 		
 		unzipTargetTextfld = new Text(shell, SWT.BORDER);
-		unzipTargetTextfld.setEditable(false);
+		unzipTargetTextfld.setToolTipText("Set target path for this input file(s) on target platform!");
+		unzipTargetTextfld.setEditable(true);
 		unzipTargetTextfld.setBounds(boundInternal.x + 90, boundInternal.y + 20, 200, 30);
 		
 		saveBtn = new Button(shell, SWT.Selection);
-		saveBtn.setText("�bernehmen");
+		saveBtn.setText("Ok");
 		saveBtn.setBounds(boundInternal.x + 300, boundInternal.y + 20, 80, 30);
 	}
 	
@@ -93,7 +94,12 @@ public class PopupView implements Observer
 	
 	public String getTextfldInput()
 	{
-		return unzipTargetTextfld.getText();
+		if(unzipTargetTextfld.getText() != null && !unzipTargetTextfld.getText().isEmpty()) {
+			return unzipTargetTextfld.getText();
+		}
+		
+		return System.getProperty("java.io.tmpdir");
+		
 	}
 	
 	
