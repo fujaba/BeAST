@@ -3,12 +3,15 @@ package de.uks.beast.editor.util;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.IJobChangeEvent;
+import org.eclipse.core.runtime.jobs.IJobChangeListener;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 import de.uks.beast.editor.job.Result;
+import de.uks.beast.editor.property.data.ZipStateInterface;
 
 public class EclipseJobSynchronizer
 {
@@ -25,7 +28,7 @@ public class EclipseJobSynchronizer
 	
 	
 	
-	public Result initAndRun()
+	public void initAndRun(final ZipStateInterface stateInterface)
 	{
 		final String s = System.getProperty("java.io.tmpdir");
 		final Job eclipseJob = new Job(beastJob.getName() + ".zip" + "...") {
@@ -37,11 +40,13 @@ public class EclipseJobSynchronizer
 				if (monitor.isCanceled())
 				{
 					syncWithUiWithError();
+					stateInterface.tell(new Result(Status.CANCEL_STATUS, s));
 					return Status.CANCEL_STATUS;
 				}
 				else
 				{
 					syncWithUiWithSuccess();
+					stateInterface.tell(new Result(Status.OK_STATUS, s));
 					return Status.OK_STATUS;
 				}
 				
@@ -49,10 +54,9 @@ public class EclipseJobSynchronizer
 			}
 			
 		};
+	
 		eclipseJob.setUser(true);
 		eclipseJob.schedule();
-		
-		return new Result(eclipseJob.getResult(), s);
 	}
 	
 	

@@ -252,17 +252,22 @@ public class JobDataController extends Observable
 						printJob(job);
 						
 						final EclipseJobSynchronizer jobSynchronizer = new EclipseJobSynchronizer(mainShell, job);
-						final Result result = jobSynchronizer.initAndRun();
-						
-						update(Instruction.CLOSE);
-						
-						/**
-						 * start from file upload !!!!!!
-						 */
-						if(Status.OK_STATUS.equals(result.getStatus())) {
-							final Uploader uploader = new Uploader();
-							//uploader.upload(result.getPath()); 
-						}
+						jobSynchronizer.initAndRun(new ZipStateInterface() {
+							
+							@Override
+							public void tell(final Result result)
+							{
+								/**
+								 * start from file upload !!!!!!
+								 */
+								if(Status.OK_STATUS.equals(result.getStatus())) {
+									update(Instruction.CLOSE);
+									final Uploader uploader = new Uploader();
+									uploader.upload(result.getPath()); 
+								}
+							}
+						});
+				
 					}
 					else
 					{
