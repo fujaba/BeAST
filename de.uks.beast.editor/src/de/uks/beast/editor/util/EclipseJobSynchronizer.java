@@ -1,10 +1,11 @@
 package de.uks.beast.editor.util;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.IJobChangeEvent;
-import org.eclipse.core.runtime.jobs.IJobChangeListener;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
@@ -30,23 +31,24 @@ public class EclipseJobSynchronizer
 	
 	public void initAndRun(final ZipStateInterface stateInterface)
 	{
-		final String s = System.getProperty("java.io.tmpdir");
+		
 		final Job eclipseJob = new Job(beastJob.getName() + ".zip" + "...") {
 			@Override
 			protected IStatus run(final IProgressMonitor monitor)
 			{
-				FileUtil.createZipFromJob(beastJob, s, monitor);
+				final Path zipFile = Paths.get(System.getProperty("java.io.tmpdir"), beastJob.getName() + ".zip");
+				FileUtil.createZipFromJob(beastJob, zipFile, monitor);
 				
 				if (monitor.isCanceled())
 				{
 					syncWithUiWithError();
-					stateInterface.tell(new Result(Status.CANCEL_STATUS, s));
+					stateInterface.tell(new Result(Status.CANCEL_STATUS, zipFile));
 					return Status.CANCEL_STATUS;
 				}
 				else
 				{
 					syncWithUiWithSuccess();
-					stateInterface.tell(new Result(Status.OK_STATUS, s));
+					stateInterface.tell(new Result(Status.OK_STATUS, zipFile));
 					return Status.OK_STATUS;
 				}
 				

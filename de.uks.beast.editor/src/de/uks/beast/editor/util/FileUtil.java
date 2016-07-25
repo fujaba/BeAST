@@ -60,16 +60,10 @@ public class FileUtil
 	
 	
 	
-	public static IStatus createZipFromJob(final Job job, String targetPlace, final IProgressMonitor monitor)
+	public static IStatus createZipFromJob(final Job job, final Path zipFilePath, final IProgressMonitor monitor)
 	{
-		
 		final AtomicInteger fileCounter = new AtomicInteger(1);
-		//remove last symbol "separator" if exists
-		if (targetPlace.endsWith(separator))
-		{
-			targetPlace = targetPlace.trim();
-			targetPlace = targetPlace.substring(0, targetPlace.length() - 1);
-		}
+		
 		try
 		{
 			createConfigXml(job);
@@ -77,10 +71,10 @@ public class FileUtil
 			// set total number of work units
 			monitor.beginTask("Zipping " + job.getFileCount() + " files...", job.getFileCount());
 			
-			final Path zipFile = Paths.get(targetPlace, job.getName() + ".zip");
-			Files.deleteIfExists(zipFile);
+			//final Path zipFile = Paths.get(path, job.getName() + ".zip");
+			Files.deleteIfExists(zipFilePath);
 			
-			final FileOutputStream dest = new FileOutputStream(zipFile.toFile());
+			final FileOutputStream dest = new FileOutputStream(zipFilePath.toFile());
 			final ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(dest));
 			
 			out.setLevel(Deflater.BEST_COMPRESSION);
@@ -156,9 +150,7 @@ public class FileUtil
 	private static void addToArchive(final JobInterface jobInterface, final ZipOutputStream zos) throws IOException
 	{
 		LOG.info("Writing '" + jobInterface.getName() + "' to zip file");
-		
-		//final File file = path.toFile();
-		
+				
 		final FileInputStream fis = new FileInputStream(Configs.CONFIG_XML.getPath().toFile());
 		final BufferedInputStream origin = new BufferedInputStream(fis, BUFFER);
 		
