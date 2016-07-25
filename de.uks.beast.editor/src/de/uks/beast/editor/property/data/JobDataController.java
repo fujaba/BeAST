@@ -1,7 +1,5 @@
 package de.uks.beast.editor.property.data;
 
-import java.io.File;
-import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -12,7 +10,6 @@ import javax.xml.bind.ValidationException;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -23,11 +20,13 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
 import de.uks.beast.editor.job.Job;
 import de.uks.beast.editor.job.JobInterface;
+import de.uks.beast.editor.job.Result;
 import de.uks.beast.editor.property.data.JobFileDataContainer.Type;
 import de.uks.beast.editor.property.popup.PopupView;
 import de.uks.beast.editor.property.section.views.HadoopPropertyView;
 import de.uks.beast.editor.util.EclipseJobSynchronizer;
 import de.uks.beast.editor.util.FileBrowser;
+import de.uks.beast.hds.client.Uploader;
 
 public class JobDataController extends Observable
 {
@@ -253,14 +252,16 @@ public class JobDataController extends Observable
 						printJob(job);
 						
 						final EclipseJobSynchronizer jobSynchronizer = new EclipseJobSynchronizer(mainShell, job);
-						final IStatus status = jobSynchronizer.initAndRun();
+						final Result result = jobSynchronizer.initAndRun();
 						
 						update(Instruction.CLOSE);
 						
-						if(Status.OK_STATUS.equals(status)) {
-							//TODO: add file upload here
-							Uploader.upload(job);
-							 
+						/**
+						 * start from file upload !!!!!!
+						 */
+						if(Status.OK_STATUS.equals(result.getStatus())) {
+							final Uploader uploader = new Uploader();
+							//uploader.upload(result.getPath()); 
 						}
 					}
 					else

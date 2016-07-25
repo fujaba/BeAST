@@ -6,5 +6,6 @@
 	<classpathentry kind="src" path="resources"/>
 	<classpathentry kind="src" path="test"/>
 	<classpathentry exported="true" kind="lib" path="libs/log4j-1.2.17.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/hds-client-1.0-SNAPSHOT-jar-with-dependencies.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

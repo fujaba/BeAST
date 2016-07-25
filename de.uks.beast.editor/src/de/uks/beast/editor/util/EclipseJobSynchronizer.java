@@ -8,6 +8,8 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
+import de.uks.beast.editor.job.Result;
+
 public class EclipseJobSynchronizer
 {
 	private final de.uks.beast.editor.job.Job	beastJob;
@@ -23,13 +25,14 @@ public class EclipseJobSynchronizer
 	
 	
 	
-	public IStatus initAndRun()
+	public Result initAndRun()
 	{
+		final String s = System.getProperty("java.io.tmpdir");
 		final Job eclipseJob = new Job(beastJob.getName() + ".zip" + "...") {
 			@Override
 			protected IStatus run(final IProgressMonitor monitor)
 			{
-				FileUtil.createZipFromJob(beastJob, System.getProperty("java.io.tmpdir"), monitor);
+				FileUtil.createZipFromJob(beastJob, s, monitor);
 				
 				if (monitor.isCanceled())
 				{
@@ -49,7 +52,7 @@ public class EclipseJobSynchronizer
 		eclipseJob.setUser(true);
 		eclipseJob.schedule();
 		
-		return eclipseJob.getResult();
+		return new Result(eclipseJob.getResult(), s);
 	}
 	
 	
