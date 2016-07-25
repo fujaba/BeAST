@@ -258,9 +258,11 @@ public class JobDataController extends Observable
 							public void tell(final Result result)
 							{
 								/**
-								 * start from file upload !!!!!!
+								 * start file upload to server !!!!!!
 								 */
 								if(Status.OK_STATUS.equals(result.getStatus())) {
+									LOG.info("zip status: " + Status.OK_STATUS.getMessage());
+									LOG.info("start file upload...");
 									update(Instruction.CLOSE);
 									final Uploader uploader = new Uploader();
 									uploader.upload(result.getPath()); 
