@@ -161,7 +161,7 @@ public class JobDataController extends Observable
 			@Override
 			public void widgetSelected(SelectionEvent event)
 			{
-				if (popupView.getTextfldInput() != null && !popupView.getTextfldInput().isEmpty() && !tmpList.isEmpty())
+				if (!tmpList.isEmpty())
 				{
 					final Path unzipToPath = Paths.get(popupView.getTextfldInput());
 					update(new InputFileDataContainer(tmpList, unzipToPath));

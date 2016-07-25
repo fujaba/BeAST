@@ -61,11 +61,11 @@ public class PopupView implements Observer
 		shell.setText("Fixed size SWT Window.");
 		
 		unzipTargetTextfld = new Text(shell, SWT.BORDER);
-		unzipTargetTextfld.setEditable(true);
+		unzipTargetTextfld.setEditable(false);
 		unzipTargetTextfld.setBounds(boundInternal.x + 90, boundInternal.y + 20, 200, 30);
 		
 		saveBtn = new Button(shell, SWT.Selection);
-		saveBtn.setText("Übernehmen");
+		saveBtn.setText("ï¿½bernehmen");
 		saveBtn.setBounds(boundInternal.x + 300, boundInternal.y + 20, 80, 30);
 	}
 	
