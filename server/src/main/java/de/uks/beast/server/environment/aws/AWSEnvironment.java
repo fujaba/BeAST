@@ -50,7 +50,6 @@ public class AWSEnvironment extends CloudEnvironment {
 	public boolean authenticate() {
 		ec2 = new AmazonEC2Client(
 				new BasicAWSCredentials(service.get("access-key"), service.get("secret-key")));
-//				new BasicAWSCredentials("AKIAJF7TA7SVRN2GR3YA", "aVazPd6At1d31mVjBujk5Taw7dFsZ1x5IoqwzdqS"));
 		ec2.setEndpoint("ec2.eu-central-1.amazonaws.com");
 		return false;
 	}
@@ -111,22 +110,15 @@ public class AWSEnvironment extends CloudEnvironment {
 
 	@Override
 	public void establishConnection(String kafkabroker, String topic, List<? extends Configuration> configs) {
-		String local = kafkabroker;
-		
 		for (Configuration config : configs) {
 			InstanceConnection ic = new InstanceConnection(new KafkaRemoteLogger(kafkabroker, topic),
 					config.getConnectionInfo());
 			ic.authenticate();
 			ic.copyBeastFiles();
-			
-			kafkabroker = "kassem-desktop/79.211.35.177:9092";
-			
 			ic.setHostnames(kafkabroker, getConnectionInfos(configs));
-			ic.insertKeyToAuthorizedKeys("/home/kassem/.juju/ssh/juju_id_rsa.pub");
+			ic.insertKeyToAuthorizedKeys(service.get("juju-public-key"));
 			ic.executeService(kafkabroker, topic, Collections.<ConnectionInfo>emptyList());
 			ic.disconnect();
-			
-			kafkabroker = local;
 		}
 		
 	}
@@ -150,7 +142,7 @@ public class AWSEnvironment extends CloudEnvironment {
 			ec2.createSecurityGroup(csgr);
 			
 			IpPermission ssh = ipPermission("0.0.0.0/0", "tcp", 22, 22);
-			IpPermission hadoopPorts = ipPermission("0.0.0.0/0", "tcp", 4000, 99999);
+			IpPermission hadoopPorts = ipPermission("0.0.0.0/0", "tcp", 0, 65535);
 			
 			ec2.authorizeSecurityGroupIngress(new AuthorizeSecurityGroupIngressRequest()
 					.withGroupName("beast").withIpPermissions(ssh, hadoopPorts));
@@ -188,24 +180,6 @@ public class AWSEnvironment extends CloudEnvironment {
 		}
 		
 		return infos;
-	}
-	
-	public static void main(String[] args) {
-//		AWSEnvironment aws = new AWSEnvironment(null);
-//		aws.authenticate();
-//		List<? extends Configuration> defs = aws.createHardwareDefiniton(null);
-//		aws.startVirtualMachine(defs);
-//		aws.establishConnection("kassem-desktop/79.211.35.177:9092", "test", defs);
-//		aws.shutdownAll();
-		
-//		ConnectionInfo c = new ConnectionInfo("ip-172-31-31-243.eu-central-1.compute.internal", "52.57.12.116");
-//		c.setKey(new File("/home/kassem/perm.pem"));
-//		InstanceConnection a = new InstanceConnection(null, c);
-//		
-//		a.authenticate();
-//		a.copyFolder("/home/kassem/Desktop/hadoop-assets", "/home/ubuntu");
-//		a.executeScript("/home/ubuntu/hadoop-assets/slave.sh ip-172-31-26-67.eu-central-1.compute.internal", false);
-//		a.disconnect();
 	}
 	
 }

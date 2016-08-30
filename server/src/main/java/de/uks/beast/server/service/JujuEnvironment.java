@@ -21,7 +21,6 @@ public class JujuEnvironment extends ServiceEnvironment {
 
 	@Override
 	public void setup() {
-		//TODO bootstrap environment if needed
 	}
 
 	@Override
@@ -72,7 +71,6 @@ public class JujuEnvironment extends ServiceEnvironment {
 		try {
 			Thread.sleep(180000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -87,7 +85,7 @@ public class JujuEnvironment extends ServiceEnvironment {
 		for (Configuration config : configs) {
 			InstanceConnection ic = new InstanceConnection(null, config.getConnectionInfo());
 			ic.authenticate();
-			ic.copyFolder("/home/kassem/Desktop/hadoop-assets", "/home/ubuntu");
+			ic.copyFolder(service.get("juju-assets") + "hadoop-assets", "/home/ubuntu");
 			if (config.getServiceInfo().getServiceType().equals("hadoop-master")) {
 				ic.executeScript("/home/ubuntu/hadoop-assets/master.sh " + namenode, false);
 			} else if (config.getServiceInfo().getServiceType().equals("hadoop-slave")) {

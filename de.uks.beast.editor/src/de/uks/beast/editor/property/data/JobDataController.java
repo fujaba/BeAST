@@ -266,7 +266,6 @@ public class JobDataController extends Observable
 					{
 						final BeastTestScenario test = new BeastTestScenario();
 						test.executeHadoopJob(job.getName(), con.getConInfos().get(name), serialize(job));
-//						test.executeHadoopJob(job.getName(), null, serialize(job));
 					}
 					else
 					{
