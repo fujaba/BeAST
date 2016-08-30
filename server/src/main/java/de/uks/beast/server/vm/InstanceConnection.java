@@ -43,14 +43,11 @@ public class InstanceConnection {
 	public static final String EXEC = "exec";
 	public static final String SHELL = "shell";
 	public static final String SFTP = "sftp";
-//	public static final String BEAST_SERVICE_LOCAL = "/util/bservice.jar";
-	public static final String BEAST_SERVICE_LOCAL = "/home/kassem/beast-build/util/bservice.jar";
+	public static final String BEAST_SERVICE_LOCAL = "/util/bservice.jar";
 	public static final String BEAST_SERVICE_REMOTE = "/tmp/beast/util/bservice.jar";
-//	public static final String SCRIPT_LOCAL = "/util/postinstall.sh";
-	public static final String SCRIPT_LOCAL = "/home/kassem/beast-build/util/postinstall.sh";
+	public static final String SCRIPT_LOCAL = "/util/postinstall.sh";
 	public static final String SCRIPT_REMOTE = "/tmp/beast/util/postinstall.sh";
-//	public static final String LIB_DIR_LOCAL = "/util/libs";
-	public static final String LIB_DIR_LOCAL = "/home/kassem/beast-build/util/libs";
+	public static final String LIB_DIR_LOCAL = "/util/libs";
 	public static final String LIB_DIR_REMOTE = "/tmp/beast/util";
 	public static final String NO_ROUTE_TO_HOST = "java.net.NoRouteToHostException: No route to host";
 	public static final String CONNECTION_REFUSED = "java.net.ConnectException: Connection refused";
@@ -149,9 +146,6 @@ public class InstanceConnection {
 		    ce.connect();
 		    ce.disconnect();
 			
-		    //TODO
-		    filelocation = "";
-		    
 			c = session.openChannel(SFTP);
 			ChannelSftp cs = (ChannelSftp) c;
 			cs.connect();
