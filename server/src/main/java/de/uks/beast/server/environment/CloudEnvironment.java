@@ -2,9 +2,9 @@ package de.uks.beast.server.environment;
 
 import java.util.List;
 
-import de.uks.beast.model.Configuration;
 import de.uks.beast.model.Hardware;
 import de.uks.beast.server.BeastService;
+import de.uks.beast.server.environment.model.Configuration;
 
 public abstract class CloudEnvironment {
 	
@@ -32,7 +32,7 @@ public abstract class CloudEnvironment {
 	 * @param configs Configuations for the instances
 	 * @return list of environment specific connection information for the instances
 	 */
-	public abstract void startVirtualMachine(List<? extends Configuration> configs);
+	public abstract List<String> startVirtualMachine(List<? extends Configuration> configs);
 	
 	/** 
 	 * Establishes connections from instances to kafka

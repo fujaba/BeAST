@@ -1,4 +1,4 @@
-package de.uks.beast.server.environment.model;
+package de.uks.beast.connection;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -7,20 +7,18 @@ import java.io.IOException;
 
 public class ConnectionInfo {
 
-	private String name;
 	private String host;
 	private String IP;
 	private String privateIP;
 	private File key;
 	
-	public ConnectionInfo(String name, String host, String IP) {
-		this.name = name;
+	public ConnectionInfo(String host, String IP) {
 		this.host = host;
 		this.IP = IP;
 	}
 
-	public ConnectionInfo(String name, String host, String IP, String privateIP, String privateKeyAsString) {
-		this(name, host, IP);
+	public ConnectionInfo(String host, String IP, String privateIP, String privateKeyAsString) {
+		this(host, IP);
 		this.privateIP = privateIP;
 		
 		/* create private key file for athentication */
@@ -33,10 +31,6 @@ public class ConnectionInfo {
 			e.printStackTrace();
 		}
 		
-	}
-	
-	public String getName() {
-		return name;
 	}
 
 	public String getHostName() {

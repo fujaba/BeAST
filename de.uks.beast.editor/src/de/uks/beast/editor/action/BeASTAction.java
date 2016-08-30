@@ -4,9 +4,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import model.Server;
-import model.impl.NetworkImpl;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
@@ -32,11 +29,15 @@ import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.uks.beast.api.BeastTestScenario;
 import de.uks.beast.api.TestEnvironment;
+import de.uks.beast.api.akka.BeastConnection;
 import de.uks.beast.api.kafka.KafkaListener;
 import de.uks.beast.editor.action.update.DiagramUpdateMaster;
+import de.uks.beast.editor.property.data.JobDataController;
 import de.uks.beast.editor.provider.EditorDiagramTypeProvider;
 import de.uks.beast.model.Hardware;
 import de.uks.beast.model.Network;
+import model.Server;
+import model.impl.NetworkImpl;
 
 public class BeASTAction implements IObjectActionDelegate
 {
@@ -118,21 +119,27 @@ public class BeASTAction implements IObjectActionDelegate
 		
 		this.consoleStream = console.newMessageStream();
 		
+		String ip = "127.0.1.1";
+		int port = 4410;
+		
 		printToConsole("Started BeAST session...");
-		printToConsole("Connecting to BeAST server 141.51.169.20:4410");
+		printToConsole("Connecting to BeAST server " + ip + ":" + port);
 		
 		final BeastTestScenario test = new BeastTestScenario();
-		test.setEnvironment(new TestEnvironment("141.51.169.20", 4410));
+		test.setEnvironment(new TestEnvironment(ip, port));
 		
 		printToConsole("Waiting for metadata...");
-		final String kafkaInfos = test.executeEnvironment(hw);
-		printToConsole("Connecting to Kafka...");
+		final BeastConnection con = test.executeEnvironment(hw);
+		JobDataController.con = con;
+		printToConsole("Connecting to kafka cluster ...");
 		
-		final String[] metadata = kafkaInfos.split(" ");
+		final String[] metadata = con.getInfo().split(" ");
 		
 		final DiagramUpdateMaster updateMaster = new DiagramUpdateMaster(this, diagram, hw);
 		final KafkaListener listener = new KafkaListener(updateMaster, metadata[1].trim(), metadata[0].trim());
 		listener.start();
+		
+		printToConsole("Connection established, listening on topic: " + metadata[0].trim());
 	}
 	
 	

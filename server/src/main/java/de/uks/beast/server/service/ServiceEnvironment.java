@@ -2,8 +2,8 @@ package de.uks.beast.server.service;
 
 import java.util.List;
 
-import de.uks.beast.model.Configuration;
 import de.uks.beast.server.BeastService;
+import de.uks.beast.server.environment.model.Configuration;
 
 public abstract class ServiceEnvironment {
 
@@ -27,5 +27,7 @@ public abstract class ServiceEnvironment {
 	 * @param cons The configurations for the instances
 	 */
 	public abstract void startServices(List<? extends Configuration> cons);
+
+	public abstract void postInstall(List<? extends Configuration> configs);
 	
 }

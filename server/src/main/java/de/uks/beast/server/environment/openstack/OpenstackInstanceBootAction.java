@@ -92,7 +92,7 @@ public class OpenstackInstanceBootAction extends Thread {
 			e.printStackTrace();
 		}
 		
-		configuration.setConnectionInfo(new ConnectionInfo(cf.getHost(), netFloatingIP.getFloatingIpAddress(), 
+		configuration.setConnectionInfo(new ConnectionInfo(cf.getHost(), cf.getHost(), netFloatingIP.getFloatingIpAddress(), 
 				cf.getIp(), keypair.getPrivateKey()));
 		
 		//create port forward ?!

@@ -43,7 +43,7 @@ public class RamUsageHandler extends DiagramUpdateHandler
 		final String tempValue = "" + (Double.parseDouble(info.getValue()) * 100);
 		final String ramValue = tempValue.substring(0, tempValue.indexOf("."));
 		
-		LOG.debug("Value: " + info.getValue() + ", Total: " + externalServer.getRam());
+//		LOG.debug("Value: " + info.getValue() + ", Total: " + externalServer.getRam());
 		
 		for (final ContainerShape containerShape : serverShapes)
 		{
@@ -52,7 +52,7 @@ public class RamUsageHandler extends DiagramUpdateHandler
 			
 			if (checkServerEquals(externalServer, serverFromEditor))
 			{
-				LOG.debug("Update shape from server " + externalServer.getHost() + " with new RAM usage");
+//				LOG.debug("Update shape from server " + externalServer.getHost() + " with new RAM usage");
 				
 				final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(serverFromEditor);
 				
@@ -64,7 +64,7 @@ public class RamUsageHandler extends DiagramUpdateHandler
 						{
 							final Text ramStatText = (Text) shape.getGraphicsAlgorithm();
 							
-							LOG.debug("Old value from ramStatTextfield: " + ramStatText.getValue());
+//							LOG.debug("Old value from ramStatTextfield: " + ramStatText.getValue());
 							
 							domain.getCommandStack().execute(new RecordingCommand(domain) {
 								public void doExecute()
@@ -73,7 +73,7 @@ public class RamUsageHandler extends DiagramUpdateHandler
 								}
 							});
 							
-							LOG.debug("New value from ramStatTextfield: " + ramStatText.getValue());
+//							LOG.debug("New value from ramStatTextfield: " + ramStatText.getValue());
 							
 							return;
 						}

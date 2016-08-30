@@ -1,10 +1,13 @@
 package de.uks.beast.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Service {
+public class Service implements Serializable {
 
+	private static final long serialVersionUID = 3742513097471072508L;
+	
 	private String serviceName;
 	private String serviceType;
 	private List<Service> relations;

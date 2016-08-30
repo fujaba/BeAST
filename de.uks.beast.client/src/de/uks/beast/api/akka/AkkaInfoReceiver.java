@@ -13,7 +13,14 @@ public class AkkaInfoReceiver extends UntypedActor {
 	@Override
 	public void onReceive(Object msg) throws Exception {
 		if (msg instanceof String) {
-			controller.setInfo(msg.toString());
+			String message = msg.toString();
+			if (message.startsWith("TOPIC")) {
+				controller.getConnection().setInfo(message.replace("TOPIC", ""));
+			} else if (message.startsWith("SERVER")) {
+				String m = message.replace("SERVER", "");
+				String[] split = m.split(":");
+				controller.getConnection().addConnectionInfo(split[0], split[1], split[2]);
+			}
 		}
 	}
 

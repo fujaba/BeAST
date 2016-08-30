@@ -11,6 +11,7 @@ import java.util.Properties;
 
 import de.uks.beast.server.akka.AkkaServer;
 import de.uks.beast.server.environment.CloudEnvironment;
+import de.uks.beast.server.environment.aws.AWSEnvironment;
 import de.uks.beast.server.environment.openstack.OpenstackEnvironment;
 import de.uks.beast.server.kafka.KafkaRemoteLogger;
 import de.uks.beast.server.service.JujuEnvironment;
@@ -37,13 +38,14 @@ public class BeastService {
 	
 	private void setCloudEnvironments() {
 		this.cloudEnvironments.put("openstack", new OpenstackEnvironment(this));
+		this.cloudEnvironments.put("aws", new AWSEnvironment(this));
 	}
 	
 	private void setServiceEnvironments() {
 		this.serviceEnvironments.put("juju", new JujuEnvironment(this));
 	}
 	
-	private void startService() {
+	public void startService() {
 		Runtime.getRuntime().addShutdownHook(new BeastServiceTermination(this));
 		
 		this.props = new Properties();

@@ -1,6 +1,5 @@
-package de.uks.beast.model;
+package de.uks.beast.server.environment.model;
 
-import de.uks.beast.server.environment.model.ConnectionInfo;
 import de.uks.beast.server.service.model.ServiceInfo;
 
 public class Configuration {

@@ -10,39 +10,36 @@ import javax.xml.bind.ValidationException;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
+import de.uks.beast.api.BeastTestScenario;
+import de.uks.beast.api.akka.BeastConnection;
 import de.uks.beast.editor.job.Job;
 import de.uks.beast.editor.job.JobInterface;
-import de.uks.beast.editor.job.Result;
 import de.uks.beast.editor.property.data.JobFileDataContainer.Type;
 import de.uks.beast.editor.property.popup.PopupView;
 import de.uks.beast.editor.property.section.views.HadoopPropertyView;
-import de.uks.beast.editor.util.EclipseJobSynchronizer;
 import de.uks.beast.editor.util.FileBrowser;
-import de.uks.beast.hds.client.Uploader;
 
 public class JobDataController extends Observable
 {
 	private static final Logger			LOG					= LogManager.getLogger(JobDataController.class);
+	public static BeastConnection con;
+	
 	private JobDataContainer			jobDataContainer	= new JobDataContainer();
 	private final PopupView				popupView;
 	private final HadoopPropertyView	propertyView;
-	private final Shell					mainShell;
-	
+	private String name;
 	
 	
 	public JobDataController(final Display display, final Composite parent, final TabbedPropertySheetWidgetFactory factory)
 	{
 		this.popupView = new PopupView(display);
 		this.propertyView = new HadoopPropertyView(parent, factory);
-		this.mainShell = parent.getShell();
 	}
 	
 	
@@ -235,8 +232,26 @@ public class JobDataController extends Observable
 			}
 		});
 		
+		propertyView.addHandlerToSaveBtn(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+			}
+			
+			
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0)
+			{
+				// Nothing to do!
+				
+			}
+		});
+		
 		propertyView.addHandlerToTransfereBtn(new SelectionListener() {
 			
+
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
@@ -249,27 +264,9 @@ public class JobDataController extends Observable
 					
 					if (validateJob(job))
 					{
-						printJob(job);
-						
-						final EclipseJobSynchronizer jobSynchronizer = new EclipseJobSynchronizer(mainShell, job);
-						jobSynchronizer.initAndRun(new ZipStateInterface() {
-							
-							@Override
-							public void tell(final Result result)
-							{
-								/**
-								 * start file upload to server !!!!!!
-								 */
-								if(Status.OK_STATUS.equals(result.getStatus())) {
-									LOG.info("zip status: " + Status.OK_STATUS.getMessage());
-									LOG.info("start file upload...");
-									update(Instruction.CLOSE);
-									final Uploader uploader = new Uploader();
-									uploader.upload(result.getPath()); 
-								}
-							}
-						});
-				
+						final BeastTestScenario test = new BeastTestScenario();
+						test.executeHadoopJob(job.getName(), con.getConInfos().get(name), serialize(job));
+//						test.executeHadoopJob(job.getName(), null, serialize(job));
 					}
 					else
 					{
@@ -285,6 +282,23 @@ public class JobDataController extends Observable
 			
 			
 			
+			private de.uks.beast.model.Job serialize(Job job) {
+				de.uks.beast.model.Job j = new de.uks.beast.model.Job();
+				j.setName(job.getName());
+				j.setJar(job.getJobFile().getPath().toString());
+				
+				List<String> ins = new ArrayList<String>();
+				for (JobInterface ji : job.getInputFiles()) {
+					ins.add(ji.getPath().toString());
+				}
+				j.setInputs(ins);
+				
+				j.setOutput(job.getOutputFile().getPath().toString());
+				return j;
+			}
+
+
+
 			@Override
 			public void widgetDefaultSelected(SelectionEvent arg0)
 			{
@@ -328,20 +342,13 @@ public class JobDataController extends Observable
 		
 		return nameValid && jobFileValid && inputFileValid && outputFileValid;
 	}
-	
-	
-	
-	private void printJob(final Job job)
-	{
-		LOG.debug("############### <buildedJob> ###############");
-		LOG.debug("Name: " + job.getName() + " with " + job.getFileCount() + " files");
-		LOG.debug("JobFile: " + job.getJobFile().getPath());
-		for (final JobInterface inputFile : job.getInputFiles())
-		{
-			LOG.debug("InputFile: " + inputFile.getPath() + " with unzipTarget: " + inputFile.unzipTo());
-		}
-		LOG.debug("outputFile: " + job.getOutputFile().getPath());
-		LOG.debug("############### </buildedJob> ###############");
+
+
+
+	public void setServerName(String name) {
+		this.name = name;
 	}
+	
+	
 	
 }

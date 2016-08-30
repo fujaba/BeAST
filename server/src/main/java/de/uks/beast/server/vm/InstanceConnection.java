@@ -43,13 +43,14 @@ public class InstanceConnection {
 	public static final String EXEC = "exec";
 	public static final String SHELL = "shell";
 	public static final String SFTP = "sftp";
-	public static final String BEAST_SERVICE_LOCAL = "/util/bservice.jar";
+//	public static final String BEAST_SERVICE_LOCAL = "/util/bservice.jar";
+	public static final String BEAST_SERVICE_LOCAL = "/home/kassem/beast-build/util/bservice.jar";
 	public static final String BEAST_SERVICE_REMOTE = "/tmp/beast/util/bservice.jar";
-	public static final String SCRIPT_LOCAL = "/util/postinstall.sh";
+//	public static final String SCRIPT_LOCAL = "/util/postinstall.sh";
+	public static final String SCRIPT_LOCAL = "/home/kassem/beast-build/util/postinstall.sh";
 	public static final String SCRIPT_REMOTE = "/tmp/beast/util/postinstall.sh";
-	public static final String JDK_LOCAL = "/util/jdk-8u40-linux-x64.tar.gz";
-	public static final String JDK_REMOTE = "/tmp/beast/util/jdk-8u40-linux-x64.tar.gz";
-	public static final String LIB_DIR_LOCAL = "/util/libs";
+//	public static final String LIB_DIR_LOCAL = "/util/libs";
+	public static final String LIB_DIR_LOCAL = "/home/kassem/beast-build/util/libs";
 	public static final String LIB_DIR_REMOTE = "/tmp/beast/util";
 	public static final String NO_ROUTE_TO_HOST = "java.net.NoRouteToHostException: No route to host";
 	public static final String CONNECTION_REFUSED = "java.net.ConnectException: Connection refused";
@@ -77,9 +78,11 @@ public class InstanceConnection {
 			session = jsch.getSession(SSH_USER, connectionInfo.getIp(), 22);
 			session.connect();
 			
-			logger.info("[" + connectionInfo.getHostName() + "] Connection established via SSH");
-			remoteLogger.info("[" + connectionInfo.getHostName() + "] Connection established via SSH");
-		} catch (JSchException e) {
+			logger.info("[" + connectionInfo.getName() + "] Connection established via SSH");
+			if (remoteLogger != null) {
+				remoteLogger.info("[" + connectionInfo.getName() + "] Connection established via SSH");
+			}
+			} catch (JSchException e) {
 			if (e.getMessage().equals(NO_ROUTE_TO_HOST) || e.getMessage().equals(CONNECTION_REFUSED)) {
 				logger.info("Waiting for SSH daemon to be up and ready ...");
 				int counter = 0;
@@ -95,8 +98,10 @@ public class InstanceConnection {
 					} catch (JSchException je) {
 					}
 					if (session.isConnected()) {
-						logger.info("[" + connectionInfo.getHostName() + "] Connection established via SSH");
-						remoteLogger.info("[" + connectionInfo.getHostName() + "] Connection established via SSH");
+						logger.info("[" + connectionInfo.getName() + "] Connection established via SSH");
+						if (remoteLogger != null) {
+							remoteLogger.info("[" + connectionInfo.getName() + "] Connection established via SSH");
+						}
 						break;
 					}
 				}
@@ -131,9 +136,11 @@ public class InstanceConnection {
 				e.printStackTrace();
 			}
 			
-			logger.info("[" + connectionInfo.getHostName() + "] Deploying BeAST agent on instance ...");
-			remoteLogger.info("[" + connectionInfo.getHostName() + "] Deploying BeAST agent on instance ...");
-
+			logger.info("[" + connectionInfo.getName() + "] Deploying BeAST agent on instance ...");
+			if (remoteLogger != null) {
+				remoteLogger.info("[" + connectionInfo.getName() + "] Deploying BeAST agent on instance ...");
+			}
+			
 			/* create temporary directory for service */
 			Channel c = session.openChannel(EXEC);
 		    ChannelExec ce = (ChannelExec) c;
@@ -142,32 +149,27 @@ public class InstanceConnection {
 		    ce.connect();
 		    ce.disconnect();
 			
+		    //TODO
+		    filelocation = "";
+		    
 			c = session.openChannel(SFTP);
 			ChannelSftp cs = (ChannelSftp) c;
 			cs.connect();
 			cs.put(filelocation + BEAST_SERVICE_LOCAL, BEAST_SERVICE_REMOTE);
 			cs.put(filelocation + SCRIPT_LOCAL, SCRIPT_REMOTE);
-			cs.put(filelocation + JDK_LOCAL, JDK_REMOTE);
 			copyFolder(filelocation + LIB_DIR_LOCAL, LIB_DIR_REMOTE);
-			ce.disconnect();
+			cs.disconnect();
 		} catch (JSchException | SftpException e) {
 			logger.error("Unexpected Exception", e);
 		}
 	}
 	
-	/**
-	 * Executes the BeAST VM service on the instance
-	 * @param kafkabroker The kafka broker the VM service is going to send information 
-	 * @param topic the kafka topic the VM service is writing to
-	 * @param cons 
-	 */
-	public void executeService(String kafkabroker, String topic, List<ConnectionInfo> cons) {
+	public void setHostnames(String kafkabroker, List<ConnectionInfo> cons) {
+		/* edit /etc/hosts file */
+		String hostname = getHostname(kafkabroker);
+		kafkabroker = kafkabroker.substring(kafkabroker.indexOf("/") + 1);
+		
 		try {
-			
-			/* edit /etc/hosts file */
-			String hostname = getHostname(kafkabroker);
-			kafkabroker = kafkabroker.substring(kafkabroker.indexOf("/") + 1);
-			
 			Channel editHosts = session.openChannel("exec");
 		    ChannelExec editHostsExec = (ChannelExec) editHosts;
 		    
@@ -180,37 +182,53 @@ public class InstanceConnection {
 		    editHostsExec.setErrStream(System.err);
 		    editHostsExec.connect();
 		    editHostsExec.disconnect();
-		    
+		} catch (Exception e) {
+			logger.error("Unexpected Exception", e);
+		}
+	}
+	
+	/**
+	 * Executes the BeAST VM service on the instance
+	 * @param kafkabroker The kafka broker the VM service is going to send information 
+	 * @param topic the kafka topic the VM service is writing to
+	 * @param cons 
+	 */
+	public void executeService(String kafkabroker, String topic, List<ConnectionInfo> cons) {
+		kafkabroker = kafkabroker.substring(kafkabroker.indexOf("/") + 1);
+		
+		try {
 			/* execute postinstall script */
 			Channel c = session.openChannel(EXEC);
 		    ChannelExec postinstallExec = (ChannelExec) c;
-		    postinstallExec.setCommand(ShellCommands.executeScript(SCRIPT_REMOTE));
+		    postinstallExec.setCommand(ShellCommands.executeScriptSudo(SCRIPT_REMOTE));
 		    postinstallExec.setErrStream(System.err);
 		    postinstallExec.connect();
 		    BufferedReader install_java_reader = new BufferedReader(new InputStreamReader(postinstallExec.getInputStream()));
 		    String line1;
 		    while ((line1 = install_java_reader.readLine()) != null) {
-		    	logger.debug("[" + connectionInfo.getHostName() + "] postinstall.sh - " + line1);
+		    	logger.debug("[" + connectionInfo.getName() + "] postinstall.sh - " + line1);
 		    }
 		    postinstallExec.disconnect();
 		    
 		    /* start BeAST VM service */
-		    logger.info("[" + connectionInfo.getHostName() + "] Starting BeAST agent on instance with broker = " + kafkabroker +
+		    logger.info("[" + connectionInfo.getName() + "] Starting BeAST agent on instance with broker = " + kafkabroker +
 					" and topic = " + topic);
 			Channel channel = session.openChannel(SHELL);
 			OutputStream ops = channel.getOutputStream();
 			PrintStream ps = new PrintStream(ops, true);
 
 			channel.connect();
-			ps.println(ShellCommands.executeBeastService(connectionInfo.getHostName(), kafkabroker, topic));
+			ps.println(ShellCommands.executeBeastService(connectionInfo.getName(), kafkabroker, topic));
 			ps.close();
 
 			// wait till executed
 			Thread.sleep(2000);
 			channel.disconnect();
 
-		    logger.info("[" + connectionInfo.getHostName() + "] Finished setup process");
-		    remoteLogger.info("[" + connectionInfo.getHostName() + "] Online");
+		    logger.info("[" + connectionInfo.getName() + "] Finished setup process");
+		    if (remoteLogger != null) {
+		    	remoteLogger.info("[" + connectionInfo.getName() + "] Online");
+		    }
 		} catch (Exception e) {
 			logger.error("Unexpected Exception", e);
 		}
@@ -234,6 +252,28 @@ public class InstanceConnection {
 
 	}
 	
+	public void executeScript(String script, boolean sudo) {
+		try {
+			Channel c = session.openChannel(EXEC);
+		    ChannelExec postinstallExec = (ChannelExec) c;
+		    if (!sudo) {
+			    postinstallExec.setCommand(ShellCommands.executeScript(script));
+		    } else {
+			    postinstallExec.setCommand(ShellCommands.executeScriptSudo(script));
+		    }
+		    postinstallExec.setErrStream(System.err);
+		    postinstallExec.connect();
+		    BufferedReader br = new BufferedReader(new InputStreamReader(postinstallExec.getInputStream()));
+		    String line1;
+		    while ((line1 = br.readLine()) != null) {
+		    	logger.debug("[" + connectionInfo.getName() + "] " + line1);
+		    }
+		    postinstallExec.disconnect();
+		} catch (Exception e) {
+			logger.error("Unexpected Exception", e);
+		}
+	}
+	
 	/* close SSH session */
 	public void disconnect() {
 		this.session.disconnect();
@@ -246,13 +286,14 @@ public class InstanceConnection {
 		return ip + "\t" + host;
 	}
 	
-	private void copyFolder(String src, String dest) {
+	public void copyFolder(String src, String dest) {
 		try {
 		    Channel c = session.openChannel(SFTP);
 			ChannelSftp cs = (ChannelSftp) c;
 			cs.connect();
 			
 			recursiveCopy(cs, new File(src), dest);
+			cs.disconnect();
 		} catch (JSchException e) {
 			logger.error("Unexpected Exception", e);
 		}

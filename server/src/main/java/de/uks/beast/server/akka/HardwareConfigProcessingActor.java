@@ -15,9 +15,9 @@ import akka.actor.UntypedActor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.uks.beast.model.Configuration;
 import de.uks.beast.model.Hardware;
 import de.uks.beast.server.BeastService;
+import de.uks.beast.server.environment.model.Configuration;
 import de.uks.beast.server.kafka.KafkaRemoteLogger;
 
 public class HardwareConfigProcessingActor extends UntypedActor {
@@ -63,7 +63,7 @@ public class HardwareConfigProcessingActor extends UntypedActor {
 			}
 			
 			/* send metadata to client */
-			getSender().tell(topic + " " + zookeeperCon, getSelf());
+			getSender().tell("TOPIC" + topic + " " + zookeeperCon, getSelf());
 			
 			/* create new Kafka topic */
 			ZkClient zkClient = new ZkClient(service.get("zookeeper"), 10000, 10000, ZKStringSerializer$.MODULE$);
@@ -77,7 +77,11 @@ public class HardwareConfigProcessingActor extends UntypedActor {
 			List<? extends Configuration> configs = service.getCloudEnvironment().createHardwareDefiniton(hw);
 			
 			/* start the instance(s) */
-			service.getCloudEnvironment().startVirtualMachine(configs);
+			List<String> coninfos = service.getCloudEnvironment().startVirtualMachine(configs);
+			
+			for (String con : coninfos) {
+				getSender().tell(con, getSelf());
+			}
 			
 			/* authenticate against VM(s) and deploy and start crawler service */
 			service.getCloudEnvironment().establishConnection(service.get("kafkabroker"), topic, configs);
@@ -90,6 +94,9 @@ public class HardwareConfigProcessingActor extends UntypedActor {
 			
 			/* install and start the services */
 			service.getServiceEnvironment().startServices(configs);
+			
+			//TODO
+			service.getServiceEnvironment().postInstall(configs);
 			
 			
 		} else {

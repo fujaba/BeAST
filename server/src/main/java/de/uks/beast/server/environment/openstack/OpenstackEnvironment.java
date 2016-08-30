@@ -20,10 +20,10 @@ import org.openstack4j.model.network.Router;
 import org.openstack4j.model.network.Subnet;
 import org.openstack4j.openstack.OSFactory;
 
-import de.uks.beast.model.Configuration;
 import de.uks.beast.model.Hardware;
 import de.uks.beast.server.BeastService;
 import de.uks.beast.server.environment.CloudEnvironment;
+import de.uks.beast.server.environment.model.Configuration;
 import de.uks.beast.server.environment.model.ConnectionInfo;
 import de.uks.beast.server.environment.model.OpenstackConfiguration;
 import de.uks.beast.server.service.model.ServiceInfo;
@@ -125,7 +125,7 @@ public class OpenstackEnvironment extends CloudEnvironment {
 	}
 
 	@Override
-	public void startVirtualMachine(List<? extends Configuration> configs) {
+	public List<String> startVirtualMachine(List<? extends Configuration> configs) {
 		logger.info("Creating keypair for VM(s) ...");
 		
 		os.compute().keypairs().delete("beast-keypair");
@@ -148,6 +148,8 @@ public class OpenstackEnvironment extends CloudEnvironment {
 		}
 		
 		logger.info("All instances started successfully");
+		
+		return null; //TODO
 	}
 	
 	@Override

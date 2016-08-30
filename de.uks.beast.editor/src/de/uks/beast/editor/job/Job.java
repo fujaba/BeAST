@@ -1,10 +1,13 @@
 package de.uks.beast.editor.job;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Job
+public class Job implements Serializable
 {
+	private static final long serialVersionUID = 7875905336270190986L;
+	
 	private final String				name;
 	private final JobInterface			jobFile;
 	private final JobInterface			outputFile;

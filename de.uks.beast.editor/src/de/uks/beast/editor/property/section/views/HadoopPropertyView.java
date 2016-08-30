@@ -33,6 +33,7 @@ public class HadoopPropertyView implements Observer
 	private Text									jobFileTextFld;
 	private Text									inputFileTextFld;
 	private Text									outputFileTextFld;
+	private Button									saveBtn;
 	
 	
 	
@@ -145,8 +146,14 @@ public class HadoopPropertyView implements Observer
 		resetBtn.setLayoutData(data);
 		resetBtn.setToolTipText(ToolTips.RESET_BTN_TIP.get());
 		
+		saveBtn = factory.createButton(composite, "Save", 0);
+		data = new FormData();
+		data.left = new FormAttachment(resetBtn, 0);
+		data.right = new FormAttachment(4, 0);
+		data.top = new FormAttachment(outputFileLabel, 30);
+		saveBtn.setLayoutData(data);
+		saveBtn.setToolTipText("Save");
 	}
-	
 	
 	
 	private void resetAll()
@@ -212,6 +219,12 @@ public class HadoopPropertyView implements Observer
 		}
 	}
 	
+	public void addHandlerToSaveBtn(final SelectionListener listener) {
+		if (listener != null)
+		{
+			saveBtn.addSelectionListener(listener);
+		}
+	}
 	
 	
 	@Override
