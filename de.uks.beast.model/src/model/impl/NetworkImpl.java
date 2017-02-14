@@ -3,17 +3,22 @@
 package model.impl;
 
 import java.util.Collection;
+
 import model.ModelPackage;
 import model.Network;
-import model.Router;
-import model.Server;
+import model.Service;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -29,10 +34,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link model.impl.NetworkImpl#getSubnetmask <em>Subnetmask</em>}</li>
  *   <li>{@link model.impl.NetworkImpl#getGateway <em>Gateway</em>}</li>
  *   <li>{@link model.impl.NetworkImpl#getDns <em>Dns</em>}</li>
- *   <li>{@link model.impl.NetworkImpl#getRouter <em>Router</em>}</li>
  *   <li>{@link model.impl.NetworkImpl#getName <em>Name</em>}</li>
- *   <li>{@link model.impl.NetworkImpl#getServer <em>Server</em>}</li>
- *   <li>{@link model.impl.NetworkImpl#getId <em>Id</em>}</li>
+ *   <li>{@link model.impl.NetworkImpl#getServices <em>Services</em>}</li>
  * </ul>
  *
  * @generated
@@ -47,7 +50,7 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String IP_EDEFAULT = "0";
+	protected static final String IP_EDEFAULT = "0.0.0.0";
 
 	/**
 	 * The cached value of the '{@link #getIp() <em>Ip</em>}' attribute.
@@ -67,8 +70,8 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String	SUBNETMASK_EDEFAULT	= "0";
-	
+	protected static final String SUBNETMASK_EDEFAULT = "0.0.0.0";
+
 	/**
 	 * The cached value of the '{@link #getSubnetmask() <em>Subnetmask</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -77,8 +80,8 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	 * @generated
 	 * @ordered
 	 */
-	protected String				subnetmask			= SUBNETMASK_EDEFAULT;
-	
+	protected String subnetmask = SUBNETMASK_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getGateway() <em>Gateway</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -87,8 +90,8 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String	GATEWAY_EDEFAULT	= "0";
-	
+	protected static final String GATEWAY_EDEFAULT = "0.0.0.0";
+
 	/**
 	 * The cached value of the '{@link #getGateway() <em>Gateway</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -97,8 +100,8 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	 * @generated
 	 * @ordered
 	 */
-	protected String				gateway				= GATEWAY_EDEFAULT;
-	
+	protected String gateway = GATEWAY_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getDns() <em>Dns</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -107,8 +110,8 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String	DNS_EDEFAULT		= "0";
-	
+	protected static final String DNS_EDEFAULT = "0.0.0.0";
+
 	/**
 	 * The cached value of the '{@link #getDns() <em>Dns</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -117,17 +120,7 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	 * @generated
 	 * @ordered
 	 */
-	protected String				dns					= DNS_EDEFAULT;
-	
-	/**
-	 * The cached value of the '{@link #getRouter() <em>Router</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRouter()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Router> router;
+	protected String dns = DNS_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -137,7 +130,7 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = "0";
+	protected static final String NAME_EDEFAULT = "network";
 
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -150,36 +143,14 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getServer() <em>Server</em>}' reference list.
+	 * The cached value of the '{@link #getServices() <em>Services</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getServer()
+	 * @see #getServices()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Server> server;
-
-
-
-	/**
-	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getId()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int ID_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getId()
-	 * @generated
-	 * @ordered
-	 */
-	protected int id = ID_EDEFAULT;
+	protected EList<Service> services;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -190,9 +161,7 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	{
 		super();
 	}
-	
-	
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -203,33 +172,29 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	{
 		return ModelPackage.Literals.NETWORK;
 	}
-	
-	
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getIp() {
+	public String getIp()
+	{
 		return ip;
 	}
 
-
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIp(String newIp) {
+	public void setIp(String newIp)
+	{
 		String oldIp = ip;
 		ip = newIp;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.NETWORK__IP, oldIp, ip));
 	}
-
-
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -240,9 +205,7 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	{
 		return subnetmask;
 	}
-	
-	
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -255,9 +218,7 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.NETWORK__SUBNETMASK, oldSubnetmask, subnetmask));
 	}
-	
-	
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -267,9 +228,7 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	{
 		return gateway;
 	}
-	
-	
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -282,9 +241,7 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.NETWORK__GATEWAY, oldGateway, gateway));
 	}
-	
-	
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -294,9 +251,7 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	{
 		return dns;
 	}
-	
-	
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -309,86 +264,43 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.NETWORK__DNS, oldDns, dns));
 	}
-	
-	
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Server> getServer() {
-		if (server == null) {
-			server = new EObjectWithInverseResolvingEList<Server>(Server.class, this, ModelPackage.NETWORK__SERVER, ModelPackage.SERVER__NETWORK);
-		}
-		return server;
-	}
-
-
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getId() {
-		return id;
-	}
-
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setId(int newId) {
-		int oldId = id;
-		id = newId;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.NETWORK__ID, oldId, id));
-	}
-
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Router> getRouter() {
-		if (router == null) {
-			router = new EObjectWithInverseResolvingEList.ManyInverse<Router>(Router.class, this, ModelPackage.NETWORK__ROUTER, ModelPackage.ROUTER__NETWORK);
-		}
-		return router;
-	}
-
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getName() {
+	public String getName()
+	{
 		return name;
 	}
 
-
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
+	public void setName(String newName)
+	{
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.NETWORK__NAME, oldName, name));
 	}
 
-
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Service> getServices()
+	{
+		if (services == null)
+		{
+			services = new EObjectWithInverseResolvingEList<Service>(Service.class, this, ModelPackage.NETWORK__SERVICES, ModelPackage.SERVICE__NETWORK);
+		}
+		return services;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -399,17 +311,14 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
-			case ModelPackage.NETWORK__ROUTER:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRouter()).basicAdd(otherEnd, msgs);
-			case ModelPackage.NETWORK__SERVER:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getServer()).basicAdd(otherEnd, msgs);
+		switch (featureID)
+		{
+			case ModelPackage.NETWORK__SERVICES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getServices()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
-	
-	
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -418,17 +327,14 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
-			case ModelPackage.NETWORK__ROUTER:
-				return ((InternalEList<?>)getRouter()).basicRemove(otherEnd, msgs);
-			case ModelPackage.NETWORK__SERVER:
-				return ((InternalEList<?>)getServer()).basicRemove(otherEnd, msgs);
+		switch (featureID)
+		{
+			case ModelPackage.NETWORK__SERVICES:
+				return ((InternalEList<?>)getServices()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
-	
-	
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -437,7 +343,8 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.NETWORK__IP:
 				return getIp();
 			case ModelPackage.NETWORK__SUBNETMASK:
@@ -446,20 +353,14 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 				return getGateway();
 			case ModelPackage.NETWORK__DNS:
 				return getDns();
-			case ModelPackage.NETWORK__ROUTER:
-				return getRouter();
 			case ModelPackage.NETWORK__NAME:
 				return getName();
-			case ModelPackage.NETWORK__SERVER:
-				return getServer();
-			case ModelPackage.NETWORK__ID:
-				return getId();
+			case ModelPackage.NETWORK__SERVICES:
+				return getServices();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
-	
-	
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -469,7 +370,8 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.NETWORK__IP:
 				setIp((String)newValue);
 				return;
@@ -482,26 +384,17 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 			case ModelPackage.NETWORK__DNS:
 				setDns((String)newValue);
 				return;
-			case ModelPackage.NETWORK__ROUTER:
-				getRouter().clear();
-				getRouter().addAll((Collection<? extends Router>)newValue);
-				return;
 			case ModelPackage.NETWORK__NAME:
 				setName((String)newValue);
 				return;
-			case ModelPackage.NETWORK__SERVER:
-				getServer().clear();
-				getServer().addAll((Collection<? extends Server>)newValue);
-				return;
-			case ModelPackage.NETWORK__ID:
-				setId((Integer)newValue);
+			case ModelPackage.NETWORK__SERVICES:
+				getServices().clear();
+				getServices().addAll((Collection<? extends Service>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
 	}
-	
-	
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -510,7 +403,8 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.NETWORK__IP:
 				setIp(IP_EDEFAULT);
 				return;
@@ -523,24 +417,16 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 			case ModelPackage.NETWORK__DNS:
 				setDns(DNS_EDEFAULT);
 				return;
-			case ModelPackage.NETWORK__ROUTER:
-				getRouter().clear();
-				return;
 			case ModelPackage.NETWORK__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ModelPackage.NETWORK__SERVER:
-				getServer().clear();
-				return;
-			case ModelPackage.NETWORK__ID:
-				setId(ID_EDEFAULT);
+			case ModelPackage.NETWORK__SERVICES:
+				getServices().clear();
 				return;
 		}
 		super.eUnset(featureID);
 	}
-	
-	
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -549,7 +435,8 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.NETWORK__IP:
 				return IP_EDEFAULT == null ? ip != null : !IP_EDEFAULT.equals(ip);
 			case ModelPackage.NETWORK__SUBNETMASK:
@@ -558,20 +445,14 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 				return GATEWAY_EDEFAULT == null ? gateway != null : !GATEWAY_EDEFAULT.equals(gateway);
 			case ModelPackage.NETWORK__DNS:
 				return DNS_EDEFAULT == null ? dns != null : !DNS_EDEFAULT.equals(dns);
-			case ModelPackage.NETWORK__ROUTER:
-				return router != null && !router.isEmpty();
 			case ModelPackage.NETWORK__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ModelPackage.NETWORK__SERVER:
-				return server != null && !server.isEmpty();
-			case ModelPackage.NETWORK__ID:
-				return id != ID_EDEFAULT;
+			case ModelPackage.NETWORK__SERVICES:
+				return services != null && !services.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
-	
-	
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -593,10 +474,8 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 		result.append(dns);
 		result.append(", name: ");
 		result.append(name);
-		result.append(", id: ");
-		result.append(id);
 		result.append(')');
 		return result.toString();
 	}
-	
+
 } //NetworkImpl

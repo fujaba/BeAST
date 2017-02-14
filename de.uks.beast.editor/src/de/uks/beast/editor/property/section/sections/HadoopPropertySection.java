@@ -14,9 +14,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import de.uks.beast.api.akka.BeastConnection;
 import de.uks.beast.editor.property.data.JobDataController;
 import de.uks.beast.editor.property.section.views.HadoopPropertyView;
-import model.Server;
 import model.Service;
-import model.impl.ServerImpl;
 
 public class HadoopPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {
@@ -24,7 +22,7 @@ public class HadoopPropertySection extends GFPropertySection implements ITabbedP
 	
 	private HadoopPropertyView hadoopPropertyView;
 	private Service service;
-	private Server server;
+	//private Server server;
 	private JobDataController controller;
 	
 	@Override
@@ -49,10 +47,10 @@ public class HadoopPropertySection extends GFPropertySection implements ITabbedP
 
 		if (pe != null)
 		{
-			server = (Server) a;
+			//server = (Server) a;
 			service = (Service) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
 			//domain = TransactionUtil.getEditingDomain(service);
-			controller.setServerName(server.getName());
+			//controller.setServerName(server.getName());
 			if (service == null)
 			{
 				return;

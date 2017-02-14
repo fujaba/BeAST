@@ -28,20 +28,21 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 	 */
 	public static ModelFactory init()
 	{
-		try {
+		try
+		{
 			ModelFactory theModelFactory = (ModelFactory)EPackage.Registry.INSTANCE.getEFactory(ModelPackage.eNS_URI);
-			if (theModelFactory != null) {
+			if (theModelFactory != null)
+			{
 				return theModelFactory;
 			}
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new ModelFactoryImpl();
 	}
-	
-	
-	
+
 	/**
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
@@ -52,9 +53,7 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 	{
 		super();
 	}
-	
-	
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,54 +62,15 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID()) {
-			case ModelPackage.SERVER: return createServer();
-			case ModelPackage.GROUP: return createGroup();
+		switch (eClass.getClassifierID())
+		{
 			case ModelPackage.NETWORK: return createNetwork();
-			case ModelPackage.ROUTER: return createRouter();
 			case ModelPackage.HADOOP_MASTER: return createHadoopMaster();
 			case ModelPackage.HADOOP_SLAVE: return createHadoopSlave();
-			case ModelPackage.MY_SQL: return createMySQL();
-			case ModelPackage.WORD_PRESS: return createWordPress();
-			case ModelPackage.CASSANDRA: return createCassandra();
-			case ModelPackage.MONGO_DB: return createMongoDB();
-			case ModelPackage.UBUNTU: return createUbuntu();
-			case ModelPackage.APACHE2: return createApache2();
-			case ModelPackage.JENKINS: return createJenkins();
-			case ModelPackage.MEDIA_WIKI: return createMediaWiki();
-			case ModelPackage.TOMCAT: return createTomcat();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
-	
-	
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Server createServer()
-	{
-		ServerImpl server = new ServerImpl();
-		return server;
-	}
-	
-	
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Group createGroup()
-	{
-		GroupImpl group = new GroupImpl();
-		return group;
-	}
-
-
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -122,22 +82,7 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 		NetworkImpl network = new NetworkImpl();
 		return network;
 	}
-	
-	
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Router createRouter()
-	{
-		RouterImpl router = new RouterImpl();
-		return router;
-	}
-	
-	
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -148,8 +93,6 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 		HadoopMasterImpl hadoopMaster = new HadoopMasterImpl();
 		return hadoopMaster;
 	}
-
-
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -162,125 +105,6 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 		return hadoopSlave;
 	}
 
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MySQL createMySQL()
-	{
-		MySQLImpl mySQL = new MySQLImpl();
-		return mySQL;
-	}
-
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public WordPress createWordPress()
-	{
-		WordPressImpl wordPress = new WordPressImpl();
-		return wordPress;
-	}
-
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Cassandra createCassandra()
-	{
-		CassandraImpl cassandra = new CassandraImpl();
-		return cassandra;
-	}
-
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MongoDB createMongoDB()
-	{
-		MongoDBImpl mongoDB = new MongoDBImpl();
-		return mongoDB;
-	}
-
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Ubuntu createUbuntu()
-	{
-		UbuntuImpl ubuntu = new UbuntuImpl();
-		return ubuntu;
-	}
-
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Apache2 createApache2()
-	{
-		Apache2Impl apache2 = new Apache2Impl();
-		return apache2;
-	}
-
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Jenkins createJenkins()
-	{
-		JenkinsImpl jenkins = new JenkinsImpl();
-		return jenkins;
-	}
-
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MediaWiki createMediaWiki()
-	{
-		MediaWikiImpl mediaWiki = new MediaWikiImpl();
-		return mediaWiki;
-	}
-
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Tomcat createTomcat()
-	{
-		TomcatImpl tomcat = new TomcatImpl();
-		return tomcat;
-	}
-
-
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -290,9 +114,7 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 	{
 		return (ModelPackage)getEPackage();
 	}
-	
-	
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -304,5 +126,5 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 	{
 		return ModelPackage.eINSTANCE;
 	}
-	
+
 } //ModelFactoryImpl

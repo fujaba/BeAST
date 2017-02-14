@@ -4,8 +4,8 @@ public enum ToolTips
 {
 	//@formatter:off
 	TRANSFER_BTN_TIP			("Transfer data to the backend"),
-	IP_PROP_TIP					("Configure the object with a unique IP adress"),
-	CPU_CORES_PROP_TIP			("Configure the server hardware. Choose the number of cpu cores"),
+	ATTR_0_PROP_TIP					("Configure the object with a unique IP adress"),
+	ATTR_1_PROP_TIP			("Configure the server hardware. Choose the number of cpu cores"),
 	MAX_RAM_PROP_TIP			("Configure the server hardware. Choose the number of maximum RAM"),
 	DISK_SPACE_PROP_TIP			("Configure the server hardware. Choose the number of maximum disk space"),
 	SUBNET_MASK_PROP_TIP		("Configure the network with a subnet mask"),

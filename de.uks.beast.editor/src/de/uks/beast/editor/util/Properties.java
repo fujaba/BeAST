@@ -25,8 +25,8 @@ public enum Properties
 	
 	
 	//Properties/ Labels
-	IP_LABEL					("IP: "),
-	CPU_CORES_LABEL				("CPU cores: "),
+	ATTR_0_LABEL					("IP: "),
+	ATTR_1_LABEL				("CPU cores: "),
 	RAM_LABEL					("max. RAM [mb]: "),
 	DISKSPACE_LABEL				("Diskspace [mb]: "),
 	ID_LABEL					("ID: "),

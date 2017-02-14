@@ -1,8 +1,7 @@
 package de.uks.beast.editor.feature.create;
 
+import model.HadoopMaster;
 import model.Network;
-import model.Router;
-import model.Server;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateConnectionContext;
@@ -29,40 +28,20 @@ public class CreateConnectionFeature extends AbstractCreateConnectionFeature
 		final Object source = getBusinessObjectForPictogramElement(context.getSourcePictogramElement());
 		final Object target = getBusinessObjectForPictogramElement(context.getTargetPictogramElement());
 		
-		if (source instanceof Server && target instanceof Network)
+		if (source instanceof HadoopMaster && target instanceof Network)
 		{
-			final Server server = (Server) source;
-			if (server.getNetwork() == null)
+			final HadoopMaster hadoopMaster = (HadoopMaster) source;
+			if (hadoopMaster.getNetwork() == null)
 			{
 				return true;
 			}
 			
 		}
-		else if (target instanceof Server && source instanceof Network)
+		else if (target instanceof HadoopMaster && source instanceof Network)
 		{
-			final Server server = (Server) target;
+			final HadoopMaster hadoopMaster = (HadoopMaster) target;
 			final Network network = (Network) source;
-			if (!network.getServer().contains(server))
-			{
-				return true;
-			}
-			
-		}
-		else if (source instanceof Network && target instanceof Router)
-		{
-			final Router router = (Router) target;
-			final Network network = (Network) source;
-			if (!network.getRouter().contains(router))
-			{
-				return true;
-			}
-			
-		}
-		else if (target instanceof Network && source instanceof Router)
-		{
-			final Router router = (Router) source;
-			final Network network = (Network) target;
-			if (!router.getNetwork().contains(network))
+			if (!network.getServices().contains(hadoopMaster))
 			{
 				return true;
 			}
@@ -87,21 +66,13 @@ public class CreateConnectionFeature extends AbstractCreateConnectionFeature
 			final AddConnectionContext addContext = new AddConnectionContext(context.getSourceAnchor(), context.getTargetAnchor());
 			addContext.setNewObject(null);
 			
-			if (source instanceof Server && target instanceof Network)
+			if (source instanceof HadoopMaster && target instanceof Network)
 			{
-				((Server) source).setNetwork((Network) target);
+				((HadoopMaster) source).setNetwork((Network) target);
 			}
-			else if (source instanceof Network && target instanceof Server)
+			else if (source instanceof Network && target instanceof HadoopMaster)
 			{
-				((Network) source).getServer().add((Server) target);
-			}
-			else if (source instanceof Network && target instanceof Router)
-			{
-				((Network) source).getRouter().add((Router) target);
-			}
-			else if (source instanceof Router && target instanceof Network)
-			{
-				((Router) source).getNetwork().add((Network) target);
+				((Network) source).getServices().add((HadoopMaster) target);
 			}
 			
 			newConnection = (Connection) getFeatureProvider().addIfPossible(addContext);
@@ -116,7 +87,7 @@ public class CreateConnectionFeature extends AbstractCreateConnectionFeature
 	public boolean canStartConnection(final ICreateConnectionContext context)
 	{
 		final Object source = getBusinessObjectForPictogramElement(context.getSourcePictogramElement());
-		if (source instanceof Server || source instanceof Router || source instanceof Network)
+		if (source instanceof HadoopMaster || source instanceof Network)
 		{
 			return true;
 		}

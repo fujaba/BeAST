@@ -1,5 +1,7 @@
 package de.uks.beast.editor.service.relation.create;
 
+import model.HadoopMaster;
+import model.HadoopSlave;
 import model.Service;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -44,16 +46,25 @@ public class CreateServiceRelation extends AbstractCreateConnectionFeature
 		
 		if (source != null && target != null)
 		{
-			final AddConnectionContext addContext = new AddConnectionContext(context.getSourceAnchor(), context.getTargetAnchor());
+			final AddConnectionContext addContext = new AddConnectionContext(context.getSourceAnchor(),
+					context.getTargetAnchor());
 			addContext.setNewObject(null);
 			
-			if (source instanceof Service && target instanceof Service)
+			if (source instanceof HadoopMaster && target instanceof HadoopSlave)
 			{
-				final Service sourceService = (Service) source;
-				final Service targetService = (Service) target;
+				final HadoopMaster sourceService = (HadoopMaster) source;
+				final HadoopSlave targetService = (HadoopSlave) target;
 				
-				sourceService.getServices().add(targetService);
-				targetService.getServices().add(sourceService);
+				sourceService.getHadoopSlaves().add(targetService);
+				targetService.setHadoopMaster(sourceService);
+			}
+			else if (source instanceof HadoopSlave && target instanceof HadoopMaster)
+			{
+				final HadoopSlave sourceService = (HadoopSlave) source;
+				final HadoopMaster targetService = (HadoopMaster) target;
+				
+				sourceService.setHadoopMaster(targetService);
+				targetService.getHadoopSlaves().add(sourceService);
 			}
 			
 			newConnection = (Connection) getFeatureProvider().addIfPossible(addContext);

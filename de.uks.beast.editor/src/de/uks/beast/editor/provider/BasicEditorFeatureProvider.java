@@ -1,22 +1,9 @@
 package de.uks.beast.editor.provider;
 
-import model.Group;
-import model.HadoopMaster;
 import model.Network;
-import model.Router;
-import model.Server;
 import model.Service;
-import model.impl.Apache2Impl;
-import model.impl.CassandraImpl;
 import model.impl.HadoopMasterImpl;
 import model.impl.HadoopSlaveImpl;
-import model.impl.JenkinsImpl;
-import model.impl.MediaWikiImpl;
-import model.impl.MongoDBImpl;
-import model.impl.MySQLImpl;
-import model.impl.TomcatImpl;
-import model.impl.UbuntuImpl;
-import model.impl.WordPressImpl;
 
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IAddFeature;
@@ -41,42 +28,22 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
-import de.uks.beast.editor.feature.add.AddGroupFeature;
+import de.uks.beast.editor.feature.add.AddHadoopMasterFeature;
+import de.uks.beast.editor.feature.add.AddHadoopSlaveFeature;
 import de.uks.beast.editor.feature.add.AddNetworkFeature;
-import de.uks.beast.editor.feature.add.AddRouterFeature;
-import de.uks.beast.editor.feature.add.AddServerFeature;
 import de.uks.beast.editor.feature.add.connection.AddConnectionFeature;
 import de.uks.beast.editor.feature.add.connection.ReconnectionFeature;
 import de.uks.beast.editor.feature.copy.CopyNetworkFeature;
-import de.uks.beast.editor.feature.copy.CopyRouterFeature;
-import de.uks.beast.editor.feature.copy.CopyServerFeature;
+import de.uks.beast.editor.feature.copy.CopyServiceFeature;
 import de.uks.beast.editor.feature.delete.DeleteConnectionFeature;
-import de.uks.beast.editor.feature.edit.DirectEditGroupFeature;
 import de.uks.beast.editor.feature.edit.DirectEditNetworkFeature;
-import de.uks.beast.editor.feature.edit.DirectEditRouterFeature;
-import de.uks.beast.editor.feature.edit.DirectEditServerFeature;
-import de.uks.beast.editor.feature.layout.LayoutGroupObjectFeature;
+import de.uks.beast.editor.feature.edit.DirectEditServiceFeature;
 import de.uks.beast.editor.feature.layout.LayoutNetworkObjectFeature;
-import de.uks.beast.editor.feature.layout.LayoutRouterObjectFeature;
-import de.uks.beast.editor.feature.layout.LayoutServerObjectFeature;
+import de.uks.beast.editor.feature.layout.LayoutServiceObjectFeature;
 import de.uks.beast.editor.feature.paste.UniversalPasteFeature;
-import de.uks.beast.editor.feature.update.UpdateGroupObjectFeature;
 import de.uks.beast.editor.feature.update.UpdateNetworkObjectFeature;
-import de.uks.beast.editor.feature.update.UpdateRouterObjectFeature;
-import de.uks.beast.editor.feature.update.UpdateServerObjectFeature;
-import de.uks.beast.editor.service.apache2.add.AddApache2Feature;
-import de.uks.beast.editor.service.cassandra.add.AddCassandraFeature;
-import de.uks.beast.editor.service.hadoop.add.AddHadoopMasterFeature;
-import de.uks.beast.editor.service.hadoop.add.AddHadoopSlaveFeature;
-import de.uks.beast.editor.service.jenkins.add.AddJenkinsFeature;
-import de.uks.beast.editor.service.mediawiki.add.AddMediaWikiFeature;
-import de.uks.beast.editor.service.mongodb.add.AddMongoDBFeature;
-import de.uks.beast.editor.service.mysql.add.AddMySqlFeature;
+import de.uks.beast.editor.feature.update.UpdateServiceObjectFeature;
 import de.uks.beast.editor.service.relation.add.AddServiceRelation;
-import de.uks.beast.editor.service.tomcat.add.AddTomcatFeature;
-import de.uks.beast.editor.service.ubuntu.add.AddUbuntuFeature;
-import de.uks.beast.editor.service.wordpress.add.AddWordPressFeature;
-import de.uks.beast.editor.util.Strings;
 
 public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 {
@@ -100,21 +67,9 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 	public IAddFeature getAddFeature(final IAddContext context)
 	{
 		//features
-		if (context.getNewObject() instanceof Server)
-		{
-			return new AddServerFeature(this);
-		}
-		else if (context.getNewObject() instanceof Group)
-		{
-			return new AddGroupFeature(this);
-		}
-		else if (context.getNewObject() instanceof Network)
+		if (context.getNewObject() instanceof Network)
 		{
 			return new AddNetworkFeature(this);
-		}
-		else if (context.getNewObject() instanceof Router)
-		{
-			return new AddRouterFeature(this);
 		}
 		
 		//connections
@@ -138,7 +93,6 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 		{
 			final Service service = (Service) context.getNewObject();
 			
-			
 			if (service.getClass().equals(HadoopMasterImpl.class))
 			{
 				return new AddHadoopMasterFeature(this);
@@ -147,43 +101,6 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 			{
 				return new AddHadoopSlaveFeature(this);
 			}
-			else if (service.getClass().equals(CassandraImpl.class))
-			{
-				return new AddCassandraFeature(this);
-			}
-			else if (service.getClass().equals(MongoDBImpl.class))
-			{
-				return new AddMongoDBFeature(this);
-			}
-			else if (service.getClass().equals(MySQLImpl.class))
-			{
-				return new AddMySqlFeature(this);
-			}
-			else if (service.getClass().equals(WordPressImpl.class))
-			{
-				return new AddWordPressFeature(this);
-			}
-			else if (service.getClass().equals(UbuntuImpl.class))
-			{
-				return new AddUbuntuFeature(this);
-			}
-			else if (service.getClass().equals(Apache2Impl.class))
-			{
-				return new AddApache2Feature(this);
-			}
-			else if (service.getClass().equals(JenkinsImpl.class))
-			{
-				return new AddJenkinsFeature(this);
-			}
-			else if (service.getClass().equals(MediaWikiImpl.class))
-			{
-				return new AddMediaWikiFeature(this);
-			}
-			else if (service.getClass().equals(TomcatImpl.class))
-			{
-				return new AddTomcatFeature(this);
-			}
-			
 		}
 		
 		return super.getAddFeature(context);
@@ -197,21 +114,13 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 		final PictogramElement pictogramElement = context.getPictogramElement();
 		final Object bo = getBusinessObjectForPictogramElement(pictogramElement);
 		
-		if (bo instanceof Server)
+		if (bo instanceof Service)
 		{
-			return new LayoutServerObjectFeature(this);
-		}
-		else if (bo instanceof Group)
-		{
-			return new LayoutGroupObjectFeature(this);
+			return new LayoutServiceObjectFeature(this);
 		}
 		else if (bo instanceof Network)
 		{
 			return new LayoutNetworkObjectFeature(this);
-		}
-		else if (bo instanceof Router)
-		{
-			return new LayoutRouterObjectFeature(this);
 		}
 		
 		return super.getLayoutFeature(context);
@@ -225,17 +134,9 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 		final PictogramElement pe = context.getPictogramElement();
 		final Object object = getBusinessObjectForPictogramElement(pe);
 		
-		if (object instanceof Server)
+		if (object instanceof Service)
 		{
-			return new DirectEditServerFeature(this);
-		}
-		else if (object instanceof Group)
-		{
-			return new DirectEditGroupFeature(this);
-		}
-		else if (object instanceof Router)
-		{
-			return new DirectEditRouterFeature(this);
+			return new DirectEditServiceFeature(this);
 		}
 		else if (object instanceof Network)
 		{
@@ -256,21 +157,13 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 		{
 			final Object bo = getBusinessObjectForPictogramElement(pictogramElement);
 			
-			if (bo instanceof Group)
+			if (bo instanceof Service)
 			{
-				return new UpdateGroupObjectFeature(this);
-			}
-			else if (bo instanceof Server)
-			{
-				return new UpdateServerObjectFeature(this);
+				return new UpdateServiceObjectFeature(this);
 			}
 			else if (bo instanceof Network)
 			{
 				return new UpdateNetworkObjectFeature(this);
-			}
-			else if (bo instanceof Router)
-			{
-				return new UpdateRouterObjectFeature(this);
 			}
 		}
 		return super.getUpdateFeature(context);
@@ -282,13 +175,9 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 	public ICopyFeature getCopyFeature(final ICopyContext context)
 	{
 		final PictogramElement[] pictogramElements = context.getPictogramElements();
-		if (getBusinessObjectForPictogramElement(pictogramElements[0]) instanceof Router)
+		if (getBusinessObjectForPictogramElement(pictogramElements[0]) instanceof Service)
 		{
-			return new CopyRouterFeature(this);
-		}
-		else if (getBusinessObjectForPictogramElement(pictogramElements[0]) instanceof Server)
-		{
-			return new CopyServerFeature(this);
+			return new CopyServiceFeature(this);
 		}
 		else if (getBusinessObjectForPictogramElement(pictogramElements[0]) instanceof Network)
 		{

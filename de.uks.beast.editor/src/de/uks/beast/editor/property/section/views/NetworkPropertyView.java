@@ -2,7 +2,7 @@ package de.uks.beast.editor.property.section.views;
 
 import static de.uks.beast.editor.util.Properties.DNS_LABEL;
 import static de.uks.beast.editor.util.Properties.GATEWAY_LABEL;
-import static de.uks.beast.editor.util.Properties.IP_LABEL;
+import static de.uks.beast.editor.util.Properties.ATTR_0_LABEL;
 import static de.uks.beast.editor.util.Properties.SUBNET_MASK_LABEL;
 import static de.uks.beast.editor.util.Properties.TRANSFER;
 
@@ -48,10 +48,10 @@ public class NetworkPropertyView
 		data.left = new FormAttachment(0, Dimensions.NETWORK_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE);
-		ipTextFld.setToolTipText(ToolTips.IP_PROP_TIP.get());
+		ipTextFld.setToolTipText(ToolTips.ATTR_0_PROP_TIP.get());
 		ipTextFld.setLayoutData(data);
 		
-		final CLabel valueLabel = factory.createCLabel(composite, IP_LABEL.get());
+		final CLabel valueLabel = factory.createCLabel(composite, ATTR_0_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(ipTextFld, valueLabel.getText().length());

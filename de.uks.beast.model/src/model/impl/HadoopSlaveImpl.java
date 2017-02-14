@@ -2,16 +2,19 @@
  */
 package model.impl;
 
-import java.util.Collection;
+import model.HadoopMaster;
 import model.HadoopSlave;
 import model.ModelPackage;
-import model.Service;
+import model.Network;
+
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,10 +25,10 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * </p>
  * <ul>
  *   <li>{@link model.impl.HadoopSlaveImpl#getName <em>Name</em>}</li>
- *   <li>{@link model.impl.HadoopSlaveImpl#getServiceType <em>Service Type</em>}</li>
- *   <li>{@link model.impl.HadoopSlaveImpl#getServiceName <em>Service Name</em>}</li>
- *   <li>{@link model.impl.HadoopSlaveImpl#getId <em>Id</em>}</li>
- *   <li>{@link model.impl.HadoopSlaveImpl#getServices <em>Services</em>}</li>
+ *   <li>{@link model.impl.HadoopSlaveImpl#getAtribute_0 <em>Atribute 0</em>}</li>
+ *   <li>{@link model.impl.HadoopSlaveImpl#getAtribute_1 <em>Atribute 1</em>}</li>
+ *   <li>{@link model.impl.HadoopSlaveImpl#getNetwork <em>Network</em>}</li>
+ *   <li>{@link model.impl.HadoopSlaveImpl#getHadoopMaster <em>Hadoop Master</em>}</li>
  * </ul>
  *
  * @generated
@@ -40,7 +43,8 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
+	protected static final String NAME_EDEFAULT = "service";
+
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -50,69 +54,67 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
 	/**
-	 * The default value of the '{@link #getServiceType() <em>Service Type</em>}' attribute.
+	 * The default value of the '{@link #getAtribute_0() <em>Atribute 0</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getServiceType()
+	 * @see #getAtribute_0()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String SERVICE_TYPE_EDEFAULT = null;
+	protected static final String ATRIBUTE_0_EDEFAULT = null;
+
 	/**
-	 * The cached value of the '{@link #getServiceType() <em>Service Type</em>}' attribute.
+	 * The cached value of the '{@link #getAtribute_0() <em>Atribute 0</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getServiceType()
+	 * @see #getAtribute_0()
 	 * @generated
 	 * @ordered
 	 */
-	protected String serviceType = SERVICE_TYPE_EDEFAULT;
+	protected String atribute_0 = ATRIBUTE_0_EDEFAULT;
+
 	/**
-	 * The default value of the '{@link #getServiceName() <em>Service Name</em>}' attribute.
+	 * The default value of the '{@link #getAtribute_1() <em>Atribute 1</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getServiceName()
+	 * @see #getAtribute_1()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String SERVICE_NAME_EDEFAULT = null;
+	protected static final String ATRIBUTE_1_EDEFAULT = null;
+
 	/**
-	 * The cached value of the '{@link #getServiceName() <em>Service Name</em>}' attribute.
+	 * The cached value of the '{@link #getAtribute_1() <em>Atribute 1</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getServiceName()
+	 * @see #getAtribute_1()
 	 * @generated
 	 * @ordered
 	 */
-	protected String serviceName = SERVICE_NAME_EDEFAULT;
+	protected String atribute_1 = ATRIBUTE_1_EDEFAULT;
+
 	/**
-	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * The cached value of the '{@link #getNetwork() <em>Network</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getId()
+	 * @see #getNetwork()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int ID_EDEFAULT = 0;
+	protected Network network;
+
 	/**
-	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * The cached value of the '{@link #getHadoopMaster() <em>Hadoop Master</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getId()
+	 * @see #getHadoopMaster()
 	 * @generated
 	 * @ordered
 	 */
-	protected int id = ID_EDEFAULT;
-	/**
-	 * The cached value of the '{@link #getServices() <em>Services</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getServices()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Service> services;
+	protected HadoopMaster hadoopMaster;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -162,8 +164,9 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getId() {
-		return id;
+	public String getAtribute_0()
+	{
+		return atribute_0;
 	}
 
 	/**
@@ -171,11 +174,12 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setId(int newId) {
-		int oldId = id;
-		id = newId;
+	public void setAtribute_0(String newAtribute_0)
+	{
+		String oldAtribute_0 = atribute_0;
+		atribute_0 = newAtribute_0;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__ID, oldId, id));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__ATRIBUTE_0, oldAtribute_0, atribute_0));
 	}
 
 	/**
@@ -183,11 +187,42 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Service> getServices() {
-		if (services == null) {
-			services = new EObjectResolvingEList<Service>(Service.class, this, ModelPackage.HADOOP_SLAVE__SERVICES);
+	public String getAtribute_1()
+	{
+		return atribute_1;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAtribute_1(String newAtribute_1)
+	{
+		String oldAtribute_1 = atribute_1;
+		atribute_1 = newAtribute_1;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__ATRIBUTE_1, oldAtribute_1, atribute_1));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Network getNetwork()
+	{
+		if (network != null && network.eIsProxy())
+		{
+			InternalEObject oldNetwork = (InternalEObject)network;
+			network = (Network)eResolveProxy(oldNetwork);
+			if (network != oldNetwork)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.HADOOP_SLAVE__NETWORK, oldNetwork, network));
+			}
 		}
-		return services;
+		return network;
 	}
 
 	/**
@@ -195,9 +230,9 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getServiceName()
+	public Network basicGetNetwork()
 	{
-		return serviceName;
+		return network;
 	}
 
 	/**
@@ -205,12 +240,16 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setServiceName(String newServiceName)
+	public NotificationChain basicSetNetwork(Network newNetwork, NotificationChain msgs)
 	{
-		String oldServiceName = serviceName;
-		serviceName = newServiceName;
+		Network oldNetwork = network;
+		network = newNetwork;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__SERVICE_NAME, oldServiceName, serviceName));
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__NETWORK, oldNetwork, newNetwork);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -218,9 +257,20 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getServiceType()
+	public void setNetwork(Network newNetwork)
 	{
-		return serviceType;
+		if (newNetwork != network)
+		{
+			NotificationChain msgs = null;
+			if (network != null)
+				msgs = ((InternalEObject)network).eInverseRemove(this, ModelPackage.NETWORK__SERVICES, Network.class, msgs);
+			if (newNetwork != null)
+				msgs = ((InternalEObject)newNetwork).eInverseAdd(this, ModelPackage.NETWORK__SERVICES, Network.class, msgs);
+			msgs = basicSetNetwork(newNetwork, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__NETWORK, newNetwork, newNetwork));
 	}
 
 	/**
@@ -228,12 +278,107 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setServiceType(String newServiceType)
+	public HadoopMaster getHadoopMaster()
 	{
-		String oldServiceType = serviceType;
-		serviceType = newServiceType;
+		if (hadoopMaster != null && hadoopMaster.eIsProxy())
+		{
+			InternalEObject oldHadoopMaster = (InternalEObject)hadoopMaster;
+			hadoopMaster = (HadoopMaster)eResolveProxy(oldHadoopMaster);
+			if (hadoopMaster != oldHadoopMaster)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.HADOOP_SLAVE__HADOOP_MASTER, oldHadoopMaster, hadoopMaster));
+			}
+		}
+		return hadoopMaster;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public HadoopMaster basicGetHadoopMaster()
+	{
+		return hadoopMaster;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetHadoopMaster(HadoopMaster newHadoopMaster, NotificationChain msgs)
+	{
+		HadoopMaster oldHadoopMaster = hadoopMaster;
+		hadoopMaster = newHadoopMaster;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__SERVICE_TYPE, oldServiceType, serviceType));
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__HADOOP_MASTER, oldHadoopMaster, newHadoopMaster);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setHadoopMaster(HadoopMaster newHadoopMaster)
+	{
+		if (newHadoopMaster != hadoopMaster)
+		{
+			NotificationChain msgs = null;
+			if (hadoopMaster != null)
+				msgs = ((InternalEObject)hadoopMaster).eInverseRemove(this, ModelPackage.HADOOP_MASTER__HADOOP_SLAVES, HadoopMaster.class, msgs);
+			if (newHadoopMaster != null)
+				msgs = ((InternalEObject)newHadoopMaster).eInverseAdd(this, ModelPackage.HADOOP_MASTER__HADOOP_SLAVES, HadoopMaster.class, msgs);
+			msgs = basicSetHadoopMaster(newHadoopMaster, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__HADOOP_MASTER, newHadoopMaster, newHadoopMaster));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case ModelPackage.HADOOP_SLAVE__NETWORK:
+				if (network != null)
+					msgs = ((InternalEObject)network).eInverseRemove(this, ModelPackage.NETWORK__SERVICES, Network.class, msgs);
+				return basicSetNetwork((Network)otherEnd, msgs);
+			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTER:
+				if (hadoopMaster != null)
+					msgs = ((InternalEObject)hadoopMaster).eInverseRemove(this, ModelPackage.HADOOP_MASTER__HADOOP_SLAVES, HadoopMaster.class, msgs);
+				return basicSetHadoopMaster((HadoopMaster)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case ModelPackage.HADOOP_SLAVE__NETWORK:
+				return basicSetNetwork(null, msgs);
+			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTER:
+				return basicSetHadoopMaster(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -244,17 +389,20 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.HADOOP_SLAVE__NAME:
 				return getName();
-			case ModelPackage.HADOOP_SLAVE__SERVICE_TYPE:
-				return getServiceType();
-			case ModelPackage.HADOOP_SLAVE__SERVICE_NAME:
-				return getServiceName();
-			case ModelPackage.HADOOP_SLAVE__ID:
-				return getId();
-			case ModelPackage.HADOOP_SLAVE__SERVICES:
-				return getServices();
+			case ModelPackage.HADOOP_SLAVE__ATRIBUTE_0:
+				return getAtribute_0();
+			case ModelPackage.HADOOP_SLAVE__ATRIBUTE_1:
+				return getAtribute_1();
+			case ModelPackage.HADOOP_SLAVE__NETWORK:
+				if (resolve) return getNetwork();
+				return basicGetNetwork();
+			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTER:
+				if (resolve) return getHadoopMaster();
+				return basicGetHadoopMaster();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -264,26 +412,25 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.HADOOP_SLAVE__NAME:
 				setName((String)newValue);
 				return;
-			case ModelPackage.HADOOP_SLAVE__SERVICE_TYPE:
-				setServiceType((String)newValue);
+			case ModelPackage.HADOOP_SLAVE__ATRIBUTE_0:
+				setAtribute_0((String)newValue);
 				return;
-			case ModelPackage.HADOOP_SLAVE__SERVICE_NAME:
-				setServiceName((String)newValue);
+			case ModelPackage.HADOOP_SLAVE__ATRIBUTE_1:
+				setAtribute_1((String)newValue);
 				return;
-			case ModelPackage.HADOOP_SLAVE__ID:
-				setId((Integer)newValue);
+			case ModelPackage.HADOOP_SLAVE__NETWORK:
+				setNetwork((Network)newValue);
 				return;
-			case ModelPackage.HADOOP_SLAVE__SERVICES:
-				getServices().clear();
-				getServices().addAll((Collection<? extends Service>)newValue);
+			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTER:
+				setHadoopMaster((HadoopMaster)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -297,21 +444,22 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.HADOOP_SLAVE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ModelPackage.HADOOP_SLAVE__SERVICE_TYPE:
-				setServiceType(SERVICE_TYPE_EDEFAULT);
+			case ModelPackage.HADOOP_SLAVE__ATRIBUTE_0:
+				setAtribute_0(ATRIBUTE_0_EDEFAULT);
 				return;
-			case ModelPackage.HADOOP_SLAVE__SERVICE_NAME:
-				setServiceName(SERVICE_NAME_EDEFAULT);
+			case ModelPackage.HADOOP_SLAVE__ATRIBUTE_1:
+				setAtribute_1(ATRIBUTE_1_EDEFAULT);
 				return;
-			case ModelPackage.HADOOP_SLAVE__ID:
-				setId(ID_EDEFAULT);
+			case ModelPackage.HADOOP_SLAVE__NETWORK:
+				setNetwork((Network)null);
 				return;
-			case ModelPackage.HADOOP_SLAVE__SERVICES:
-				getServices().clear();
+			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTER:
+				setHadoopMaster((HadoopMaster)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -325,17 +473,18 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case ModelPackage.HADOOP_SLAVE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ModelPackage.HADOOP_SLAVE__SERVICE_TYPE:
-				return SERVICE_TYPE_EDEFAULT == null ? serviceType != null : !SERVICE_TYPE_EDEFAULT.equals(serviceType);
-			case ModelPackage.HADOOP_SLAVE__SERVICE_NAME:
-				return SERVICE_NAME_EDEFAULT == null ? serviceName != null : !SERVICE_NAME_EDEFAULT.equals(serviceName);
-			case ModelPackage.HADOOP_SLAVE__ID:
-				return id != ID_EDEFAULT;
-			case ModelPackage.HADOOP_SLAVE__SERVICES:
-				return services != null && !services.isEmpty();
+			case ModelPackage.HADOOP_SLAVE__ATRIBUTE_0:
+				return ATRIBUTE_0_EDEFAULT == null ? atribute_0 != null : !ATRIBUTE_0_EDEFAULT.equals(atribute_0);
+			case ModelPackage.HADOOP_SLAVE__ATRIBUTE_1:
+				return ATRIBUTE_1_EDEFAULT == null ? atribute_1 != null : !ATRIBUTE_1_EDEFAULT.equals(atribute_1);
+			case ModelPackage.HADOOP_SLAVE__NETWORK:
+				return network != null;
+			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTER:
+				return hadoopMaster != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -353,12 +502,10 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", serviceType: ");
-		result.append(serviceType);
-		result.append(", serviceName: ");
-		result.append(serviceName);
-		result.append(", id: ");
-		result.append(id);
+		result.append(", atribute_0: ");
+		result.append(atribute_0);
+		result.append(", atribute_1: ");
+		result.append(atribute_1);
 		result.append(')');
 		return result.toString();
 	}

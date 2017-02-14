@@ -5,7 +5,7 @@ import static de.uks.beast.editor.util.Properties.DNS_LABEL;
 import static de.uks.beast.editor.util.Properties.GATEWAY;
 import static de.uks.beast.editor.util.Properties.GATEWAY_LABEL;
 import static de.uks.beast.editor.util.Properties.IP;
-import static de.uks.beast.editor.util.Properties.IP_LABEL;
+import static de.uks.beast.editor.util.Properties.ATTR_0_LABEL;
 import static de.uks.beast.editor.util.Properties.NAME;
 import static de.uks.beast.editor.util.Properties.SUBNET_MASK;
 import static de.uks.beast.editor.util.Properties.SUBNET_MASK_LABEL;
@@ -108,7 +108,7 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		// SHAPE FOR PROPERTY IP
 		final Shape ipTextShape = createShape(peCreateService, containerShape);
 		final Shape ipLabelShape = createShape(peCreateService, containerShape);
-		Textfields.NETWORK_IP_LABEL_FIELD.addTo(getDiagram(), ipLabelShape, IP_LABEL.get(), color);
+		Textfields.NETWORK_IP_LABEL_FIELD.addTo(getDiagram(), ipLabelShape, ATTR_0_LABEL.get(), color);
 		Textfields.NETWORK_IP_PROP_FIELD.addTo(getDiagram(), ipTextShape, network.getIp(), color);
 		PropertyUtil.setAttributeShape(ipTextShape, IP);
 		link(ipTextShape, network);

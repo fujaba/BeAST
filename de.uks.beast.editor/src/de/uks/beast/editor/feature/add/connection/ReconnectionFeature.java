@@ -1,8 +1,7 @@
 package de.uks.beast.editor.feature.add.connection;
 
+import model.HadoopMaster;
 import model.Network;
-import model.Router;
-import model.Server;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IReconnectionContext;
@@ -10,9 +9,8 @@ import org.eclipse.graphiti.features.impl.DefaultReconnectionFeature;
 
 public class ReconnectionFeature extends DefaultReconnectionFeature
 {
-	private Router	router;
-	private Network	network;
-	private Server	server;
+	private Network			network;
+	private HadoopMaster	hadoopMaster;
 	
 	
 	
@@ -37,43 +35,25 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 			newAnchor = getBusinessObjectForPictogramElement(context.getNewAnchor().getParent());
 		}
 		
-		if ((start instanceof Router || end instanceof Router) && oldAnchor instanceof Network && newAnchor instanceof Network)
-		{
-			router = (start instanceof Router) ? (Router) start : (Router) end;
-			if (!router.getNetwork().contains(newAnchor))
-			{
-				return true;
-			}
-			
-		}
-		else if ((start instanceof Network || end instanceof Network) && oldAnchor instanceof Router
-				&& newAnchor instanceof Router)
-		{
-			network = (start instanceof Network) ? (Network) start : (Network) end;
-			if (!network.getRouter().contains(newAnchor))
-			{
-				return true;
-			}
-			
-		}
-		else if ((start instanceof Server || end instanceof Server) && oldAnchor instanceof Network
+		if ((start instanceof HadoopMaster || end instanceof HadoopMaster) && oldAnchor instanceof Network
 				&& newAnchor instanceof Network)
 		{
-			server = (start instanceof Server) ? (Server) start : (Server) end;
-			if (!server.getNetwork().equals(newAnchor))
+			hadoopMaster = (start instanceof HadoopMaster) ? (HadoopMaster) start : (HadoopMaster) end;
+			if (!hadoopMaster.getNetwork().equals(newAnchor))
 			{
 				return true;
 			}
 			
 		}
-		else if ((start instanceof Network || end instanceof Network) && oldAnchor instanceof Server
-				&& newAnchor instanceof Server)
+		else if ((start instanceof Network || end instanceof Network) && oldAnchor instanceof HadoopMaster
+				&& newAnchor instanceof HadoopMaster)
 		{
 			network = (start instanceof Network) ? (Network) start : (Network) end;
-			if (!network.getServer().contains(newAnchor))
+			if (!network.getServices().contains(newAnchor))
 			{
 				return true;
 			}
+			
 		}
 		
 		return false;
@@ -84,63 +64,47 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 	@Override
 	public void preReconnect(final IReconnectionContext context)
 	{
-		System.out.println("PRE");
 		final Object oldTarget = getBusinessObjectForPictogramElement(context.getOldAnchor().getParent());
 		
-		if (network != null && oldTarget instanceof Router)
+		if (network != null && oldTarget instanceof HadoopMaster)
 		{
-			final Router oldRouter = (Router) oldTarget;
+			final HadoopMaster oldRouter = (HadoopMaster) oldTarget;
 			
-			if (network.getRouter().contains(oldRouter))
+			if (network.getServices().contains(oldRouter))
 			{
-				network.getRouter().remove(oldRouter);
-			}
-			
-			for (final Router r : network.getRouter())
-			{
-				System.out.println(network.getName() + " has: " + r.getName());
+				network.getServices().remove(oldRouter);
 			}
 			
 		}
-		else if (router != null && oldTarget instanceof Network)
+		else if (hadoopMaster != null && oldTarget instanceof Network)
 		{
 			final Network oldNetwork = (Network) oldTarget;
 			
-			if (router.getNetwork().contains(oldNetwork))
+			if (hadoopMaster.getNetwork().equals(oldNetwork))
 			{
-				router.getNetwork().remove(oldNetwork);
-			}
-			
-			for (final Network n : router.getNetwork())
-			{
-				System.out.println(router.getName() + " has: " + n.getName());
+				hadoopMaster.setNetwork(null);
 			}
 			
 		}
-		else if (server != null && oldTarget instanceof Network)
+		else if (hadoopMaster != null && oldTarget instanceof Network)
 		{
 			final Network oldNetwork = (Network) oldTarget;
 			
-			if (oldNetwork.getServer().contains(server))
+			if (oldNetwork.getServices().contains(hadoopMaster))
 			{
-				oldNetwork.getServer().remove(server);
+				oldNetwork.getServices().remove(hadoopMaster);
 			}
 			
 			System.out.println("server has: " + oldNetwork.getName());
 			
 		}
-		else if (network != null && oldTarget instanceof Server)
+		else if (network != null && oldTarget instanceof HadoopMaster)
 		{
-			final Server oldServer = (Server) oldTarget;
+			final HadoopMaster oldServer = (HadoopMaster) oldTarget;
 			
-			if (network.getServer().contains(oldServer))
+			if (network.getServices().contains(oldServer))
 			{
-				network.getServer().remove(oldServer);
-			}
-			
-			for (final Server s : network.getServer())
-			{
-				System.out.println(network.getName() + " has: " + s.getName());
+				network.getServices().remove(oldServer);
 			}
 			
 		}
@@ -152,62 +116,45 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 	@Override
 	public void postReconnect(final IReconnectionContext context)
 	{
-		System.out.println("POST");
 		final Object target = getBusinessObjectForPictogramElement(context.getTargetPictogramElement());
 		
-		if (network != null && target instanceof Router)
+		if (network != null && target instanceof HadoopMaster)
 		{
-			final Router newRouter = (Router) target;
+			final HadoopMaster newRouter = (HadoopMaster) target;
 			
-			if (!network.getRouter().contains(newRouter))
+			if (!network.getServices().contains(newRouter))
 			{
-				network.getRouter().add(newRouter);
-			}
-			
-			for (final Router r : network.getRouter())
-			{
-				System.out.println(network.getName() + " has: " + r.getName());
+				network.getServices().add(newRouter);
 			}
 			
 		}
-		else if (router != null && target instanceof Network)
+		else if (hadoopMaster != null && target instanceof Network)
 		{
 			final Network newNetwork = (Network) target;
 			
-			if (!router.getNetwork().contains(newNetwork))
+			if (!hadoopMaster.getNetwork().equals(newNetwork))
 			{
-				router.getNetwork().add(newNetwork);
-			}
-			
-			for (final Network n : router.getNetwork())
-			{
-				System.out.println(router.getName() + " has: " + n.getName());
+				hadoopMaster.setNetwork(null);
 			}
 			
 		}
-		else if (server != null && target instanceof Network)
+		else if (hadoopMaster != null && target instanceof Network)
 		{
 			final Network newNetwork = (Network) target;
 			
-			if (server.getNetwork() == null || !server.getNetwork().equals(newNetwork))
+			if (hadoopMaster.getNetwork() == null || !hadoopMaster.getNetwork().equals(newNetwork))
 			{
-				server.setNetwork(newNetwork);
+				hadoopMaster.setNetwork(newNetwork);
 			}
 			
-			System.out.println(server.getName() + " has: " + newNetwork.getName());
 		}
-		else if (network != null && target instanceof Server)
+		else if (network != null && target instanceof HadoopMaster)
 		{
-			final Server newServer = (Server) target;
+			final HadoopMaster newServer = (HadoopMaster) target;
 			
-			if (!network.getServer().contains(newServer))
+			if (!network.getServices().contains(newServer))
 			{
-				network.getServer().add(newServer);
-			}
-			
-			for (final Server s : network.getServer())
-			{
-				System.out.println(network.getName() + " has: " + s.getName());
+				network.getServices().add(newServer);
 			}
 			
 		}

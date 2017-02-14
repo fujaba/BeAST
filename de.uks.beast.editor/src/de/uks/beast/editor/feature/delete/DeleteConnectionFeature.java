@@ -1,8 +1,8 @@
 package de.uks.beast.editor.feature.delete;
 
+import model.HadoopMaster;
+import model.HadoopSlave;
 import model.Network;
-import model.Router;
-import model.Service;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IDeleteContext;
@@ -28,42 +28,50 @@ public class DeleteConnectionFeature extends DefaultDeleteFeature
 		final Object start = getBusinessObjectForPictogramElement(connection.getStart().getParent());
 		final Object end = getBusinessObjectForPictogramElement(connection.getEnd().getParent());
 		
-		if (start instanceof Router && end instanceof Network)
+		if (start instanceof HadoopMaster && end instanceof Network)
 		{
-			final Router router = (Router) start;
+			final HadoopMaster hm = (HadoopMaster) start;
 			final Network network = (Network) end;
 			
-			if (router.getNetwork().contains(network))
+			if (hm.getNetwork().equals(network))
 			{
-				router.getNetwork().remove(network);
+				hm.setNetwork(null);
 			}
 			
 			setDoneChanges(true);
 		}
-		else if (start instanceof Network && end instanceof Router)
+		else if (start instanceof Network && end instanceof HadoopMaster)
 		{
-			final Router router = (Router) end;
+			final HadoopMaster hm = (HadoopMaster) end;
 			final Network network = (Network) start;
 			
-			if (network.getRouter().contains(router))
+			if (network.getServices().contains(hm))
 			{
-				network.getRouter().remove(router);
+				network.getServices().remove(hm);
 			}
 			
 			setDoneChanges(true);
 		}
-		else if (start instanceof Service && end instanceof Service)
+		else if (start instanceof HadoopMaster && end instanceof HadoopSlave)
 		{
-			final Service startService = (Service) start;
-			final Service endService = (Service) end;
+			final HadoopMaster hm = (HadoopMaster) start;
+			final HadoopSlave hs = (HadoopSlave) end;
 			
-			if (startService.getServices().contains(endService))
+			if (hm.getHadoopSlaves().contains(hs))
 			{
-				startService.getServices().remove(endService);
+				hm.getHadoopSlaves().remove(hs);
 			}
-			if (endService.getServices().contains(startService))
+			
+			setDoneChanges(true);
+		}
+		else if (start instanceof HadoopSlave && end instanceof HadoopMaster)
+		{
+			final HadoopMaster hm = (HadoopMaster) end;
+			final HadoopSlave hs = (HadoopSlave) start;
+			
+			if (hs.getHadoopMaster().equals(hm))
 			{
-				endService.getServices().remove(startService);
+				hs.setHadoopMaster(null);
 			}
 			
 			setDoneChanges(true);

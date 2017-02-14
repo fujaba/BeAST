@@ -1,8 +1,6 @@
 package de.uks.beast.editor.property.section.views;
 
-import static de.uks.beast.editor.util.Properties.CPU_CORES_LABEL;
 import static de.uks.beast.editor.util.Properties.DISKSPACE_LABEL;
-import static de.uks.beast.editor.util.Properties.IP_LABEL;
 import static de.uks.beast.editor.util.Properties.RAM_LABEL;
 import static de.uks.beast.editor.util.Properties.TRANSFER;
 
@@ -19,6 +17,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
 import de.uks.beast.editor.util.Dimensions;
+import de.uks.beast.editor.util.Properties;
 import de.uks.beast.editor.util.PropertyUtil;
 import de.uks.beast.editor.util.ToolTips;
 
@@ -45,13 +44,13 @@ public class ServerPropertyView
 		
 		ipTextFld = factory.createText(composite, "");
 		data = new FormData();
-		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
+		data.left = new FormAttachment(0, Dimensions.SERVICE_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE);
-		ipTextFld.setToolTipText(ToolTips.IP_PROP_TIP.get());
+		ipTextFld.setToolTipText(ToolTips.ATTR_0_PROP_TIP.get());
 		ipTextFld.setLayoutData(data);
 		
-		final CLabel valueLabel = factory.createCLabel(composite, IP_LABEL.get());
+		final CLabel valueLabel = factory.createCLabel(composite, Properties.ATTR_0_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(ipTextFld, valueLabel.getText().length());
@@ -60,48 +59,18 @@ public class ServerPropertyView
 		
 		cpuCoresTextFld = factory.createText(composite, "");
 		data = new FormData();
-		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
+		data.left = new FormAttachment(0, Dimensions.SERVICE_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 25);
-		cpuCoresTextFld.setToolTipText(ToolTips.CPU_CORES_PROP_TIP.get());
+		cpuCoresTextFld.setToolTipText(ToolTips.ATTR_1_PROP_TIP.get());
 		cpuCoresTextFld.setLayoutData(data);
 		
-		final CLabel valueLabe2 = factory.createCLabel(composite, CPU_CORES_LABEL.get());
+		final CLabel valueLabe2 = factory.createCLabel(composite, Properties.ATTR_1_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.right = new FormAttachment(cpuCoresTextFld, valueLabe2.getText().length());
 		data.top = new FormAttachment(cpuCoresTextFld, 0, SWT.CENTER);
 		valueLabe2.setLayoutData(data);
-		
-		ramTextFld = factory.createText(composite, "");
-		data = new FormData();
-		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
-		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 50);
-		ramTextFld.setToolTipText(ToolTips.MAX_RAM_PROP_TIP.get());
-		ramTextFld.setLayoutData(data);
-		
-		final CLabel valueLabe4 = factory.createCLabel(composite, RAM_LABEL.get());
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(ramTextFld, valueLabe4.getText().length());
-		data.top = new FormAttachment(ramTextFld, 0, SWT.CENTER);
-		valueLabe4.setLayoutData(data);
-		
-		diskSpaceTextFld = factory.createText(composite, "");
-		data = new FormData();
-		data.left = new FormAttachment(0, Dimensions.SERVER_PROP_LABEL_WIDTH);
-		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 75);
-		diskSpaceTextFld.setToolTipText(ToolTips.DISK_SPACE_PROP_TIP.get());
-		diskSpaceTextFld.setLayoutData(data);
-		
-		final CLabel valueLabe5 = factory.createCLabel(composite, DISKSPACE_LABEL.get());
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(diskSpaceTextFld, valueLabe5.getText().length());
-		data.top = new FormAttachment(diskSpaceTextFld, 0, SWT.CENTER);
-		valueLabe5.setLayoutData(data);
 		
 		submitBtn = factory.createButton(composite, TRANSFER.get(), 0);
 		data = new FormData();

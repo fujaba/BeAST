@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import model.Group;
-import model.Server;
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.eclipse.graphiti.internal.services.GraphitiInternal;
@@ -60,8 +57,6 @@ public class DiagramUpdateMaster implements KeyListener
 			return "OK";
 		}
 		
-//		LOGGER.debug(info.getKey() + ": " + info.getValue());
-		
 		final DiagramUpdateHandler handler = updateHandler.get(info.getKey());
 		
 		if (handler != null)
@@ -111,7 +106,7 @@ public class DiagramUpdateMaster implements KeyListener
 //					}
 //				}
 //			}
-			if (Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(shape) instanceof Group)
+			/*if (Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(shape) instanceof Group)
 			{
 				final Group group = (Group) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(shape);
 				
@@ -131,7 +126,7 @@ public class DiagramUpdateMaster implements KeyListener
 						}
 					}
 				}
-			}
+			}*/
 		}
 		
 		return shapeList;

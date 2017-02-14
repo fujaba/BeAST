@@ -20,31 +20,7 @@ public interface ModelFactory extends EFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ModelFactory	eINSTANCE	= model.impl.ModelFactoryImpl.init();
-	
-	
-	
-	/**
-	 * Returns a new object of class '<em>Server</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Server</em>'.
-	 * @generated
-	 */
-	Server createServer();
-	
-	
-	
-	/**
-	 * Returns a new object of class '<em>Group</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Group</em>'.
-	 * @generated
-	 */
-	Group createGroup();
-
-
+	ModelFactory eINSTANCE = model.impl.ModelFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Network</em>'.
@@ -54,20 +30,7 @@ public interface ModelFactory extends EFactory
 	 * @generated
 	 */
 	Network createNetwork();
-	
-	
-	
-	/**
-	 * Returns a new object of class '<em>Router</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Router</em>'.
-	 * @generated
-	 */
-	Router createRouter();
-	
-	
-	
+
 	/**
 	 * Returns a new object of class '<em>Hadoop Master</em>'.
 	 * <!-- begin-user-doc -->
@@ -76,8 +39,6 @@ public interface ModelFactory extends EFactory
 	 * @generated
 	 */
 	HadoopMaster createHadoopMaster();
-
-
 
 	/**
 	 * Returns a new object of class '<em>Hadoop Slave</em>'.
@@ -88,107 +49,6 @@ public interface ModelFactory extends EFactory
 	 */
 	HadoopSlave createHadoopSlave();
 
-
-
-	/**
-	 * Returns a new object of class '<em>My SQL</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>My SQL</em>'.
-	 * @generated
-	 */
-	MySQL createMySQL();
-
-
-
-	/**
-	 * Returns a new object of class '<em>Word Press</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Word Press</em>'.
-	 * @generated
-	 */
-	WordPress createWordPress();
-
-
-
-	/**
-	 * Returns a new object of class '<em>Cassandra</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Cassandra</em>'.
-	 * @generated
-	 */
-	Cassandra createCassandra();
-
-
-
-	/**
-	 * Returns a new object of class '<em>Mongo DB</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Mongo DB</em>'.
-	 * @generated
-	 */
-	MongoDB createMongoDB();
-
-
-
-	/**
-	 * Returns a new object of class '<em>Ubuntu</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ubuntu</em>'.
-	 * @generated
-	 */
-	Ubuntu createUbuntu();
-
-
-
-	/**
-	 * Returns a new object of class '<em>Apache2</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Apache2</em>'.
-	 * @generated
-	 */
-	Apache2 createApache2();
-
-
-
-	/**
-	 * Returns a new object of class '<em>Jenkins</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Jenkins</em>'.
-	 * @generated
-	 */
-	Jenkins createJenkins();
-
-
-
-	/**
-	 * Returns a new object of class '<em>Media Wiki</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Media Wiki</em>'.
-	 * @generated
-	 */
-	MediaWiki createMediaWiki();
-
-
-
-	/**
-	 * Returns a new object of class '<em>Tomcat</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Tomcat</em>'.
-	 * @generated
-	 */
-	Tomcat createTomcat();
-
-
-
 	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
@@ -197,5 +57,5 @@ public interface ModelFactory extends EFactory
 	 * @generated
 	 */
 	ModelPackage getModelPackage();
-	
+
 } //ModelFactory

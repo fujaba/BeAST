@@ -2,7 +2,6 @@ package de.uks.beast.editor.action.update;
 
 import java.util.List;
 
-import model.Server;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -47,7 +46,7 @@ public class RamUsageHandler extends DiagramUpdateHandler
 		
 		for (final ContainerShape containerShape : serverShapes)
 		{
-			final Server serverFromEditor = (Server) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(
+			/*final Server serverFromEditor = (Server) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(
 					containerShape);
 			
 			if (checkServerEquals(externalServer, serverFromEditor))
@@ -79,16 +78,16 @@ public class RamUsageHandler extends DiagramUpdateHandler
 						}
 					}
 				}
-			}
+			}*/
 		}
 	}
 	
 	
 	
-	private boolean checkServerEquals(final de.uks.beast.model.Server externalServer, final Server serverFromEditor)
+	/*private boolean checkServerEquals(final de.uks.beast.model.Server externalServer, final Server serverFromEditor)
 	{
 		return externalServer.getHost().equals(serverFromEditor.getName())
 				&& externalServer.getIp().equals(serverFromEditor.getIp());
-	}
+	}*/
 	
 }

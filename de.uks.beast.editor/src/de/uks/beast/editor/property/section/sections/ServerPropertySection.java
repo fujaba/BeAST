@@ -2,7 +2,7 @@ package de.uks.beast.editor.property.section.sections;
 
 import java.net.UnknownHostException;
 
-import model.Server;
+import model.Service;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -25,7 +25,7 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 {
 	private static final Logger			LOG	= LogManager.getLogger(ServerPropertySection.class);
 	private ServerPropertyView			serverPropertyView;
-	private Server						server;
+	private Service						service;
 	private TransactionalEditingDomain	domain;
 	
 	
@@ -57,16 +57,12 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 					{
 						try
 						{
-							server.setIp(serverPropertyView.getIpInput());
-							server.setCpuCores(serverPropertyView.getCpuCoresInput());
-							server.setRam(serverPropertyView.getRamInput());
-							server.setDiskSpace(serverPropertyView.getDiskSpaceInput());
+							service.setAtribute_0("" + serverPropertyView.getIpInput());
+							service.setAtribute_1("" + serverPropertyView.getCpuCoresInput());
 							
-							LOG.debug("server hash: " + server.hashCode() + " -> ip: " + server.getIp());
-							LOG.debug("server hash: " + server.hashCode() + " -> cpu amount: " + server.getCpuCores());
-							LOG.debug("server hash: " + server.hashCode() + " -> ram: " + server.getRam());
-							LOG.debug("server hash: " + server.hashCode() + " -> diskspace: " + server.getDiskSpace());
-							LOG.debug("server hash: " + server.hashCode() + " -> host: " + server.getName());
+							//LOG.debug("server hash: " + server.hashCode() + " -> ip: " + server.getIp());
+							//LOG.debug("server hash: " + server.hashCode() + " -> cpu amount: " + server.getCpuCores());
+							//LOG.debug("server hash: " + server.hashCode() + " -> host: " + server.getName());
 						}
 						catch (NumberFormatException e)
 						{
@@ -96,10 +92,8 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 	
 	private void setPreDefinedValuesToSheet()
 	{
-		serverPropertyView.setIpInput("" + server.getIp());
-		serverPropertyView.setCpuCoresInput("" + server.getCpuCores());
-		serverPropertyView.setRamInput("" + server.getRam());
-		serverPropertyView.setDiskSpaceInput("" + server.getDiskSpace());
+		serverPropertyView.setIpInput("" + service.getAtribute_0());
+		serverPropertyView.setCpuCoresInput("" + service.getAtribute_1());
 	}
 	
 	
@@ -110,11 +104,11 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 		final PictogramElement pe = getSelectedPictogramElement();
 		if (pe != null)
 		{
-			server = (Server) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
-			domain = TransactionUtil.getEditingDomain(server);
+			service = (Service) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
+			domain = TransactionUtil.getEditingDomain(service);
 			setPreDefinedValuesToSheet();
 			
-			if (server == null)
+			if (service == null)
 			{
 				return;
 			}

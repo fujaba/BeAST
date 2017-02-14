@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
 
-<!-- old type: hardwareComposition -->
-<!-- old wizard: HCDWizard.java -->
-<!-- old wizardPage: HCDWizardPage.java -->
-
 	<!-- Execute BeAST test...-->
 	<extension point="org.eclipse.ui.popupMenus"> 
 	    <objectContribution
@@ -67,23 +63,7 @@
       point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
 		<propertyTabs
           contributorId="beast.PropertyContributor">
-			<propertyTab category="Configuration" id="graphiti.main.tab.server" label="Config">
-			</propertyTab>
-		</propertyTabs>
-	</extension>
-	<extension
-      point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
-		<propertyTabs
-          contributorId="beast.PropertyContributor">
 			<propertyTab category="Configuration" id="graphiti.main.tab.network" label="Config">
-			</propertyTab>
-		</propertyTabs>
-	</extension>
-	<extension
-      point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
-		<propertyTabs
-          contributorId="beast.PropertyContributor">
-			<propertyTab category="Configuration" id="graphiti.main.tab.router" label="Config">
 			</propertyTab>
 		</propertyTabs>
 	</extension>
@@ -102,26 +82,6 @@
 		point="org.eclipse.ui.views.properties.tabbed.propertySections">
 		<propertySections
           contributorId="beast.PropertyContributor">
-			<propertySection class="de.uks.beast.editor.property.section.sections.ServerPropertySection"
-				filter="de.uks.beast.editor.property.filter.ServerPropertyFilter"
-				id="graphiti.main.tab.server" tab="graphiti.main.tab.server">
-			</propertySection>
-		</propertySections>
-	</extension>
-	<extension 
-		point="org.eclipse.ui.views.properties.tabbed.propertySections">
-		<propertySections
-          contributorId="beast.PropertyContributor">
-			<propertySection class="de.uks.beast.editor.property.section.sections.RouterPropertySection"
-				filter="de.uks.beast.editor.property.filter.RouterPropertyFilter"
-				id="graphiti.main.tab.router" tab="graphiti.main.tab.router">
-			</propertySection>
-		</propertySections>
-	</extension>
-	<extension 
-		point="org.eclipse.ui.views.properties.tabbed.propertySections">
-		<propertySections
-          contributorId="beast.PropertyContributor">
 			<propertySection class="de.uks.beast.editor.property.section.sections.NetworkPropertySection"
 				filter="de.uks.beast.editor.property.filter.NetworkPropertyFilter"
 				id="graphiti.main.tab.network" tab="graphiti.main.tab.network">
@@ -132,8 +92,8 @@
 		point="org.eclipse.ui.views.properties.tabbed.propertySections">
 		<propertySections
           contributorId="beast.PropertyContributor">
-			<propertySection class="de.uks.beast.editor.property.section.sections.HadoopPropertySection"
-				filter="de.uks.beast.editor.property.filter.HadoopPropertyFilter"
+			<propertySection class="de.uks.beast.editor.property.section.sections.ServerPropertySection"
+				filter="de.uks.beast.editor.property.filter.ServicePropertyFilter"
 				id="graphiti.main.tab.service" tab="graphiti.main.tab.service">
 			</propertySection>
 		</propertySections>

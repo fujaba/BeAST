@@ -12,7 +12,7 @@ public class Dimensions
 	
 	//server
 	public static final int	SERVER_INITIAL_WIDTH		= 250;
-	public static final int	SERVER_INITIAL_HEIGHT		= 90;
+	public static final int	SERVICE_INITIAL_HEIGHT		= 90;
 	
 	//network
 	public static final int	NETWORK_INITIAL_WIDTH		= 170;
@@ -24,7 +24,7 @@ public class Dimensions
 	
 	//propertySheets
 	public static final int	PROP_LINE_VSPACE			= 4;
-	public static final int	SERVER_PROP_LABEL_WIDTH		= 100;
+	public static final int	SERVICE_PROP_LABEL_WIDTH		= 100;
 	public static final int	NETWORK_PROP_LABEL_WIDTH	= 100;
 	public static final int	ROUTER_PROP_LABEL_WIDTH		= 100;
 }

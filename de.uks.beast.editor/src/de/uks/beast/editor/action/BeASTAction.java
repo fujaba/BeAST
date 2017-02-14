@@ -36,7 +36,7 @@ import de.uks.beast.editor.property.data.JobDataController;
 import de.uks.beast.editor.provider.EditorDiagramTypeProvider;
 import de.uks.beast.model.Hardware;
 import de.uks.beast.model.Network;
-import model.Server;
+import model.Service;
 import model.impl.NetworkImpl;
 
 public class BeASTAction implements IObjectActionDelegate
@@ -72,9 +72,9 @@ public class BeASTAction implements IObjectActionDelegate
 				net.setSubnetmask(network.getSubnetmask());
 				net.setDns(network.getDns());
 				
-				for (final Server server : network.getServer())
+				for (final Service server : network.getServices())
 				{
-					final de.uks.beast.model.Server s = new de.uks.beast.model.Server();
+					/*final de.uks.beast.model.Server s = new de.uks.beast.model.Server();
 					s.setCpu(server.getCpuCores());
 					s.setDiskSpace(server.getDiskSpace());
 					s.setHost(server.getName());
@@ -90,7 +90,7 @@ public class BeASTAction implements IObjectActionDelegate
 					}
 					
 					s.setNetwork(net);
-					net.addToServer(s);
+					net.addToServer(s);*/
 				}
 				
 				hw.addToNetworks(net);

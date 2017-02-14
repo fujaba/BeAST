@@ -1,79 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="model" nsURI="http://www.example.org/model" nsPrefix="model">
-  <eClassifiers xsi:type="ecore:EClass" name="Server">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ip" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral="0"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cpuCores" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ram" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="diskSpace" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral="0"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="network" eType="#//Network"
-        eOpposite="#//Network/server"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-        defaultValueLiteral="0" iD="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="service" eType="#//Service"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Group">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-        defaultValueLiteral="0" iD="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral="0"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="server" upperBound="-1"
-        eType="#//Server" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="groups" upperBound="-1"
-        eType="#//Group" containment="true"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Network">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ip" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral="0"/>
+        defaultValueLiteral="0.0.0.0"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="subnetmask" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral="0"/>
+        defaultValueLiteral="0.0.0.0"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="gateway" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral="0"/>
+        defaultValueLiteral="0.0.0.0"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dns" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral="0"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="router" lowerBound="1"
-        upperBound="-1" eType="#//Router" eOpposite="#//Router/network"/>
+        defaultValueLiteral="0.0.0.0"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral="0"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="server" upperBound="-1"
-        eType="#//Server" eOpposite="#//Server/network"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-        defaultValueLiteral="0" iD="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Router">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="network" lowerBound="1"
-        upperBound="-1" eType="#//Network" eOpposite="#//Network/router"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-        defaultValueLiteral="0" iD="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ip" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral="0"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral="0"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="externalGateway" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral="0"/>
+        defaultValueLiteral="network" iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="services" upperBound="-1"
+        eType="#//Service" eOpposite="#//Service/network"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Service" abstract="true" interface="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="serviceType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="serviceName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-        defaultValueLiteral="0" iD="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="services" upperBound="-1"
-        eType="#//Service"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="service" iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="atribute_0" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="atribute_1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="network" eType="#//Network"
+        eOpposite="#//Network/services"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="HadoopMaster" eSuperTypes="#//Service"/>
-  <eClassifiers xsi:type="ecore:EClass" name="HadoopSlave" eSuperTypes="#//Service"/>
-  <eClassifiers xsi:type="ecore:EClass" name="MySQL" eSuperTypes="#//Service"/>
-  <eClassifiers xsi:type="ecore:EClass" name="WordPress" eSuperTypes="#//Service"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Cassandra" eSuperTypes="#//Service"/>
-  <eClassifiers xsi:type="ecore:EClass" name="MongoDB" eSuperTypes="#//Service"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Ubuntu" eSuperTypes="#//Service"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Apache2" eSuperTypes="#//Service"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Jenkins" eSuperTypes="#//Service"/>
-  <eClassifiers xsi:type="ecore:EClass" name="MediaWiki" eSuperTypes="#//Service"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Tomcat" eSuperTypes="#//Service"/>
+  <eClassifiers xsi:type="ecore:EClass" name="HadoopMaster" eSuperTypes="#//Service">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hadoopSlaves" upperBound="-1"
+        eType="#//HadoopSlave" eOpposite="#//HadoopSlave/hadoopMaster"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HadoopSlave" eSuperTypes="#//Service">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hadoopMaster" eType="#//HadoopMaster"
+        eOpposite="#//HadoopMaster/hadoopSlaves"/>
+  </eClassifiers>
 </ecore:EPackage>

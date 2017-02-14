@@ -2,7 +2,6 @@
  */
 package model;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -15,10 +14,9 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link model.Service#getName <em>Name</em>}</li>
- *   <li>{@link model.Service#getServiceType <em>Service Type</em>}</li>
- *   <li>{@link model.Service#getServiceName <em>Service Name</em>}</li>
- *   <li>{@link model.Service#getId <em>Id</em>}</li>
- *   <li>{@link model.Service#getServices <em>Services</em>}</li>
+ *   <li>{@link model.Service#getAtribute_0 <em>Atribute 0</em>}</li>
+ *   <li>{@link model.Service#getAtribute_1 <em>Atribute 1</em>}</li>
+ *   <li>{@link model.Service#getNetwork <em>Network</em>}</li>
  * </ul>
  *
  * @see model.ModelPackage#getService()
@@ -27,9 +25,9 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Service extends EObject
 {
-
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * The default value is <code>"service"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
@@ -39,7 +37,7 @@ public interface Service extends EObject
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see model.ModelPackage#getService_Name()
-	 * @model
+	 * @model default="service" id="true"
 	 * @generated
 	 */
 	String getName();
@@ -55,97 +53,83 @@ public interface Service extends EObject
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Id</b></em>' attribute.
-	 * The default value is <code>"0"</code>.
+	 * Returns the value of the '<em><b>Atribute 0</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Atribute 0</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Id</em>' attribute.
-	 * @see #setId(int)
-	 * @see model.ModelPackage#getService_Id()
-	 * @model default="0" id="true"
-	 * @generated
-	 */
-	int getId();
-
-	/**
-	 * Sets the value of the '{@link model.Service#getId <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Id</em>' attribute.
-	 * @see #getId()
-	 * @generated
-	 */
-	void setId(int value);
-
-	/**
-	 * Returns the value of the '<em><b>Services</b></em>' reference list.
-	 * The list contents are of type {@link model.Service}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Services</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Services</em>' reference list.
-	 * @see model.ModelPackage#getService_Services()
+	 * @return the value of the '<em>Atribute 0</em>' attribute.
+	 * @see #setAtribute_0(String)
+	 * @see model.ModelPackage#getService_Atribute_0()
 	 * @model
 	 * @generated
 	 */
-	EList<Service> getServices();
+	String getAtribute_0();
 
 	/**
-	 * Returns the value of the '<em><b>Service Name</b></em>' attribute.
+	 * Sets the value of the '{@link model.Service#getAtribute_0 <em>Atribute 0</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Atribute 0</em>' attribute.
+	 * @see #getAtribute_0()
+	 * @generated
+	 */
+	void setAtribute_0(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Atribute 1</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Service Name</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Atribute 1</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Service Name</em>' attribute.
-	 * @see #setServiceName(String)
-	 * @see model.ModelPackage#getService_ServiceName()
+	 * @return the value of the '<em>Atribute 1</em>' attribute.
+	 * @see #setAtribute_1(String)
+	 * @see model.ModelPackage#getService_Atribute_1()
 	 * @model
 	 * @generated
 	 */
-	String getServiceName();
+	String getAtribute_1();
 
 	/**
-	 * Sets the value of the '{@link model.Service#getServiceName <em>Service Name</em>}' attribute.
+	 * Sets the value of the '{@link model.Service#getAtribute_1 <em>Atribute 1</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Service Name</em>' attribute.
-	 * @see #getServiceName()
+	 * @param value the new value of the '<em>Atribute 1</em>' attribute.
+	 * @see #getAtribute_1()
 	 * @generated
 	 */
-	void setServiceName(String value);
+	void setAtribute_1(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Service Type</b></em>' attribute.
+	 * Returns the value of the '<em><b>Network</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link model.Network#getServices <em>Services</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Service Type</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Network</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Service Type</em>' attribute.
-	 * @see #setServiceType(String)
-	 * @see model.ModelPackage#getService_ServiceType()
-	 * @model
+	 * @return the value of the '<em>Network</em>' reference.
+	 * @see #setNetwork(Network)
+	 * @see model.ModelPackage#getService_Network()
+	 * @see model.Network#getServices
+	 * @model opposite="services"
 	 * @generated
 	 */
-	String getServiceType();
+	Network getNetwork();
 
 	/**
-	 * Sets the value of the '{@link model.Service#getServiceType <em>Service Type</em>}' attribute.
+	 * Sets the value of the '{@link model.Service#getNetwork <em>Network</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Service Type</em>' attribute.
-	 * @see #getServiceType()
+	 * @param value the new value of the '<em>Network</em>' reference.
+	 * @see #getNetwork()
 	 * @generated
 	 */
-	void setServiceType(String value);
+	void setNetwork(Network value);
+
 } // Service
