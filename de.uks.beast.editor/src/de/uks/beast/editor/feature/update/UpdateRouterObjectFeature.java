@@ -28,13 +28,11 @@ public class UpdateRouterObjectFeature extends AbstractUpdateFeature implements 
 	// retrieve values from pictogram model
 	private String	pictogramName		= null;
 	private String	pictogramIp			= null;
-	private String	pictogramId			= null;
 	private String	pictogramExtGateway	= null;
 	
 	// retrieve values from business model
 	private String	businessName		= null;
 	private String	businessIp			= null;
-	private String	businessId			= null;
 	private String	businessExtGateway	= null;
 	
 	
@@ -80,10 +78,6 @@ public class UpdateRouterObjectFeature extends AbstractUpdateFeature implements 
 					{
 						pictogramIp = text.getValue();
 					}
-					else if (PropertyUtil.isAttributeShape(shape, ID))
-					{
-						pictogramId = text.getValue();
-					}
 					else if (PropertyUtil.isAttributeShape(shape, EXTERNAL_GATEWAY))
 					{
 						pictogramExtGateway = text.getValue();
@@ -100,7 +94,6 @@ public class UpdateRouterObjectFeature extends AbstractUpdateFeature implements 
 			final Router router = (Router) bo;
 			businessName = router.getName();
 			businessIp = router.getIp();
-			businessId = router.getId();
 			businessExtGateway = router.getExternalGateway();
 		}
 		
@@ -111,10 +104,6 @@ public class UpdateRouterObjectFeature extends AbstractUpdateFeature implements 
 		else if (PropertyUtil.updateNeeded(pictogramIp, businessIp))
 		{
 			return Reason.createTrueReason(IP_TRUE_REASON.text());
-		}
-		else if (PropertyUtil.updateNeeded(pictogramId, businessId))
-		{
-			return Reason.createTrueReason(ID_TRUE_REASON.text());
 		}
 		else if (PropertyUtil.updateNeeded(pictogramExtGateway, businessExtGateway))
 		{
@@ -139,7 +128,6 @@ public class UpdateRouterObjectFeature extends AbstractUpdateFeature implements 
 			final Router router = (Router) bo;
 			businessName = router.getName();
 			businessIp = router.getIp();
-			businessId = router.getId();
 			businessExtGateway = router.getExternalGateway();
 		}
 		
@@ -161,10 +149,6 @@ public class UpdateRouterObjectFeature extends AbstractUpdateFeature implements 
 					else if (PropertyUtil.isAttributeShape(shape, IP))
 					{
 						text.setValue(businessIp);
-					}
-					else if (PropertyUtil.isAttributeShape(shape, ID))
-					{
-						text.setValue(businessId);
 					}
 					else if (PropertyUtil.isAttributeShape(shape, EXTERNAL_GATEWAY))
 					{

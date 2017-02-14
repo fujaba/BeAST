@@ -1,7 +1,6 @@
 package de.uks.beast.editor.property.section.views;
 
 import static de.uks.beast.editor.util.Properties.EXTERNAL_GATEWAY_LABEL;
-import static de.uks.beast.editor.util.Properties.ID_LABEL;
 import static de.uks.beast.editor.util.Properties.IP_LABEL;
 import static de.uks.beast.editor.util.Properties.TRANSFER;
 
@@ -25,7 +24,6 @@ public class RouterPropertyView
 {
 	private Text	ipTextFld;
 	private Text	externalGatewayTextFld;
-	private Text	idTextFld;
 	private Button	submitBtn;
 	
 	
@@ -71,21 +69,6 @@ public class RouterPropertyView
 		data.top = new FormAttachment(externalGatewayTextFld, 0, SWT.CENTER);
 		valueLabe3.setLayoutData(data);
 		
-		idTextFld = factory.createText(composite, "");
-		data = new FormData();
-		data.left = new FormAttachment(0, Dimensions.ROUTER_PROP_LABEL_WIDTH);
-		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 50);
-		idTextFld.setToolTipText(ToolTips.ID_PROP_TIP.get());
-		idTextFld.setLayoutData(data);
-		
-		final CLabel valueLabe5 = factory.createCLabel(composite, ID_LABEL.get());
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(idTextFld, valueLabe5.getText().length());
-		data.top = new FormAttachment(idTextFld, 0, SWT.CENTER);
-		valueLabe5.setLayoutData(data);
-		
 		submitBtn = factory.createButton(composite, TRANSFER.get(), 0);
 		data = new FormData();
 		data.left = new FormAttachment(0, 20);
@@ -118,10 +101,6 @@ public class RouterPropertyView
 	
 	
 	
-	public String getIdInput()
-	{
-		return idTextFld.getText();
-	}
 	
 	
 	
@@ -150,13 +129,6 @@ public class RouterPropertyView
 	
 	
 	
-	public void setIdInput(final String input)
-	{
-		if (input != null && !input.isEmpty())
-		{
-			idTextFld.setText(input);
-		}
-	}
 	
 	
 	

@@ -2,8 +2,6 @@ package de.uks.beast.editor.feature.add;
 
 import static de.uks.beast.editor.util.Properties.EXTERNAL_GATEWAY;
 import static de.uks.beast.editor.util.Properties.EXTERNAL_GATEWAY_LABEL;
-import static de.uks.beast.editor.util.Properties.ID;
-import static de.uks.beast.editor.util.Properties.ID_LABEL;
 import static de.uks.beast.editor.util.Properties.IP;
 import static de.uks.beast.editor.util.Properties.IP_LABEL;
 import static de.uks.beast.editor.util.Properties.NAME;
@@ -117,14 +115,6 @@ public class AddRouterFeature extends AbstractAddFeature implements AbstractShap
 		Textfields.ROUTER_IP_PROP_FIELD.addTo(getDiagram(), ipTextShape, router.getIp(), color);
 		PropertyUtil.setAttributeShape(ipTextShape, IP);
 		link(ipTextShape, router);
-		
-		//SHAPE FOR PROPERTY ID
-		final Shape idTextShape = createShape(peCreateService, containerShape);
-		final Shape idLabelShape = createShape(peCreateService, containerShape);
-		Textfields.ROUTER_ID_LABEL_FIELD.addTo(getDiagram(), idLabelShape, ID_LABEL.get(), color);
-		Textfields.ROUTER_ID_PROP_FIELD.addTo(getDiagram(), idTextShape, router.getId(), color);
-		PropertyUtil.setAttributeShape(idTextShape, ID);
-		link(idTextShape, router);
 		
 		//SHAPE FOR PROPERTY EXTERNAL_GATEWAY
 		final Shape extGatewayTextShape = createShape(peCreateService, containerShape);

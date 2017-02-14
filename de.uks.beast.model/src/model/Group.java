@@ -13,13 +13,13 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
- *   <li>{@link model.Group#getServer <em>Server</em>}</li>
  *   <li>{@link model.Group#getId <em>Id</em>}</li>
  *   <li>{@link model.Group#getName <em>Name</em>}</li>
- *   <li>{@link model.Group#getGroup <em>Group</em>}</li>
+ *   <li>{@link model.Group#getServer <em>Server</em>}</li>
+ *   <li>{@link model.Group#getGroups <em>Groups</em>}</li>
  * </ul>
- * </p>
  *
  * @see model.ModelPackage#getGroup()
  * @model
@@ -44,7 +44,24 @@ public interface Group extends EObject
 	EList<Server> getServer();
 
 	/**
+	 * Returns the value of the '<em><b>Groups</b></em>' containment reference list.
+	 * The list contents are of type {@link model.Group}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Groups</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Groups</em>' containment reference list.
+	 * @see model.ModelPackage#getGroup_Groups()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Group> getGroups();
+
+	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
@@ -54,7 +71,7 @@ public interface Group extends EObject
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(int)
 	 * @see model.ModelPackage#getGroup_Id()
-	 * @model
+	 * @model default="0" id="true"
 	 * @generated
 	 */
 	int getId();
@@ -95,21 +112,5 @@ public interface Group extends EObject
 	 * @generated
 	 */
 	void setName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Group</b></em>' containment reference list.
-	 * The list contents are of type {@link model.Group}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Group</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Group</em>' containment reference list.
-	 * @see model.ModelPackage#getGroup_Group()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Group> getGroup();
 
 } // Group

@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link model.Network#getIp <em>Ip</em>}</li>
  *   <li>{@link model.Network#getSubnetmask <em>Subnetmask</em>}</li>
@@ -20,8 +21,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link model.Network#getRouter <em>Router</em>}</li>
  *   <li>{@link model.Network#getName <em>Name</em>}</li>
  *   <li>{@link model.Network#getServer <em>Server</em>}</li>
+ *   <li>{@link model.Network#getId <em>Id</em>}</li>
  * </ul>
- * </p>
  *
  * @see model.ModelPackage#getNetwork()
  * @model
@@ -166,10 +167,41 @@ public interface Network extends EObject
 	 * @return the value of the '<em>Server</em>' reference list.
 	 * @see model.ModelPackage#getNetwork_Server()
 	 * @see model.Server#getNetwork
-	 * @model opposite="Network"
+	 * @model opposite="network"
 	 * @generated
 	 */
 	EList<Server> getServer();
+
+
+
+	/**
+	 * Returns the value of the '<em><b>Id</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Id</em>' attribute.
+	 * @see #setId(int)
+	 * @see model.ModelPackage#getNetwork_Id()
+	 * @model default="0" id="true"
+	 * @generated
+	 */
+	int getId();
+
+
+
+	/**
+	 * Sets the value of the '{@link model.Network#getId <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Id</em>' attribute.
+	 * @see #getId()
+	 * @generated
+	 */
+	void setId(int value);
 
 
 
@@ -186,7 +218,7 @@ public interface Network extends EObject
 	 * @return the value of the '<em>Router</em>' reference list.
 	 * @see model.ModelPackage#getNetwork_Router()
 	 * @see model.Router#getNetwork
-	 * @model opposite="Network" required="true"
+	 * @model opposite="network" required="true"
 	 * @generated
 	 */
 	EList<Router> getRouter();

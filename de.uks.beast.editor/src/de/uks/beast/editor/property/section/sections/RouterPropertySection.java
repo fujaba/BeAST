@@ -59,12 +59,10 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 						{
 							router.setIp(routerPropertyView.getIpInput());
 							router.setExternalGateway(routerPropertyView.getExternalGatewayInput());
-							router.setId(routerPropertyView.getIdInput());
 							
 							LOG.debug("router hash: " + router.hashCode() + " -> ip: " + router.getIp());
 							LOG.debug("router hash: " + router.hashCode() + " -> external gateway: "
 									+ router.getExternalGateway());
-							LOG.debug("router hash: " + router.hashCode() + " -> id: " + router.getId());
 							LOG.debug("router hash: " + router.hashCode() + " -> name: " + router.getName());
 						}
 						catch (UnknownHostException e)
@@ -92,7 +90,6 @@ public class RouterPropertySection extends GFPropertySection implements ITabbedP
 	{
 		routerPropertyView.setIpInput(router.getIp());
 		routerPropertyView.setExternalGatewayInput("" + router.getExternalGateway());
-		routerPropertyView.setIdInput(router.getId());
 	}
 	
 	

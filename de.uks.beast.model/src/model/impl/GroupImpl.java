@@ -22,28 +22,18 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
- *   <li>{@link model.impl.GroupImpl#getServer <em>Server</em>}</li>
  *   <li>{@link model.impl.GroupImpl#getId <em>Id</em>}</li>
  *   <li>{@link model.impl.GroupImpl#getName <em>Name</em>}</li>
- *   <li>{@link model.impl.GroupImpl#getGroup <em>Group</em>}</li>
+ *   <li>{@link model.impl.GroupImpl#getServer <em>Server</em>}</li>
+ *   <li>{@link model.impl.GroupImpl#getGroups <em>Groups</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class GroupImpl extends MinimalEObjectImpl.Container implements Group
 {
-	/**
-	 * The cached value of the '{@link #getServer() <em>Server</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getServer()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Server> server;
-
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -85,14 +75,24 @@ public class GroupImpl extends MinimalEObjectImpl.Container implements Group
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getGroup() <em>Group</em>}' containment reference list.
+	 * The cached value of the '{@link #getServer() <em>Server</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getGroup()
+	 * @see #getServer()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Group> group;
+	protected EList<Server> server;
+
+	/**
+	 * The cached value of the '{@link #getGroups() <em>Groups</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGroups()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Group> groups;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -122,11 +122,22 @@ public class GroupImpl extends MinimalEObjectImpl.Container implements Group
 	 */
 	public EList<Server> getServer()
 	{
-		if (server == null)
-		{
+		if (server == null) {
 			server = new EObjectContainmentEList<Server>(Server.class, this, ModelPackage.GROUP__SERVER);
 		}
 		return server;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Group> getGroups() {
+		if (groups == null) {
+			groups = new EObjectContainmentEList<Group>(Group.class, this, ModelPackage.GROUP__GROUPS);
+		}
+		return groups;
 	}
 
 	/**
@@ -180,29 +191,13 @@ public class GroupImpl extends MinimalEObjectImpl.Container implements Group
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Group> getGroup()
-	{
-		if (group == null)
-		{
-			group = new EObjectContainmentEList<Group>(Group.class, this, ModelPackage.GROUP__GROUP);
-		}
-		return group;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 			case ModelPackage.GROUP__SERVER:
 				return ((InternalEList<?>)getServer()).basicRemove(otherEnd, msgs);
-			case ModelPackage.GROUP__GROUP:
-				return ((InternalEList<?>)getGroup()).basicRemove(otherEnd, msgs);
+			case ModelPackage.GROUP__GROUPS:
+				return ((InternalEList<?>)getGroups()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -215,16 +210,15 @@ public class GroupImpl extends MinimalEObjectImpl.Container implements Group
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
-			case ModelPackage.GROUP__SERVER:
-				return getServer();
+		switch (featureID) {
 			case ModelPackage.GROUP__ID:
 				return getId();
 			case ModelPackage.GROUP__NAME:
 				return getName();
-			case ModelPackage.GROUP__GROUP:
-				return getGroup();
+			case ModelPackage.GROUP__SERVER:
+				return getServer();
+			case ModelPackage.GROUP__GROUPS:
+				return getGroups();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -238,21 +232,20 @@ public class GroupImpl extends MinimalEObjectImpl.Container implements Group
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
-			case ModelPackage.GROUP__SERVER:
-				getServer().clear();
-				getServer().addAll((Collection<? extends Server>)newValue);
-				return;
+		switch (featureID) {
 			case ModelPackage.GROUP__ID:
 				setId((Integer)newValue);
 				return;
 			case ModelPackage.GROUP__NAME:
 				setName((String)newValue);
 				return;
-			case ModelPackage.GROUP__GROUP:
-				getGroup().clear();
-				getGroup().addAll((Collection<? extends Group>)newValue);
+			case ModelPackage.GROUP__SERVER:
+				getServer().clear();
+				getServer().addAll((Collection<? extends Server>)newValue);
+				return;
+			case ModelPackage.GROUP__GROUPS:
+				getGroups().clear();
+				getGroups().addAll((Collection<? extends Group>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -266,19 +259,18 @@ public class GroupImpl extends MinimalEObjectImpl.Container implements Group
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
-			case ModelPackage.GROUP__SERVER:
-				getServer().clear();
-				return;
+		switch (featureID) {
 			case ModelPackage.GROUP__ID:
 				setId(ID_EDEFAULT);
 				return;
 			case ModelPackage.GROUP__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ModelPackage.GROUP__GROUP:
-				getGroup().clear();
+			case ModelPackage.GROUP__SERVER:
+				getServer().clear();
+				return;
+			case ModelPackage.GROUP__GROUPS:
+				getGroups().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -292,16 +284,15 @@ public class GroupImpl extends MinimalEObjectImpl.Container implements Group
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
-			case ModelPackage.GROUP__SERVER:
-				return server != null && !server.isEmpty();
+		switch (featureID) {
 			case ModelPackage.GROUP__ID:
 				return id != ID_EDEFAULT;
 			case ModelPackage.GROUP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ModelPackage.GROUP__GROUP:
-				return group != null && !group.isEmpty();
+			case ModelPackage.GROUP__SERVER:
+				return server != null && !server.isEmpty();
+			case ModelPackage.GROUP__GROUPS:
+				return groups != null && !groups.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

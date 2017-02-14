@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link model.Server#getIp <em>Ip</em>}</li>
  *   <li>{@link model.Server#getCpuCores <em>Cpu Cores</em>}</li>
@@ -18,9 +19,9 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link model.Server#getDiskSpace <em>Disk Space</em>}</li>
  *   <li>{@link model.Server#getName <em>Name</em>}</li>
  *   <li>{@link model.Server#getNetwork <em>Network</em>}</li>
+ *   <li>{@link model.Server#getId <em>Id</em>}</li>
  *   <li>{@link model.Server#getService <em>Service</em>}</li>
  * </ul>
- * </p>
  *
  * @see model.ModelPackage#getServer()
  * @model
@@ -193,7 +194,7 @@ public interface Server extends EObject
 	 * @see #setNetwork(Network)
 	 * @see model.ModelPackage#getServer_Network()
 	 * @see model.Network#getServer
-	 * @model opposite="Server"
+	 * @model opposite="server"
 	 * @generated
 	 */
 	Network getNetwork();
@@ -209,6 +210,37 @@ public interface Server extends EObject
 	 * @generated
 	 */
 	void setNetwork(Network value);
+
+
+
+	/**
+	 * Returns the value of the '<em><b>Id</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Id</em>' attribute.
+	 * @see #setId(int)
+	 * @see model.ModelPackage#getServer_Id()
+	 * @model default="0" id="true"
+	 * @generated
+	 */
+	int getId();
+
+
+
+	/**
+	 * Sets the value of the '{@link model.Server#getId <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Id</em>' attribute.
+	 * @see #getId()
+	 * @generated
+	 */
+	void setId(int value);
 
 
 

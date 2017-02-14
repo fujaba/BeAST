@@ -19,13 +19,14 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link model.impl.Apache2Impl#getName <em>Name</em>}</li>
  *   <li>{@link model.impl.Apache2Impl#getServiceType <em>Service Type</em>}</li>
  *   <li>{@link model.impl.Apache2Impl#getServiceName <em>Service Name</em>}</li>
- *   <li>{@link model.impl.Apache2Impl#getRelations <em>Relations</em>}</li>
+ *   <li>{@link model.impl.Apache2Impl#getId <em>Id</em>}</li>
+ *   <li>{@link model.impl.Apache2Impl#getServices <em>Services</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -92,14 +93,34 @@ public class Apache2Impl extends MinimalEObjectImpl.Container implements Apache2
 	protected String serviceName = SERVICE_NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getRelations() <em>Relations</em>}' reference list.
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRelations()
+	 * @see #getId()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Service> relations;
+	protected static final int ID_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected int id = ID_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getServices() <em>Services</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getServices()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Service> services;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -150,13 +171,32 @@ public class Apache2Impl extends MinimalEObjectImpl.Container implements Apache2
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Service> getRelations()
-	{
-		if (relations == null)
-		{
-			relations = new EObjectResolvingEList<Service>(Service.class, this, ModelPackage.APACHE2__RELATIONS);
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setId(int newId) {
+		int oldId = id;
+		id = newId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.APACHE2__ID, oldId, id));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Service> getServices() {
+		if (services == null) {
+			services = new EObjectResolvingEList<Service>(Service.class, this, ModelPackage.APACHE2__SERVICES);
 		}
-		return relations;
+		return services;
 	}
 
 	/**
@@ -213,16 +253,17 @@ public class Apache2Impl extends MinimalEObjectImpl.Container implements Apache2
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.APACHE2__NAME:
 				return getName();
 			case ModelPackage.APACHE2__SERVICE_TYPE:
 				return getServiceType();
 			case ModelPackage.APACHE2__SERVICE_NAME:
 				return getServiceName();
-			case ModelPackage.APACHE2__RELATIONS:
-				return getRelations();
+			case ModelPackage.APACHE2__ID:
+				return getId();
+			case ModelPackage.APACHE2__SERVICES:
+				return getServices();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -236,8 +277,7 @@ public class Apache2Impl extends MinimalEObjectImpl.Container implements Apache2
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.APACHE2__NAME:
 				setName((String)newValue);
 				return;
@@ -247,9 +287,12 @@ public class Apache2Impl extends MinimalEObjectImpl.Container implements Apache2
 			case ModelPackage.APACHE2__SERVICE_NAME:
 				setServiceName((String)newValue);
 				return;
-			case ModelPackage.APACHE2__RELATIONS:
-				getRelations().clear();
-				getRelations().addAll((Collection<? extends Service>)newValue);
+			case ModelPackage.APACHE2__ID:
+				setId((Integer)newValue);
+				return;
+			case ModelPackage.APACHE2__SERVICES:
+				getServices().clear();
+				getServices().addAll((Collection<? extends Service>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -263,8 +306,7 @@ public class Apache2Impl extends MinimalEObjectImpl.Container implements Apache2
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.APACHE2__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -274,8 +316,11 @@ public class Apache2Impl extends MinimalEObjectImpl.Container implements Apache2
 			case ModelPackage.APACHE2__SERVICE_NAME:
 				setServiceName(SERVICE_NAME_EDEFAULT);
 				return;
-			case ModelPackage.APACHE2__RELATIONS:
-				getRelations().clear();
+			case ModelPackage.APACHE2__ID:
+				setId(ID_EDEFAULT);
+				return;
+			case ModelPackage.APACHE2__SERVICES:
+				getServices().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -289,16 +334,17 @@ public class Apache2Impl extends MinimalEObjectImpl.Container implements Apache2
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.APACHE2__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ModelPackage.APACHE2__SERVICE_TYPE:
 				return SERVICE_TYPE_EDEFAULT == null ? serviceType != null : !SERVICE_TYPE_EDEFAULT.equals(serviceType);
 			case ModelPackage.APACHE2__SERVICE_NAME:
 				return SERVICE_NAME_EDEFAULT == null ? serviceName != null : !SERVICE_NAME_EDEFAULT.equals(serviceName);
-			case ModelPackage.APACHE2__RELATIONS:
-				return relations != null && !relations.isEmpty();
+			case ModelPackage.APACHE2__ID:
+				return id != ID_EDEFAULT;
+			case ModelPackage.APACHE2__SERVICES:
+				return services != null && !services.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -320,6 +366,8 @@ public class Apache2Impl extends MinimalEObjectImpl.Container implements Apache2
 		result.append(serviceType);
 		result.append(", serviceName: ");
 		result.append(serviceName);
+		result.append(", id: ");
+		result.append(id);
 		result.append(')');
 		return result.toString();
 	}

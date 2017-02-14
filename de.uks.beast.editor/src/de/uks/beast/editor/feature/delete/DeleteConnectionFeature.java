@@ -57,13 +57,13 @@ public class DeleteConnectionFeature extends DefaultDeleteFeature
 			final Service startService = (Service) start;
 			final Service endService = (Service) end;
 			
-			if (startService.getRelations().contains(endService))
+			if (startService.getServices().contains(endService))
 			{
-				startService.getRelations().remove(endService);
+				startService.getServices().remove(endService);
 			}
-			if (endService.getRelations().contains(startService))
+			if (endService.getServices().contains(startService))
 			{
-				endService.getRelations().remove(startService);
+				endService.getServices().remove(startService);
 			}
 			
 			setDoneChanges(true);

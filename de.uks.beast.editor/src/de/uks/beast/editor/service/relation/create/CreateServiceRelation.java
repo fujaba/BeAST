@@ -52,8 +52,8 @@ public class CreateServiceRelation extends AbstractCreateConnectionFeature
 				final Service sourceService = (Service) source;
 				final Service targetService = (Service) target;
 				
-				sourceService.getRelations().add(targetService);
-				targetService.getRelations().add(sourceService);
+				sourceService.getServices().add(targetService);
+				targetService.getServices().add(sourceService);
 			}
 			
 			newConnection = (Connection) getFeatureProvider().addIfPossible(addContext);

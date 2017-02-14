@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link model.impl.ServerImpl#getIp <em>Ip</em>}</li>
  *   <li>{@link model.impl.ServerImpl#getCpuCores <em>Cpu Cores</em>}</li>
@@ -26,9 +27,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link model.impl.ServerImpl#getDiskSpace <em>Disk Space</em>}</li>
  *   <li>{@link model.impl.ServerImpl#getName <em>Name</em>}</li>
  *   <li>{@link model.impl.ServerImpl#getNetwork <em>Network</em>}</li>
+ *   <li>{@link model.impl.ServerImpl#getId <em>Id</em>}</li>
  *   <li>{@link model.impl.ServerImpl#getService <em>Service</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -145,6 +146,26 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	protected Network network;
 
 
+
+	/**
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int ID_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected int id = ID_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getService() <em>Service</em>}' containment reference.
@@ -322,12 +343,10 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	 * @generated
 	 */
 	public Network getNetwork() {
-		if (network != null && network.eIsProxy())
-		{
+		if (network != null && network.eIsProxy()) {
 			InternalEObject oldNetwork = (InternalEObject)network;
 			network = (Network)eResolveProxy(oldNetwork);
-			if (network != oldNetwork)
-			{
+			if (network != oldNetwork) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.SERVER__NETWORK, oldNetwork, network));
 			}
@@ -356,8 +375,7 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	public NotificationChain basicSetNetwork(Network newNetwork, NotificationChain msgs) {
 		Network oldNetwork = network;
 		network = newNetwork;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.SERVER__NETWORK, oldNetwork, newNetwork);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -372,8 +390,7 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	 * @generated
 	 */
 	public void setNetwork(Network newNetwork) {
-		if (newNetwork != network)
-		{
+		if (newNetwork != network) {
 			NotificationChain msgs = null;
 			if (network != null)
 				msgs = ((InternalEObject)network).eInverseRemove(this, ModelPackage.NETWORK__SERVER, Network.class, msgs);
@@ -384,6 +401,31 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.SERVER__NETWORK, newNetwork, newNetwork));
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getId() {
+		return id;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setId(int newId) {
+		int oldId = id;
+		id = newId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.SERVER__ID, oldId, id));
 	}
 
 
@@ -405,12 +447,10 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetService(Service newService, NotificationChain msgs)
-	{
+	public NotificationChain basicSetService(Service newService, NotificationChain msgs) {
 		Service oldService = service;
 		service = newService;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.SERVER__SERVICE, oldService, newService);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -426,8 +466,7 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	 */
 	public void setService(Service newService)
 	{
-		if (newService != service)
-		{
+		if (newService != service) {
 			NotificationChain msgs = null;
 			if (service != null)
 				msgs = ((InternalEObject)service).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ModelPackage.SERVER__SERVICE, null, msgs);
@@ -449,8 +488,7 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.SERVER__NETWORK:
 				if (network != null)
 					msgs = ((InternalEObject)network).eInverseRemove(this, ModelPackage.NETWORK__SERVER, Network.class, msgs);
@@ -468,8 +506,7 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.SERVER__NETWORK:
 				return basicSetNetwork(null, msgs);
 			case ModelPackage.SERVER__SERVICE:
@@ -488,8 +525,7 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.SERVER__IP:
 				return getIp();
 			case ModelPackage.SERVER__CPU_CORES:
@@ -503,6 +539,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 			case ModelPackage.SERVER__NETWORK:
 				if (resolve) return getNetwork();
 				return basicGetNetwork();
+			case ModelPackage.SERVER__ID:
+				return getId();
 			case ModelPackage.SERVER__SERVICE:
 				return getService();
 		}
@@ -519,8 +557,7 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.SERVER__IP:
 				setIp((String)newValue);
 				return;
@@ -539,6 +576,9 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 			case ModelPackage.SERVER__NETWORK:
 				setNetwork((Network)newValue);
 				return;
+			case ModelPackage.SERVER__ID:
+				setId((Integer)newValue);
+				return;
 			case ModelPackage.SERVER__SERVICE:
 				setService((Service)newValue);
 				return;
@@ -556,8 +596,7 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.SERVER__IP:
 				setIp(IP_EDEFAULT);
 				return;
@@ -576,6 +615,9 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 			case ModelPackage.SERVER__NETWORK:
 				setNetwork((Network)null);
 				return;
+			case ModelPackage.SERVER__ID:
+				setId(ID_EDEFAULT);
+				return;
 			case ModelPackage.SERVER__SERVICE:
 				setService((Service)null);
 				return;
@@ -593,8 +635,7 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.SERVER__IP:
 				return IP_EDEFAULT == null ? ip != null : !IP_EDEFAULT.equals(ip);
 			case ModelPackage.SERVER__CPU_CORES:
@@ -607,6 +648,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ModelPackage.SERVER__NETWORK:
 				return network != null;
+			case ModelPackage.SERVER__ID:
+				return id != ID_EDEFAULT;
 			case ModelPackage.SERVER__SERVICE:
 				return service != null;
 		}
@@ -636,6 +679,8 @@ public class ServerImpl extends MinimalEObjectImpl.Container implements Server
 		result.append(diskSpace);
 		result.append(", name: ");
 		result.append(name);
+		result.append(", id: ");
+		result.append(id);
 		result.append(')');
 		return result.toString();
 	}

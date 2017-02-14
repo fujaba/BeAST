@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link model.Router#getNetwork <em>Network</em>}</li>
  *   <li>{@link model.Router#getId <em>Id</em>}</li>
@@ -19,7 +20,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link model.Router#getName <em>Name</em>}</li>
  *   <li>{@link model.Router#getExternalGateway <em>External Gateway</em>}</li>
  * </ul>
- * </p>
  *
  * @see model.ModelPackage#getRouter()
  * @model
@@ -41,7 +41,7 @@ public interface Router extends EObject
 	 * @return the value of the '<em>Network</em>' reference list.
 	 * @see model.ModelPackage#getRouter_Network()
 	 * @see model.Network#getRouter
-	 * @model opposite="Router" required="true"
+	 * @model opposite="router" required="true"
 	 * @generated
 	 */
 	EList<Network> getNetwork();
@@ -56,12 +56,12 @@ public interface Router extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' attribute.
-	 * @see #setId(String)
+	 * @see #setId(int)
 	 * @see model.ModelPackage#getRouter_Id()
-	 * @model default="0"
+	 * @model default="0" id="true"
 	 * @generated
 	 */
-	String getId();
+	int getId();
 
 	/**
 	 * Sets the value of the '{@link model.Router#getId <em>Id</em>}' attribute.
@@ -71,7 +71,7 @@ public interface Router extends EObject
 	 * @see #getId()
 	 * @generated
 	 */
-	void setId(String value);
+	void setId(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Ip</b></em>' attribute.

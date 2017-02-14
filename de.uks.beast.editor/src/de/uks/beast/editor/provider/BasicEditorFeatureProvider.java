@@ -1,10 +1,22 @@
 package de.uks.beast.editor.provider;
 
 import model.Group;
+import model.HadoopMaster;
 import model.Network;
 import model.Router;
 import model.Server;
 import model.Service;
+import model.impl.Apache2Impl;
+import model.impl.CassandraImpl;
+import model.impl.HadoopMasterImpl;
+import model.impl.HadoopSlaveImpl;
+import model.impl.JenkinsImpl;
+import model.impl.MediaWikiImpl;
+import model.impl.MongoDBImpl;
+import model.impl.MySQLImpl;
+import model.impl.TomcatImpl;
+import model.impl.UbuntuImpl;
+import model.impl.WordPressImpl;
 
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IAddFeature;
@@ -126,47 +138,48 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 		{
 			final Service service = (Service) context.getNewObject();
 			
-			if (service.getName().equals(Strings.HADOOP_MASTER.text()))
+			
+			if (service.getClass().equals(HadoopMasterImpl.class))
 			{
 				return new AddHadoopMasterFeature(this);
 			}
-			else if (service.getName().equals(Strings.HADOOP_SLAVE.text()))
+			else if (service.getClass().equals(HadoopSlaveImpl.class))
 			{
 				return new AddHadoopSlaveFeature(this);
 			}
-			else if (service.getName().equals(Strings.CASSANDRA.text()))
+			else if (service.getClass().equals(CassandraImpl.class))
 			{
 				return new AddCassandraFeature(this);
 			}
-			else if (service.getName().equals(Strings.MONGO_DB.text()))
+			else if (service.getClass().equals(MongoDBImpl.class))
 			{
 				return new AddMongoDBFeature(this);
 			}
-			else if (service.getName().equals(Strings.MYSQL.text()))
+			else if (service.getClass().equals(MySQLImpl.class))
 			{
 				return new AddMySqlFeature(this);
 			}
-			else if (service.getName().equals(Strings.WORDPRESS.text()))
+			else if (service.getClass().equals(WordPressImpl.class))
 			{
 				return new AddWordPressFeature(this);
 			}
-			else if (service.getName().equals(Strings.UBUNTU.text()))
+			else if (service.getClass().equals(UbuntuImpl.class))
 			{
 				return new AddUbuntuFeature(this);
 			}
-			else if (service.getName().equals(Strings.APACHE2.text()))
+			else if (service.getClass().equals(Apache2Impl.class))
 			{
 				return new AddApache2Feature(this);
 			}
-			else if (service.getName().equals(Strings.JENKINS.text()))
+			else if (service.getClass().equals(JenkinsImpl.class))
 			{
 				return new AddJenkinsFeature(this);
 			}
-			else if (service.getName().equals(Strings.MEDIAWIKI.text()))
+			else if (service.getClass().equals(MediaWikiImpl.class))
 			{
 				return new AddMediaWikiFeature(this);
 			}
-			else if (service.getName().equals(Strings.TOMCAT.text()))
+			else if (service.getClass().equals(TomcatImpl.class))
 			{
 				return new AddTomcatFeature(this);
 			}

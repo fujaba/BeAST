@@ -49,7 +49,7 @@ public class CreateGroupFeature extends AbstractCreateFeature
 		else if (getBusinessObjectForPictogramElement(context.getTargetContainer()) instanceof Group)
 		{
 			final Group parentGroup = (Group) getBusinessObjectForPictogramElement(context.getTargetContainer());
-			parentGroup.getGroup().add(group);
+			parentGroup.getGroups().add(group);
 		}
 		
 		addGraphicalRepresentation(context, group);

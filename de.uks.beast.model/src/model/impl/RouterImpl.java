@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link model.impl.RouterImpl#getNetwork <em>Network</em>}</li>
  *   <li>{@link model.impl.RouterImpl#getId <em>Id</em>}</li>
@@ -30,7 +31,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link model.impl.RouterImpl#getName <em>Name</em>}</li>
  *   <li>{@link model.impl.RouterImpl#getExternalGateway <em>External Gateway</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -53,7 +53,7 @@ public class RouterImpl extends MinimalEObjectImpl.Container implements Router
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String ID_EDEFAULT = "0";
+	protected static final int ID_EDEFAULT = 0;
 	/**
 	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -62,7 +62,7 @@ public class RouterImpl extends MinimalEObjectImpl.Container implements Router
 	 * @generated
 	 * @ordered
 	 */
-	protected String id = ID_EDEFAULT;
+	protected int id = ID_EDEFAULT;
 	/**
 	 * The default value of the '{@link #getIp() <em>Ip</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -151,8 +151,7 @@ public class RouterImpl extends MinimalEObjectImpl.Container implements Router
 	 * @generated
 	 */
 	public EList<Network> getNetwork() {
-		if (network == null)
-		{
+		if (network == null) {
 			network = new EObjectWithInverseResolvingEList.ManyInverse<Network>(Network.class, this, ModelPackage.ROUTER__NETWORK, ModelPackage.NETWORK__ROUTER);
 		}
 		return network;
@@ -165,7 +164,7 @@ public class RouterImpl extends MinimalEObjectImpl.Container implements Router
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
@@ -176,8 +175,8 @@ public class RouterImpl extends MinimalEObjectImpl.Container implements Router
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setId(String newId) {
-		String oldId = id;
+	public void setId(int newId) {
+		int oldId = id;
 		id = newId;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.ROUTER__ID, oldId, id));
@@ -268,8 +267,7 @@ public class RouterImpl extends MinimalEObjectImpl.Container implements Router
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.ROUTER__NETWORK:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNetwork()).basicAdd(otherEnd, msgs);
 		}
@@ -285,8 +283,7 @@ public class RouterImpl extends MinimalEObjectImpl.Container implements Router
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.ROUTER__NETWORK:
 				return ((InternalEList<?>)getNetwork()).basicRemove(otherEnd, msgs);
 		}
@@ -302,8 +299,7 @@ public class RouterImpl extends MinimalEObjectImpl.Container implements Router
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.ROUTER__NETWORK:
 				return getNetwork();
 			case ModelPackage.ROUTER__ID:
@@ -328,14 +324,13 @@ public class RouterImpl extends MinimalEObjectImpl.Container implements Router
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.ROUTER__NETWORK:
 				getNetwork().clear();
 				getNetwork().addAll((Collection<? extends Network>)newValue);
 				return;
 			case ModelPackage.ROUTER__ID:
-				setId((String)newValue);
+				setId((Integer)newValue);
 				return;
 			case ModelPackage.ROUTER__IP:
 				setIp((String)newValue);
@@ -359,8 +354,7 @@ public class RouterImpl extends MinimalEObjectImpl.Container implements Router
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.ROUTER__NETWORK:
 				getNetwork().clear();
 				return;
@@ -389,12 +383,11 @@ public class RouterImpl extends MinimalEObjectImpl.Container implements Router
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.ROUTER__NETWORK:
 				return network != null && !network.isEmpty();
 			case ModelPackage.ROUTER__ID:
-				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+				return id != ID_EDEFAULT;
 			case ModelPackage.ROUTER__IP:
 				return IP_EDEFAULT == null ? ip != null : !IP_EDEFAULT.equals(ip);
 			case ModelPackage.ROUTER__NAME:

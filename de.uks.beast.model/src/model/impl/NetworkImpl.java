@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link model.impl.NetworkImpl#getIp <em>Ip</em>}</li>
  *   <li>{@link model.impl.NetworkImpl#getSubnetmask <em>Subnetmask</em>}</li>
@@ -31,8 +32,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link model.impl.NetworkImpl#getRouter <em>Router</em>}</li>
  *   <li>{@link model.impl.NetworkImpl#getName <em>Name</em>}</li>
  *   <li>{@link model.impl.NetworkImpl#getServer <em>Server</em>}</li>
+ *   <li>{@link model.impl.NetworkImpl#getId <em>Id</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -159,6 +160,26 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	protected EList<Server> server;
 
 
+
+	/**
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int ID_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected int id = ID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -297,8 +318,7 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	 * @generated
 	 */
 	public EList<Server> getServer() {
-		if (server == null)
-		{
+		if (server == null) {
 			server = new EObjectWithInverseResolvingEList<Server>(Server.class, this, ModelPackage.NETWORK__SERVER, ModelPackage.SERVER__NETWORK);
 		}
 		return server;
@@ -311,9 +331,33 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getId() {
+		return id;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setId(int newId) {
+		int oldId = id;
+		id = newId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.NETWORK__ID, oldId, id));
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<Router> getRouter() {
-		if (router == null)
-		{
+		if (router == null) {
 			router = new EObjectWithInverseResolvingEList.ManyInverse<Router>(Router.class, this, ModelPackage.NETWORK__ROUTER, ModelPackage.ROUTER__NETWORK);
 		}
 		return router;
@@ -355,8 +399,7 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.NETWORK__ROUTER:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRouter()).basicAdd(otherEnd, msgs);
 			case ModelPackage.NETWORK__SERVER:
@@ -375,8 +418,7 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.NETWORK__ROUTER:
 				return ((InternalEList<?>)getRouter()).basicRemove(otherEnd, msgs);
 			case ModelPackage.NETWORK__SERVER:
@@ -395,8 +437,7 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.NETWORK__IP:
 				return getIp();
 			case ModelPackage.NETWORK__SUBNETMASK:
@@ -411,6 +452,8 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 				return getName();
 			case ModelPackage.NETWORK__SERVER:
 				return getServer();
+			case ModelPackage.NETWORK__ID:
+				return getId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -426,8 +469,7 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.NETWORK__IP:
 				setIp((String)newValue);
 				return;
@@ -451,6 +493,9 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 				getServer().clear();
 				getServer().addAll((Collection<? extends Server>)newValue);
 				return;
+			case ModelPackage.NETWORK__ID:
+				setId((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -465,8 +510,7 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.NETWORK__IP:
 				setIp(IP_EDEFAULT);
 				return;
@@ -488,6 +532,9 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 			case ModelPackage.NETWORK__SERVER:
 				getServer().clear();
 				return;
+			case ModelPackage.NETWORK__ID:
+				setId(ID_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -502,8 +549,7 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case ModelPackage.NETWORK__IP:
 				return IP_EDEFAULT == null ? ip != null : !IP_EDEFAULT.equals(ip);
 			case ModelPackage.NETWORK__SUBNETMASK:
@@ -518,6 +564,8 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ModelPackage.NETWORK__SERVER:
 				return server != null && !server.isEmpty();
+			case ModelPackage.NETWORK__ID:
+				return id != ID_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -545,6 +593,8 @@ public class NetworkImpl extends MinimalEObjectImpl.Container implements Network
 		result.append(dns);
 		result.append(", name: ");
 		result.append(name);
+		result.append(", id: ");
+		result.append(id);
 		result.append(')');
 		return result.toString();
 	}
