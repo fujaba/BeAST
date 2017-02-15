@@ -57,8 +57,8 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 					{
 						try
 						{
-							service.setAtribute_0("" + serverPropertyView.getIpInput());
-							service.setAtribute_1("" + serverPropertyView.getCpuCoresInput());
+							service.setAtribute_0("" + serverPropertyView.getAttr_0Input());
+							service.setAtribute_1("" + serverPropertyView.getAttr_1Input());
 							
 							//LOG.debug("server hash: " + server.hashCode() + " -> ip: " + server.getIp());
 							//LOG.debug("server hash: " + server.hashCode() + " -> cpu amount: " + server.getCpuCores());
@@ -68,10 +68,10 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 						{
 							throw new RuntimeException("Just integer values are allowed!", e);
 						}
-						catch (UnknownHostException e)
-						{
-							throw new RuntimeException("Wrong IP format!", e);
-						}
+						//catch (UnknownHostException e)
+						//{
+							//throw new RuntimeException("Wrong IP format!", e);
+						//}
 					}
 				});
 				
@@ -92,8 +92,8 @@ public class ServerPropertySection extends GFPropertySection implements ITabbedP
 	
 	private void setPreDefinedValuesToSheet()
 	{
-		serverPropertyView.setIpInput("" + service.getAtribute_0());
-		serverPropertyView.setCpuCoresInput("" + service.getAtribute_1());
+		serverPropertyView.setAttr_0Input("" + service.getAtribute_0());
+		serverPropertyView.setAttr_1Input("" + service.getAtribute_1());
 	}
 	
 	

@@ -8,10 +8,10 @@ import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 
-public class CreateServiceFeature extends AbstractCreateFeature
+public class CreateHadoopSlaveFeature extends AbstractCreateFeature
 {
 	
-	public CreateServiceFeature(final IFeatureProvider fp, final String type, final String description)
+	public CreateHadoopSlaveFeature(final IFeatureProvider fp, final String type, final String description)
 	{
 		super(fp, type, description);
 	}
@@ -40,7 +40,7 @@ public class CreateServiceFeature extends AbstractCreateFeature
 	@Override
 	public Object[] create(final ICreateContext context)
 	{
-		final Service service = ModelFactory.eINSTANCE.createHadoopMaster();
+		final Service service = ModelFactory.eINSTANCE.createHadoopSlave();
 		
 		if (context.getTargetContainer() instanceof Diagram)
 		{

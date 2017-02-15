@@ -1,8 +1,6 @@
 package de.uks.beast.editor.property.section.views;
 
-import static de.uks.beast.editor.util.Properties.DISKSPACE_LABEL;
-import static de.uks.beast.editor.util.Properties.RAM_LABEL;
-import static de.uks.beast.editor.util.Properties.TRANSFER;
+import static de.uks.beast.editor.util.Properties.*;
 
 import java.net.UnknownHostException;
 
@@ -23,10 +21,8 @@ import de.uks.beast.editor.util.ToolTips;
 
 public class ServerPropertyView
 {
-	private Text	ipTextFld;
-	private Text	cpuCoresTextFld;
-	private Text	ramTextFld;
-	private Text	diskSpaceTextFld;
+	private Text	attr_0TextFld;
+	private Text	attr_1TextFld;
 	private Button	submitBtn;
 	
 	
@@ -42,34 +38,34 @@ public class ServerPropertyView
 	{
 		FormData data;
 		
-		ipTextFld = factory.createText(composite, "");
+		attr_0TextFld = factory.createText(composite, "");
 		data = new FormData();
 		data.left = new FormAttachment(0, Dimensions.SERVICE_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE);
-		ipTextFld.setToolTipText(ToolTips.ATTR_0_PROP_TIP.get());
-		ipTextFld.setLayoutData(data);
+		attr_0TextFld.setToolTipText(ToolTips.ATTR_0_PROP_TIP.get());
+		attr_0TextFld.setLayoutData(data);
 		
 		final CLabel valueLabel = factory.createCLabel(composite, Properties.ATTR_0_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(ipTextFld, valueLabel.getText().length());
-		data.top = new FormAttachment(ipTextFld, 0, SWT.CENTER);
+		data.right = new FormAttachment(attr_0TextFld, valueLabel.getText().length());
+		data.top = new FormAttachment(attr_0TextFld, 0, SWT.CENTER);
 		valueLabel.setLayoutData(data);
 		
-		cpuCoresTextFld = factory.createText(composite, "");
+		attr_1TextFld = factory.createText(composite, "");
 		data = new FormData();
 		data.left = new FormAttachment(0, Dimensions.SERVICE_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 25);
-		cpuCoresTextFld.setToolTipText(ToolTips.ATTR_1_PROP_TIP.get());
-		cpuCoresTextFld.setLayoutData(data);
+		attr_1TextFld.setToolTipText(ToolTips.ATTR_1_PROP_TIP.get());
+		attr_1TextFld.setLayoutData(data);
 		
 		final CLabel valueLabe2 = factory.createCLabel(composite, Properties.ATTR_1_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(cpuCoresTextFld, valueLabe2.getText().length());
-		data.top = new FormAttachment(cpuCoresTextFld, 0, SWT.CENTER);
+		data.right = new FormAttachment(attr_1TextFld, valueLabe2.getText().length());
+		data.top = new FormAttachment(attr_1TextFld, 0, SWT.CENTER);
 		valueLabe2.setLayoutData(data);
 		
 		submitBtn = factory.createButton(composite, TRANSFER.get(), 0);
@@ -90,76 +86,36 @@ public class ServerPropertyView
 	
 	
 	
-	public String getIpInput() throws UnknownHostException
+	public String getAttr_0Input()
 	{
-		if (PropertyUtil.validateIp(ipTextFld.getText()))
-		{
-			return ipTextFld.getText();
-		}
-		else
-		{
-			throw new UnknownHostException();
-		}
+		return attr_0TextFld.getText();
 	}
 	
 	
 	
-	public int getCpuCoresInput() throws NumberFormatException
+	public String getAttr_1Input()
 	{
-		return Integer.parseInt(cpuCoresTextFld.getText());
+		return attr_1TextFld.getText();
 	}
 	
 	
 	
-	public int getRamInput() throws NumberFormatException
-	{
-		return Integer.parseInt(ramTextFld.getText());
-	}
-	
-	
-	
-	public int getDiskSpaceInput() throws NumberFormatException
-	{
-		return Integer.parseInt(diskSpaceTextFld.getText());
-	}
-	
-	
-	
-	public void setIpInput(final String input)
+	public void setAttr_0Input(final String input)
 	{
 		if (input != null && !input.isEmpty())
 		{
-			ipTextFld.setText(input);
+			attr_0TextFld.setText(input);
 		}
 	}
 	
 	
 	
-	public void setCpuCoresInput(final String input)
+	public void setAttr_1Input(final String input)
 	{
 		if (input != null && !input.isEmpty())
 		{
-			cpuCoresTextFld.setText(input);
+			attr_1TextFld.setText(input);
 		}
 	}
 	
-	
-	
-	public void setRamInput(final String input)
-	{
-		if (input != null && !input.isEmpty())
-		{
-			ramTextFld.setText(input);
-		}
-	}
-	
-	
-	
-	public void setDiskSpaceInput(final String input)
-	{
-		if (input != null && !input.isEmpty())
-		{
-			diskSpaceTextFld.setText(input);
-		}
-	}
 }

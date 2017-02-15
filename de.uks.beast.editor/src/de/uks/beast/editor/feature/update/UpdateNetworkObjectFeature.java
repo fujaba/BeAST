@@ -1,15 +1,7 @@
 package de.uks.beast.editor.feature.update;
 
-import static de.uks.beast.editor.util.Properties.DNS;
-import static de.uks.beast.editor.util.Properties.GATEWAY;
-import static de.uks.beast.editor.util.Properties.IP;
-import static de.uks.beast.editor.util.Properties.NAME;
-import static de.uks.beast.editor.util.Properties.SUBNET_MASK;
-import static de.uks.beast.editor.util.Strings.DNS_TRUE_REASON;
-import static de.uks.beast.editor.util.Strings.GATEWAY_TRUE_REASON;
-import static de.uks.beast.editor.util.Strings.IP_TRUE_REASON;
-import static de.uks.beast.editor.util.Strings.NAME_TRUE_REASON;
-import static de.uks.beast.editor.util.Strings.SUBNET_MASK_TRUE_REASON;
+import static de.uks.beast.editor.util.Properties.*;
+import static de.uks.beast.editor.util.Strings.*;
 import model.Network;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -28,17 +20,13 @@ public class UpdateNetworkObjectFeature extends AbstractUpdateFeature
 {
 	// retrieve values from pictogram model
 	private String	pictogramName		= null;
-	private String	pictogramIp			= null;
-	private String	pictogramDns		= null;
-	private String	pictogramGateway	= null;
-	private String	pictogramSubnetMask	= null;
+	private String	pictogramAttr_0			= null;
+	private String	pictogramAttr_1		= null;
 	
 	// retrieve values from business model
 	private String	businessName		= null;
-	private String	businessIp			= null;
-	private String	businessDns			= null;
-	private String	businessGateway		= null;
-	private String	businessSubnetMask	= null;
+	private String	businessAttr_0			= null;
+	private String	businessAttr_1	= null;
 	
 	
 	
@@ -79,21 +67,13 @@ public class UpdateNetworkObjectFeature extends AbstractUpdateFeature
 					{
 						pictogramName = text.getValue();
 					}
-					else if (PropertyUtil.isAttributeShape(shape, IP))
+					else if (PropertyUtil.isAttributeShape(shape, ATTR_0))
 					{
-						pictogramIp = text.getValue();
+						pictogramAttr_0 = text.getValue();
 					}
-					else if (PropertyUtil.isAttributeShape(shape, DNS))
+					else if (PropertyUtil.isAttributeShape(shape, ATTR_1))
 					{
-						pictogramDns = text.getValue();
-					}
-					else if (PropertyUtil.isAttributeShape(shape, GATEWAY))
-					{
-						pictogramGateway = text.getValue();
-					}
-					else if (PropertyUtil.isAttributeShape(shape, SUBNET_MASK))
-					{
-						pictogramSubnetMask = text.getValue();
+						pictogramAttr_1 = text.getValue();
 					}
 				}
 			}
@@ -105,31 +85,21 @@ public class UpdateNetworkObjectFeature extends AbstractUpdateFeature
 		{
 			final Network network = (Network) bo;
 			businessName = network.getName();
-			businessIp = network.getIp();
-			businessDns = network.getDns();
-			businessGateway = network.getGateway();
-			businessSubnetMask = network.getSubnetmask();
+			businessAttr_0 = network.getAtribute_0();
+			businessAttr_1 = network.getAtribute_1();
 		}
 		
 		if (PropertyUtil.updateNeeded(pictogramName, businessName))
 		{
 			return Reason.createTrueReason(NAME_TRUE_REASON.text());
 		}
-		else if (PropertyUtil.updateNeeded(pictogramIp, businessIp))
+		else if (PropertyUtil.updateNeeded(pictogramAttr_0, businessAttr_0))
 		{
-			return Reason.createTrueReason(IP_TRUE_REASON.text());
+			return Reason.createTrueReason(ATTR_0_TRUE_REASON.text());
 		}
-		else if (PropertyUtil.updateNeeded(pictogramDns, businessDns))
+		else if (PropertyUtil.updateNeeded(pictogramAttr_1, businessAttr_1))
 		{
-			return Reason.createTrueReason(DNS_TRUE_REASON.text());
-		}
-		else if (PropertyUtil.updateNeeded(pictogramGateway, businessGateway))
-		{
-			return Reason.createTrueReason(GATEWAY_TRUE_REASON.text());
-		}
-		else if (PropertyUtil.updateNeeded(pictogramSubnetMask, businessSubnetMask))
-		{
-			return Reason.createTrueReason(SUBNET_MASK_TRUE_REASON.text());
+			return Reason.createTrueReason(ATTR_1_TRUE_REASON.text());
 		}
 		else
 		{
@@ -149,10 +119,8 @@ public class UpdateNetworkObjectFeature extends AbstractUpdateFeature
 		{
 			final Network network = (Network) bo;
 			businessName = network.getName();
-			businessIp = network.getIp();
-			businessDns = network.getDns();
-			businessGateway = network.getGateway();
-			businessSubnetMask = network.getSubnetmask();
+			businessAttr_0 = network.getAtribute_0();
+			businessAttr_1 = network.getAtribute_1();
 		}
 		
 		// Set name in pictogram model
@@ -169,21 +137,13 @@ public class UpdateNetworkObjectFeature extends AbstractUpdateFeature
 					{
 						text.setValue(businessName);
 					}
-					else if (PropertyUtil.isAttributeShape(shape, IP))
+					else if (PropertyUtil.isAttributeShape(shape, ATTR_0))
 					{
-						text.setValue(businessIp);
+						text.setValue(businessAttr_0);
 					}
-					else if (PropertyUtil.isAttributeShape(shape, DNS))
+					else if (PropertyUtil.isAttributeShape(shape, ATTR_1))
 					{
-						text.setValue(businessDns);
-					}
-					else if (PropertyUtil.isAttributeShape(shape, GATEWAY))
-					{
-						text.setValue(businessGateway);
-					}
-					else if (PropertyUtil.isAttributeShape(shape, SUBNET_MASK))
-					{
-						text.setValue(businessSubnetMask);
+						text.setValue(businessAttr_1);
 					}
 				}
 			}

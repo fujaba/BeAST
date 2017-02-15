@@ -1,10 +1,6 @@
 package de.uks.beast.editor.property.section.views;
 
-import static de.uks.beast.editor.util.Properties.DNS_LABEL;
-import static de.uks.beast.editor.util.Properties.GATEWAY_LABEL;
-import static de.uks.beast.editor.util.Properties.ATTR_0_LABEL;
-import static de.uks.beast.editor.util.Properties.SUBNET_MASK_LABEL;
-import static de.uks.beast.editor.util.Properties.TRANSFER;
+import static de.uks.beast.editor.util.Properties.*;
 
 import java.net.UnknownHostException;
 
@@ -24,10 +20,8 @@ import de.uks.beast.editor.util.ToolTips;
 
 public class NetworkPropertyView
 {
-	private Text	ipTextFld;
-	private Text	subnetTextFld;
-	private Text	gatewayTextFld;
-	private Text	dnsTextFld;
+	private Text	attr_0TextFld;
+	private Text	attr_1TextFld;
 	private Button	submitBtn;
 	
 	
@@ -43,65 +37,35 @@ public class NetworkPropertyView
 	{
 		FormData data;
 		
-		ipTextFld = factory.createText(composite, "");
+		attr_0TextFld = factory.createText(composite, "");
 		data = new FormData();
 		data.left = new FormAttachment(0, Dimensions.NETWORK_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE);
-		ipTextFld.setToolTipText(ToolTips.ATTR_0_PROP_TIP.get());
-		ipTextFld.setLayoutData(data);
+		attr_0TextFld.setToolTipText(ToolTips.ATTR_0_PROP_TIP.get());
+		attr_0TextFld.setLayoutData(data);
 		
 		final CLabel valueLabel = factory.createCLabel(composite, ATTR_0_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(ipTextFld, valueLabel.getText().length());
-		data.top = new FormAttachment(ipTextFld, 0, SWT.CENTER);
+		data.right = new FormAttachment(attr_0TextFld, valueLabel.getText().length());
+		data.top = new FormAttachment(attr_0TextFld, 0, SWT.CENTER);
 		valueLabel.setLayoutData(data);
 		
-		subnetTextFld = factory.createText(composite, "");
+		attr_1TextFld = factory.createText(composite, "");
 		data = new FormData();
 		data.left = new FormAttachment(0, Dimensions.NETWORK_PROP_LABEL_WIDTH);
 		data.right = new FormAttachment(100, 0);
 		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 25);
-		subnetTextFld.setToolTipText(ToolTips.SUBNET_MASK_PROP_TIP.get());
-		subnetTextFld.setLayoutData(data);
+		attr_1TextFld.setToolTipText(ToolTips.ATTR_1_PROP_TIP.get());
+		attr_1TextFld.setLayoutData(data);
 		
-		final CLabel valueLabe2 = factory.createCLabel(composite, SUBNET_MASK_LABEL.get());
+		final CLabel valueLabe2 = factory.createCLabel(composite, ATTR_1_LABEL.get());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(subnetTextFld, valueLabe2.getText().length());
-		data.top = new FormAttachment(subnetTextFld, 0, SWT.CENTER);
+		data.right = new FormAttachment(attr_1TextFld, valueLabe2.getText().length());
+		data.top = new FormAttachment(attr_1TextFld, 0, SWT.CENTER);
 		valueLabe2.setLayoutData(data);
-		
-		gatewayTextFld = factory.createText(composite, "");
-		data = new FormData();
-		data.left = new FormAttachment(0, Dimensions.NETWORK_PROP_LABEL_WIDTH);
-		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 50);
-		gatewayTextFld.setToolTipText(ToolTips.GATEWAY_PROP_TIP.get());
-		gatewayTextFld.setLayoutData(data);
-		
-		final CLabel valueLabe3 = factory.createCLabel(composite, GATEWAY_LABEL.get());
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(gatewayTextFld, valueLabe3.getText().length());
-		data.top = new FormAttachment(gatewayTextFld, 0, SWT.CENTER);
-		valueLabe3.setLayoutData(data);
-		
-		dnsTextFld = factory.createText(composite, "");
-		data = new FormData();
-		data.left = new FormAttachment(0, Dimensions.NETWORK_PROP_LABEL_WIDTH);
-		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, Dimensions.PROP_LINE_VSPACE + 75);
-		dnsTextFld.setToolTipText(ToolTips.DNS_PROP_TIP.get());
-		dnsTextFld.setLayoutData(data);
-		
-		final CLabel valueLabe4 = factory.createCLabel(composite, DNS_LABEL.get());
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(dnsTextFld, valueLabe4.getText().length());
-		data.top = new FormAttachment(dnsTextFld, 0, SWT.CENTER);
-		valueLabe4.setLayoutData(data);
 		
 		submitBtn = factory.createButton(composite, TRANSFER.get(), 0);
 		data = new FormData();
@@ -121,97 +85,36 @@ public class NetworkPropertyView
 	
 	
 	
-	public String getIpInput() throws UnknownHostException
+	public String getAttr_0Input()
 	{
-		if (PropertyUtil.validateIp(ipTextFld.getText()))
-		{
-			return ipTextFld.getText();
-		}
-		else
-		{
-			throw new UnknownHostException();
-		}
+		return attr_0TextFld.getText();
 	}
 	
 	
 	
-	public String getSubnetInput() throws UnknownHostException
+	public String getAttr_1Input() throws UnknownHostException
 	{
-		if (PropertyUtil.validateIp(subnetTextFld.getText()))
-		{
-			return subnetTextFld.getText();
-		}
-		else
-		{
-			throw new UnknownHostException();
-		}
+		return attr_1TextFld.getText();
 	}
 	
 	
 	
-	public String getGatewayInput() throws UnknownHostException
-	{
-		if (PropertyUtil.validateIp(gatewayTextFld.getText()))
-		{
-			return gatewayTextFld.getText();
-		}
-		else
-		{
-			throw new UnknownHostException();
-		}
-	}
-	
-	
-	
-	public String getDnsInput() throws UnknownHostException
-	{
-		if (PropertyUtil.validateIp(dnsTextFld.getText()))
-		{
-			return dnsTextFld.getText();
-		}
-		else
-		{
-			throw new UnknownHostException();
-		}
-	}
-	
-	
-	
-	public void setIpInput(final String input)
+	public void setAttr_0Input(final String input)
 	{
 		if (input != null && !input.isEmpty())
 		{
-			ipTextFld.setText(input);
+			attr_0TextFld.setText(input);
 		}
 	}
 	
 	
 	
-	public void setSubnetInput(final String input)
+	public void setAttr_1Input(final String input)
 	{
 		if (input != null && !input.isEmpty())
 		{
-			subnetTextFld.setText(input);
+			attr_1TextFld.setText(input);
 		}
 	}
 	
-	
-	
-	public void setGatewayInput(final String input)
-	{
-		if (input != null && !input.isEmpty())
-		{
-			gatewayTextFld.setText(input);
-		}
-	}
-	
-	
-	
-	public void setDnsInput(final String input)
-	{
-		if (input != null && !input.isEmpty())
-		{
-			dnsTextFld.setText(input);
-		}
-	}
 }

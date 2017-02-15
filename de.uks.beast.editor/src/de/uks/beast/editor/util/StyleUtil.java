@@ -13,9 +13,8 @@ import org.eclipse.graphiti.util.PredefinedColoredAreas;
 
 public class StyleUtil
 {
-	public static final String			GROUP_STYLE_ID			= "groupStyle";
-	public static final String			SERVER_STYLE_ID			= "serverStyle";
-	public static final String			ROUTER_STYLE_ID			= "routerStyle";
+	public static final String			HADOOP_MASTER_STYLE_ID	= "hadoopMasterStyle";
+	public static final String			HADOOP_SLAVE_STYLE_ID	= "hadoopSlaveStyle";
 	public static final String			NETWORK_STYLE_ID		= "networkStyle";
 	private static final IColorConstant	E_CLASS_TEXT_FOREGROUND	= new ColorConstant(0, 0, 0);
 	private static final IColorConstant	E_CLASS_FOREGROUND		= new ColorConstant(98, 131, 167);

@@ -130,7 +130,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNetwork_Ip()
+	public EAttribute getNetwork_Name()
 	{
 		return (EAttribute)networkEClass.getEStructuralFeatures().get(0);
 	}
@@ -140,9 +140,9 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNetwork_Subnetmask()
+	public EReference getNetwork_Services()
 	{
-		return (EAttribute)networkEClass.getEStructuralFeatures().get(1);
+		return (EReference)networkEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -150,7 +150,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNetwork_Gateway()
+	public EAttribute getNetwork_Atribute_0()
 	{
 		return (EAttribute)networkEClass.getEStructuralFeatures().get(2);
 	}
@@ -160,29 +160,9 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNetwork_Dns()
+	public EAttribute getNetwork_Atribute_1()
 	{
 		return (EAttribute)networkEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getNetwork_Name()
-	{
-		return (EAttribute)networkEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getNetwork_Services()
-	{
-		return (EReference)networkEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -306,12 +286,10 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 
 		// Create classes and their features
 		networkEClass = createEClass(NETWORK);
-		createEAttribute(networkEClass, NETWORK__IP);
-		createEAttribute(networkEClass, NETWORK__SUBNETMASK);
-		createEAttribute(networkEClass, NETWORK__GATEWAY);
-		createEAttribute(networkEClass, NETWORK__DNS);
 		createEAttribute(networkEClass, NETWORK__NAME);
 		createEReference(networkEClass, NETWORK__SERVICES);
+		createEAttribute(networkEClass, NETWORK__ATRIBUTE_0);
+		createEAttribute(networkEClass, NETWORK__ATRIBUTE_1);
 
 		serviceEClass = createEClass(SERVICE);
 		createEAttribute(serviceEClass, SERVICE__NAME);
@@ -360,12 +338,10 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(networkEClass, Network.class, "Network", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getNetwork_Ip(), ecorePackage.getEString(), "ip", "0.0.0.0", 0, 1, Network.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getNetwork_Subnetmask(), ecorePackage.getEString(), "subnetmask", "0.0.0.0", 0, 1, Network.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getNetwork_Gateway(), ecorePackage.getEString(), "gateway", "0.0.0.0", 0, 1, Network.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getNetwork_Dns(), ecorePackage.getEString(), "dns", "0.0.0.0", 0, 1, Network.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNetwork_Name(), ecorePackage.getEString(), "name", "network", 0, 1, Network.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNetwork_Services(), this.getService(), this.getService_Network(), "services", null, 0, -1, Network.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNetwork_Atribute_0(), ecorePackage.getEString(), "atribute_0", "0", 0, 1, Network.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNetwork_Atribute_1(), ecorePackage.getEString(), "atribute_1", "0", 0, 1, Network.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(serviceEClass, Service.class, "Service", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getService_Name(), ecorePackage.getEString(), "name", "service", 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -3,14 +3,13 @@ package de.uks.beast.editor.util;
 public enum Fonts
 {
 	//@formatter:off
-	GROUP_TITEL				("Arial",		11, 		true,		true),
-	SERVER_TITEL			("Arial",		10, 		true,		true),
-	ROUTER_TITEL			("Arial",		10, 		true,		true),
+	HADOOP_MASTER_TITEL		("Arial",		10, 		true,		true),
+	HADOOP_SLAVE_TITEL		("Arial",		10, 		true,		true),
 	NETWORK_TITEL			("Arial",		10, 		true,		true),
-	GROUP_PROPERTY			("Arial",		8, 			false,		true),
-	SERVER_PROPERTY			("Arial",		8, 			false,		true),
+	
+	HADOOP_MASTER_PROPERTY	("Arial",		8, 			false,		true),
+	HADOOP_SLAVE_PROPERTY	("Arial",		8, 			false,		true),
 	NETWORK_PROPERTY		("Arial",		8, 			false,		true),
-	ROUTER_PROPERTY			("Arial",		8, 			false,		true),
 	;//@formatter:on
 	
 	private final String	name;

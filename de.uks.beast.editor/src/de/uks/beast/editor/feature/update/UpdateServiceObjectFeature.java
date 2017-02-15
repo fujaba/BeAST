@@ -1,11 +1,7 @@
 package de.uks.beast.editor.feature.update;
 
-import static de.uks.beast.editor.util.Properties.CPU_CORES;
-import static de.uks.beast.editor.util.Properties.IP;
-import static de.uks.beast.editor.util.Properties.NAME;
-import static de.uks.beast.editor.util.Strings.CPU_CORES_TRUE_REASON;
-import static de.uks.beast.editor.util.Strings.IP_TRUE_REASON;
-import static de.uks.beast.editor.util.Strings.NAME_TRUE_REASON;
+import static de.uks.beast.editor.util.Properties.*;
+import static de.uks.beast.editor.util.Strings.*;
 import model.Service;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -72,11 +68,11 @@ public class UpdateServiceObjectFeature extends AbstractUpdateFeature
 					{
 						pictogramName = text.getValue();
 					}
-					else if (PropertyUtil.isAttributeShape(shape, IP))
+					else if (PropertyUtil.isAttributeShape(shape, ATTR_0))
 					{
 						pictogramAttr_0 = text.getValue();
 					}
-					else if (PropertyUtil.isAttributeShape(shape, CPU_CORES))
+					else if (PropertyUtil.isAttributeShape(shape, ATTR_1))
 					{
 						pictogramAttr_1 = text.getValue();
 					}
@@ -101,11 +97,11 @@ public class UpdateServiceObjectFeature extends AbstractUpdateFeature
 		}
 		else if (PropertyUtil.updateNeeded(pictogramAttr_0, businessAttr_0))
 		{
-			return Reason.createTrueReason(IP_TRUE_REASON.text());
+			return Reason.createTrueReason(ATTR_0_TRUE_REASON.text());
 		}
 		else if (PropertyUtil.updateNeeded(pictogramAttr_1, businessAttr_1))
 		{
-			return Reason.createTrueReason(CPU_CORES_TRUE_REASON.text());
+			return Reason.createTrueReason(ATTR_1_TRUE_REASON.text());
 		}
 		else
 		{
@@ -145,11 +141,11 @@ public class UpdateServiceObjectFeature extends AbstractUpdateFeature
 					{
 						text.setValue(businessName);
 					}
-					else if (PropertyUtil.isAttributeShape(shape, IP))
+					else if (PropertyUtil.isAttributeShape(shape, ATTR_0))
 					{
 						text.setValue(businessAttr_0);
 					}
-					else if (PropertyUtil.isAttributeShape(shape, CPU_CORES))
+					else if (PropertyUtil.isAttributeShape(shape, ATTR_1))
 					{
 						text.setValue(businessAttr_1);
 					}

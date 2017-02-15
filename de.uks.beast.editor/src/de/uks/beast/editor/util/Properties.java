@@ -3,37 +3,19 @@ package de.uks.beast.editor.util;
 public enum Properties
 {
 	//@formatter:off
-	//tpyes
+	//types
 	TYPE_NETWORK				("Network"),
-	TYPE_SERVER					("Server"),
-	TYPE_ROUTER					("Router"),	
+	TYPE_HADOOP_MASTER			("HadoopMaster"),
+	TYPE_HADOOP_SLAVE			("HadoopSlave"),
 	
 	// keys
 	NAME						("name"),
-	IP							("ip"),
-	CPU_CORES					("cpucores"),
-	RAM							("ram"),
-	DISKSPACE					("diskspace"),
-	ID							("id"),
-	EXTERNAL_GATEWAY			("externalgateway"),
-	SUBNET_MASK					("subnetmask"),
-	GATEWAY						("gateway"),
-	DNS							("dns"),
-	CPU_STAT					("cpuStat"),
-	RAM_STAT					("ramStat"),
-	STAT_LABEL					("stats"),
-	
+	ATTR_0						("attr_0"),
+	ATTR_1						("attr_1"),
 	
 	//Properties/ Labels
-	ATTR_0_LABEL					("IP: "),
-	ATTR_1_LABEL				("CPU cores: "),
-	RAM_LABEL					("max. RAM [mb]: "),
-	DISKSPACE_LABEL				("Diskspace [mb]: "),
-	ID_LABEL					("ID: "),
-	EXTERNAL_GATEWAY_LABEL		("External gateway: "),
-	SUBNET_MASK_LABEL			("Subnet mask: "),
-	GATEWAY_LABEL				("Gateway: "),
-	DNS_LABEL					("DNS: "),
+	ATTR_0_LABEL				("Attr_0: "),
+	ATTR_1_LABEL				("Attr_1: "),
 	TRANSFER					("Transfer"),
 	;//@formatter:on
 	

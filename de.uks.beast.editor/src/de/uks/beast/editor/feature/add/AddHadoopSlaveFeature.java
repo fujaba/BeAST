@@ -66,12 +66,12 @@ public class AddHadoopSlaveFeature extends AbstractAddShapeFeature implements Ab
 		
 		final IPeCreateService peCreateService = Graphiti.getPeCreateService();
 		final ContainerShape containerShape = peCreateService.createContainerShape(parentContainer, true);
-		PropertyUtil.setObjectShape(containerShape, TYPE_SERVER);
+		PropertyUtil.setObjectShape(containerShape, TYPE_HADOOP_SLAVE);
 		
 		final IGaService gaService = Graphiti.getGaService();
 		
 		final RoundedRectangle roundedRectangle = gaService.createPlainRoundedRectangle(containerShape, 5, 5);
-		roundedRectangle.setStyle(StyleUtil.getBlueWhiteGlossStyleForObject(getDiagram(), StyleUtil.SERVER_STYLE_ID));
+		roundedRectangle.setStyle(StyleUtil.getBlueWhiteGlossStyleForObject(getDiagram(), StyleUtil.HADOOP_SLAVE_STYLE_ID));
 		gaService.setLocationAndSize(roundedRectangle, context.getX(), context.getY(), context.getWidth(), context.getHeight());
 		
 		if (hadoopSlave.eResource() == null)
@@ -80,11 +80,11 @@ public class AddHadoopSlaveFeature extends AbstractAddShapeFeature implements Ab
 		}
 		link(containerShape, hadoopSlave);
 		
-		final Color color = manageColor(Colors.SERVER_TEXT_FOREGROUND);
+		final Color color = manageColor(Colors.HADOOP_SLAVE_TEXT_FOREGROUND);
 		
 		// SHAPE FOR PROPERTY NAME
 		final Shape nameTextShape = createShape(peCreateService, containerShape);
-		final Text nameText = Textfields.SERVER_NAME_FIELD.addTo(getDiagram(), nameTextShape, hadoopSlave.getName(), color);
+		final Text nameText = Textfields.HADOOP_SLAVE_NAME_FIELD.addTo(getDiagram(), nameTextShape, hadoopSlave.getName(), color);
 		PropertyUtil.setAttributeShape(nameTextShape, NAME);
 		link(nameTextShape, hadoopSlave);
 		
@@ -92,23 +92,23 @@ public class AddHadoopSlaveFeature extends AbstractAddShapeFeature implements Ab
 		final Shape lineShape = createShape(peCreateService, containerShape);
 		final Polyline polyline = gaService.createPolyline(lineShape,
 				new int[] { X0_PARTING_LINE, Y_PARTING_LINE, context.getWidth(), Y_PARTING_LINE });
-		polyline.setForeground(manageColor(Colors.SERVER_FOREGROUND));
+		polyline.setForeground(manageColor(Colors.HADOOP_SLAVE_FOREGROUND));
 		polyline.setLineWidth(2);
 		
 		// SHAPE FOR PROPERTY IP
 		final Shape ipTextShape = createShape(peCreateService, containerShape);
 		final Shape ipLabelShape = createShape(peCreateService, containerShape);
-		Textfields.SERVER_IP_LABEL_FIELD.addTo(getDiagram(), ipLabelShape, ATTR_0_LABEL.get(), color);
-		Textfields.SERVER_IP_PROP_FIELD.addTo(getDiagram(), ipTextShape, hadoopSlave.getAtribute_0(), color);
-		PropertyUtil.setAttributeShape(ipTextShape, IP);
+		Textfields.HADOOP_SLAVE_ATTR_0_LABEL_FIELD.addTo(getDiagram(), ipLabelShape, ATTR_0_LABEL.get(), color);
+		Textfields.HADOOP_SLAVE_ATTR_0_PROP_FIELD.addTo(getDiagram(), ipTextShape, hadoopSlave.getAtribute_0(), color);
+		PropertyUtil.setAttributeShape(ipTextShape, ATTR_0);
 		link(ipTextShape, hadoopSlave);
 		
 		//SHAPE FOR PROPERTY CPU_AMOUNT
 		final Shape cpuCoresTextShape = createShape(peCreateService, containerShape);
 		final Shape cpuCoresLabelShape = createShape(peCreateService, containerShape);
-		Textfields.SERVER_CPU_CORES_LABEL_FIELD.addTo(getDiagram(), cpuCoresLabelShape, ATTR_1_LABEL.get(), color);
-		Textfields.SERVER_CPU_CORES_PROP_FIELD.addTo(getDiagram(), cpuCoresTextShape, hadoopSlave.getAtribute_1(), color);
-		PropertyUtil.setAttributeShape(cpuCoresTextShape, CPU_CORES);
+		Textfields.HADOOP_SLAVE_ATTR_1_LABEL_FIELD.addTo(getDiagram(), cpuCoresLabelShape, ATTR_1_LABEL.get(), color);
+		Textfields.HADOOP_SLAVE_ATTR_1_PROP_FIELD.addTo(getDiagram(), cpuCoresTextShape, hadoopSlave.getAtribute_1(), color);
+		PropertyUtil.setAttributeShape(cpuCoresTextShape, ATTR_1);
 		link(cpuCoresTextShape, hadoopSlave);
 		
 		final IDirectEditingInfo directEditingInfo = getFeatureProvider().getDirectEditingInfo();
@@ -140,11 +140,11 @@ public class AddHadoopSlaveFeature extends AbstractAddShapeFeature implements Ab
 			final int y, final int width, final int height, final String content)
 	{
 		final Text text = gaService.createText(gaContainer, content);
-		text.setForeground(manageColor(Colors.SERVER_TEXT_FOREGROUND));
+		text.setForeground(manageColor(Colors.HADOOP_SLAVE_TEXT_FOREGROUND));
 		text.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
 		// vertical alignment has as default value "center"
-		text.setFont(gaService.manageFont(getDiagram(), Fonts.SERVER_PROPERTY.getName(), Fonts.SERVER_PROPERTY.getSize(),
-				Fonts.SERVER_PROPERTY.isItalic(), Fonts.SERVER_PROPERTY.isBold()));
+		text.setFont(gaService.manageFont(getDiagram(), Fonts.HADOOP_SLAVE_PROPERTY.getName(), Fonts.HADOOP_SLAVE_PROPERTY.getSize(),
+				Fonts.HADOOP_SLAVE_PROPERTY.isItalic(), Fonts.HADOOP_SLAVE_PROPERTY.isBold()));
 		gaService.setLocationAndSize(text, x, y, width, height);
 		
 		return text;
@@ -157,11 +157,11 @@ public class AddHadoopSlaveFeature extends AbstractAddShapeFeature implements Ab
 			int height, String content)
 	{
 		final Text text = gaService.createText(gaContainer, content);
-		text.setForeground(manageColor(Colors.SERVER_TEXT_FOREGROUND));
+		text.setForeground(manageColor(Colors.HADOOP_SLAVE_TEXT_FOREGROUND));
 		text.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
 		// vertical alignment has as default value "center"
-		text.setFont(gaService.manageFont(getDiagram(), Fonts.SERVER_TITEL.getName(), Fonts.SERVER_TITEL.getSize(),
-				Fonts.SERVER_TITEL.isItalic(), Fonts.SERVER_TITEL.isBold()));
+		text.setFont(gaService.manageFont(getDiagram(), Fonts.HADOOP_SLAVE_TITEL.getName(), Fonts.HADOOP_SLAVE_TITEL.getSize(),
+				Fonts.HADOOP_SLAVE_TITEL.isItalic(), Fonts.HADOOP_SLAVE_TITEL.isBold()));
 		text.setWidth(width);
 		//gaService.setLocationAndSize(text, x, y, width, height);
 		

@@ -57,16 +57,12 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 					{
 						try
 						{
-							network.setIp(networkPropertyView.getIpInput());
-							network.setSubnetmask(networkPropertyView.getSubnetInput());
-							network.setGateway(networkPropertyView.getGatewayInput());
-							network.setDns(networkPropertyView.getDnsInput());
+							network.setAtribute_0(networkPropertyView.getAttr_0Input());
+							network.setAtribute_1(networkPropertyView.getAttr_1Input());
 							
-							LOG.debug("network hash: " + network.hashCode() + " -> ip: " + network.getIp());
-							LOG.debug("network hash: " + network.hashCode() + " -> subnet: " + network.getSubnetmask());
-							LOG.debug("network hash: " + network.hashCode() + " -> gateway: " + network.getGateway());
-							LOG.debug("network hash: " + network.hashCode() + " -> dns: " + network.getDns());
 							LOG.debug("network hash: " + network.hashCode() + " -> name: " + network.getName());
+							LOG.debug("network hash: " + network.hashCode() + " -> ip: " + network.getAtribute_0());
+							LOG.debug("network hash: " + network.hashCode() + " -> subnet: " + network.getAtribute_1());
 						}
 						catch (UnknownHostException e)
 						{
@@ -92,10 +88,8 @@ public class NetworkPropertySection extends GFPropertySection implements ITabbed
 	
 	private void setPreDefinedValuesToSheet()
 	{
-		networkPropertyView.setIpInput(network.getIp());
-		networkPropertyView.setSubnetInput("" + network.getSubnetmask());
-		networkPropertyView.setGatewayInput(network.getGateway());
-		networkPropertyView.setDnsInput("" + network.getDns());
+		networkPropertyView.setAttr_0Input(network.getAtribute_0());
+		networkPropertyView.setAttr_1Input("" + network.getAtribute_1());
 	}
 	
 	

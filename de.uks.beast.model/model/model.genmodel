@@ -7,12 +7,10 @@
   <foreignModel>model.ecore</foreignModel>
   <genPackages prefix="Model" disposableProviderFactory="true" ecorePackage="model.ecore#/">
     <genClasses ecoreClass="model.ecore#//Network">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Network/ip"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Network/subnetmask"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Network/gateway"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Network/dns"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Network/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Network/services"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Network/atribute_0"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Network/atribute_1"/>
     </genClasses>
     <genClasses image="false" ecoreClass="model.ecore#//Service">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Service/name"/>

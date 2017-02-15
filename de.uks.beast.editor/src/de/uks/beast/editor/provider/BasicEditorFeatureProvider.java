@@ -43,7 +43,6 @@ import de.uks.beast.editor.feature.layout.LayoutServiceObjectFeature;
 import de.uks.beast.editor.feature.paste.UniversalPasteFeature;
 import de.uks.beast.editor.feature.update.UpdateNetworkObjectFeature;
 import de.uks.beast.editor.feature.update.UpdateServiceObjectFeature;
-import de.uks.beast.editor.service.relation.add.AddServiceRelation;
 
 public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 {
@@ -75,17 +74,7 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 		//connections
 		else if (context instanceof IAddConnectionContext)
 		{
-			final IAddConnectionContext cc = (IAddConnectionContext) context;
-			
-			if ((getBusinessObjectForPictogramElement(cc.getSourceAnchor().getParent()) instanceof Service)
-					&& (getBusinessObjectForPictogramElement(cc.getTargetAnchor().getParent()) instanceof Service))
-			{
-				return new AddServiceRelation(this);
-			}
-			else
-			{
-				return new AddConnectionFeature(this);
-			}
+			return new AddConnectionFeature(this);
 		}
 		
 		//services

@@ -1,7 +1,6 @@
 package de.uks.beast.editor.feature.layout;
 
-import static de.uks.beast.editor.util.Dimensions.SERVICE_INITIAL_HEIGHT;
-import static de.uks.beast.editor.util.Dimensions.SERVER_INITIAL_WIDTH;
+import static de.uks.beast.editor.util.Dimensions.*;
 import model.Service;
 
 import org.eclipse.emf.common.util.EList;
@@ -62,9 +61,9 @@ public class LayoutServiceObjectFeature extends AbstractLayoutFeature
 		}
 		
 		// width
-		if (containerGa.getWidth() < SERVER_INITIAL_WIDTH)
+		if (containerGa.getWidth() < SERVICE_INITIAL_WIDTH)
 		{
-			containerGa.setWidth(SERVER_INITIAL_WIDTH);
+			containerGa.setWidth(SERVICE_INITIAL_WIDTH);
 			anythingChanged = true;
 		}
 		

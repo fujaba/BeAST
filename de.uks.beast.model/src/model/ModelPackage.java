@@ -68,49 +68,13 @@ public interface ModelPackage extends EPackage
 	int NETWORK = 0;
 
 	/**
-	 * The feature id for the '<em><b>Ip</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NETWORK__IP = 0;
-
-	/**
-	 * The feature id for the '<em><b>Subnetmask</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NETWORK__SUBNETMASK = 1;
-
-	/**
-	 * The feature id for the '<em><b>Gateway</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NETWORK__GATEWAY = 2;
-
-	/**
-	 * The feature id for the '<em><b>Dns</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NETWORK__DNS = 3;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NETWORK__NAME = 4;
+	int NETWORK__NAME = 0;
 
 	/**
 	 * The feature id for the '<em><b>Services</b></em>' reference list.
@@ -119,7 +83,25 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NETWORK__SERVICES = 5;
+	int NETWORK__SERVICES = 1;
+
+	/**
+	 * The feature id for the '<em><b>Atribute 0</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NETWORK__ATRIBUTE_0 = 2;
+
+	/**
+	 * The feature id for the '<em><b>Atribute 1</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NETWORK__ATRIBUTE_1 = 3;
 
 	/**
 	 * The number of structural features of the '<em>Network</em>' class.
@@ -128,7 +110,7 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NETWORK_FEATURE_COUNT = 6;
+	int NETWORK_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Network</em>' class.
@@ -361,50 +343,6 @@ public interface ModelPackage extends EPackage
 	EClass getNetwork();
 
 	/**
-	 * Returns the meta object for the attribute '{@link model.Network#getIp <em>Ip</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Ip</em>'.
-	 * @see model.Network#getIp()
-	 * @see #getNetwork()
-	 * @generated
-	 */
-	EAttribute getNetwork_Ip();
-
-	/**
-	 * Returns the meta object for the attribute '{@link model.Network#getSubnetmask <em>Subnetmask</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Subnetmask</em>'.
-	 * @see model.Network#getSubnetmask()
-	 * @see #getNetwork()
-	 * @generated
-	 */
-	EAttribute getNetwork_Subnetmask();
-
-	/**
-	 * Returns the meta object for the attribute '{@link model.Network#getGateway <em>Gateway</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Gateway</em>'.
-	 * @see model.Network#getGateway()
-	 * @see #getNetwork()
-	 * @generated
-	 */
-	EAttribute getNetwork_Gateway();
-
-	/**
-	 * Returns the meta object for the attribute '{@link model.Network#getDns <em>Dns</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Dns</em>'.
-	 * @see model.Network#getDns()
-	 * @see #getNetwork()
-	 * @generated
-	 */
-	EAttribute getNetwork_Dns();
-
-	/**
 	 * Returns the meta object for the attribute '{@link model.Network#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -425,6 +363,28 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 */
 	EReference getNetwork_Services();
+
+	/**
+	 * Returns the meta object for the attribute '{@link model.Network#getAtribute_0 <em>Atribute 0</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Atribute 0</em>'.
+	 * @see model.Network#getAtribute_0()
+	 * @see #getNetwork()
+	 * @generated
+	 */
+	EAttribute getNetwork_Atribute_0();
+
+	/**
+	 * Returns the meta object for the attribute '{@link model.Network#getAtribute_1 <em>Atribute 1</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Atribute 1</em>'.
+	 * @see model.Network#getAtribute_1()
+	 * @see #getNetwork()
+	 * @generated
+	 */
+	EAttribute getNetwork_Atribute_1();
 
 	/**
 	 * Returns the meta object for class '{@link model.Service <em>Service</em>}'.
@@ -557,38 +517,6 @@ public interface ModelPackage extends EPackage
 		EClass NETWORK = eINSTANCE.getNetwork();
 
 		/**
-		 * The meta object literal for the '<em><b>Ip</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute NETWORK__IP = eINSTANCE.getNetwork_Ip();
-
-		/**
-		 * The meta object literal for the '<em><b>Subnetmask</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute NETWORK__SUBNETMASK = eINSTANCE.getNetwork_Subnetmask();
-
-		/**
-		 * The meta object literal for the '<em><b>Gateway</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute NETWORK__GATEWAY = eINSTANCE.getNetwork_Gateway();
-
-		/**
-		 * The meta object literal for the '<em><b>Dns</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute NETWORK__DNS = eINSTANCE.getNetwork_Dns();
-
-		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -603,6 +531,22 @@ public interface ModelPackage extends EPackage
 		 * @generated
 		 */
 		EReference NETWORK__SERVICES = eINSTANCE.getNetwork_Services();
+
+		/**
+		 * The meta object literal for the '<em><b>Atribute 0</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NETWORK__ATRIBUTE_0 = eINSTANCE.getNetwork_Atribute_0();
+
+		/**
+		 * The meta object literal for the '<em><b>Atribute 1</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NETWORK__ATRIBUTE_1 = eINSTANCE.getNetwork_Atribute_1();
 
 		/**
 		 * The meta object literal for the '{@link model.Service <em>Service</em>}' class.

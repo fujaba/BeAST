@@ -1,15 +1,6 @@
 package de.uks.beast.editor.feature.add;
 
-import static de.uks.beast.editor.util.Properties.DNS;
-import static de.uks.beast.editor.util.Properties.DNS_LABEL;
-import static de.uks.beast.editor.util.Properties.GATEWAY;
-import static de.uks.beast.editor.util.Properties.GATEWAY_LABEL;
-import static de.uks.beast.editor.util.Properties.IP;
-import static de.uks.beast.editor.util.Properties.ATTR_0_LABEL;
-import static de.uks.beast.editor.util.Properties.NAME;
-import static de.uks.beast.editor.util.Properties.SUBNET_MASK;
-import static de.uks.beast.editor.util.Properties.SUBNET_MASK_LABEL;
-import static de.uks.beast.editor.util.Properties.TYPE_NETWORK;
+import static de.uks.beast.editor.util.Properties.*;
 import model.Network;
 
 import org.eclipse.graphiti.features.IDirectEditingInfo;
@@ -32,6 +23,7 @@ import org.eclipse.graphiti.services.IPeCreateService;
 
 import de.uks.beast.editor.util.Colors;
 import de.uks.beast.editor.util.Fonts;
+import de.uks.beast.editor.util.Properties;
 import de.uks.beast.editor.util.PropertyUtil;
 import de.uks.beast.editor.util.StyleUtil;
 import de.uks.beast.editor.util.Textfields;
@@ -84,7 +76,7 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		roundedRectangle.setStyle(StyleUtil.getRedWhiteStyleForObject(getDiagram(), StyleUtil.NETWORK_STYLE_ID));
 		gaService.setLocationAndSize(roundedRectangle, context.getX(), context.getY(), context.getWidth(), context.getHeight());
 		
-		final Color color = manageColor(Colors.ROUTER_TEXT_FOREGROUND);
+		final Color color = manageColor(Colors.NETWORK_TEXT_FOREGROUND);
 		
 		if (network.eResource() == null)
 		{
@@ -108,34 +100,18 @@ public class AddNetworkFeature extends AbstractAddFeature implements AbstractSha
 		// SHAPE FOR PROPERTY IP
 		final Shape ipTextShape = createShape(peCreateService, containerShape);
 		final Shape ipLabelShape = createShape(peCreateService, containerShape);
-		Textfields.NETWORK_IP_LABEL_FIELD.addTo(getDiagram(), ipLabelShape, ATTR_0_LABEL.get(), color);
-		Textfields.NETWORK_IP_PROP_FIELD.addTo(getDiagram(), ipTextShape, network.getIp(), color);
-		PropertyUtil.setAttributeShape(ipTextShape, IP);
+		Textfields.NETWORK_ATTR_0_LABEL_FIELD.addTo(getDiagram(), ipLabelShape, ATTR_0_LABEL.get(), color);
+		Textfields.NETWORK_ATTR_0_PROP_FIELD.addTo(getDiagram(), ipTextShape, network.getAtribute_0(), color);
+		PropertyUtil.setAttributeShape(ipTextShape, Properties.ATTR_0);
 		link(ipTextShape, network);
 		
 		//SHAPE FOR PROPERTY SUBNET_MASK
 		final Shape subnetMaskTextShape = createShape(peCreateService, containerShape);
 		final Shape subnetMaskLabelShape = createShape(peCreateService, containerShape);
-		Textfields.NETWORK_SUBNET_MASK_LABEL_FIELD.addTo(getDiagram(), subnetMaskLabelShape, SUBNET_MASK_LABEL.get(), color);
-		Textfields.NETWORK_SUBNET_MASK_PROP_FIELD.addTo(getDiagram(), subnetMaskTextShape, network.getSubnetmask(), color);
-		PropertyUtil.setAttributeShape(subnetMaskTextShape, SUBNET_MASK);
+		Textfields.NETWORK_ATTR_1_LABEL_FIELD.addTo(getDiagram(), subnetMaskLabelShape, ATTR_1_LABEL.get(), color);
+		Textfields.NETWORK_ATTR_1_PROP_FIELD.addTo(getDiagram(), subnetMaskTextShape, network.getAtribute_1(), color);
+		PropertyUtil.setAttributeShape(subnetMaskTextShape, Properties.ATTR_1);
 		link(subnetMaskTextShape, network);
-		
-		//SHAPE FOR PROPERTY GATEWAY
-		final Shape gatewayTextShape = createShape(peCreateService, containerShape);
-		final Shape gatewayLabelShape = createShape(peCreateService, containerShape);
-		Textfields.NETWORK_GATEWAY_LABEL_FIELD.addTo(getDiagram(), gatewayLabelShape, GATEWAY_LABEL.get(), color);
-		Textfields.NETWORK_GATEWAY_PROP_FIELD.addTo(getDiagram(), gatewayTextShape, network.getGateway(), color);
-		PropertyUtil.setAttributeShape(gatewayTextShape, GATEWAY);
-		link(gatewayTextShape, network);
-		
-		//SHAPE FOR PROPERTY DNS
-		final Shape dnsTextShape = createShape(peCreateService, containerShape);
-		final Shape dnsLabelShape = createShape(peCreateService, containerShape);
-		Textfields.NETWORK_DNS_LABEL_FIELD.addTo(getDiagram(), dnsLabelShape, DNS_LABEL.get(), color);
-		Textfields.NETWORK_DNS_PROP_FIELD.addTo(getDiagram(), dnsTextShape, network.getDns(), color);
-		PropertyUtil.setAttributeShape(dnsTextShape, DNS);
-		link(dnsTextShape, network);
 		
 		final IDirectEditingInfo directEditingInfo = getFeatureProvider().getDirectEditingInfo();
 		directEditingInfo.setMainPictogramElement(containerShape);

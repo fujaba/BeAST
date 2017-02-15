@@ -27,7 +27,6 @@ public class UniversalPasteFeature extends AbstractPasteFeature
 	private Service makeDeepCopy(final HadoopMaster toCopy)
 	{
 		final Service service = ModelFactory.eINSTANCE.createHadoopMaster();
-		//Server object have to be unique for pasting correctly
 		service.setName(toCopy.getName() + "_" + service.hashCode());
 		service.setAtribute_0(toCopy.getAtribute_0());
 		service.setAtribute_1(toCopy.getAtribute_1());
@@ -40,7 +39,6 @@ public class UniversalPasteFeature extends AbstractPasteFeature
 	private Service makeDeepCopy(final HadoopSlave toCopy)
 	{
 		final Service service = ModelFactory.eINSTANCE.createHadoopSlave();
-		//Server object have to be unique for pasting correctly
 		service.setName(toCopy.getName() + "_" + service.hashCode());
 		service.setAtribute_0(toCopy.getAtribute_0());
 		service.setAtribute_1(toCopy.getAtribute_1());
@@ -53,12 +51,9 @@ public class UniversalPasteFeature extends AbstractPasteFeature
 	private Network makeDeepCopy(final Network toCopy)
 	{
 		final Network network = ModelFactory.eINSTANCE.createNetwork();
-		
-		network.setDns(toCopy.getDns());
-		network.setGateway(toCopy.getGateway());
-		network.setIp(toCopy.getIp());
 		network.setName(toCopy.getName() + "_" + network.hashCode());
-		network.setSubnetmask(toCopy.getSubnetmask());
+		network.setAtribute_0(toCopy.getAtribute_0());
+		network.setAtribute_1(toCopy.getAtribute_1());
 		
 		return network;
 	}

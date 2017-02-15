@@ -11,8 +11,8 @@ import org.eclipse.graphiti.tb.DefaultToolBehaviorProvider;
 
 import de.uks.beast.editor.feature.create.CreateConnectionFeature;
 import de.uks.beast.editor.feature.create.CreateNetworkFeature;
-import de.uks.beast.editor.feature.create.CreateServiceFeature;
-import de.uks.beast.editor.service.relation.create.CreateServiceRelation;
+import de.uks.beast.editor.feature.create.CreateHadoopMasterFeature;
+import de.uks.beast.editor.feature.create.CreateHadoopSlaveFeature;
 import de.uks.beast.editor.util.Images;
 import de.uks.beast.editor.util.PaletteCompartmentEntry;
 
@@ -45,25 +45,13 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 		//@formatter:on
 		
 		//@formatter:off
-		final PaletteCompartmentEntry ethernetEntry = PaletteCompartmentEntry
+		final PaletteCompartmentEntry connectionEntry = PaletteCompartmentEntry
 				.builder()
-				.setName(ETHERNET.text())
+				.setName(CONNECTION.text())
 				.setIconID(Images.CONNECTION_PALETTE_IMAGE.getImageID())
 				.addCreateConnectionFeature(
 						new CreateConnectionFeature(getFeatureProvider(), CONNECTION.text(),
 								CONNECTION.description()))
-				.setInitialOpen(false)
-				.build();
-		//@formatter:on
-		
-		//@formatter:off
-		final PaletteCompartmentEntry serviceRelationEntry = PaletteCompartmentEntry
-				.builder()
-				.setName(SERVICE_RELATION.text())
-				.setIconID(Images.SERVICE_RELATION.getImageID())
-				.addCreateConnectionFeature(
-						new CreateServiceRelation(getFeatureProvider(), SERVICE_RELATION.serviceName(), SERVICE_RELATION
-										.description()))
 				.setInitialOpen(false)
 				.build();
 		//@formatter:on
@@ -74,9 +62,9 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 				.setName(HADOOP.text())
 				.setIconID(Images.HADOOP_PALETTE_IMAGE.getImageID())
 				.addCreateObjectFeature(
-						new CreateServiceFeature(getFeatureProvider(), HADOOP_MASTER.text(), HADOOP_MASTER.description()))
-				/*.addCreateObjectFeature(
-						new CreateHadoopSlaveFeature(getFeatureProvider(), HADOOP_SLAVE.text(), HADOOP_SLAVE.description()))*/
+						new CreateHadoopMasterFeature(getFeatureProvider(), HADOOP_MASTER.text(), HADOOP_MASTER.description()))
+				.addCreateObjectFeature(
+						new CreateHadoopSlaveFeature(getFeatureProvider(), HADOOP_SLAVE.text(), HADOOP_SLAVE.description()))
 				.setInitialOpen(false)
 				.build();
 		//@formatter:on
@@ -85,8 +73,7 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 		addAllEntries(
 				allEntries, 
 				networkEntry, 
-				ethernetEntry, 
-				serviceRelationEntry,
+				connectionEntry, 
 				hadoopEntry);
 		//@formatter:on
 		
