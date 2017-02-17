@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+
+    master:
+        image: unik/hadoop-master:latest
+        hostname: "master"
+        ports:
+            - "9870:9870"
+            - "8088:8088"
+            - "19888:19888"
+            - "8188:8188"
+
+    slave1:
+        image: unik/hadoop-slave:latest
+        hostname: "slave1"
+        ports:
+            - "9901:9864"
+            - "8041:8042"
+        depends_on:
+            - master
+
+    slave2:
+        image: unik/hadoop-slave:latest
+        hostname: "slave2"
+        ports:
+            - "9902:9864"
+            - "8042:8042"
+        depends_on:
+            - master
+
+    slave3:
+        image: unik/hadoop-slave:latest
+        hostname: "slave3"
+        ports:
+            - "9903:9864"
+            - "8043:8042"
+        depends_on:
+            - master
