@@ -22,7 +22,7 @@ import de.uks.beast.editor.job.Job;
 import de.uks.beast.editor.job.JobInterface;
 import de.uks.beast.editor.property.data.JobFileDataContainer.Type;
 import de.uks.beast.editor.property.popup.PopupView;
-import de.uks.beast.editor.property.section.views.HadoopPropertyView;
+import de.uks.beast.editor.property.section.views.ControlCenterPropertyView;
 import de.uks.beast.editor.util.FileBrowser;
 
 public class JobDataController extends Observable
@@ -32,14 +32,14 @@ public class JobDataController extends Observable
 	
 	private JobDataContainer			jobDataContainer	= new JobDataContainer();
 	private final PopupView				popupView;
-	private final HadoopPropertyView	propertyView;
+	private final ControlCenterPropertyView	propertyView;
 	private String name;
 	
 	
 	public JobDataController(final Display display, final Composite parent, final TabbedPropertySheetWidgetFactory factory)
 	{
 		this.popupView = new PopupView(display);
-		this.propertyView = new HadoopPropertyView(parent, factory);
+		this.propertyView = new ControlCenterPropertyView(parent, factory);
 	}
 	
 	

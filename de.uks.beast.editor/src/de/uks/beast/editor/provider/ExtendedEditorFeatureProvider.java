@@ -10,6 +10,7 @@ import org.eclipse.graphiti.palette.IPaletteCompartmentEntry;
 import org.eclipse.graphiti.tb.DefaultToolBehaviorProvider;
 
 import de.uks.beast.editor.feature.create.CreateConnectionFeature;
+import de.uks.beast.editor.feature.create.CreateControlCenterFeature;
 import de.uks.beast.editor.feature.create.CreateNetworkFeature;
 import de.uks.beast.editor.feature.create.CreateHadoopMasterFeature;
 import de.uks.beast.editor.feature.create.CreateHadoopSlaveFeature;
@@ -31,7 +32,16 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 	{
 		final List<IPaletteCompartmentEntry> allEntries = new ArrayList<IPaletteCompartmentEntry>();
 		
-		
+		//@formatter:off
+				final PaletteCompartmentEntry controlCenterEntry = PaletteCompartmentEntry
+						.builder()
+						.setName(CONTROL_CENTER.text())
+						.setIconID(Images.CONTROL_CENTER_PALETTE_IMAGE.getImageID())
+						.addCreateObjectFeature(
+								new CreateControlCenterFeature(getFeatureProvider(), CONTROL_CENTER.text(), CONTROL_CENTER.description()))
+						.setInitialOpen(false)
+						.build();
+				//@formatter:on
 		
 		//@formatter:off
 		final PaletteCompartmentEntry networkEntry = PaletteCompartmentEntry
@@ -74,7 +84,8 @@ public class ExtendedEditorFeatureProvider extends DefaultToolBehaviorProvider
 				allEntries, 
 				networkEntry, 
 				connectionEntry, 
-				hadoopEntry);
+				hadoopEntry,
+				controlCenterEntry);
 		//@formatter:on
 		
 		return allEntries.toArray(new IPaletteCompartmentEntry[allEntries.size()]);

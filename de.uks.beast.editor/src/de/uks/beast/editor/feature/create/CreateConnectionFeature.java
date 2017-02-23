@@ -1,7 +1,12 @@
 package de.uks.beast.editor.feature.create;
 
+import model.ControlCenter;
 import model.HadoopMaster;
+import model.HadoopSlave;
 import model.Network;
+import model.Service;
+import model.impl.HadoopMasterImpl;
+import model.impl.HadoopSlaveImpl;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateConnectionContext;
@@ -23,8 +28,6 @@ public class CreateConnectionFeature extends AbstractCreateConnectionFeature
 	@Override
 	public boolean canCreate(final ICreateConnectionContext context)
 	{
-		// return true if both anchors belong to an EClass
-		// and those EClasses are not identical
 		final Object source = getBusinessObjectForPictogramElement(context.getSourcePictogramElement());
 		final Object target = getBusinessObjectForPictogramElement(context.getTargetPictogramElement());
 		
@@ -47,6 +50,43 @@ public class CreateConnectionFeature extends AbstractCreateConnectionFeature
 			}
 			
 		}
+		else if (source instanceof ControlCenter && target instanceof HadoopMaster)
+		{
+			final ControlCenter controlCenter = (ControlCenter) source;
+			final HadoopMaster hadoopMaster = (HadoopMaster) target;
+			if (!controlCenter.getMasterNodes().contains(hadoopMaster))
+			{
+				return true;
+			}
+		}
+		else if (source instanceof HadoopMaster && target instanceof ControlCenter)
+		{
+			final ControlCenter controlCenter = (ControlCenter) target;
+			final HadoopMaster hadoopMaster = (HadoopMaster) source;
+			if (!controlCenter.getMasterNodes().contains(hadoopMaster))
+			{
+				return true;
+			}
+		}
+		else if (source instanceof HadoopMaster && target instanceof HadoopSlave)
+		{
+			final HadoopMaster hm = (HadoopMaster) source;
+			final HadoopSlave hs = (HadoopSlave) target;
+			
+			if (!hm.getHadoopSlaves().contains(hs))
+			{
+				return true;
+			}
+		}
+		else if (target instanceof HadoopMaster && source instanceof HadoopSlave)
+		{
+			final HadoopSlave hs = (HadoopSlave) source;
+			
+			if (hs.getHadoopMaster() == null)
+			{
+				return true;
+			}
+		}
 		
 		return false;
 	}
@@ -63,7 +103,8 @@ public class CreateConnectionFeature extends AbstractCreateConnectionFeature
 		
 		if (source != null && target != null)
 		{
-			final AddConnectionContext addContext = new AddConnectionContext(context.getSourceAnchor(), context.getTargetAnchor());
+			final AddConnectionContext addContext = new AddConnectionContext(context.getSourceAnchor(),
+					context.getTargetAnchor());
 			addContext.setNewObject(null);
 			
 			if (source instanceof HadoopMaster && target instanceof Network)
@@ -73,6 +114,24 @@ public class CreateConnectionFeature extends AbstractCreateConnectionFeature
 			else if (source instanceof Network && target instanceof HadoopMaster)
 			{
 				((Network) source).getServices().add((HadoopMaster) target);
+			}
+			else if (source instanceof ControlCenter && target instanceof HadoopMaster)
+			{
+				((ControlCenter) source).getMasterNodes().add((HadoopMaster) target);
+			}
+			else if (source instanceof HadoopMaster && target instanceof ControlCenter)
+			{
+				((ControlCenter) target).getMasterNodes().add((HadoopMaster) source);
+			}
+			else if (source instanceof HadoopMasterImpl && target instanceof HadoopSlaveImpl)
+			{
+				((HadoopMaster) source).getHadoopSlaves().add((HadoopSlave) target);
+				((HadoopSlave) target).setHadoopMaster((HadoopMaster) source);
+			}
+			else if (target instanceof HadoopMasterImpl && source instanceof HadoopSlaveImpl)
+			{
+				((HadoopSlave) source).setHadoopMaster((HadoopMaster) target);
+				((HadoopMaster) target).getHadoopSlaves().add((HadoopSlave) source);
 			}
 			
 			newConnection = (Connection) getFeatureProvider().addIfPossible(addContext);
@@ -87,7 +146,7 @@ public class CreateConnectionFeature extends AbstractCreateConnectionFeature
 	public boolean canStartConnection(final ICreateConnectionContext context)
 	{
 		final Object source = getBusinessObjectForPictogramElement(context.getSourcePictogramElement());
-		if (source instanceof HadoopMaster || source instanceof Network)
+		if (source instanceof Network || source instanceof ControlCenter || source instanceof Service)
 		{
 			return true;
 		}

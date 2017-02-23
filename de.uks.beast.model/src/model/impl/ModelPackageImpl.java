@@ -2,6 +2,7 @@
  */
 package model.impl;
 
+import model.ControlCenter;
 import model.HadoopMaster;
 import model.HadoopSlave;
 import model.ModelFactory;
@@ -51,6 +52,13 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * @generated
 	 */
 	private EClass hadoopSlaveEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass controlCenterEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -150,26 +158,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNetwork_Atribute_0()
-	{
-		return (EAttribute)networkEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getNetwork_Atribute_1()
-	{
-		return (EAttribute)networkEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getService()
 	{
 		return serviceEClass;
@@ -190,9 +178,9 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getService_Atribute_0()
+	public EReference getService_Network()
 	{
-		return (EAttribute)serviceEClass.getEStructuralFeatures().get(1);
+		return (EReference)serviceEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -200,7 +188,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getService_Atribute_1()
+	public EAttribute getService_LimitCpu()
 	{
 		return (EAttribute)serviceEClass.getEStructuralFeatures().get(2);
 	}
@@ -210,9 +198,29 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getService_Network()
+	public EAttribute getService_LimitMem()
 	{
-		return (EReference)serviceEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)serviceEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getService_ReservationCpu()
+	{
+		return (EAttribute)serviceEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getService_ReservationMem()
+	{
+		return (EAttribute)serviceEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -260,6 +268,36 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getControlCenter()
+	{
+		return controlCenterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getControlCenter_MasterNodes()
+	{
+		return (EReference)controlCenterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getControlCenter_Name()
+	{
+		return (EAttribute)controlCenterEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ModelFactory getModelFactory()
 	{
 		return (ModelFactory)getEFactoryInstance();
@@ -288,20 +326,24 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		networkEClass = createEClass(NETWORK);
 		createEAttribute(networkEClass, NETWORK__NAME);
 		createEReference(networkEClass, NETWORK__SERVICES);
-		createEAttribute(networkEClass, NETWORK__ATRIBUTE_0);
-		createEAttribute(networkEClass, NETWORK__ATRIBUTE_1);
 
 		serviceEClass = createEClass(SERVICE);
 		createEAttribute(serviceEClass, SERVICE__NAME);
-		createEAttribute(serviceEClass, SERVICE__ATRIBUTE_0);
-		createEAttribute(serviceEClass, SERVICE__ATRIBUTE_1);
 		createEReference(serviceEClass, SERVICE__NETWORK);
+		createEAttribute(serviceEClass, SERVICE__LIMIT_CPU);
+		createEAttribute(serviceEClass, SERVICE__LIMIT_MEM);
+		createEAttribute(serviceEClass, SERVICE__RESERVATION_CPU);
+		createEAttribute(serviceEClass, SERVICE__RESERVATION_MEM);
 
 		hadoopMasterEClass = createEClass(HADOOP_MASTER);
 		createEReference(hadoopMasterEClass, HADOOP_MASTER__HADOOP_SLAVES);
 
 		hadoopSlaveEClass = createEClass(HADOOP_SLAVE);
 		createEReference(hadoopSlaveEClass, HADOOP_SLAVE__HADOOP_MASTER);
+
+		controlCenterEClass = createEClass(CONTROL_CENTER);
+		createEReference(controlCenterEClass, CONTROL_CENTER__MASTER_NODES);
+		createEAttribute(controlCenterEClass, CONTROL_CENTER__NAME);
 	}
 
 	/**
@@ -340,20 +382,24 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		initEClass(networkEClass, Network.class, "Network", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNetwork_Name(), ecorePackage.getEString(), "name", "network", 0, 1, Network.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNetwork_Services(), this.getService(), this.getService_Network(), "services", null, 0, -1, Network.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getNetwork_Atribute_0(), ecorePackage.getEString(), "atribute_0", "0", 0, 1, Network.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getNetwork_Atribute_1(), ecorePackage.getEString(), "atribute_1", "0", 0, 1, Network.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(serviceEClass, Service.class, "Service", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getService_Name(), ecorePackage.getEString(), "name", "service", 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getService_Atribute_0(), ecorePackage.getEString(), "atribute_0", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getService_Atribute_1(), ecorePackage.getEString(), "atribute_1", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getService_Network(), this.getNetwork(), this.getNetwork_Services(), "network", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getService_LimitCpu(), ecorePackage.getEString(), "limitCpu", "0", 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getService_LimitMem(), ecorePackage.getEString(), "limitMem", "0", 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getService_ReservationCpu(), ecorePackage.getEString(), "reservationCpu", "0", 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getService_ReservationMem(), ecorePackage.getEString(), "reservationMem", "0", 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(hadoopMasterEClass, HadoopMaster.class, "HadoopMaster", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getHadoopMaster_HadoopSlaves(), this.getHadoopSlave(), this.getHadoopSlave_HadoopMaster(), "hadoopSlaves", null, 0, -1, HadoopMaster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(hadoopSlaveEClass, HadoopSlave.class, "HadoopSlave", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getHadoopSlave_HadoopMaster(), this.getHadoopMaster(), this.getHadoopMaster_HadoopSlaves(), "hadoopMaster", null, 0, 1, HadoopSlave.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(controlCenterEClass, ControlCenter.class, "ControlCenter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getControlCenter_MasterNodes(), this.getHadoopMaster(), null, "masterNodes", null, 0, -1, ControlCenter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getControlCenter_Name(), ecorePackage.getEString(), "name", "controlCenter", 0, 1, ControlCenter.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

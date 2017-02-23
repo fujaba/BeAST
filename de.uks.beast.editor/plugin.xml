@@ -71,7 +71,15 @@
       point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
 		<propertyTabs
           contributorId="beast.PropertyContributor">
-			<propertyTab category="Configuration" id="graphiti.main.tab.service" label="Jobs">
+			<propertyTab category="Configuration" id="graphiti.main.tab.service" label="Service">
+			</propertyTab>
+		</propertyTabs>
+	</extension>
+	<extension
+      point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+		<propertyTabs
+          contributorId="beast.PropertyContributor">
+			<propertyTab category="Configuration" id="graphiti.main.tab.controlcenter" label="Jobs">
 			</propertyTab>
 		</propertyTabs>
 	</extension>
@@ -92,9 +100,19 @@
 		point="org.eclipse.ui.views.properties.tabbed.propertySections">
 		<propertySections
           contributorId="beast.PropertyContributor">
-			<propertySection class="de.uks.beast.editor.property.section.sections.ServerPropertySection"
+			<propertySection class="de.uks.beast.editor.property.section.sections.ServicePropertySection"
 				filter="de.uks.beast.editor.property.filter.ServicePropertyFilter"
 				id="graphiti.main.tab.service" tab="graphiti.main.tab.service">
+			</propertySection>
+		</propertySections>
+	</extension>
+	<extension 
+		point="org.eclipse.ui.views.properties.tabbed.propertySections">
+		<propertySections
+          contributorId="beast.PropertyContributor">
+			<propertySection class="de.uks.beast.editor.property.section.sections.ControlCenterPropertySection"
+				filter="de.uks.beast.editor.property.filter.ControlCenterPropertyFilter"
+				id="graphiti.main.tab.controlcenter" tab="graphiti.main.tab.controlcenter">
 			</propertySection>
 		</propertySections>
 	</extension>

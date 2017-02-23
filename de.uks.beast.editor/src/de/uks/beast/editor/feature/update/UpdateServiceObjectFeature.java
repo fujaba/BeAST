@@ -16,145 +16,128 @@ import org.eclipse.graphiti.mm.pictograms.Shape;
 
 import de.uks.beast.editor.util.PropertyUtil;
 
-public class UpdateServiceObjectFeature extends AbstractUpdateFeature
-{
+public class UpdateServiceObjectFeature extends AbstractUpdateFeature {
 	// retrieve values from pictogram model
-	private String	pictogramName	= null;
-	private String	pictogramAttr_0	= null;
-	private String	pictogramAttr_1	= null;
-	
+	private String pictogramName = null;
+	private String pictogramLimitCpu = null;
+	private String pictogramReservationCpu = null;
+	private String pictogramLimitMem = null;
+	private String pictogramReservationMem = null;
+
 	// retrieve values from business model
-	private String	businessName	= null;
-	private String	businessAttr_0	= null;
-	private String	businessAttr_1	= null;
-	
-	
-	
-	public UpdateServiceObjectFeature(final IFeatureProvider fp)
-	{
+	private String businessName = null;
+	private String businessLimitCpu = null;
+	private String businessReservationCpu = null;
+	private String businessLimitMem = null;
+	private String businessReservationMem = null;
+
+	public UpdateServiceObjectFeature(final IFeatureProvider fp) {
 		super(fp);
 	}
-	
-	
-	
+
 	@Override
-	public boolean canUpdate(final IUpdateContext context)
-	{
+	public boolean canUpdate(final IUpdateContext context) {
 		// return true, if linked business object is a EClass
 		final Object bo = getBusinessObjectForPictogramElement(context.getPictogramElement());
-		
+
 		return (bo instanceof Service);
 	}
-	
-	
-	
-	//TODO: NPE when you open an existing editor view because shapeList is empty then
+
+	// TODO: NPE when you open an existing editor view because shapeList is
+	// empty then
 	@Override
-	public IReason updateNeeded(final IUpdateContext context)
-	{
+	public IReason updateNeeded(final IUpdateContext context) {
 		final PictogramElement pictogramElement = context.getPictogramElement();
-		
-		if (pictogramElement instanceof ContainerShape)
-		{
+
+		if (pictogramElement instanceof ContainerShape) {
 			final ContainerShape cs = (ContainerShape) pictogramElement;
-			
-			for (final Shape shape : cs.getChildren())
-			{
-				if (shape.getGraphicsAlgorithm() instanceof Text)
-				{
+
+			for (final Shape shape : cs.getChildren()) {
+				if (shape.getGraphicsAlgorithm() instanceof Text) {
 					final Text text = (Text) shape.getGraphicsAlgorithm();
-					
-					if (PropertyUtil.isAttributeShape(shape, NAME))
-					{
+
+					if (PropertyUtil.isAttributeShape(shape, NAME)) {
 						pictogramName = text.getValue();
-					}
-					else if (PropertyUtil.isAttributeShape(shape, ATTR_0))
-					{
-						pictogramAttr_0 = text.getValue();
-					}
-					else if (PropertyUtil.isAttributeShape(shape, ATTR_1))
-					{
-						pictogramAttr_1 = text.getValue();
+					} else if (PropertyUtil.isAttributeShape(shape, LIMIT_CPU)) {
+						pictogramLimitCpu = text.getValue();
+					} else if (PropertyUtil.isAttributeShape(shape, RESERVATION_CPU)) {
+						pictogramReservationCpu = text.getValue();
+					} else if (PropertyUtil.isAttributeShape(shape, LIMIT_MEM)) {
+						pictogramLimitMem = text.getValue();
+					} else if (PropertyUtil.isAttributeShape(shape, RESERVATION_MEM)) {
+						pictogramReservationMem = text.getValue();
 					}
 				}
 			}
 		}
-		
+
 		final Object object = getBusinessObjectForPictogramElement(pictogramElement);
-		
-		if (object instanceof Service)
-		{
+
+		if (object instanceof Service) {
 			final Service service = (Service) object;
 			businessName = service.getName();
-			businessAttr_0 = service.getAtribute_0();
-			businessAttr_1 = service.getAtribute_1();
-			
+			businessLimitCpu = service.getLimitCpu();
+			businessReservationCpu = service.getReservationCpu();
+			businessLimitMem = service.getLimitMem();
+			businessReservationMem = service.getReservationMem();
+
 		}
-		
-		if (PropertyUtil.updateNeeded(pictogramName, businessName))
-		{
+
+		if (PropertyUtil.updateNeeded(pictogramName, businessName)) {
 			return Reason.createTrueReason(NAME_TRUE_REASON.text());
-		}
-		else if (PropertyUtil.updateNeeded(pictogramAttr_0, businessAttr_0))
-		{
-			return Reason.createTrueReason(ATTR_0_TRUE_REASON.text());
-		}
-		else if (PropertyUtil.updateNeeded(pictogramAttr_1, businessAttr_1))
-		{
-			return Reason.createTrueReason(ATTR_1_TRUE_REASON.text());
-		}
-		else
-		{
+		} else if (PropertyUtil.updateNeeded(pictogramLimitCpu, businessLimitCpu)) {
+			return Reason.createTrueReason(LIMIT_CPU_TRUE_REASON.text());
+		} else if (PropertyUtil.updateNeeded(pictogramReservationCpu, businessReservationCpu)) {
+			return Reason.createTrueReason(RESERVATION_CPU_TRUE_REASON.text());
+		} else if (PropertyUtil.updateNeeded(pictogramLimitMem, businessLimitMem)) {
+			return Reason.createTrueReason(LIMIT_MEM_TRUE_REASON.text());
+		} else if (PropertyUtil.updateNeeded(pictogramReservationMem, businessReservationMem)) {
+			return Reason.createTrueReason(RESERVATION_MEM_TRUE_REASON.text());
+		} else {
 			return Reason.createFalseReason();
 		}
 	}
-	
-	
-	
+
 	@Override
-	public boolean update(final IUpdateContext context)
-	{
-		
+	public boolean update(final IUpdateContext context) {
+
 		final PictogramElement pictogramElement = context.getPictogramElement();
 		final Object object = getBusinessObjectForPictogramElement(pictogramElement);
-		
-		if (object instanceof Service)
-		{
+
+		if (object instanceof Service) {
 			final Service service = (Service) object;
 			businessName = service.getName();
-			businessAttr_0 = service.getAtribute_0();
-			businessAttr_1 = service.getAtribute_1();
+			businessLimitCpu = service.getLimitCpu();
+			businessReservationCpu = service.getReservationCpu();
+			businessLimitMem = service.getLimitMem();
+			businessReservationMem = service.getReservationMem();
 		}
-		
+
 		// Set values in pictogram model
-		if (pictogramElement instanceof ContainerShape)
-		{
+		if (pictogramElement instanceof ContainerShape) {
 			final ContainerShape cs = (ContainerShape) pictogramElement;
-			
-			for (final Shape shape : cs.getChildren())
-			{
-				if (shape.getGraphicsAlgorithm() instanceof Text)
-				{
+
+			for (final Shape shape : cs.getChildren()) {
+				if (shape.getGraphicsAlgorithm() instanceof Text) {
 					final Text text = (Text) shape.getGraphicsAlgorithm();
-					
-					if (PropertyUtil.isAttributeShape(shape, NAME))
-					{
+
+					if (PropertyUtil.isAttributeShape(shape, NAME)) {
 						text.setValue(businessName);
-					}
-					else if (PropertyUtil.isAttributeShape(shape, ATTR_0))
-					{
-						text.setValue(businessAttr_0);
-					}
-					else if (PropertyUtil.isAttributeShape(shape, ATTR_1))
-					{
-						text.setValue(businessAttr_1);
+					} else if (PropertyUtil.isAttributeShape(shape, LIMIT_CPU)) {
+						text.setValue(businessLimitCpu);
+					} else if (PropertyUtil.isAttributeShape(shape, RESERVATION_CPU)) {
+						text.setValue(businessReservationCpu);
+					} else if (PropertyUtil.isAttributeShape(shape, LIMIT_MEM)) {
+						text.setValue(businessLimitMem);
+					} else if (PropertyUtil.isAttributeShape(shape, RESERVATION_MEM)) {
+						text.setValue(businessReservationMem);
 					}
 				}
 			}
 			return true;
 		}
-		
+
 		return false;
 	}
-	
+
 }

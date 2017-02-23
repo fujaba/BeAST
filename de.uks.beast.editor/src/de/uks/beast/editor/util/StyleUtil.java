@@ -16,15 +16,16 @@ public class StyleUtil
 	public static final String			HADOOP_MASTER_STYLE_ID	= "hadoopMasterStyle";
 	public static final String			HADOOP_SLAVE_STYLE_ID	= "hadoopSlaveStyle";
 	public static final String			NETWORK_STYLE_ID		= "networkStyle";
+	public static final String			CONTROL_CENTER_STYLE_ID	= "controlCenterStyle";
 	private static final IColorConstant	E_CLASS_TEXT_FOREGROUND	= new ColorConstant(0, 0, 0);
 	private static final IColorConstant	E_CLASS_FOREGROUND		= new ColorConstant(98, 131, 167);
+	private static final IGaService		gaService				= Graphiti.getGaService();
 	
 	
 	
-	public static Style getStyleForCommonValues(Diagram diagram)
+	public static Style getStyleForCommonValues(final Diagram diagram)
 	{
 		final String styleId = "COMMON-VALUES";
-		IGaService gaService = Graphiti.getGaService();
 		
 		// Is style already persisted?
 		Style style = gaService.findStyle(diagram, styleId);
@@ -98,8 +99,6 @@ public class StyleUtil
 	private static Style getSpecificStyle(final Diagram diagram, final String styleId,
 			final AdaptedGradientColoredAreas coloredArea)
 	{
-		final IGaService gaService = Graphiti.getGaService();
-		
 		// this is a child style of the common-values-style
 		final Style parentStyle = getStyleForCommonValues(diagram);
 		Style style = gaService.findStyle(parentStyle, styleId);
@@ -117,13 +116,12 @@ public class StyleUtil
 	
 	
 	
-	public static Style getStyleForEClassText(Diagram diagram)
+	public static Style getStyleForEClassText(final Diagram diagram)
 	{
 		final String styleId = "E-CLASS-TEXT";
-		IGaService gaService = Graphiti.getGaService();
 		
 		// this is a child style of the common-values-style
-		Style parentStyle = getStyleForCommonValues(diagram);
+		final Style parentStyle = getStyleForCommonValues(diagram);
 		Style style = gaService.findStyle(parentStyle, styleId);
 		
 		if (style == null)
@@ -137,13 +135,12 @@ public class StyleUtil
 	
 	
 	
-	public static Style getStyleForTextDecorator(Diagram diagram)
+	public static Style getStyleForTextDecorator(final Diagram diagram)
 	{
 		final String styleId = "TEXT-DECORATOR-TEXT";
-		IGaService gaService = Graphiti.getGaService();
 		
 		// this is a child style of the common-values-style
-		Style parentStyle = getStyleForCommonValues(diagram);
+		final Style parentStyle = getStyleForCommonValues(diagram);
 		Style style = gaService.findStyle(parentStyle, styleId);
 		
 		if (style == null)
@@ -157,7 +154,7 @@ public class StyleUtil
 	
 	
 	
-	private static void setCommonTextValues(Diagram diagram, IGaService gaService, Style style)
+	private static void setCommonTextValues(final Diagram diagram, final IGaService gaService, final Style style)
 	{
 		style.setFilled(false);
 		style.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
@@ -167,7 +164,7 @@ public class StyleUtil
 	
 	
 	
-	private static void setCommonValues(Style style)
+	private static void setCommonValues(final Style style)
 	{
 		style.setLineStyle(LineStyle.SOLID);
 		style.setLineVisible(true);

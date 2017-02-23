@@ -66,8 +66,8 @@ public class BeASTAction implements IObjectActionDelegate
 				final NetworkImpl network = (NetworkImpl) roomOrNetwork;
 				
 				final Network net = new Network();
-				net.setGateway(network.getAtribute_0());
-				net.setIp(network.getAtribute_1());
+				//net.setGateway(network.getAtribute_0());
+				//net.setIp(network.getAtribute_1());
 				//net.setName(network.getName());
 				//net.setSubnetmask(network.getSubnetmask());
 				//net.setDns(network.getDns());

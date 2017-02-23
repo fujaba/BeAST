@@ -67,6 +67,7 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 			case ModelPackage.NETWORK: return createNetwork();
 			case ModelPackage.HADOOP_MASTER: return createHadoopMaster();
 			case ModelPackage.HADOOP_SLAVE: return createHadoopSlave();
+			case ModelPackage.CONTROL_CENTER: return createControlCenter();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -103,6 +104,17 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory
 	{
 		HadoopSlaveImpl hadoopSlave = new HadoopSlaveImpl();
 		return hadoopSlave;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ControlCenter createControlCenter()
+	{
+		ControlCenterImpl controlCenter = new ControlCenterImpl();
+		return controlCenter;
 	}
 
 	/**

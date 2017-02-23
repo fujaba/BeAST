@@ -1,5 +1,6 @@
 package de.uks.beast.editor.feature.add.connection;
 
+import model.ControlCenter;
 import model.HadoopMaster;
 import model.Network;
 
@@ -11,6 +12,7 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 {
 	private Network			network;
 	private HadoopMaster	hadoopMaster;
+	private ControlCenter	controlCenter;
 	
 	
 	
@@ -43,7 +45,6 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 			{
 				return true;
 			}
-			
 		}
 		else if ((start instanceof Network || end instanceof Network) && oldAnchor instanceof HadoopMaster
 				&& newAnchor instanceof HadoopMaster)
@@ -53,7 +54,15 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 			{
 				return true;
 			}
-			
+		}
+		else if ((start instanceof ControlCenter || end instanceof ControlCenter) && oldAnchor instanceof HadoopMaster
+				&& newAnchor instanceof HadoopMaster)
+		{
+			controlCenter = (start instanceof ControlCenter) ? (ControlCenter) start : (ControlCenter) end;
+			if (!controlCenter.getMasterNodes().contains(newAnchor))
+			{
+				return true;
+			}
 		}
 		
 		return false;
@@ -68,13 +77,12 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 		
 		if (network != null && oldTarget instanceof HadoopMaster)
 		{
-			final HadoopMaster oldRouter = (HadoopMaster) oldTarget;
+			final HadoopMaster oldHadoopMaster = (HadoopMaster) oldTarget;
 			
-			if (network.getServices().contains(oldRouter))
+			if (network.getServices().contains(oldHadoopMaster))
 			{
-				network.getServices().remove(oldRouter);
+				network.getServices().remove(oldHadoopMaster);
 			}
-			
 		}
 		else if (hadoopMaster != null && oldTarget instanceof Network)
 		{
@@ -84,7 +92,6 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 			{
 				hadoopMaster.setNetwork(null);
 			}
-			
 		}
 		else if (hadoopMaster != null && oldTarget instanceof Network)
 		{
@@ -94,21 +101,16 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 			{
 				oldNetwork.getServices().remove(hadoopMaster);
 			}
-			
-			System.out.println("server has: " + oldNetwork.getName());
-			
 		}
-		else if (network != null && oldTarget instanceof HadoopMaster)
+		else if (controlCenter != null && oldTarget instanceof HadoopMaster)
 		{
-			final HadoopMaster oldServer = (HadoopMaster) oldTarget;
+			final HadoopMaster oldHadoopMaster = (HadoopMaster) oldTarget;
 			
-			if (network.getServices().contains(oldServer))
+			if (controlCenter.getMasterNodes().contains(oldHadoopMaster))
 			{
-				network.getServices().remove(oldServer);
+				controlCenter.getMasterNodes().remove(oldHadoopMaster);
 			}
-			
 		}
-		
 	}
 	
 	
@@ -120,13 +122,12 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 		
 		if (network != null && target instanceof HadoopMaster)
 		{
-			final HadoopMaster newRouter = (HadoopMaster) target;
+			final HadoopMaster newHadoopMaster = (HadoopMaster) target;
 			
-			if (!network.getServices().contains(newRouter))
+			if (!network.getServices().contains(newHadoopMaster))
 			{
-				network.getServices().add(newRouter);
+				network.getServices().add(newHadoopMaster);
 			}
-			
 		}
 		else if (hadoopMaster != null && target instanceof Network)
 		{
@@ -136,7 +137,6 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 			{
 				hadoopMaster.setNetwork(null);
 			}
-			
 		}
 		else if (hadoopMaster != null && target instanceof Network)
 		{
@@ -146,18 +146,15 @@ public class ReconnectionFeature extends DefaultReconnectionFeature
 			{
 				hadoopMaster.setNetwork(newNetwork);
 			}
-			
 		}
-		else if (network != null && target instanceof HadoopMaster)
+		else if (controlCenter != null && target instanceof HadoopMaster)
 		{
-			final HadoopMaster newServer = (HadoopMaster) target;
+			final HadoopMaster newHadoopMaster = (HadoopMaster) target;
 			
-			if (!network.getServices().contains(newServer))
+			if (!controlCenter.getMasterNodes().contains(newHadoopMaster))
 			{
-				network.getServices().add(newServer);
+				controlCenter.getMasterNodes().add(newHadoopMaster);
 			}
-			
 		}
-		
 	}
 }

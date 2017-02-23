@@ -4,8 +4,10 @@ public enum ToolTips
 {
 	//@formatter:off
 	TRANSFER_BTN_TIP			("Transfer data to the backend"),
-	ATTR_0_PROP_TIP					("Configure the object with a unique IP adress"),
-	ATTR_1_PROP_TIP			("Configure the server hardware. Choose the number of cpu cores"),
+	LIMIT_CPU_PROP_TIP					("Configure the object with a limit_cpu attribute"),
+	RESERVATION_CPU_PROP_TIP			("Configure the object with a reservation_cpu attribute"),
+	LIMIT_MEM_PROP_TIP					("Configure the object with a limit_mem attribute"),
+	RESERVATION_MEM_PROP_TIP			("Configure the object with a reservation_mem attribute"),
 	NAME_TEXT_TIP				("You have to type in a name for your job. Default is 'default'"),
 	
 	PRIORITY_COMBO_TIP			("You habe to choose the priority of the job. Default is '0'"),

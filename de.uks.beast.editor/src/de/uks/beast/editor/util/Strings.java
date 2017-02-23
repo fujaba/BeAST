@@ -22,12 +22,15 @@ public enum Strings
 	
 	// True reasons
 	NAME_TRUE_REASON			("Name is out of date!", 				""),
-	ATTR_0_TRUE_REASON				("Attr_0 is out of date!", 					""),
-	ATTR_1_TRUE_REASON				("Attr_1 is out of date!", 				""),
+	LIMIT_CPU_TRUE_REASON		("limit_cpu is out of date!", 					""),
+	RESERVATION_CPU_TRUE_REASON	("reservation_cpu is out of date!", 				""),
+	LIMIT_MEM_TRUE_REASON		("limit_mem is out of date!", 					""),
+	RESERVATION_MEM_TRUE_REASON	("reservation_mem is out of date!", 				""),
 	
 	
 	//Editor objects
 	NETWORK						("Network", 			"This is a network"),
+	CONTROL_CENTER				("Control Center", 		"This is a control center"),
 	CONNECTION					("Connection",			"This is a connection between two objects"),
 	HADOOP						("Hadoop",				"This is a Hadoop charm"),
 	

@@ -21,18 +21,7 @@ public class CreateHadoopMasterFeature extends AbstractCreateFeature
 	@Override
 	public boolean canCreate(final ICreateContext context)
 	{
-		if (getBusinessObjectForPictogramElement(context.getTargetContainer()) instanceof Service)
-		{
-			return true;
-		}
-		else if (context.getTargetContainer() instanceof Diagram)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return context.getTargetContainer() instanceof Diagram;
 	}
 	
 	

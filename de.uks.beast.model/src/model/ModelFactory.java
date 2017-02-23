@@ -50,6 +50,15 @@ public interface ModelFactory extends EFactory
 	HadoopSlave createHadoopSlave();
 
 	/**
+	 * Returns a new object of class '<em>Control Center</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Control Center</em>'.
+	 * @generated
+	 */
+	ControlCenter createControlCenter();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

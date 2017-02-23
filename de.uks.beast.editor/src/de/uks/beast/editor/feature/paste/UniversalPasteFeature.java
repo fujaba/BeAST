@@ -1,10 +1,9 @@
 package de.uks.beast.editor.feature.paste;
 
-import model.HadoopMaster;
-import model.HadoopSlave;
 import model.ModelFactory;
 import model.Network;
 import model.Service;
+import model.impl.HadoopMasterImpl;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IPasteContext;
@@ -13,79 +12,50 @@ import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.AbstractPasteFeature;
 
+public class UniversalPasteFeature extends AbstractPasteFeature {
 
-public class UniversalPasteFeature extends AbstractPasteFeature
-{
-	
-	public UniversalPasteFeature(final IFeatureProvider fp)
-	{
+	public UniversalPasteFeature(final IFeatureProvider fp) {
 		super(fp);
 	}
-	
-	
-	
-	private Service makeDeepCopy(final HadoopMaster toCopy)
-	{
-		final Service service = ModelFactory.eINSTANCE.createHadoopMaster();
-		service.setName(toCopy.getName() + "_" + service.hashCode());
-		service.setAtribute_0(toCopy.getAtribute_0());
-		service.setAtribute_1(toCopy.getAtribute_1());
-		
-		return service;
+
+	// TODO: deep copy with n+1 id number
+	private Service makeDeepCopy(final Service toCopy) {
+		final Service newService;
+		if (toCopy instanceof HadoopMasterImpl) {
+			newService = ModelFactory.eINSTANCE.createHadoopMaster();
+		} else {
+			newService = ModelFactory.eINSTANCE.createHadoopSlave();
+		}
+		newService.setName(toCopy.getName() + "_" + newService.hashCode());
+		newService.setLimitCpu(toCopy.getLimitCpu());
+		newService.setLimitMem(toCopy.getLimitMem());
+		newService.setReservationCpu(toCopy.getReservationCpu());
+		newService.setReservationMem(toCopy.getReservationMem());
+
+		return newService;
 	}
-	
-	
-	
-	private Service makeDeepCopy(final HadoopSlave toCopy)
-	{
-		final Service service = ModelFactory.eINSTANCE.createHadoopSlave();
-		service.setName(toCopy.getName() + "_" + service.hashCode());
-		service.setAtribute_0(toCopy.getAtribute_0());
-		service.setAtribute_1(toCopy.getAtribute_1());
-		
-		return service;
+
+	// TODO: deep copy with n+1 id number
+	private Network makeDeepCopy(final Network toCopy) {
+		final Network newNetwork = ModelFactory.eINSTANCE.createNetwork();
+		newNetwork.setName(toCopy.getName() + "_" + newNetwork.hashCode());
+
+		return newNetwork;
 	}
-	
-	
-	
-	private Network makeDeepCopy(final Network toCopy)
-	{
-		final Network network = ModelFactory.eINSTANCE.createNetwork();
-		network.setName(toCopy.getName() + "_" + network.hashCode());
-		network.setAtribute_0(toCopy.getAtribute_0());
-		network.setAtribute_1(toCopy.getAtribute_1());
-		
-		return network;
-	}
-	
-	
-	
+
 	@Override
-	public void paste(final IPasteContext context)
-	{
+	public void paste(final IPasteContext context) {
 		final PictogramElement[] pes = context.getPictogramElements();
-		
-		for (final Object object : getFromClipboard())
-		{
-			if (object instanceof Network)
-			{
+
+		for (final Object object : getFromClipboard()) {
+			if (object instanceof Network) {
 				final Network newNetwork = makeDeepCopy((Network) object);
 				final AddContext ac = new AddContext();
 				ac.setNewObject(newNetwork);
 				ac.setTargetContainer((Diagram) pes[0]);
 				addGraphicalRepresentation(ac, ac.getNewObject());
-			}
-			else if (object instanceof HadoopMaster)
-			{
-				final Service service = makeDeepCopy((HadoopMaster) object);
-				final AddContext ac = new AddContext();
-				ac.setNewObject(service);
-				ac.setTargetContainer((Diagram) pes[0]);
-				addGraphicalRepresentation(ac, ac.getNewObject());
-			}
-			else if (object instanceof HadoopSlave)
-			{
-				final Service service = makeDeepCopy((HadoopSlave) object);
+			} else if (object instanceof Service) {
+				final Service service = makeDeepCopy((Service) object);
 				final AddContext ac = new AddContext();
 				ac.setNewObject(service);
 				ac.setTargetContainer((Diagram) pes[0]);
@@ -93,38 +63,27 @@ public class UniversalPasteFeature extends AbstractPasteFeature
 			}
 		}
 	}
-	
-	
-	
+
 	@Override
-	public boolean canPaste(final IPasteContext context)
-	{
-		if (context.getPictogramElements().length != 1 || getFromClipboard() == null || getFromClipboard().length == 0)
-		{
+	public boolean canPaste(final IPasteContext context) {
+		if (context.getPictogramElements().length != 1 || getFromClipboard() == null
+				|| getFromClipboard().length == 0) {
 			return false;
 		}
-		
+
 		final Object source = getFromClipboard()[0];
 		Object target;
-		if (context.getPictogramElements()[0].getLink() != null)
-		{
+		if (context.getPictogramElements()[0].getLink() != null) {
 			target = context.getPictogramElements()[0].getLink().getBusinessObjects().get(0);
-		}
-		else
-		{
+		} else {
 			target = context.getPictogramElements()[0];
 		}
-		
-		if (source instanceof Service && target instanceof Diagram)
-		{
+
+		if (source instanceof Service && target instanceof Diagram) {
 			return true;
-		}
-		else if (source instanceof Network && target instanceof Diagram)
-		{
+		} else if (source instanceof Network && target instanceof Diagram) {
 			return true;
-		}
-		else
-		{
+		} else {
 			return false;
 		}
 	}

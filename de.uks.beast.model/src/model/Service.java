@@ -14,9 +14,11 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link model.Service#getName <em>Name</em>}</li>
- *   <li>{@link model.Service#getAtribute_0 <em>Atribute 0</em>}</li>
- *   <li>{@link model.Service#getAtribute_1 <em>Atribute 1</em>}</li>
  *   <li>{@link model.Service#getNetwork <em>Network</em>}</li>
+ *   <li>{@link model.Service#getLimitCpu <em>Limit Cpu</em>}</li>
+ *   <li>{@link model.Service#getLimitMem <em>Limit Mem</em>}</li>
+ *   <li>{@link model.Service#getReservationCpu <em>Reservation Cpu</em>}</li>
+ *   <li>{@link model.Service#getReservationMem <em>Reservation Mem</em>}</li>
  * </ul>
  *
  * @see model.ModelPackage#getService()
@@ -53,58 +55,6 @@ public interface Service extends EObject
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Atribute 0</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Atribute 0</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Atribute 0</em>' attribute.
-	 * @see #setAtribute_0(String)
-	 * @see model.ModelPackage#getService_Atribute_0()
-	 * @model
-	 * @generated
-	 */
-	String getAtribute_0();
-
-	/**
-	 * Sets the value of the '{@link model.Service#getAtribute_0 <em>Atribute 0</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Atribute 0</em>' attribute.
-	 * @see #getAtribute_0()
-	 * @generated
-	 */
-	void setAtribute_0(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Atribute 1</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Atribute 1</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Atribute 1</em>' attribute.
-	 * @see #setAtribute_1(String)
-	 * @see model.ModelPackage#getService_Atribute_1()
-	 * @model
-	 * @generated
-	 */
-	String getAtribute_1();
-
-	/**
-	 * Sets the value of the '{@link model.Service#getAtribute_1 <em>Atribute 1</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Atribute 1</em>' attribute.
-	 * @see #getAtribute_1()
-	 * @generated
-	 */
-	void setAtribute_1(String value);
-
-	/**
 	 * Returns the value of the '<em><b>Network</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link model.Network#getServices <em>Services</em>}'.
 	 * <!-- begin-user-doc -->
@@ -131,5 +81,113 @@ public interface Service extends EObject
 	 * @generated
 	 */
 	void setNetwork(Network value);
+
+	/**
+	 * Returns the value of the '<em><b>Limit Cpu</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Limit Cpu</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Limit Cpu</em>' attribute.
+	 * @see #setLimitCpu(String)
+	 * @see model.ModelPackage#getService_LimitCpu()
+	 * @model default="0"
+	 * @generated
+	 */
+	String getLimitCpu();
+
+	/**
+	 * Sets the value of the '{@link model.Service#getLimitCpu <em>Limit Cpu</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Limit Cpu</em>' attribute.
+	 * @see #getLimitCpu()
+	 * @generated
+	 */
+	void setLimitCpu(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Limit Mem</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Limit Mem</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Limit Mem</em>' attribute.
+	 * @see #setLimitMem(String)
+	 * @see model.ModelPackage#getService_LimitMem()
+	 * @model default="0"
+	 * @generated
+	 */
+	String getLimitMem();
+
+	/**
+	 * Sets the value of the '{@link model.Service#getLimitMem <em>Limit Mem</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Limit Mem</em>' attribute.
+	 * @see #getLimitMem()
+	 * @generated
+	 */
+	void setLimitMem(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Reservation Cpu</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Reservation Cpu</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Reservation Cpu</em>' attribute.
+	 * @see #setReservationCpu(String)
+	 * @see model.ModelPackage#getService_ReservationCpu()
+	 * @model default="0"
+	 * @generated
+	 */
+	String getReservationCpu();
+
+	/**
+	 * Sets the value of the '{@link model.Service#getReservationCpu <em>Reservation Cpu</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Reservation Cpu</em>' attribute.
+	 * @see #getReservationCpu()
+	 * @generated
+	 */
+	void setReservationCpu(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Reservation Mem</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Reservation Mem</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Reservation Mem</em>' attribute.
+	 * @see #setReservationMem(String)
+	 * @see model.ModelPackage#getService_ReservationMem()
+	 * @model default="0"
+	 * @generated
+	 */
+	String getReservationMem();
+
+	/**
+	 * Sets the value of the '{@link model.Service#getReservationMem <em>Reservation Mem</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Reservation Mem</em>' attribute.
+	 * @see #getReservationMem()
+	 * @generated
+	 */
+	void setReservationMem(String value);
 
 } // Service

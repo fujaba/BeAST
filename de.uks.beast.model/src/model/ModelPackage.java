@@ -86,31 +86,13 @@ public interface ModelPackage extends EPackage
 	int NETWORK__SERVICES = 1;
 
 	/**
-	 * The feature id for the '<em><b>Atribute 0</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NETWORK__ATRIBUTE_0 = 2;
-
-	/**
-	 * The feature id for the '<em><b>Atribute 1</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NETWORK__ATRIBUTE_1 = 3;
-
-	/**
 	 * The number of structural features of the '<em>Network</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NETWORK_FEATURE_COUNT = 4;
+	int NETWORK_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Network</em>' class.
@@ -141,31 +123,49 @@ public interface ModelPackage extends EPackage
 	int SERVICE__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Atribute 0</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE__ATRIBUTE_0 = 1;
-
-	/**
-	 * The feature id for the '<em><b>Atribute 1</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE__ATRIBUTE_1 = 2;
-
-	/**
 	 * The feature id for the '<em><b>Network</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE__NETWORK = 3;
+	int SERVICE__NETWORK = 1;
+
+	/**
+	 * The feature id for the '<em><b>Limit Cpu</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__LIMIT_CPU = 2;
+
+	/**
+	 * The feature id for the '<em><b>Limit Mem</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__LIMIT_MEM = 3;
+
+	/**
+	 * The feature id for the '<em><b>Reservation Cpu</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__RESERVATION_CPU = 4;
+
+	/**
+	 * The feature id for the '<em><b>Reservation Mem</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__RESERVATION_MEM = 5;
 
 	/**
 	 * The number of structural features of the '<em>Service</em>' class.
@@ -174,7 +174,7 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_FEATURE_COUNT = 4;
+	int SERVICE_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Service</em>' class.
@@ -205,24 +205,6 @@ public interface ModelPackage extends EPackage
 	int HADOOP_MASTER__NAME = SERVICE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Atribute 0</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int HADOOP_MASTER__ATRIBUTE_0 = SERVICE__ATRIBUTE_0;
-
-	/**
-	 * The feature id for the '<em><b>Atribute 1</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int HADOOP_MASTER__ATRIBUTE_1 = SERVICE__ATRIBUTE_1;
-
-	/**
 	 * The feature id for the '<em><b>Network</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -230,6 +212,42 @@ public interface ModelPackage extends EPackage
 	 * @ordered
 	 */
 	int HADOOP_MASTER__NETWORK = SERVICE__NETWORK;
+
+	/**
+	 * The feature id for the '<em><b>Limit Cpu</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HADOOP_MASTER__LIMIT_CPU = SERVICE__LIMIT_CPU;
+
+	/**
+	 * The feature id for the '<em><b>Limit Mem</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HADOOP_MASTER__LIMIT_MEM = SERVICE__LIMIT_MEM;
+
+	/**
+	 * The feature id for the '<em><b>Reservation Cpu</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HADOOP_MASTER__RESERVATION_CPU = SERVICE__RESERVATION_CPU;
+
+	/**
+	 * The feature id for the '<em><b>Reservation Mem</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HADOOP_MASTER__RESERVATION_MEM = SERVICE__RESERVATION_MEM;
 
 	/**
 	 * The feature id for the '<em><b>Hadoop Slaves</b></em>' reference list.
@@ -278,24 +296,6 @@ public interface ModelPackage extends EPackage
 	int HADOOP_SLAVE__NAME = SERVICE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Atribute 0</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int HADOOP_SLAVE__ATRIBUTE_0 = SERVICE__ATRIBUTE_0;
-
-	/**
-	 * The feature id for the '<em><b>Atribute 1</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int HADOOP_SLAVE__ATRIBUTE_1 = SERVICE__ATRIBUTE_1;
-
-	/**
 	 * The feature id for the '<em><b>Network</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -303,6 +303,42 @@ public interface ModelPackage extends EPackage
 	 * @ordered
 	 */
 	int HADOOP_SLAVE__NETWORK = SERVICE__NETWORK;
+
+	/**
+	 * The feature id for the '<em><b>Limit Cpu</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HADOOP_SLAVE__LIMIT_CPU = SERVICE__LIMIT_CPU;
+
+	/**
+	 * The feature id for the '<em><b>Limit Mem</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HADOOP_SLAVE__LIMIT_MEM = SERVICE__LIMIT_MEM;
+
+	/**
+	 * The feature id for the '<em><b>Reservation Cpu</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HADOOP_SLAVE__RESERVATION_CPU = SERVICE__RESERVATION_CPU;
+
+	/**
+	 * The feature id for the '<em><b>Reservation Mem</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HADOOP_SLAVE__RESERVATION_MEM = SERVICE__RESERVATION_MEM;
 
 	/**
 	 * The feature id for the '<em><b>Hadoop Master</b></em>' reference.
@@ -330,6 +366,52 @@ public interface ModelPackage extends EPackage
 	 * @ordered
 	 */
 	int HADOOP_SLAVE_OPERATION_COUNT = SERVICE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link model.impl.ControlCenterImpl <em>Control Center</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see model.impl.ControlCenterImpl
+	 * @see model.impl.ModelPackageImpl#getControlCenter()
+	 * @generated
+	 */
+	int CONTROL_CENTER = 4;
+
+	/**
+	 * The feature id for the '<em><b>Master Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_CENTER__MASTER_NODES = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_CENTER__NAME = 1;
+
+	/**
+	 * The number of structural features of the '<em>Control Center</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_CENTER_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Control Center</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_CENTER_OPERATION_COUNT = 0;
 
 
 	/**
@@ -365,28 +447,6 @@ public interface ModelPackage extends EPackage
 	EReference getNetwork_Services();
 
 	/**
-	 * Returns the meta object for the attribute '{@link model.Network#getAtribute_0 <em>Atribute 0</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Atribute 0</em>'.
-	 * @see model.Network#getAtribute_0()
-	 * @see #getNetwork()
-	 * @generated
-	 */
-	EAttribute getNetwork_Atribute_0();
-
-	/**
-	 * Returns the meta object for the attribute '{@link model.Network#getAtribute_1 <em>Atribute 1</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Atribute 1</em>'.
-	 * @see model.Network#getAtribute_1()
-	 * @see #getNetwork()
-	 * @generated
-	 */
-	EAttribute getNetwork_Atribute_1();
-
-	/**
 	 * Returns the meta object for class '{@link model.Service <em>Service</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -408,28 +468,6 @@ public interface ModelPackage extends EPackage
 	EAttribute getService_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link model.Service#getAtribute_0 <em>Atribute 0</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Atribute 0</em>'.
-	 * @see model.Service#getAtribute_0()
-	 * @see #getService()
-	 * @generated
-	 */
-	EAttribute getService_Atribute_0();
-
-	/**
-	 * Returns the meta object for the attribute '{@link model.Service#getAtribute_1 <em>Atribute 1</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Atribute 1</em>'.
-	 * @see model.Service#getAtribute_1()
-	 * @see #getService()
-	 * @generated
-	 */
-	EAttribute getService_Atribute_1();
-
-	/**
 	 * Returns the meta object for the reference '{@link model.Service#getNetwork <em>Network</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -439,6 +477,50 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 */
 	EReference getService_Network();
+
+	/**
+	 * Returns the meta object for the attribute '{@link model.Service#getLimitCpu <em>Limit Cpu</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Limit Cpu</em>'.
+	 * @see model.Service#getLimitCpu()
+	 * @see #getService()
+	 * @generated
+	 */
+	EAttribute getService_LimitCpu();
+
+	/**
+	 * Returns the meta object for the attribute '{@link model.Service#getLimitMem <em>Limit Mem</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Limit Mem</em>'.
+	 * @see model.Service#getLimitMem()
+	 * @see #getService()
+	 * @generated
+	 */
+	EAttribute getService_LimitMem();
+
+	/**
+	 * Returns the meta object for the attribute '{@link model.Service#getReservationCpu <em>Reservation Cpu</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Reservation Cpu</em>'.
+	 * @see model.Service#getReservationCpu()
+	 * @see #getService()
+	 * @generated
+	 */
+	EAttribute getService_ReservationCpu();
+
+	/**
+	 * Returns the meta object for the attribute '{@link model.Service#getReservationMem <em>Reservation Mem</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Reservation Mem</em>'.
+	 * @see model.Service#getReservationMem()
+	 * @see #getService()
+	 * @generated
+	 */
+	EAttribute getService_ReservationMem();
 
 	/**
 	 * Returns the meta object for class '{@link model.HadoopMaster <em>Hadoop Master</em>}'.
@@ -481,6 +563,38 @@ public interface ModelPackage extends EPackage
 	 * @generated
 	 */
 	EReference getHadoopSlave_HadoopMaster();
+
+	/**
+	 * Returns the meta object for class '{@link model.ControlCenter <em>Control Center</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Control Center</em>'.
+	 * @see model.ControlCenter
+	 * @generated
+	 */
+	EClass getControlCenter();
+
+	/**
+	 * Returns the meta object for the reference list '{@link model.ControlCenter#getMasterNodes <em>Master Nodes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Master Nodes</em>'.
+	 * @see model.ControlCenter#getMasterNodes()
+	 * @see #getControlCenter()
+	 * @generated
+	 */
+	EReference getControlCenter_MasterNodes();
+
+	/**
+	 * Returns the meta object for the attribute '{@link model.ControlCenter#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see model.ControlCenter#getName()
+	 * @see #getControlCenter()
+	 * @generated
+	 */
+	EAttribute getControlCenter_Name();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -533,22 +647,6 @@ public interface ModelPackage extends EPackage
 		EReference NETWORK__SERVICES = eINSTANCE.getNetwork_Services();
 
 		/**
-		 * The meta object literal for the '<em><b>Atribute 0</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute NETWORK__ATRIBUTE_0 = eINSTANCE.getNetwork_Atribute_0();
-
-		/**
-		 * The meta object literal for the '<em><b>Atribute 1</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute NETWORK__ATRIBUTE_1 = eINSTANCE.getNetwork_Atribute_1();
-
-		/**
 		 * The meta object literal for the '{@link model.Service <em>Service</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -567,28 +665,44 @@ public interface ModelPackage extends EPackage
 		EAttribute SERVICE__NAME = eINSTANCE.getService_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Atribute 0</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SERVICE__ATRIBUTE_0 = eINSTANCE.getService_Atribute_0();
-
-		/**
-		 * The meta object literal for the '<em><b>Atribute 1</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SERVICE__ATRIBUTE_1 = eINSTANCE.getService_Atribute_1();
-
-		/**
 		 * The meta object literal for the '<em><b>Network</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference SERVICE__NETWORK = eINSTANCE.getService_Network();
+
+		/**
+		 * The meta object literal for the '<em><b>Limit Cpu</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE__LIMIT_CPU = eINSTANCE.getService_LimitCpu();
+
+		/**
+		 * The meta object literal for the '<em><b>Limit Mem</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE__LIMIT_MEM = eINSTANCE.getService_LimitMem();
+
+		/**
+		 * The meta object literal for the '<em><b>Reservation Cpu</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE__RESERVATION_CPU = eINSTANCE.getService_ReservationCpu();
+
+		/**
+		 * The meta object literal for the '<em><b>Reservation Mem</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE__RESERVATION_MEM = eINSTANCE.getService_ReservationMem();
 
 		/**
 		 * The meta object literal for the '{@link model.impl.HadoopMasterImpl <em>Hadoop Master</em>}' class.
@@ -625,6 +739,32 @@ public interface ModelPackage extends EPackage
 		 * @generated
 		 */
 		EReference HADOOP_SLAVE__HADOOP_MASTER = eINSTANCE.getHadoopSlave_HadoopMaster();
+
+		/**
+		 * The meta object literal for the '{@link model.impl.ControlCenterImpl <em>Control Center</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see model.impl.ControlCenterImpl
+		 * @see model.impl.ModelPackageImpl#getControlCenter()
+		 * @generated
+		 */
+		EClass CONTROL_CENTER = eINSTANCE.getControlCenter();
+
+		/**
+		 * The meta object literal for the '<em><b>Master Nodes</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONTROL_CENTER__MASTER_NODES = eINSTANCE.getControlCenter_MasterNodes();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONTROL_CENTER__NAME = eINSTANCE.getControlCenter_Name();
 
 	}
 

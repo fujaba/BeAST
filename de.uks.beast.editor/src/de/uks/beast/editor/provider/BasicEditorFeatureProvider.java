@@ -1,5 +1,6 @@
 package de.uks.beast.editor.provider;
 
+import model.ControlCenter;
 import model.Network;
 import model.Service;
 import model.impl.HadoopMasterImpl;
@@ -28,6 +29,7 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
+import de.uks.beast.editor.feature.add.AddControlCenterFeature;
 import de.uks.beast.editor.feature.add.AddHadoopMasterFeature;
 import de.uks.beast.editor.feature.add.AddHadoopSlaveFeature;
 import de.uks.beast.editor.feature.add.AddNetworkFeature;
@@ -38,6 +40,7 @@ import de.uks.beast.editor.feature.copy.CopyServiceFeature;
 import de.uks.beast.editor.feature.delete.DeleteConnectionFeature;
 import de.uks.beast.editor.feature.edit.DirectEditNetworkFeature;
 import de.uks.beast.editor.feature.edit.DirectEditServiceFeature;
+import de.uks.beast.editor.feature.layout.LayoutControlCenterObjectFeature;
 import de.uks.beast.editor.feature.layout.LayoutNetworkObjectFeature;
 import de.uks.beast.editor.feature.layout.LayoutServiceObjectFeature;
 import de.uks.beast.editor.feature.paste.UniversalPasteFeature;
@@ -65,19 +68,21 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 	@Override
 	public IAddFeature getAddFeature(final IAddContext context)
 	{
-		//features
 		if (context.getNewObject() instanceof Network)
 		{
 			return new AddNetworkFeature(this);
 		}
 		
-		//connections
 		else if (context instanceof IAddConnectionContext)
 		{
 			return new AddConnectionFeature(this);
 		}
 		
-		//services
+		else if (context.getNewObject() instanceof ControlCenter)
+		{
+			return new AddControlCenterFeature(this);
+		}
+		
 		else if (context.getNewObject() instanceof Service)
 		{
 			final Service service = (Service) context.getNewObject();
@@ -110,6 +115,10 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 		else if (bo instanceof Network)
 		{
 			return new LayoutNetworkObjectFeature(this);
+		}
+		else if (bo instanceof ControlCenter)
+		{
+			return new LayoutControlCenterObjectFeature(this);
 		}
 		
 		return super.getLayoutFeature(context);

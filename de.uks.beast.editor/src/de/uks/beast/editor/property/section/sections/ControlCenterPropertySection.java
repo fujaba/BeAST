@@ -11,19 +11,20 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
-import de.uks.beast.api.akka.BeastConnection;
 import de.uks.beast.editor.property.data.JobDataController;
-import de.uks.beast.editor.property.section.views.HadoopPropertyView;
-import model.Service;
+import de.uks.beast.editor.property.section.views.ControlCenterPropertyView;
+import model.ControlCenter;
 
-public class HadoopPropertySection extends GFPropertySection implements ITabbedPropertyConstants
+public class ControlCenterPropertySection extends GFPropertySection implements ITabbedPropertyConstants
 {
-	private static final Logger	LOG	= LogManager.getLogger(HadoopPropertySection.class);
+	private static final Logger			LOG	= LogManager.getLogger(ControlCenterPropertySection.class);
 	
-	private HadoopPropertyView hadoopPropertyView;
-	private Service service;
+	private ControlCenterPropertyView	controlCenterPropertyView;
+	private ControlCenter				controlCenter;
 	//private Server server;
-	private JobDataController controller;
+	private JobDataController			controller;
+	
+	
 	
 	@Override
 	public void createControls(final Composite parent, final TabbedPropertySheetPage tabbedPropertySheetPage)
@@ -38,20 +39,22 @@ public class HadoopPropertySection extends GFPropertySection implements ITabbedP
 		LOG.debug("Init JobInformationController...");
 	}
 	
+	
+	
 	@Override
 	public void refresh()
 	{
 		final PictogramElement pe = getSelectedPictogramElement();
 		EObject eContainer = pe.eContainer();
 		EObject a = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement((PictogramElement) eContainer);
-
+		
 		if (pe != null)
 		{
 			//server = (Server) a;
-			service = (Service) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
+			controlCenter = (ControlCenter) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
 			//domain = TransactionUtil.getEditingDomain(service);
 			//controller.setServerName(server.getName());
-			if (service == null)
+			if (controlCenter == null)
 			{
 				return;
 			}

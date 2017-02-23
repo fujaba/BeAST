@@ -1,5 +1,6 @@
 package de.uks.beast.editor.feature.delete;
 
+import model.ControlCenter;
 import model.HadoopMaster;
 import model.HadoopSlave;
 import model.Network;
@@ -72,6 +73,30 @@ public class DeleteConnectionFeature extends DefaultDeleteFeature
 			if (hs.getHadoopMaster().equals(hm))
 			{
 				hs.setHadoopMaster(null);
+			}
+			
+			setDoneChanges(true);
+		}
+		else if (start instanceof ControlCenter && end instanceof HadoopMaster)
+		{
+			final ControlCenter cc = (ControlCenter) start;
+			final HadoopMaster hm = (HadoopMaster) end;
+			
+			if (cc.getMasterNodes().contains(hm))
+			{
+				cc.getMasterNodes().remove(hm);
+			}
+			
+			setDoneChanges(true);
+		}
+		else if (start instanceof HadoopMaster && end instanceof ControlCenter)
+		{
+			final ControlCenter cc = (ControlCenter) end;
+			final HadoopMaster hm = (HadoopMaster) start;
+			
+			if (cc.getMasterNodes().contains(hm))
+			{
+				cc.getMasterNodes().remove(hm);
 			}
 			
 			setDoneChanges(true);

@@ -20,13 +20,9 @@ public class UpdateNetworkObjectFeature extends AbstractUpdateFeature
 {
 	// retrieve values from pictogram model
 	private String	pictogramName		= null;
-	private String	pictogramAttr_0			= null;
-	private String	pictogramAttr_1		= null;
 	
 	// retrieve values from business model
 	private String	businessName		= null;
-	private String	businessAttr_0			= null;
-	private String	businessAttr_1	= null;
 	
 	
 	
@@ -67,14 +63,6 @@ public class UpdateNetworkObjectFeature extends AbstractUpdateFeature
 					{
 						pictogramName = text.getValue();
 					}
-					else if (PropertyUtil.isAttributeShape(shape, ATTR_0))
-					{
-						pictogramAttr_0 = text.getValue();
-					}
-					else if (PropertyUtil.isAttributeShape(shape, ATTR_1))
-					{
-						pictogramAttr_1 = text.getValue();
-					}
 				}
 			}
 		}
@@ -85,21 +73,11 @@ public class UpdateNetworkObjectFeature extends AbstractUpdateFeature
 		{
 			final Network network = (Network) bo;
 			businessName = network.getName();
-			businessAttr_0 = network.getAtribute_0();
-			businessAttr_1 = network.getAtribute_1();
 		}
 		
 		if (PropertyUtil.updateNeeded(pictogramName, businessName))
 		{
 			return Reason.createTrueReason(NAME_TRUE_REASON.text());
-		}
-		else if (PropertyUtil.updateNeeded(pictogramAttr_0, businessAttr_0))
-		{
-			return Reason.createTrueReason(ATTR_0_TRUE_REASON.text());
-		}
-		else if (PropertyUtil.updateNeeded(pictogramAttr_1, businessAttr_1))
-		{
-			return Reason.createTrueReason(ATTR_1_TRUE_REASON.text());
 		}
 		else
 		{
@@ -119,8 +97,6 @@ public class UpdateNetworkObjectFeature extends AbstractUpdateFeature
 		{
 			final Network network = (Network) bo;
 			businessName = network.getName();
-			businessAttr_0 = network.getAtribute_0();
-			businessAttr_1 = network.getAtribute_1();
 		}
 		
 		// Set name in pictogram model
@@ -136,14 +112,6 @@ public class UpdateNetworkObjectFeature extends AbstractUpdateFeature
 					if (PropertyUtil.isAttributeShape(shape, NAME))
 					{
 						text.setValue(businessName);
-					}
-					else if (PropertyUtil.isAttributeShape(shape, ATTR_0))
-					{
-						text.setValue(businessAttr_0);
-					}
-					else if (PropertyUtil.isAttributeShape(shape, ATTR_1))
-					{
-						text.setValue(businessAttr_1);
 					}
 				}
 			}

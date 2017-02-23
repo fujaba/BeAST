@@ -9,6 +9,7 @@ public enum Images
 	//@formatter:off
 	PALETTE_ENTRY_IMAGE			("icons/compartment/category_icon.png",					"de.uks.beast.editor.palette_entry"),
 	NETWORK_PALETTE_IMAGE		("icons/compartment/network_d.png",						"de.uks.beast.editor.network_palette"),
+	CONTROL_CENTER_PALETTE_IMAGE("icons/compartment/control_center.png",				"de.uks.beast.editor.control_center_palette"),
 	CONNECTION_PALETTE_IMAGE	("icons/compartment/ethernet_a.jpg",					"de.uks.beast.editor.ethernet_connection_palette"),
 	
 	HADOOP_PALETTE_IMAGE		("icons/compartment/hadoop_category_icon.png",			"de.uks.beast.editor.hadoop_palette"),

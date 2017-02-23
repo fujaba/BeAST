@@ -25,9 +25,11 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link model.impl.HadoopSlaveImpl#getName <em>Name</em>}</li>
- *   <li>{@link model.impl.HadoopSlaveImpl#getAtribute_0 <em>Atribute 0</em>}</li>
- *   <li>{@link model.impl.HadoopSlaveImpl#getAtribute_1 <em>Atribute 1</em>}</li>
  *   <li>{@link model.impl.HadoopSlaveImpl#getNetwork <em>Network</em>}</li>
+ *   <li>{@link model.impl.HadoopSlaveImpl#getLimitCpu <em>Limit Cpu</em>}</li>
+ *   <li>{@link model.impl.HadoopSlaveImpl#getLimitMem <em>Limit Mem</em>}</li>
+ *   <li>{@link model.impl.HadoopSlaveImpl#getReservationCpu <em>Reservation Cpu</em>}</li>
+ *   <li>{@link model.impl.HadoopSlaveImpl#getReservationMem <em>Reservation Mem</em>}</li>
  *   <li>{@link model.impl.HadoopSlaveImpl#getHadoopMaster <em>Hadoop Master</em>}</li>
  * </ul>
  *
@@ -56,46 +58,6 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getAtribute_0() <em>Atribute 0</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAtribute_0()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String ATRIBUTE_0_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getAtribute_0() <em>Atribute 0</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAtribute_0()
-	 * @generated
-	 * @ordered
-	 */
-	protected String atribute_0 = ATRIBUTE_0_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getAtribute_1() <em>Atribute 1</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAtribute_1()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String ATRIBUTE_1_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getAtribute_1() <em>Atribute 1</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAtribute_1()
-	 * @generated
-	 * @ordered
-	 */
-	protected String atribute_1 = ATRIBUTE_1_EDEFAULT;
-
-	/**
 	 * The cached value of the '{@link #getNetwork() <em>Network</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -104,6 +66,86 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	 * @ordered
 	 */
 	protected Network network;
+
+	/**
+	 * The default value of the '{@link #getLimitCpu() <em>Limit Cpu</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLimitCpu()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String LIMIT_CPU_EDEFAULT = "0";
+
+	/**
+	 * The cached value of the '{@link #getLimitCpu() <em>Limit Cpu</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLimitCpu()
+	 * @generated
+	 * @ordered
+	 */
+	protected String limitCpu = LIMIT_CPU_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getLimitMem() <em>Limit Mem</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLimitMem()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String LIMIT_MEM_EDEFAULT = "0";
+
+	/**
+	 * The cached value of the '{@link #getLimitMem() <em>Limit Mem</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLimitMem()
+	 * @generated
+	 * @ordered
+	 */
+	protected String limitMem = LIMIT_MEM_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getReservationCpu() <em>Reservation Cpu</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReservationCpu()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String RESERVATION_CPU_EDEFAULT = "0";
+
+	/**
+	 * The cached value of the '{@link #getReservationCpu() <em>Reservation Cpu</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReservationCpu()
+	 * @generated
+	 * @ordered
+	 */
+	protected String reservationCpu = RESERVATION_CPU_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getReservationMem() <em>Reservation Mem</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReservationMem()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String RESERVATION_MEM_EDEFAULT = "0";
+
+	/**
+	 * The cached value of the '{@link #getReservationMem() <em>Reservation Mem</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReservationMem()
+	 * @generated
+	 * @ordered
+	 */
+	protected String reservationMem = RESERVATION_MEM_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getHadoopMaster() <em>Hadoop Master</em>}' reference.
@@ -157,52 +199,6 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 		name = newName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getAtribute_0()
-	{
-		return atribute_0;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAtribute_0(String newAtribute_0)
-	{
-		String oldAtribute_0 = atribute_0;
-		atribute_0 = newAtribute_0;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__ATRIBUTE_0, oldAtribute_0, atribute_0));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getAtribute_1()
-	{
-		return atribute_1;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAtribute_1(String newAtribute_1)
-	{
-		String oldAtribute_1 = atribute_1;
-		atribute_1 = newAtribute_1;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__ATRIBUTE_1, oldAtribute_1, atribute_1));
 	}
 
 	/**
@@ -271,6 +267,98 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__NETWORK, newNetwork, newNetwork));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getLimitCpu()
+	{
+		return limitCpu;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLimitCpu(String newLimitCpu)
+	{
+		String oldLimitCpu = limitCpu;
+		limitCpu = newLimitCpu;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__LIMIT_CPU, oldLimitCpu, limitCpu));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getLimitMem()
+	{
+		return limitMem;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLimitMem(String newLimitMem)
+	{
+		String oldLimitMem = limitMem;
+		limitMem = newLimitMem;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__LIMIT_MEM, oldLimitMem, limitMem));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getReservationCpu()
+	{
+		return reservationCpu;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReservationCpu(String newReservationCpu)
+	{
+		String oldReservationCpu = reservationCpu;
+		reservationCpu = newReservationCpu;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__RESERVATION_CPU, oldReservationCpu, reservationCpu));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getReservationMem()
+	{
+		return reservationMem;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReservationMem(String newReservationMem)
+	{
+		String oldReservationMem = reservationMem;
+		reservationMem = newReservationMem;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__RESERVATION_MEM, oldReservationMem, reservationMem));
 	}
 
 	/**
@@ -393,13 +481,17 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 		{
 			case ModelPackage.HADOOP_SLAVE__NAME:
 				return getName();
-			case ModelPackage.HADOOP_SLAVE__ATRIBUTE_0:
-				return getAtribute_0();
-			case ModelPackage.HADOOP_SLAVE__ATRIBUTE_1:
-				return getAtribute_1();
 			case ModelPackage.HADOOP_SLAVE__NETWORK:
 				if (resolve) return getNetwork();
 				return basicGetNetwork();
+			case ModelPackage.HADOOP_SLAVE__LIMIT_CPU:
+				return getLimitCpu();
+			case ModelPackage.HADOOP_SLAVE__LIMIT_MEM:
+				return getLimitMem();
+			case ModelPackage.HADOOP_SLAVE__RESERVATION_CPU:
+				return getReservationCpu();
+			case ModelPackage.HADOOP_SLAVE__RESERVATION_MEM:
+				return getReservationMem();
 			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTER:
 				if (resolve) return getHadoopMaster();
 				return basicGetHadoopMaster();
@@ -420,14 +512,20 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 			case ModelPackage.HADOOP_SLAVE__NAME:
 				setName((String)newValue);
 				return;
-			case ModelPackage.HADOOP_SLAVE__ATRIBUTE_0:
-				setAtribute_0((String)newValue);
-				return;
-			case ModelPackage.HADOOP_SLAVE__ATRIBUTE_1:
-				setAtribute_1((String)newValue);
-				return;
 			case ModelPackage.HADOOP_SLAVE__NETWORK:
 				setNetwork((Network)newValue);
+				return;
+			case ModelPackage.HADOOP_SLAVE__LIMIT_CPU:
+				setLimitCpu((String)newValue);
+				return;
+			case ModelPackage.HADOOP_SLAVE__LIMIT_MEM:
+				setLimitMem((String)newValue);
+				return;
+			case ModelPackage.HADOOP_SLAVE__RESERVATION_CPU:
+				setReservationCpu((String)newValue);
+				return;
+			case ModelPackage.HADOOP_SLAVE__RESERVATION_MEM:
+				setReservationMem((String)newValue);
 				return;
 			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTER:
 				setHadoopMaster((HadoopMaster)newValue);
@@ -449,14 +547,20 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 			case ModelPackage.HADOOP_SLAVE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ModelPackage.HADOOP_SLAVE__ATRIBUTE_0:
-				setAtribute_0(ATRIBUTE_0_EDEFAULT);
-				return;
-			case ModelPackage.HADOOP_SLAVE__ATRIBUTE_1:
-				setAtribute_1(ATRIBUTE_1_EDEFAULT);
-				return;
 			case ModelPackage.HADOOP_SLAVE__NETWORK:
 				setNetwork((Network)null);
+				return;
+			case ModelPackage.HADOOP_SLAVE__LIMIT_CPU:
+				setLimitCpu(LIMIT_CPU_EDEFAULT);
+				return;
+			case ModelPackage.HADOOP_SLAVE__LIMIT_MEM:
+				setLimitMem(LIMIT_MEM_EDEFAULT);
+				return;
+			case ModelPackage.HADOOP_SLAVE__RESERVATION_CPU:
+				setReservationCpu(RESERVATION_CPU_EDEFAULT);
+				return;
+			case ModelPackage.HADOOP_SLAVE__RESERVATION_MEM:
+				setReservationMem(RESERVATION_MEM_EDEFAULT);
 				return;
 			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTER:
 				setHadoopMaster((HadoopMaster)null);
@@ -477,12 +581,16 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 		{
 			case ModelPackage.HADOOP_SLAVE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ModelPackage.HADOOP_SLAVE__ATRIBUTE_0:
-				return ATRIBUTE_0_EDEFAULT == null ? atribute_0 != null : !ATRIBUTE_0_EDEFAULT.equals(atribute_0);
-			case ModelPackage.HADOOP_SLAVE__ATRIBUTE_1:
-				return ATRIBUTE_1_EDEFAULT == null ? atribute_1 != null : !ATRIBUTE_1_EDEFAULT.equals(atribute_1);
 			case ModelPackage.HADOOP_SLAVE__NETWORK:
 				return network != null;
+			case ModelPackage.HADOOP_SLAVE__LIMIT_CPU:
+				return LIMIT_CPU_EDEFAULT == null ? limitCpu != null : !LIMIT_CPU_EDEFAULT.equals(limitCpu);
+			case ModelPackage.HADOOP_SLAVE__LIMIT_MEM:
+				return LIMIT_MEM_EDEFAULT == null ? limitMem != null : !LIMIT_MEM_EDEFAULT.equals(limitMem);
+			case ModelPackage.HADOOP_SLAVE__RESERVATION_CPU:
+				return RESERVATION_CPU_EDEFAULT == null ? reservationCpu != null : !RESERVATION_CPU_EDEFAULT.equals(reservationCpu);
+			case ModelPackage.HADOOP_SLAVE__RESERVATION_MEM:
+				return RESERVATION_MEM_EDEFAULT == null ? reservationMem != null : !RESERVATION_MEM_EDEFAULT.equals(reservationMem);
 			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTER:
 				return hadoopMaster != null;
 		}
@@ -502,10 +610,14 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", atribute_0: ");
-		result.append(atribute_0);
-		result.append(", atribute_1: ");
-		result.append(atribute_1);
+		result.append(", limitCpu: ");
+		result.append(limitCpu);
+		result.append(", limitMem: ");
+		result.append(limitMem);
+		result.append(", reservationCpu: ");
+		result.append(reservationCpu);
+		result.append(", reservationMem: ");
+		result.append(reservationMem);
 		result.append(')');
 		return result.toString();
 	}

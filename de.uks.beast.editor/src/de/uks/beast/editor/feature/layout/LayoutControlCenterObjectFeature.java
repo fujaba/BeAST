@@ -1,8 +1,7 @@
 package de.uks.beast.editor.feature.layout;
 
-import static de.uks.beast.editor.util.Dimensions.NETWORK_INITIAL_HEIGHT;
-import static de.uks.beast.editor.util.Dimensions.NETWORK_INITIAL_WIDTH;
-import model.Network;
+import static de.uks.beast.editor.util.Dimensions.CONTROL_CENTER_INITIAL_HEIGHT;
+import static de.uks.beast.editor.util.Dimensions.CONTROL_CENTER_INITIAL_WIDTH;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -20,10 +19,12 @@ import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 
-public class LayoutNetworkObjectFeature extends AbstractLayoutFeature implements ILayoutFeature
+import model.ControlCenter;
+
+public class LayoutControlCenterObjectFeature extends AbstractLayoutFeature implements ILayoutFeature
 {
 	
-	public LayoutNetworkObjectFeature(final IFeatureProvider fp)
+	public LayoutControlCenterObjectFeature(final IFeatureProvider fp)
 	{
 		super(fp);
 	}
@@ -43,7 +44,7 @@ public class LayoutNetworkObjectFeature extends AbstractLayoutFeature implements
 		
 		final EList<EObject> businessObjects = pe.getLink().getBusinessObjects();
 		
-		return businessObjects.size() == 1 && businessObjects.get(0) instanceof Network;
+		return businessObjects.size() == 1 && businessObjects.get(0) instanceof ControlCenter;
 	}
 	
 	
@@ -56,16 +57,16 @@ public class LayoutNetworkObjectFeature extends AbstractLayoutFeature implements
 		final GraphicsAlgorithm containerGa = containerShape.getGraphicsAlgorithm();
 		
 		// height
-		if (containerGa.getHeight() < NETWORK_INITIAL_HEIGHT)
+		if (containerGa.getHeight() < CONTROL_CENTER_INITIAL_HEIGHT)
 		{
-			containerGa.setHeight(NETWORK_INITIAL_HEIGHT);
+			containerGa.setHeight(CONTROL_CENTER_INITIAL_HEIGHT);
 			anythingChanged = true;
 		}
 		
 		// width
-		if (containerGa.getWidth() < NETWORK_INITIAL_WIDTH)
+		if (containerGa.getWidth() < CONTROL_CENTER_INITIAL_WIDTH)
 		{
-			containerGa.setWidth(NETWORK_INITIAL_WIDTH);
+			containerGa.setWidth(CONTROL_CENTER_INITIAL_WIDTH);
 			anythingChanged = true;
 		}
 		

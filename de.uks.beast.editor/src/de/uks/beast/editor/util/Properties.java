@@ -7,15 +7,20 @@ public enum Properties
 	TYPE_NETWORK				("Network"),
 	TYPE_HADOOP_MASTER			("HadoopMaster"),
 	TYPE_HADOOP_SLAVE			("HadoopSlave"),
+	TYPE_CONTROL_CENTER			("ControlCenter"),
 	
 	// keys
 	NAME						("name"),
-	ATTR_0						("attr_0"),
-	ATTR_1						("attr_1"),
+	LIMIT_CPU					("limit_cpu"),
+	RESERVATION_CPU				("reservation_cpu"),
+	LIMIT_MEM					("limit_mem"),
+	RESERVATION_MEM				("reservation_mem"),
 	
 	//Properties/ Labels
-	ATTR_0_LABEL				("Attr_0: "),
-	ATTR_1_LABEL				("Attr_1: "),
+	LIMIT_CPU_LABEL				("Limit Cpu: "),
+	RESERVATION_CPU_LABEL		("Reservation Cpu: "),
+	LIMIT_MEM_LABEL				("Limit Mem: "),
+	RESERVATION_MEM_LABEL		("Reservation Mem: "),
 	TRANSFER					("Transfer"),
 	;//@formatter:on
 	

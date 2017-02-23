@@ -20,7 +20,7 @@ import de.uks.beast.editor.property.data.JobFileDataContainer;
 import de.uks.beast.editor.property.data.JobFileDataContainer.Type;
 import de.uks.beast.editor.util.ToolTips;
 
-public class HadoopPropertyView implements Observer
+public class ControlCenterPropertyView implements Observer
 {
 	private static final String						EMPTY	= "";
 	private final Composite							composite;
@@ -37,7 +37,7 @@ public class HadoopPropertyView implements Observer
 	
 	
 	
-	public HadoopPropertyView(final Composite parent, final TabbedPropertySheetWidgetFactory factory)
+	public ControlCenterPropertyView(final Composite parent, final TabbedPropertySheetWidgetFactory factory)
 	{
 		this.composite = parent;
 		this.factory = factory;
