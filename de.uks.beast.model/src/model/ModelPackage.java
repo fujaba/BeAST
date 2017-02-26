@@ -341,13 +341,13 @@ public interface ModelPackage extends EPackage
 	int HADOOP_SLAVE__RESERVATION_MEM = SERVICE__RESERVATION_MEM;
 
 	/**
-	 * The feature id for the '<em><b>Hadoop Master</b></em>' reference.
+	 * The feature id for the '<em><b>Hadoop Masters</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HADOOP_SLAVE__HADOOP_MASTER = SERVICE_FEATURE_COUNT + 0;
+	int HADOOP_SLAVE__HADOOP_MASTERS = SERVICE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Hadoop Slave</em>' class.
@@ -554,15 +554,15 @@ public interface ModelPackage extends EPackage
 	EClass getHadoopSlave();
 
 	/**
-	 * Returns the meta object for the reference '{@link model.HadoopSlave#getHadoopMaster <em>Hadoop Master</em>}'.
+	 * Returns the meta object for the reference list '{@link model.HadoopSlave#getHadoopMasters <em>Hadoop Masters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Hadoop Master</em>'.
-	 * @see model.HadoopSlave#getHadoopMaster()
+	 * @return the meta object for the reference list '<em>Hadoop Masters</em>'.
+	 * @see model.HadoopSlave#getHadoopMasters()
 	 * @see #getHadoopSlave()
 	 * @generated
 	 */
-	EReference getHadoopSlave_HadoopMaster();
+	EReference getHadoopSlave_HadoopMasters();
 
 	/**
 	 * Returns the meta object for class '{@link model.ControlCenter <em>Control Center</em>}'.
@@ -733,12 +733,12 @@ public interface ModelPackage extends EPackage
 		EClass HADOOP_SLAVE = eINSTANCE.getHadoopSlave();
 
 		/**
-		 * The meta object literal for the '<em><b>Hadoop Master</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Hadoop Masters</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference HADOOP_SLAVE__HADOOP_MASTER = eINSTANCE.getHadoopSlave_HadoopMaster();
+		EReference HADOOP_SLAVE__HADOOP_MASTERS = eINSTANCE.getHadoopSlave_HadoopMasters();
 
 		/**
 		 * The meta object literal for the '{@link model.impl.ControlCenterImpl <em>Control Center</em>}' class.

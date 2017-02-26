@@ -25,7 +25,7 @@ public interface HadoopMaster extends Service
 	/**
 	 * Returns the value of the '<em><b>Hadoop Slaves</b></em>' reference list.
 	 * The list contents are of type {@link model.HadoopSlave}.
-	 * It is bidirectional and its opposite is '{@link model.HadoopSlave#getHadoopMaster <em>Hadoop Master</em>}'.
+	 * It is bidirectional and its opposite is '{@link model.HadoopSlave#getHadoopMasters <em>Hadoop Masters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Hadoop Slaves</em>' reference list isn't clear,
@@ -34,8 +34,8 @@ public interface HadoopMaster extends Service
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Hadoop Slaves</em>' reference list.
 	 * @see model.ModelPackage#getHadoopMaster_HadoopSlaves()
-	 * @see model.HadoopSlave#getHadoopMaster
-	 * @model opposite="hadoopMaster"
+	 * @see model.HadoopSlave#getHadoopMasters
+	 * @model opposite="hadoopMasters"
 	 * @generated
 	 */
 	EList<HadoopSlave> getHadoopSlaves();

@@ -22,7 +22,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//HadoopMaster/hadoopSlaves"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//HadoopSlave">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//HadoopSlave/hadoopMaster"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//HadoopSlave/hadoopMasters"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//ControlCenter">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//ControlCenter/masterNodes"/>

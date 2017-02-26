@@ -258,7 +258,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getHadoopSlave_HadoopMaster()
+	public EReference getHadoopSlave_HadoopMasters()
 	{
 		return (EReference)hadoopSlaveEClass.getEStructuralFeatures().get(0);
 	}
@@ -339,7 +339,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		createEReference(hadoopMasterEClass, HADOOP_MASTER__HADOOP_SLAVES);
 
 		hadoopSlaveEClass = createEClass(HADOOP_SLAVE);
-		createEReference(hadoopSlaveEClass, HADOOP_SLAVE__HADOOP_MASTER);
+		createEReference(hadoopSlaveEClass, HADOOP_SLAVE__HADOOP_MASTERS);
 
 		controlCenterEClass = createEClass(CONTROL_CENTER);
 		createEReference(controlCenterEClass, CONTROL_CENTER__MASTER_NODES);
@@ -384,7 +384,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		initEReference(getNetwork_Services(), this.getService(), this.getService_Network(), "services", null, 0, -1, Network.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(serviceEClass, Service.class, "Service", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getService_Name(), ecorePackage.getEString(), "name", "service", 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getService_Name(), ecorePackage.getEString(), "name", "hadoop", 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getService_Network(), this.getNetwork(), this.getNetwork_Services(), "network", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getService_LimitCpu(), ecorePackage.getEString(), "limitCpu", "0", 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getService_LimitMem(), ecorePackage.getEString(), "limitMem", "0", 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -392,10 +392,10 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage
 		initEAttribute(getService_ReservationMem(), ecorePackage.getEString(), "reservationMem", "0", 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(hadoopMasterEClass, HadoopMaster.class, "HadoopMaster", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getHadoopMaster_HadoopSlaves(), this.getHadoopSlave(), this.getHadoopSlave_HadoopMaster(), "hadoopSlaves", null, 0, -1, HadoopMaster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getHadoopMaster_HadoopSlaves(), this.getHadoopSlave(), this.getHadoopSlave_HadoopMasters(), "hadoopSlaves", null, 0, -1, HadoopMaster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(hadoopSlaveEClass, HadoopSlave.class, "HadoopSlave", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getHadoopSlave_HadoopMaster(), this.getHadoopMaster(), this.getHadoopMaster_HadoopSlaves(), "hadoopMaster", null, 0, 1, HadoopSlave.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getHadoopSlave_HadoopMasters(), this.getHadoopMaster(), this.getHadoopMaster_HadoopSlaves(), "hadoopMasters", null, 0, -1, HadoopSlave.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(controlCenterEClass, ControlCenter.class, "ControlCenter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getControlCenter_MasterNodes(), this.getHadoopMaster(), null, "masterNodes", null, 0, -1, ControlCenter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

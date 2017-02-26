@@ -1,18 +1,16 @@
 package de.uks.beast.editor.feature.create;
 
-import model.ControlCenter;
-import model.HadoopMaster;
-import model.HadoopSlave;
-import model.Network;
-import model.Service;
-import model.impl.HadoopMasterImpl;
-import model.impl.HadoopSlaveImpl;
-
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateConnectionContext;
 import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateConnectionFeature;
 import org.eclipse.graphiti.mm.pictograms.Connection;
+
+import model.ControlCenter;
+import model.HadoopMaster;
+import model.HadoopSlave;
+import model.Network;
+import model.Service;
 
 public class CreateConnectionFeature extends AbstractCreateConnectionFeature
 {
@@ -81,8 +79,9 @@ public class CreateConnectionFeature extends AbstractCreateConnectionFeature
 		else if (target instanceof HadoopMaster && source instanceof HadoopSlave)
 		{
 			final HadoopSlave hs = (HadoopSlave) source;
+			final HadoopMaster hm = (HadoopMaster) target;
 			
-			if (hs.getHadoopMaster() == null)
+			if (!hs.getHadoopMasters().contains(hm))
 			{
 				return true;
 			}
@@ -123,15 +122,13 @@ public class CreateConnectionFeature extends AbstractCreateConnectionFeature
 			{
 				((ControlCenter) target).getMasterNodes().add((HadoopMaster) source);
 			}
-			else if (source instanceof HadoopMasterImpl && target instanceof HadoopSlaveImpl)
+			else if (source instanceof HadoopMaster && target instanceof HadoopSlave)
 			{
 				((HadoopMaster) source).getHadoopSlaves().add((HadoopSlave) target);
-				((HadoopSlave) target).setHadoopMaster((HadoopMaster) source);
 			}
-			else if (target instanceof HadoopMasterImpl && source instanceof HadoopSlaveImpl)
+			else if (source instanceof HadoopSlave && target instanceof HadoopMaster)
 			{
-				((HadoopSlave) source).setHadoopMaster((HadoopMaster) target);
-				((HadoopMaster) target).getHadoopSlaves().add((HadoopSlave) source);
+				((HadoopSlave) source).getHadoopMasters().add((HadoopMaster) target);
 			}
 			
 			newConnection = (Connection) getFeatureProvider().addIfPossible(addContext);

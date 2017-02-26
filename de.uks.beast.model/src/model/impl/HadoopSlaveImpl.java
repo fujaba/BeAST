@@ -2,6 +2,8 @@
  */
 package model.impl;
 
+import java.util.Collection;
+
 import model.HadoopMaster;
 import model.HadoopSlave;
 import model.ModelPackage;
@@ -10,11 +12,16 @@ import model.Network;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +37,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link model.impl.HadoopSlaveImpl#getLimitMem <em>Limit Mem</em>}</li>
  *   <li>{@link model.impl.HadoopSlaveImpl#getReservationCpu <em>Reservation Cpu</em>}</li>
  *   <li>{@link model.impl.HadoopSlaveImpl#getReservationMem <em>Reservation Mem</em>}</li>
- *   <li>{@link model.impl.HadoopSlaveImpl#getHadoopMaster <em>Hadoop Master</em>}</li>
+ *   <li>{@link model.impl.HadoopSlaveImpl#getHadoopMasters <em>Hadoop Masters</em>}</li>
  * </ul>
  *
  * @generated
@@ -45,7 +52,7 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = "service";
+	protected static final String NAME_EDEFAULT = "hadoop";
 
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -148,14 +155,14 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	protected String reservationMem = RESERVATION_MEM_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getHadoopMaster() <em>Hadoop Master</em>}' reference.
+	 * The cached value of the '{@link #getHadoopMasters() <em>Hadoop Masters</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getHadoopMaster()
+	 * @see #getHadoopMasters()
 	 * @generated
 	 * @ordered
 	 */
-	protected HadoopMaster hadoopMaster;
+	protected EList<HadoopMaster> hadoopMasters;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -366,19 +373,13 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public HadoopMaster getHadoopMaster()
+	public EList<HadoopMaster> getHadoopMasters()
 	{
-		if (hadoopMaster != null && hadoopMaster.eIsProxy())
+		if (hadoopMasters == null)
 		{
-			InternalEObject oldHadoopMaster = (InternalEObject)hadoopMaster;
-			hadoopMaster = (HadoopMaster)eResolveProxy(oldHadoopMaster);
-			if (hadoopMaster != oldHadoopMaster)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.HADOOP_SLAVE__HADOOP_MASTER, oldHadoopMaster, hadoopMaster));
-			}
+			hadoopMasters = new EObjectWithInverseResolvingEList.ManyInverse<HadoopMaster>(HadoopMaster.class, this, ModelPackage.HADOOP_SLAVE__HADOOP_MASTERS, ModelPackage.HADOOP_MASTER__HADOOP_SLAVES);
 		}
-		return hadoopMaster;
+		return hadoopMasters;
 	}
 
 	/**
@@ -386,54 +387,7 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public HadoopMaster basicGetHadoopMaster()
-	{
-		return hadoopMaster;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetHadoopMaster(HadoopMaster newHadoopMaster, NotificationChain msgs)
-	{
-		HadoopMaster oldHadoopMaster = hadoopMaster;
-		hadoopMaster = newHadoopMaster;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__HADOOP_MASTER, oldHadoopMaster, newHadoopMaster);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setHadoopMaster(HadoopMaster newHadoopMaster)
-	{
-		if (newHadoopMaster != hadoopMaster)
-		{
-			NotificationChain msgs = null;
-			if (hadoopMaster != null)
-				msgs = ((InternalEObject)hadoopMaster).eInverseRemove(this, ModelPackage.HADOOP_MASTER__HADOOP_SLAVES, HadoopMaster.class, msgs);
-			if (newHadoopMaster != null)
-				msgs = ((InternalEObject)newHadoopMaster).eInverseAdd(this, ModelPackage.HADOOP_MASTER__HADOOP_SLAVES, HadoopMaster.class, msgs);
-			msgs = basicSetHadoopMaster(newHadoopMaster, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.HADOOP_SLAVE__HADOOP_MASTER, newHadoopMaster, newHadoopMaster));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -443,10 +397,8 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 				if (network != null)
 					msgs = ((InternalEObject)network).eInverseRemove(this, ModelPackage.NETWORK__SERVICES, Network.class, msgs);
 				return basicSetNetwork((Network)otherEnd, msgs);
-			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTER:
-				if (hadoopMaster != null)
-					msgs = ((InternalEObject)hadoopMaster).eInverseRemove(this, ModelPackage.HADOOP_MASTER__HADOOP_SLAVES, HadoopMaster.class, msgs);
-				return basicSetHadoopMaster((HadoopMaster)otherEnd, msgs);
+			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTERS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getHadoopMasters()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -463,8 +415,8 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 		{
 			case ModelPackage.HADOOP_SLAVE__NETWORK:
 				return basicSetNetwork(null, msgs);
-			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTER:
-				return basicSetHadoopMaster(null, msgs);
+			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTERS:
+				return ((InternalEList<?>)getHadoopMasters()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -492,9 +444,8 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 				return getReservationCpu();
 			case ModelPackage.HADOOP_SLAVE__RESERVATION_MEM:
 				return getReservationMem();
-			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTER:
-				if (resolve) return getHadoopMaster();
-				return basicGetHadoopMaster();
+			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTERS:
+				return getHadoopMasters();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -504,6 +455,7 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -527,8 +479,9 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 			case ModelPackage.HADOOP_SLAVE__RESERVATION_MEM:
 				setReservationMem((String)newValue);
 				return;
-			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTER:
-				setHadoopMaster((HadoopMaster)newValue);
+			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTERS:
+				getHadoopMasters().clear();
+				getHadoopMasters().addAll((Collection<? extends HadoopMaster>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -562,8 +515,8 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 			case ModelPackage.HADOOP_SLAVE__RESERVATION_MEM:
 				setReservationMem(RESERVATION_MEM_EDEFAULT);
 				return;
-			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTER:
-				setHadoopMaster((HadoopMaster)null);
+			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTERS:
+				getHadoopMasters().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -591,8 +544,8 @@ public class HadoopSlaveImpl extends MinimalEObjectImpl.Container implements Had
 				return RESERVATION_CPU_EDEFAULT == null ? reservationCpu != null : !RESERVATION_CPU_EDEFAULT.equals(reservationCpu);
 			case ModelPackage.HADOOP_SLAVE__RESERVATION_MEM:
 				return RESERVATION_MEM_EDEFAULT == null ? reservationMem != null : !RESERVATION_MEM_EDEFAULT.equals(reservationMem);
-			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTER:
-				return hadoopMaster != null;
+			case ModelPackage.HADOOP_SLAVE__HADOOP_MASTERS:
+				return hadoopMasters != null && !hadoopMasters.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

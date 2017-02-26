@@ -6,6 +6,8 @@ import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 
+import de.uks.beast.editor.util.NameCache;
+import de.uks.beast.editor.util.NameCache.NameCounter;
 import model.ControlCenter;
 import model.ModelFactory;
 
@@ -42,6 +44,9 @@ public class CreateControlCenterFeature extends AbstractCreateFeature
 	public Object[] create(final ICreateContext context)
 	{
 		final ControlCenter cc = ModelFactory.eINSTANCE.createControlCenter();
+		final String newDefaultName = cc.getName() + NameCache.DELIMITER + NameCounter.CONTROL_CENTER.getAvailableCounter();
+		NameCache.add(ControlCenter.class, newDefaultName);
+		
 		getDiagram().eResource().getContents().add(cc);
 		addGraphicalRepresentation(context, cc);
 		getFeatureProvider().getDirectEditingInfo().setActive(true);

@@ -29,7 +29,7 @@ public interface Service extends EObject
 {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * The default value is <code>"service"</code>.
+	 * The default value is <code>"hadoop"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
@@ -39,7 +39,7 @@ public interface Service extends EObject
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see model.ModelPackage#getService_Name()
-	 * @model default="service" id="true"
+	 * @model default="hadoop" id="true"
 	 * @generated
 	 */
 	String getName();

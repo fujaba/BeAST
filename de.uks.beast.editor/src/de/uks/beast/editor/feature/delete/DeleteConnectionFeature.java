@@ -70,9 +70,9 @@ public class DeleteConnectionFeature extends DefaultDeleteFeature
 			final HadoopMaster hm = (HadoopMaster) end;
 			final HadoopSlave hs = (HadoopSlave) start;
 			
-			if (hs.getHadoopMaster().equals(hm))
+			if (hs.getHadoopMasters().contains(hm))
 			{
-				hs.setHadoopMaster(null);
+				hs.getHadoopMasters().remove(hm);
 			}
 			
 			setDoneChanges(true);

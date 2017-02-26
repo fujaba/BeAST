@@ -52,7 +52,7 @@ public class HadoopMasterImpl extends MinimalEObjectImpl.Container implements Ha
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = "service";
+	protected static final String NAME_EDEFAULT = "hadoop";
 
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -377,7 +377,7 @@ public class HadoopMasterImpl extends MinimalEObjectImpl.Container implements Ha
 	{
 		if (hadoopSlaves == null)
 		{
-			hadoopSlaves = new EObjectWithInverseResolvingEList<HadoopSlave>(HadoopSlave.class, this, ModelPackage.HADOOP_MASTER__HADOOP_SLAVES, ModelPackage.HADOOP_SLAVE__HADOOP_MASTER);
+			hadoopSlaves = new EObjectWithInverseResolvingEList.ManyInverse<HadoopSlave>(HadoopSlave.class, this, ModelPackage.HADOOP_MASTER__HADOOP_SLAVES, ModelPackage.HADOOP_SLAVE__HADOOP_MASTERS);
 		}
 		return hadoopSlaves;
 	}
