@@ -1,15 +1,21 @@
 package de.uks.beast.editor.util;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 
 public class NameCache
 {
-	private static final Map<Class<? extends EObject>, String>	CACHE		= new HashMap<>();
-	public static final String									DELIMITER	= "_";
+	private static final Logger										LOG			= LogManager.getLogger(NameCache.class);
+	
+	private static final Map<Class<? extends EObject>, Set<String>>	CACHE		= new HashMap<>();
+	public static final String										DELIMITER	= "_";
 	
 	
 	
@@ -19,12 +25,39 @@ public class NameCache
 	
 	
 	
+	private static void initCacheIfEmptyFor(final Class<? extends EObject> clazz)
+	{
+		if (!CACHE.containsKey(clazz))
+		{
+			LOG.info("init cache for " + clazz);
+			CACHE.put(clazz, new HashSet<String>());
+		}
+	}
+	
+	
+	
 	public static void add(final Class<? extends EObject> clazz, final String name)
 	{
+		initCacheIfEmptyFor(clazz);
+		
 		if (!isRegistered(clazz, name))
 		{
-			CACHE.put(clazz, name);
+			LOG.info("add " + name + " to cache for " + clazz);
+			CACHE.get(clazz).add(name);
 		}
+	}
+	
+	
+	
+	public static Set<String> get(final Class<? extends EObject> clazz)
+	{
+		if (CACHE.containsKey(clazz))
+		{
+			return CACHE.get(clazz);
+		}
+		
+		CACHE.put(clazz, new HashSet<String>());
+		return CACHE.get(clazz);
 	}
 	
 	
@@ -33,7 +66,36 @@ public class NameCache
 	{
 		if (isRegistered(clazz, name))
 		{
-			CACHE.remove(clazz);
+			LOG.info("remove " + name + " from cache for " + clazz);
+			CACHE.get(clazz).remove(name);
+		}
+	}
+	
+	
+	
+	public static void removeAll(final Class<? extends EObject> clazz)
+	{
+		if (CACHE.containsKey(clazz))
+		{
+			LOG.info("remove all names from cache for " + clazz);
+			CACHE.get(clazz).clear();
+		}
+	}
+	
+	
+	
+	public static int size()
+	{
+		return CACHE.size();
+	}
+	
+	
+	
+	public static void clear()
+	{
+		if (!CACHE.isEmpty())
+		{
+			CACHE.clear();
 		}
 	}
 	
@@ -41,7 +103,7 @@ public class NameCache
 	
 	public static boolean isRegistered(final Class<? extends EObject> clazz, final String name)
 	{
-		return CACHE.get(clazz) != null && CACHE.get(clazz).equals(name);
+		return CACHE.containsKey(clazz) && CACHE.get(clazz).contains(name);
 	}
 	
 	public static enum NameCounter
@@ -67,6 +129,13 @@ public class NameCache
 		public Integer getAvailableCounter()
 		{
 			return this.counter.getAndIncrement();
+		}
+		
+		
+		
+		public void count()
+		{
+			getAvailableCounter();
 		}
 	}
 	

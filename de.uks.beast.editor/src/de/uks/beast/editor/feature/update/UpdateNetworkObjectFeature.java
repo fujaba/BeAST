@@ -1,8 +1,7 @@
 package de.uks.beast.editor.feature.update;
 
-import static de.uks.beast.editor.util.Properties.*;
-import static de.uks.beast.editor.util.Strings.*;
-import model.Network;
+import static de.uks.beast.editor.util.Properties.NAME;
+import static de.uks.beast.editor.util.Strings.NAME_TRUE_REASON;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.IReason;
@@ -14,15 +13,14 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
+import de.uks.beast.editor.util.NameCache;
 import de.uks.beast.editor.util.PropertyUtil;
+import model.Network;
 
 public class UpdateNetworkObjectFeature extends AbstractUpdateFeature
 {
-	// retrieve values from pictogram model
-	private String	pictogramName		= null;
-	
-	// retrieve values from business model
-	private String	businessName		= null;
+	private String	pictogramName	= null;
+	private String	businessName	= null;
 	
 	
 	
@@ -36,10 +34,20 @@ public class UpdateNetworkObjectFeature extends AbstractUpdateFeature
 	@Override
 	public boolean canUpdate(final IUpdateContext context)
 	{
-		// return true, if linked business object is a EClass
 		final Object bo = getBusinessObjectForPictogramElement(context.getPictogramElement());
 		
-		return (bo instanceof Network);
+		if (bo instanceof Network)
+		{
+			final Network network = (Network) bo;
+			
+			if (NameCache.isRegistered(network.getClass(), network.getName()))
+			{
+				return false;
+			}
+			return true;
+		}
+		
+		return false;
 	}
 	
 	
@@ -111,7 +119,9 @@ public class UpdateNetworkObjectFeature extends AbstractUpdateFeature
 					final Text text = (Text) shape.getGraphicsAlgorithm();
 					if (PropertyUtil.isAttributeShape(shape, NAME))
 					{
+						NameCache.remove(Network.class, text.getValue());
 						text.setValue(businessName);
+						NameCache.add(Network.class, businessName);
 					}
 				}
 			}

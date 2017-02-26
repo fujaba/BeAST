@@ -1,11 +1,5 @@
 package de.uks.beast.editor.provider;
 
-import model.ControlCenter;
-import model.Network;
-import model.Service;
-import model.impl.HadoopMasterImpl;
-import model.impl.HadoopSlaveImpl;
-
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.ICopyFeature;
@@ -38,6 +32,9 @@ import de.uks.beast.editor.feature.add.connection.ReconnectionFeature;
 import de.uks.beast.editor.feature.copy.CopyNetworkFeature;
 import de.uks.beast.editor.feature.copy.CopyServiceFeature;
 import de.uks.beast.editor.feature.delete.DeleteConnectionFeature;
+import de.uks.beast.editor.feature.delete.DeleteControlCenterFeature;
+import de.uks.beast.editor.feature.delete.DeleteNetworkFeature;
+import de.uks.beast.editor.feature.delete.DeleteServiceFeature;
 import de.uks.beast.editor.feature.edit.DirectEditNetworkFeature;
 import de.uks.beast.editor.feature.edit.DirectEditServiceFeature;
 import de.uks.beast.editor.feature.layout.LayoutControlCenterObjectFeature;
@@ -46,6 +43,11 @@ import de.uks.beast.editor.feature.layout.LayoutServiceObjectFeature;
 import de.uks.beast.editor.feature.paste.UniversalPasteFeature;
 import de.uks.beast.editor.feature.update.UpdateNetworkObjectFeature;
 import de.uks.beast.editor.feature.update.UpdateServiceObjectFeature;
+import model.ControlCenter;
+import model.Network;
+import model.Service;
+import model.impl.HadoopMasterImpl;
+import model.impl.HadoopSlaveImpl;
 
 public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 {
@@ -198,14 +200,25 @@ public class BasicEditorFeatureProvider extends DefaultFeatureProvider
 	@Override
 	public IDeleteFeature getDeleteFeature(final IDeleteContext context)
 	{
-		if (context.getPictogramElement() instanceof Connection)
+		final Object o = getBusinessObjectForPictogramElement(context.getPictogramElement());
+		if (o instanceof Network)
+		{
+			return new DeleteNetworkFeature(this);
+		}
+		else if (o instanceof ControlCenter)
+		{
+			return new DeleteControlCenterFeature(this);
+		}
+		else if (o instanceof Service)
+		{
+			return new DeleteServiceFeature(this);
+		}
+		else if (context.getPictogramElement() instanceof Connection)
 		{
 			return new DeleteConnectionFeature(this);
 		}
-		else
-		{
-			return super.getDeleteFeature(context);
-		}
+		return super.getDeleteFeature(context);
+		
 	}
 	
 }

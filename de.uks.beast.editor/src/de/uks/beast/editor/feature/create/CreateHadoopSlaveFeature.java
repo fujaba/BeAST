@@ -32,7 +32,12 @@ public class CreateHadoopSlaveFeature extends AbstractCreateFeature
 	public Object[] create(final ICreateContext context)
 	{
 		final Service service = ModelFactory.eINSTANCE.createHadoopSlave();
-		final String newDefaultName = service.getName() +  "Slave" + NameCache.DELIMITER + NameCounter.HADOOP_SLAVE.getAvailableCounter();
+		String newDefaultName = service.getName() + "Slave" + NameCache.DELIMITER
+				+ NameCounter.HADOOP_SLAVE.getAvailableCounter();
+		while (NameCache.isRegistered(HadoopSlave.class, newDefaultName))
+		{
+			newDefaultName = service.getName() + "Slave" + NameCache.DELIMITER + NameCounter.HADOOP_SLAVE.getAvailableCounter();
+		}
 		NameCache.add(HadoopSlave.class, newDefaultName);
 		service.setName(newDefaultName);
 		

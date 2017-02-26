@@ -44,7 +44,11 @@ public class CreateControlCenterFeature extends AbstractCreateFeature
 	public Object[] create(final ICreateContext context)
 	{
 		final ControlCenter cc = ModelFactory.eINSTANCE.createControlCenter();
-		final String newDefaultName = cc.getName() + NameCache.DELIMITER + NameCounter.CONTROL_CENTER.getAvailableCounter();
+		String newDefaultName = cc.getName() + NameCache.DELIMITER + NameCounter.CONTROL_CENTER.getAvailableCounter();
+		while (NameCache.isRegistered(ControlCenter.class, newDefaultName))
+		{
+			newDefaultName = cc.getName() + NameCache.DELIMITER + NameCounter.CONTROL_CENTER.getAvailableCounter();
+		}
 		NameCache.add(ControlCenter.class, newDefaultName);
 		
 		getDiagram().eResource().getContents().add(cc);
