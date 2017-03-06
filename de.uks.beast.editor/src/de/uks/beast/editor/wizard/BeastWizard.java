@@ -35,6 +35,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 
+import de.uks.beast.editor.provider.DiagramFileProvider;
 import de.uks.beast.editor.util.Strings;
 
 /**
@@ -88,6 +89,7 @@ public class BeastWizard extends Wizard implements INewWizard
 	{
 		final String containerName = page.getContainerName();
 		final String fileName = page.getFileName();
+		
 		final IRunnableWithProgress op = new IRunnableWithProgress() {
 			public void run(IProgressMonitor monitor) throws InvocationTargetException
 			{
@@ -133,8 +135,8 @@ public class BeastWizard extends Wizard implements INewWizard
 		
 		FileService.createEmfFileForDiagram(diagramURI, diagram);
 		
-		ResourceSet resourceSet = diagram.eResource().getResourceSet();
-		Resource diagramResource = resourceSet.getResource(diagramURI, true);
+		final ResourceSet resourceSet = diagram.eResource().getResourceSet();
+		final Resource diagramResource = resourceSet.getResource(diagramURI, true);
 		
 		diagramResource.setTrackingModification(true);
 		diagramResource.getContents().add(diagram);
@@ -145,8 +147,7 @@ public class BeastWizard extends Wizard implements INewWizard
 		}
 		catch (final IOException e)
 		{
-			LOG.error("Cannot save diagramResource!");
-			e.printStackTrace();
+			LOG.error("Cannot save diagramResource!", e);
 		}
 		
 	}
@@ -173,6 +174,9 @@ public class BeastWizard extends Wizard implements INewWizard
 		final IFile file = container.getFile(new Path(fileName));
 		
 		createDiagram(file);
+		
+		DiagramFileProvider.setDiagramFilePath(container.getRawLocation().toOSString(), file.getName());
+		DiagramFileProvider.setDiagramName(file.getName());
 		
 		monitor.worked(1);
 		monitor.setTaskName("Opening file for editing...");

@@ -23,17 +23,19 @@ import de.uks.beast.editor.job.JobInterface;
 import de.uks.beast.editor.property.data.JobFileDataContainer.Type;
 import de.uks.beast.editor.property.popup.PopupView;
 import de.uks.beast.editor.property.section.views.ControlCenterPropertyView;
+import de.uks.beast.editor.provider.DiagramFileProvider;
 import de.uks.beast.editor.util.FileBrowser;
 
 public class JobDataController extends Observable
 {
-	private static final Logger			LOG					= LogManager.getLogger(JobDataController.class);
-	public static BeastConnection con;
+	private static final Logger				LOG					= LogManager.getLogger(JobDataController.class);
+	public static BeastConnection			con;
 	
-	private JobDataContainer			jobDataContainer	= new JobDataContainer();
-	private final PopupView				popupView;
+	private JobDataContainer				jobDataContainer	= new JobDataContainer();
+	private final PopupView					popupView;
 	private final ControlCenterPropertyView	propertyView;
-	private String name;
+	private String							name;
+	
 	
 	
 	public JobDataController(final Display display, final Composite parent, final TabbedPropertySheetWidgetFactory factory)
@@ -156,7 +158,7 @@ public class JobDataController extends Observable
 			
 			@Override
 			public void widgetSelected(SelectionEvent event)
-			{		
+			{
 				if (!tmpList.isEmpty())
 				{
 					final Path unzipToPath = Paths.get(popupView.getTextfldInput());
@@ -251,10 +253,12 @@ public class JobDataController extends Observable
 		
 		propertyView.addHandlerToTransfereBtn(new SelectionListener() {
 			
-
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
+				
+				System.out.println(DiagramFileProvider.getDiagramFile().exists());
+				
 				try
 				{
 					update(propertyView.getNameInput());
@@ -281,13 +285,15 @@ public class JobDataController extends Observable
 			
 			
 			
-			private de.uks.beast.model.Job serialize(Job job) {
+			private de.uks.beast.model.Job serialize(Job job)
+			{
 				de.uks.beast.model.Job j = new de.uks.beast.model.Job();
 				j.setName(job.getName());
 				j.setJar(job.getJobFile().getPath().toString());
 				
 				List<String> ins = new ArrayList<String>();
-				for (JobInterface ji : job.getInputFiles()) {
+				for (JobInterface ji : job.getInputFiles())
+				{
 					ins.add(ji.getPath().toString());
 				}
 				j.setInputs(ins);
@@ -295,9 +301,9 @@ public class JobDataController extends Observable
 				j.setOutput(job.getOutputFile().getPath().toString());
 				return j;
 			}
-
-
-
+			
+			
+			
 			@Override
 			public void widgetDefaultSelected(SelectionEvent arg0)
 			{
@@ -341,13 +347,12 @@ public class JobDataController extends Observable
 		
 		return nameValid && jobFileValid && inputFileValid && outputFileValid;
 	}
-
-
-
-	public void setServerName(String name) {
+	
+	
+	
+	public void setServerName(String name)
+	{
 		this.name = name;
 	}
-	
-	
 	
 }
