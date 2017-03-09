@@ -258,7 +258,7 @@ public class JobDataController extends Observable
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				//TODO: just for testing
+				
 				final YamlWriter yamlWriter = new YamlWriter(DiagramFileProvider.getDiagramFile());
 				yamlWriter.writeConfig(null);
 				
