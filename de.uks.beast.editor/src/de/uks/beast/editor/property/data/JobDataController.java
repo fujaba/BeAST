@@ -24,6 +24,8 @@ import de.uks.beast.editor.property.data.JobFileDataContainer.Type;
 import de.uks.beast.editor.property.popup.PopupView;
 import de.uks.beast.editor.property.section.views.ControlCenterPropertyView;
 import de.uks.beast.editor.provider.DiagramFileProvider;
+import de.uks.beast.editor.provider.EditorDiagramTypeProvider;
+import de.uks.beast.editor.remote.YamlWriter;
 import de.uks.beast.editor.util.FileBrowser;
 
 public class JobDataController extends Observable
@@ -256,10 +258,11 @@ public class JobDataController extends Observable
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
+				//TODO: just for testing
+				final YamlWriter yamlWriter = new YamlWriter(DiagramFileProvider.getDiagramFile());
+				yamlWriter.writeConfig(null);
 				
-				System.out.println(DiagramFileProvider.getDiagramFile().exists());
-				
-				try
+				/*try
 				{
 					update(propertyView.getNameInput());
 					update(new JobFileDataContainer(Type.OUTPUTFILE, Paths.get(propertyView.getOutputFileInput())));
@@ -279,7 +282,7 @@ public class JobDataController extends Observable
 				catch (final NullPointerException | ValidationException e)
 				{
 					LOG.error("Job building or validation failed!", e);
-				}
+				}*/
 				
 			}
 			

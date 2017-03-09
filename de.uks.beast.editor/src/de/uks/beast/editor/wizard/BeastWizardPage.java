@@ -122,15 +122,21 @@ public class BeastWizardPage extends WizardPage
 		{
 			final IStructuredSelection ssel = (IStructuredSelection) selection;
 			if (ssel.size() > 1)
+			{
 				return;
+			}
 			final Object obj = ssel.getFirstElement();
 			if (obj instanceof IResource)
 			{
 				final IContainer container;
 				if (obj instanceof IContainer)
+				{
 					container = (IContainer) obj;
+				}
 				else
+				{
 					container = ((IResource) obj).getParent();
+				}
 				containerText.setText(container.getFullPath().toString());
 			}
 		}
@@ -146,8 +152,8 @@ public class BeastWizardPage extends WizardPage
 	
 	private void handleBrowse()
 	{
-		final ContainerSelectionDialog dialog = new ContainerSelectionDialog(getShell(),
-				ResourcesPlugin.getWorkspace().getRoot(), false, "Select new file container");
+		final ContainerSelectionDialog dialog = new ContainerSelectionDialog(getShell(), ResourcesPlugin.getWorkspace().getRoot(),
+				false, "Select new file container");
 		if (dialog.open() == ContainerSelectionDialog.OK)
 		{
 			final Object[] result = dialog.getResult();
@@ -194,7 +200,7 @@ public class BeastWizardPage extends WizardPage
 			updateStatus("File name must be valid");
 			return;
 		}
-		int dotLoc = fileName.lastIndexOf('.');
+		final int dotLoc = fileName.lastIndexOf('.');
 		if (dotLoc != -1)
 		{
 			final String ext = fileName.substring(dotLoc + 1);
