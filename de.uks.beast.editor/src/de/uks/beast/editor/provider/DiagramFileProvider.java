@@ -35,20 +35,12 @@ public class DiagramFileProvider
 	
 	
 	
-	public static void setDiagramFilePath(final String p1, final String... p)
+	public static void setInfo(final String p1, final String... p)
 	{
 		final Path fullFilePath = Paths.get(p1, p);
-		LOG.debug("set diagram file path: " + fullFilePath.toString());
-		
 		getInstance().path = fullFilePath;
-	}
-	
-	
-	
-	public static void setDiagramName(final String name)
-	{
-		LOG.debug("set diagram name: " + name);
-		getInstance().diagramName = name;
+		getInstance().diagramName = fullFilePath.getFileName().toString();
+		LOG.debug("set diagram info: " + fullFilePath.toString());
 	}
 	
 	

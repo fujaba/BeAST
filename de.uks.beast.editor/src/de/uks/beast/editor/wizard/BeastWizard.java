@@ -175,8 +175,7 @@ public class BeastWizard extends Wizard implements INewWizard
 		
 		createDiagram(file);
 		
-		DiagramFileProvider.setDiagramFilePath(container.getRawLocation().toOSString(), file.getName());
-		DiagramFileProvider.setDiagramName(file.getName());
+		DiagramFileProvider.setInfo(container.getRawLocation().toOSString(), file.getName());
 		
 		monitor.worked(1);
 		monitor.setTaskName("Opening file for editing...");
